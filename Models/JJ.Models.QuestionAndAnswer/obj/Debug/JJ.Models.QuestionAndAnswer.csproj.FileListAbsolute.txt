@@ -1,0 +1,5 @@
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\bin\Debug\JJ.Models.QuestionAndAnswer.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\bin\Debug\JJ.Models.QuestionAndAnswer.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\obj\Debug\JJ.Models.QuestionAndAnswer.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\obj\Debug\JJ.Models.QuestionAndAnswer.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\obj\Debug\JJ.Models.QuestionAndAnswer.csprojResolveAssemblyReference.cache

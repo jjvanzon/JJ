@@ -1,0 +1,4 @@
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Reflection\bin\Debug\JJ.Framework.Reflection.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Reflection\bin\Debug\JJ.Framework.Reflection.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Reflection\obj\Debug\JJ.Framework.Reflection.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Reflection\obj\Debug\JJ.Framework.Reflection.pdb

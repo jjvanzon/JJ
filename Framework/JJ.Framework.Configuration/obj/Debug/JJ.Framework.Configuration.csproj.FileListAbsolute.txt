@@ -1,0 +1,7 @@
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Configuration\bin\Debug\JJ.Framework.Configuration.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Configuration\bin\Debug\JJ.Framework.Configuration.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Configuration\bin\Debug\JJ.Framework.Reflection.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Configuration\bin\Debug\JJ.Framework.Reflection.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Configuration\obj\Debug\JJ.Framework.Configuration.csprojResolveAssemblyReference.cache
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Configuration\obj\Debug\JJ.Framework.Configuration.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Configuration\obj\Debug\JJ.Framework.Configuration.pdb

@@ -1,0 +1,13 @@
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Business.QuestionAndAnswer.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Business.QuestionAndAnswer.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Models.QuestionAndAnswer.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Framework.Persistence.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Framework.Reflection.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Models.QuestionAndAnswer.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Framework.Persistence.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Framework.Reflection.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\obj\Debug\JJ.Business.QuestionAndAnswer.csprojResolveAssemblyReference.cache
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\obj\Debug\JJ.Business.QuestionAndAnswer.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\obj\Debug\JJ.Business.QuestionAndAnswer.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Models.QuestionAndAnswer.Persistence.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Business\JJ.Business.QuestionAndAnswer\bin\Debug\JJ.Models.QuestionAndAnswer.Persistence.pdb
