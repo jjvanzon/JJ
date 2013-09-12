@@ -1,5 +1,0 @@
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Orm\obj\Debug\JJ.Framework.Orm.csprojResolveAssemblyReference.cache
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Orm\bin\Debug\JJ.Framework.Orm.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Orm\bin\Debug\JJ.Framework.Orm.pdb
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Orm\obj\Debug\JJ.Framework.Orm.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Orm\obj\Debug\JJ.Framework.Orm.pdb
