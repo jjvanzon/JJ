@@ -20,7 +20,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
                 AppSettings<IPersistenceSettings>.Get(x => x.PersistenceContextType),
                 AppSettings<IPersistenceSettings>.Get(x => x.PersistenceLocation),
                 AppSettings<IPersistenceSettings>.Get(x => x.PersistenceModelAssembly),
-                typeof(TextualQuestionMapping).Assembly.FullName);
+                AppSettings<IPersistenceSettings>.Get(x => x.PersistenceModelAssembly2));
         }
     }
 }

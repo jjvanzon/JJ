@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Persistence.NHibernate", "..\Models\JJ.Models.QuestionAndAnswer.Persistence.NHibernate\JJ.Models.QuestionAndAnswer.Persistence.NHibernate.csproj", "{4507BFDD-1C21-4BA8-9486-4819D3B6AFCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Tests", "..\Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Tests.csproj", "{2E520035-5328-4518-BC08-B57D7D3A70C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{4507BFDD-1C21-4BA8-9486-4819D3B6AFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4507BFDD-1C21-4BA8-9486-4819D3B6AFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4507BFDD-1C21-4BA8-9486-4819D3B6AFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E520035-5328-4518-BC08-B57D7D3A70C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E520035-5328-4518-BC08-B57D7D3A70C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E520035-5328-4518-BC08-B57D7D3A70C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E520035-5328-4518-BC08-B57D7D3A70C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,5 +110,6 @@ Global
 		{805A8237-05ED-40AE-8D1A-9288373EA5E0} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{1A8E047C-7893-4918-B415-CE3928E815D8} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{44FD9133-5FE7-4824-BD35-27273706D127} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{2E520035-5328-4518-BC08-B57D7D3A70C2} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 EndGlobal
