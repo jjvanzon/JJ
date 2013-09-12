@@ -1,4 +1,0 @@
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Common\bin\Debug\JJ.Framework.Common.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Common\bin\Debug\JJ.Framework.Common.pdb
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Common\obj\Debug\JJ.Framework.Common.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\JJ.Framework.Common\obj\Debug\JJ.Framework.Common.pdb
