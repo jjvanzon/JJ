@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<domain name="QuestionAndAnswer.Domain" assembly="JJ.Models.QuestionAndAnswer"
+        root="JJ.Models.QuestionAndAnswer" source="QuestionAndAnswer">
+
+  <class name="TextualQuestion" table="TextualQuestion">
+    <property name="ID" id="true" source-assigned="true" columns="ID" />
+    <property name="Text" max-length="2048" columns="Text" />
+  </class>
+
+  <source name="QuestionAndAnswer" compute="true"
+	        type="MSSqlServer" provider="SqlClient" schema="dbo" />
+</domain>

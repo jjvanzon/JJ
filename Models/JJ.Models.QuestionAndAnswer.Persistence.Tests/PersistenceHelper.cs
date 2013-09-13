@@ -13,25 +13,12 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
     {
         public static IContext CreatePersistenceContext()
         {
-            // TODO: Make [i] work...
-            //var modelAssemblyNames = new List<string>();
-            //for (int i = 0; i <= Configuration<IPersistenceSettings>.GetValue(x => x.ModelAssemblies.Length); i++)
-            //{
-            //    string modelAssemblyName = Configuration<IPersistenceSettings>.GetValue(x => x.ModelAssemblies[i]);
-            //    modelAssemblyNames.Add(modelAssemblyName);
-            //}
-
-            //return ContextFactory.CreateContext(
-            //    Configuration<IPersistenceSettings>.GetValue(x => x.ContextType),
-            //    Configuration<IPersistenceSettings>.GetValue(x => x.Location),
-            //    modelAssemblyNames.ToArray());
-
+            PersistenceConfiguration persistenceConfiguration = ConfigurationManager.GetSection<PersistenceConfiguration>();
 
             return ContextFactory.CreateContext(
-                Configuration<IPersistenceSettings>.GetValue(x => x.ContextType),
-                Configuration<IPersistenceSettings>.GetValue(x => x.Location),
-                Configuration<IPersistenceSettings>.GetValue(x => x.ModelAssemblies[0]),
-                Configuration<IPersistenceSettings>.GetValue(x => x.ModelAssemblies[1]));
+                persistenceConfiguration.ContextType,
+                persistenceConfiguration.Location,
+                persistenceConfiguration.ModelAssemblies);
         }
     }
 }

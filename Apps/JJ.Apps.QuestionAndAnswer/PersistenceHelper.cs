@@ -16,11 +16,12 @@ namespace JJ.Apps.QuestionAndAnswer
     {
         public static IContext CreatePersistenceContext()
         {
-            //return ContextFactory.CreateContext(
-            //    AppSettings<IPersistenceSettings>.Get(x => x.PersistenceLocation),
-            //    AppSettings<IPersistenceSettings>.Get(x => x.PersistenceModelAssembly),
-            //    AppSettings<IPersistenceSettings>.Get(x => x.PersistenceContextType));
-            throw new NotImplementedException();
+            PersistenceConfiguration persistenceConfiguration = ConfigurationManager.GetSection<PersistenceConfiguration>();
+
+            return ContextFactory.CreateContext(
+                persistenceConfiguration.ContextType,
+                persistenceConfiguration.Location,
+                persistenceConfiguration.ModelAssemblies);
         }
     }
 }

@@ -10,22 +10,22 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
     public class TextualQuestionRespositoryTests
     {
         [TestMethod]
-        public void Test_TextualQuestionRepository_GetAll()
-        {
-            using (IContext context = PersistenceHelper.CreatePersistenceContext())
-            {
-                ITextualQuestionRepository repository = new TextualQuestionRepository(context);
-                List<EntityWrapper<TextualQuestion>> list = repository.GetAll().ToList();
-            }
-        }
-
-        [TestMethod]
         public void Test_TextualQuestionRepository_Get()
         {
             using (IContext context = PersistenceHelper.CreatePersistenceContext())
             {
                 ITextualQuestionRepository repository = new TextualQuestionRepository(context);
                 EntityWrapper<TextualQuestion> item = repository.Get(2);
+            }
+        }
+
+        [TestMethod]
+        public void Test_TextualQuestionRepository_GetAll()
+        {
+            using (IContext context = PersistenceHelper.CreatePersistenceContext())
+            {
+                ITextualQuestionRepository repository = new TextualQuestionRepository(context);
+                List<EntityWrapper<TextualQuestion>> list = repository.GetAll().ToList();
             }
         }
     }
