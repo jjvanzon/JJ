@@ -4,11 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using JJ.Framework.Persistence;
-using JJ.Framework.Persistence.NHibernate;
-using JJ.Models.QuestionAndAnswer;
 using JJ.Framework.Configuration;
-using JJ.Models.QuestionAndAnswer.Persistence.NHibernate;
+using JJ.Framework.Persistence;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 {
@@ -16,12 +13,25 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
     {
         public static IContext CreatePersistenceContext()
         {
+            // TODO: Make [i] work...
+            //var modelAssemblyNames = new List<string>();
+            //for (int i = 0; i <= Configuration<IPersistenceSettings>.GetValue(x => x.ModelAssemblies.Length); i++)
+            //{
+            //    string modelAssemblyName = Configuration<IPersistenceSettings>.GetValue(x => x.ModelAssemblies[i]);
+            //    modelAssemblyNames.Add(modelAssemblyName);
+            //}
+
+            //return ContextFactory.CreateContext(
+            //    Configuration<IPersistenceSettings>.GetValue(x => x.ContextType),
+            //    Configuration<IPersistenceSettings>.GetValue(x => x.Location),
+            //    modelAssemblyNames.ToArray());
+
+
             return ContextFactory.CreateContext(
-                AppSettings<IPersistenceSettings>.Get(x => x.PersistenceContextType),
-                AppSettings<IPersistenceSettings>.Get(x => x.PersistenceLocation),
-                AppSettings<IPersistenceSettings>.Get(x => x.PersistenceModelAssembly),
-                AppSettings<IPersistenceSettings>.Get(x => x.PersistenceModelAssembly2));
+                Configuration<IPersistenceSettings>.GetValue(x => x.ContextType),
+                Configuration<IPersistenceSettings>.GetValue(x => x.Location),
+                Configuration<IPersistenceSettings>.GetValue(x => x.ModelAssemblies[0]),
+                Configuration<IPersistenceSettings>.GetValue(x => x.ModelAssemblies[1]));
         }
     }
 }
-
