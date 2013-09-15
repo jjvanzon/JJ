@@ -42,7 +42,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="QuestionAndAnswer.npersist">
+    <Content Include="JJ.Models.QuestionAndAnswer.Persistence.NPersist.npersist">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
