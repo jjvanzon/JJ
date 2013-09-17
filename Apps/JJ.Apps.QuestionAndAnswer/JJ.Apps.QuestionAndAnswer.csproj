@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,8 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PersistenceHelper.cs" />
+    <Compile Include="Presenters\QuestionPresenter.cs" />
+    <Compile Include="Helpers\PersistenceHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Helpers\QuestionDetailViewModelExtensions.cs" />
+    <Compile Include="ViewModels\Helpers\TextualQuestionExtensions.cs" />
+    <Compile Include="Resources\Labels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Titles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Titles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\QuestionDetailViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
@@ -62,6 +77,14 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.NHibernate\JJ.Models.QuestionAndAnswer.Persistence.NHibernate.csproj">
+      <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>
+      <Name>JJ.Models.QuestionAndAnswer.Persistence.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence\JJ.Models.QuestionAndAnswer.Persistence.csproj">
+      <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
+      <Name>JJ.Models.QuestionAndAnswer.Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj">
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>
@@ -85,6 +108,20 @@
       <DependentUpon>app.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Labels.en-US.resx" />
+    <EmbeddedResource Include="Resources\Labels.nl-NL.resx" />
+    <EmbeddedResource Include="Resources\Labels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Titles.en-US.resx" />
+    <EmbeddedResource Include="Resources\Titles.nl-NL.resx" />
+    <EmbeddedResource Include="Resources\Titles.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Titles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

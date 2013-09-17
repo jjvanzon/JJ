@@ -9,7 +9,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence
 {
     public interface ITextualQuestionRepository
     {
-        IEnumerable<EntityWrapper<TextualQuestion>> GetAll();
-        EntityWrapper<TextualQuestion> Get(int id);
+        IEnumerable<TextualQuestion> GetAll();
+        TextualQuestion Get(int id);
+        TextualQuestion GetRandomTextualQuestion();
     }
 }

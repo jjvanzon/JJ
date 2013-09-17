@@ -18,8 +18,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
             {
                 using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
                 {
-                    ITextualQuestionRepository repository = new TextualQuestionRepository(context);
-                    EntityWrapper<TextualQuestion> item = repository.Get(2);
+                    ITextualQuestionRepository repository = new TextualQuestionRepository(context, context.Location);
+                    TextualQuestion item = repository.Get(2);
                 }
             }
         }
@@ -31,8 +31,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
             {
                 using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
                 {
-                    ITextualQuestionRepository repository = new TextualQuestionRepository(context);
-                    List<EntityWrapper<TextualQuestion>> list = repository.GetAll().ToList();
+                    ITextualQuestionRepository repository = new TextualQuestionRepository(context, context.Location);
+                    List<TextualQuestion> list = repository.GetAll().ToList();
                 }
             }
         }

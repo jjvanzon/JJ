@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Business.QuestionAndAnswer
+namespace JJ.Models.QuestionAndAnswer.Persistence.SQL
 {
-    public class Class1
+    internal enum SqlEnum
     {
+        GetRandomTextualQuestionID
     }
 }

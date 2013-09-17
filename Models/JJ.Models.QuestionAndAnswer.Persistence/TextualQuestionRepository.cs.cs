@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Persistence;
+using JJ.Models.QuestionAndAnswer.Persistence.SQL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,31 @@ namespace JJ.Models.QuestionAndAnswer.Persistence
     {
         private IContext _context;
 
-        public TextualQuestionRepository(IContext context)
+        private SqlExecutor _sqlExecutor;
+
+        public TextualQuestionRepository(IContext context, string sqlConnectionString)
         {
             if (context == null) throw new ArgumentNullException("context");
 
             _context = context;
+
+            _sqlExecutor = new SqlExecutor(sqlConnectionString);
         }
 
-        public IEnumerable<EntityWrapper<TextualQuestion>> GetAll()
+        public IEnumerable<TextualQuestion> GetAll()
         {
             return _context.Query<TextualQuestion>().ToArray();
         }
 
-        public EntityWrapper<TextualQuestion> Get(int id)
+        public TextualQuestion Get(int id)
         {
-            return _context.GetEntity<TextualQuestion>(id);
+            return _context.Get<TextualQuestion>(id);
+        }
+
+        public TextualQuestion GetRandomTextualQuestion()
+        {
+            int randomID = _sqlExecutor.GetRandomTextualQuestionID();
+            return Get(randomID);
         }
     }
 }

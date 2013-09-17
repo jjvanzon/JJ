@@ -10,11 +10,11 @@ using JJ.Models.QuestionAndAnswer;
 using JJ.Framework.Configuration;
 using JJ.Framework.Reflection;
 
-namespace JJ.Apps.QuestionAndAnswer
+namespace JJ.Apps.QuestionAndAnswer.Helpers
 {
     public static class PersistenceHelper
     {
-        public static IContext CreatePersistenceContext()
+        public static IContext CreateContext()
         {
             PersistenceConfiguration persistenceConfiguration = ConfigurationManager.GetSection<PersistenceConfiguration>();
 

@@ -39,7 +39,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\External Components\NHibernate\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\External Components\NHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\External Components\NHibernate\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\External Components\NHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\..\External Components\NHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -59,9 +77,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -126,10 +141,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Helpers\ActionNames.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Helpers\ViewNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -204,6 +222,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Questions\Question.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -213,16 +232,52 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.aspx" />
+    <Content Include="Views\Shared\Site.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
+      <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
+      <Name>JJ.Business.QuestionAndAnswer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
+      <Name>JJ.Framework.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj">
+      <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
+      <Name>JJ.Framework.Persistence.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
+      <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
+      <Name>JJ.Framework.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
+      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
+      <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.NHibernate\JJ.Models.QuestionAndAnswer.Persistence.NHibernate.csproj">
+      <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>
+      <Name>JJ.Models.QuestionAndAnswer.Persistence.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence\JJ.Models.QuestionAndAnswer.Persistence.csproj">
+      <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
+      <Name>JJ.Models.QuestionAndAnswer.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj">
+      <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>
+      <Name>JJ.Models.QuestionAndAnswer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Apps.QuestionAndAnswer\JJ.Apps.QuestionAndAnswer.csproj">
       <Project>{680c0600-e384-4f3d-9c2a-38ecc1fdb1cb}</Project>
       <Name>JJ.Apps.QuestionAndAnswer</Name>
@@ -244,7 +299,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>51878</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49720/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
