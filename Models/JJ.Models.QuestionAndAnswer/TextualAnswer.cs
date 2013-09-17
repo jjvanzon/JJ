@@ -1,14 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer
 {
-    public class TextualAnswer : IAnswer
+    public class TextualAnswer
     {
-        public virtual int ID { get; set; }
-        public virtual string Text { get; set; }
+        private int _iD;
+
+        public virtual int ID
+        {
+            get { return _iD; }
+            set { _iD = value; }
+        }
+
+        private string _text;
+
+        public virtual string Text
+        {
+            get { return _text; }
+            set { _text = value; }
+        }
+
+        public virtual IList<TextualQuestion> TextualQuestions { get; set; }
     }
 }

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuestionAndAnswerDB_DEVModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="QuestionAndAnswerDB_DEVModelStoreContainer">
+          <EntitySet Name="TextualAnswer" EntityType="QuestionAndAnswerDB_DEVModel.Store.TextualAnswer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TextualQuestion" EntityType="QuestionAndAnswerDB_DEVModel.Store.TextualQuestion" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_TextualQuestion_TextualAnswer" Association="QuestionAndAnswerDB_DEVModel.Store.FK_TextualQuestion_TextualAnswer">
+            <End Role="TextualAnswer" EntitySet="TextualAnswer" />
+            <End Role="TextualQuestion" EntitySet="TextualQuestion" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TextualAnswer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="2048" />
+        </EntityType>
+        <EntityType Name="TextualQuestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="2048" />
+          <Property Name="TextualAnswerID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TextualQuestion_TextualAnswer">
+          <End Role="TextualAnswer" Type="QuestionAndAnswerDB_DEVModel.Store.TextualAnswer" Multiplicity="1" />
+          <End Role="TextualQuestion" Type="QuestionAndAnswerDB_DEVModel.Store.TextualQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TextualAnswer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TextualQuestion">
+              <PropertyRef Name="TextualAnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuestionAndAnswerDB_DEVModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QuestionAndAnswerDB_DEVEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="TextualAnswers" EntityType="QuestionAndAnswerDB_DEVModel.TextualAnswer" />
+          <EntitySet Name="TextualQuestions" EntityType="QuestionAndAnswerDB_DEVModel.TextualQuestion" />
+          <AssociationSet Name="FK_TextualQuestion_TextualAnswer" Association="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_TextualAnswer">
+            <End Role="TextualAnswer" EntitySet="TextualAnswers" />
+            <End Role="TextualQuestion" EntitySet="TextualQuestions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TextualAnswer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TextualQuestions" Relationship="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_TextualAnswer" FromRole="TextualAnswer" ToRole="TextualQuestion" />
+        </EntityType>
+        <EntityType Name="TextualQuestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TextualAnswer" Relationship="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_TextualAnswer" FromRole="TextualQuestion" ToRole="TextualAnswer" />
+        </EntityType>
+        <Association Name="FK_TextualQuestion_TextualAnswer">
+          <End Type="QuestionAndAnswerDB_DEVModel.TextualAnswer" Role="TextualAnswer" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.TextualQuestion" Role="TextualQuestion" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuestionAndAnswerDB_DEVModelStoreContainer" CdmEntityContainer="QuestionAndAnswerDB_DEVEntities">
+          <EntitySetMapping Name="TextualAnswers">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.TextualAnswer">
+              <MappingFragment StoreEntitySet="TextualAnswer">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TextualQuestions">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.TextualQuestion">
+              <MappingFragment StoreEntitySet="TextualQuestion">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_TextualQuestion_TextualAnswer" TypeName="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_TextualAnswer" StoreEntitySet="TextualQuestion">
+            <EndProperty Name="TextualQuestion">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="TextualAnswer">
+              <ScalarProperty Name="ID" ColumnName="TextualAnswerID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

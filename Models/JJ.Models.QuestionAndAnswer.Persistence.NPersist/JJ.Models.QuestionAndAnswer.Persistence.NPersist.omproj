@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>JJ.Models.QuestionAndAnswer.Persistence.NPersist</Name>
+  <MetaData />
+  <Resources>
+    <Resource>
+      <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.Persistence.NPersist\JJ.Models.QuestionAndAnswer.Persistence.NPersist.npersist</FilePath>
+      <HintPath>JJ.Models.QuestionAndAnswer.Persistence.NPersist.npersist</HintPath>
+      <Name>JJ.Models.QuestionAndAnswer</Name>
+      <ResourceType>XmlDomainMap</ResourceType>
+      <Resources />
+      <Configs>
+        <DomainConfig>
+          <Name>Default configuration</Name>
+          <MetaData />
+          <ClassesToCodeConfig>
+            <Name />
+            <MetaData />
+            <TargetFolder>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer</TargetFolder>
+            <ImplementIInterceptable>false</ImplementIInterceptable>
+            <ImplementIObjectHelper>false</ImplementIObjectHelper>
+            <ImplementIObservable>false</ImplementIObservable>
+            <IncludeRegions>false</IncludeRegions>
+            <IncludeComments>false</IncludeComments>
+            <IncludeDocComments>false</IncludeDocComments>
+            <IncludeModelInfoInDocComments>false</IncludeModelInfoInDocComments>
+            <NotifyOnlyWhenRequired>false</NotifyOnlyWhenRequired>
+            <NotifyLightWeight>false</NotifyLightWeight>
+            <NotifyAfterGet>false</NotifyAfterGet>
+            <NotifyAfterSet>false</NotifyAfterSet>
+            <ImplementShadows>false</ImplementShadows>
+            <AddPropertyNotifyMethods>false</AddPropertyNotifyMethods>
+            <GeneratePOCO>true</GeneratePOCO>
+            <TargetLanguage>CSharp</TargetLanguage>
+            <TargetMapper>NPersist</TargetMapper>
+            <ReallyNoRegions>true</ReallyNoRegions>
+            <UseTypedCollections>false</UseTypedCollections>
+            <WrapCollections>false</WrapCollections>
+            <EmbedXml>false</EmbedXml>
+            <SourceCodeFiles>
+              <SourceCodeFile>
+                <Name>TextualAnswer.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\TextualAnswer.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>TextualAnswer</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-16T02:18:11.8582738+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>TextualQuestion.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\TextualQuestion.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>TextualQuestion</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-16T02:18:11.8582738+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>AssemblyInfo.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\AssemblyInfo.cs</FilePath>
+                <MapObjectType />
+                <MapObjectName>AssemblyInfo</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-16T02:18:11.8738739+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>JJ.Models.QuestionAndAnswer.npersist</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.npersist</FilePath>
+                <MapObjectType />
+                <MapObjectName>MapFile</MapObjectName>
+                <FileType>NPersist</FileType>
+                <LastWrittenTo>2013-09-16T02:18:11.8738739+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>JJ.Models.QuestionAndAnswer.csproj</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.DomainMap</MapObjectType>
+                <MapObjectName>JJ.Models.QuestionAndAnswer</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-16T02:18:11.8738739+02:00</LastWrittenTo>
+              </SourceCodeFile>
+            </SourceCodeFiles>
+            <PutAllClassesInOneFile>false</PutAllClassesInOneFile>
+            <XmlFilePerClass>false</XmlFilePerClass>
+          </ClassesToCodeConfig>
+          <ClassesToTablesConfig>
+            <Name />
+            <MetaData />
+            <TablePrefix />
+            <TableSuffix />
+          </ClassesToTablesConfig>
+          <TablesToClassesConfig>
+            <Name />
+            <MetaData />
+            <TableToClassNameConverter />
+            <ColumnToPropertyNameConverter />
+            <PropertyToInverseNameConverter />
+            <GenerateInverseProperties>true</GenerateInverseProperties>
+          </TablesToClassesConfig>
+          <IsActive>true</IsActive>
+        </DomainConfig>
+      </Configs>
+      <Diagrams>
+        <UmlDiagram>
+          <Name>JJ.Models.QuestionAndAnswer</Name>
+          <MetaData />
+          <UmlClasses />
+          <UmlLines />
+          <Location>
+            <X>0</X>
+            <Y>0</Y>
+          </Location>
+          <Size>
+            <Width>957</Width>
+            <Height>613</Height>
+          </Size>
+          <Zoom>1</Zoom>
+          <Selected>true</Selected>
+          <DisplayAssociationArrows>false</DisplayAssociationArrows>
+          <DrawShadows>true</DrawShadows>
+          <DrawShadowsPass2>true</DrawShadowsPass2>
+          <ShadowColor1>
+            <A>128</A>
+            <R>196</R>
+            <G>196</G>
+            <B>196</B>
+          </ShadowColor1>
+          <ShadowColor2>
+            <A>128</A>
+            <R>128</R>
+            <G>128</G>
+            <B>128</B>
+          </ShadowColor2>
+          <ShadowBrushStyle>GradientBrush</ShadowBrushStyle>
+          <ShadowGradientMode>ForwardDiagonal</ShadowGradientMode>
+          <ColorSynchError>
+            <A>255</A>
+            <R>139</R>
+            <G>0</G>
+            <B>0</B>
+          </ColorSynchError>
+          <ColorError>
+            <A>255</A>
+            <R>255</R>
+            <G>0</G>
+            <B>0</B>
+          </ColorError>
+          <UseGrid>true</UseGrid>
+          <GridSize>50</GridSize>
+          <GridColor1>
+            <A>255</A>
+            <R>208</R>
+            <G>208</G>
+            <B>208</B>
+          </GridColor1>
+          <GridColor2>
+            <A>255</A>
+            <R>240</R>
+            <G>240</G>
+            <B>240</B>
+          </GridColor2>
+          <ForeColor>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </ForeColor>
+          <BackColor1>
+            <A>255</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </BackColor1>
+          <BackColor2>
+            <A>255</A>
+            <R>224</R>
+            <G>224</G>
+            <B>224</B>
+          </BackColor2>
+          <BgBrushStyle>SolidBrush</BgBrushStyle>
+          <BgGradientMode>ForwardDiagonal</BgGradientMode>
+          <FontSize>8.25</FontSize>
+          <FontFamily>Microsoft Sans Serif</FontFamily>
+          <FontColor>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </FontColor>
+          <FontStyle>Regular</FontStyle>
+          <ClassBgBrushStyle>GradientBrush</ClassBgBrushStyle>
+          <ClassBgGradientMode>ForwardDiagonal</ClassBgGradientMode>
+          <ClassBackColor1>
+            <A>255</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </ClassBackColor1>
+          <ClassBackColor2>
+            <A>255</A>
+            <R>224</R>
+            <G>224</G>
+            <B>224</B>
+          </ClassBackColor2>
+          <ArrowBaseLength>20</ArrowBaseLength>
+          <RadarSize>100</RadarSize>
+          <DisplayRadar>true</DisplayRadar>
+          <RadarForeColor>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </RadarForeColor>
+          <RadarBackColor>
+            <A>255</A>
+            <R>211</R>
+            <G>211</G>
+            <B>211</B>
+          </RadarBackColor>
+          <RadarClassForeColor>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </RadarClassForeColor>
+          <RadarClassBackColor>
+            <A>255</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </RadarClassBackColor>
+          <RadarViewColor>
+            <A>255</A>
+            <R>165</R>
+            <G>42</G>
+            <B>42</B>
+          </RadarViewColor>
+          <RadarViewStyle>Dash</RadarViewStyle>
+          <DisplayInheritedProperties>false</DisplayInheritedProperties>
+          <DisplayLineProperties>false</DisplayLineProperties>
+        </UmlDiagram>
+      </Diagrams>
+    </Resource>
+  </Resources>
+</Project>

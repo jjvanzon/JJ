@@ -3,6 +3,8 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Persistence;
 using System.Collections.Generic;
+using JJ.Models.QuestionAndAnswer.Persistence.Tests.Helpers;
+using JJ.Framework.Configuration;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 {
@@ -12,21 +14,33 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
         [TestMethod]
         public void Test_TextualQuestionRepository_Get()
         {
-            using (IContext context = PersistenceHelper.CreatePersistenceContext())
+            foreach (string contextType in GetContextTypes())
             {
-                ITextualQuestionRepository repository = new TextualQuestionRepository(context);
-                EntityWrapper<TextualQuestion> item = repository.Get(2);
+                using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
+                {
+                    ITextualQuestionRepository repository = new TextualQuestionRepository(context);
+                    EntityWrapper<TextualQuestion> item = repository.Get(2);
+                }
             }
         }
 
         [TestMethod]
         public void Test_TextualQuestionRepository_GetAll()
         {
-            using (IContext context = PersistenceHelper.CreatePersistenceContext())
+            foreach (string contextType in GetContextTypes())
             {
-                ITextualQuestionRepository repository = new TextualQuestionRepository(context);
-                List<EntityWrapper<TextualQuestion>> list = repository.GetAll().ToList();
+                using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
+                {
+                    ITextualQuestionRepository repository = new TextualQuestionRepository(context);
+                    List<EntityWrapper<TextualQuestion>> list = repository.GetAll().ToList();
+                }
             }
+        }
+
+        private string[] GetContextTypes()
+        {
+            //return ConfigurationManager.GetSection<ConfigurationSection>().PersistenceContextTypes;
+            return new string[] { ConfigurationManager.GetSection<PersistenceConfiguration>().ContextType };
         }
     }
 }
