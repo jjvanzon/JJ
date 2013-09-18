@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence;
+using JJ.Business.QuestionAndAnswer;
+using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
-using JJ.Framework.Persistence;
-using JJ.Apps.QuestionAndAnswer.Helpers;
-using JJ.Business.QuestionAndAnswer;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -26,6 +26,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
         {
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
             QuestionDetailViewModel viewModel2 = _model.ToViewModel();
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = true;
@@ -89,6 +90,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 {
                     model = repository.GetRandomTextualQuestion();
                 }
+            }
+
+            if (model == null)
+            {
+                throw new Exception("model cannot be null.");
             }
 
             _model = model;
