@@ -130,7 +130,6 @@
             this.Name = "QuesionDetailForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Form1";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.QuesionDetailForm_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

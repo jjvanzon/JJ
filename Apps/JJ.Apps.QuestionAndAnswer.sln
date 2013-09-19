@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.AspNetMvc4", "JJ.Apps.QuestionAndAnswer.AspNetMvc4\JJ.Apps.QuestionAndAnswer.AspNetMvc4.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer", "JJ.Apps.QuestionAndAnswer\JJ.Apps.QuestionAndAnswer.csproj", "{680C0600-E384-4F3D-9C2A-38ECC1FDB1CB}"
@@ -58,6 +58,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.WcfService", "JJ.Apps.QuestionAndAnswer.WcfService\JJ.Apps.QuestionAndAnswer.WcfService.csproj", "{CE9782A1-2486-4217-BEA2-CC5C7499937A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.WinForms", "JJ.Apps.QuestionAndAnswer.WinForms\JJ.Apps.QuestionAndAnswer.WinForms.csproj", "{61FE7964-2503-44FD-95F9-AC9045610C99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.AspNetMvc4", "..\Framework\JJ.Framework.Presentation.AspNetMvc4\JJ.Framework.Presentation.AspNetMvc4.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -210,6 +212,12 @@ Global
 		{61FE7964-2503-44FD-95F9-AC9045610C99}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{61FE7964-2503-44FD-95F9-AC9045610C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61FE7964-2503-44FD-95F9-AC9045610C99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED3C829-D92A-4800-9462-A175CCAC4C70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED3C829-D92A-4800-9462-A175CCAC4C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED3C829-D92A-4800-9462-A175CCAC4C70}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED3C829-D92A-4800-9462-A175CCAC4C70}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{FED3C829-D92A-4800-9462-A175CCAC4C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED3C829-D92A-4800-9462-A175CCAC4C70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -235,6 +243,7 @@ Global
 		{35FC288E-5A6F-4DB9-AE54-1B721735ED7D} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{9676E4C3-1A1F-45B8-8FFD-C398F14002E7} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{30F1DFB1-BB06-42EA-AE91-56144B56DF45} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{FED3C829-D92A-4800-9462-A175CCAC4C70} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}

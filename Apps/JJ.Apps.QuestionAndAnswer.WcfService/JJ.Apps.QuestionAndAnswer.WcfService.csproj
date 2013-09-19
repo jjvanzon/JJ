@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Apps.QuestionAndAnswer.Service</RootNamespace>
-    <AssemblyName>JJ.Apps.QuestionAndAnswer.Service</AssemblyName>
+    <RootNamespace>JJ.Apps.QuestionAndAnswer.WcfService</RootNamespace>
+    <AssemblyName>JJ.Apps.QuestionAndAnswer.WcfService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <UseIISExpress>true</UseIISExpress>
@@ -75,14 +75,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="QuesionService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="ResourceService.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IResourceService.cs" />
     <Compile Include="QuesionService.svc.cs">
       <DependentUpon>QuesionService.svc</DependentUpon>
     </Compile>
     <Compile Include="IQuestionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="ResourceService.svc.cs">
+      <DependentUpon>ResourceService.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

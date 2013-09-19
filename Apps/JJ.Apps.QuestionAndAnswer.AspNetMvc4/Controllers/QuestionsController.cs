@@ -7,13 +7,17 @@ using JJ.Framework.Persistence;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.Presenters;
-using JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 {
     public class QuestionsController : Controller
     {
-        // GET: /Question/
+        public QuestionsController()
+        {
+            ValidateRequest = false;
+        }
+
+        // GET: /Questions/
 
         public ActionResult Index()
         {
@@ -22,22 +26,33 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
         // GET: /Questions/Question
         // GET: /Questions/Question/5
+        // ShowQuestion / NextQuestion
 
         public ActionResult Question(int? id = null)
         {
-            using (QuestionPresenter presenter = new QuestionPresenter(id))
+            using (QuestionPresenter presenter = new QuestionPresenter())
             {
-                QuestionDetailViewModel viewModel = presenter.ShowQuestion();
+                QuestionDetailViewModel viewModel;
+                if (id.HasValue)
+                {
+                    viewModel = presenter.ShowQuestion(id.Value);
+                }
+                else
+                {
+                    viewModel = presenter.NextQuestion();
+                }
+
                 return View(viewModel);
             }
         }
 
         // POST: /Questions/Question/5
+        // ShowAnswer
 
         [HttpPost]
         public ActionResult Question(QuestionDetailViewModel viewModel)
         {
-            using (QuestionPresenter presenter = new QuestionPresenter(viewModel.ID))
+            using (QuestionPresenter presenter = new QuestionPresenter())
             {
                 QuestionDetailViewModel viewModel2 = presenter.ShowAnswer(viewModel);
                 return View(viewModel2);

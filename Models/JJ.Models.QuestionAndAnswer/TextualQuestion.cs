@@ -20,6 +20,9 @@ namespace JJ.Models.QuestionAndAnswer
             set { _text = value; }
         }
 
+        /// <summary>
+        /// not nullable
+        /// </summary>
         public virtual TextualAnswer TextualAnswer { get; set; }
     }
 }

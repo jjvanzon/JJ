@@ -17,8 +17,13 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             if (context == null) throw new ArgumentNullException("context");
 
             var repository = new TextualQuestionRepository(context, context.Location);
+
+            TextualQuestion model = repository.Get(viewModel.ID);
+
+            model.Text = viewModel.Question;
+            model.TextualAnswer.Text = viewModel.Answer;
             
-            return repository.Get(viewModel.ID);
+            return model;
         }
     }
 }

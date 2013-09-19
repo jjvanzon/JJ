@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence;
-using JJ.Business.QuestionAndAnswer;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
@@ -15,57 +14,33 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionPresenter : IDisposable
     {
-        private TextualQuestion _model;
         private IContext _context;
         private bool _contextIsOwned;
-
-        public QuestionDetailViewModel ShowQuestion()
-        {
-            return _model.ToViewModel();
-        }
-
-        public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
-        {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
-            QuestionDetailViewModel viewModel2 = _model.ToViewModel();
-            viewModel2.UserAnswer = viewModel.UserAnswer;
-            viewModel2.AnswerIsVisible = true;
-            return viewModel2;
-        }
-
-        public QuestionDetailViewModel ShowAnswer()
-        {
-            QuestionDetailViewModel viewModel = _model.ToViewModel();
-            viewModel.AnswerIsVisible = true;
-            return viewModel;
-        }
+        private ITextualQuestionRepository _repository;
+        private TextualQuestion _model;
 
         // Constructors
 
-        public QuestionPresenter(int? id = null)
+        public QuestionPresenter()
         {
-            InitializeModel(null, null, null, id);
+            Initialize(null, null);
         }
 
-        public QuestionPresenter(IContext context, int? id = null)
+        public QuestionPresenter(IContext context)
         {
             if (context == null) throw new ArgumentNullException("context");
-            InitializeModel(context, null, null, id);
+
+            Initialize(context, null);
         }
 
-        public QuestionPresenter(ITextualQuestionRepository repository, int? id = null)
+        public QuestionPresenter(ITextualQuestionRepository repository)
         {
             if (repository == null) throw new ArgumentNullException("repository");
-            InitializeModel(null, repository, null, id);
+
+            Initialize(null, repository);
         }
 
-        public QuestionPresenter(TextualQuestion textualQuestion)
-        {
-            if (textualQuestion == null) throw new ArgumentNullException("textualQuestion");
-            InitializeModel(null, null, textualQuestion, null);
-        }
-
-        private void InitializeModel(IContext context, ITextualQuestionRepository repository, TextualQuestion model, int? id)
+        private void Initialize(IContext context, ITextualQuestionRepository repository)
         {
             bool contextIsOwned = false;
 
@@ -80,26 +55,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 repository = new TextualQuestionRepository(context, context.Location);
             }
 
-            if (model == null)
-            {
-                if (id.HasValue)
-                {
-                    model = repository.Get(id.Value);
-                }
-                else
-                {
-                    model = repository.GetRandomTextualQuestion();
-                }
-            }
-
-            if (model == null)
-            {
-                throw new Exception("model cannot be null.");
-            }
-
-            _model = model;
             _context = context;
             _contextIsOwned = contextIsOwned;
+            _repository = repository;
         }
 
         public void Dispose()
@@ -108,6 +66,41 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             {
                 _context.Dispose();
             }
+        }
+
+        // Actions
+
+        public QuestionDetailViewModel NextQuestion()
+        {
+            _model = _repository.GetRandomTextualQuestion();
+
+            return _model.ToViewModel();
+        }
+
+        public QuestionDetailViewModel ShowQuestion(int id)
+        {
+            _model = _repository.Get(id);
+
+            return _model.ToViewModel();
+        }
+
+        public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
+        {
+            if (viewModel == null)
+            {
+                throw new ArgumentNullException("viewModel");
+            }
+
+            // This version will not show question information if you do not provide it in the viewModel.
+            //viewModel.AnswerIsVisible = true;
+            //return viewModel;
+
+            // This version will show question information even if you do not provide it in the viewModel.
+            _model = _repository.Get(viewModel.ID);
+            QuestionDetailViewModel viewModel2 = _model.ToViewModel();
+            viewModel2.UserAnswer = viewModel.UserAnswer;
+            viewModel2.AnswerIsVisible = true;
+            return viewModel2;
         }
     }
 }

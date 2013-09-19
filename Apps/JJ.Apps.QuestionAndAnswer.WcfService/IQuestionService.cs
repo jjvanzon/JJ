@@ -7,13 +7,16 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 
-namespace JJ.Apps.QuestionAndAnswer.Service
+namespace JJ.Apps.QuestionAndAnswer.WcfService
 {
     [ServiceContract]
     public interface IQuestionService
     {
         [OperationContract]
-        QuestionDetailViewModel ShowQuestion();
+        QuestionDetailViewModel NextQuestion();
+
+        [OperationContract]
+        QuestionDetailViewModel ShowQuestion(int id);
 
         [OperationContract]
         QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel);

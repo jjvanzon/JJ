@@ -1,6 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.QuestionDetailViewModel>" %>
+﻿<%@ Page 
+    Title="" Language="C#" 
+    MasterPageFile="~/Views/Shared/Site.Master" 
+    Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.QuestionDetailViewModel>" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers" %>
+<%@ Import Namespace="JJ.Framework.Presentation.AspNetMvc4" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <%: Titles.Question %>
@@ -46,7 +50,7 @@
 
     <%: Html.ActionLink(Titles.NextQuestion, ActionNames.Question) %>
 
-    <%: Html.HiddenFor(x => x.ID) %>
+    <%: Html.HiddenForAllProperties(Model) %>
 
 <% } %>
 
