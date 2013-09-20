@@ -123,6 +123,9 @@
   <data name="Question" xml:space="preserve">
     <value>Vraag</value>
   </data>
+  <data name="QuestionNotFound" xml:space="preserve">
+    <value>Vraag niet gevonden</value>
+  </data>
   <data name="ShowAnswer" xml:space="preserve">
     <value>Toon antwoord</value>
   </data>

@@ -11,6 +11,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence
     {
         IEnumerable<TextualQuestion> GetAll();
         TextualQuestion Get(int id);
-        TextualQuestion GetRandomTextualQuestion();
+        TextualQuestion TryGet(int id);
+        TextualQuestion TryGetRandomTextualQuestion();
+        TextualQuestion CreateWithRelatedEntities();
     }
 }

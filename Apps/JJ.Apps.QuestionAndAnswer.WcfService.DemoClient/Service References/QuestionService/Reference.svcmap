@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6328ab60-3f5a-452d-aa74-582c2b227f5e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:52160/QuesionService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="QuesionService.disco" MetadataType="Disco" ID="bf05ebb6-b98a-41d2-95a6-ca6f75094665" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?disco" />
+    <MetadataFile FileName="QuesionService.xsd" MetadataType="Schema" ID="b318fb58-a76e-4de2-8493-ac63d8d4abdb" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?xsd=xsd0" />
+    <MetadataFile FileName="QuesionService1.xsd" MetadataType="Schema" ID="3d655a29-cb2f-4963-9dba-5f8f2f773696" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?xsd=xsd1" />
+    <MetadataFile FileName="QuesionService.wsdl" MetadataType="Wsdl" ID="6c54b971-c69b-44c9-b59f-0b9dcfaad89b" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?wsdl" />
+    <MetadataFile FileName="QuesionService2.xsd" MetadataType="Schema" ID="aaf512c7-b7ef-4197-9446-ed0242edca82" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

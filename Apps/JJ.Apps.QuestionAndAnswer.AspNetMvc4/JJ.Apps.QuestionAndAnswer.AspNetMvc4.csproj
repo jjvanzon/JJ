@@ -222,6 +222,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Questions\NotFound.aspx" />
     <Content Include="Views\Questions\Question.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -253,6 +254,10 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.EntityFramework5.csproj">
+      <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
+      <Name>JJ.Framework.Persistence.EntityFramework5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj">
       <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
       <Name>JJ.Framework.Persistence.NHibernate</Name>
@@ -268,6 +273,10 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.csproj">
+      <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>
+      <Name>JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.NHibernate\JJ.Models.QuestionAndAnswer.Persistence.NHibernate.csproj">
       <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>

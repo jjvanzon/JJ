@@ -53,6 +53,16 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
 
         private void ApplyViewModel()
         {
+            if (_viewModel.NotFound)
+            {
+                labelQuestion.Text = "";
+                labelAnswerText.Text = "";
+                textBoxUserAnswer.Text = "";
+                labelAnswerText.Visible = false;
+                MessageBox.Show(Messages.QuestionNotFound);
+                return;
+            }
+
             labelQuestion.Text = _viewModel.Question;
             labelAnswerText.Text = _viewModel.Answer;
             textBoxUserAnswer.Text = _viewModel.UserAnswer;

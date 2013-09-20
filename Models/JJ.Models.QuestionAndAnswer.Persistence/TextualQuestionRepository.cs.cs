@@ -28,15 +28,34 @@ namespace JJ.Models.QuestionAndAnswer.Persistence
             return _context.Query<TextualQuestion>().ToArray();
         }
 
+        public TextualQuestion TryGet(int id)
+        {
+            return _context.TryGet<TextualQuestion>(id);
+        }
+
         public TextualQuestion Get(int id)
         {
             return _context.Get<TextualQuestion>(id);
         }
 
-        public TextualQuestion GetRandomTextualQuestion()
+        public TextualQuestion TryGetRandomTextualQuestion()
         {
-            int randomID = _sqlExecutor.GetRandomTextualQuestionID();
-            return Get(randomID);
+            int? randomID = _sqlExecutor.TryGetRandomTextualQuestionID();
+            if (randomID.HasValue)
+            {
+                return Get(randomID.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public TextualQuestion CreateWithRelatedEntities()
+        {
+            TextualQuestion entity = _context.Create<TextualQuestion>();
+            entity.TextualAnswer = _context.Create<TextualAnswer>();
+            return entity;
         }
     }
 }

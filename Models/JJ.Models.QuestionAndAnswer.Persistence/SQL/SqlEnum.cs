@@ -8,6 +8,6 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.SQL
 {
     internal enum SqlEnum
     {
-        GetRandomTextualQuestionID
+        TryGetRandomTextualQuestionID
     }
 }

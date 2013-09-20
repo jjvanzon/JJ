@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Models.QuestionAndAnswer.Persistence.EntityFramework
+namespace JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5
 {
     public class QuestionAndAnswerContext : DbContext
     {

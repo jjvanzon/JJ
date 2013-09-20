@@ -43,6 +43,11 @@
     <Compile Include="Presenters\QuestionPresenter.cs" />
     <Compile Include="Helpers\PersistenceHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Helpers\QuestionDetailViewModelExtensions.cs" />
     <Compile Include="ViewModels\Helpers\TextualQuestionExtensions.cs" />
     <Compile Include="Resources\Labels.Designer.cs">
@@ -115,6 +120,12 @@
     <EmbeddedResource Include="Resources\Labels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Messages.en-US.resx" />
+    <EmbeddedResource Include="Resources\Messages.nl-NL.resx" />
+    <EmbeddedResource Include="Resources\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Titles.en-US.resx" />
     <EmbeddedResource Include="Resources\Titles.nl-NL.resx" />

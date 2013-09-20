@@ -19,7 +19,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 ID = textualQuestion.ID,
                 Question = textualQuestion.Text,
                 Answer = textualQuestion.TextualAnswer.Text,
-                AnswerIsVisible = false
             };
         }
     }

@@ -7,6 +7,7 @@ using JJ.Framework.Persistence;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.Presenters;
+using JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views;
 
 namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 {
@@ -42,6 +43,11 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
                     viewModel = presenter.NextQuestion();
                 }
 
+                if (viewModel.NotFound)
+                {
+                    return View(ViewNames.NotFound);
+                }
+
                 return View(viewModel);
             }
         }
@@ -55,6 +61,12 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             using (QuestionPresenter presenter = new QuestionPresenter())
             {
                 QuestionDetailViewModel viewModel2 = presenter.ShowAnswer(viewModel);
+
+                if (viewModel2.NotFound)
+                {
+                    return View(ViewNames.NotFound);
+                }
+
                 return View(viewModel2);
             }
         }

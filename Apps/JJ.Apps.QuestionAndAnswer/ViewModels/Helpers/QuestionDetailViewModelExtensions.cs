@@ -11,18 +11,20 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     public static class QuestionDetailViewModelExtensions
     {
-        public static TextualQuestion ToModel(this QuestionDetailViewModel viewModel, IContext context)
+        public static TextualQuestion ToModel(this QuestionDetailViewModel viewModel, ITextualQuestionRepository repository)
         {
             if (viewModel == null) throw new ArgumentNullException("viewModel");
-            if (context == null) throw new ArgumentNullException("context");
+            if (repository == null) throw new ArgumentNullException("repository");
 
-            var repository = new TextualQuestionRepository(context, context.Location);
-
-            TextualQuestion model = repository.Get(viewModel.ID);
+            TextualQuestion model = repository.TryGet(viewModel.ID);
+            if (model == null)
+            {
+                model = repository.CreateWithRelatedEntities();
+            }
 
             model.Text = viewModel.Question;
             model.TextualAnswer.Text = viewModel.Answer;
-            
+
             return model;
         }
     }

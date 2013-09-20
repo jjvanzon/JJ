@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.EntityFramework", "..\Framework\JJ.Framework.Persistence.EntityFramework\JJ.Framework.Persistence.EntityFramework.csproj", "{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.EntityFramework5", "..\Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.EntityFramework5.csproj", "{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NCore.Framework NET 3.5", "..\External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj", "{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}"
 EndProject
@@ -51,7 +51,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPath.Framework.NET 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.NET 3.5", "..\External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj", "{E6C03D2A-D150-4473-9439-D300746A1390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Persistence.EntityFramework", "..\Models\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5", "..\Models\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Tests", "..\Framework\JJ.Framework.Persistence.Tests\JJ.Framework.Persistence.Tests.csproj", "{30F1DFB1-BB06-42EA-AE91-56144B56DF45}"
 EndProject
@@ -60,6 +60,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.WinForms", "JJ.Apps.QuestionAndAnswer.WinForms\JJ.Apps.QuestionAndAnswer.WinForms.csproj", "{61FE7964-2503-44FD-95F9-AC9045610C99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.AspNetMvc4", "..\Framework\JJ.Framework.Presentation.AspNetMvc4\JJ.Framework.Presentation.AspNetMvc4.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing", "..\Framework\JJ.Framework.Testing\JJ.Framework.Testing.csproj", "{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Tests", "..\Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Tests.csproj", "{EA2EC919-FC52-47B6-9149-B6A7018572CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.WcfService.DemoClient", "JJ.Apps.QuestionAndAnswer.WcfService.DemoClient\JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.csproj", "{CC1E33CE-08E6-48FD-A303-B28E40A258D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -218,6 +224,24 @@ Global
 		{FED3C829-D92A-4800-9462-A175CCAC4C70}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{FED3C829-D92A-4800-9462-A175CCAC4C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FED3C829-D92A-4800-9462-A175CCAC4C70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA2EC919-FC52-47B6-9149-B6A7018572CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2EC919-FC52-47B6-9149-B6A7018572CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2EC919-FC52-47B6-9149-B6A7018572CE}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2EC919-FC52-47B6-9149-B6A7018572CE}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2EC919-FC52-47B6-9149-B6A7018572CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2EC919-FC52-47B6-9149-B6A7018572CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -227,6 +251,7 @@ Global
 		{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23} = {DD6A844F-F11D-472A-875B-6C30B4534EDD}
 		{CE9782A1-2486-4217-BEA2-CC5C7499937A} = {DD6A844F-F11D-472A-875B-6C30B4534EDD}
 		{61FE7964-2503-44FD-95F9-AC9045610C99} = {DD6A844F-F11D-472A-875B-6C30B4534EDD}
+		{CC1E33CE-08E6-48FD-A303-B28E40A258D3} = {DD6A844F-F11D-472A-875B-6C30B4534EDD}
 		{B473BE3E-3DCA-4418-BFA0-9EBF0E024350} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
 		{64E812DC-4B3E-4A20-A6CA-7EA319383C49} = {789E68E5-3620-489E-9932-DCD3C0DEC974}
 		{B1408E4F-4A1C-4CD6-B818-0FF37A40E2FF} = {789E68E5-3620-489E-9932-DCD3C0DEC974}
@@ -244,6 +269,8 @@ Global
 		{9676E4C3-1A1F-45B8-8FFD-C398F14002E7} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{30F1DFB1-BB06-42EA-AE91-56144B56DF45} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{FED3C829-D92A-4800-9462-A175CCAC4C70} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{EA2EC919-FC52-47B6-9149-B6A7018572CE} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}

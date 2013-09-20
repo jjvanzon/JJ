@@ -17,7 +17,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private IContext _context;
         private bool _contextIsOwned;
         private ITextualQuestionRepository _repository;
-        private TextualQuestion _model;
 
         // Constructors
 
@@ -72,16 +71,29 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionDetailViewModel NextQuestion()
         {
-            _model = _repository.GetRandomTextualQuestion();
+            TextualQuestion model = _repository.TryGetRandomTextualQuestion();
 
-            return _model.ToViewModel();
+            return Question(model);
         }
 
         public QuestionDetailViewModel ShowQuestion(int id)
         {
-            _model = _repository.Get(id);
+            TextualQuestion model = _repository.TryGet(id);
 
-            return _model.ToViewModel();
+            return Question(model);
+        }
+
+        private QuestionDetailViewModel Question(TextualQuestion model)
+        {
+            if (model == null)
+            {
+                return new QuestionDetailViewModel { NotFound = true };
+            }
+
+            QuestionDetailViewModel viewModel = model.ToViewModel();
+            viewModel.AnswerIsVisible = false;
+            viewModel.Answer = null;
+            return viewModel;
         }
 
         public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
@@ -91,16 +103,29 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 throw new ArgumentNullException("viewModel");
             }
 
-            // This version will not show question information if you do not provide it in the viewModel.
+            // This version will not show question information if you do not provide it in the viewModel, but is faster and less code.
             //viewModel.AnswerIsVisible = true;
             //return viewModel;
 
-            // This version will show question information even if you do not provide it in the viewModel.
-            _model = _repository.Get(viewModel.ID);
-            QuestionDetailViewModel viewModel2 = _model.ToViewModel();
+            TextualQuestion model = _repository.TryGet(viewModel.ID);
+            if (model == null)
+            {
+                return NotFound(viewModel.ID);
+            }
+
+            QuestionDetailViewModel viewModel2 = model.ToViewModel();
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = true;
             return viewModel2;
+        }
+
+        private QuestionDetailViewModel NotFound(int id)
+        {
+            return new QuestionDetailViewModel
+            {
+                ID = id,
+                NotFound = true
+            };
         }
     }
 }

@@ -84,9 +84,9 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.EntityFramework\JJ.Framework.Persistence.EntityFramework.csproj">
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.EntityFramework5.csproj">
       <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
-      <Name>JJ.Framework.Persistence.EntityFramework</Name>
+      <Name>JJ.Framework.Persistence.EntityFramework5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj">
       <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
@@ -100,9 +100,9 @@
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Persistence</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework.csproj">
+    <ProjectReference Include="..\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.Persistence.EntityFramework</Name>
+      <Name>JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Models.QuestionAndAnswer.Persistence.NHibernate\JJ.Models.QuestionAndAnswer.Persistence.NHibernate.csproj">
       <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>

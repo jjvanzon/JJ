@@ -11,6 +11,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
     [TestClass]
     public class TextualQuestionRespositoryTests
     {
+        private const int EXISTENT_TEXTUAL_QUESTION_ID = 2;
+
         [TestMethod]
         public void Test_TextualQuestionRepository_Get()
         {
@@ -19,7 +21,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
                 using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
                 {
                     ITextualQuestionRepository repository = new TextualQuestionRepository(context, context.Location);
-                    TextualQuestion item = repository.Get(2);
+                    TextualQuestion item = repository.Get(EXISTENT_TEXTUAL_QUESTION_ID);
                 }
             }
         }

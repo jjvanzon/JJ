@@ -19,19 +19,29 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService
             return GetResources(Labels.ResourceManager, cultureName);
         }
 
-        public List<Resource> GetAllTitles(string cultureName)
-        {
-            return GetResources(Titles.ResourceManager, cultureName);
-        }
-
         public List<Resource> GetLabels(string cultureName, string[] resourceNames)
         {
             return GetResources(Labels.ResourceManager, cultureName, resourceNames);
         }
 
+        public List<Resource> GetAllTitles(string cultureName)
+        {
+            return GetResources(Titles.ResourceManager, cultureName);
+        }
+
         public List<Resource> GetTitles(string cultureName, string[] resourceNames)
         {
             return GetResources(Titles.ResourceManager, cultureName, resourceNames);
+        }
+
+        public List<Resource> GetAllMessages(string cultureName)
+        {
+            return GetResources(Messages.ResourceManager, cultureName);
+        }
+
+        public List<Resource> GetMessages(string cultureName, string[] resourceNames)
+        {
+            return GetResources(Messages.ResourceManager, cultureName, resourceNames);
         }
 
         private List<Resource> GetResources(ResourceManager resourceManager, string cultureName, string[] resourceNames)

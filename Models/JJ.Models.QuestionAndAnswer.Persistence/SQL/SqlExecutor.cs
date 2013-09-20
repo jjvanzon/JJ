@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -20,18 +21,26 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.SQL
             _connectionString = connectionString;
         }
 
-        public int GetRandomTextualQuestionID()
+        public int? TryGetRandomTextualQuestionID()
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string sql = GetSql(SqlEnum.GetRandomTextualQuestionID);
+                string sql = GetSql(SqlEnum.TryGetRandomTextualQuestionID);
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
-                    return (int)sqlCommand.ExecuteScalar();
+                    using (IDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return (int)reader[0];
+                        }
+                    }
                 }
             }
+
+            return null;
         }
 
         private string GetSql(SqlEnum sqlEnum)

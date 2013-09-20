@@ -11,15 +11,21 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService
     public interface IResourceService
     {
         [OperationContract]
-        List<Resource> GetAllLabels(string cultureName);
+        List<Resource> GetAllTitles(string cultureName);
 
         [OperationContract]
-        List<Resource> GetAllTitles(string cultureName);
+        List<Resource> GetTitles(string cultureName, string[] resourceNames);
+
+        [OperationContract]
+        List<Resource> GetAllLabels(string cultureName);
 
         [OperationContract]
         List<Resource> GetLabels(string cultureName, string[] resourceNames);
 
         [OperationContract]
-        List<Resource> GetTitles(string cultureName, string[] resourceNames);
+        List<Resource> GetAllMessages(string cultureName);
+
+        [OperationContract]
+        List<Resource> GetMessages(string cultureName, string[] resourceNames);
     }
 }
