@@ -82,6 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IResourceService.cs" />
+    <Compile Include="Labels.cs" />
+    <Compile Include="Messages.cs" />
     <Compile Include="QuesionService.svc.cs">
       <DependentUpon>QuesionService.svc</DependentUpon>
     </Compile>
@@ -91,6 +93,7 @@
     <Compile Include="ResourceService.svc.cs">
       <DependentUpon>ResourceService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Titles.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

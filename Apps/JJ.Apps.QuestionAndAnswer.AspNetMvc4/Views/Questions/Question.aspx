@@ -26,7 +26,7 @@
         <%: Labels.Answer %>
     </div>
     <div class="text-field">
-        <%: Html.TextBoxFor(x => x.UserAnswer, new { autocomplete = "off" })%>
+        <%: Html.TextBoxFor(x => x.UserAnswer, new { autocomplete = "off", style="width:80%;" })%>
     </div>
 
     <p>

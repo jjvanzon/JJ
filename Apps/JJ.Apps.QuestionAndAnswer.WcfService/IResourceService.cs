@@ -27,5 +27,14 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService
 
         [OperationContract]
         List<Resource> GetMessages(string cultureName, string[] resourceNames);
+
+        /*[OperationContract]
+        Messages GetMessages_New(string cultureName);
+
+        [OperationContract]
+        Labels GetLabels_New(string cultureName);
+
+        [OperationContract]
+        Titles GetTitles_New(string cultureName);*/
     }
 }

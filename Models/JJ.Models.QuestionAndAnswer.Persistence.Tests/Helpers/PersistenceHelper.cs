@@ -11,12 +11,12 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests.Helpers
 {
     public static class PersistenceHelper
     {
-        public static IContext CreatePersistenceContext(string contextType = null)
+        public static IContext CreatePersistenceContext(string contextType)
         {
             PersistenceConfiguration persistenceConfiguration = ConfigurationManager.GetSection<PersistenceConfiguration>();
             
             return ContextFactory.CreateContext(
-                contextType ?? persistenceConfiguration.ContextType,
+                contextType,
                 persistenceConfiguration.Location,
                 persistenceConfiguration.ModelAssemblies);
         }

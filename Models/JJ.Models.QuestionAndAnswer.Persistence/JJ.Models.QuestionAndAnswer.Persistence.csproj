@@ -39,11 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITextualQuestionRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\SourceRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ISourceRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ICategoryRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ITextualQuestionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQL\SqlEnum.cs" />
     <Compile Include="SQL\SqlExecutor.cs" />
-    <Compile Include="TextualQuestionRepository.cs.cs" />
+    <Compile Include="Repositories\TextualQuestionRepository.cs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">

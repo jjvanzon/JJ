@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JJ.Framework.Persistence;
 using JJ.Apps.QuestionAndAnswer.Resources;
-using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 

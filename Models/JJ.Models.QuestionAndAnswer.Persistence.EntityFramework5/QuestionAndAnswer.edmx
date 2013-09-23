@@ -6,13 +6,39 @@
     <edmx:StorageModels>
     <Schema Namespace="QuestionAndAnswerDB_DEVModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="QuestionAndAnswerDB_DEVModelStoreContainer">
+          <EntitySet Name="Category" EntityType="QuestionAndAnswerDB_DEVModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Source" EntityType="QuestionAndAnswerDB_DEVModel.Store.Source" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TextualAnswer" EntityType="QuestionAndAnswerDB_DEVModel.Store.TextualAnswer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TextualQuestion" EntityType="QuestionAndAnswerDB_DEVModel.Store.TextualQuestion" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_TextualQuestion_Category" Association="QuestionAndAnswerDB_DEVModel.Store.FK_TextualQuestion_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="TextualQuestion" EntitySet="TextualQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TextualQuestion_Source" Association="QuestionAndAnswerDB_DEVModel.Store.FK_TextualQuestion_Source">
+            <End Role="Source" EntitySet="Source" />
+            <End Role="TextualQuestion" EntitySet="TextualQuestion" />
+          </AssociationSet>
           <AssociationSet Name="FK_TextualQuestion_TextualAnswer" Association="QuestionAndAnswerDB_DEVModel.Store.FK_TextualQuestion_TextualAnswer">
             <End Role="TextualAnswer" EntitySet="TextualAnswer" />
             <End Role="TextualQuestion" EntitySet="TextualQuestion" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Identifier" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Link" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="TextualAnswer">
           <Key>
             <PropertyRef Name="ID" />
@@ -27,7 +53,33 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="2048" />
           <Property Name="TextualAnswerID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_TextualQuestion_Category">
+          <End Role="Category" Type="QuestionAndAnswerDB_DEVModel.Store.Category" Multiplicity="1" />
+          <End Role="TextualQuestion" Type="QuestionAndAnswerDB_DEVModel.Store.TextualQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TextualQuestion">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TextualQuestion_Source">
+          <End Role="Source" Type="QuestionAndAnswerDB_DEVModel.Store.Source" Multiplicity="1" />
+          <End Role="TextualQuestion" Type="QuestionAndAnswerDB_DEVModel.Store.TextualQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Source">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TextualQuestion">
+              <PropertyRef Name="SourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TextualQuestion_TextualAnswer">
           <End Role="TextualAnswer" Type="QuestionAndAnswerDB_DEVModel.Store.TextualAnswer" Multiplicity="1" />
           <End Role="TextualQuestion" Type="QuestionAndAnswerDB_DEVModel.Store.TextualQuestion" Multiplicity="*" />
@@ -51,6 +103,16 @@
             <End Role="TextualAnswer" EntitySet="TextualAnswers" />
             <End Role="TextualQuestion" EntitySet="TextualQuestions" />
           </AssociationSet>
+          <EntitySet Name="Categories" EntityType="QuestionAndAnswerDB_DEVModel.Category" />
+          <EntitySet Name="Sources" EntityType="QuestionAndAnswerDB_DEVModel.Source" />
+          <AssociationSet Name="FK_TextualQuestion_Category" Association="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="TextualQuestion" EntitySet="TextualQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TextualQuestion_Source" Association="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Source">
+            <End Role="Source" EntitySet="Sources" />
+            <End Role="TextualQuestion" EntitySet="TextualQuestions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TextualAnswer">
           <Key>
@@ -67,9 +129,35 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Text" Nullable="false" MaxLength="2048" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TextualAnswer" Relationship="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_TextualAnswer" FromRole="TextualQuestion" ToRole="TextualAnswer" />
+          <NavigationProperty Name="Category" Relationship="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Category" FromRole="TextualQuestion" ToRole="Category" />
+          <NavigationProperty Name="Source" Relationship="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Source" FromRole="TextualQuestion" ToRole="Source" />
         </EntityType>
         <Association Name="FK_TextualQuestion_TextualAnswer">
           <End Type="QuestionAndAnswerDB_DEVModel.TextualAnswer" Role="TextualAnswer" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.TextualQuestion" Role="TextualQuestion" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Identifier" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Link" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_TextualQuestion_Category">
+          <End Type="QuestionAndAnswerDB_DEVModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.TextualQuestion" Role="TextualQuestion" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TextualQuestion_Source">
+          <End Type="QuestionAndAnswerDB_DEVModel.Source" Role="Source" Multiplicity="1" />
           <End Type="QuestionAndAnswerDB_DEVModel.TextualQuestion" Role="TextualQuestion" Multiplicity="*" />
         </Association>
       </Schema>
@@ -100,6 +188,40 @@
             </EndProperty>
             <EndProperty Name="TextualAnswer">
               <ScalarProperty Name="ID" ColumnName="TextualAnswerID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Source">
+              <MappingFragment StoreEntitySet="Source">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_TextualQuestion_Category" TypeName="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Category" StoreEntitySet="TextualQuestion">
+            <EndProperty Name="TextualQuestion">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Category">
+              <ScalarProperty Name="ID" ColumnName="CategoryID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TextualQuestion_Source" TypeName="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Source" StoreEntitySet="TextualQuestion">
+            <EndProperty Name="TextualQuestion">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Source">
+              <ScalarProperty Name="ID" ColumnName="SourceID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

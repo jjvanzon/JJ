@@ -5,15 +5,17 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Persistence;
-using JJ.Framework.Persistence.NHibernate;
-using JJ.Models.QuestionAndAnswer;
 using JJ.Framework.Configuration;
 using JJ.Framework.Reflection;
 
-namespace JJ.Apps.QuestionAndAnswer.Helpers
+namespace JJ.Framework.Persistence
 {
-    public static class PersistenceHelper
+    public static class ContextHelper
     {
+        /// <summary>
+        /// Creates a context using the values out of the config file.
+        /// A configuration example can be found in your bin directory.
+        /// </summary>
         public static IContext CreateContext()
         {
             PersistenceConfiguration persistenceConfiguration = ConfigurationManager.GetSection<PersistenceConfiguration>();

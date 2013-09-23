@@ -5,9 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="77b4c420a2394ac497cbd6ba61fd4e02" Name="Diagram1">
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.TextualAnswer" Width="1.5" PointX="3.5" PointY="1.375" />
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.TextualQuestion" Width="1.5" PointX="6.75" PointY="2.25" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.TextualAnswer" Width="1.5" PointX="0.5" PointY="0.625" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.TextualQuestion" Width="1.5" PointX="3.125" PointY="0.75" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_TextualAnswer" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Category" Width="1.5" PointX="3.25" PointY="4" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Source" Width="1.5" PointX="6" PointY="0.875" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Category" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Source" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

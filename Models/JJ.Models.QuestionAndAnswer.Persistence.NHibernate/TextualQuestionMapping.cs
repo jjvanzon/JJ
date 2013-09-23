@@ -15,6 +15,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.NHibernate
             Map(x => x.Text);
 
             References(x => x.TextualAnswer, ColumnNames.TextualAnswerID);
+            References(x => x.Category, ColumnNames.CategoryID);
+            References(x => x.Source, ColumnNames.SourceID);
         }
     }
 }

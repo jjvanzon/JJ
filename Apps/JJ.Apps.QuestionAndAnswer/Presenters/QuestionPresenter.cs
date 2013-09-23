@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence;
-using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
+using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -45,7 +46,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             if (context == null)
             {
-                context = PersistenceHelper.CreateContext();
+                context = ContextHelper.CreateContext();
                 contextIsOwned = true;
             }
 

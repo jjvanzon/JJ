@@ -9,6 +9,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.NHibernate
     internal static class ColumnNames
     {
         public const string TextualAnswerID = "TextualAnswerID";
+        public const string CategoryID = "CategoryID";
+        public const string SourceID = "SourceID";
         
     }
 }

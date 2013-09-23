@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 
-namespace JJ.Models.QuestionAndAnswer.Persistence
+namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 {
     public class TextualQuestionRepository : ITextualQuestionRepository
     {
@@ -56,6 +57,27 @@ namespace JJ.Models.QuestionAndAnswer.Persistence
             TextualQuestion entity = _context.Create<TextualQuestion>();
             entity.TextualAnswer = _context.Create<TextualAnswer>();
             return entity;
+        }
+
+        public IEnumerable<TextualQuestion> GetBySource(int sourceID)
+        {
+            return _context.Query<TextualQuestion>().Where(x => x.Source.ID == sourceID);
+        }
+
+        public void Delete(TextualQuestion textualQuestion)
+        {
+            _context.Delete(textualQuestion);
+        }
+
+        public void DeleteWithRelatedEntities(TextualQuestion textualQuestion)
+        {
+            _context.Delete(textualQuestion.TextualAnswer);
+            _context.Delete(textualQuestion);
+        }
+
+        public void Commit()
+        {
+            _context.Commit();
         }
     }
 }

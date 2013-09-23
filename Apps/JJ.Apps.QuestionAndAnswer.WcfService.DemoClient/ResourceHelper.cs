@@ -37,7 +37,7 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
                 Titles.Add(x.Name, x.Text);
             }
 
-            foreach (var x in _service.GetMessages(GetCultureName(), new string[] { "Answer" }))
+            foreach (var x in _service.GetMessages(GetCultureName(), new string[] { "QuestionNotFound" }))
             {
                 Messages.Add(x.Name, x.Text);
             }

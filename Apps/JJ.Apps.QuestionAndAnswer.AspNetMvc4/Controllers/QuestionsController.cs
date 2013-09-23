@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JJ.Framework.Persistence;
-using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views;

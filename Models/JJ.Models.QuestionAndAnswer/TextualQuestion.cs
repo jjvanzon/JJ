@@ -20,6 +20,21 @@ namespace JJ.Models.QuestionAndAnswer
             set { _text = value; }
         }
 
+        private Category _category;
+
+        public virtual Category Category
+        {
+            get { return _category; }
+            set { _category = value; }
+        }
+
+        private Source _source;
+
+        public virtual Source Source
+        {
+            get { return _source; }
+            set { _source = value; }
+        }
         /// <summary>
         /// not nullable
         /// </summary>
