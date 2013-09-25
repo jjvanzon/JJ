@@ -5,26 +5,13 @@
       <xsd:import schemaLocation="http://localhost:52160/ResourceService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:52160/ResourceService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:52160/ResourceService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.WcfService" />
-      <xsd:import schemaLocation="http://localhost:52160/ResourceService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IResourceService_GetAllTitles_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllTitles" />
+  <wsdl:message name="IResourceService_GetMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMessages" />
   </wsdl:message>
-  <wsdl:message name="IResourceService_GetAllTitles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllTitlesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IResourceService_GetTitles_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTitles" />
-  </wsdl:message>
-  <wsdl:message name="IResourceService_GetTitles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTitlesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IResourceService_GetAllLabels_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllLabels" />
-  </wsdl:message>
-  <wsdl:message name="IResourceService_GetAllLabels_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllLabelsResponse" />
+  <wsdl:message name="IResourceService_GetMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMessagesResponse" />
   </wsdl:message>
   <wsdl:message name="IResourceService_GetLabels_InputMessage">
     <wsdl:part name="parameters" element="tns:GetLabels" />
@@ -32,66 +19,30 @@
   <wsdl:message name="IResourceService_GetLabels_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetLabelsResponse" />
   </wsdl:message>
-  <wsdl:message name="IResourceService_GetAllMessages_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllMessages" />
+  <wsdl:message name="IResourceService_GetTitles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTitles" />
   </wsdl:message>
-  <wsdl:message name="IResourceService_GetAllMessages_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllMessagesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IResourceService_GetMessages_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetMessages" />
-  </wsdl:message>
-  <wsdl:message name="IResourceService_GetMessages_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetMessagesResponse" />
+  <wsdl:message name="IResourceService_GetTitles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTitlesResponse" />
   </wsdl:message>
   <wsdl:portType name="IResourceService">
-    <wsdl:operation name="GetAllTitles">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetAllTitles" message="tns:IResourceService_GetAllTitles_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetAllTitlesResponse" message="tns:IResourceService_GetAllTitles_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetTitles">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetTitles" message="tns:IResourceService_GetTitles_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetTitlesResponse" message="tns:IResourceService_GetTitles_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllLabels">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetAllLabels" message="tns:IResourceService_GetAllLabels_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetAllLabelsResponse" message="tns:IResourceService_GetAllLabels_OutputMessage" />
+    <wsdl:operation name="GetMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetMessages" message="tns:IResourceService_GetMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetMessagesResponse" message="tns:IResourceService_GetMessages_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetLabels">
       <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetLabels" message="tns:IResourceService_GetLabels_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetLabelsResponse" message="tns:IResourceService_GetLabels_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAllMessages">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetAllMessages" message="tns:IResourceService_GetAllMessages_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetAllMessagesResponse" message="tns:IResourceService_GetAllMessages_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetMessages">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetMessages" message="tns:IResourceService_GetMessages_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetMessagesResponse" message="tns:IResourceService_GetMessages_OutputMessage" />
+    <wsdl:operation name="GetTitles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetTitles" message="tns:IResourceService_GetTitles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetTitlesResponse" message="tns:IResourceService_GetTitles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IResourceService" type="tns:IResourceService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetAllTitles">
-      <soap:operation soapAction="http://tempuri.org/IResourceService/GetAllTitles" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetTitles">
-      <soap:operation soapAction="http://tempuri.org/IResourceService/GetTitles" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllLabels">
-      <soap:operation soapAction="http://tempuri.org/IResourceService/GetAllLabels" style="document" />
+    <wsdl:operation name="GetMessages">
+      <soap:operation soapAction="http://tempuri.org/IResourceService/GetMessages" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -108,17 +59,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllMessages">
-      <soap:operation soapAction="http://tempuri.org/IResourceService/GetAllMessages" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetMessages">
-      <soap:operation soapAction="http://tempuri.org/IResourceService/GetMessages" style="document" />
+    <wsdl:operation name="GetTitles">
+      <soap:operation soapAction="http://tempuri.org/IResourceService/GetTitles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

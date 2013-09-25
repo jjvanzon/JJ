@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace JJ.Models.QuestionAndAnswer
 {
@@ -35,9 +36,40 @@ namespace JJ.Models.QuestionAndAnswer
             get { return _source; }
             set { _source = value; }
         }
-        /// <summary>
-        /// not nullable
-        /// </summary>
-        public virtual TextualAnswer TextualAnswer { get; set; }
+
+        private IList<TextualAnswer> _textualAnswers = new List<TextualAnswer>();
+
+        public virtual IList<TextualAnswer> TextualAnswers
+        {
+            get { return _textualAnswers; }
+            set { _textualAnswers = value; }
+        }
+        
+        /*public virtual TextualAnswer TextualAnswer
+        {
+            get
+            {
+                return _textualAnswer;
+            }
+            set
+            {
+                if (_textualAnswer == value)
+                {
+                    return;
+                }
+
+                if (_textualAnswer != null)
+                {
+                    _textualAnswer.TextualQuestion = null;
+                }
+
+                _textualAnswer = value;
+
+                if (_textualAnswer != null)
+                {
+                    _textualAnswer.TextualQuestion = this;
+                }
+            }
+        }*/
     }
 }

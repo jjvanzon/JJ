@@ -38,12 +38,19 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
             ApplyViewModel();
         }
 
+        private void HideAnswer()
+        {
+            _viewModel = _controller.HideAnswer(_viewModel);
+            ApplyViewModel();
+        }
+
         private void SetTexts()
         {
-            Text = Titles.Question + " [Service Client]";
-            labelAnswerTitle.Text = Labels.Answer;
-            buttonNextQuestion.Text = Titles.NextQuestion;
-            buttonShowAnswer.Text = Titles.ShowAnswer;
+            Text = ResourceHelper.Titles.Question + " [Service Client]";
+            labelAnswerTitle.Text = ResourceHelper.Labels.Answer;
+            buttonNextQuestion.Text = ResourceHelper.Titles.NextQuestion;
+            buttonShowAnswer.Text = ResourceHelper.Titles.ShowAnswer;
+            buttonHideAnswer.Text = ResourceHelper.Titles.HideAnswer;
         }
 
         private void ApplyViewModel()
@@ -54,7 +61,10 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
                 labelAnswerText.Text = "";
                 textBoxUserAnswer.Text = "";
                 labelAnswerText.Visible = false;
-                MessageBox.Show(Messages.QuestionNotFound);
+                buttonShowAnswer.Visible = true;
+                buttonShowAnswer.Enabled = false;
+                buttonHideAnswer.Visible = false;
+                MessageBox.Show(ResourceHelper.Messages.QuestionNotFound);
                 return;
             }
 
@@ -62,11 +72,19 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
             labelAnswerText.Text = _viewModel.Answer;
             textBoxUserAnswer.Text = _viewModel.UserAnswer;
             labelAnswerText.Visible = _viewModel.AnswerIsVisible;
+
+            buttonShowAnswer.Visible = !_viewModel.AnswerIsVisible;
+            buttonHideAnswer.Visible = _viewModel.AnswerIsVisible;
         }
 
         private void buttonShowAnswer_Click(object sender, EventArgs e)
         {
             ShowAnswer();
+        }
+
+        private void buttonHideAnswer_Click(object sender, EventArgs e)
+        {
+            HideAnswer();
         }
 
         private void buttonNextQuestion_Click(object sender, EventArgs e)

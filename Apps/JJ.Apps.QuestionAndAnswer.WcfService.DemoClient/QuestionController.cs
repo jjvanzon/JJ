@@ -21,5 +21,10 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
         {
             return _service.ShowAnswer(viewModel);
         }
+
+        public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel)
+        {
+            return _service.HideAnswer(viewModel);
+        }
     }
 }

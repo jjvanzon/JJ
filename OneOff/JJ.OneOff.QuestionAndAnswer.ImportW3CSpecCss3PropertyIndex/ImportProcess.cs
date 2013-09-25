@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using JJ.Framework.IO;
 using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer;
@@ -11,15 +12,17 @@ using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
-using System.Text.RegularExpressions;
 
 namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 {
     public class ImportProcess
     {
+        private const SourceEnum SOURCE = SourceEnum.W3CSpecCss3PropertyIndex;
+
         private ITextualQuestionRepository _repository;
         private ISourceRepository _sourceRepository;
         private ICategoryRepository _categoryRepository;
+        private ITextualAnswerRepository _textualAnswerRepository;
 
         private Action<string> _progressCallback;
         private Func<bool> _isCancelledCallback;
@@ -32,6 +35,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             _repository = new TextualQuestionRepository(context, context.Location);
             _sourceRepository = new SourceRepository(context);
             _categoryRepository = new CategoryRepository(context);
+            _textualAnswerRepository = new TextualAnswerRepository(context);
         }
 
         public void Execute(string filePath, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
@@ -44,8 +48,8 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
         public void Execute(Stream stream, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
         {
-            try
-            {
+            /*try
+            {*/
                 if (stream == null) throw new ArgumentNullException("stream");
                 _progressCallback = progressCallback;
                 _isCancelledCallback = isCancelledCallback;
@@ -84,24 +88,25 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 _repository.Commit();
 
                 DoProgressCallback("Done.");
-            }
+            /*}
             catch (Exception ex)
             {
                 DoProgressCallback(ex.Message);
-            }
+            }*/
         }
 
         private void DeleteExistingQuestions()
         {
             foreach (TextualQuestion textualQuestion in GetExistingQuestions())
             {
-                _repository.DeleteWithRelatedEntities(textualQuestion);
+                textualQuestion.DeleteRelatedEntities(_textualAnswerRepository);
+                _repository.Delete(textualQuestion);
             }
         }
 
         private IEnumerable<TextualQuestion> GetExistingQuestions()
         {
-            return _repository.GetBySource((int)SourceEnum.W3CSpecCss3IndicesProperties);
+            return _repository.GetBySource((int)SOURCE);
         }
 
         private ImportModel GetImportModel(CsvReader reader)
@@ -150,7 +155,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 question.Text += " (shorthand property)";
             }
 
-            question.TextualAnswer.Text = FormatAnswer(importModel.Values);
+            question.TextualAnswer().Text = FormatAnswer(importModel.Values);
         }
 
         private bool MustConvertToQuestion_Values(string answer)
@@ -182,7 +187,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             {
                 question.Text = String.Format("What are the initial values of the {0} properties?", FormatValue(importModel.Name));
             }
-            question.TextualAnswer.Text = FormatAnswer(importModel.InitialValue);
+            question.TextualAnswer().Text = FormatAnswer(importModel.InitialValue);
         }
 
         private bool MustConvertToQuestion_InitialValue(string answer)
@@ -209,11 +214,11 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
             if (String.IsNullOrWhiteSpace(importModel.AppliesTo))
             {
-                question.TextualAnswer.Text = "all";
+                question.TextualAnswer().Text = "all";
             }
             else
             {
-                question.TextualAnswer.Text = FormatValue(importModel.AppliesTo);
+                question.TextualAnswer().Text = FormatValue(importModel.AppliesTo);
             }
         }
 
@@ -238,7 +243,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             {
                 question.Text = String.Format("Are the {0} properties inherited?", FormatValue(importModel.Name));
             }
-            question.TextualAnswer.Text = FormatAnswer(importModel.Inherited);
+            question.TextualAnswer().Text = FormatAnswer(importModel.Inherited);
         }
 
         private bool MustConvertToQuestion_IsInherited(string answer)
@@ -262,7 +267,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             {
                 question.Text = String.Format("What can you say about percentage values for the {0} properties?", FormatValue(importModel.Name));
             }
-            question.TextualAnswer.Text = FormatAnswer(importModel.Percentages);
+            question.TextualAnswer().Text = FormatAnswer(importModel.Percentages);
         }
 
         private bool MustConvertToQuestion_Percentages(string answer)
@@ -287,7 +292,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             {
                 question.Text = String.Format("What media do the {0} properties apply to?", FormatValue(importModel.Name));
             }
-            question.TextualAnswer.Text = FormatAnswer(importModel.Media);
+            question.TextualAnswer().Text = FormatAnswer(importModel.Media);
         }
 
         private bool MustConvertToQuestion_Media(string answer)
@@ -306,8 +311,9 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
         private TextualQuestion ConvertToQuestion_BaseMethod()
         {
-            TextualQuestion question = _repository.CreateWithRelatedEntities();
-            question.SetSourceValue(_sourceRepository, SourceEnum.W3CSpecCss3IndicesProperties);
+            TextualQuestion question = _repository.Create();
+            question.AutoCreateRelatedEntities(_textualAnswerRepository);
+            question.SetSourceValue(_sourceRepository, SOURCE);
             question.SetCategoryValue(_categoryRepository, CategoryEnum.Css3);
             return question;
         }

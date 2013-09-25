@@ -20,5 +20,8 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService
 
         [OperationContract]
         QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel);
+
+        [OperationContract]
+        QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel);
     }
 }

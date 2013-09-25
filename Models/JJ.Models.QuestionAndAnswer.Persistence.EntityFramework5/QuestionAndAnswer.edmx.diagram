@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="77b4c420a2394ac497cbd6ba61fd4e02" Name="Diagram1">
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.TextualAnswer" Width="1.5" PointX="0.5" PointY="0.625" />
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.TextualQuestion" Width="1.5" PointX="3.125" PointY="0.75" />
-        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_TextualAnswer" />
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Category" Width="1.5" PointX="3.25" PointY="4" />
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Source" Width="1.5" PointX="6" PointY="0.875" />
+      <Diagram DiagramId="77b4c420a2394ac497cbd6ba61fd4e02" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Category" Width="1.5" PointX="9.3176450493362015" PointY="19.327009046136872" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Source" Width="1.5" PointX="9.150391357555236" PointY="22.971243332592419" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.TextualAnswer" Width="1.5" PointX="4.4646191226619383" PointY="31.987459763878704" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.TextualQuestion" Width="1.5" PointX="2.80622870605729" PointY="29.211873872769939" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Category" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_TextualQuestion_Source" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_TextualAnswer_TextualQuestion" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

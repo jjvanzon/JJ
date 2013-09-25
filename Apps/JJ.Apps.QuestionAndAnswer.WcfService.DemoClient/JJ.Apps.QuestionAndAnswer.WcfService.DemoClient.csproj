@@ -46,8 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Labels.cs" />
-    <Compile Include="Messages.cs" />
     <Compile Include="QuesionDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,7 +66,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Titles.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -97,12 +94,17 @@
     <None Include="Service References\QuestionService\QuesionService.xsd" />
     <None Include="Service References\QuestionService\QuesionService1.xsd" />
     <None Include="Service References\QuestionService\QuesionService2.xsd" />
-    <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.ResourceService.Resource.datasource">
+    <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.ResourceService.Labels.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.ResourceService.Messages.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.ResourceService.Titles.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ResourceService\ResourceService.wsdl" />
     <None Include="Service References\ResourceService\ResourceService.xsd" />
-    <None Include="Service References\ResourceService\ResourceService1.xsd" />
     <None Include="Service References\ResourceService\ResourceService2.xsd" />
     <None Include="Service References\ResourceService\ResourceService3.xsd" />
   </ItemGroup>

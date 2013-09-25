@@ -69,5 +69,25 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
                 return View(viewModel2);
             }
         }
+
+
+        // POST: /Questions/HideAnswer/5
+        // HideAnswer
+
+        [HttpPost]
+        public ActionResult HideAnswer(QuestionDetailViewModel viewModel)
+        {
+            using (QuestionPresenter presenter = new QuestionPresenter())
+            {
+                QuestionDetailViewModel viewModel2 = presenter.HideAnswer(viewModel);
+
+                if (viewModel2.NotFound)
+                {
+                    return View(ViewNames.NotFound);
+                }
+
+                return View(ViewNames.Question, viewModel2);
+            }
+        }
     }
 }

@@ -21,6 +21,45 @@ namespace JJ.Models.QuestionAndAnswer
             set { _text = value; }
         }
 
-        public virtual IList<TextualQuestion> TextualQuestions { get; set; }
+        private TextualQuestion _textualQuestion;
+
+        public virtual TextualQuestion TextualQuestion
+        {
+            get { return _textualQuestion; }
+            set { _textualQuestion = value; }
+        }
+
+        /*public virtual TextualQuestion TextualQuestion 
+        {
+            get
+            {
+                return _textualQuestion;
+            }
+            set
+            {
+                if (_textualQuestion == value)
+                {
+                    return;
+                }
+
+                if (_textualQuestion != null)
+                {
+                    if (_textualQuestion.TextualAnswers.Contains(this))
+                    {
+                        _textualQuestion.TextualAnswers.Remove(this);
+                    }
+                }
+
+                _textualQuestion = value;
+
+                if (_textualQuestion != null)
+                {
+                    if (!_textualQuestion.TextualAnswers.Contains(this))
+                    {
+                        _textualQuestion.TextualAnswers.Add(this);
+                    }
+                }
+            }
+        }*/
     }
 }

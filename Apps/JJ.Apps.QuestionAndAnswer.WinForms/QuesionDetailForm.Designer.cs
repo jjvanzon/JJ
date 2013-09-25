@@ -35,6 +35,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelAnswerTitle = new System.Windows.Forms.Label();
             this.textBoxUserAnswer = new System.Windows.Forms.TextBox();
+            this.buttonHideAnswer = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,10 +73,10 @@
             // labelAnswerText
             // 
             this.labelAnswerText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelAnswerText.Location = new System.Drawing.Point(112, 141);
+            this.labelAnswerText.Location = new System.Drawing.Point(99, 141);
             this.labelAnswerText.Name = "labelAnswerText";
             this.labelAnswerText.Padding = new System.Windows.Forms.Padding(6);
-            this.labelAnswerText.Size = new System.Drawing.Size(456, 136);
+            this.labelAnswerText.Size = new System.Drawing.Size(469, 136);
             this.labelAnswerText.TabIndex = 5;
             this.labelAnswerText.Text = "labelAnswerText";
             // 
@@ -104,25 +105,37 @@
             this.labelAnswerTitle.AutoSize = true;
             this.labelAnswerTitle.Location = new System.Drawing.Point(9, 6);
             this.labelAnswerTitle.Name = "labelAnswerTitle";
-            this.labelAnswerTitle.Size = new System.Drawing.Size(97, 15);
+            this.labelAnswerTitle.Size = new System.Drawing.Size(84, 13);
             this.labelAnswerTitle.TabIndex = 4;
             this.labelAnswerTitle.Text = "labelAnswerTitle";
             // 
             // textBoxUserAnswer
             // 
             this.textBoxUserAnswer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxUserAnswer.Location = new System.Drawing.Point(112, 9);
+            this.textBoxUserAnswer.Location = new System.Drawing.Point(99, 9);
             this.textBoxUserAnswer.Multiline = true;
             this.textBoxUserAnswer.Name = "textBoxUserAnswer";
-            this.textBoxUserAnswer.Size = new System.Drawing.Size(456, 129);
+            this.textBoxUserAnswer.Size = new System.Drawing.Size(469, 129);
             this.textBoxUserAnswer.TabIndex = 5;
             this.textBoxUserAnswer.TextChanged += new System.EventHandler(this.textBoxUserAnswer_TextChanged);
+            // 
+            // buttonHideAnswer
+            // 
+            this.buttonHideAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonHideAnswer.Location = new System.Drawing.Point(147, 380);
+            this.buttonHideAnswer.Name = "buttonHideAnswer";
+            this.buttonHideAnswer.Size = new System.Drawing.Size(94, 30);
+            this.buttonHideAnswer.TabIndex = 7;
+            this.buttonHideAnswer.Text = "buttonHideAnser";
+            this.buttonHideAnswer.UseVisualStyleBackColor = true;
+            this.buttonHideAnswer.Click += new System.EventHandler(this.buttonHideAnswer_Click);
             // 
             // QuesionDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 423);
+            this.Controls.Add(this.buttonHideAnswer);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.buttonNextQuestion);
             this.Controls.Add(this.labelQuestion);
@@ -145,6 +158,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label labelAnswerTitle;
         private System.Windows.Forms.TextBox textBoxUserAnswer;
+        private System.Windows.Forms.Button buttonHideAnswer;
     }
 }
 

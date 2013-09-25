@@ -17,30 +17,17 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
             InitializeResources();
         }
 
-        public static Dictionary<string, string> Labels { get; private set; }
-        public static Dictionary<string, string> Titles { get; private set; }
-        public static Dictionary<string, string> Messages { get; private set; }
+        public static Labels Labels { get; private set; }
+        public static Titles Titles { get; private set; }
+        public static Messages Messages { get; private set; }
 
         private static void InitializeResources()
         {
-            Labels = new Dictionary<string, string>();
-            Titles = new Dictionary<string, string>();
-            Messages = new Dictionary<string, string>();
+            string cultureName = GetCultureName();
 
-            foreach (var x in _service.GetLabels(GetCultureName(), new string[] { "Answer" }))
-            {
-                Labels.Add(x.Name, x.Text);
-            }
-
-            foreach (var x in _service.GetTitles(GetCultureName(), new string[] { "Question", "NextQuestion", "ShowAnswer" }))
-            {
-                Titles.Add(x.Name, x.Text);
-            }
-
-            foreach (var x in _service.GetMessages(GetCultureName(), new string[] { "QuestionNotFound" }))
-            {
-                Messages.Add(x.Name, x.Text);
-            }
+            Labels = _service.GetLabels(cultureName);
+            Titles = _service.GetTitles(cultureName);
+            Messages = _service.GetMessages(cultureName);
         }
 
         private static string GetCultureName()

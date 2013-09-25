@@ -13,13 +13,16 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
         TextualQuestion Get(int id);
         TextualQuestion TryGet(int id);
         TextualQuestion TryGetRandomTextualQuestion();
-        TextualQuestion CreateWithRelatedEntities();
+        TextualQuestion Create();
+        //TextualQuestion CreateWithRelatedEntities();
 
         IEnumerable<TextualQuestion> GetBySource(int sourceID);
 
         void Delete(TextualQuestion textualQuestion);
-        void DeleteWithRelatedEntities(TextualQuestion textualQuestion);
+        //void DeleteWithRelatedEntities(TextualQuestion textualQuestion);
 
         void Commit();
+
+        
     }
 }

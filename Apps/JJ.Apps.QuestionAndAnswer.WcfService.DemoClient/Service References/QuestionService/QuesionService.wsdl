@@ -25,6 +25,12 @@
   <wsdl:message name="IQuestionService_ShowAnswer_OutputMessage">
     <wsdl:part name="parameters" element="tns:ShowAnswerResponse" />
   </wsdl:message>
+  <wsdl:message name="IQuestionService_HideAnswer_InputMessage">
+    <wsdl:part name="parameters" element="tns:HideAnswer" />
+  </wsdl:message>
+  <wsdl:message name="IQuestionService_HideAnswer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HideAnswerResponse" />
+  </wsdl:message>
   <wsdl:portType name="IQuestionService">
     <wsdl:operation name="NextQuestion">
       <wsdl:input wsaw:Action="http://tempuri.org/IQuestionService/NextQuestion" message="tns:IQuestionService_NextQuestion_InputMessage" />
@@ -37,6 +43,10 @@
     <wsdl:operation name="ShowAnswer">
       <wsdl:input wsaw:Action="http://tempuri.org/IQuestionService/ShowAnswer" message="tns:IQuestionService_ShowAnswer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IQuestionService/ShowAnswerResponse" message="tns:IQuestionService_ShowAnswer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HideAnswer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQuestionService/HideAnswer" message="tns:IQuestionService_HideAnswer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQuestionService/HideAnswerResponse" message="tns:IQuestionService_HideAnswer_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IQuestionService" type="tns:IQuestionService">
@@ -61,6 +71,15 @@
     </wsdl:operation>
     <wsdl:operation name="ShowAnswer">
       <soap:operation soapAction="http://tempuri.org/IQuestionService/ShowAnswer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HideAnswer">
+      <soap:operation soapAction="http://tempuri.org/IQuestionService/HideAnswer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

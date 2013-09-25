@@ -30,7 +30,14 @@
     </div>
 
     <p>
-        <input type="submit" value="<%:Titles.ShowAnswer %>" />
+        <% if (!Model.AnswerIsVisible)
+           { %>
+                <input type="submit" value="<%:Titles.ShowAnswer %>" formaction="<%: Url.Action(ActionNames.Question) %>" />
+        <% }
+           else
+           { %>
+                <input type="submit" value="<%:Titles.HideAnswer %>" formaction="<%: Url.Action(ActionNames.HideAnswer) %>" />
+        <% } %>
     </p>
 
     <% if (Model.AnswerIsVisible)

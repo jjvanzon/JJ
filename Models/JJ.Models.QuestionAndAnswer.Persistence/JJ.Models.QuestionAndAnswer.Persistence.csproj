@@ -40,9 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\TextualAnswerRepository.cs" />
     <Compile Include="Repositories\SourceRepository.cs" />
     <Compile Include="RepositoryInterfaces\ISourceRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICategoryRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ITextualAnswerRepository.cs" />
     <Compile Include="RepositoryInterfaces\ITextualQuestionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQL\SqlEnum.cs" />

@@ -52,10 +52,9 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
             }
         }
 
-        public TextualQuestion CreateWithRelatedEntities()
+        public TextualQuestion Create()
         {
             TextualQuestion entity = _context.Create<TextualQuestion>();
-            entity.TextualAnswer = _context.Create<TextualAnswer>();
             return entity;
         }
 
@@ -66,12 +65,6 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 
         public void Delete(TextualQuestion textualQuestion)
         {
-            _context.Delete(textualQuestion);
-        }
-
-        public void DeleteWithRelatedEntities(TextualQuestion textualQuestion)
-        {
-            _context.Delete(textualQuestion.TextualAnswer);
             _context.Delete(textualQuestion);
         }
 

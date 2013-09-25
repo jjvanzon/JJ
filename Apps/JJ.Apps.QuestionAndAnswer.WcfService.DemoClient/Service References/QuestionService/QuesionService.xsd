@@ -41,4 +41,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="HideAnswer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels" minOccurs="0" name="viewModel" nillable="true" type="q5:QuestionDetailViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HideAnswerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels" minOccurs="0" name="HideAnswerResult" nillable="true" type="q6:QuestionDetailViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

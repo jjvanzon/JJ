@@ -159,6 +159,12 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuestionService/ShowAnswer", ReplyAction="http://tempuri.org/IQuestionService/ShowAnswerResponse")]
         System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> ShowAnswerAsync(JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel viewModel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuestionService/HideAnswer", ReplyAction="http://tempuri.org/IQuestionService/HideAnswerResponse")]
+        JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel HideAnswer(JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel viewModel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuestionService/HideAnswer", ReplyAction="http://tempuri.org/IQuestionService/HideAnswerResponse")]
+        System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> HideAnswerAsync(JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel viewModel);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -210,6 +216,14 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService {
         
         public System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> ShowAnswerAsync(JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel viewModel) {
             return base.Channel.ShowAnswerAsync(viewModel);
+        }
+        
+        public JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel HideAnswer(JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel viewModel) {
+            return base.Channel.HideAnswer(viewModel);
+        }
+        
+        public System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> HideAnswerAsync(JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel viewModel) {
+            return base.Channel.HideAnswerAsync(viewModel);
         }
     }
 }

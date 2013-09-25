@@ -42,12 +42,19 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
             ApplyViewModel();
         }
 
+        private void HideAnswer()
+        {
+            _viewModel = _presenter.HideAnswer(_viewModel);
+            ApplyViewModel();
+        }
+
         private void SetTexts()
         {
             Text = Titles.Question;
             labelAnswerTitle.Text = Labels.Answer;
             buttonNextQuestion.Text = Titles.NextQuestion;
             buttonShowAnswer.Text = Titles.ShowAnswer;
+            buttonHideAnswer.Text = Titles.HideAnswer;
         }
 
         private void ApplyViewModel()
@@ -58,6 +65,9 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
                 labelAnswerText.Text = "";
                 textBoxUserAnswer.Text = "";
                 labelAnswerText.Visible = false;
+                buttonShowAnswer.Visible = true;
+                buttonShowAnswer.Enabled = false;
+                buttonHideAnswer.Visible = false;
                 MessageBox.Show(Messages.QuestionNotFound);
                 return;
             }
@@ -66,6 +76,9 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
             labelAnswerText.Text = _viewModel.Answer;
             textBoxUserAnswer.Text = _viewModel.UserAnswer;
             labelAnswerText.Visible = _viewModel.AnswerIsVisible;
+
+            buttonShowAnswer.Visible = !_viewModel.AnswerIsVisible;
+            buttonHideAnswer.Visible = _viewModel.AnswerIsVisible;
         }
 
         private void buttonShowAnswer_Click(object sender, EventArgs e)
@@ -81,6 +94,11 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
         private void textBoxUserAnswer_TextChanged(object sender, EventArgs e)
         {
             _viewModel.UserAnswer = textBoxUserAnswer.Text;
+        }
+
+        private void buttonHideAnswer_Click(object sender, EventArgs e)
+        {
+            HideAnswer();
         }
     }
 }

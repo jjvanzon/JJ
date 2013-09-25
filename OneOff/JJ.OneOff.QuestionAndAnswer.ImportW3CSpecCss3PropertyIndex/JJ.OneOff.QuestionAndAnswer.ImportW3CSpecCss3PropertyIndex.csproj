@@ -62,13 +62,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImportProcess.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImportProcess.cs" />
     <Compile Include="ImportModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +94,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="W3CSpecCss3PropertyIndex.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -127,6 +130,10 @@
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Persistence</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.csproj">
+      <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
+      <Name>JJ.Framework.Presentation.WinForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>
       <Name>JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5</Name>
@@ -143,6 +150,9 @@
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>
       <Name>JJ.Models.QuestionAndAnswer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

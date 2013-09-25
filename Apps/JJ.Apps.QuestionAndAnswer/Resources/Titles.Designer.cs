@@ -61,6 +61,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HideAnswer.
+        /// </summary>
+        public static string HideAnswer {
+            get {
+                return ResourceManager.GetString("HideAnswer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NextQuestion.
         /// </summary>
         public static string NextQuestion {

@@ -35,5 +35,13 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService
                 return presenter.ShowAnswer(viewModel);
             }
         }
+
+        public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel)
+        {
+            using (var presenter = new QuestionPresenter())
+            {
+                return presenter.HideAnswer(viewModel);
+            }
+        }
     }
 }

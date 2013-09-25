@@ -120,6 +120,30 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel2;
         }
 
+
+        public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel)
+        {
+            if (viewModel == null)
+            {
+                throw new ArgumentNullException("viewModel");
+            }
+
+            // This version will not show question information if you do not provide it in the viewModel, but is faster and less code.
+            //viewModel.AnswerIsVisible = false;
+            //return viewModel;
+
+            TextualQuestion model = _repository.TryGet(viewModel.ID);
+            if (model == null)
+            {
+                return NotFound(viewModel.ID);
+            }
+
+            QuestionDetailViewModel viewModel2 = model.ToViewModel();
+            viewModel2.UserAnswer = viewModel.UserAnswer;
+            viewModel2.AnswerIsVisible = false;
+            return viewModel2;
+        }
+
         private QuestionDetailViewModel NotFound(int id)
         {
             return new QuestionDetailViewModel
