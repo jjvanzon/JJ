@@ -4,15 +4,12 @@ using FluentNHibernate.Mapping;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.NHibernate
 {
-    public class SourceMapping : ClassMap<Source>
+    public class QuestionTypeMapping : ClassMap<QuestionType>
     {
-        public SourceMapping()
+        public QuestionTypeMapping()
         {
             Id(x => x.ID);
-
-            Map(x => x.Identifier);
-            Map(x => x.Description);
-            Map(x => x.Link);
+            Map(x => x.Name);
 
             HasMany(x => x.Questions).KeyColumn(ColumnNames.QuestionID).Inverse();
         }

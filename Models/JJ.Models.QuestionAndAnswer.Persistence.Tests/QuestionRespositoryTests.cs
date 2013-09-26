@@ -12,45 +12,44 @@ using JJ.Business.QuestionAndAnswer.Enums;
 namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 {
     [TestClass]
-    public class TextualQuestionRespositoryTests
+    public class QuestionRespositoryTests
     {
-        private const int EXISTENT_TEXTUAL_QUESTION_ID = 12564;
-
         [TestMethod]
-        public void Test_TextualQuestionRepository_Get()
+        public void Test_QuestionRepository_Get()
         {
             foreach (string contextType in GetContextTypes())
             {
                 using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
                 {
-                    ITextualQuestionRepository repository = new TextualQuestionRepository(context, context.Location);
-                    TextualQuestion item = repository.Get(EXISTENT_TEXTUAL_QUESTION_ID);
+                    int id = AppSettings<IAppSettings>.Get(x => x.ExistingQuestionID);
+                    IQuestionRepository repository = new QuestionRepository(context, context.Location);
+                    Question item = repository.Get(id);
                 }
             }
         }
 
         [TestMethod]
-        public void Test_TextualQuestionRepository_GetAll()
+        public void Test_QuestionRepository_GetAll()
         {
             foreach (string contextType in GetContextTypes())
             {
                 using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
                 {
-                    ITextualQuestionRepository repository = new TextualQuestionRepository(context, context.Location);
-                    List<TextualQuestion> list = repository.GetAll().ToList();
+                    IQuestionRepository repository = new QuestionRepository(context, context.Location);
+                    List<Question> list = repository.GetAll().ToList();
                 }
             }
         }
 
         [TestMethod]
-        public void Test_TextualQuestionRepository_GetBySource()
+        public void Test_QuestionRepository_GetBySource()
         {
             foreach (string contextType in GetContextTypes())
             {
                 using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
                 {
-                    ITextualQuestionRepository repository = new TextualQuestionRepository(context, context.Location);
-                    TextualQuestion[] list = repository.GetBySource((int)SourceEnum.Manual).ToArray();
+                    IQuestionRepository repository = new QuestionRepository(context, context.Location);
+                    Question[] list = repository.GetBySource((int)SourceEnum.Manual).ToArray();
                 }
             }
         }

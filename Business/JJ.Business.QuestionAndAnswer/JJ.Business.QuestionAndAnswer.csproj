@@ -40,8 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\CategoryEnum.cs" />
+    <Compile Include="Enums\QuestionTypeEnum.cs" />
     <Compile Include="Enums\SourceEnum.cs" />
-    <Compile Include="Extensions\TextualQuestionExtensions.cs" />
+    <Compile Include="Extensions\QuestionCategoryExtensions.Enums.cs" />
+    <Compile Include="Extensions\QuestionExtensions.Enums.cs" />
+    <Compile Include="Extensions\QuestionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

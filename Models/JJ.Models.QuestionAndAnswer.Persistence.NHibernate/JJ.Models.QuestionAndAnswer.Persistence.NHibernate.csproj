@@ -53,9 +53,12 @@
   <ItemGroup>
     <Compile Include="ColumnNames.cs" />
     <Compile Include="CategoryMapping.cs" />
+    <Compile Include="QuestionTypeMapping.cs" />
+    <Compile Include="QuestionCategoryMapping.cs" />
+    <Compile Include="QuestionLinkMapping.cs" />
     <Compile Include="SourceMapping.cs" />
-    <Compile Include="TextualQuestionMapping.cs" />
-    <Compile Include="TextualAnswerMapping.cs" />
+    <Compile Include="QuestionMapping.cs" />
+    <Compile Include="AnswerMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

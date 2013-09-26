@@ -76,16 +76,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
-    <Compile Include="IAnswer.cs" />
-    <Compile Include="IQuestion.cs" />
-    <Compile Include="MultipleChoiceAnswer.cs" />
-    <Compile Include="MultipleChoiceQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionCategory.cs" />
+    <Compile Include="QuestionLink.cs" />
+    <Compile Include="QuestionType.cs" />
     <Compile Include="Source.cs" />
-    <Compile Include="TextualAnswer.cs">
+    <Compile Include="Answer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TextualQuestion.cs">
+    <Compile Include="Question.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

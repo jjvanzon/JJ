@@ -19,10 +19,12 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
     {
         private const SourceEnum SOURCE = SourceEnum.W3CSpecCss3SelectorIndex;
 
-        private ITextualQuestionRepository _repository;
+        private IQuestionRepository _repository;
         private ISourceRepository _sourceRepository;
         private ICategoryRepository _categoryRepository;
-        private ITextualAnswerRepository _textualAnswerRepository;
+        private IAnswerRepository _textualAnswerRepository;
+        private IQuestionTypeRepository _questionTypeRepository;
+        private IQuestionCategoryRepository _questionCategoryRepository;
 
         private Action<string> _progressCallback;
         private Func<bool> _isCancelledCallback;
@@ -32,10 +34,12 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
         {
             if (context == null) throw new ArgumentNullException("context");
 
-            _repository = new TextualQuestionRepository(context, context.Location);
+            _repository = new QuestionRepository(context, context.Location);
             _sourceRepository = new SourceRepository(context);
             _categoryRepository = new CategoryRepository(context);
-            _textualAnswerRepository = new TextualAnswerRepository(context);
+            _textualAnswerRepository = new AnswerRepository(context);
+            _questionTypeRepository = new QuestionTypeRepository(context);
+            _questionCategoryRepository = new QuestionCategoryRepository(context);
         }
 
         public void Execute(string filePath, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
@@ -48,8 +52,8 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
 
         public void Execute(Stream stream, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
         {
-            try
-            {
+            //try
+            //{
                 if (stream == null) throw new ArgumentNullException("stream");
                 _progressCallback = progressCallback;
                 _isCancelledCallback = isCancelledCallback;
@@ -88,23 +92,23 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
                 _repository.Commit();
 
                 DoProgressCallback("Done.");
-            }
-            catch (Exception ex)
-            {
-                DoProgressCallback(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    DoProgressCallback(ex.Message);
+            //}
         }
 
         private void DeleteExistingQuestions()
         {
-            foreach (TextualQuestion textualQuestion in GetExistingQuestions())
+            foreach (Question textualQuestion in GetExistingQuestions())
             {
-                textualQuestion.DeleteRelatedEntities(_textualAnswerRepository);
+                textualQuestion.DeleteRelatedEntities(_textualAnswerRepository, _questionCategoryRepository);
                 _repository.Delete(textualQuestion);
             }
         }
 
-        private IEnumerable<TextualQuestion> GetExistingQuestions()
+        private IEnumerable<Question> GetExistingQuestions()
         {
             return _repository.GetBySource((int)SOURCE);
         }
@@ -129,33 +133,39 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
 
         private void ConvertToQuestion_PatternToMeaning(ImportModel importModel)
         {
-            TextualQuestion question = ConvertToQuestion_BaseMethod();
+            Question question = ConvertToQuestion_BaseMethod();
             question.Text = String.Format("What does the selector {0} mean?", FormatValue(importModel.Pattern));
-            question.TextualAnswer().Text = FormatValue(importModel.Meaning);
+            question.Answer().Text = FormatValue(importModel.Meaning);
         }
 
         private void ConvertToQuestion_MeaningToPattern(ImportModel importModel)
         {
-            TextualQuestion question = ConvertToQuestion_BaseMethod();
+            Question question = ConvertToQuestion_BaseMethod();
             question.Text = String.Format("What is the selector for {0} ?", FormatValue(importModel.Meaning));
-            question.TextualAnswer().Text = FormatValue(importModel.Pattern);
+            question.Answer().Text = FormatValue(importModel.Pattern);
         }
 
         private void ConvertToQuestion_SectorType(ImportModel importModel)
         {
-            TextualQuestion question = ConvertToQuestion_BaseMethod();
+            Question question = ConvertToQuestion_BaseMethod();
             question.Text = String.Format("What type of selector is {0} ?", FormatValue(importModel.Pattern));
-            question.TextualAnswer().Text = FormatValue(importModel.DescribedInSection);
+            question.Answer().Text = FormatValue(importModel.DescribedInSection);
         }
 
         // Helpers
 
-        private TextualQuestion ConvertToQuestion_BaseMethod()
+        private Question ConvertToQuestion_BaseMethod()
         {
-            TextualQuestion question = _repository.Create();
+            Question question = _repository.Create();
             question.AutoCreateRelatedEntities(_textualAnswerRepository);
-            question.SetSourceValue(_sourceRepository, SOURCE);
-            question.SetCategoryValue(_categoryRepository, CategoryEnum.Css3);
+            question.SetSourceEnum(_sourceRepository, SOURCE);
+            question.SetQuestionTypeEnum(_questionTypeRepository, QuestionTypeEnum.OpenQuestion);
+            question.Answer().IsCorrectAnswer = true;
+
+            QuestionCategory questionCategory = _questionCategoryRepository.Create();
+            questionCategory.Question = question;
+            questionCategory.SetCategoryEnum(_categoryRepository, CategoryEnum.Css3);
+
             return question;
         }
 

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 
 namespace JJ.Models.QuestionAndAnswer
 {
-    public class Source
+    public class QuestionType
     {
         private int _iD;
-        private string _description;
-        private string _identifier;
-        private string _link;
+        private string _name;
         private IList<Question> _questions;
 
         public virtual int ID
@@ -17,22 +15,10 @@ namespace JJ.Models.QuestionAndAnswer
             set { _iD = value; }
         }
 
-        public virtual string Description
+        public virtual string Name
         {
-            get { return _description; }
-            set { _description = value; }
-        }
-
-        public virtual string Identifier
-        {
-            get { return _identifier; }
-            set { _identifier = value; }
-        }
-
-        public virtual string Link
-        {
-            get { return _link; }
-            set { _link = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
         public virtual IList<Question> Questions

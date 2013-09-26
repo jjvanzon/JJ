@@ -13,13 +13,13 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     public static class QuestionDetailViewModelExtensions
     {
-        public static TextualQuestion ToModel(this QuestionDetailViewModel viewModel, ITextualQuestionRepository textualQuestionrepository, ITextualAnswerRepository textualAnswerRepository)
+        public static Question ToModel(this QuestionDetailViewModel viewModel, IQuestionRepository textualQuestionrepository, IAnswerRepository textualAnswerRepository)
         {
             if (viewModel == null) throw new ArgumentNullException("viewModel");
             if (textualQuestionrepository == null) throw new ArgumentNullException("textualQuestionrepository");
             if (textualAnswerRepository == null) throw new ArgumentNullException("textualAnswerRepository");
 
-            TextualQuestion model = textualQuestionrepository.TryGet(viewModel.ID);
+            Question model = textualQuestionrepository.TryGet(viewModel.ID);
             if (model == null)
             {
                 model = textualQuestionrepository.Create();
@@ -27,7 +27,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             }
 
             model.Text = viewModel.Question;
-            model.TextualAnswer().Text = viewModel.Answer;
+            model.Answer().Text = viewModel.Answer;
 
             return model;
         }

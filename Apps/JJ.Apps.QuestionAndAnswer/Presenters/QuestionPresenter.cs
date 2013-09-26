@@ -17,7 +17,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
     {
         private IContext _context;
         private bool _contextIsOwned;
-        private ITextualQuestionRepository _repository;
+        private IQuestionRepository _repository;
 
         // Constructors
 
@@ -33,14 +33,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Initialize(context, null);
         }
 
-        public QuestionPresenter(ITextualQuestionRepository repository)
+        public QuestionPresenter(IQuestionRepository repository)
         {
             if (repository == null) throw new ArgumentNullException("repository");
 
             Initialize(null, repository);
         }
 
-        private void Initialize(IContext context, ITextualQuestionRepository repository)
+        private void Initialize(IContext context, IQuestionRepository repository)
         {
             bool contextIsOwned = false;
 
@@ -52,7 +52,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             if (repository == null)
             {
-                repository = new TextualQuestionRepository(context, context.Location);
+                repository = new QuestionRepository(context, context.Location);
             }
 
             _context = context;
@@ -72,19 +72,19 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionDetailViewModel NextQuestion()
         {
-            TextualQuestion model = _repository.TryGetRandomTextualQuestion();
+            Question model = _repository.TryGetRandomQuestion();
 
             return Question(model);
         }
 
         public QuestionDetailViewModel ShowQuestion(int id)
         {
-            TextualQuestion model = _repository.TryGet(id);
+            Question model = _repository.TryGet(id);
 
             return Question(model);
         }
 
-        private QuestionDetailViewModel Question(TextualQuestion model)
+        private QuestionDetailViewModel Question(Question model)
         {
             if (model == null)
             {
@@ -108,7 +108,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             //viewModel.AnswerIsVisible = true;
             //return viewModel;
 
-            TextualQuestion model = _repository.TryGet(viewModel.ID);
+            Question model = _repository.TryGet(viewModel.ID);
             if (model == null)
             {
                 return NotFound(viewModel.ID);
@@ -132,7 +132,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             //viewModel.AnswerIsVisible = false;
             //return viewModel;
 
-            TextualQuestion model = _repository.TryGet(viewModel.ID);
+            Question model = _repository.TryGet(viewModel.ID);
             if (model == null)
             {
                 return NotFound(viewModel.ID);

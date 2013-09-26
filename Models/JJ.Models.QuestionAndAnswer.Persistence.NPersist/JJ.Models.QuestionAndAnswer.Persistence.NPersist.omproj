@@ -39,40 +39,40 @@
             <EmbedXml>false</EmbedXml>
             <SourceCodeFiles>
               <SourceCodeFile>
-                <Name>TextualAnswer.cs</Name>
+                <Name>Answer.cs</Name>
                 <MetaData />
-                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\TextualAnswer.cs</FilePath>
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\Answer.cs</FilePath>
                 <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
-                <MapObjectName>TextualAnswer</MapObjectName>
+                <MapObjectName>Answer</MapObjectName>
                 <FileType>CSharp</FileType>
-                <LastWrittenTo>2013-09-16T02:18:11.8582738+02:00</LastWrittenTo>
+                <LastWrittenTo>2013-09-25T20:18:59.3691833+02:00</LastWrittenTo>
               </SourceCodeFile>
               <SourceCodeFile>
-                <Name>TextualQuestion.cs</Name>
+                <Name>AnswerCollection.cs</Name>
                 <MetaData />
-                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\TextualQuestion.cs</FilePath>
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\AnswerCollection.cs</FilePath>
+                <MapObjectType />
+                <MapObjectName>AnswerCollection</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:16:01.7234163+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>Category.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\Category.cs</FilePath>
                 <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
-                <MapObjectName>TextualQuestion</MapObjectName>
+                <MapObjectName>Category</MapObjectName>
                 <FileType>CSharp</FileType>
-                <LastWrittenTo>2013-09-16T02:18:11.8582738+02:00</LastWrittenTo>
+                <LastWrittenTo>2013-09-25T20:18:59.3847833+02:00</LastWrittenTo>
               </SourceCodeFile>
               <SourceCodeFile>
-                <Name>AssemblyInfo.cs</Name>
+                <Name>CategoryCollection.cs</Name>
                 <MetaData />
-                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\AssemblyInfo.cs</FilePath>
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\CategoryCollection.cs</FilePath>
                 <MapObjectType />
-                <MapObjectName>AssemblyInfo</MapObjectName>
+                <MapObjectName>CategoryCollection</MapObjectName>
                 <FileType>CSharp</FileType>
-                <LastWrittenTo>2013-09-16T02:18:11.8738739+02:00</LastWrittenTo>
-              </SourceCodeFile>
-              <SourceCodeFile>
-                <Name>JJ.Models.QuestionAndAnswer.npersist</Name>
-                <MetaData />
-                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.npersist</FilePath>
-                <MapObjectType />
-                <MapObjectName>MapFile</MapObjectName>
-                <FileType>NPersist</FileType>
-                <LastWrittenTo>2013-09-16T02:18:11.8738739+02:00</LastWrittenTo>
+                <LastWrittenTo>2013-09-25T20:16:01.7390163+02:00</LastWrittenTo>
               </SourceCodeFile>
               <SourceCodeFile>
                 <Name>JJ.Models.QuestionAndAnswer.csproj</Name>
@@ -82,6 +82,96 @@
                 <MapObjectName>JJ.Models.QuestionAndAnswer</MapObjectName>
                 <FileType>CSharp</FileType>
                 <LastWrittenTo>2013-09-16T02:18:11.8738739+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>Question.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\Question.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>Question</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:18:59.3847833+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionCategory.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\QuestionCategory.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>QuestionCategory</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:18:59.3847833+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionCategoryCollection.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\QuestionCategoryCollection.cs</FilePath>
+                <MapObjectType />
+                <MapObjectName>QuestionCategoryCollection</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:16:01.7390163+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionCollection.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\QuestionCollection.cs</FilePath>
+                <MapObjectType />
+                <MapObjectName>QuestionCollection</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:16:01.7390163+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionLink.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\QuestionLink.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>QuestionLink</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:18:59.3847833+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionLinkCollection.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\QuestionLinkCollection.cs</FilePath>
+                <MapObjectType />
+                <MapObjectName>QuestionLinkCollection</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:16:01.7390163+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionType.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\QuestionType.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>QuestionType</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:18:59.3847833+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionTypeCollection.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\QuestionTypeCollection.cs</FilePath>
+                <MapObjectType />
+                <MapObjectName>QuestionTypeCollection</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:16:01.7546163+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>Source.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\Source.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>Source</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:18:59.4003833+02:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>SourceCollection.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer\SourceCollection.cs</FilePath>
+                <MapObjectType />
+                <MapObjectName>SourceCollection</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-09-25T20:16:01.7546163+02:00</LastWrittenTo>
               </SourceCodeFile>
             </SourceCodeFiles>
             <PutAllClassesInOneFile>false</PutAllClassesInOneFile>

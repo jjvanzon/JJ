@@ -17,7 +17,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
             string specialConnectionString = @"metadata=res://*/QuestionAndAnswer.csdl|res://*/QuestionAndAnswer.ssdl|res://*/QuestionAndAnswer.msl;provider=System.Data.SqlClient;provider connection string=""data source=.\SQLEXPRESS;initial catalog=QuestionAndAnswerDB_DEV;persist security info=True;user id=development;password=development;MultipleActiveResultSets=True;App=EntityFramework"";";
             using (DbContext context = new JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.QuestionAndAnswerContext(specialConnectionString))
             {
-                foreach (var entity in context.Set<TextualQuestion>())
+                foreach (var entity in context.Set<Question>())
                 {
                     string value = entity.Text;
                 }

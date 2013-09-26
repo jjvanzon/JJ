@@ -11,7 +11,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     public static class TextualQuestionExtensions
     {
-        public static QuestionDetailViewModel ToViewModel(this TextualQuestion textualQuestion)
+        public static QuestionDetailViewModel ToViewModel(this Question textualQuestion)
         {
             if (textualQuestion == null) throw new ArgumentNullException("textualQuestion");
 
@@ -19,7 +19,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             {
                 ID = textualQuestion.ID,
                 Question = textualQuestion.Text,
-                Answer = textualQuestion.TextualAnswer().Text,
+                Answer = textualQuestion.Answer().Text,
             };
         }
     }

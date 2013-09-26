@@ -9,13 +9,13 @@ using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 {
-    public class TextualQuestionRepository : ITextualQuestionRepository
+    public class QuestionRepository : IQuestionRepository
     {
         private IContext _context;
 
         private SqlExecutor _sqlExecutor;
 
-        public TextualQuestionRepository(IContext context, string sqlConnectionString)
+        public QuestionRepository(IContext context, string sqlConnectionString)
         {
             if (context == null) throw new ArgumentNullException("context");
 
@@ -24,24 +24,24 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
             _sqlExecutor = new SqlExecutor(sqlConnectionString);
         }
 
-        public IEnumerable<TextualQuestion> GetAll()
+        public IEnumerable<Question> GetAll()
         {
-            return _context.Query<TextualQuestion>().ToArray();
+            return _context.Query<Question>().ToArray();
         }
 
-        public TextualQuestion TryGet(int id)
+        public Question TryGet(int id)
         {
-            return _context.TryGet<TextualQuestion>(id);
+            return _context.TryGet<Question>(id);
         }
 
-        public TextualQuestion Get(int id)
+        public Question Get(int id)
         {
-            return _context.Get<TextualQuestion>(id);
+            return _context.Get<Question>(id);
         }
 
-        public TextualQuestion TryGetRandomTextualQuestion()
+        public Question TryGetRandomQuestion()
         {
-            int? randomID = _sqlExecutor.TryGetRandomTextualQuestionID();
+            int? randomID = _sqlExecutor.TryGetRandomQuestionID();
             if (randomID.HasValue)
             {
                 return Get(randomID.Value);
@@ -52,20 +52,20 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
             }
         }
 
-        public TextualQuestion Create()
+        public Question Create()
         {
-            TextualQuestion entity = _context.Create<TextualQuestion>();
+            Question entity = _context.Create<Question>();
             return entity;
         }
 
-        public IEnumerable<TextualQuestion> GetBySource(int sourceID)
+        public IEnumerable<Question> GetBySource(int sourceID)
         {
-            return _context.Query<TextualQuestion>().Where(x => x.Source.ID == sourceID);
+            return _context.Query<Question>().Where(x => x.Source.ID == sourceID);
         }
 
-        public void Delete(TextualQuestion textualQuestion)
+        public void Delete(Question question)
         {
-            _context.Delete(textualQuestion);
+            _context.Delete(question);
         }
 
         public void Commit()

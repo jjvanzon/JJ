@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface ITextualAnswerRepository
+    public interface IQuestionTypeRepository
     {
-        TextualAnswer Create();
-        void Delete(TextualAnswer textualAnswer);
+        QuestionType Get(int id);
     }
 }

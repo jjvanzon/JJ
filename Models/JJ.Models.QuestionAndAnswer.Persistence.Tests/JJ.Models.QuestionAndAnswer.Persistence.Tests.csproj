@@ -76,7 +76,8 @@
     <Compile Include="Helpers\ConfigurationSection.cs" />
     <Compile Include="EntityFrameworkMappingsTests.cs" />
     <Compile Include="Helpers\PersistenceHelper.cs" />
-    <Compile Include="TextualQuestionRespositoryTests.cs" />
+    <Compile Include="IAppSettings.cs" />
+    <Compile Include="QuestionRespositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

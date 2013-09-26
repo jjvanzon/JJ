@@ -40,16 +40,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\CategoryRepository.cs" />
-    <Compile Include="Repositories\TextualAnswerRepository.cs" />
+    <Compile Include="Repositories\AnswerRepository.cs" />
+    <Compile Include="Repositories\QuestionCategoryRepository.cs" />
+    <Compile Include="Repositories\QuestionTypeRepository.cs" />
     <Compile Include="Repositories\SourceRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IQuestionCategoryRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IQuestionTypeRepository.cs" />
     <Compile Include="RepositoryInterfaces\ISourceRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICategoryRepository.cs" />
-    <Compile Include="RepositoryInterfaces\ITextualAnswerRepository.cs" />
-    <Compile Include="RepositoryInterfaces\ITextualQuestionRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IAnswerRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IQuestionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQL\SqlEnum.cs" />
     <Compile Include="SQL\SqlExecutor.cs" />
-    <Compile Include="Repositories\TextualQuestionRepository.cs.cs" />
+    <Compile Include="Repositories\QuestionRepository.cs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
@@ -62,7 +66,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SQL\TryGetRandomTextualQuestionID.sql" />
+    <EmbeddedResource Include="SQL\TryGetRandomQuestionID.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

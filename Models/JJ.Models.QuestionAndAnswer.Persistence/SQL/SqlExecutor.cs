@@ -21,12 +21,12 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.SQL
             _connectionString = connectionString;
         }
 
-        public int? TryGetRandomTextualQuestionID()
+        public int? TryGetRandomQuestionID()
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string sql = GetSql(SqlEnum.TryGetRandomTextualQuestionID);
+                string sql = GetSql(SqlEnum.TryGetRandomQuestionID);
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {

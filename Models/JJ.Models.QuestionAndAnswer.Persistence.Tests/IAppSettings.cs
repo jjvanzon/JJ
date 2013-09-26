@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Models.QuestionAndAnswer.Persistence.SQL
+namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 {
-    internal enum SqlEnum
+    internal interface IAppSettings
     {
-        TryGetRandomQuestionID
+        int ExistingQuestionID { get; set; }
     }
 }
