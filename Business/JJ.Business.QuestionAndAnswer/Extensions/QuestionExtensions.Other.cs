@@ -13,36 +13,53 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 {
     public static partial class QuestionExtensions
     {
-        public static void AutoCreateRelatedEntities(this Question entity, IAnswerRepository answerRepository)
+        public static void AutoCreateRelatedEntities(this Question question, IAnswerRepository answerRepository)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            if (question == null) throw new ArgumentNullException("question");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");
 
-            if (entity.Answers.Count == 0)
+            if (question.Answers.Count == 0)
             {
                 Answer answer = answerRepository.Create();
-                answer.Question = entity;
-                entity.Answers.Add(answer);
+                answer.LinkTo(question);
             }
         }
 
-        public static void DeleteRelatedEntities(this Question question, IAnswerRepository answerRepository, IQuestionCategoryRepository questionCategoryRepository)
+        public static void DeleteRelatedEntities(this Question question, IAnswerRepository answerRepository, IQuestionCategoryRepository questionCategoryRepository, IQuestionLinkRepository questionLinkRepository)
         {
             if (question == null) throw new ArgumentNullException("question");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");
 
             foreach (Answer answer in question.Answers.ToArray())
             {
+                answer.Question = null;
+
                 answerRepository.Delete(answer);
             }
 
+            question.Answers.Clear();
+
             foreach (QuestionCategory questionCategory in question.QuestionCategories.ToArray())
             {
+                questionCategory.Question = null;
+
                 questionCategoryRepository.Delete(questionCategory);
             }
+
+            question.QuestionCategories.Clear();
+
+            foreach (QuestionLink questionLink in question.QuestionLinks.ToArray())
+            {
+                questionLink.Question = null;
+
+                questionLinkRepository.Delete(questionLink);
+            }
+
+            question.QuestionLinks.Clear();
         }
 
-        public static Answer Answer(this Question entity)
+        // Temporary
+        /*public static Answer Answer(this Question entity)
         {
             switch (entity.Answers.Count)
             {
@@ -55,28 +72,10 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
                 default:
                     throw new Exception(String.Format("Question with ID '{0}' has multiple answers.", entity.ID));
             }
-        }
-
-        /*public static void SetAnswer(this Question entity, Answer answer)
-        {
-            switch (entity.Answers.Count)
-            {
-                case 0:
-                    entity.Answers.Add(answer);
-                    break;
-
-                case 1:
-                    entity.Answers[0] = answer;
-                    break;
-
-                default:
-                    throw new Exception(String.Format("Question with ID '{0}' has multiple answers.", entity.ID));
-            }
         }*/
 
         // Temporary
-
-        public static Category Category(this Question entity)
+        /*public static Category Category(this Question entity)
         {
             switch (entity.QuestionCategories.Count)
             {
@@ -85,26 +84,6 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
                 case 1:
                     return entity.QuestionCategories[0].Category;
-
-                default:
-                    throw new Exception(String.Format("Question with ID '{0}' has multiple categories.", entity.ID));
-            }
-        }
-
-        // Temporary
-
-        /*public static void SetCategory(this Question entity, Category category)
-        {
-            switch (entity.QuestionCategories.Count)
-            {
-                case 0:
-                    QuestionCategory questionCategorie = new QuestionCategory() { Question = entity, Category = category };
-                    entity.QuestionCategories.Add(questionCategorie);
-                    break;
-
-                case 1:
-                    entity.QuestionCategories[0].Category = category;
-                    break;
 
                 default:
                     throw new Exception(String.Format("Question with ID '{0}' has multiple categories.", entity.ID));

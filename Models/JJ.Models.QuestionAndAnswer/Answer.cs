@@ -17,10 +17,10 @@ namespace JJ.Models.QuestionAndAnswer
         public virtual bool IsCorrectAnswer
         {
             get { return _isCorrectAnswer; }
-            set
-            { _isCorrectAnswer = value; }
+            set { _isCorrectAnswer = value; }
         }
 
+        
         public virtual Question Question
         {
             get { return _question; }

@@ -42,9 +42,11 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\AnswerRepository.cs" />
     <Compile Include="Repositories\QuestionCategoryRepository.cs" />
+    <Compile Include="Repositories\QuestionLinkRepository.cs" />
     <Compile Include="Repositories\QuestionTypeRepository.cs" />
     <Compile Include="Repositories\SourceRepository.cs" />
     <Compile Include="RepositoryInterfaces\IQuestionCategoryRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IQuestionLinkRepository.cs" />
     <Compile Include="RepositoryInterfaces\IQuestionTypeRepository.cs" />
     <Compile Include="RepositoryInterfaces\ISourceRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICategoryRepository.cs" />

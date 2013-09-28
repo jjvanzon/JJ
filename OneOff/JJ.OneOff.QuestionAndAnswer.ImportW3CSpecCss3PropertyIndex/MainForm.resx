@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Description" xml:space="preserve">
-    <value>This one-off process converts a CSV with information about CSS properties to questions and answers.
-The CSV is a copy of the table that can be found in the W3C CSS3 specification: http://www.w3.org/TR/CSS/#properties.
-See W3CSpecCss3PropertyIndex.csv in the bin directory.</value>
+    <value>This one-off process converts a CSV or HTML file with information about CSS properties to questions and answers.
+The CSV or HTML is a copy of the table that can be found in the W3C CSS3 specification: http://www.w3.org/TR/CSS/#properties.
+See W3CSpecCss3PropertyIndex.csv or W3CSpecCss3PropertyIndex.html in the bin directory.</value>
   </data>
 </root>

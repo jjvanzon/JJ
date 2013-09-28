@@ -55,8 +55,19 @@ namespace JJ.Models.QuestionAndAnswer
 
         public virtual IList<QuestionLink> QuestionLinks
         {
-            get { return _questionLinks; }
-            set { _questionLinks = value; }
+            get
+            {
+                if (_questionLinks == null)
+                {
+                    _questionLinks = new List<QuestionLink>();
+                }
+
+                return _questionLinks;
+            }
+            set
+            {
+                _questionLinks = value;
+            }
         }
 
         public virtual QuestionType QuestionType

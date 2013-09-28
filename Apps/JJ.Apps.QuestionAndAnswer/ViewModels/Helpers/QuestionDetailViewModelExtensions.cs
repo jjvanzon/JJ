@@ -27,7 +27,8 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             }
 
             model.Text = viewModel.Question;
-            model.Answer().Text = viewModel.Answer;
+            // TODO: Refactor
+            model.Answers[0].Text = viewModel.Answer;
 
             return model;
         }

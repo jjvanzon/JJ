@@ -29,7 +29,9 @@
         <%: Html.TextBoxFor(x => x.UserAnswer, new { autocomplete = "off", style="width:80%;" })%>
     </div>
 
-    <p>
+    <br />
+
+    <div id="buttons">
         <% if (!Model.AnswerIsVisible)
            { %>
                 <input type="submit" value="<%:Titles.ShowAnswer %>" formaction="<%: Url.Action(ActionNames.Question) %>" />
@@ -38,24 +40,52 @@
            { %>
                 <input type="submit" value="<%:Titles.HideAnswer %>" formaction="<%: Url.Action(ActionNames.HideAnswer) %>" />
         <% } %>
-    </p>
+    </div>
+    
+    <div id="answer">
+        <% if (Model.AnswerIsVisible)
+           { %>
+                <br />
 
-    <% if (Model.AnswerIsVisible)
-       { %>
-            <div class="display-label">
-                <%: Labels.TheCorrectAnswer %>
-            </div>
+                <div class="display-label">
+                    <%: Labels.TheCorrectAnswer %>
+                </div>
+
+                <br />
+
+                <div class="display-field">
+                    <%: Html.DisplayFor(x => x.Answer) %>
+                </div>
+        <% } %>
+    </div>
+    
+    <div id="links">
+        <% if (Model.Links.Count > 0) 
+           { %>
+        
+            <br />
 
             <br />
 
-            <div class="display-field">
-                <%: Html.DisplayFor(x => x.Answer) %>
-            </div>
-    <% } %>
-        
+            <%: Labels.AdditionalInformation %>
+
+            <ul>
+
+                <% foreach (var link in Model.Links)
+                   { %>
+                            <li><a href="<%: link.Url %>" target="_blank"><%: link.Description %></a> </li>
+                <% } %>
+
+            </ul>
+
+        <% } %>
+    </div>
+
     <br />
 
-    <%: Html.ActionLink(Titles.NextQuestion, ActionNames.Question) %>
+    <div id="nextQuestion">
+        <%: Html.ActionLink(Titles.NextQuestion, ActionNames.Question) %>
+    </div>
 
     <%: Html.HiddenForAllProperties(Model) %>
 

@@ -27,6 +27,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
 
                 process.Execute(
                     FilePath,
+                    ImportTypeEnum.Html,
                     progressCallback: (message) => ShowProgress(message),
                     isCancelledCallback: () => !IsRunning);
             }

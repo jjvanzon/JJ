@@ -5,7 +5,8 @@ namespace JJ.Models.QuestionAndAnswer
     public class QuestionLink
     {
         private int _iD;
-        private string _link;
+        private string _url;
+        private string _description;
         private Question _question;
 
         public virtual int ID
@@ -14,10 +15,16 @@ namespace JJ.Models.QuestionAndAnswer
             set { _iD = value; }
         }
 
-        public virtual string Link
+        public virtual string Url
         {
-            get { return _link; }
-            set { _link = value; }
+            get { return _url; }
+            set { _url = value; }
+        }
+
+        public virtual string Description
+        {
+            get { return _description; }
+            set { _description = value; }
         }
 
         public virtual Question Question

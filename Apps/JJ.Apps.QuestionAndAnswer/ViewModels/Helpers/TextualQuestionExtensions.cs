@@ -11,16 +11,28 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     public static class TextualQuestionExtensions
     {
-        public static QuestionDetailViewModel ToViewModel(this Question textualQuestion)
+        public static QuestionDetailViewModel ToViewModel(this Question entity)
         {
-            if (textualQuestion == null) throw new ArgumentNullException("textualQuestion");
+            if (entity == null) throw new ArgumentNullException("entity");
 
-            return new QuestionDetailViewModel
+            var model = new QuestionDetailViewModel
             {
-                ID = textualQuestion.ID,
-                Question = textualQuestion.Text,
-                Answer = textualQuestion.Answer().Text,
+                ID = entity.ID,
+                Question = entity.Text,
+                // TODO: Refactor
+                Answer = entity.Answers[0].Text
             };
+
+
+            model.Links = new List<LinkViewModel>();
+
+            foreach (QuestionLink questionLink in entity.QuestionLinks)
+            {
+                var linkModel = new LinkViewModel(questionLink.Description, questionLink.Url);
+                model.Links.Add(linkModel);
+            }
+
+            return model;
         }
     }
 }

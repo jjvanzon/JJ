@@ -9,7 +9,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.NHibernate
         public QuestionLinkMapping()
         {
             Id(x => x.ID);
-            Map(x => x.Link);
+            Map(x => x.Url);
+            Map(x => x.Description);
 
             References(x => x.Question, ColumnNames.QuestionID);
         }

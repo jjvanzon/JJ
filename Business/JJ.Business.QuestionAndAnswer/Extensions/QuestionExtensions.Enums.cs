@@ -7,6 +7,7 @@ using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Business.QuestionAndAnswer.Extensions;
 using System.Collections;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
@@ -19,7 +20,12 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
             if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
 
             Source source = sourceRepository.Get((int)value);
-            entity.Source = source;
+            source.LinkTo(entity);
+        }
+
+        public static QuestionTypeEnum GetQuestionTypeEnum(this Question entity)
+        {
+            return (QuestionTypeEnum)entity.QuestionType.ID;
         }
 
         public static void SetQuestionTypeEnum(this Question entity, IQuestionTypeRepository questionTypeRepository, QuestionTypeEnum value)
@@ -28,7 +34,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
             if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
 
             QuestionType questionType = questionTypeRepository.Get((int)value);
-            entity.QuestionType = questionType;
+            questionType.LinkTo(entity);
         }
     }
 }

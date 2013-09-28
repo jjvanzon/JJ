@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,8 +63,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImportModelConverter.cs" />
+    <Compile Include="ImportTypeEnum.cs" />
+    <Compile Include="LinkModel.cs" />
+    <Compile Include="SelectorFactory.cs" />
+    <Content Include="W3CSpecCss3SelectorIndex.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="CsvSelector.cs" />
+    <Compile Include="HtmlSelector.cs" />
     <Compile Include="ImportProcess.cs" />
     <Compile Include="ImportModel.cs" />
+    <Compile Include="ISelector.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +144,10 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
       <Name>JJ.Framework.Presentation.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Validation\JJ.Framework.Validation.csproj">
+      <Project>{59ddc853-62af-4f86-a803-3d4dd491e978}</Project>
+      <Name>JJ.Framework.Validation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>

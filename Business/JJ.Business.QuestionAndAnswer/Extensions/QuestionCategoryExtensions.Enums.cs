@@ -9,7 +9,7 @@ using JJ.Business.QuestionAndAnswer.Enums;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {
-    public static class QuestionCategoryExtensions
+    public static partial class QuestionCategoryExtensions
     {
         public static void SetCategoryEnum(this QuestionCategory entity, ICategoryRepository categoryRepository, CategoryEnum value)
         {
@@ -17,7 +17,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
             if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
 
             Category category = categoryRepository.Get((int)value);
-            entity.Category = category;
+            category.LinkTo(entity);
         }
     }
 }

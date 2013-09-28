@@ -1,6 +1,4 @@
-﻿using JJ.Framework.Persistence;
-using JJ.Framework.Presentation.WinForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JJ.Framework.Persistence;
+using JJ.Framework.Presentation.WinForms;
 
 namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 {
@@ -26,6 +26,8 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 var process = new ImportProcess(context);
                 process.Execute(
                     FilePath,
+                    ImportTypeEnum.Html,
+                    includeAnswersThatAreReferences: true,
                     progressCallback: (message) => ShowProgress(message),
                     isCancelledCallback: () => !IsRunning);
             }

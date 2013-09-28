@@ -19,12 +19,15 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
     {
         private const SourceEnum SOURCE = SourceEnum.W3CSpecCss3SelectorIndex;
 
-        private IQuestionRepository _repository;
+        private IContext _context;
+
+        private IQuestionRepository _questionRepository;
         private ISourceRepository _sourceRepository;
         private ICategoryRepository _categoryRepository;
-        private IAnswerRepository _textualAnswerRepository;
+        private IAnswerRepository _answerRepository;
         private IQuestionTypeRepository _questionTypeRepository;
         private IQuestionCategoryRepository _questionCategoryRepository;
+        private IQuestionLinkRepository _questionLinkRepository;
 
         private Action<string> _progressCallback;
         private Func<bool> _isCancelledCallback;
@@ -34,64 +37,61 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
         {
             if (context == null) throw new ArgumentNullException("context");
 
-            _repository = new QuestionRepository(context, context.Location);
+            _context = context;
+
+            _questionRepository = new QuestionRepository(context, context.Location);
             _sourceRepository = new SourceRepository(context);
             _categoryRepository = new CategoryRepository(context);
-            _textualAnswerRepository = new AnswerRepository(context);
+            _answerRepository = new AnswerRepository(context);
             _questionTypeRepository = new QuestionTypeRepository(context);
             _questionCategoryRepository = new QuestionCategoryRepository(context);
+            _questionLinkRepository = new QuestionLinkRepository(context);
         }
 
-        public void Execute(string filePath, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
+        public void Execute(string filePath, ImportTypeEnum importType, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
         {
             using (Stream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                Execute(stream, progressCallback, isCancelledCallback);
+                Execute(stream, importType, progressCallback, isCancelledCallback);
             }
         }
 
-        public void Execute(Stream stream, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
+        public void Execute(Stream stream, ImportTypeEnum importType, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
         {
             //try
             //{
-                if (stream == null) throw new ArgumentNullException("stream");
-                _progressCallback = progressCallback;
-                _isCancelledCallback = isCancelledCallback;
 
-                DoProgressCallback("Processing...");
+            if (stream == null) throw new ArgumentNullException("stream");
+            _progressCallback = progressCallback;
+            _isCancelledCallback = isCancelledCallback;
 
-                DeleteExistingQuestions();
+            DoProgressCallback("Processing...");
 
-                using (CsvReader reader = new CsvReader(stream))
+            DeleteExistingQuestions();
+
+            var selector = SelectorFactory.CreateSelector(importType);
+            var converter = new ImportModelConverter(_context);
+
+            int counter = 0;
+
+            foreach (ImportModel model in selector.GetSelection(stream))
+            {
+                if (DoIsCancelledCallback())
                 {
-                    // Skip header.
-                    reader.Read();
-                    ImportModel header = GetImportModel(reader);
-
-                    int counter = 0;
-
-                    while (reader.Read())
-                    {
-                        // Cancel
-                        if (DoIsCancelledCallback())
-                        {
-                            DoProgressCallback("Cancelled.");
-                            return;
-                        }
-
-                        // Process record
-                        ImportModel importModel = GetImportModel(reader);
-                        ConvertImportModel(importModel);
-
-                        // Progress
-                        counter++;
-                        DoProgressCallback(String.Format("Processing: {0}", counter));
-                    }
+                    DoProgressCallback("Cancelled.");
+                    return;
                 }
-                
-                _repository.Commit();
 
-                DoProgressCallback("Done.");
+                converter.ConvertToEntities(model);
+
+                counter++;
+                DoProgressCallback(String.Format("Processing: {0}", counter));
+            }
+
+            _questionRepository.Commit();
+
+            DoProgressCallback("Done.");
+
             //}
             //catch (Exception ex)
             //{
@@ -103,77 +103,14 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
         {
             foreach (Question textualQuestion in GetExistingQuestions())
             {
-                textualQuestion.DeleteRelatedEntities(_textualAnswerRepository, _questionCategoryRepository);
-                _repository.Delete(textualQuestion);
+                textualQuestion.DeleteRelatedEntities(_answerRepository, _questionCategoryRepository, _questionLinkRepository);
+                _questionRepository.Delete(textualQuestion);
             }
         }
 
         private IEnumerable<Question> GetExistingQuestions()
         {
-            return _repository.GetBySource((int)SOURCE);
-        }
-
-        private ImportModel GetImportModel(CsvReader reader)
-        {
-            return new ImportModel
-            {
-                Pattern = reader[0],
-                Meaning = reader[1],
-                DescribedInSection = reader[2],
-                FirstDefinedInLevel = reader[3]
-            };
-        }
-
-        private void ConvertImportModel(ImportModel importModel)
-        {
-            ConvertToQuestion_PatternToMeaning(importModel);
-            ConvertToQuestion_MeaningToPattern(importModel);
-            ConvertToQuestion_SectorType(importModel);
-        }
-
-        private void ConvertToQuestion_PatternToMeaning(ImportModel importModel)
-        {
-            Question question = ConvertToQuestion_BaseMethod();
-            question.Text = String.Format("What does the selector {0} mean?", FormatValue(importModel.Pattern));
-            question.Answer().Text = FormatValue(importModel.Meaning);
-        }
-
-        private void ConvertToQuestion_MeaningToPattern(ImportModel importModel)
-        {
-            Question question = ConvertToQuestion_BaseMethod();
-            question.Text = String.Format("What is the selector for {0} ?", FormatValue(importModel.Meaning));
-            question.Answer().Text = FormatValue(importModel.Pattern);
-        }
-
-        private void ConvertToQuestion_SectorType(ImportModel importModel)
-        {
-            Question question = ConvertToQuestion_BaseMethod();
-            question.Text = String.Format("What type of selector is {0} ?", FormatValue(importModel.Pattern));
-            question.Answer().Text = FormatValue(importModel.DescribedInSection);
-        }
-
-        // Helpers
-
-        private Question ConvertToQuestion_BaseMethod()
-        {
-            Question question = _repository.Create();
-            question.AutoCreateRelatedEntities(_textualAnswerRepository);
-            question.SetSourceEnum(_sourceRepository, SOURCE);
-            question.SetQuestionTypeEnum(_questionTypeRepository, QuestionTypeEnum.OpenQuestion);
-            question.Answer().IsCorrectAnswer = true;
-
-            QuestionCategory questionCategory = _questionCategoryRepository.Create();
-            questionCategory.Question = question;
-            questionCategory.SetCategoryEnum(_categoryRepository, CategoryEnum.Css3);
-
-            return question;
-        }
-
-        private string FormatValue(string value)
-        {
-            if (value == null) return null;
-
-            return value.Trim();
+            return _questionRepository.GetBySource((int)SOURCE);
         }
 
         private void DoProgressCallback(string message)

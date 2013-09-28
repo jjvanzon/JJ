@@ -82,7 +82,8 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="QuestionID" Type="int" Nullable="false" />
-          <Property Name="Link" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="250" />
         </EntityType>
         <EntityType Name="QuestionType">
           <Key>
@@ -259,8 +260,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Link" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Question" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionLink_Question" FromRole="QuestionLink" ToRole="Question" />
+          <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="QuestionType">
           <Key>
@@ -351,7 +353,8 @@
           <EntitySetMapping Name="QuestionLinks">
             <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.QuestionLink">
               <MappingFragment StoreEntitySet="QuestionLink">
-                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.AspNetMvc4", "JJ.Apps.QuestionAndAnswer.AspNetMvc4\JJ.Apps.QuestionAndAnswer.AspNetMvc4.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer", "JJ.Apps.QuestionAndAnswer\JJ.Apps.QuestionAndAnswer.csproj", "{680C0600-E384-4F3D-9C2A-38ECC1FDB1CB}"
@@ -76,6 +76,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex", "..\OneOff\JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex\JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex.csproj", "{D8B328A8-18F9-47E2-8F69-0ED365546F92}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.WinForms", "..\Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.csproj", "{84A66716-C686-4B8E-A092-CFE38CA7DDE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation", "..\Framework\JJ.Framework.Validation\JJ.Framework.Validation.csproj", "{59DDC853-62AF-4F86-A803-3D4DD491E978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -276,6 +278,12 @@ Global
 		{84A66716-C686-4B8E-A092-CFE38CA7DDE0}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{84A66716-C686-4B8E-A092-CFE38CA7DDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84A66716-C686-4B8E-A092-CFE38CA7DDE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DDC853-62AF-4F86-A803-3D4DD491E978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DDC853-62AF-4F86-A803-3D4DD491E978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DDC853-62AF-4F86-A803-3D4DD491E978}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DDC853-62AF-4F86-A803-3D4DD491E978}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{59DDC853-62AF-4F86-A803-3D4DD491E978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DDC853-62AF-4F86-A803-3D4DD491E978}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -307,6 +315,7 @@ Global
 		{EA2EC919-FC52-47B6-9149-B6A7018572CE} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{C600657B-7E29-44B5-83A1-747FAB30D5D0} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{84A66716-C686-4B8E-A092-CFE38CA7DDE0} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{59DDC853-62AF-4F86-A803-3D4DD491E978} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}

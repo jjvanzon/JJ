@@ -16,5 +16,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
         public bool AnswerIsVisible { get; set; }
         public string UserAnswer { get; set; }
         public bool NotFound { get; set; }
+
+        public List<LinkViewModel> Links { get; set; }
     }
 }

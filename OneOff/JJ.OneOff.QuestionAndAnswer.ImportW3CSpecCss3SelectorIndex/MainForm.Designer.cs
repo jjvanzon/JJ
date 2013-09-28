@@ -37,7 +37,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 253);
             this.Description = resources.GetString("$this.Description");
-            this.FilePath = "W3CSpecCss3SelectorIndex.csv";
+            this.FilePath = "W3CSpecCss3SelectorIndex.html";
             this.Name = "MainForm";
             this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
             this.ResumeLayout(false);

@@ -12,5 +12,6 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
         public string Meaning { get; set; }
         public string DescribedInSection { get; set; }
         public string FirstDefinedInLevel { get; set; }
+        public LinkModel DescribedInSectionLink { get; set; }
     }
 }

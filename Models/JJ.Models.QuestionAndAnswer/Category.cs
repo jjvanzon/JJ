@@ -22,13 +22,15 @@ namespace JJ.Models.QuestionAndAnswer
             get { return _name; }
             set { _name = value; }
         }
-
+        
+        
         public virtual Category ParentCategory
         {
             get { return _parentCategory; }
             set { _parentCategory = value; }
         }
 
+        
         public virtual IList<Category> SubCategories
         {
             get

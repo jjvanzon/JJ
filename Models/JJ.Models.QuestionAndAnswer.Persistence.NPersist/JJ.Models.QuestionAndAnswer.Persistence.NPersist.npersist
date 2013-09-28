@@ -12,6 +12,7 @@
     <property name="SubCategories" table="Category" id-columns="ParentCategoryID" list="true" item-type="Category" read-only="true" ref="ManyToOne" inverse="ParentCategory" inherits-inverse="true" />
     <property name="ParentCategory" columns="ParentCategoryID" ref="OneToMany" inverse="SubCategories" type="Category" />
     <property name="CategoryQuestions" table="QuestionCategory" id-columns="CategoryID" list="true" item-type="QuestionCategory" read-only="true" ref="ManyToOne" inverse="Category" inherits-inverse="true" />
+    <property name="TextualQuestions" table="TextualQuestion" id-columns="CategoryID" list="true" item-type="TextualQuestion" read-only="true" ref="ManyToOne" inverse="Category" inherits-inverse="true" />
   </class>
   <class name="Question" table="Question">
     <property name="ID" id="true" columns="ID" type="System.Int32" />
@@ -31,6 +32,8 @@
     <property name="ID" id="true" columns="ID" type="System.Int32" />
     <property name="Link" columns="Link" type="System.String" />
     <property name="Question" columns="QuestionID" ref="OneToMany" inverse="QuestionLinks" type="Question" />
+    <property name="Description" columns="Description" type="System.String" />
+    <property name="Url" columns="Url" type="System.String" />
   </class>
   <class name="QuestionType" table="QuestionType">
     <property name="ID" id="true" columns="ID" type="System.Int32" />
@@ -43,6 +46,19 @@
     <property name="Identifier" columns="Identifier" type="System.String" />
     <property name="Link" columns="Link" type="System.String" />
     <property name="Questions" table="Question" id-columns="SourceID" list="true" item-type="Question" read-only="true" ref="ManyToOne" inverse="Source" inherits-inverse="true" />
+    <property name="TextualQuestions" table="TextualQuestion" id-columns="SourceID" list="true" item-type="TextualQuestion" read-only="true" ref="ManyToOne" inverse="Source" inherits-inverse="true" />
+  </class>
+  <class name="TextualAnswer" table="TextualAnswer">
+    <property name="ID" id="true" columns="ID" type="System.Int32" />
+    <property name="Text" columns="Text" type="System.String" />
+    <property name="TextualQuestion" columns="TextualQuestionID" ref="OneToMany" inverse="TextualAnswers" type="TextualQuestion" />
+  </class>
+  <class name="TextualQuestion" table="TextualQuestion">
+    <property name="ID" id="true" columns="ID" type="System.Int32" />
+    <property name="Category" columns="CategoryID" ref="OneToMany" inverse="TextualQuestions" type="Category" />
+    <property name="Source" columns="SourceID" ref="OneToMany" inverse="TextualQuestions" type="Source" />
+    <property name="Text" columns="Text" type="System.String" />
+    <property name="TextualAnswers" table="TextualAnswer" id-columns="TextualQuestionID" list="true" item-type="TextualAnswer" read-only="true" ref="ManyToOne" inverse="TextualQuestion" inherits-inverse="true" />
   </class>
   <source name="QuestionAndAnswer" type="MSSqlServer" provider="SqlClient" schema="dbo">
     <connection-string>Data Source=.\SQLEXPRESS;Initial Catalog=QuestionAndAnswerDB_DEV;User ID=development;Password=development;Persist Security Info=True</connection-string>
@@ -55,7 +71,7 @@
     <table name="Category">
       <column name="ID" primary="true" type="Int32" prec="10" length="4" scale="0" />
       <column name="Name" type="String" prec="255" length="510" scale="0" />
-      <column name="ParentCategoryID" type="Int32" prec="10" allow-null="true" length="4" scale="0" foreign="true" primary-table="Category" primary-column="ID" foreign-key="FK_Category_Category" />
+      <column name="ParentCategoryID" type="Int32" prec="10" allow-null="true" length="4" scale="0" foreign="true" primary-table="Category" primary-column="ID" foreign-key="FK_Category_ParentCategory" />
     </table>
     <table name="Question">
       <column name="ID" primary="true" type="Int32" prec="10" length="4" scale="0" auto-inc="true" seed="1" inc="1" />
@@ -72,6 +88,8 @@
       <column name="ID" primary="true" type="Int32" prec="10" length="4" scale="0" auto-inc="true" seed="1" inc="1" />
       <column name="Link" type="String" prec="250" length="500" scale="0" />
       <column name="QuestionID" type="Int32" prec="10" length="4" scale="0" foreign="true" primary-table="Question" primary-column="ID" foreign-key="FK_QuestionLink_Question" />
+      <column name="Description" type="String" prec="255" allow-null="true" length="510" scale="0" />
+      <column name="Url" type="String" prec="250" length="500" scale="0" />
     </table>
     <table name="QuestionType">
       <column name="ID" primary="true" type="Int32" prec="10" length="4" scale="0" />

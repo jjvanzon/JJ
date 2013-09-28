@@ -16,12 +16,10 @@
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Question_Source" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Question" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionLink_Question" ManuallyRouted="true" >
-          <ConnectorPoint PointX="3.796875" PointY="6.2398893229166674" />
-          <ConnectorPoint PointX="3.796875" PointY="6.5422883463541668" />
-          <ConnectorPoint PointX="4.729166666666667" PointY="6.5422883463541659" />
-          <ConnectorPoint PointX="4.895833333333333" PointY="6.5422883463541668" />
-          <ConnectorPoint PointX="5.6401721700514216" PointY="6.5422883463541668" />
-          <ConnectorPoint PointX="5.6401721700514216" PointY="7.15625" />
+          <ConnectorPoint PointX="3.79296875" PointY="6.2398893229166656" />
+          <ConnectorPoint PointX="3.79296875" PointY="7.15625" />
+          <ConnectorPoint PointX="4.6117527516923777" PointY="7.1562499999999991" />
+          <ConnectorPoint PointX="4.7784194183590438" PointY="7.15625" />
           <ConnectorPoint PointX="7.875" PointY="7.15625" />
         </AssociationConnector>
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Category" Width="2" PointX="4.125" PointY="9.75" />

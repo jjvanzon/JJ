@@ -60,6 +60,7 @@
       <DependentUpon>Titles.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\QuestionDetailViewModel.cs" />
+    <Compile Include="ViewModels\LinkViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
