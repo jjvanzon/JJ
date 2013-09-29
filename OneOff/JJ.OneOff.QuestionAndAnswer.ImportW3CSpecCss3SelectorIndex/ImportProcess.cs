@@ -88,6 +88,8 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
                 DoProgressCallback(String.Format("Processing: {0}", counter));
             }
 
+            CorrectCategoryDescriptions();
+
             _questionRepository.Commit();
 
             DoProgressCallback("Done.");
@@ -111,6 +113,24 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
         private IEnumerable<Question> GetExistingQuestions()
         {
             return _questionRepository.GetBySource((int)SOURCE);
+        }
+
+        private void CorrectCategoryDescriptions()
+        {
+            CorrectCategoryDescription("Css3", "CSS3");
+            CorrectCategoryDescription("PatternToMeaning", "Pattern to Meaning");
+            CorrectCategoryDescription("MeaningToPattern", "Meaning to Pattern");
+            CorrectCategoryDescription("SelectorType", "Selector Type");
+        }
+
+        private void CorrectCategoryDescription(string identifier, string description)
+        {
+            Category category = _categoryRepository.TryGetByIdentifier(identifier);
+            if (category == null)
+            {
+                throw new Exception(String.Format("Category with Identifier '{0}' not found.", identifier));
+            }
+            category.Description = description;
         }
 
         private void DoProgressCallback(string message)

@@ -39,14 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\CategoryEnum.cs" />
+    <Compile Include="CategoryManager.cs" />
     <Compile Include="Enums\QuestionTypeEnum.cs" />
     <Compile Include="Enums\SourceEnum.cs" />
     <Compile Include="Extensions\AnswerExtensions.cs" />
     <Compile Include="Extensions\CategoryExtensions.cs" />
     <Compile Include="Extensions\SourceExtensions.cs" />
     <Compile Include="Extensions\QuestionCategoryExtensions.LinkTo.cs" />
-    <Compile Include="Extensions\QuestionCategoryExtensions.Enums.cs" />
     <Compile Include="Extensions\QuestionExtensions.Enums.cs" />
     <Compile Include="Extensions\QuestionExtensions.Other.cs" />
     <Compile Include="Extensions\QuestionLinkExtensions.cs" />

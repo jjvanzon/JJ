@@ -58,7 +58,7 @@
                 </div>
         <% } %>
     </div>
-    
+
     <div id="links">
         <% if (Model.Links.Count > 0) 
            { %>
@@ -73,13 +73,29 @@
 
                 <% foreach (var link in Model.Links)
                    { %>
-                            <li><a href="<%: link.Url %>" target="_blank"><%: link.Description %></a> </li>
+                        <li><a href="<%: link.Url %>" target="_blank"><%: link.Description %></a> </li>
                 <% } %>
 
             </ul>
 
         <% } %>
     </div>
+
+    <% if (Model.AnswerIsVisible)
+       { %>
+        <div id="categories">
+            <% if (Model.Categories.Count > 0) 
+               { %>
+      
+                <br />
+
+                <%: Labels.Categories %>
+
+                <%: String.Join(" | ", Model.Categories.SelectMany(x => x.Parts).Distinct()) %>
+        
+            <% } %>
+        </div>
+    <% } %>
 
     <br />
 

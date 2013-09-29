@@ -67,6 +67,9 @@
     <Compile Include="ImportTypeEnum.cs" />
     <Compile Include="LinkModel.cs" />
     <Compile Include="SelectorFactory.cs" />
+    <Content Include="W3CSpecCss3SelectorIndex %28selection%29.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="W3CSpecCss3SelectorIndex.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

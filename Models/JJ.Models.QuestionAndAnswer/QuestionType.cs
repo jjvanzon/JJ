@@ -7,7 +7,7 @@ namespace JJ.Models.QuestionAndAnswer
     {
         private int _iD;
         private string _name;
-        private IList<Question> _questions;
+        private IList<Question> _questions = new List<Question>();
 
         public virtual int ID
         {
@@ -23,19 +23,8 @@ namespace JJ.Models.QuestionAndAnswer
 
         public virtual IList<Question> Questions
         {
-            get
-            {
-                if (_questions == null)
-                {
-                    _questions = new List<Question>();
-                }
-
-                return _questions;
-            }
-            set
-            {
-                _questions = value;
-            }
+            get { return _questions; }
+            set { _questions = value; }
         }
     }
 }

@@ -22,6 +22,12 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 string html = streamReader.ReadToEnd();
                 string xml = HtmlToXmlConverter.Convert(html);
 
+                // Make sure <br /> comes back as whitespace of InnerText.
+                xml = xml.Replace("<br />", " ");
+
+                // Trick to keep 'plural' properties separated.
+                xml = xml.Replace("<code>", "<code> ");
+
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(xml);
 

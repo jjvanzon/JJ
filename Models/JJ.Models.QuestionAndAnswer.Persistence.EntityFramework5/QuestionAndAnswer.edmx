@@ -55,8 +55,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Identifier" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="ParentCategoryID" Type="int" />
         </EntityType>
         <EntityType Name="Question">
@@ -225,7 +226,7 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="QuestionCategory" EntitySet="QuestionCategories" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="ID" />
@@ -306,10 +307,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ParentCategory" Relationship="QuestionAndAnswerDB_DEVModel.FK_Category_ParentCategory" FromRole="Category" ToRole="Category1" />
-          <NavigationProperty Name="SubCategories" Relationship="QuestionAndAnswerDB_DEVModel.FK_Category_ParentCategory" FromRole="Category1" ToRole="Category" />
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Identifier" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SubCategories" Relationship="QuestionAndAnswerDB_DEVModel.FK_Category_ParentCategory" FromRole="Category" ToRole="Category1" />
+          <NavigationProperty Name="ParentCategory" Relationship="QuestionAndAnswerDB_DEVModel.FK_Category_ParentCategory" FromRole="Category1" ToRole="Category" />
           <NavigationProperty Name="CategoryQuestions" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Category" FromRole="Category" ToRole="QuestionCategory" />
         </EntityType>
         <Association Name="FK_Category_ParentCategory">
@@ -420,7 +422,8 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -442,7 +445,7 @@
               <ScalarProperty Name="ID" ColumnName="CategoryID" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

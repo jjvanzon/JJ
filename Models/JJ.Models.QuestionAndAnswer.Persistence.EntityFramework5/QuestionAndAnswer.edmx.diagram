@@ -22,10 +22,10 @@
           <ConnectorPoint PointX="4.7784194183590438" PointY="7.15625" />
           <ConnectorPoint PointX="7.875" PointY="7.15625" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Category" Width="2" PointX="4.125" PointY="9.75" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Category" Width="2" PointX="3.75" PointY="10" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Category_ParentCategory" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Category" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

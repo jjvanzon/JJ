@@ -25,6 +25,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
         private IQuestionRepository _questionRepository;
         private IQuestionCategoryRepository _questionCategoryRepository;
         private IQuestionLinkRepository _questionLinkRepository;
+        private ICategoryRepository _categoryRepository;
 
         private Action<string> _progressCallback;
         private Func<bool> _isCancelledCallback;
@@ -38,6 +39,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             _answerRepository = new AnswerRepository(context);
             _questionCategoryRepository = new QuestionCategoryRepository(context);
             _questionLinkRepository = new QuestionLinkRepository(context);
+            _categoryRepository = new CategoryRepository(context);
         }
 
         public void Execute(string filePath, ImportTypeEnum importType, bool includeAnswersThatAreReferences, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
@@ -81,6 +83,8 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 DoProgressCallback(String.Format("Processing: {0}", counter));
             }
 
+            CorrectCategoryDescriptions();
+
             _context.Commit();
 
             DoProgressCallback("Done.");
@@ -104,6 +108,24 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
         private IEnumerable<Question> GetExistingQuestions()
         {
             return _questionRepository.GetBySource((int)SOURCE);
+        }
+
+        private void CorrectCategoryDescriptions()
+        {
+            CorrectCategoryDescription("Css3", "CSS3");
+            CorrectCategoryDescription("InitialValue", "Initial Value");
+            CorrectCategoryDescription("AppliesToElements", "Applies to Elements");
+            CorrectCategoryDescription("IsInherited", "Inherit");
+        }
+
+        private void CorrectCategoryDescription(string identifier, string description)
+        {
+            Category category = _categoryRepository.TryGetByIdentifier(identifier);
+            if (category == null)
+            {
+                throw new Exception(String.Format("Category with Identifier '{0}' not found.", identifier));
+            }
+            category.Description = description;
         }
 
         private void DoProgressCallback(string message)

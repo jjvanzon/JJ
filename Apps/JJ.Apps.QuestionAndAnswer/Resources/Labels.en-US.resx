@@ -124,6 +124,9 @@
     <value>Answer:</value>
     <comment>Noun</comment>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories:</value>
+  </data>
   <data name="TheCorrectAnswer" xml:space="preserve">
     <value>The correct anwer is:</value>
   </data>

@@ -22,6 +22,10 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
                 string html = streamReader.ReadToEnd();
                 string xml = HtmlToXmlConverter.Convert(html);
 
+                // Make sure <br /> comes back as whitespace of InnerText.
+                // Most of all to keep 'plural' selectors separated.
+                xml = xml.Replace("<br />", " ");
+
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(xml);
 

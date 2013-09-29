@@ -6,10 +6,11 @@ namespace JJ.Models.QuestionAndAnswer
     public class Category
     {
         private int _iD;
-        private string _name;
+        private string _identifier;
+        private string _description;
         private Category _parentCategory;
-        private IList<Category> _subCategories;
-        private IList<QuestionCategory> _categoryQuestions;
+        private IList<Category> _subCategories = new List<Category>();
+        private IList<QuestionCategory> _categoryQuestions = new List<QuestionCategory>();
 
         public virtual int ID
         {
@@ -17,12 +18,17 @@ namespace JJ.Models.QuestionAndAnswer
             set { _iD = value; }
         }
 
-        public virtual string Name
+        public virtual string Description
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return _description; }
+            set { _description = value; }
         }
-        
+
+        public virtual string Identifier
+        {
+            get { return _identifier; }
+            set { _identifier = value; }
+        }
         
         public virtual Category ParentCategory
         {
@@ -30,34 +36,16 @@ namespace JJ.Models.QuestionAndAnswer
             set { _parentCategory = value; }
         }
 
-        
         public virtual IList<Category> SubCategories
         {
-            get
-            {
-                return _subCategories;
-            }
-            set
-            {
-                if (_subCategories == null)
-                {
-                    _subCategories = new List<Category>();
-                }
-
-                _subCategories = value;
-            }
+            get { return _subCategories; }
+            set { _subCategories = value; }
         }
 
         public virtual IList<QuestionCategory> CategoryQuestions
         {
-            get
-            {
-                return _categoryQuestions;
-            }
-            set
-            {
-                _categoryQuestions = value;
-            }
+            get { return _categoryQuestions; }
+            set { _categoryQuestions = value; }
         }
     }
 }

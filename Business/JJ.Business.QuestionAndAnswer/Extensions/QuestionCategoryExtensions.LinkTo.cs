@@ -23,5 +23,20 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
             questionCategory.Question = question;
             question.QuestionCategories.Add(questionCategory);
         }
+
+        public static void LinkTo(this QuestionCategory questionCategory, Category category)
+        {
+            if (questionCategory == null)
+            {
+                throw new ArgumentNullException("questionCategory");
+            }
+            if (category == null)
+            {
+                throw new ArgumentNullException("category");
+            }
+
+            questionCategory.Category = category;
+            category.CategoryQuestions.Add(questionCategory);
+        }
     }
 }

@@ -15,10 +15,6 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
             {
                 throw new ArgumentNullException("category");
             }
-            if (parentCategory == null)
-            {
-                throw new ArgumentNullException("parentCategory");
-            }
 
             category.ParentCategory = parentCategory;
             parentCategory.SubCategories.Add(category);

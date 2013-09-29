@@ -9,7 +9,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.NHibernate
         public CategoryMapping()
         {
             Id(x => x.ID);
-            Map(x => x.Name);
+            Map(x => x.Identifier);
+            Map(x => x.Description);
 
             References(x => x.ParentCategory, ColumnNames.ParentCategoryID);
             HasMany(x => x.SubCategories).KeyColumn(ColumnNames.ParentCategoryID).Inverse();

@@ -95,6 +95,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.AnswerIsVisible = false;
             viewModel.Answer = null;
             viewModel.Links.Clear();
+
             return viewModel;
         }
 
@@ -124,10 +125,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             {
                 throw new ArgumentNullException("viewModel");
             }
-
-            // This version will not show question information if you do not provide it in the viewModel, but is faster and less code.
-            //viewModel.AnswerIsVisible = false;
-            //return viewModel;
 
             Question model = _repository.TryGet(viewModel.ID);
             if (model == null)

@@ -6,9 +6,9 @@ namespace JJ.Models.QuestionAndAnswer
     public class Question
     {
         private int _iD;
-        private IList<Answer> _answers;
-        private IList<QuestionCategory> _questionCategories;
-        private IList<QuestionLink> _questionLinks;
+        private IList<Answer> _answers = new List<Answer>();
+        private IList<QuestionCategory> _questionCategories = new List<QuestionCategory>();
+        private IList<QuestionLink> _questionLinks = new List<QuestionLink>();
         private QuestionType _questionType;
         private Source _source;
         private string _text;
@@ -21,53 +21,20 @@ namespace JJ.Models.QuestionAndAnswer
 
         public virtual IList<Answer> Answers
         {
-            get
-            {
-                if (_answers == null)
-                {
-                    _answers = new List<Answer>();
-                }
-
-                return _answers;
-            }
-            set
-            {
-                _answers = value;
-            }
+            get { return _answers; }
+            set { _answers = value; }
         }
 
         public virtual IList<QuestionCategory> QuestionCategories
         {
-            get
-            {
-                if (_questionCategories == null)
-                {
-                    _questionCategories = new List<QuestionCategory>();
-                }
-
-                return _questionCategories;
-            }
-            set
-            {
-                _questionCategories = value;
-            }
+            get { return _questionCategories; }
+            set { _questionCategories = value; }
         }
 
         public virtual IList<QuestionLink> QuestionLinks
         {
-            get
-            {
-                if (_questionLinks == null)
-                {
-                    _questionLinks = new List<QuestionLink>();
-                }
-
-                return _questionLinks;
-            }
-            set
-            {
-                _questionLinks = value;
-            }
+            get { return _questionLinks; }
+            set { _questionLinks = value; }
         }
 
         public virtual QuestionType QuestionType

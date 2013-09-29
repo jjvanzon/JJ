@@ -9,5 +9,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
     public interface ICategoryRepository
     {
         Category Get(int id);
+        Category Create();
+        Category TryGetByIdentifier(string identifier);
+        Category TryGetByParentAndIdentifier(Category parentCategory, string identifier);
     }
 }

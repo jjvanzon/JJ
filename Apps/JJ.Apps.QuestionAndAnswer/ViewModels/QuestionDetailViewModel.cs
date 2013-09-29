@@ -18,5 +18,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
         public bool NotFound { get; set; }
 
         public List<LinkViewModel> Links { get; set; }
+        public List<CategoryViewModel> Categories { get; set; }
     }
 }

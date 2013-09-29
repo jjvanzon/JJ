@@ -13,6 +13,7 @@ using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Validation;
+using JJ.Business.QuestionAndAnswer;
 
 namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 {
@@ -28,6 +29,8 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
         private IQuestionCategoryRepository _questionCategoryRepository;
         private IQuestionLinkRepository _questionLinkRepository;
 
+        private CategoryManager _categoryManager;
+
         private bool _includeAnswersThatAreReferences;
 
         public ImportModelConverter(IContext context, bool includeAnswersThatAreReferences)
@@ -41,6 +44,8 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             _questionTypeRepository = new QuestionTypeRepository(context);
             _questionCategoryRepository = new QuestionCategoryRepository(context);
             _questionLinkRepository = new QuestionLinkRepository(context);
+
+            _categoryManager = new CategoryManager(_categoryRepository);
 
             _includeAnswersThatAreReferences = includeAnswersThatAreReferences;
         }
@@ -57,28 +62,35 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
         private void TryConvertToQuestionAboutValues(ImportModel model)
         {
+            // Check conditions
             if (!MustConvertToQuestionAboutValues(model.Values))
             {
                 return;
             }
 
+            // Create question
             Question question = ConvertToQuestion_BaseMethod();
-            if (IsSingular(model.Name))
+
+            string propertyName = FormatValue(model.Name);
+
+            // Set texts
+            if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What are the possible values for the {0} property?", FormatValue(model.Name));
+                question.Text = String.Format("What are the possible values for the {0} property?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What are the possible values for the {0} properties?", FormatValue(model.Name));
+                question.Text = String.Format("What are the possible values for the {0} properties?", propertyName);
             }
 
-            if (IsComplexShorthand(model))
+            if (IsComplexShorthandProperty(model))
             {
                 question.Text += " (shorthand property)";
             }
 
             question.Answers[0].Text = FormatAnswer(model.Values);
 
+            // Create links
             foreach (LinkModel linkModel in model.NameLinks)
             {
                 QuestionLink link = ConverToLink(linkModel);
@@ -91,6 +103,14 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 link.LinkTo(question);
             }
 
+            // Add categories
+            AddCategory(question, "Css3", "Properties", "Values");
+            foreach (string propertyName2 in propertyName.Split(' '))
+            {
+                AddCategory(question, "Css3", "Properties", propertyName2);
+            }
+
+            // Validate result
             ValidateQuestion(question);
         }
 
@@ -99,7 +119,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             return !ContainsSee(answer) || _includeAnswersThatAreReferences;
         }
 
-        private bool IsComplexShorthand(ImportModel importModel)
+        private bool IsComplexShorthandProperty(ImportModel importModel)
         {
             if (importModel.Values == null) return false;
 
@@ -109,22 +129,29 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
         private void TryConvertToQuestionAboutInitialValue(ImportModel model)
         {
+            // Check conditions
             if (!MustConvertToQuestionAboutInitialValue(model.InitialValue))
             {
                 return;
             }
 
+            // Create question
             Question question = ConvertToQuestion_BaseMethod();
-            if (IsSingular(model.Name))
+
+            string propertyName = FormatValue(model.Name);
+
+            // Set texts
+            if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What is the initial value of the {0} property?", FormatValue(model.Name));
+                question.Text = String.Format("What is the initial value of the {0} property?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What are the initial values of the {0} properties?", FormatValue(model.Name));
+                question.Text = String.Format("What are the initial values of the {0} properties?", propertyName);
             }
             question.Answers[0].Text = FormatAnswer(model.InitialValue);
 
+            // Create links
             foreach (LinkModel linkModel in model.NameLinks)
             {
                 QuestionLink link = ConverToLink(linkModel);
@@ -137,6 +164,14 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 link.LinkTo(question);
             }
 
+            // Add categories
+            AddCategory(question, "Css3", "Properties", "InitialValue");
+            foreach (string propertyName2 in propertyName.Split(' '))
+            {
+                AddCategory(question, "Css3", "Properties", propertyName2);
+            }
+
+            // Validate result
             ValidateQuestion(question);
         }
 
@@ -147,19 +182,25 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
         private void TryConvertToQuestionAboutAppliesToElements(ImportModel model)
         {
+            // Check conditions
             if (!MustConvertToQuestionAboutAppliesToElements(model.AppliesTo))
             {
                 return;
             }
 
+            // Create question
             Question question = ConvertToQuestion_BaseMethod();
-            if (IsSingular(model.Name))
+
+            string propertyName = FormatValue(model.Name);
+
+            // Set texts
+            if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What types of elements does the {0} property apply to?", FormatValue(model.Name));
+                question.Text = String.Format("What types of elements does the {0} property apply to?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What types of elements do the {0} properties apply to?", FormatValue(model.Name));
+                question.Text = String.Format("What types of elements do the {0} properties apply to?", propertyName);
             }
 
             if (String.IsNullOrWhiteSpace(model.AppliesTo))
@@ -171,6 +212,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 question.Answers[0].Text = FormatValue(model.AppliesTo);
             }
 
+            // Create links
             foreach (LinkModel linkModel in model.NameLinks)
             {
                 QuestionLink link = ConverToLink(linkModel);
@@ -183,6 +225,14 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 link.LinkTo(question);
             }
 
+            // Add categories
+            AddCategory(question, "Css3", "Properties", "AppliesToElements");
+            foreach (string propertyName2 in propertyName.Split(' '))
+            {
+                AddCategory(question, "Css3", "Properties", propertyName2);
+            }
+
+            // Validate result
             ValidateQuestion(question);
         }
 
@@ -193,22 +243,29 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
         private void TryConvertToQuestionAboutIsInherited(ImportModel model)
         {
+            // Check conditions
             if (!MustConvertToQuestionAboutIsInherited(model.Inherited))
             {
                 return;
             }
 
+            // Create question
             Question question = ConvertToQuestion_BaseMethod();
-            if (IsSingular(model.Name))
+
+            string propertyName = FormatValue(model.Name);
+
+            // Set texts
+            if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("Is the {0} property inherited?", FormatValue(model.Name));
+                question.Text = String.Format("Is the {0} property inherited?", propertyName);
             }
             else
             {
-                question.Text = String.Format("Are the {0} properties inherited?", FormatValue(model.Name));
+                question.Text = String.Format("Are the {0} properties inherited?", propertyName);
             }
             question.Answers[0].Text = FormatAnswer(model.Inherited);
 
+            // Create links
             foreach (LinkModel linkModel in model.NameLinks)
             {
                 QuestionLink link = ConverToLink(linkModel);
@@ -221,6 +278,14 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 link.LinkTo(question);
             }
 
+            // Add categories
+            AddCategory(question, "Css3", "Properties", "IsInherited");
+            foreach (string propertyName2 in propertyName.Split(' '))
+            {
+                AddCategory(question, "Css3", "Properties", propertyName2);
+            }
+
+            // Validate result
             ValidateQuestion(question);
         }
 
@@ -231,22 +296,29 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
         private void TryConvertToQuestionAboutPercentages(ImportModel model)
         {
+            // Check conditions
             if (!MustConvertToQuestionAboutPercentages(model.Percentages))
             {
                 return;
             }
 
+            // Create question
             Question question = ConvertToQuestion_BaseMethod();
-            if (IsSingular(model.Name))
+
+            string propertyName = FormatValue(model.Name);
+
+            // Set texts
+            if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What can you say about percentage values for the {0} property?", FormatValue(model.Name));
+                question.Text = String.Format("What can you say about percentage values for the {0} property?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What can you say about percentage values for the {0} properties?", FormatValue(model.Name));
+                question.Text = String.Format("What can you say about percentage values for the {0} properties?", propertyName);
             }
             question.Answers[0].Text = FormatAnswer(model.Percentages);
 
+            // Create links
             foreach (LinkModel linkModel in model.NameLinks)
             {
                 QuestionLink link = ConverToLink(linkModel);
@@ -259,6 +331,14 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 link.LinkTo(question);
             }
 
+            // Add categories
+            AddCategory(question, "Css3", "Properties", "Percentages");
+            foreach (string propertyName2 in propertyName.Split(' '))
+            {
+                AddCategory(question, "Css3", "Properties", propertyName2);
+            }
+
+            // Validate result
             ValidateQuestion(question);
         }
 
@@ -270,22 +350,29 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
         private void TryConvertToQuestionAboutMedia(ImportModel model)
         {
+            // Check conditions
             if (!MustConvertToQuestionAboutMedia(model.Media))
             {
                 return;
             }
 
+            // Create question
             Question question = ConvertToQuestion_BaseMethod();
-            if (IsSingular(model.Name))
+
+            string propertyName = FormatValue(model.Name);
+
+            // Set texts
+            if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What media does the {0} property apply to?", FormatValue(model.Name));
+                question.Text = String.Format("What media does the {0} property apply to?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What media do the {0} properties apply to?", FormatValue(model.Name));
+                question.Text = String.Format("What media do the {0} properties apply to?", propertyName);
             }
             question.Answers[0].Text = FormatAnswer(model.Media);
 
+            // Create links
             foreach (LinkModel linkModel in model.NameLinks)
             {
                 QuestionLink link = ConverToLink(linkModel);
@@ -298,19 +385,20 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
                 link.LinkTo(question);
             }
 
+            // Add categories
+            AddCategory(question, "Css3", "Properties", "Media");
+            foreach (string propertyName2 in propertyName.Split(' '))
+            {
+                AddCategory(question, "Css3", "Properties", propertyName2);
+            }
+
+            // Validate result
             ValidateQuestion(question);
         }
 
         private bool MustConvertToQuestionAboutMedia(string answer)
         {
             return !ContainsSee(answer) || _includeAnswersThatAreReferences;
-        }
-
-        private bool IsSingular(string name)
-        {
-            if (name == null) return true;
-
-            return !name.Trim().Contains(" ");
         }
 
         // Helpers
@@ -322,11 +410,6 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             question.SetSourceEnum(_sourceRepository, SOURCE);
             question.SetQuestionTypeEnum(_questionTypeRepository, QuestionTypeEnum.OpenQuestion);
             question.Answers[0].IsCorrectAnswer = true;
-
-            QuestionCategory questionCategory = _questionCategoryRepository.Create();
-            questionCategory.LinkTo(question);
-            questionCategory.SetCategoryEnum(_categoryRepository, CategoryEnum.Css3);
-
             return question;
         }
 
@@ -338,6 +421,40 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             return link;
         }
 
+        private void AddCategory(Question question, params string[] categoryIdentifiers)
+        {
+            Category category = _categoryManager.FindOrCreateCategory(categoryIdentifiers);
+            QuestionCategory questionCategory = _questionCategoryRepository.Create();
+            questionCategory.LinkTo(question);
+            questionCategory.LinkTo(category);
+        }
+
+        private bool ContainsSee(string value)
+        {
+            Regex regex = new Regex(@"\bsee\b");
+            return regex.IsMatch(value);
+        }
+
+        private bool IsPlural(string name)
+        {
+            if (name == null) return false;
+
+            return name.Trim().Contains(" ");
+        }
+
+        private string FormatValue(string value)
+        {
+            if (value == null) return null;
+
+            return value.Trim();
+        }
+
+        private void ValidateQuestion(Question question)
+        {
+            var validator = new QuestionDefaultValidator(question);
+            validator.Verify();
+        }
+        
         private Dictionary<string, string> _substitutions = new Dictionary<string, string>
         {
             { "<padding-width>" , "<length>, <percentage>"                                                                                      },
@@ -375,25 +492,6 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
             value = value.Trim();
 
             return value;
-        }
-
-        private string FormatValue(string value)
-        {
-            if (value == null) return null;
-
-            return value.Trim();
-        }
-
-        private bool ContainsSee(string value)
-        {
-            Regex regex = new Regex(@"\bsee\b");
-            return regex.IsMatch(value);
-        }
-
-        private void ValidateQuestion(Question question)
-        {
-            var validator = new QuestionDefaultValidator(question);
-            validator.Verify();
         }
     }
 }
