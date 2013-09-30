@@ -11,6 +11,6 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
         Category Get(int id);
         Category Create();
         Category TryGetByIdentifier(string identifier);
-        Category TryGetByParentAndIdentifier(Category parentCategory, string identifier);
+        Category TryGetCategoryByParentAndIdentifier(Category parentCategory, string identifier);
     }
 }

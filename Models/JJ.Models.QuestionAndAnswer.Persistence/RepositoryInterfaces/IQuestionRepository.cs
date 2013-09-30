@@ -12,13 +12,12 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
         IEnumerable<Question> GetAll();
         Question Get(int id);
         Question TryGet(int id);
-        Question TryGetRandomQuestion();
         Question Create();
-
-        IEnumerable<Question> GetBySource(int sourceID);
-
         void Delete(Question question);
-
         void Commit();
+
+        Question TryGetRandomQuestion();
+        IEnumerable<Question> GetBySource(int sourceID);
+        int[] GetQuestionIDsByCategory(Category category);
     }
 }

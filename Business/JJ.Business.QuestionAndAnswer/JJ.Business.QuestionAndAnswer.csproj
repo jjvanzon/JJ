@@ -51,6 +51,7 @@
     <Compile Include="Extensions\QuestionLinkExtensions.cs" />
     <Compile Include="Extensions\QuestionTypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionSelector.cs" />
     <Compile Include="Resources\PropertyDisplayNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,6 +64,10 @@
     <Compile Include="Validation\QuestionQuestionTypeValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Maths\JJ.Framework.Maths.csproj">
+      <Project>{810b90b9-f501-4b91-b019-2ad5aad63304}</Project>
+      <Name>JJ.Framework.Maths</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Persistence</Name>

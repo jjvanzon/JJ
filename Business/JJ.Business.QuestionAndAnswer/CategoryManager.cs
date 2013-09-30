@@ -37,7 +37,7 @@ namespace JJ.Business.QuestionAndAnswer
 
             foreach (string identifier in identifiers.Skip(1))
             {
-                category = _categoryRepository.TryGetByParentAndIdentifier(parentCategory, identifier);
+                category = _categoryRepository.TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
                 if (category == null)
                 {
                     category = _categoryRepository.Create();
@@ -45,6 +45,34 @@ namespace JJ.Business.QuestionAndAnswer
                     category.Description = identifier; // Default description is the identifier. Somebody could edit it later.
 
                     category.LinkToParentCategory(parentCategory);
+                }
+
+                parentCategory = category;
+            }
+
+            return category;
+        }
+
+        public Category TryGetCategory(params string[] identifiers)
+        {
+            if (identifiers == null) throw new ArgumentNullException("identifiers");
+            if (identifiers.Length == 0) throw new Exception("identifiers collection cannot be empty.");
+
+            string rootIdentifier = identifiers[0];
+            Category category = _categoryRepository.TryGetByIdentifier(rootIdentifier);
+            if (category == null)
+            {
+                return null;
+            }
+
+            Category parentCategory = category;
+
+            foreach (string identifier in identifiers.Skip(1))
+            {
+                category = _categoryRepository.TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
+                if (category == null)
+                {
+                    return null;
                 }
 
                 parentCategory = category;

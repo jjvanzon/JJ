@@ -39,6 +39,22 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
             return _context.Get<Question>(id);
         }
 
+        public Question Create()
+        {
+            Question entity = _context.Create<Question>();
+            return entity;
+        }
+
+        public void Delete(Question question)
+        {
+            _context.Delete(question);
+        }
+
+        public void Commit()
+        {
+            _context.Commit();
+        }
+
         public Question TryGetRandomQuestion()
         {
             int? randomID = _sqlExecutor.TryGetRandomQuestionID();
@@ -52,25 +68,32 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
             }
         }
 
-        public Question Create()
-        {
-            Question entity = _context.Create<Question>();
-            return entity;
-        }
-
         public IEnumerable<Question> GetBySource(int sourceID)
         {
             return _context.Query<Question>().Where(x => x.Source.ID == sourceID);
         }
 
-        public void Delete(Question question)
+        // TODO: Handle circularities.
+
+        public int[] GetQuestionIDsByCategory(Category category)
         {
-            _context.Delete(question);
+            if (category == null) throw new ArgumentNullException("category");
+
+            List<int> ids = GetQuestionIDsByCategoryRecursive(category);
+            return ids.Distinct().ToArray();
         }
 
-        public void Commit()
+        private List<int> GetQuestionIDsByCategoryRecursive(Category category)
         {
-            _context.Commit();
+            List<int> ids = category.CategoryQuestions.Select(x => x.Question.ID).ToList();
+
+            foreach (Category subCategory in category.SubCategories)
+            {
+                var ids2 = GetQuestionIDsByCategory(subCategory);
+                ids.AddRange(ids2);
+            }
+
+            return ids;
         }
     }
 }

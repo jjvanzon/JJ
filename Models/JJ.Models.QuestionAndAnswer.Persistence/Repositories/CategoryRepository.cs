@@ -76,7 +76,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
             return category;
         }*/
 
-        public Category TryGetByParentAndIdentifier(Category parentCategory, string identifier)
+        public Category TryGetCategoryByParentAndIdentifier(Category parentCategory, string identifier)
         {
             if (parentCategory == null) throw new ArgumentNullException("parentCategory");
 

@@ -10,6 +10,7 @@ using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
+using JJ.Business.QuestionAndAnswer;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -17,7 +18,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
     {
         private IContext _context;
         private bool _contextIsOwned;
-        private IQuestionRepository _repository;
+        private IQuestionRepository _questionRepository;
 
         // Constructors
 
@@ -33,14 +34,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Initialize(context, null);
         }
 
-        public QuestionPresenter(IQuestionRepository repository)
+        public QuestionPresenter(IQuestionRepository questionRepository)
         {
-            if (repository == null) throw new ArgumentNullException("repository");
+            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
 
-            Initialize(null, repository);
+            Initialize(null, questionRepository);
         }
 
-        private void Initialize(IContext context, IQuestionRepository repository)
+        private void Initialize(IContext context, IQuestionRepository questionRepository)
         {
             bool contextIsOwned = false;
 
@@ -50,14 +51,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 contextIsOwned = true;
             }
 
-            if (repository == null)
+            if (questionRepository == null)
             {
-                repository = new QuestionRepository(context, context.Location);
+                questionRepository = new QuestionRepository(context, context.Location);
             }
 
             _context = context;
             _contextIsOwned = contextIsOwned;
-            _repository = repository;
+            _questionRepository = questionRepository;
         }
 
         public void Dispose()
@@ -72,19 +73,30 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionDetailViewModel NextQuestion()
         {
-            Question model = _repository.TryGetRandomQuestion();
+            Question model = _questionRepository.TryGetRandomQuestion();
 
-            return Question(model);
+            // Temporary
+            /*ICategoryRepository categoryRepository = new CategoryRepository(_context);
+            CategoryManager categoryManager = new CategoryManager(categoryRepository);
+            Category category = categoryManager.TryGetCategory("Css3", "Selectors");
+            if (category == null)
+            {
+                return Question(null);
+            }
+            QuestionSelector selector = new QuestionSelector(_questionRepository, category);
+            Question model = selector.TryGetRandomQuestion();*/
+
+            return PresentQuestion(model);
         }
 
         public QuestionDetailViewModel ShowQuestion(int id)
         {
-            Question model = _repository.TryGet(id);
+            Question model = _questionRepository.TryGet(id);
 
-            return Question(model);
+            return PresentQuestion(model);
         }
 
-        private QuestionDetailViewModel Question(Question model)
+        private QuestionDetailViewModel PresentQuestion(Question model)
         {
             if (model == null)
             {
@@ -106,7 +118,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 throw new ArgumentNullException("viewModel");
             }
 
-            Question model = _repository.TryGet(viewModel.ID);
+            Question model = _questionRepository.TryGet(viewModel.ID);
             if (model == null)
             {
                 return NotFound(viewModel.ID);
@@ -126,7 +138,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 throw new ArgumentNullException("viewModel");
             }
 
-            Question model = _repository.TryGet(viewModel.ID);
+            Question model = _questionRepository.TryGet(viewModel.ID);
             if (model == null)
             {
                 return NotFound(viewModel.ID);
