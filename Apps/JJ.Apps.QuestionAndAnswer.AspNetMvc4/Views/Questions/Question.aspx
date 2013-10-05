@@ -91,7 +91,7 @@
 
                 <%: Labels.Categories %>
 
-                <%: String.Join(" | ", Model.Categories.SelectMany(x => x.Parts).Distinct()) %>
+                <%: String.Join(" | ", Model.Categories.SelectMany(x => x.NameParts).Distinct()) %>
         
             <% } %>
         </div>

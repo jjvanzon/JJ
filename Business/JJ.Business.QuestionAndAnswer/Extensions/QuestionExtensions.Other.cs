@@ -57,37 +57,5 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
             question.QuestionLinks.Clear();
         }
-
-        // Temporary
-        /*public static Answer Answer(this Question entity)
-        {
-            switch (entity.Answers.Count)
-            {
-                case 0:
-                    return null;
-
-                case 1:
-                    return entity.Answers[0];
-
-                default:
-                    throw new Exception(String.Format("Question with ID '{0}' has multiple answers.", entity.ID));
-            }
-        }*/
-
-        // Temporary
-        /*public static Category Category(this Question entity)
-        {
-            switch (entity.QuestionCategories.Count)
-            {
-                case 0:
-                    return null;
-
-                case 1:
-                    return entity.QuestionCategories[0].Category;
-
-                default:
-                    throw new Exception(String.Format("Question with ID '{0}' has multiple categories.", entity.ID));
-            }
-        }*/
     }
 }

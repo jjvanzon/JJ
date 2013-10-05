@@ -97,6 +97,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SelectCategories.
+        /// </summary>
+        public static string SelectCategories {
+            get {
+                return ResourceManager.GetString("SelectCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ShowAnswer.
         /// </summary>
         public static string ShowAnswer {

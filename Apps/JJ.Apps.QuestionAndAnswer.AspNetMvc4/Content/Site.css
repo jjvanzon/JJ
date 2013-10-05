@@ -1,61 +1,180 @@
-﻿body {
-    font-size: .85em;
+﻿
+/*
+{
+    margin: 0px;
+    padding: 0px;
+}
+*/
+
+
+html.abs
+{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.abs body
+{
+    bottom: 10px;
+    top: 10px;
+    position: absolute;
+}
+
+body
+{
+    margin: 10pt;
+    font-size: 14px;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
     background-color: #fff;
+    height: 100%
 }
 
-header, footer, nav, section {
+header, footer, nav, section
+{
     display: block;
+}
+
+h2
+{
+    font-size: 16pt;
+    margin: -1px;
+    padding-left: 0px;
+    padding-right: 4px;
+    padding-top: 6px;
+    padding-bottom: 2px;
+}
+
+h3
+{
+    font-size: 12pt;
+    margin: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 5px;
+    padding-bottom: 2px;
 }
 
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
-fieldset {
+fieldset
+{
     border: 1px solid #ddd;
     padding: 0 1.4em 1.4em 1.4em;
     margin: 0 0 1.5em 0;
 }
 
-legend {
+legend
+{
     font-size: 1.2em;
     font-weight: bold;
 }
 
-textarea {
+textarea
+{
     min-height: 75px;
 }
 
-.editor-label {
+.editor-label
+{
     margin: 1em 0 0 0;
 }
 
-.editor-field {
+.editor-field
+{
     margin: 0.5em 0 0 0;
 }
 
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
-.field-validation-error {
+.field-validation-error
+{
     color: #f00;
 }
 
-.field-validation-valid {
+.field-validation-valid
+{
     display: none;
 }
 
-.input-validation-error {
+.input-validation-error
+{
     border: 1px solid #f00;
     background-color: #fee;
 }
 
-.validation-summary-errors {
+.validation-summary-errors
+{
     font-weight: bold;
     color: #f00;
 }
 
-.validation-summary-valid {
+.validation-summary-valid
+{
     display: none;
+}
+
+/* Custom styles
+-----------------------------------------------------------*/
+
+table.pane
+{
+    /*width: 100%;
+    height: 100%;*/
+    height: 100%;
+    /*overflow:scroll;*/
+
+    /*display: block;*/
+}
+
+table.pane td
+{
+    margin: 0px;
+    margin-right: 4px;
+    padding: 4px;
+
+    border-color: lightgray;
+    border-style: solid;
+    border-width: 1px;
+
+    vertical-align: top;
+    overflow:scroll;
+}
+
+table.pane td.col1of2
+{
+
+    /*float: left;*/
+    /*position: absolute;*/
+    top: 40px;
+    bottom: 40px;
+    width: 50%;
+}
+
+table.pane td.col2of2
+{
+    /*float: left;*/
+    /*position: absolute;*/
+    top: 40px;
+    bottom: 40px;
+    width: 50%;
+}
+
+div.trysomething
+{
+    border-color: lightgray;
+    border-style: solid;
+    border-width: 1px;
+
+    margin: 0px;
+    padding: 4px;
+
+    float: left;
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    width: 50%;
 }

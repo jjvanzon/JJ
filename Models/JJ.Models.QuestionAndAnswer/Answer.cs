@@ -19,7 +19,6 @@ namespace JJ.Models.QuestionAndAnswer
             get { return _isCorrectAnswer; }
             set { _isCorrectAnswer = value; }
         }
-
         
         public virtual Question Question
         {

@@ -80,5 +80,12 @@ namespace JJ.Business.QuestionAndAnswer
 
             return category;
         }
+
+        public List<Category> GetCategoryTree()
+        {
+            List<Category> allCategories = _categoryRepository.GetAll();
+            List<Category> rootCategories = allCategories.Where(x => x.ParentCategory == null).ToList();
+            return rootCategories;
+        }
     }
 }

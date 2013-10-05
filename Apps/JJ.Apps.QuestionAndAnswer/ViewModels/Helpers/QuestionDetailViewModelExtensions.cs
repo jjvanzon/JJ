@@ -11,7 +11,7 @@ using JJ.Business.QuestionAndAnswer.Extensions;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
-    public static class QuestionDetailViewModelExtensions
+    internal static class QuestionDetailViewModelExtensions
     {
         public static Question ToModel(this QuestionDetailViewModel viewModel, IQuestionRepository textualQuestionrepository, IAnswerRepository textualAnswerRepository)
         {

@@ -9,7 +9,7 @@ using JJ.Apps.QuestionAndAnswer.ViewModels;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
-    public static class QuestionExtensions
+    internal static class QuestionExtensions
     {
         public static QuestionDetailViewModel ToViewModel(this Question entity)
         {
@@ -39,35 +39,12 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 
             foreach (Category category in entity.QuestionCategories.Select(x => x.Category))
             {
-                var categoryModel = new CategoryViewModel();
-                categoryModel.Parts = GetCategoryParts(category);
+                CategoryViewModel categoryModel = category.ToViewModel();
                 model.Categories.Add(categoryModel);
             }
 
             return model;
         }
 
-        private static List<string> GetCategoryParts(Category category)
-        {
-            List<string> parts = new List<string>();
-
-            parts.Add(category.Description);
-            category = category.ParentCategory;
-
-            int counter = 0;
-            int maxRecursion = 100;
-
-            while (category != null && counter < maxRecursion)
-            {
-                parts.Add(category.Description);
-                category = category.ParentCategory;
-
-                counter++;
-            }
-
-            parts.Reverse();
-
-            return parts;
-        }
     }
 }

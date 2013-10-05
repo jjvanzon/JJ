@@ -19,5 +19,10 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
 
         public List<LinkViewModel> Links { get; set; }
         public List<CategoryViewModel> Categories { get; set; }
+
+        /// <summary>
+        /// Used internally for selecting the next question.
+        /// </summary>
+        public List<CategoryViewModel> SelectedCategories { get; set; }
     }
 }

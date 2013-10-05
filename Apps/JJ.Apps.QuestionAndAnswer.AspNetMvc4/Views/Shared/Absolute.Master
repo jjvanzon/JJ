@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html class="abs">
 <head runat="server">
     <meta name="viewport" content="width=device-width" />
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>

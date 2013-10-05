@@ -124,8 +124,14 @@
     <value>Antwoord:</value>
     <comment>Noun</comment>
   </data>
+  <data name="AvailableCategories" xml:space="preserve">
+    <value>Beschikbare categorieën:</value>
+  </data>
   <data name="Categories" xml:space="preserve">
     <value>Categorieën:</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>Selectie:</value>
   </data>
   <data name="TheCorrectAnswer" xml:space="preserve">
     <value>Het correcte antwoord is:</value>

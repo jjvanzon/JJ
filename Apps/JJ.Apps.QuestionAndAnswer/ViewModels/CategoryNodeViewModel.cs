@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JJ.Apps.QuestionAndAnswer.ViewModels
+{
+    public class CategoryNodeViewModel
+    {
+        public CategoryViewModel Category { get; set; }
+
+        public List<CategoryNodeViewModel> SubCategories { get; set; }
+    }
+}

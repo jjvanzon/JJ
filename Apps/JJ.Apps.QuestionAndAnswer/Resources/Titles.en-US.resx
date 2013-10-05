@@ -129,6 +129,9 @@
   <data name="QuestionNotFound" xml:space="preserve">
     <value>Question Not Found</value>
   </data>
+  <data name="SelectCategories" xml:space="preserve">
+    <value>Select Categories</value>
+  </data>
   <data name="ShowAnswer" xml:space="preserve">
     <value>Show Answer</value>
   </data>

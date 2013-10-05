@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ActionNames.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,6 +223,8 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Categories\Select.aspx" />
+    <Content Include="Views\Categories\_CategoryNode.ascx" />
     <Content Include="Views\Questions\NotFound.aspx" />
     <Content Include="Views\Questions\Question.aspx" />
     <Content Include="Web.config" />
@@ -234,6 +237,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\Site.Master" />
+    <Content Include="Views\Shared\Absolute.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

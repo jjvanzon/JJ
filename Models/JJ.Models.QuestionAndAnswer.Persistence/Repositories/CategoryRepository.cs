@@ -85,5 +85,10 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
                            .Where(x => x.Identifier == identifier)
                            .SingleOrDefault();
         }
+
+        public List<Category> GetAll()
+        {
+            return _context.GetAll<Category>().ToList();
+        }
     }
 }

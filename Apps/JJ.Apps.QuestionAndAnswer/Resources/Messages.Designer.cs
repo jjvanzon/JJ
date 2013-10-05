@@ -61,6 +61,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NoCategoriesAvailable.
+        /// </summary>
+        public static string NoCategoriesAvailable {
+            get {
+                return ResourceManager.GetString("NoCategoriesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to QuestionNotFound.
         /// </summary>
         public static string QuestionNotFound {

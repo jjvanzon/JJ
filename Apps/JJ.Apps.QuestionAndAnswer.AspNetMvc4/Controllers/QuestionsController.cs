@@ -28,7 +28,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         // GET: /Questions/Question/5
         // ShowQuestion / NextQuestion
 
-        public ActionResult Question(int? id = null)
+        public ViewResult Question(int? id = null)
         {
             using (QuestionPresenter presenter = new QuestionPresenter())
             {
@@ -55,7 +55,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         // ShowAnswer
 
         [HttpPost]
-        public ActionResult Question(QuestionDetailViewModel viewModel)
+        public ViewResult Question(QuestionDetailViewModel viewModel)
         {
             using (QuestionPresenter presenter = new QuestionPresenter())
             {
@@ -70,12 +70,11 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             }
         }
 
-
         // POST: /Questions/HideAnswer/5
         // HideAnswer
 
         [HttpPost]
-        public ActionResult HideAnswer(QuestionDetailViewModel viewModel)
+        public ViewResult HideAnswer(QuestionDetailViewModel viewModel)
         {
             using (QuestionPresenter presenter = new QuestionPresenter())
             {
