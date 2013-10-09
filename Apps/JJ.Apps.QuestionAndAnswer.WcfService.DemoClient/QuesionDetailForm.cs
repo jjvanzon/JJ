@@ -23,12 +23,12 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
             _controller = new QuestionController();
 
             SetTexts();
-            NextQuestion();
+            ShowQuestion();
         }
 
-        public void NextQuestion()
+        public void ShowQuestion()
         {
-            _viewModel = _controller.NextQuestion();
+            _viewModel = _controller.ShowQuestion();
             ApplyViewModel();
         }
 
@@ -68,8 +68,8 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
                 return;
             }
 
-            labelQuestion.Text = _viewModel.Question;
-            labelAnswerText.Text = _viewModel.Answer;
+            labelQuestion.Text = _viewModel.Question.Text;
+            labelAnswerText.Text = _viewModel.Question.Answer;
             textBoxUserAnswer.Text = _viewModel.UserAnswer;
             labelAnswerText.Visible = _viewModel.AnswerIsVisible;
 
@@ -89,7 +89,7 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
 
         private void buttonNextQuestion_Click(object sender, EventArgs e)
         {
-            NextQuestion();
+            ShowQuestion();
         }
 
         private void textBoxUserAnswer_TextChanged(object sender, EventArgs e)

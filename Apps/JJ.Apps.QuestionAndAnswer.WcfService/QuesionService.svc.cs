@@ -12,19 +12,11 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService
 {
     public class QuesionService : IQuestionService
     {
-        public QuestionDetailViewModel NextQuestion()
+        public QuestionDetailViewModel ShowQuestion()
         {
             using (var presenter = new QuestionPresenter())
             {
-                return presenter.NextQuestion();
-            }
-        }
-
-        public QuestionDetailViewModel ShowQuestion(int id)
-        {
-            using (var presenter = new QuestionPresenter())
-            {
-                return presenter.ShowQuestion(id);
+                return presenter.ShowQuestion();
             }
         }
 

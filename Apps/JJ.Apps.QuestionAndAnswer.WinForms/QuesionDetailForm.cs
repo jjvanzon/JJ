@@ -30,13 +30,13 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
             NextQuestion();
         }
 
-        public void NextQuestion()
+        private void NextQuestion()
         {
-            _viewModel = _presenter.NextQuestion();
+            _viewModel = _presenter.ShowQuestion();
             ApplyViewModel();
         }
 
-        public void ShowAnswer()
+        private void ShowAnswer()
         {
             _viewModel = _presenter.ShowAnswer(_viewModel);
             ApplyViewModel();
@@ -72,8 +72,8 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
                 return;
             }
 
-            labelQuestion.Text = _viewModel.Question;
-            labelAnswerText.Text = _viewModel.Answer;
+            labelQuestion.Text = _viewModel.Question.Text;
+            labelAnswerText.Text = _viewModel.Question.Answer;
             textBoxUserAnswer.Text = _viewModel.UserAnswer;
             labelAnswerText.Visible = _viewModel.AnswerIsVisible;
 

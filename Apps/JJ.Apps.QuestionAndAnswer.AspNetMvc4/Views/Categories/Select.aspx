@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Absolute.Master" Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.CategorySelectorViewModel>" %>
+<%@ Import Namespace="JJ.Framework.Presentation.AspNetMvc4" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <%: Titles.SelectCategories %>
@@ -8,30 +10,43 @@
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
     <script>
 
-        var CategoriesSelectView =
-            {
-                selectedCategoryIDs: new Array(),
+        var selectedCategoryIDs = new Array();
 
-                liAvailableCategory_onDragStart: function (ev) {
-                    var categoryID = ev.target.getAttribute("data-category-id");
-                    ev.dataTransfer.setData("categoryId", categoryID);
-                },
-
-                divSelectedCategories_onDragOver: function (ev) {
-                    ev.preventDefault();
-                },
-
-                divSelectedCategories_onDrop: function (ev) {
-                    ev.preventDefault();
-                    var categoryID = ev.dataTransfer.getData("categoryId");
-
-                    CategoriesSelectView.selectedCategoryIDs[CategoriesSelectView.selectedCategoryIDs.length] = categoryID;
-
-                    //ev.target.appendChild(document.getElementById(data));
-
-                    alert(CategoriesSelectView.selectedCategoryIDs);
-                }
+        function liAvailableCategory_onDragStart(ev)
+        {
+            ev.dataTransfer.setData("elementId", ev.target.id);
         }
+
+        function divSelectedCategories_onDragOver(ev)
+        {
+            ev.preventDefault();
+        }
+
+        function divSelectedCategories_onDrop(ev)
+        {
+            ev.preventDefault();
+
+            var elementId = ev.dataTransfer.getData("elementId");
+            var element = document.getElementById(elementId);
+            var categoryID = element.getAttribute("data-category-id");
+
+            // TODO: instead of the code lines below, immediately delegate to the controller.
+            selectedCategoryIDs[selectedCategoryIDs.length] = categoryID;
+            ev.target.appendChild(element.cloneNode(true));
+            //alert(CategoriesSelectView.selectedCategoryIDs);
+        }
+
+        $(document).ready(function () {
+
+            // TODO: This should be delegated to the controller.
+            $("#buttonStart").click(function () {
+                // TODO: This is not type-safe.
+                var categoryUrlParameters = "categoryID=" + selectedCategoryIDs.join("&categoryID=");
+                var url = "/Questions/Question?" + categoryUrlParameters;
+                location.href = url;
+            });
+
+        });
 
     </script>
 </asp:Content>
@@ -71,8 +86,8 @@
                     </td>
                     <td  class="col2of2">
                         <div id="divSelectedCategories" 
-                             ondrop="CategoriesSelectView.divSelectedCategories_onDrop(event)" 
-                             ondragover="CategoriesSelectView.divSelectedCategories_onDragOver(event)">
+                             ondrop="divSelectedCategories_onDrop(event)" 
+                             ondragover="divSelectedCategories_onDragOver(event)">
 
                             <h3><%: Labels.Selection %></h3>
 
@@ -88,6 +103,13 @@
                     </td>
                 </tr>
             </table>
+
+            <button id="buttonStart">Start Training</button>
+
+        <%-- This link will not work until the selected categories will be in the viewmodel.
+        <%: Html.ActionLinkWithCollection(Titles.StartTraining + "- NEW", ActionNames.Question, ControllerNames.Questions, ActionParameterNames.categoryID, Model.SelectedCategories.Select(x => x.ID).ToArray()) %>
+        --%>
+
     <% } %>
 
 </asp:Content>

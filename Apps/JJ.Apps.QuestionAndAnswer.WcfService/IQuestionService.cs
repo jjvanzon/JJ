@@ -13,10 +13,7 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService
     public interface IQuestionService
     {
         [OperationContract]
-        QuestionDetailViewModel NextQuestion();
-
-        [OperationContract]
-        QuestionDetailViewModel ShowQuestion(int id);
+        QuestionDetailViewModel ShowQuestion();
 
         [OperationContract]
         QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel);

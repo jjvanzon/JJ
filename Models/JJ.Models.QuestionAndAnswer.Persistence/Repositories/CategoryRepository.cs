@@ -86,9 +86,16 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
                            .SingleOrDefault();
         }
 
-        public List<Category> GetAll()
+        public Category[] GetAll()
         {
-            return _context.GetAll<Category>().ToList();
+            return _context.GetAll<Category>().ToArray();
+        }
+
+        public Category[] GetRootCategories()
+        {
+            return _context.Query<Category>()
+                           .Where(x => x.ParentCategory == null)
+                           .ToArray();
         }
     }
 }

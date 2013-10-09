@@ -12,9 +12,9 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
     {
         private QuestionServiceClient _service = new QuestionServiceClient();
 
-        public QuestionDetailViewModel NextQuestion()
+        public QuestionDetailViewModel ShowQuestion()
         {
-            return _service.NextQuestion();
+            return _service.ShowQuestion();
         }
 
         public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)

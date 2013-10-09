@@ -10,15 +10,11 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
 {
     public class QuestionDetailViewModel
     {
-        public int ID { get; set; }
-        public string Question { get; set;}
-        public string Answer { get; set; }
+        public QuestionViewModel Question { get; set; }
+
+        public bool NotFound { get; set; }
         public bool AnswerIsVisible { get; set; }
         public string UserAnswer { get; set; }
-        public bool NotFound { get; set; }
-
-        public List<LinkViewModel> Links { get; set; }
-        public List<CategoryViewModel> Categories { get; set; }
 
         /// <summary>
         /// Used internally for selecting the next question.

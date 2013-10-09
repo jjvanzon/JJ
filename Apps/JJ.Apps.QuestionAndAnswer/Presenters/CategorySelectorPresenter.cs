@@ -18,30 +18,32 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private IContext _context;
         private bool _contextIsOwned;
         private ICategoryRepository _categoryRepository;
+        private IQuestionRepository _questionRepository;
         private CategoryManager _categoryManager;
 
         // Constructors
 
         public CategorySelectorPresenter()
         {
-            Initialize(null, null);
+            Initialize(null, null, null);
         }
 
         public CategorySelectorPresenter(IContext context)
         {
             if (context == null) throw new ArgumentNullException("context");
 
-            Initialize(context, null);
+            Initialize(context, null, null);
         }
 
-        public CategorySelectorPresenter(ICategoryRepository categoryRepository)
+        public CategorySelectorPresenter(ICategoryRepository categoryRepository, IQuestionRepository questionRepository)
         {
             if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
+            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
 
-            Initialize(null, categoryRepository);
+            Initialize(null, categoryRepository, questionRepository);
         }
 
-        private void Initialize(IContext context, ICategoryRepository categoryRepository)
+        private void Initialize(IContext context, ICategoryRepository categoryRepository, IQuestionRepository questionRepository)
         {
             bool contextIsOwned = false;
 
@@ -56,11 +58,16 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 categoryRepository = new CategoryRepository(context);
             }
 
+            if (questionRepository == null)
+            {
+                questionRepository = new QuestionRepository(context, context.Location);
+            }
+
             _context = context;
             _contextIsOwned = contextIsOwned;
             _categoryRepository = categoryRepository;
             _categoryManager = new CategoryManager(_categoryRepository);
-
+            _questionRepository = questionRepository;
         }
 
         public void Dispose()
@@ -88,22 +95,34 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public CategorySelectorViewModel AddCategory(CategorySelectorViewModel viewModel, CategoryViewModel category)
         {
+            // TODO: Remove from AvailableCategories.
             viewModel.SelectedCategories.Add(category);
             return viewModel;
         }
 
         public CategorySelectorViewModel RemoveCategory(CategorySelectorViewModel viewModel, CategoryViewModel category)
         {
-            // TODO: Check if there is any referential integrity here.
+            // TODO: There is no identity integrity here.
+            // TODO: Add to AvailableCategories.
             viewModel.SelectedCategories.Remove(category);
             return viewModel;
+        }
+
+        public QuestionDetailViewModel ShowQuestions(CategorySelectorViewModel viewModel)
+        {
+            int[] categoryIDs = viewModel.SelectedCategories.Select(x => x.ID).ToArray();
+
+            using (var questionPresenter = new QuestionPresenter(_questionRepository, _categoryRepository))
+            {
+                return questionPresenter.ShowQuestion(categoryIDs);
+            }
         }
 
         // Helpers
 
         private List<CategoryNodeViewModel> GetAvailableCategories()
         {
-            List<Category> categories = _categoryManager.GetCategoryTree();
+            IEnumerable<Category> categories = _categoryManager.GetCategoryTree();
 
             var viewModels = new List<CategoryNodeViewModel>();
 

@@ -113,5 +113,14 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
                 return ResourceManager.GetString("ShowAnswer", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to StartTraining.
+        /// </summary>
+        public static string StartTraining {
+            get {
+                return ResourceManager.GetString("StartTraining", resourceCulture);
+            }
+        }
     }
 }

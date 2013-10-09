@@ -23,19 +23,16 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AnswerField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool AnswerIsVisibleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool NotFoundField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string QuestionField;
+        private JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionViewModel QuestionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.CategoryViewModel[] SelectedCategoriesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UserAnswerField;
@@ -51,19 +48,6 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Answer {
-            get {
-                return this.AnswerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AnswerField, value) != true)) {
-                    this.AnswerField = value;
-                    this.RaisePropertyChanged("Answer");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool AnswerIsVisible {
             get {
                 return this.AnswerIsVisibleField;
@@ -72,19 +56,6 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService {
                 if ((this.AnswerIsVisibleField.Equals(value) != true)) {
                     this.AnswerIsVisibleField = value;
                     this.RaisePropertyChanged("AnswerIsVisible");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -103,7 +74,7 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Question {
+        public JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionViewModel Question {
             get {
                 return this.QuestionField;
             }
@@ -111,6 +82,19 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService {
                 if ((object.ReferenceEquals(this.QuestionField, value) != true)) {
                     this.QuestionField = value;
                     this.RaisePropertyChanged("Question");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.CategoryViewModel[] SelectedCategories {
+            get {
+                return this.SelectedCategoriesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SelectedCategoriesField, value) != true)) {
+                    this.SelectedCategoriesField = value;
+                    this.RaisePropertyChanged("SelectedCategories");
                 }
             }
         }
@@ -138,21 +122,246 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="QuestionViewModel", Namespace="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels")]
+    [System.SerializableAttribute()]
+    public partial class QuestionViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AnswerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.CategoryViewModel[] CategoriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.LinkViewModel[] LinksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TextField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Answer {
+            get {
+                return this.AnswerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnswerField, value) != true)) {
+                    this.AnswerField = value;
+                    this.RaisePropertyChanged("Answer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.CategoryViewModel[] Categories {
+            get {
+                return this.CategoriesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoriesField, value) != true)) {
+                    this.CategoriesField = value;
+                    this.RaisePropertyChanged("Categories");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.LinkViewModel[] Links {
+            get {
+                return this.LinksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LinksField, value) != true)) {
+                    this.LinksField = value;
+                    this.RaisePropertyChanged("Links");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Text {
+            get {
+                return this.TextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TextField, value) != true)) {
+                    this.TextField = value;
+                    this.RaisePropertyChanged("Text");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CategoryViewModel", Namespace="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels")]
+    [System.SerializableAttribute()]
+    public partial class CategoryViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] NamePartsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] NameParts {
+            get {
+                return this.NamePartsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NamePartsField, value) != true)) {
+                    this.NamePartsField = value;
+                    this.RaisePropertyChanged("NameParts");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LinkViewModel", Namespace="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels")]
+    [System.SerializableAttribute()]
+    public partial class LinkViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UrlField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Url {
+            get {
+                return this.UrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UrlField, value) != true)) {
+                    this.UrlField = value;
+                    this.RaisePropertyChanged("Url");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="QuestionService.IQuestionService")]
     public interface IQuestionService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuestionService/NextQuestion", ReplyAction="http://tempuri.org/IQuestionService/NextQuestionResponse")]
-        JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel NextQuestion();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuestionService/NextQuestion", ReplyAction="http://tempuri.org/IQuestionService/NextQuestionResponse")]
-        System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> NextQuestionAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuestionService/ShowQuestion", ReplyAction="http://tempuri.org/IQuestionService/ShowQuestionResponse")]
+        JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel ShowQuestion();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuestionService/ShowQuestion", ReplyAction="http://tempuri.org/IQuestionService/ShowQuestionResponse")]
-        JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel ShowQuestion(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuestionService/ShowQuestion", ReplyAction="http://tempuri.org/IQuestionService/ShowQuestionResponse")]
-        System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> ShowQuestionAsync(int id);
+        System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> ShowQuestionAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IQuestionService/ShowAnswer", ReplyAction="http://tempuri.org/IQuestionService/ShowAnswerResponse")]
         JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel ShowAnswer(JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel viewModel);
@@ -194,20 +403,12 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService {
                 base(binding, remoteAddress) {
         }
         
-        public JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel NextQuestion() {
-            return base.Channel.NextQuestion();
+        public JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel ShowQuestion() {
+            return base.Channel.ShowQuestion();
         }
         
-        public System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> NextQuestionAsync() {
-            return base.Channel.NextQuestionAsync();
-        }
-        
-        public JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel ShowQuestion(int id) {
-            return base.Channel.ShowQuestion(id);
-        }
-        
-        public System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> ShowQuestionAsync(int id) {
-            return base.Channel.ShowQuestionAsync(id);
+        public System.Threading.Tasks.Task<JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel> ShowQuestionAsync() {
+            return base.Channel.ShowQuestionAsync();
         }
         
         public JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel ShowAnswer(JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.QuestionService.QuestionDetailViewModel viewModel) {

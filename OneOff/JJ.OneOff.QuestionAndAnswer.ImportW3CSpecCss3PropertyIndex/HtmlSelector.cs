@@ -234,7 +234,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex
 
         private string FormatText(string text)
         {
-            // TODO: Remove accessive whitespace between words.
+            // TODO: Remove excessive whitespace between words.
 
             return HttpUtility.HtmlDecode(text);
         }

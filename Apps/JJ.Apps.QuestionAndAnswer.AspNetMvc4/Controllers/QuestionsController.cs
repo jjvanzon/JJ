@@ -17,45 +17,28 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             ValidateRequest = false;
         }
 
-        // GET: /Questions/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         // GET: /Questions/Question
-        // GET: /Questions/Question/5
-        // ShowQuestion / NextQuestion
+        // GET: /Questions/Question?categoryID=1&categoryID=2
 
-        public ViewResult Question(int? id = null)
+        public ViewResult Question(int[] categoryID)
         {
             using (QuestionPresenter presenter = new QuestionPresenter())
             {
-                QuestionDetailViewModel viewModel;
-                if (id.HasValue)
-                {
-                    viewModel = presenter.ShowQuestion(id.Value);
-                }
-                else
-                {
-                    viewModel = presenter.NextQuestion();
-                }
+                QuestionDetailViewModel viewModel = presenter.ShowQuestion(categoryID);
 
                 if (viewModel.NotFound)
                 {
                     return View(ViewNames.NotFound);
                 }
 
-                return View(viewModel);
+                return View(ViewNames.Question, viewModel);
             }
         }
 
-        // POST: /Questions/Question/5
-        // ShowAnswer
+        // POST: /Questions/ShowAnswer/5
 
         [HttpPost]
-        public ViewResult Question(QuestionDetailViewModel viewModel)
+        public ViewResult ShowAnswer(QuestionDetailViewModel viewModel)
         {
             using (QuestionPresenter presenter = new QuestionPresenter())
             {
@@ -66,12 +49,11 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
                     return View(ViewNames.NotFound);
                 }
 
-                return View(viewModel2);
+                return View(ViewNames.Question, viewModel2);
             }
         }
 
         // POST: /Questions/HideAnswer/5
-        // HideAnswer
 
         [HttpPost]
         public ViewResult HideAnswer(QuestionDetailViewModel viewModel)

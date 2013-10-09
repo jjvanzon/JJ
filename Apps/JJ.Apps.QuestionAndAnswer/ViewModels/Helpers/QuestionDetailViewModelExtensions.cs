@@ -18,17 +18,23 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             if (viewModel == null) throw new ArgumentNullException("viewModel");
             if (textualQuestionrepository == null) throw new ArgumentNullException("textualQuestionrepository");
             if (textualAnswerRepository == null) throw new ArgumentNullException("textualAnswerRepository");
+            if (viewModel.Question == null) throw new ArgumentNullException("viewModel.Question");
 
-            Question model = textualQuestionrepository.TryGet(viewModel.ID);
+            Question model = textualQuestionrepository.TryGet(viewModel.Question.ID);
             if (model == null)
             {
                 model = textualQuestionrepository.Create();
                 model.AutoCreateRelatedEntities(textualAnswerRepository);
             }
 
-            model.Text = viewModel.Question;
+            model.Text = viewModel.Question.Text;
+
             // TODO: Refactor
-            model.Answers[0].Text = viewModel.Answer;
+            if (model.Answers.Count == 0)
+            {
+                model.Answers.Add(new Answer());
+            }
+            model.Answers[0].Text = viewModel.Question.Answer;
 
             return model;
         }

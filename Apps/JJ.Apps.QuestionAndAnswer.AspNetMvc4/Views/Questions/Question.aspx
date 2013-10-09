@@ -2,9 +2,16 @@
     Title="" Language="C#" 
     MasterPageFile="~/Views/Shared/Site.Master" 
     Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.QuestionDetailViewModel>" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers" %>
 <%@ Import Namespace="JJ.Framework.Presentation.AspNetMvc4" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views" %>
+
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
+
+</asp:Content>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <%: Titles.Question %>
@@ -13,11 +20,11 @@
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
 <% using (Html.BeginForm()) {%>
-
+    
     <h2><%: Titles.Question %></h2>
 
     <div class="display-field">
-        <%: Html.DisplayFor(x => x.Question) %>
+        <%: Html.DisplayFor(x => x.Question.Text) %>
     </div>
     
     <br />
@@ -33,18 +40,18 @@
 
     <div id="buttons">
         <% if (!Model.AnswerIsVisible)
-           { %>
-                <input type="submit" value="<%:Titles.ShowAnswer %>" formaction="<%: Url.Action(ActionNames.Question) %>" />
+            { %>
+                <input type="submit" value="<%:Titles.ShowAnswer%>" formaction="<%:Url.Action(ActionNames.ShowAnswer)%>" />
         <% }
-           else
-           { %>
-                <input type="submit" value="<%:Titles.HideAnswer %>" formaction="<%: Url.Action(ActionNames.HideAnswer) %>" />
+            else
+            { %>
+                <input type="submit" value="<%:Titles.HideAnswer%>" formaction="<%:Url.Action(ActionNames.HideAnswer)%>" />
         <% } %>
     </div>
     
     <div id="answer">
         <% if (Model.AnswerIsVisible)
-           { %>
+            { %>
                 <br />
 
                 <div class="display-label">
@@ -54,14 +61,14 @@
                 <br />
 
                 <div class="display-field">
-                    <%: Html.DisplayFor(x => x.Answer) %>
+                    <%: Html.DisplayFor(x => x.Question.Answer) %>
                 </div>
         <% } %>
     </div>
 
     <div id="links">
-        <% if (Model.Links.Count > 0) 
-           { %>
+        <% if (Model.Question.Links.Count > 0) 
+            { %>
         
             <br />
 
@@ -71,8 +78,8 @@
 
             <ul>
 
-                <% foreach (var link in Model.Links)
-                   { %>
+                <% foreach (var link in Model.Question.Links)
+                    { %>
                         <li><a href="<%: link.Url %>" target="_blank"><%: link.Description %></a> </li>
                 <% } %>
 
@@ -82,29 +89,34 @@
     </div>
 
     <% if (Model.AnswerIsVisible)
-       { %>
+        { %>
         <div id="categories">
-            <% if (Model.Categories.Count > 0) 
-               { %>
+            <% if (Model.Question.Categories.Count > 0) 
+                { %>
       
                 <br />
 
                 <%: Labels.Categories %>
 
-                <%: String.Join(" | ", Model.Categories.SelectMany(x => x.NameParts).Distinct()) %>
+                <%: String.Join(" | ", Model.Question.Categories.SelectMany(x => x.NameParts).Distinct()) %>
         
             <% } %>
         </div>
     <% } %>
 
-    <br />
+    <%: Html.HiddenFor(x => x.Question.ID) %>
 
-    <div id="nextQuestion">
-        <%: Html.ActionLink(Titles.NextQuestion, ActionNames.Question) %>
-    </div>
-
-    <%: Html.HiddenForAllProperties(Model) %>
+    <% for (int i = 0; i < Model.SelectedCategories.Count; i++)
+       { %>
+            <%: Html.HiddenFor(x => x.SelectedCategories[i].ID) %>
+    <% } %>
 
 <% } %>
+
+<br />
+
+<div id="nextQuestion">
+    <%: Html.ActionLinkWithCollection(Titles.NextQuestion, ActionNames.Question, ControllerNames.Questions, ActionParameterNames.categoryID, Model.SelectedCategories.Select(x => x.ID)) %>
+</div>
 
 </asp:Content>

@@ -94,6 +94,7 @@
     <None Include="Service References\QuestionService\QuesionService.xsd" />
     <None Include="Service References\QuestionService\QuesionService1.xsd" />
     <None Include="Service References\QuestionService\QuesionService2.xsd" />
+    <None Include="Service References\QuestionService\QuesionService3.xsd" />
     <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.ResourceService.Labels.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

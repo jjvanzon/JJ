@@ -135,4 +135,7 @@
   <data name="ShowAnswer" xml:space="preserve">
     <value>Show Answer</value>
   </data>
+  <data name="StartTraining" xml:space="preserve">
+    <value>Start Training</value>
+  </data>
 </root>

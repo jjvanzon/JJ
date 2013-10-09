@@ -206,7 +206,7 @@ namespace JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex
 
         private void AddCategory(Question question, params string[] categoryIdentifiers)
         {
-            Category category = _categoryManager.FindOrCreateCategory(categoryIdentifiers);
+            Category category = _categoryManager.FindOrCreateCategoryByIdentifierPath(categoryIdentifiers);
             QuestionCategory questionCategory = _questionCategoryRepository.Create();
             questionCategory.LinkTo(question);
             questionCategory.LinkTo(category);

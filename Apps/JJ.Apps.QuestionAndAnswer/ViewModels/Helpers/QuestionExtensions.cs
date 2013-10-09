@@ -11,14 +11,25 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     internal static class QuestionExtensions
     {
-        public static QuestionDetailViewModel ToViewModel(this Question entity)
+        public static QuestionDetailViewModel ToDetailViewModel(this Question entity)
+        {
+            if (entity == null) throw new ArgumentNullException("entity");
+            
+            return new QuestionDetailViewModel
+            {
+                Question = entity.ToViewModel(),
+                SelectedCategories = new List<CategoryViewModel>(),
+            };
+        }
+
+        public static QuestionViewModel ToViewModel(this Question entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
 
-            var model = new QuestionDetailViewModel
+            var model = new QuestionViewModel
             {
                 ID = entity.ID,
-                Question = entity.Text,
+                Text = entity.Text,
                 // TODO: Refactor
                 Answer = entity.Answers[0].Text
             };
@@ -33,7 +44,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 model.Links.Add(linkModel);
             }
 
-
             // Categories
             model.Categories = new List<CategoryViewModel>();
 
@@ -45,6 +55,5 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 
             return model;
         }
-
     }
 }

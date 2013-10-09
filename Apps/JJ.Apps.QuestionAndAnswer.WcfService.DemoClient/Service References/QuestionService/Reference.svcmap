@@ -23,10 +23,11 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="QuesionService.disco" MetadataType="Disco" ID="bf05ebb6-b98a-41d2-95a6-ca6f75094665" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?disco" />
-    <MetadataFile FileName="QuesionService.xsd" MetadataType="Schema" ID="b318fb58-a76e-4de2-8493-ac63d8d4abdb" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?xsd=xsd0" />
     <MetadataFile FileName="QuesionService1.xsd" MetadataType="Schema" ID="3d655a29-cb2f-4963-9dba-5f8f2f773696" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?xsd=xsd1" />
-    <MetadataFile FileName="QuesionService.wsdl" MetadataType="Wsdl" ID="6c54b971-c69b-44c9-b59f-0b9dcfaad89b" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?wsdl" />
     <MetadataFile FileName="QuesionService2.xsd" MetadataType="Schema" ID="aaf512c7-b7ef-4197-9446-ed0242edca82" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?xsd=xsd2" />
+    <MetadataFile FileName="QuesionService3.xsd" MetadataType="Schema" ID="85785173-b221-4508-9141-1b90df53dd0a" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?xsd=xsd3" />
+    <MetadataFile FileName="QuesionService.xsd" MetadataType="Schema" ID="b318fb58-a76e-4de2-8493-ac63d8d4abdb" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?xsd=xsd0" />
+    <MetadataFile FileName="QuesionService.wsdl" MetadataType="Wsdl" ID="6c54b971-c69b-44c9-b59f-0b9dcfaad89b" SourceId="1" SourceUrl="http://localhost:52160/QuesionService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

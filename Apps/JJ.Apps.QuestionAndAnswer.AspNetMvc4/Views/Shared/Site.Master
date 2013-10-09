@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width" />
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <link rel="stylesheet" type="text/css" href="/Content/Site.css" />
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+
     <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
 </head>
 <body>

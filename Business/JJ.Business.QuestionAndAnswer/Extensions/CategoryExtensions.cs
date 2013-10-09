@@ -9,45 +9,24 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 {
     public static partial class CategoryExtensions
     {
-        public static void LinkToParentCategory(this Category category, Category parentCategory)
+        public static bool IsLeaf(this Category category)
         {
             if (category == null)
             {
                 throw new ArgumentNullException("category");
             }
 
-            category.ParentCategory = parentCategory;
-            parentCategory.SubCategories.Add(category);
+            return category.SubCategories.Count == 0;
         }
 
-        public static void LinkToSubCategory(this Category category, Category subCategory)
+        public static bool IsRoot(this Category category)
         {
             if (category == null)
             {
                 throw new ArgumentNullException("category");
             }
-            if (subCategory == null)
-            {
-                throw new ArgumentNullException("subCategory");
-            }
 
-            category.SubCategories.Add(subCategory);
-            subCategory.ParentCategory = category;
-        }
-
-        public static void LinkTo(this Category category, QuestionCategory categoryQuestion)
-        {
-            if (category == null)
-            {
-                throw new ArgumentNullException("category");
-            }
-            if (categoryQuestion == null)
-            {
-                throw new ArgumentNullException("categoryQuestion");
-            }
-
-            category.CategoryQuestions.Add(categoryQuestion);
-            categoryQuestion.Category = category;
+            return category.ParentCategory == null;
         }
     }
 }

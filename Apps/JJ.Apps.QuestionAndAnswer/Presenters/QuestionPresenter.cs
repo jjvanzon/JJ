@@ -14,34 +14,41 @@ using JJ.Business.QuestionAndAnswer;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
+    /// <summary>
+    /// A presenter has action methods that communicate by means of view models and ID's.
+    /// A presenter can retrieve data from a context or repositories, but it will never communicate the entities themselves to the outside.
+    /// </summary>
     public class QuestionPresenter : IDisposable
     {
         private IContext _context;
         private bool _contextIsOwned;
         private IQuestionRepository _questionRepository;
+        private ICategoryRepository _categoryRepository;
+        private CategoryManager _categoryManager;
 
         // Constructors
 
         public QuestionPresenter()
         {
-            Initialize(null, null);
+            Initialize(null, null, null);
         }
 
         public QuestionPresenter(IContext context)
         {
             if (context == null) throw new ArgumentNullException("context");
 
-            Initialize(context, null);
+            Initialize(context, null, null);
         }
 
-        public QuestionPresenter(IQuestionRepository questionRepository)
+        public QuestionPresenter(IQuestionRepository questionRepository, ICategoryRepository categoryRepository)
         {
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
+            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
 
-            Initialize(null, questionRepository);
+            Initialize(null, questionRepository, categoryRepository);
         }
 
-        private void Initialize(IContext context, IQuestionRepository questionRepository)
+        private void Initialize(IContext context, IQuestionRepository questionRepository, ICategoryRepository categoryRepository)
         {
             bool contextIsOwned = false;
 
@@ -56,9 +63,16 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 questionRepository = new QuestionRepository(context, context.Location);
             }
 
+            if (categoryRepository == null)
+            {
+                categoryRepository = new CategoryRepository(context);
+            }
+
             _context = context;
             _contextIsOwned = contextIsOwned;
             _questionRepository = questionRepository;
+            _categoryRepository = categoryRepository;
+            _categoryManager = new CategoryManager(_categoryRepository);
         }
 
         public void Dispose()
@@ -71,44 +85,50 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         // Actions
 
-        public QuestionDetailViewModel NextQuestion()
+        public QuestionDetailViewModel ShowQuestion(params int[] categoryIDs)
         {
-            Question model = _questionRepository.TryGetRandomQuestion();
+            // Get Categories
+            List<Category> selectedCategoryBranches = GetCategories(categoryIDs);
+            IEnumerable<Category> selectedCategoryNodes = _categoryManager.SelectNodesRecursive(selectedCategoryBranches);
 
-            // Temporary
-            /*ICategoryRepository categoryRepository = new CategoryRepository(_context);
-            CategoryManager categoryManager = new CategoryManager(categoryRepository);
-            Category category = categoryManager.TryGetCategory("Css3", "Selectors");
-            if (category == null)
+            // Get Random Question
+            Question question;
+            if (selectedCategoryNodes.Count() == 0)
             {
-                return Question(null);
+                question = _questionRepository.TryGetRandomQuestion();
             }
-            QuestionSelector selector = new QuestionSelector(_questionRepository, category);
-            Question model = selector.TryGetRandomQuestion();*/
+            else
+            {
+                QuestionSelector selector = new QuestionSelector(_questionRepository, selectedCategoryNodes.ToArray());
+                question = selector.TryGetRandomQuestion();
+            }
 
-            return PresentQuestion(model);
-        }
-
-        public QuestionDetailViewModel ShowQuestion(int id)
-        {
-            Question model = _questionRepository.TryGet(id);
-
-            return PresentQuestion(model);
-        }
-
-        private QuestionDetailViewModel PresentQuestion(Question model)
-        {
-            if (model == null)
+            // Not Found
+            if (question == null)
             {
                 return new QuestionDetailViewModel { NotFound = true };
             }
 
-            QuestionDetailViewModel viewModel = model.ToViewModel();
+            // Create ViewModel
+            QuestionDetailViewModel viewModel = question.ToDetailViewModel();
             viewModel.AnswerIsVisible = false;
-            viewModel.Answer = null;
-            viewModel.Links.Clear();
-
+            viewModel.Question.Answer = null;
+            viewModel.Question.Links.Clear(); // Links reveal answer.
+            viewModel.SelectedCategories = selectedCategoryBranches.Select(x => x.ToViewModel()).ToList();
             return viewModel;
+        }
+
+        private List<Category> GetCategories(int[] ids)
+        {
+            var list = new List<Category>();
+
+            foreach (int id in ids)
+            {
+                Category category = _categoryRepository.Get(id);
+                list.Add(category);
+            }
+
+            return list;
         }
 
         public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
@@ -117,19 +137,23 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             {
                 throw new ArgumentNullException("viewModel");
             }
-
-            Question model = _questionRepository.TryGet(viewModel.ID);
-            if (model == null)
+            if (viewModel.Question == null)
             {
-                return NotFound(viewModel.ID);
+                throw new ArgumentNullException("viewModel.Question");
             }
 
-            QuestionDetailViewModel viewModel2 = model.ToViewModel();
+            Question model = _questionRepository.TryGet(viewModel.Question.ID);
+            if (model == null)
+            {
+                return NotFound(viewModel.Question.ID);
+            }
+
+            QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = true;
+            viewModel2.SelectedCategories = viewModel.SelectedCategories;
             return viewModel2;
         }
-
 
         public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel)
         {
@@ -137,27 +161,34 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             {
                 throw new ArgumentNullException("viewModel");
             }
-
-            Question model = _questionRepository.TryGet(viewModel.ID);
-            if (model == null)
+            if (viewModel.Question == null)
             {
-                return NotFound(viewModel.ID);
+                throw new ArgumentNullException("viewModel.Question");
             }
 
-            QuestionDetailViewModel viewModel2 = model.ToViewModel();
+            Question model = _questionRepository.TryGet(viewModel.Question.ID);
+            if (model == null)
+            {
+                return NotFound(viewModel.Question.ID);
+            }
+
+            QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = false;
-            viewModel2.Links.Clear();
+            viewModel2.SelectedCategories = viewModel.SelectedCategories;
+            viewModel2.Question.Links.Clear(); // Links reveal answer.
             return viewModel2;
         }
 
+        // Reusable Methods
+
         private QuestionDetailViewModel NotFound(int id)
         {
-            return new QuestionDetailViewModel
-            {
-                ID = id,
-                NotFound = true
-            };
+            var viewModel = new QuestionDetailViewModel();
+            viewModel.Question = new QuestionViewModel();
+            viewModel.Question.ID = id;
+            viewModel.NotFound = true;
+            return viewModel;
         }
     }
 }
