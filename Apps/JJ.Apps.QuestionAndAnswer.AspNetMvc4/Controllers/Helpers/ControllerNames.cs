@@ -8,6 +8,6 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
     public class ControllerNames
     {
         public const string Questions = "Questions";
-        public const string Categories = "Categories";
+        public const string CategorySelector = "CategorySelector";
     }
 }

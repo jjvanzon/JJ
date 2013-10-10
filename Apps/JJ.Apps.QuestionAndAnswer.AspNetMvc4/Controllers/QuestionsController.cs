@@ -20,11 +20,11 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         // GET: /Questions/Question
         // GET: /Questions/Question?categoryID=1&categoryID=2
 
-        public ViewResult Question(int[] categoryID)
+        public ViewResult Question(int[] c)
         {
             using (QuestionPresenter presenter = new QuestionPresenter())
             {
-                QuestionDetailViewModel viewModel = presenter.ShowQuestion(categoryID);
+                QuestionDetailViewModel viewModel = presenter.ShowQuestion(c);
 
                 if (viewModel.NotFound)
                 {

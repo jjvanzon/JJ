@@ -6,11 +6,11 @@
 <ul>
     <% foreach (var category in Model.SubCategories)
         { %>
-            <li class="liAvailableCategory" 
-                data-category-id="<%:category.Category.ID%>"
-                draggable="true" 
+            <li draggable="true" 
                 ondragstart="liAvailableCategory_onDragStart(event)"
-                id="liAvailableCategory<%:category.Category.ID %>"> <%-- The element needs an ID for HTML5 drag and drop to work --%>
+                data-category-id="<%:category.Category.ID%>"
+                class="liAvailableCategory"
+                id="liAvailableCategory<%:category.Category.ID%>"> <%-- The element needs an ID for HTML5 drag and drop to work --%>
 
                 <% Html.RenderPartial(ViewNames._CategoryNode, category); %>
             </li>

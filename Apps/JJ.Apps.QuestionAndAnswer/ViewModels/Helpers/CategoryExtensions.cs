@@ -13,15 +13,18 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
         {
             if (category == null) throw new ArgumentNullException("category");
 
-            CategoryNodeViewModel categoryViewModel = category.ToNodeViewModel();
+            CategoryNodeViewModel viewModel = category.ToNodeViewModel();
 
             foreach (Category subCategory in category.SubCategories)
             {
                 CategoryNodeViewModel subCategoryViewModel = subCategory.ToNodeViewModelRecursive();
-                categoryViewModel.SubCategories.Add(subCategoryViewModel);
+                viewModel.SubCategories.Add(subCategoryViewModel);
             }
 
-            return categoryViewModel;
+            // Sort by alphabet
+            viewModel.SubCategories = viewModel.SubCategories.OrderBy(x => x.Category.NameParts.Last()).ToList();
+
+            return viewModel;
         }
 
         public static CategoryNodeViewModel ToNodeViewModel(this Category category)

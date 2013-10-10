@@ -9,6 +9,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views
     {
         public const string NotFound = "NotFound";
         public const string Question = "Question";
+        public const string Index = "Index";
         public const string _CategoryNode = "_CategoryNode";
     }
 }

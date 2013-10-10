@@ -116,7 +116,7 @@
 <br />
 
 <div id="nextQuestion">
-    <%: Html.ActionLinkWithCollection(Titles.NextQuestion, ActionNames.Question, ControllerNames.Questions, ActionParameterNames.categoryID, Model.SelectedCategories.Select(x => x.ID)) %>
+    <%: Html.ActionLinkWithCollection(Titles.NextQuestion, ActionNames.Question, ControllerNames.Questions, ActionParameterNames.c, Model.SelectedCategories.Select(x => x.ID)) %>
 </div>
 
 </asp:Content>

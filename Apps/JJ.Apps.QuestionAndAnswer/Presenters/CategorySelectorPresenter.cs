@@ -20,6 +20,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private ICategoryRepository _categoryRepository;
         private IQuestionRepository _questionRepository;
         private CategoryManager _categoryManager;
+        //private CategorySelectorViewModel _viewModel;
 
         // Constructors
 
@@ -93,19 +94,82 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        public CategorySelectorViewModel AddCategory(CategorySelectorViewModel viewModel, CategoryViewModel category)
+        /*public void Add(int categoryID)
         {
-            // TODO: Remove from AvailableCategories.
-            viewModel.SelectedCategories.Add(category);
-            return viewModel;
+            if (_viewModel == null)
+            {
+                throw new Exception("Call Show before calling other methods.");
+            }
+            
+            bool alreadyPresent = _viewModel.SelectedCategories.Any(x => x.ID == categoryID);
+            if (!alreadyPresent)
+            {
+                Category category = _categoryRepository.Get(categoryID);
+                CategoryViewModel categoryModel = category.ToViewModel();
+                _viewModel.SelectedCategories.Add(categoryModel);
+            }
+        }*/
+
+        public CategorySelectorViewModel Add(CategorySelectorViewModel viewModel, int categoryID)
+        {
+            // TODO: I need to rebuild the complete viewmodel here, because the passed view model is not in tact.
+            // But this does not comform to the stateful / stateless nature of the presenters.
+
+            CategorySelectorViewModel viewModel2 = GetCompleteViewModel(viewModel);
+
+            bool alreadyPresent = viewModel2.SelectedCategories.Any(x => x.ID == categoryID);
+            if (!alreadyPresent)
+            {
+                Category category = _categoryRepository.Get(categoryID);
+                CategoryViewModel categoryModel = category.ToViewModel();
+                viewModel2.SelectedCategories.Add(categoryModel);
+            }
+
+            RemoveSelectedCategoriesRecursive(viewModel2.AvailableCategories, viewModel2.SelectedCategories.Select(x => x.ID).ToArray());
+
+            return viewModel2;
         }
 
-        public CategorySelectorViewModel RemoveCategory(CategorySelectorViewModel viewModel, CategoryViewModel category)
+        public CategorySelectorViewModel Remove(CategorySelectorViewModel viewModel, int categoryID)
         {
-            // TODO: There is no identity integrity here.
-            // TODO: Add to AvailableCategories.
-            viewModel.SelectedCategories.Remove(category);
-            return viewModel;
+            // TODO: I need to rebuild the complete viewmodel here, because the passed view model is not in tact.
+            // But this does not comform to the stateful / stateless nature of the presenters.
+
+            CategorySelectorViewModel viewModel2 = GetCompleteViewModel(viewModel);
+
+            CategoryViewModel categoryModel = viewModel2.SelectedCategories.Where(x => x.ID == categoryID).SingleOrDefault();
+            bool alreadyRemoved = categoryModel == null;
+            if (!alreadyRemoved)
+            {
+                viewModel2.SelectedCategories.Remove(categoryModel);
+            }
+
+            RemoveSelectedCategoriesRecursive(viewModel2.AvailableCategories, viewModel2.SelectedCategories.Select(x => x.ID).ToArray());
+
+            return viewModel2;
+        }
+
+        private CategorySelectorViewModel GetCompleteViewModel(CategorySelectorViewModel viewModel)
+        {
+            // Get entities.
+            var selectedCategories = new List<Category>();
+            if (viewModel.SelectedCategories != null)
+            {
+                foreach (CategoryViewModel selectedCategoryModel in viewModel.SelectedCategories)
+                {
+                    Category selectedCategory = _categoryRepository.Get(selectedCategoryModel.ID);
+                    selectedCategories.Add(selectedCategory);
+                }
+            }
+
+            // Create new view model.
+            var viewModel2 = new CategorySelectorViewModel
+            {
+                AvailableCategories = GetAvailableCategories(),
+                SelectedCategories = selectedCategories.Select(x => x.ToViewModel()).ToList()
+            };
+
+            return viewModel2;
         }
 
         public QuestionDetailViewModel ShowQuestions(CategorySelectorViewModel viewModel)
@@ -133,6 +197,23 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
 
             return viewModels;
+        }
+
+        private void RemoveSelectedCategoriesRecursive(List<CategoryNodeViewModel> availableCategories, int[] selectedCategoryIDs)
+        {
+            foreach (CategoryNodeViewModel availableCategory in availableCategories.ToArray())
+            {
+                RemoveSelectedCategoriesRecursive(availableCategory.SubCategories, selectedCategoryIDs);
+
+                bool isSelected = selectedCategoryIDs.Contains(availableCategory.Category.ID);
+                bool isLeaf = availableCategory.SubCategories.Count == 0;
+                bool mustRemove = isSelected && isLeaf;
+                                  
+                if (mustRemove) 
+                {
+                    availableCategories.Remove(availableCategory);
+                }
+            }
         }
     }
 }
