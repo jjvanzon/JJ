@@ -22,14 +22,8 @@
             ev.preventDefault();
 
             var elementId = ev.dataTransfer.getData("liAvailableCategoryId");
-            var element = document.getElementById(elementId);
-            var categoryID = element.getAttribute("data-category-id");
 
-            var url = '<%=UrlHelpers.GetUrl(ActionNames.Add, ControllerNames.CategorySelector, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>(ActionParameterNames.categoryID, "") }) %>';
-            url = url + encodeURI(categoryID);
-
-            window.document.forms[0].action = url;
-            window.document.forms[0].submit();
+            addCategory(elementId);
         }
 
         function liSelectedCategory_onDragStart(ev) {
@@ -45,6 +39,22 @@
 
             var elementId = ev.dataTransfer.getData("liSelectedCategoryId");
 
+            removeCategory(elementId);
+        }
+
+        $(document).ready(function () {
+            $(".liAvailableCategory").dblclick(function (ev) {
+                var elementId = ev.target.id;
+                addCategory(elementId);
+            });
+
+            $(".liSelectedCategory").dblclick(function (ev) {
+                var elementId = ev.target.id;
+                removeCategory(elementId);
+            });
+        });
+
+        function removeCategory(elementId) {
             var element = document.getElementById(elementId);
             var categoryID = element.getAttribute("data-category-id");
 
@@ -54,6 +64,17 @@
             window.document.forms[0].action = url;
             window.document.forms[0].submit();
         }
+
+        function addCategory(elementId) {
+            var element = document.getElementById(elementId);
+            var categoryID = element.getAttribute("data-category-id");
+
+            var url = '<%=UrlHelpers.GetUrl(ActionNames.Add, ControllerNames.CategorySelector, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>(ActionParameterNames.categoryID, "") }) %>';
+            url = url + encodeURI(categoryID);
+
+            window.document.forms[0].action = url;
+            window.document.forms[0].submit();
+        };
 
     </script>
 </asp:Content>
