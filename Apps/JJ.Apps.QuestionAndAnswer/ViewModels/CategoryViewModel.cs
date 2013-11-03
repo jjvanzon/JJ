@@ -10,6 +10,10 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
     {
         public int ID { get; set; }
 
+        public bool Visible { get; set; }
+
         public List<string> NameParts { get; set; }
+
+        public List<CategoryViewModel> SubCategories { get; set; }
     }
 }

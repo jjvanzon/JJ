@@ -87,6 +87,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionDetailViewModel ShowQuestion(params int[] categoryIDs)
         {
+            if (categoryIDs == null)
+            {
+                throw new ArgumentNullException("categoryIDs");
+            }
+
             // Get Categories
             List<Category> selectedCategoryBranches = GetCategories(categoryIDs);
             IEnumerable<Category> selectedCategoryNodes = _categoryManager.SelectNodesRecursive(selectedCategoryBranches);

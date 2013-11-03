@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Absolute.Master" Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.CategorySelectorViewModel>" %>
 <%@ Import Namespace="JJ.Framework.Presentation.AspNetMvc4" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels.Helpers" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <%: Titles.SelectCategories %>
@@ -108,16 +110,16 @@
                             <h3><%: Labels.AvailableCategories %></h3>
 
                             <ul>
-                                <% foreach (var availableCategory in Model.AvailableCategories)
-                                   { %>
-                                        <li>
-                                            <% Html.RenderPartial("_CategoryNode", availableCategory); %>
-                                        </li>
+                                <% foreach (var availableCategory in Model.AvailableCategories) { %>
+
+                                    <% Html.RenderPartial(ViewNames._AvailableCategory, availableCategory); %>
+
                                 <% } %>
                             </ul>
                         </div>
                     </td>
-                    <td  class="col2of2">
+
+                    <td class="col2of2">
                         <div id="divSelectedCategories" 
                              ondragover="divSelectedCategories_onDragOver(event)"
                              ondrop="divSelectedCategories_onDrop(event)">
@@ -125,16 +127,15 @@
                             <h3><%: Labels.Selection %></h3>
 
                             <ul>
-                                <% foreach (var selectedCategory in Model.SelectedCategories)
-                                   { %>
-                                        <li draggable="true"
-                                            ondragstart="liSelectedCategory_onDragStart(event)"
-                                            data-category-id="<%:selectedCategory.ID%>"
-                                            class="liSelectedCategory"
-                                            id="liSelectedCategory<%:selectedCategory.ID%>"> <%-- The element needs an ID for HTML5 drag and drop to work --%>
 
-                                            <%: selectedCategory.NameParts.Last() %>
-                                        </li>
+                                <% using (Html.BeginCollection(() => Model.SelectedCategories)) {
+            
+                                    foreach (var selectedCategory in Model.SelectedCategories) { %>
+
+                                        <% Html.RenderPartial(ViewNames._SelectedCategory, selectedCategory); %>
+
+                                    <% } %>
+
                                 <% } %>
                             </ul>
                         </div>
@@ -142,12 +143,7 @@
                 </tr>
             </table>
 
-            <% for (int i = 0; i < Model.SelectedCategories.Count; i++)
-               { %>
-                    <%: Html.HiddenFor(x => x.SelectedCategories[i].ID) %>
-            <% } %>
-
-            <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Question, ControllerNames.Questions, ActionParameterNames.c, Model.SelectedCategories.Select(x => x.ID).ToArray()) %>
+            <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Question, ControllerNames.Questions, ActionParameterNames.c, Model.GetSelectedCategoriesRecursive().Where(x => x.Visible).Select(x => x.ID).ToArray()) %>
 
     <% } %>
     

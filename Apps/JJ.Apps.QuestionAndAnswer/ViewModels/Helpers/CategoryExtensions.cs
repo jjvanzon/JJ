@@ -9,47 +9,40 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     internal static class CategoryExtensions
     {
-        public static CategoryNodeViewModel ToNodeViewModelRecursive(this Category category)
+        public static CategoryViewModel ToViewModelRecursive(this Category category)
         {
             if (category == null) throw new ArgumentNullException("category");
 
-            CategoryNodeViewModel viewModel = category.ToNodeViewModel();
+            CategoryViewModel viewModel = category.ToViewModel();
 
             foreach (Category subCategory in category.SubCategories)
             {
-                CategoryNodeViewModel subCategoryViewModel = subCategory.ToNodeViewModelRecursive();
+                CategoryViewModel subCategoryViewModel = subCategory.ToViewModelRecursive();
                 viewModel.SubCategories.Add(subCategoryViewModel);
             }
 
             // Sort by alphabet
-            viewModel.SubCategories = viewModel.SubCategories.OrderBy(x => x.Category.NameParts.Last()).ToList();
+            viewModel.SubCategories = viewModel.SubCategories.OrderBy(x => x.NameParts.Last()).ToList();
 
             return viewModel;
-        }
-
-        public static CategoryNodeViewModel ToNodeViewModel(this Category category)
-        {
-            if (category == null) throw new ArgumentNullException("category");
-
-            return new CategoryNodeViewModel
-            {
-                Category = category.ToViewModel(),
-                SubCategories = new List<CategoryNodeViewModel>()
-            };
         }
 
         public static CategoryViewModel ToViewModel(this Category category)
         {
             if (category == null) throw new ArgumentNullException("category");
 
-            var categoryViewModel = new CategoryViewModel();
-            categoryViewModel.ID = category.ID;
-            categoryViewModel.NameParts = GetCategoryParts(category);
+            var categoryViewModel = new CategoryViewModel
+            {
+                ID = category.ID,
+                Visible = true,
+                NameParts = GetNameParts(category),
+                SubCategories = new List<CategoryViewModel>()
+            };
 
             return categoryViewModel;
         }
 
-        private static List<string> GetCategoryParts(Category category)
+        private static List<string> GetNameParts(Category category)
         {
             List<string> parts = new List<string>();
 

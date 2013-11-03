@@ -1,0 +1,46 @@
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Apps.QuestionAndAnswer.ViewModels.CategoryViewModel>" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views" %>
+<%@ Import Namespace="JJ.Framework.Presentation.AspNetMvc4" %>
+
+<% using (Html.BeginCollectionItem()) { %>
+
+    <% if (Model.Visible) { %>
+
+        <li draggable="true" 
+            ondragstart="liSelectedCategory_onDragStart(event)"
+            data-category-id="<%:Model.ID%>"
+            class="liSelectedCategory"
+            id="liSelectedCategory<%:Model.ID%>"> <%-- The element needs an ID for HTML5 drag and drop to work --%>
+            
+            <%: Model.NameParts.Last() %>
+
+        <%: Html.HiddenFor(() => Model.ID, Model.ID) %>
+        <%: Html.HiddenFor(() => Model.Visible, Model.Visible) %>
+
+    <% } %>
+    
+        <% if (Model.SubCategories.Count > 0) { %>
+
+            <ul>
+
+                <% using (Html.BeginCollection(() => Model.SubCategories)) {
+
+                    foreach (var subCategory in Model.SubCategories) { %>
+
+                        <% Html.RenderPartial(ViewNames._SelectedCategory, subCategory); %>
+
+                    <% } %>
+
+                <% } %>
+
+            </ul>
+
+        <% } %>
+
+    <% if (Model.Visible) { %>
+
+        </li>
+
+    <% } %>
+
+<% } %>

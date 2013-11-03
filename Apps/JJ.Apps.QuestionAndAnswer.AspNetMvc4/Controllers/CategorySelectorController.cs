@@ -47,18 +47,5 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
                 return View(ViewNames.Index, viewModel2);
             }
         }
-
-        // POST: /CategorySelector/ShowQuestions
-
-        /*[HttpPost]
-        public RedirectResult ShowQuestions(CategorySelectorViewModel viewModel)
-        {
-            using (var presenter = new CategorySelectorPresenter())
-            {
-                int[] categoryIDs = viewModel.SelectedCategories.Select(x => x.ID).ToArray();
-                string url = UrlHelpers.GetUrlWithCollectionParameter(ActionNames.Question, ControllerNames.Questions, ActionParameterNames.c, categoryIDs);
-                return Redirect(url);
-            }
-        }*/
     }
 }

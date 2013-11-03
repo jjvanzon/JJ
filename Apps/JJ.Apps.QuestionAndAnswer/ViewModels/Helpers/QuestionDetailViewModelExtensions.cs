@@ -1,12 +1,12 @@
-﻿using JJ.Framework.Persistence;
-using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.Persistence;
-using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Framework.Persistence;
+using JJ.Models.QuestionAndAnswer;
+using JJ.Models.QuestionAndAnswer.Persistence;
+using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Business.QuestionAndAnswer.Extensions;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers

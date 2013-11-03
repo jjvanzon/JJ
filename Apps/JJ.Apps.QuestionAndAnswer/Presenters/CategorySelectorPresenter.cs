@@ -20,7 +20,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private ICategoryRepository _categoryRepository;
         private IQuestionRepository _questionRepository;
         private CategoryManager _categoryManager;
-        //private CategorySelectorViewModel _viewModel;
 
         // Constructors
 
@@ -83,16 +82,158 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public CategorySelectorViewModel Show()
         {
+            return GetViewModel();
+        }
+
+        /// <summary>
+        /// Required to pass along with the view model:
+        /// the ID's of the already selected categories and the categoryID of the category to add.
+        /// </summary>
+        public CategorySelectorViewModel Add(CategorySelectorViewModel viewModel, int categoryID)
+        {
+            // TODO: I need to rebuild the complete viewmodel here, because the passed view model is not in tact.
+            // But this does not comform to the stateful / stateless nature of the presenters.
+
+            var selectedCategoryIDs = new List<int>();
+            AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
+            selectedCategoryIDs.Add(categoryID);
+
+            return GetViewModel(selectedCategoryIDs);
+        }
+
+        /// <summary>
+        /// Required to pass along with the view model:
+        /// the ID's of the already selected categories and the categoryID of the category to remove.
+        /// </summary>
+        public CategorySelectorViewModel Remove(CategorySelectorViewModel viewModel, int categoryID)
+        {
+            // TODO: I need to rebuild the complete viewmodel here, because the passed view model is not in tact.
+            // But this does not comform to the stateful / stateless nature of the presenters.
+
+            var selectedCategoryIDs = new List<int>();
+            AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
+
+            while (selectedCategoryIDs.Contains(categoryID)) // while is for when there are duplicates
+            {
+                selectedCategoryIDs.Remove(categoryID);
+            }
+
+            return GetViewModel(selectedCategoryIDs);
+        }
+
+        public QuestionDetailViewModel ShowQuestions(CategorySelectorViewModel viewModel)
+        {
+            var categoryIDs = new List<int>();
+            AddSelectedCategoryIDsRecursive(categoryIDs, viewModel.SelectedCategories);
+
+            using (var questionPresenter = new QuestionPresenter(_questionRepository, _categoryRepository))
+            {
+                return questionPresenter.ShowQuestion(categoryIDs.ToArray());
+            }
+        }
+
+        // Private Methods
+
+        private CategorySelectorViewModel GetViewModel()
+        {
+            List<CategoryViewModel> availableCategories = GetCategoryViewModelRecursive();
+            List<CategoryViewModel> selectedCategories = GetCategoryViewModelRecursive();
+
+            HideAllNodesRecursive(selectedCategories);
+
             var viewModel = new CategorySelectorViewModel
             {
-                AvailableCategories = GetAvailableCategories(),
-                SelectedCategories = new List<CategoryViewModel>()
+                AvailableCategories = availableCategories,
+                SelectedCategories = selectedCategories
             };
 
             viewModel.NoCategoriesAvailable = viewModel.AvailableCategories.Count == 0;
 
             return viewModel;
         }
+
+        private CategorySelectorViewModel GetViewModel(List<int> selectedCategoryIDs)
+        {
+            CategorySelectorViewModel viewModel = GetViewModel();
+            HideSelectedNodesRecursive(viewModel.AvailableCategories, selectedCategoryIDs);
+            ShowSelectedNodesRecursive(viewModel.SelectedCategories, selectedCategoryIDs);
+            return viewModel;
+        }
+
+        private List<CategoryViewModel> GetCategoryViewModelRecursive()
+        {
+            IEnumerable<Category> categories = _categoryManager.GetCategoryTree();
+
+            var viewModels = new List<CategoryViewModel>();
+
+            foreach (Category category in categories)
+            {
+                CategoryViewModel viewModel = category.ToViewModelRecursive();
+                viewModels.Add(viewModel);
+            }
+
+            return viewModels;
+        }
+
+        private void HideAllNodesRecursive(List<CategoryViewModel> categoryViewModels)
+        {
+            foreach (CategoryViewModel categoryViewModel in categoryViewModels)
+            {
+                categoryViewModel.Visible = false;
+
+                HideAllNodesRecursive(categoryViewModel.SubCategories);
+            }
+        }
+
+        private void AddSelectedCategoryIDsRecursive(List<int> outputList, List<CategoryViewModel> categoryViewModels)
+        {
+            if (categoryViewModels == null)
+            {
+                return;
+            }
+
+            foreach (CategoryViewModel categoryViewModel in categoryViewModels)
+            {
+                if (categoryViewModel.Visible)
+                {
+                    outputList.Add(categoryViewModel.ID);
+                }
+
+                AddSelectedCategoryIDsRecursive(outputList, categoryViewModel.SubCategories);
+            }
+        }
+
+        private void ShowSelectedNodesRecursive(List<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
+        {
+            foreach (CategoryViewModel categoryViewModel in categoryViewModels)
+            {
+                bool isSelected = selectedCategoryIDs.Contains(categoryViewModel.ID);
+                if (isSelected)
+                {
+                    categoryViewModel.Visible = true;
+                }
+
+                ShowSelectedNodesRecursive(categoryViewModel.SubCategories, selectedCategoryIDs);
+            }
+        }
+
+        private void HideSelectedNodesRecursive(List<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
+        {
+            foreach (CategoryViewModel categoryViewModel in categoryViewModels)
+            {
+                bool isSelected = selectedCategoryIDs.Contains(categoryViewModel.ID);
+                if (isSelected)
+                {
+                    categoryViewModel.Visible = false;
+                }
+
+                HideSelectedNodesRecursive(categoryViewModel.SubCategories, selectedCategoryIDs);
+            }
+        }
+
+        // A start at code, that works statefully.
+
+        //private CategorySelectorViewModel _viewModel;
 
         /*public void Add(int categoryID)
         {
@@ -109,111 +250,5 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 _viewModel.SelectedCategories.Add(categoryModel);
             }
         }*/
-
-        public CategorySelectorViewModel Add(CategorySelectorViewModel viewModel, int categoryID)
-        {
-            // TODO: I need to rebuild the complete viewmodel here, because the passed view model is not in tact.
-            // But this does not comform to the stateful / stateless nature of the presenters.
-
-            CategorySelectorViewModel viewModel2 = GetCompleteViewModel(viewModel);
-
-            bool alreadyPresent = viewModel2.SelectedCategories.Any(x => x.ID == categoryID);
-            if (!alreadyPresent)
-            {
-                Category category = _categoryRepository.Get(categoryID);
-                CategoryViewModel categoryModel = category.ToViewModel();
-                viewModel2.SelectedCategories.Add(categoryModel);
-            }
-
-            RemoveSelectedCategoriesRecursive(viewModel2.AvailableCategories, viewModel2.SelectedCategories.Select(x => x.ID).ToArray());
-
-            return viewModel2;
-        }
-
-        public CategorySelectorViewModel Remove(CategorySelectorViewModel viewModel, int categoryID)
-        {
-            // TODO: I need to rebuild the complete viewmodel here, because the passed view model is not in tact.
-            // But this does not comform to the stateful / stateless nature of the presenters.
-
-            CategorySelectorViewModel viewModel2 = GetCompleteViewModel(viewModel);
-
-            CategoryViewModel categoryModel = viewModel2.SelectedCategories.Where(x => x.ID == categoryID).SingleOrDefault();
-            bool alreadyRemoved = categoryModel == null;
-            if (!alreadyRemoved)
-            {
-                viewModel2.SelectedCategories.Remove(categoryModel);
-            }
-
-            RemoveSelectedCategoriesRecursive(viewModel2.AvailableCategories, viewModel2.SelectedCategories.Select(x => x.ID).ToArray());
-
-            return viewModel2;
-        }
-
-        private CategorySelectorViewModel GetCompleteViewModel(CategorySelectorViewModel viewModel)
-        {
-            // Get entities.
-            var selectedCategories = new List<Category>();
-            if (viewModel.SelectedCategories != null)
-            {
-                foreach (CategoryViewModel selectedCategoryModel in viewModel.SelectedCategories)
-                {
-                    Category selectedCategory = _categoryRepository.Get(selectedCategoryModel.ID);
-                    selectedCategories.Add(selectedCategory);
-                }
-            }
-
-            // Create new view model.
-            var viewModel2 = new CategorySelectorViewModel
-            {
-                AvailableCategories = GetAvailableCategories(),
-                SelectedCategories = selectedCategories.Select(x => x.ToViewModel()).ToList()
-            };
-
-            return viewModel2;
-        }
-
-        public QuestionDetailViewModel ShowQuestions(CategorySelectorViewModel viewModel)
-        {
-            int[] categoryIDs = viewModel.SelectedCategories.Select(x => x.ID).ToArray();
-
-            using (var questionPresenter = new QuestionPresenter(_questionRepository, _categoryRepository))
-            {
-                return questionPresenter.ShowQuestion(categoryIDs);
-            }
-        }
-
-        // Helpers
-
-        private List<CategoryNodeViewModel> GetAvailableCategories()
-        {
-            IEnumerable<Category> categories = _categoryManager.GetCategoryTree();
-
-            var viewModels = new List<CategoryNodeViewModel>();
-
-            foreach (Category category in categories)
-            {
-                CategoryNodeViewModel viewModel = category.ToNodeViewModelRecursive();
-                viewModels.Add(viewModel);
-            }
-
-            return viewModels;
-        }
-
-        private void RemoveSelectedCategoriesRecursive(List<CategoryNodeViewModel> availableCategories, int[] selectedCategoryIDs)
-        {
-            foreach (CategoryNodeViewModel availableCategory in availableCategories.ToArray())
-            {
-                RemoveSelectedCategoriesRecursive(availableCategory.SubCategories, selectedCategoryIDs);
-
-                bool isSelected = selectedCategoryIDs.Contains(availableCategory.Category.ID);
-                bool isLeaf = availableCategory.SubCategories.Count == 0;
-                bool mustRemove = isSelected && isLeaf;
-                                  
-                if (mustRemove) 
-                {
-                    availableCategories.Remove(availableCategory);
-                }
-            }
-        }
     }
 }

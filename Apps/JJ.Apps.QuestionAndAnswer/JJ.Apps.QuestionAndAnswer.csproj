@@ -48,10 +48,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CategoryNodeViewModel.cs" />
     <Compile Include="ViewModels\CategorySelectorViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Helpers\CategoryExtensions.cs" />
+    <Compile Include="ViewModels\Helpers\CategorySelectorViewModelExtensions.cs" />
     <Compile Include="ViewModels\Helpers\QuestionDetailViewModelExtensions.cs" />
     <Compile Include="ViewModels\Helpers\QuestionExtensions.cs" />
     <Compile Include="Resources\Labels.Designer.cs">

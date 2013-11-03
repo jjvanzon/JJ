@@ -250,8 +250,9 @@
     <Content Include="Scripts\knockout-2.3.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\CategorySelector\_AvailableCategory.ascx" />
     <Content Include="Views\CategorySelector\Index.aspx" />
-    <Content Include="Views\CategorySelector\_CategoryNode.ascx" />
+    <Content Include="Views\CategorySelector\_SelectedCategory.ascx" />
     <Content Include="Views\Questions\NotFound.aspx" />
     <Content Include="Views\Questions\Question.aspx" />
     <Content Include="Web.config">
@@ -342,8 +343,8 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>51878</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49720/</IISUrl>

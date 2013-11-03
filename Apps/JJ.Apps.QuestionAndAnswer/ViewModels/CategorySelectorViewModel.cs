@@ -10,7 +10,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
     {
         public bool NoCategoriesAvailable { get; set; }
 
-        public List<CategoryNodeViewModel> AvailableCategories { get; set; }
+        public List<CategoryViewModel> AvailableCategories { get; set; }
 
         public List<CategoryViewModel> SelectedCategories { get; set; }
     }
