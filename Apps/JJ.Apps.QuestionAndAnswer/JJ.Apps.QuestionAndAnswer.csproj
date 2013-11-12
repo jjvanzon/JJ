@@ -51,7 +51,6 @@
     <Compile Include="ViewModels\CategorySelectorViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Helpers\CategoryExtensions.cs" />
-    <Compile Include="ViewModels\Helpers\CategorySelectorViewModelExtensions.cs" />
     <Compile Include="ViewModels\Helpers\QuestionDetailViewModelExtensions.cs" />
     <Compile Include="ViewModels\Helpers\QuestionExtensions.cs" />
     <Compile Include="Resources\Labels.Designer.cs">
@@ -72,6 +71,10 @@
     <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
       <Name>JJ.Business.QuestionAndAnswer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj">
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>

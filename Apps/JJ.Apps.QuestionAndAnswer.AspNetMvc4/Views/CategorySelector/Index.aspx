@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Absolute.Master" Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.CategorySelectorViewModel>" %>
+<%@ Import Namespace="JJ.Framework.Common" %>
 <%@ Import Namespace="JJ.Framework.Presentation.AspNetMvc4" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels.Helpers" %>
@@ -45,12 +46,12 @@
         }
 
         $(document).ready(function () {
-            $(".liAvailableCategory").dblclick(function (ev) {
+            $("li.category.available").dblclick(function (ev) {
                 var elementId = ev.target.id;
                 addCategory(elementId);
             });
 
-            $(".liSelectedCategory").dblclick(function (ev) {
+            $("li.category.selected").dblclick(function (ev) {
                 var elementId = ev.target.id;
                 removeCategory(elementId);
             });
@@ -109,7 +110,7 @@
 
                             <h3><%: Labels.AvailableCategories %></h3>
 
-                            <ul>
+                            <ul class="category available">
                                 <% foreach (var availableCategory in Model.AvailableCategories) { %>
 
                                     <% Html.RenderPartial(ViewNames._AvailableCategory, availableCategory); %>
@@ -126,7 +127,7 @@
 
                             <h3><%: Labels.Selection %></h3>
 
-                            <ul>
+                            <ul class="category selected">
 
                                 <% using (Html.BeginCollection(() => Model.SelectedCategories)) {
             
@@ -143,7 +144,7 @@
                 </tr>
             </table>
 
-            <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Question, ControllerNames.Questions, ActionParameterNames.c, Model.GetSelectedCategoriesRecursive().Where(x => x.Visible).Select(x => x.ID).ToArray()) %>
+            <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Question, ControllerNames.Questions, ActionParameterNames.c, Model.SelectedCategories.SelectRecursive(x => x.SubCategories).Where(x => x.Visible).Select(x => x.ID).ToArray()) %>
 
     <% } %>
     

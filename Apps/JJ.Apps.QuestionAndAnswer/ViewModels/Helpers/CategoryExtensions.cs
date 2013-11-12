@@ -9,6 +9,8 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     internal static class CategoryExtensions
     {
+        // TODO: Use GetRecursive method.
+
         public static CategoryViewModel ToViewModelRecursive(this Category category)
         {
             if (category == null) throw new ArgumentNullException("category");

@@ -151,7 +151,8 @@ table.pane td.col1of2
     /*position: absolute;*/
     top: 40px;
     bottom: 40px;
-    width: 700px;
+    /*width: 50%;*/
+    
 }
 
 table.pane td.col2of2
@@ -160,7 +161,7 @@ table.pane td.col2of2
     /*position: absolute;*/
     top: 40px;
     bottom: 40px;
-    width: 50%;
+    width: 500px;
 }
 
 div.trysomething
@@ -177,4 +178,49 @@ div.trysomething
     top: 40px;
     bottom: 40px;
     width: 50%;
+}
+
+ul.category
+{
+    list-style-type: none;
+    display: inline-block;
+}
+
+li.category
+{
+    display: inline-block;
+    list-style-type: none;
+
+    border-style: solid;
+    border-color: lightblue;
+    border-width: 1px;
+    border-radius: 4px;
+
+    background-color: skyblue;
+
+    margin: 4px;
+    padding: 8px;
+
+    font-weight: bold;
+    font-family: 'Century Gothic';
+}
+
+ul > li.category
+{
+    font-size: 14pt;
+}
+
+ul ul > li.category
+{
+    font-size: 12pt;
+}
+
+ul ul ul > li.category
+{
+    font-size: 10pt;
+}
+
+ul > ul > ul > ul > li.category
+{
+    font-size: 8pt;
 }

@@ -7,7 +7,7 @@
     <li draggable="true" 
         ondragstart="liAvailableCategory_onDragStart(event)"
         data-category-id="<%:Model.ID%>"
-        class="liAvailableCategory"
+        class="category available"
         id="liAvailableCategory<%:Model.ID%>"> <%-- The element needs an ID for HTML5 drag and drop to work --%>
 
         <%: Model.NameParts.Last() %>
@@ -16,7 +16,7 @@
 
     <% if (Model.SubCategories.Count > 0) { %>
 
-        <ul>
+        <ul class="category available">
             
             <% foreach (var subCategory in Model.SubCategories) { %>
 

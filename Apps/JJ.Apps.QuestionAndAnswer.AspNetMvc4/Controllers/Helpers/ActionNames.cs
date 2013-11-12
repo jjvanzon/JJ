@@ -12,5 +12,6 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
         public const string ShowAnswer = "ShowAnswer";
         public const string Add = "Add";
         public const string Remove = "Remove";
+        public const string Index = "Index";
     }
 }

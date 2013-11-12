@@ -6,22 +6,23 @@
 
     <% if (Model.Visible) { %>
 
+        <%: Html.HiddenFor(x => x.ID) %>
+
+        <%: Html.HiddenFor(x => x.Visible) %>
+
         <li draggable="true" 
             ondragstart="liSelectedCategory_onDragStart(event)"
             data-category-id="<%:Model.ID%>"
-            class="liSelectedCategory"
+            class="category selected"
             id="liSelectedCategory<%:Model.ID%>"> <%-- The element needs an ID for HTML5 drag and drop to work --%>
             
             <%: Model.NameParts.Last() %>
-
-        <%: Html.HiddenFor(() => Model.ID, Model.ID) %>
-        <%: Html.HiddenFor(() => Model.Visible, Model.Visible) %>
 
     <% } %>
     
         <% if (Model.SubCategories.Count > 0) { %>
 
-            <ul>
+            <ul class="category selected">
 
                 <% using (Html.BeginCollection(() => Model.SubCategories)) {
 

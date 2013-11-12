@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Framework.Common;
 using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
@@ -134,6 +135,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         // Private Methods
 
+        // TODO: Use GetRecursive method.
+
         private CategorySelectorViewModel GetViewModel()
         {
             List<CategoryViewModel> availableCategories = GetCategoryViewModelRecursive();
@@ -152,7 +155,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        private CategorySelectorViewModel GetViewModel(List<int> selectedCategoryIDs)
+        private CategorySelectorViewModel GetViewModel(IEnumerable<int> selectedCategoryIDs)
         {
             CategorySelectorViewModel viewModel = GetViewModel();
             HideSelectedNodesRecursive(viewModel.AvailableCategories, selectedCategoryIDs);
