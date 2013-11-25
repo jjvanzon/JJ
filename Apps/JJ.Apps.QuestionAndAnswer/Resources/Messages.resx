@@ -120,7 +120,7 @@
   <data name="NoCategoriesAvailable" xml:space="preserve">
     <value>NoCategoriesAvailable</value>
   </data>
-  <data name="QuestionNotFound" xml:space="preserve">
-    <value>QuestionNotFound</value>
+  <data name="NoQuestionsFound" xml:space="preserve">
+    <value>NoQuestionsFound</value>
   </data>
 </root>

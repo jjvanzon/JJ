@@ -63,21 +63,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImportModelConverter.cs" />
-    <Compile Include="ImportTypeEnum.cs" />
-    <Compile Include="LinkModel.cs" />
-    <Compile Include="SelectorFactory.cs" />
-    <Content Include="W3CSpecCss3SelectorIndex %28selection%29.html">
+    <Compile Include="Processing\ImportModelConverter.cs" />
+    <Compile Include="Enums\ImportTypeEnum.cs" />
+    <Compile Include="Models\LinkModel.cs" />
+    <Compile Include="Selectors\SelectorFactory.cs" />
+    <Content Include="IO Files\W3CSpecCss3SelectorIndex %28selection%29.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="W3CSpecCss3SelectorIndex.html">
+    <Content Include="IO Files\W3CSpecCss3SelectorIndex.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="CsvSelector.cs" />
-    <Compile Include="HtmlSelector.cs" />
-    <Compile Include="ImportProcess.cs" />
-    <Compile Include="ImportModel.cs" />
-    <Compile Include="ISelector.cs" />
+    <Compile Include="Selectors\CsvSelector.cs" />
+    <Compile Include="Selectors\HtmlSelector.cs" />
+    <Compile Include="Processing\ImportProcess.cs" />
+    <Compile Include="Models\ImportModel.cs" />
+    <Compile Include="Selectors\ISelector.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,7 +108,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="W3CSpecCss3SelectorIndex.csv">
+    <Content Include="IO Files\W3CSpecCss3SelectorIndex.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -151,6 +151,10 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Validation\JJ.Framework.Validation.csproj">
       <Project>{59ddc853-62af-4f86-a803-3d4dd491e978}</Project>
       <Name>JJ.Framework.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Xml\JJ.Framework.Xml.csproj">
+      <Project>{f6ea0941-40ff-4679-a1a6-eacd5c9ba42b}</Project>
+      <Name>JJ.Framework.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>

@@ -12,9 +12,9 @@ namespace JJ.Business.QuestionAndAnswer
 {
     public class QuestionSelector
     {
-        private IQuestionRepository _questionRepository;
+        private readonly IQuestionRepository _questionRepository;
 
-        private List<int> _ids = new List<int>();
+        private readonly List<int> _ids;
 
         public QuestionSelector(IQuestionRepository questionRepository, params Category[] categories)
         {
@@ -22,6 +22,8 @@ namespace JJ.Business.QuestionAndAnswer
             if (categories == null) throw new ArgumentNullException("categories");
 
             _questionRepository = questionRepository;
+
+            _ids = new List<int>();
 
             foreach (Category category in categories)
             {
@@ -34,6 +36,11 @@ namespace JJ.Business.QuestionAndAnswer
 
         public Question TryGetRandomQuestion()
         {
+            if (_ids.Count == 0)
+            {
+                return null;
+            }
+
             int id = Randomizer.GetRandomItem(_ids);
             return _questionRepository.Get(id);
         }

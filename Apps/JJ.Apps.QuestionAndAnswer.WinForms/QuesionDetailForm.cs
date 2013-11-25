@@ -68,7 +68,7 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
                 buttonShowAnswer.Visible = true;
                 buttonShowAnswer.Enabled = false;
                 buttonHideAnswer.Visible = false;
-                MessageBox.Show(Messages.QuestionNotFound);
+                MessageBox.Show(Messages.NoQuestionsFound);
                 return;
             }
 

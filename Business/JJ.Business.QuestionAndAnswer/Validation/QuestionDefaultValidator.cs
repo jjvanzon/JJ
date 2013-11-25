@@ -17,9 +17,9 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            Execute(new QuestionQuestionTypeValidator(X));
+            Execute(new QuestionQuestionTypeValidator(Object));
 
-            For(X.Text, PropertyDisplayNames.Text)
+            For(Object.Text, PropertyDisplayNames.Text)
                 .NotNullOrWhiteSpace();
         }
     }

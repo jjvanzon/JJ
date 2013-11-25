@@ -2,11 +2,11 @@
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <%: Titles.QuestionNotFound %>
+    <%: Titles.NoQuestionsFound %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<p> <%: Messages.QuestionNotFound %> </p>
+<p> <%: Messages.NoQuestionsFound %> </p>
 
 </asp:Content>

@@ -120,7 +120,7 @@
   <data name="NoCategoriesAvailable" xml:space="preserve">
     <value>Geen categorieën beschikbaar.</value>
   </data>
-  <data name="QuestionNotFound" xml:space="preserve">
-    <value>Vraag niet gevonden.</value>
+  <data name="NoQuestionsFound" xml:space="preserve">
+    <value>Geen vragen gevonden.</value>
   </data>
 </root>

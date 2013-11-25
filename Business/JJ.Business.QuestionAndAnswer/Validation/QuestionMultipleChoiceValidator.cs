@@ -18,13 +18,13 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            For(X.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionTypeEnum)
+            For(Object.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionTypeEnum)
                 .IsValue(QuestionTypeEnum.MultipleChoice);
 
-            For(X.Answers.Count, PropertyDisplayNames.AnswersCount)
+            For(Object.Answers.Count, PropertyDisplayNames.AnswersCount)
                 .Above(1);
 
-            For(X.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
+            For(Object.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
                 .IsValue(1);
         }
     }

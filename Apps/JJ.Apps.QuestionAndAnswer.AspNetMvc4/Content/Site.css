@@ -26,8 +26,8 @@ body
     margin: 10pt;
     font-size: 14px;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    color: #232323;
-    background-color: #fff;
+    color: #e8e8e8;
+    background-color: #374B5B;
     height: 100%
 }
 
@@ -87,6 +87,13 @@ textarea
     margin: 0.5em 0 0 0;
 }
 
+.text-field input
+{
+    color: #f8f8f8;
+    background-color: #bbb;
+
+}
+
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
@@ -119,6 +126,15 @@ textarea
 
 /* Custom styles
 -----------------------------------------------------------*/
+
+h1
+{
+    margin: 0px;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 6px;
+}
 
 table.pane
 {
@@ -180,27 +196,21 @@ div.trysomething
     width: 50%;
 }
 
-ul.category
-{
-    list-style-type: none;
-    display: inline-block;
-}
-
 li.category
 {
     display: inline-block;
     list-style-type: none;
 
     border-style: solid;
-    border-color: lightblue;
-    border-width: 1px;
+    border-color: #60c0f0;
+    border-width: 2px;
     border-radius: 4px;
 
-    background-color: skyblue;
-
-    margin: 4px;
+    margin-top: 2px;
+    margin-bottom: 4px;
     padding: 8px;
 
+    color: #345;
     font-weight: bold;
     font-family: 'Century Gothic';
 }
@@ -208,19 +218,23 @@ li.category
 ul > li.category
 {
     font-size: 14pt;
+    background-color: #ADE2FF;
 }
 
 ul ul > li.category
 {
     font-size: 12pt;
+    background-color: #8CDCFF;
 }
 
 ul ul ul > li.category
 {
     font-size: 10pt;
+    background-color: #ADE2FF;
 }
 
 ul > ul > ul > ul > li.category
 {
     font-size: 8pt;
+    background-color: #8CDCFF;
 }

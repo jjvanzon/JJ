@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Absolute.Master" Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.CategorySelectorViewModel>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.CategorySelectorViewModel>" %>
 <%@ Import Namespace="JJ.Framework.Common" %>
 <%@ Import Namespace="JJ.Framework.Presentation.AspNetMvc4" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>

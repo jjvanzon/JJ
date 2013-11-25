@@ -13,18 +13,18 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     internal static class QuestionDetailViewModelExtensions
     {
-        public static Question ToModel(this QuestionDetailViewModel viewModel, IQuestionRepository textualQuestionrepository, IAnswerRepository textualAnswerRepository)
+        public static Question ToModel(this QuestionDetailViewModel viewModel, IQuestionRepository questionrepository, IAnswerRepository answerRepository)
         {
             if (viewModel == null) throw new ArgumentNullException("viewModel");
-            if (textualQuestionrepository == null) throw new ArgumentNullException("textualQuestionrepository");
-            if (textualAnswerRepository == null) throw new ArgumentNullException("textualAnswerRepository");
+            if (questionrepository == null) throw new ArgumentNullException("questionrepository");
+            if (answerRepository == null) throw new ArgumentNullException("answerRepository");
             if (viewModel.Question == null) throw new ArgumentNullException("viewModel.Question");
 
-            Question model = textualQuestionrepository.TryGet(viewModel.Question.ID);
+            Question model = questionrepository.TryGet(viewModel.Question.ID);
             if (model == null)
             {
-                model = textualQuestionrepository.Create();
-                model.AutoCreateRelatedEntities(textualAnswerRepository);
+                model = questionrepository.Create();
+                model.AutoCreateRelatedEntities(answerRepository);
             }
 
             model.Text = viewModel.Question.Text;

@@ -19,23 +19,23 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            For(X.QuestionType, PropertyDisplayNames.QuestionType)
+            For(Object.QuestionType, PropertyDisplayNames.QuestionType)
                 .NotNull();
 
-            if (X.QuestionType != null)
+            if (Object.QuestionType != null)
             {
-                switch (X.GetQuestionTypeEnum())
+                switch (Object.GetQuestionTypeEnum())
                 {
                     case QuestionTypeEnum.OpenQuestion:
-                        Execute(new QuestionOpenQuestionValidator(X));
+                        Execute(new QuestionOpenQuestionValidator(Object));
                         break;
 
                     case QuestionTypeEnum.MultipleChoice:
-                        Execute(new QuestionMultipleChoiceValidator(X));
+                        Execute(new QuestionMultipleChoiceValidator(Object));
                         break;
 
                     case QuestionTypeEnum.MultipleChoiceSeveralMayApply:
-                        Execute(new QuestionMultipleChoiceSeveralMayApplyValidator(X));
+                        Execute(new QuestionMultipleChoiceSeveralMayApplyValidator(Object));
                         break;
                 }
             }

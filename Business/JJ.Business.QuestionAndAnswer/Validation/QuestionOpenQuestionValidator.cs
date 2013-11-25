@@ -19,15 +19,15 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            For(X.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionTypeEnum)
+            For(Object.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionTypeEnum)
                 .IsValue(QuestionTypeEnum.OpenQuestion);
 
-            For(X.Answers.Count, PropertyDisplayNames.AnswersCount)
+            For(Object.Answers.Count, PropertyDisplayNames.AnswersCount)
                 .IsValue(1);
 
-            if (X.Answers.Count > 0)
+            if (Object.Answers.Count > 0)
             {
-                For(X.Answers[0].IsCorrectAnswer, PropertyDisplayNames.IsCorrectAnswer)
+                For(Object.Answers[0].IsCorrectAnswer, PropertyDisplayNames.IsCorrectAnswer)
                     .IsValue(true);
             }
         }

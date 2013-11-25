@@ -11,7 +11,7 @@ namespace JJ.Business.QuestionAndAnswer
 {
     public class CategoryManager
     {
-        private ICategoryRepository _categoryRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
         public CategoryManager(ICategoryRepository categoryRepository)
         {

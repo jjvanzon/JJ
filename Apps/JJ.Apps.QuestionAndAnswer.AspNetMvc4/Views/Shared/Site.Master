@@ -12,6 +12,15 @@
     <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
 </head>
 <body>
+    <header>
+        <h1>Question & Answer</h1>
+    </header>
+
+    <nav>
+        <a href="/CategorySelector">Select Categories</a>
+        <a href="/Questions/Question">Random Question</a>
+    </nav>
+
     <div>
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     </div>

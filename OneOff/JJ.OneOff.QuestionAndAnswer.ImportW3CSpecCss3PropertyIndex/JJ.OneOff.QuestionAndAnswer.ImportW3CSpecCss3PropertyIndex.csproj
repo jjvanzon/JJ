@@ -63,27 +63,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImportTypeEnum.cs" />
-    <Compile Include="ISelector.cs" />
-    <Compile Include="LinkModel.cs" />
-    <Compile Include="ImportModelConverter.cs" />
-    <Compile Include="HtmlSelector.cs" />
-    <Compile Include="CsvSelector.cs" />
+    <Compile Include="Enums\ImportTypeEnum.cs" />
+    <Compile Include="Selectors\ISelector.cs" />
+    <Compile Include="Models\LinkModel.cs" />
+    <Compile Include="Processing\ImportModelConverter.cs" />
+    <Compile Include="Selectors\HtmlSelector.cs" />
+    <Compile Include="Selectors\CsvSelector.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImportProcess.cs" />
-    <Compile Include="ImportModel.cs" />
+    <Compile Include="Processing\ImportProcess.cs" />
+    <Compile Include="Models\ImportModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelectorFactory.cs" />
-    <Content Include="W3CSpecCss3PropertyIndex %28selection%29.html">
+    <Compile Include="Selectors\SelectorFactory.cs" />
+    <Content Include="IO Files\W3CSpecCss3PropertyIndex %28selection%29.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="W3CSpecCss3PropertyIndex.html">
+    <Content Include="IO Files\W3CSpecCss3PropertyIndex.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="MainForm.resx">
@@ -108,12 +108,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="W3CSpecCss3PropertyIndex.csv">
+    <Content Include="IO Files\W3CSpecCss3PropertyIndex.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
@@ -151,6 +153,10 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Validation\JJ.Framework.Validation.csproj">
       <Project>{59ddc853-62af-4f86-a803-3d4dd491e978}</Project>
       <Name>JJ.Framework.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Xml\JJ.Framework.Xml.csproj">
+      <Project>{f6ea0941-40ff-4679-a1a6-eacd5c9ba42b}</Project>
+      <Name>JJ.Framework.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>

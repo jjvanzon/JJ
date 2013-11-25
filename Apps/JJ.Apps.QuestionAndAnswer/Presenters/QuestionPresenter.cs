@@ -87,10 +87,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionDetailViewModel ShowQuestion(params int[] categoryIDs)
         {
-            if (categoryIDs == null)
-            {
-                throw new ArgumentNullException("categoryIDs");
-            }
+            categoryIDs = categoryIDs ?? new int[] { };
 
             // Get Categories
             List<Category> selectedCategoryBranches = GetCategories(categoryIDs);
@@ -156,7 +153,12 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = true;
-            viewModel2.SelectedCategories = viewModel.SelectedCategories;
+
+            if (viewModel.SelectedCategories != null)
+            {
+                viewModel2.SelectedCategories = viewModel.SelectedCategories;
+            }
+
             return viewModel2;
         }
 
@@ -180,7 +182,12 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = false;
-            viewModel2.SelectedCategories = viewModel.SelectedCategories;
+
+            if (viewModel.SelectedCategories != null)
+            {
+                viewModel2.SelectedCategories = viewModel.SelectedCategories;
+            }
+
             viewModel2.Question.Links.Clear(); // Links reveal answer.
             return viewModel2;
         }

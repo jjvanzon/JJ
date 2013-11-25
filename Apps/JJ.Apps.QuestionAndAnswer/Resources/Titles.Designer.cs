@@ -79,20 +79,20 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NoQuestionsFound.
+        /// </summary>
+        public static string NoQuestionsFound {
+            get {
+                return ResourceManager.GetString("NoQuestionsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Question.
         /// </summary>
         public static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to QuestionNotFound.
-        /// </summary>
-        public static string QuestionNotFound {
-            get {
-                return ResourceManager.GetString("QuestionNotFound", resourceCulture);
             }
         }
         

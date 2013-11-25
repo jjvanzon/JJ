@@ -158,7 +158,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private CategorySelectorViewModel GetViewModel(IEnumerable<int> selectedCategoryIDs)
         {
             CategorySelectorViewModel viewModel = GetViewModel();
-            HideSelectedNodesRecursive(viewModel.AvailableCategories, selectedCategoryIDs);
+            HideSelectedLeafNodesRecursive(viewModel.AvailableCategories, selectedCategoryIDs);
             ShowSelectedNodesRecursive(viewModel.SelectedCategories, selectedCategoryIDs);
             return viewModel;
         }
@@ -220,17 +220,19 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
         }
 
-        private void HideSelectedNodesRecursive(List<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
+        private void HideSelectedLeafNodesRecursive(List<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
         {
             foreach (CategoryViewModel categoryViewModel in categoryViewModels)
             {
                 bool isSelected = selectedCategoryIDs.Contains(categoryViewModel.ID);
-                if (isSelected)
+                bool isLeaf = categoryViewModel.SubCategories.Count == 0;
+
+                if (isSelected && isLeaf)
                 {
                     categoryViewModel.Visible = false;
                 }
 
-                HideSelectedNodesRecursive(categoryViewModel.SubCategories, selectedCategoryIDs);
+                HideSelectedLeafNodesRecursive(categoryViewModel.SubCategories, selectedCategoryIDs);
             }
         }
 

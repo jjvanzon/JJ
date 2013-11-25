@@ -123,11 +123,11 @@
   <data name="NextQuestion" xml:space="preserve">
     <value>Next Question</value>
   </data>
+  <data name="NoQuestionsFound" xml:space="preserve">
+    <value>No Questions Found</value>
+  </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
-  </data>
-  <data name="QuestionNotFound" xml:space="preserve">
-    <value>Question Not Found</value>
   </data>
   <data name="SelectCategories" xml:space="preserve">
     <value>Select Categories</value>
