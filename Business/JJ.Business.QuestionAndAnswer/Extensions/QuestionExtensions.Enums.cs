@@ -14,15 +14,6 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 {
     public static partial class QuestionExtensions
     {
-        public static void SetSourceEnum(this Question entity, ISourceRepository sourceRepository, SourceEnum value)
-        {
-            if (entity == null) throw new ArgumentNullException("entity");
-            if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
-
-            Source source = sourceRepository.Get((int)value);
-            source.LinkTo(entity);
-        }
-
         public static QuestionTypeEnum GetQuestionTypeEnum(this Question entity)
         {
             return (QuestionTypeEnum)entity.QuestionType.ID;

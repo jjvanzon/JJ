@@ -8,7 +8,7 @@ namespace JJ.Models.QuestionAndAnswer
         private int _iD;
         private string _description;
         private string _identifier;
-        private string _link;
+        private string _url;
         private IList<Question> _questions = new List<Question>();
 
         public virtual int ID
@@ -29,10 +29,10 @@ namespace JJ.Models.QuestionAndAnswer
             set { _identifier = value; }
         }
 
-        public virtual string Link
+        public virtual string Url
         {
-            get { return _link; }
-            set { _link = value; }
+            get { return _url; }
+            set { _url = value; }
         }
 
         public virtual IList<Question> Questions

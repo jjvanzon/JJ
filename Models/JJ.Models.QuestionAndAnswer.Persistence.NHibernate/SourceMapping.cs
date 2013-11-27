@@ -12,7 +12,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.NHibernate
 
             Map(x => x.Identifier);
             Map(x => x.Description);
-            Map(x => x.Link);
+            Map(x => x.Url);
 
             HasMany(x => x.Questions).KeyColumn(ColumnNames.QuestionID).Inverse();
         }

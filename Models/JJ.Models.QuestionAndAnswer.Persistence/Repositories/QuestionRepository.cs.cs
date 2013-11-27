@@ -68,7 +68,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
             }
         }
 
-        public IEnumerable<Question> GetBySource(int sourceID)
+        public IEnumerable<Question> GetBySourceID(int sourceID)
         {
             return _context.Query<Question>().Where(x => x.Source.ID == sourceID);
         }

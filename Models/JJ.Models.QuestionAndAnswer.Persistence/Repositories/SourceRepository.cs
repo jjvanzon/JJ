@@ -23,5 +23,25 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
         {
             return _context.Get<Source>(id);
         }
+
+        public Source TryGetByIdentifier(string identifier)
+        {
+            return _context.Query<Source>().Where(x => x.Identifier == identifier).SingleOrDefault();
+        }
+
+        public Source GetByIdentifier(string identifier)
+        {
+            Source source = TryGetByIdentifier(identifier);
+            if (source == null)
+            {
+                throw new Exception(String.Format("Source with identifier '{0}' not found.", identifier));
+            }
+            return source;
+        }
+
+        public Source Create()
+        {
+            return _context.Create<Source>();
+        }
     }
 }

@@ -41,6 +41,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
             }
         }
 
+        private const int TEST_SOURCE_ID = 1;
+
         [TestMethod]
         public void Test_QuestionRepository_GetBySource()
         {
@@ -49,7 +51,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
                 using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
                 {
                     IQuestionRepository repository = new QuestionRepository(context, context.Location);
-                    Question[] list = repository.GetBySource((int)SourceEnum.Manual).ToArray();
+                    Question[] list = repository.GetBySourceID(TEST_SOURCE_ID).ToArray();
                 }
             }
         }

@@ -17,7 +17,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
         void Commit();
 
         Question TryGetRandomQuestion();
-        IEnumerable<Question> GetBySource(int sourceID);
+        IEnumerable<Question> GetBySourceID(int sourceID);
         int[] GetQuestionIDsByCategory(Category category);
     }
 }

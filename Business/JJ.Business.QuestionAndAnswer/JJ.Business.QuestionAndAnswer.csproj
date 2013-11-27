@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="CategoryManager.cs" />
     <Compile Include="Enums\QuestionTypeEnum.cs" />
-    <Compile Include="Enums\SourceEnum.cs" />
     <Compile Include="Extensions\AnswerExtensions.cs" />
     <Compile Include="Extensions\CategoryExtensions.cs" />
     <Compile Include="Extensions\CategoryExtensions.LinkTo.cs" />

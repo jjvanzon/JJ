@@ -10,21 +10,21 @@
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionCategory" Width="2" PointX="3.875" PointY="7.375" />
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionLink" Width="1.5" PointX="7.875" PointY="7" />
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionType" Width="1.5" PointX="0.625" PointY="6.5" />
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Source" Width="1.5" PointX="0.625" PointY="3.875" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Answer_Question" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Question_QuestionType" />
-        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Question_Source" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Question" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionLink_Question" ManuallyRouted="true" >
-          <ConnectorPoint PointX="3.79296875" PointY="6.2398893229166656" />
-          <ConnectorPoint PointX="3.79296875" PointY="7.15625" />
-          <ConnectorPoint PointX="4.6117527516923777" PointY="7.1562499999999991" />
-          <ConnectorPoint PointX="4.7784194183590438" PointY="7.15625" />
+          <ConnectorPoint PointX="3.791748046875" PointY="6.2398893229166656" />
+          <ConnectorPoint PointX="3.791748046875" PointY="7.15625" />
+          <ConnectorPoint PointX="4.729166666666667" PointY="7.1562499999999991" />
+          <ConnectorPoint PointX="4.895833333333333" PointY="7.15625" />
           <ConnectorPoint PointX="7.875" PointY="7.15625" />
         </AssociationConnector>
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Category" Width="2" PointX="3.75" PointY="10" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Category_ParentCategory" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Category" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Source" Width="1.5" PointX="0.625" PointY="3.375" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Question_Source" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

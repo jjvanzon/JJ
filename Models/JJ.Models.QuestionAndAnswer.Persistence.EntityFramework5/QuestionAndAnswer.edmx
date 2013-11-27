@@ -97,10 +97,10 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Identifier" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
-          <Property Name="Link" Type="nvarchar" MaxLength="250" />
+          <Property Name="Url" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <Association Name="FK_Answer_Question">
           <End Role="Question" Type="QuestionAndAnswerDB_DEVModel.Store.Question" Multiplicity="1" />
@@ -196,17 +196,12 @@
           <EntitySet Name="QuestionCategories" EntityType="QuestionAndAnswerDB_DEVModel.QuestionCategory" />
           <EntitySet Name="QuestionLinks" EntityType="QuestionAndAnswerDB_DEVModel.QuestionLink" />
           <EntitySet Name="QuestionTypes" EntityType="QuestionAndAnswerDB_DEVModel.QuestionType" />
-          <EntitySet Name="Sources" EntityType="QuestionAndAnswerDB_DEVModel.Source" />
           <AssociationSet Name="FK_Answer_Question" Association="QuestionAndAnswerDB_DEVModel.FK_Answer_Question">
             <End Role="Question" EntitySet="Questions" />
             <End Role="Answer" EntitySet="Answers" />
           </AssociationSet>
           <AssociationSet Name="FK_Question_QuestionType" Association="QuestionAndAnswerDB_DEVModel.FK_Question_QuestionType">
             <End Role="QuestionType" EntitySet="QuestionTypes" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Question_Source" Association="QuestionAndAnswerDB_DEVModel.FK_Question_Source">
-            <End Role="Source" EntitySet="Sources" />
             <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
           <AssociationSet Name="FK_QuestionCategory_Question" Association="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Question">
@@ -226,6 +221,11 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="QuestionCategory" EntitySet="QuestionCategories" />
           </AssociationSet>
+          <EntitySet Name="Sources" EntityType="QuestionAndAnswerDB_DEVModel.Source" />
+          <AssociationSet Name="FK_Question_Source" Association="QuestionAndAnswerDB_DEVModel.FK_Question_Source">
+            <End Role="Source" EntitySet="Sources" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Answer">
           <Key>
@@ -244,9 +244,9 @@
           <Property Type="String" Name="Text" Nullable="false" MaxLength="2048" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Answers" Relationship="QuestionAndAnswerDB_DEVModel.FK_Answer_Question" FromRole="Question" ToRole="Answer" />
           <NavigationProperty Name="QuestionType" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_QuestionType" FromRole="Question" ToRole="QuestionType" />
-          <NavigationProperty Name="Source" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_Source" FromRole="Question" ToRole="Source" />
           <NavigationProperty Name="QuestionCategories" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Question" FromRole="Question" ToRole="QuestionCategory" />
           <NavigationProperty Name="QuestionLinks" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionLink_Question" FromRole="Question" ToRole="QuestionLink" />
+          <NavigationProperty Name="Source" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_Source" FromRole="Question" ToRole="Source" />
         </EntityType>
         <EntityType Name="QuestionCategory">
           <Key>
@@ -273,26 +273,12 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="196" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Questions" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_QuestionType" FromRole="QuestionType" ToRole="Question" />
         </EntityType>
-        <EntityType Name="Source">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Identifier" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Link" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Questions" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_Source" FromRole="Source" ToRole="Question" />
-        </EntityType>
         <Association Name="FK_Answer_Question">
           <End Type="QuestionAndAnswerDB_DEVModel.Question" Role="Question" Multiplicity="1" />
           <End Type="QuestionAndAnswerDB_DEVModel.Answer" Role="Answer" Multiplicity="*" />
         </Association>
         <Association Name="FK_Question_QuestionType">
           <End Type="QuestionAndAnswerDB_DEVModel.QuestionType" Role="QuestionType" Multiplicity="1" />
-          <End Type="QuestionAndAnswerDB_DEVModel.Question" Role="Question" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_Question_Source">
-          <End Type="QuestionAndAnswerDB_DEVModel.Source" Role="Source" Multiplicity="1" />
           <End Type="QuestionAndAnswerDB_DEVModel.Question" Role="Question" Multiplicity="*" />
         </Association>
         <Association Name="FK_QuestionCategory_Question">
@@ -321,6 +307,20 @@
         <Association Name="FK_QuestionCategory_Category">
           <End Type="QuestionAndAnswerDB_DEVModel.Category" Role="Category" Multiplicity="1" />
           <End Type="QuestionAndAnswerDB_DEVModel.QuestionCategory" Role="QuestionCategory" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Identifier" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Url" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_Source" FromRole="Source" ToRole="Question" />
+        </EntityType>
+        <Association Name="FK_Question_Source">
+          <End Type="QuestionAndAnswerDB_DEVModel.Source" Role="Source" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.Question" Role="Question" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -369,16 +369,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sources">
-            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Source">
-              <MappingFragment StoreEntitySet="Source">
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="FK_Answer_Question" TypeName="QuestionAndAnswerDB_DEVModel.FK_Answer_Question" StoreEntitySet="Answer">
             <EndProperty Name="Answer">
               <ScalarProperty Name="ID" ColumnName="ID" />
@@ -393,14 +383,6 @@
             </EndProperty>
             <EndProperty Name="QuestionType">
               <ScalarProperty Name="ID" ColumnName="QuestionTypeID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Question_Source" TypeName="QuestionAndAnswerDB_DEVModel.FK_Question_Source" StoreEntitySet="Question">
-            <EndProperty Name="Question">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-            <EndProperty Name="Source">
-              <ScalarProperty Name="ID" ColumnName="SourceID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="FK_QuestionCategory_Question" TypeName="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Question" StoreEntitySet="QuestionCategory">
@@ -443,6 +425,24 @@
             </EndProperty>
             <EndProperty Name="Category">
               <ScalarProperty Name="ID" ColumnName="CategoryID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Source">
+              <MappingFragment StoreEntitySet="Source">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Question_Source" TypeName="QuestionAndAnswerDB_DEVModel.FK_Question_Source" StoreEntitySet="Question">
+            <EndProperty Name="Question">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Source">
+              <ScalarProperty Name="ID" ColumnName="SourceID" />
             </EndProperty>
           </AssociationSetMapping>
           </EntityContainerMapping>

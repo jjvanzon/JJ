@@ -9,5 +9,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
     public interface ISourceRepository
     {
         Source Get(int id);
+        Source TryGetByIdentifier(string identifier);
+        Source GetByIdentifier(string identifier);
+        Source Create();
     }
 }
