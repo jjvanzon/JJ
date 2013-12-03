@@ -41,17 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryDescriptionCorrector.cs" />
-    <Compile Include="Converters\W3CSpecCss21_LooseDefinition_Converter.cs" />
-    <Compile Include="Converters\W3CSpecCss21_PropertyAspects_Converter.cs" />
-    <Compile Include="Converters\W3CSpecCss3_PropertyIndex_Converter.cs" />
+    <Compile Include="ImportHelper.cs" />
+    <Compile Include="Converters\LooseDefinitionConverter.cs" />
+    <Compile Include="Converters\PropertyAspectsConverter.cs" />
     <Compile Include="Converters\W3CSpecCss3_SelectorIndex_Converter.cs" />
-    <Compile Include="Models\W3CSpecCss21_LooseDefinition_ImportModel.cs" />
-    <Compile Include="Models\W3CSpecCss21_PropertyAspects_ImportModel.cs" />
-    <Compile Include="Models\W3CSpecCss3_PropertyIndex_ImportModel.cs" />
+    <Compile Include="Models\LooseDefinitionImportModel.cs" />
+    <Compile Include="Models\PropertyAspectsImportModel.cs" />
     <Compile Include="Models\W3CSpecCss3_SelectorIndex_ImportModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selectors\W3CSpecCss3_LooseDefinition_Selector.cs" />
     <Compile Include="Selectors\W3CSpecCss21_LooseDefinition_Selector.cs" />
     <Compile Include="Selectors\W3CSpecCss21_PropertyAspects_Selector.cs" />
+    <Compile Include="Selectors\W3CSpecCss3_PropertyAspects_Selector.cs" />
     <Compile Include="Selectors\W3CSpecCss3_PropertyIndex_CsvSelector.cs" />
     <Compile Include="Selectors\W3CSpecCss3_PropertyIndex_HtmlSelector.cs" />
     <Compile Include="Selectors\W3CSpecCss3_SelectorIndex_CsvSelector.cs" />

@@ -28,6 +28,9 @@ namespace JJ.Business.QuestionAndAnswer.Import
 
         private CategoryManager _categoryManager;
 
+        protected string _categoryIdentifier;
+
+        /// <param name="categoryIdentifier">Defines an extra category to use for this specific converter.</param>
         public ConverterBase(
             IQuestionRepository questionRepository,
             IAnswerRepository answerRepository,
@@ -36,7 +39,8 @@ namespace JJ.Business.QuestionAndAnswer.Import
             IQuestionLinkRepository questionLinkRepository,
             IQuestionTypeRepository questionTypeRepository,
             ISourceRepository sourceRepository,
-            Source source)
+            Source source,
+            string categoryIdentifier)
         {
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");
@@ -56,6 +60,8 @@ namespace JJ.Business.QuestionAndAnswer.Import
             _sourceRepository = sourceRepository;
 
             _categoryManager = new CategoryManager(_categoryRepository);
+
+            _categoryIdentifier = categoryIdentifier;
 
             _source = source;
         }
@@ -102,7 +108,9 @@ namespace JJ.Business.QuestionAndAnswer.Import
                 value = value.Replace("<'", "")
                              .Replace("'>", "")
                              .Replace(">", "")
-                             .Replace("<", "");
+                             .Replace("<", "")
+                             .CutLeft("'")
+                             .CutRight("'");
             }
 
             // Older (?) version.

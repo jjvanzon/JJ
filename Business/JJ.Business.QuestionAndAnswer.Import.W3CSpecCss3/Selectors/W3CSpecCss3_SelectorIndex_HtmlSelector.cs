@@ -113,7 +113,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
         private string GetLinkDescription(XmlNode node)
         {
-            string text = FormatText(node.InnerText);
+            string text = ImportHelper.FormatHtmlText(node.InnerText);
             return text;
         }
 
@@ -129,22 +129,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
         private string SelectText(XmlNode node, string xpath)
         {
             XmlNode node2 = XmlHelper.SelectNode(node, xpath);
-            string text = FormatText(node2.InnerText);
-            return text;
-        }
-
-        /// <summary>
-        /// HTML-decodes and removes excessive whitespace.
-        /// </summary>
-        private string FormatText(string text)
-        {
-            if (text == null)
-            {
-                return null;
-            }
-
-            text = HttpUtility.HtmlDecode(text);
-            text = text.RemoveExcessiveWhiteSpace();
+            string text = ImportHelper.FormatHtmlText(node2.InnerText);
             return text;
         }
     }

@@ -15,9 +15,9 @@ using JJ.Business.QuestionAndAnswer.Import;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
-    public class W3CSpecCss21_PropertyAspects_Selector : ISelector<W3CSpecCss21_PropertyAspects_ImportModel>
+    public class W3CSpecCss21_PropertyAspects_Selector : ISelector<PropertyAspectsImportModel>
     {
-        public IEnumerable<W3CSpecCss21_PropertyAspects_ImportModel> GetSelection(Stream stream)
+        public IEnumerable<PropertyAspectsImportModel> GetSelection(Stream stream)
         {
             if (stream == null) throw new ArgumentNullException("stream");
 
@@ -31,7 +31,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
             foreach (XmlNode node in GetRecords(doc))
             {
-                W3CSpecCss21_PropertyAspects_ImportModel importModel = CreatePropertyDefinitionModel(node);
+                PropertyAspectsImportModel importModel = CreatePropertyDefinitionModel(node);
                 yield return importModel;
             }
         }
@@ -43,26 +43,26 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             return nodes.OfType<XmlNode>();
         }
 
-        private W3CSpecCss21_PropertyAspects_ImportModel CreatePropertyDefinitionModel(XmlNode node)
+        private PropertyAspectsImportModel CreatePropertyDefinitionModel(XmlNode node)
         {
-            return new W3CSpecCss21_PropertyAspects_ImportModel
+            return new PropertyAspectsImportModel
             {
                 HashTag = GetHashTag(node),
 
-                Name = GetName(node),
-                Value = GetValue(node),
-                Initial = GetInitial(node),
+                PropertyName = GetName(node),
+                PossibleValues = GetPossibleValues(node),
+                InitialValue = GetInitialValue(node),
                 AppliesTo = GetAppliesTo(node),
-                Inherited = GetInherited(node),
+                IsInherited = GetIsInherited(node),
                 Percentages = GetPercentages(node),
                 Media = GetMedia(node),
                 ComputedValue = GetComputedValue(node),
 
                 NameLinks = GetNameLinks(node).ToList(),
-                ValueLinks = GetValueLinks(node).ToList(),
-                InitialLinks = GetInitialLinks(node).ToList(),
+                PossibleValuesLinks = GetPossibleValuesLinks(node).ToList(),
+                InitialValueLinks = GetInitialValueLinks(node).ToList(),
                 AppliesToLinks = GetAppliesToLinks(node).ToList(),
-                InheritedLinks = GetInheritedLinks(node).ToList(),
+                IsInheritedLinks = GetIsInheritedLinks(node).ToList(),
                 PercentagesLinks = GetPercentagesLinks(node).ToList(),
                 MediaLinks = GetMediaLinks(node).ToList(),
                 ComputedValueLinks = GetComputedValueLinks(node).ToList()
@@ -83,14 +83,14 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             return value;
         }
 
-        private string GetValue(XmlNode node)
+        private string GetPossibleValues(XmlNode node)
         {
             string xpath = "descendant::tr[1]/td[2]";
             string value = SelectText(node, xpath);
             return value;
         }
 
-        private string GetInitial(XmlNode node)
+        private string GetInitialValue(XmlNode node)
         {
             string xpath = "descendant::tr[2]/td[2]";
             string value = SelectText(node, xpath);
@@ -104,7 +104,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             return value;
         }
 
-        private string GetInherited(XmlNode node)
+        private string GetIsInherited(XmlNode node)
         {
             string xpath = "descendant::tr[4]/td[2]";
             string value = SelectText(node, xpath);
@@ -137,12 +137,12 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             return GetLinks(node, "dt/descendant::a[@href]");
         }
 
-        private IEnumerable<LinkModel> GetValueLinks(XmlNode node)
+        private IEnumerable<LinkModel> GetPossibleValuesLinks(XmlNode node)
         {
             return GetLinks(node, "descendant::tr[1]/td[2]/descendant::a[@href]");
         }
 
-        private IEnumerable<LinkModel> GetInitialLinks(XmlNode node)
+        private IEnumerable<LinkModel> GetInitialValueLinks(XmlNode node)
         {
             return GetLinks(node, "descendant::tr[2]/td[2]/descendant::a[@href]");
         }
@@ -152,7 +152,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             return GetLinks(node, "descendant::tr[3]/td[2]/descendant::a[@href]");
         }
 
-        private IEnumerable<LinkModel> GetInheritedLinks(XmlNode node)
+        private IEnumerable<LinkModel> GetIsInheritedLinks(XmlNode node)
         {
             return GetLinks(node, "descendant::tr[4]/td[2]/descendant::a[@href]");
         }
@@ -194,7 +194,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
         private string GetLinkDescription(XmlNode node)
         {
-            string text = FormatText(node.InnerText);
+            string text = ImportHelper.FormatHtmlText(node.InnerText);
             return text;
         }
 
@@ -210,22 +210,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
         private string SelectText(XmlNode node, string xpath)
         {
             XmlNode node2 = XmlHelper.SelectNode(node, xpath);
-            string text = FormatText(node2.InnerText);
-            return text;
-        }
-
-        /// <summary>
-        /// HTML-decodes and removes excessive whitespace.
-        /// </summary>
-        private string FormatText(string text)
-        {
-            if (text == null)
-            {
-                return null;
-            }
-
-            text = HttpUtility.HtmlDecode(text);
-            text = text.RemoveExcessiveWhiteSpace();
+            string text = ImportHelper.FormatHtmlText(node2.InnerText);
             return text;
         }
     }

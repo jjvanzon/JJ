@@ -16,7 +16,18 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
         public override void Execute()
         {
             CorrectCategoryDescription("Css3", "CSS3");
+
+            CorrectCategoryDescription("PropertyAspects", "Property Aspects");
+            CorrectCategoryDescription("LooseDefinitions", "Loose Definitions");
+
             CorrectCategoryDescription("BoxModel", "Box Model");
+            CorrectCategoryDescription("VisualFormatting", "Visual Formatting");
+            CorrectCategoryDescription("VisualFormattingDetails", "Visual Formatting Details");
+            CorrectCategoryDescription("VisualEffects", "Visual Effects");
+            CorrectCategoryDescription("GeneratedContent", "Generated Content");
+            CorrectCategoryDescription("PagedMedia", "Paged Media");
+            CorrectCategoryDescription("ColorsAndBackgrounds", "Colors and Backgrounds");
+            CorrectCategoryDescription("UserInterface", "User Interface");
 
             CorrectCategoryDescription("PossibleValues", "Possible Values");
             CorrectCategoryDescription("InitialValue", "Initial Value");

@@ -32,6 +32,9 @@ namespace JJ.Business.QuestionAndAnswer.Import
         private Action<string> _progressCallback;
         private Func<bool> _isCancelledCallback;
 
+        private string _categoryIdenfier;
+
+        /// <param name="categoryIdentifier">Defines an extra category to use for the converter.</param>
         public Importer(
             IQuestionRepository questionRepository,
             IAnswerRepository answerRepository,
@@ -40,7 +43,8 @@ namespace JJ.Business.QuestionAndAnswer.Import
             IQuestionLinkRepository questionLinkRepository,
             IQuestionTypeRepository questionTypeRepository,
             ISourceRepository sourceRepository, 
-            Source source)
+            Source source,
+            string categoryIdenfier)
         {
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");
@@ -60,6 +64,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
             _sourceRepository = sourceRepository;
 
             _source = source;
+            _categoryIdenfier = categoryIdenfier;
         }
 
         public void Execute(string filePath, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
@@ -132,7 +137,8 @@ namespace JJ.Business.QuestionAndAnswer.Import
                 _questionLinkRepository,
                 _questionTypeRepository,
                 _sourceRepository,
-                _source);
+                _source,
+                _categoryIdenfier);
         }
 
         private void DeleteExistingQuestions()

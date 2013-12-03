@@ -16,9 +16,9 @@ using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 {
-    public class W3CSpecCss21_LooseDefinition_Converter : ConverterBase<W3CSpecCss21_LooseDefinition_ImportModel>
+    public class LooseDefinitionConverter : ConverterBase<LooseDefinitionImportModel>
     {
-        public W3CSpecCss21_LooseDefinition_Converter(
+        public LooseDefinitionConverter(
             IQuestionRepository questionRepository,
             IAnswerRepository answerRepository,
             ICategoryRepository categoryRepository,
@@ -26,25 +26,26 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             IQuestionLinkRepository questionLinkRepository,
             IQuestionTypeRepository questionTypeRepository,
             ISourceRepository sourceRepository,
-            Source source)
-            : base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source)
+            Source source,
+            string categoryIdentifier)
+            : base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source, categoryIdentifier)
         { }
 
-        public override void ConvertToEntities(W3CSpecCss21_LooseDefinition_ImportModel model)
+        public override void ConvertToEntities(LooseDefinitionImportModel model)
         {
             TryConvertToQuestionFromMeaningToTerm(model);
             TryConvertToQuestionFromTermToMeaning(model);
         }
 
-        private void TryConvertToQuestionFromMeaningToTerm(W3CSpecCss21_LooseDefinition_ImportModel model)
+        private void TryConvertToQuestionFromMeaningToTerm(LooseDefinitionImportModel model)
         {
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
             string context = FormatContextForInQuestion(model.Context);
             string term = FormatTerm(model.Term);
-            string meaning = GetMeaningForInQuestion(model);
-            string hashTextLinkText = TrimValue(model.HashTagLinkText);
+            string meaning = GetMeaningForInQuestion(term, model.Meaning);
+            string hashTextLinkText = ImportHelper.TrimValue(model.HashTagLinkText);
 
             // Set texts
             question.Text = String.Format("In relation to {0}, what term or keyword is described as follows: {1}?", context, meaning);
@@ -61,16 +62,16 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             // Add categories
-            AddCategory(question, "Css3", "Properties", "BoxModel");
-            AddCategory(question, "Css3", "Properties", "MeaningToTerm");
-            AddCategory(question, "Css3", "Properties", term);
-            ScanTextForExistingCategoriesAndLinkQuestionToThem(question, context);
+            AddCategories(question, term);
+            AddCategory(question, "Css3", "Properties", "Aspects", "MeaningToTerm");
+
+            //ScanTextForExistingCategoriesAndLinkQuestionToThem(question, context);
 
             // Validate result
             ValidateQuestion(question);
         }
 
-        private void TryConvertToQuestionFromTermToMeaning(W3CSpecCss21_LooseDefinition_ImportModel model)
+        private void TryConvertToQuestionFromTermToMeaning(LooseDefinitionImportModel model)
         {
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
@@ -78,7 +79,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             string context = FormatContextForInQuestion(model.Context);
             string term = FormatTerm(model.Term);
             string meaning = GetFirstSentence(model.Meaning);
-            string hashTextLinkText = TrimValue(model.HashTagLinkText);
+            string hashTextLinkText = ImportHelper.TrimValue(model.HashTagLinkText);
 
             // Set texts
             question.Text = String.Format("In relation to {0}, what does '{1}' mean?", context, term);
@@ -95,10 +96,10 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             // Add categories
-            AddCategory(question, "Css3", "Properties", "BoxModel");
-            AddCategory(question, "Css3", "Properties", "TermToMeaning");
-            AddCategory(question, "Css3", "Properties", term);
-            ScanTextForExistingCategoriesAndLinkQuestionToThem(question, context);
+            AddCategories(question, term);
+            AddCategory(question, "Css3", "Properties", "Aspects", "LooseDefinitions");
+
+            //ScanTextForExistingCategoriesAndLinkQuestionToThem(question, context);
 
             // Validate result
             ValidateQuestion(question);
@@ -123,44 +124,26 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
         /// Takes into consideration the fact that terms can be stacked up with the words 'and' and 'or'.
         /// Cut away the period at the end, so the meaning can be followed by a question mark (?).
         /// </summary>
-        private string GetMeaningForInQuestion(W3CSpecCss21_LooseDefinition_ImportModel model)
+        private string GetMeaningForInQuestion(string term, string meaning)
         {
-            string meaning = model.Meaning;
-
             meaning = GetFirstSentence(meaning);
 
+            meaning = ImportHelper.TrimValue(meaning);
+
             // Replace the term(s) in the meaning with '...'.
-            string[] terms = model.Term.Split(new string[] { " and ", " or " });
-            foreach (string term in terms)
+            foreach (string term2 in ImportHelper.SplitPluralTerm(term))
             {
-                meaning = GetMeaningForInQuestion(term, meaning);
+                meaning = meaning.Replace("The " + term, "...", ignoreCase: true);
+                meaning = meaning.Replace(" the " + term, " ...", ignoreCase: true);
+                meaning = meaning.Replace("A " + term, "...", ignoreCase: true);
+                meaning = meaning.Replace(" a " + term, " ...", ignoreCase: true);
+                meaning = meaning.Replace(term, "...", ignoreCase: true);
             }
 
             // Cut away period from the end, so that it can be followed by a question mark (?).
             meaning = meaning.CutRight(".");
 
             return meaning;
-        }
-
-        /// <summary> Replaces the term itself by a placeholder '...' so that the definition can be used in a question without giving away the answer. </summary>
-        private string GetMeaningForInQuestion(string term, string meaning)
-        {
-            meaning = TrimValue(meaning);
-            meaning = meaning.Replace("The " + term, "...");
-            meaning = meaning.Replace(" the " + term, " ...");
-            meaning = meaning.Replace("A " + term, "...");
-            meaning = meaning.Replace(" a " + term, " ...");
-            meaning = meaning.Replace(term, "...");
-            return meaning;
-        }
-
-        /// <summary> Trims and cuts off &lt; from the beginning and &gt; from the end. </summary>
-        private string FormatTerm(string value)
-        {
-            value = TrimValue(value);
-            value = value.CutLeft("<");
-            value = value.CutRight(">");
-            return value;
         }
 
         /// <summary> De-capitalizes the first letter. </summary>
@@ -177,15 +160,37 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             return context;
         }
 
-        /// <summary> Trims, but does not throw exception when value is null. </summary>
-        private string TrimValue(string value)
+        /// <summary> 
+        /// Calls ImportHelper.ApplySubstitutionsAndTrim, which replaces complicated syntax symbols and placeholders with concrete content,
+        /// calls ImportHelper.FormatTerm, which trims, cuts off surrounding &lt; and &gt;, cuts off surrounding single quotes (') and cuts off leading asterisk (*).
+        /// This method also cuts away ugly parts like '(In HTML: CAPTION)'.
+        /// </summary>
+        private string FormatTerm(string value)
         {
-            if (String.IsNullOrEmpty(value)) 
+            // I wanted to replace anything in parenthesis, but I could not figure out the regex,
+            // and I gave up when I realized I would probably only want to replace specific ugly parts,
+            // Not everything in parenthesis.
+            /*Regex regex = new Regex(@"[^\(]*(\([^\)]*\))[^\(]*");
+            string output = regex.Replace(input, "");
+            if (input != output)
             {
-                return value;
             }
+            return output;*/
 
-            return value.Trim();
+            value = ImportHelper.ApplySubstitutionsAndTrim(value);
+            value = ImportHelper.FormatTerm(value);
+
+            value = value.Replace("(In HTML: TABLE)", "");
+            value = value.Replace("(In HTML: TR)", "");
+            value = value.Replace("(In HTML: TBODY)", "");
+            value = value.Replace("(In HTML: THEAD)", "");
+            value = value.Replace("(In HTML: TFOOT)", "");
+            value = value.Replace("(In HTML: COL)", "");
+            value = value.Replace("(In HTML: COLGROUP)", "");
+            value = value.Replace("(In HTML: TD, TH)", "");
+            value = value.Replace("(In HTML: CAPTION)", "");
+
+            return value;
         }
 
         /// <summary> Gets the text up until the first period (.) or until the end of the string. </summary>
@@ -200,6 +205,32 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             return match.Value;
+        }
+
+        private void AddCategories(Question question, string term)
+        {
+            AddCategory(question, "Css3", "Properties", "Aspects", "LooseDefinitions");
+
+            if (!String.IsNullOrEmpty(_categoryIdentifier))
+            {
+                AddCategory(question, "Css3", "Properties", _categoryIdentifier);
+            }
+            else
+            {
+                AddCategory(question, "Css3", "Properties");
+            }
+
+            foreach (string propertyName2 in ImportHelper.SplitPluralTerm(term))
+            {
+                if (!String.IsNullOrEmpty(_categoryIdentifier))
+                {
+                    AddCategory(question, "Css3", "Properties", _categoryIdentifier, ImportHelper.FormatTerm(propertyName2));
+                }
+                else
+                {
+                    AddCategory(question, "Css3", "Properties", ImportHelper.FormatTerm(propertyName2));
+                }
+            }
         }
 
         private void ScanTextForExistingCategoriesAndLinkQuestionToThem(Question question, string context)

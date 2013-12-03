@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
 {
-    internal static class ImportHelper
+    internal static class ImportProcess
     {
         public static void RunAllImportsFromConfiguration(Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
         {
@@ -34,10 +34,25 @@ namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
                     string sourceIdentifier = importerConfiguration.SourceIdentifier;
                     string sourceUrl = importerConfiguration.SourceUrl;
                     string sourceDescription = importerConfiguration.SourceDescription;
+                    string categoryIdentifier = importerConfiguration.CategoryIdentifier;
 
                     Type modelType = Type.GetType(importerConfiguration.ModelType);
+                    if (modelType == null)
+                    {
+                        throw new Exception( String.Format("modelType '{0}' not found.", importerConfiguration.ModelType));
+                    }
+
                     Type converterType = Type.GetType(importerConfiguration.ConverterType);
+                    if (converterType == null)
+                    {
+                        throw new Exception(String.Format("converterType '{0}' not found.", importerConfiguration.ConverterType));
+                    }
+
                     Type selectorType = Type.GetType(importerConfiguration.SelectorType);
+                    if (selectorType == null)
+                    {
+                        throw new Exception(String.Format("selectorType '{0}' not found.", importerConfiguration.SelectorType));
+                    }
 
                     IQuestionRepository questionRepository = new QuestionRepository(context, context.Location);
                     IAnswerRepository answerRepository = new AnswerRepository(context);
@@ -68,9 +83,18 @@ namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
                         questionLinkRepository,
                         questionTypeRepository,
                         sourceRepository,
-                        source);
+                        source,
+                        categoryIdentifier);
 
                     importer.Execute(inputFilePath, progressCallback, isCancelledCallback);
+
+                    if (isCancelledCallback != null)
+                    {
+                        if (isCancelledCallback())
+                        {
+                            return;
+                        }
+                    }
 
                     context.Commit();
                 }

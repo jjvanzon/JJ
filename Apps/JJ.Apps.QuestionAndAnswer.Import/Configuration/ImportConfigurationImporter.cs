@@ -29,5 +29,8 @@ namespace JJ.Apps.QuestionAndAnswer.Import.Configuration
 
         [XmlAttribute]
         public string ConverterType { get; set; }
+
+        [XmlAttribute]
+        public string CategoryIdentifier { get; set; }
     }
 }

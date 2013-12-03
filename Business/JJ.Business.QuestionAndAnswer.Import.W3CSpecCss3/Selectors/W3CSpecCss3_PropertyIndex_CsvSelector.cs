@@ -12,9 +12,9 @@ using System.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
-    public class W3CSpecCss3_PropertyIndex_CsvSelector : ISelector<W3CSpecCss3_PropertyIndex_ImportModel>
+    public class W3CSpecCss3_PropertyIndex_CsvSelector : ISelector<PropertyAspectsImportModel>
     {
-        public IEnumerable<W3CSpecCss3_PropertyIndex_ImportModel> GetSelection(Stream stream)
+        public IEnumerable<PropertyAspectsImportModel> GetSelection(Stream stream)
         {
             if (stream == null) throw new ArgumentNullException("stream");
 
@@ -25,22 +25,22 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
                 while (reader.Read())
                 {
-                    W3CSpecCss3_PropertyIndex_ImportModel model = CreateImportModel(reader);
+                    PropertyAspectsImportModel model = CreateImportModel(reader);
 
                     yield return model;
                 }
             }
         }
 
-        private W3CSpecCss3_PropertyIndex_ImportModel CreateImportModel(CsvReader reader)
+        private PropertyAspectsImportModel CreateImportModel(CsvReader reader)
         {
-            return new W3CSpecCss3_PropertyIndex_ImportModel
+            return new PropertyAspectsImportModel
             {
-                Name = reader[0],
-                Values = reader[1],
+                PropertyName = reader[0],
+                PossibleValues = reader[1],
                 InitialValue = reader[2],
                 AppliesTo = reader[3],
-                Inherited = reader[4],
+                IsInherited = reader[4],
                 Percentages = reader[5],
                 Media = reader[6],
             };

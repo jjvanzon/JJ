@@ -13,7 +13,7 @@ using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
-    public class W3CSpecCss21_LooseDefinition_Selector : ISelector<LooseDefinitionImportModel>
+    public class W3CSpecCss3_LooseDefinition_Selector : ISelector<LooseDefinitionImportModel>
     {
         private class Record
         {
@@ -38,7 +38,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             foreach (Record record in GetRecords(doc))
             {
                 LooseDefinitionImportModel model = CreateDefinitionModel(record);
-                yield return model;
+
+                if (MustReturnModel(model))
+                {
+                    yield return model;
+                }
             }
         }
 
@@ -62,9 +66,33 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             }
         }
 
+        private bool MustReturnModel(LooseDefinitionImportModel model)
+        {
+            if (model.Context == null)
+            {
+                return true;
+            }
+
+            switch (model.Context.ToLower())
+            {
+                case "conformance":
+                case "cr exit criteria":
+                case "glossary":
+                    return false;
+            }
+
+            /*if (model.Context.StartsWith("W3C") &&
+                model.Context.Contains("Recommendation"))
+            {
+                return false;
+            }*/
+
+            return true;
+        }
+
         private IEnumerable<XmlNode> GetDlTags(XmlDocument doc)
         {
-            string xpath = "//dl[not(ancestor::div[@class='propdef'])]";
+            string xpath = "//dl[not(parent::div[@class='head']) and not (@class='bibliography')]";
             XmlNodeList nodes = doc.SelectNodes(xpath);
             return nodes.OfType<XmlNode>();
         }
@@ -114,7 +142,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
         private string GetHashTag(Record record)
         {
-            string xpath = "descendant::a[1]/@name";
+            string xpath = "@id";
             XmlNode node = XmlHelper.SelectNode(record.HTag, xpath);
             return node.Value;
         }

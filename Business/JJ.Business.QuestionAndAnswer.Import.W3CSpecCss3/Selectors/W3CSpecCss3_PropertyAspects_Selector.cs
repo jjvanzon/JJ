@@ -1,59 +1,49 @@
-﻿using JJ.Business.QuestionAndAnswer.Import;
-using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Common;
-using JJ.Framework.IO;
+﻿using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Framework.Xml;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
 using System.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
-    public class W3CSpecCss3_PropertyIndex_HtmlSelector : ISelector<PropertyAspectsImportModel>
+    public class W3CSpecCss3_PropertyAspects_Selector : ISelector<PropertyAspectsImportModel>
     {
         public IEnumerable<PropertyAspectsImportModel> GetSelection(Stream stream)
         {
             if (stream == null) throw new ArgumentNullException("stream");
 
-            using (var streamReader = new StreamReader(stream))
+            var streamReader = new StreamReader(stream);
+
+            string html = streamReader.ReadToEnd();
+            string xml = HtmlToXmlConverter.Convert(html);
+
+            var doc = new XmlDocument();
+            doc.LoadXml(xml);
+
+            foreach (XmlNode node in GetRecords(doc))
             {
-                string html = streamReader.ReadToEnd();
-                string xml = HtmlToXmlConverter.Convert(html);
-
-                // Make sure <br /> comes back as whitespace of InnerText.
-                xml = xml.Replace("<br />", " ");
-
-                // Trick to keep 'plural' properties separated.
-                xml = xml.Replace("<code>", "<code> ");
-
-                XmlDocument doc = new XmlDocument();
-                doc.LoadXml(xml);
-
-                foreach (XmlNode node in GetRecords(doc))
-                {
-                    PropertyAspectsImportModel importModel = CreateImportModel(node);
-                    yield return importModel;
-                }
+                PropertyAspectsImportModel importModel = CreatePropertyDefinitionModel(node);
+                yield return importModel;
             }
         }
 
         private IEnumerable<XmlNode> GetRecords(XmlDocument doc)
         {
-            string xpath = "//table[@class='proptable']/tbody/tr";
+            string xpath = "//table[@class='propdef']";
             XmlNodeList nodes = doc.SelectNodes(xpath);
             return nodes.OfType<XmlNode>();
         }
 
-        private PropertyAspectsImportModel CreateImportModel(XmlNode node)
+        private PropertyAspectsImportModel CreatePropertyDefinitionModel(XmlNode node)
         {
-            var model = new PropertyAspectsImportModel
+            return new PropertyAspectsImportModel
             {
+                HashTag = GetHashTag(node),
+
                 PropertyName = GetName(node),
                 PossibleValues = GetPossibleValues(node),
                 InitialValue = GetInitialValue(node),
@@ -61,101 +51,134 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
                 IsInherited = GetIsInherited(node),
                 Percentages = GetPercentages(node),
                 Media = GetMedia(node),
-                
+                ComputedValue = GetComputedValue(node),
+                IsAnimatable = GetIsAnimatable(node),
+
                 NameLinks = GetNameLinks(node).ToList(),
                 PossibleValuesLinks = GetPossibleValuesLinks(node).ToList(),
                 InitialValueLinks = GetInitialValueLinks(node).ToList(),
                 AppliesToLinks = GetAppliesToLinks(node).ToList(),
                 IsInheritedLinks = GetIsInheritedLinks(node).ToList(),
                 PercentagesLinks = GetPercentagesLinks(node).ToList(),
-                MediaLinks = GetMediaLinks(node).ToList()
+                MediaLinks = GetMediaLinks(node).ToList(),
+                ComputedValueLinks = GetComputedValueLinks(node).ToList(),
+                IsAnimatableLinks = GetIsAnimatableLinks(node).ToList()
             };
+        }
 
-            return model;
+        private string GetHashTag(XmlNode node)
+        {
+            string xpath = "descendant::dfn[1]/@id";
+            XmlNode node2 = XmlHelper.SelectNode(node, xpath);
+            return node2.Value;
         }
 
         private string GetName(XmlNode node)
         {
-            string xpath = "th";
+            string xpath = "descendant::tr[1]/td";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetPossibleValues(XmlNode node)
         {
-            string xpath = "td[1]";
+            string xpath = "descendant::tr[2]/td";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetInitialValue(XmlNode node)
         {
-            string xpath = "td[2]";
+            string xpath = "descendant::tr[3]/td";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetAppliesTo(XmlNode node)
         {
-            string xpath = "td[3]";
+            string xpath = "descendant::tr[4]/td";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetIsInherited(XmlNode node)
         {
-            string xpath = "td[4]";
+            string xpath = "descendant::tr[5]/td";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetPercentages(XmlNode node)
         {
-            string xpath = "td[5]";
+            string xpath = "descendant::tr[6]/td";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetMedia(XmlNode node)
         {
-            string xpath = "td[6]";
+            string xpath = "descendant::tr[7]/td";
+            string value = SelectText(node, xpath);
+            return value;
+        }
+
+        private string GetComputedValue(XmlNode node)
+        {
+            string xpath = "descendant::tr[8]/td";
+            string value = SelectText(node, xpath);
+            return value;
+        }
+
+        private string GetIsAnimatable(XmlNode node)
+        {
+            string xpath = "descendant::tr[9]/td";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private IEnumerable<LinkModel> GetNameLinks(XmlNode node)
         {
-            return GetLinks(node, "th/a");
+            return GetLinks(node, "descendant::tr[1]/descendant::a[@href]");
         }
 
         private IEnumerable<LinkModel> GetPossibleValuesLinks(XmlNode node)
         {
-            return GetLinks(node, "td[1]/a");
+            return GetLinks(node, "descendant::tr[2]/descendant::a[@href]");
         }
 
         private IEnumerable<LinkModel> GetInitialValueLinks(XmlNode node)
         {
-            return GetLinks(node, "td[2]/a");
+            return GetLinks(node, "descendant::tr[3]/descendant::a[@href]");
         }
 
         private IEnumerable<LinkModel> GetAppliesToLinks(XmlNode node)
         {
-            return GetLinks(node, "td[3]/a");
+            return GetLinks(node, "descendant::tr[4]/descendant::a[@href]");
         }
 
         private IEnumerable<LinkModel> GetIsInheritedLinks(XmlNode node)
         {
-            return GetLinks(node, "td[4]/a");
+            return GetLinks(node, "descendant::tr[5]/descendant::a[@href]");
         }
 
         private IEnumerable<LinkModel> GetPercentagesLinks(XmlNode node)
         {
-            return GetLinks(node, "td[5]/a");
+            return GetLinks(node, "descendant::tr[6]/descendant::a[@href]");
         }
 
         private IEnumerable<LinkModel> GetMediaLinks(XmlNode node)
         {
-            return GetLinks(node, "td[6]/a");
+            return GetLinks(node, "descendant::tr[7]/descendant::a[@href]");
+        }
+
+        private IEnumerable<LinkModel> GetComputedValueLinks(XmlNode node)
+        {
+            return GetLinks(node, "descendant::tr[8]/descendant::a[@href]");
+        }
+
+        private IEnumerable<LinkModel> GetIsAnimatableLinks(XmlNode node)
+        {
+            return GetLinks(node, "descendant::tr[9]/descendant::a[@href]");
         }
 
         private IEnumerable<LinkModel> GetLinks(XmlNode node, string xpath)
@@ -190,7 +213,6 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             XmlNode node2 = XmlHelper.SelectNode(node, xpath);
             return node2.Value;
         }
-
         // Helpers
 
         private string SelectText(XmlNode node, string xpath)

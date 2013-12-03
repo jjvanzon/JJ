@@ -4,21 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using JJ.Framework.Common;
+using JJ.Framework.Validation;
+using JJ.Models.QuestionAndAnswer;
+using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
-using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
-using JJ.Framework.Validation;
-using JJ.Framework.Common;
 using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 {
-    public class W3CSpecCss21_PropertyAspects_Converter : ConverterBase<W3CSpecCss21_PropertyAspects_ImportModel>
+    public class PropertyAspectsConverter : ConverterBase<PropertyAspectsImportModel>
     {
-        public W3CSpecCss21_PropertyAspects_Converter(
+        private bool INCLUDE_ANSWERS_THAT_ARE_REFERENCES = true;
+
+        public PropertyAspectsConverter(
             IQuestionRepository questionRepository,
             IAnswerRepository answerRepository,
             ICategoryRepository categoryRepository,
@@ -26,25 +28,27 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             IQuestionLinkRepository questionLinkRepository,
             IQuestionTypeRepository questionTypeRepository,
             ISourceRepository sourceRepository,
-            Source source)
-            : base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source)
+            Source source,
+            string categoryIdentifier)
+            : base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source, categoryIdentifier)
         { }
 
-        public override void ConvertToEntities(W3CSpecCss21_PropertyAspects_ImportModel model)
+        public override void ConvertToEntities(PropertyAspectsImportModel model)
         {
-            TryConvertToQuestionAboutValues(model);
+            TryConvertToQuestionAboutPossibleValues(model);
             TryConvertToQuestionAboutInitialValue(model);
             TryConvertToQuestionAboutAppliesToElements(model);
             TryConvertToQuestionAboutIsInherited(model);
             TryConvertToQuestionAboutPercentages(model);
             TryConvertToQuestionAboutMedia(model);
             TryConvertToQuestionAboutComputedValue(model);
+            TryConvertToQuestionAboutIsAnimatable(model);
         }
 
-        private void TryConvertToQuestionAboutValues(W3CSpecCss21_PropertyAspects_ImportModel model)
+        private void TryConvertToQuestionAboutPossibleValues(PropertyAspectsImportModel model)
         {
             // Check conditions
-            if (!MustConvertToQuestionAboutValues(model.Value))
+            if (!MustConvertToQuestionAboutPossibleValues(model.PossibleValues))
             {
                 return;
             }
@@ -52,7 +56,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string propertyName = FormatPropertyName(model.Name);
+            string propertyName = ImportHelper.FormatTerm(model.PropertyName);
 
             // Set texts
             if (!IsPlural(propertyName))
@@ -69,33 +73,37 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 question.Text += " (shorthand property)";
             }
 
-            question.Answers[0].Text = FormatAnswer(model.Value);
+            question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.PossibleValues);
 
             // Create links
-            QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
-            hashTagLink.LinkTo(question);
+            if (!String.IsNullOrEmpty(model.HashTag))
+            {
+                QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
+                hashTagLink.LinkTo(question);
+            }
 
-            foreach (LinkModel linkModel in model.NameLinks.Union(model.ValueLinks))
+            foreach (LinkModel linkModel in model.NameLinks.Union(model.PossibleValuesLinks))
             {
                 QuestionLink link = ConvertToLink(linkModel);
                 link.LinkTo(question);
             }
 
             // Add categories
-            AddCategory(question, "Css3", "Properties", "PossibleValues");
-            AddCategory(question, "Css3", "Properties", "BoxModel");
-            foreach (string propertyName2 in propertyName.Split(',').TrimAll())
-            {
-                AddCategory(question, "Css3", "Properties", propertyName2);
-            }
+            AddCategories(question, propertyName);
+            AddCategory(question, "Css3", "Properties", "Aspects", "PossibleValues");
 
             // Validate result
             ValidateQuestion(question);
         }
 
-        private bool MustConvertToQuestionAboutValues(string answer)
+        private bool MustConvertToQuestionAboutPossibleValues(string answer)
         {
             if (answer == "see individual properties")
+            {
+                return false;
+            }
+
+            if (!INCLUDE_ANSWERS_THAT_ARE_REFERENCES && ContainsSee(answer))
             {
                 return false;
             }
@@ -103,21 +111,18 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             return true;
         }
 
-        private bool IsComplexShorthandProperty(W3CSpecCss21_PropertyAspects_ImportModel importModel)
+        private bool IsComplexShorthandProperty(PropertyAspectsImportModel importModel)
         {
-            if (importModel.Value == null) return false;
+            if (importModel.PossibleValues == null) return false;
 
-            return importModel.Value.Contains("||");
-
-            // This one might be relevant when you use this same code in other imports.
-            /*return importModel.Value.Contains("||") &&
-                   importModel.Name != "text-decoration";*/
+            return importModel.PossibleValues.Contains("||") &&
+                   importModel.PropertyName != "text-decoration"; // Special case where values syntax contains || even though it is not complex shorthand.
         }
 
-        private void TryConvertToQuestionAboutInitialValue(W3CSpecCss21_PropertyAspects_ImportModel model)
+        private void TryConvertToQuestionAboutInitialValue(PropertyAspectsImportModel model)
         {
             // Check conditions
-            if (!MustConvertToQuestionAboutInitialValue(model.Initial))
+            if (!MustConvertToQuestionAboutInitialValue(model.InitialValue))
             {
                 return;
             }
@@ -125,7 +130,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string propertyName = FormatPropertyName(model.Name);
+            string propertyName = ImportHelper.FormatTerm(model.PropertyName);
 
             // Set texts
             if (!IsPlural(propertyName))
@@ -134,28 +139,26 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
             else
             {
-                // TODO: Use same phrase in other import.
                 question.Text = String.Format("What is the initial value for the {0} properties?", FormatPluralPropertyName(propertyName));
             }
-            question.Answers[0].Text = FormatAnswer(model.Initial);
+            question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.InitialValue);
 
             // Create links
-            QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
-            hashTagLink.LinkTo(question);
+            if (!String.IsNullOrEmpty(model.HashTag))
+            {
+                QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
+                link.LinkTo(question);
+            }
 
-            foreach (LinkModel linkModel in model.NameLinks.Union(model.InitialLinks))
+            foreach (LinkModel linkModel in model.NameLinks.Union(model.InitialValueLinks))
             {
                 QuestionLink link = ConvertToLink(linkModel);
                 link.LinkTo(question);
             }
 
             // Add categories
-            AddCategory(question, "Css3", "Properties", "InitialValue");
-            AddCategory(question, "Css3", "Properties", "BoxModel");
-            foreach (string propertyName2 in propertyName.Split(',').TrimAll())
-            {
-                AddCategory(question, "Css3", "Properties", propertyName2);
-            }
+            AddCategories(question, propertyName);
+            AddCategory(question, "Css3", "Properties", "Aspects", "InitialValue");
 
             // Validate result
             ValidateQuestion(question);
@@ -168,10 +171,15 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 return false;
             }
 
+            if (!INCLUDE_ANSWERS_THAT_ARE_REFERENCES && ContainsSee(answer))
+            {
+                return false;
+            }
+
             return true;
         }
 
-        private void TryConvertToQuestionAboutAppliesToElements(W3CSpecCss21_PropertyAspects_ImportModel model)
+        private void TryConvertToQuestionAboutAppliesToElements(PropertyAspectsImportModel model)
         {
             // Check conditions
             if (!MustConvertToQuestionAboutAppliesToElements(model.AppliesTo))
@@ -182,7 +190,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string propertyName = FormatPropertyName(model.Name);
+            string propertyName = ImportHelper.FormatTerm(model.PropertyName);
 
             // Set texts
             if (!IsPlural(propertyName))
@@ -194,11 +202,21 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 question.Text = String.Format("What types of elements do the {0} properties apply to?", FormatPluralPropertyName(propertyName));
             }
 
-            question.Answers[0].Text = FormatValue(model.AppliesTo);
+            if (String.IsNullOrWhiteSpace(model.AppliesTo))
+            {
+                question.Answers[0].Text = "all";
+            }
+            else
+            {
+                question.Answers[0].Text = ImportHelper.TrimValue(model.AppliesTo);
+            }
 
             // Create links
-            QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
-            hashTagLink.LinkTo(question);
+            if (!String.IsNullOrEmpty(model.HashTag))
+            {
+                QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
+                link.LinkTo(question);
+            }
 
             foreach (LinkModel linkModel in model.NameLinks.Union(model.AppliesToLinks))
             {
@@ -207,12 +225,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             // Add categories
-            AddCategory(question, "Css3", "Properties", "AppliesToElements");
-            AddCategory(question, "Css3", "Properties", "BoxModel");
-            foreach (string propertyName2 in propertyName.Split(',').TrimAll())
-            {
-                AddCategory(question, "Css3", "Properties", propertyName2);
-            }
+            AddCategories(question, propertyName);
+            AddCategory(question, "Css3", "Properties", "Aspects", "AppliesToElements");
 
             // Validate result
             ValidateQuestion(question);
@@ -225,13 +239,18 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 return false;
             }
 
+            if (!INCLUDE_ANSWERS_THAT_ARE_REFERENCES && ContainsSee(answer))
+            {
+                return false;
+            }
+
             return true;
         }
 
-        private void TryConvertToQuestionAboutIsInherited(W3CSpecCss21_PropertyAspects_ImportModel model)
+        private void TryConvertToQuestionAboutIsInherited(PropertyAspectsImportModel model)
         {
             // Check conditions
-            if (!MustConvertToQuestionAboutIsInherited(model.Inherited))
+            if (!MustConvertToQuestionAboutIsInherited(model.IsInherited))
             {
                 return;
             }
@@ -239,7 +258,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string propertyName = FormatPropertyName(model.Name);
+            string propertyName = ImportHelper.FormatTerm(model.PropertyName);
 
             // Set texts
             if (!IsPlural(propertyName))
@@ -250,25 +269,24 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             {
                 question.Text = String.Format("Are the {0} properties inherited?", FormatPluralPropertyName(propertyName));
             }
-            question.Answers[0].Text = FormatAnswer(model.Inherited);
+            question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.IsInherited);
 
             // Create links
-            QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
-            hashTagLink.LinkTo(question);
+            if (!String.IsNullOrEmpty(model.HashTag))
+            {
+                QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
+                link.LinkTo(question);
+            }
 
-            foreach (LinkModel linkModel in model.NameLinks.Union(model.InheritedLinks))
+            foreach (LinkModel linkModel in model.NameLinks.Union(model.IsInheritedLinks))
             {
                 QuestionLink link = ConvertToLink(linkModel);
                 link.LinkTo(question);
             }
 
             // Add categories
-            AddCategory(question, "Css3", "Properties", "IsInherited");
-            AddCategory(question, "Css3", "Properties", "BoxModel");
-            foreach (string propertyName2 in propertyName.Split(',').TrimAll())
-            {
-                AddCategory(question, "Css3", "Properties", propertyName2);
-            }
+            AddCategories(question, propertyName);
+            AddCategory(question, "Css3", "Properties", "Aspects", "IsInherited");
 
             // Validate result
             ValidateQuestion(question);
@@ -281,10 +299,15 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 return false;
             }
 
+            if (!INCLUDE_ANSWERS_THAT_ARE_REFERENCES && ContainsSee(answer))
+            {
+                return false;
+            }
+
             return true;
         }
 
-        private void TryConvertToQuestionAboutPercentages(W3CSpecCss21_PropertyAspects_ImportModel model)
+        private void TryConvertToQuestionAboutPercentages(PropertyAspectsImportModel model)
         {
             // Check conditions
             if (!MustConvertToQuestionAboutPercentages(model.Percentages))
@@ -295,7 +318,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string propertyName = FormatPropertyName(model.Name);
+            string propertyName = ImportHelper.FormatTerm(model.PropertyName);
 
             // Set texts
             if (!IsPlural(propertyName))
@@ -306,11 +329,14 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             {
                 question.Text = String.Format("What can you say about percentage values for the {0} properties?", FormatPluralPropertyName(propertyName));
             }
-            question.Answers[0].Text = FormatAnswer(model.Percentages);
+            question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.Percentages);
 
             // Create links
-            QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
-            hashTagLink.LinkTo(question);
+            if (!String.IsNullOrEmpty(model.HashTag))
+            {
+                QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
+                hashTagLink.LinkTo(question);
+            }
 
             foreach (LinkModel linkModel in model.NameLinks.Union(model.PercentagesLinks))
             {
@@ -319,12 +345,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             // Add categories
-            AddCategory(question, "Css3", "Properties", "Percentages");
-            AddCategory(question, "Css3", "Properties", "BoxModel");
-            foreach (string propertyName2 in propertyName.Split(',').TrimAll())
-            {
-                AddCategory(question, "Css3", "Properties", propertyName2);
-            }
+            AddCategories(question, propertyName);
+            AddCategory(question, "Css3", "Properties", "Aspects", "Percentages");
 
             // Validate result
             ValidateQuestion(question);
@@ -332,6 +354,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutPercentages(string answer)
         {
+            if (String.IsNullOrWhiteSpace(answer))
+            {
+                return false;
+            }
+
             if (answer == "see individual properties")
             {
                 return false;
@@ -342,10 +369,15 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 return false;
             }
 
+            if (!INCLUDE_ANSWERS_THAT_ARE_REFERENCES && ContainsSee(answer))
+            {
+                return false;
+            }
+
             return true;
         }
 
-        private void TryConvertToQuestionAboutMedia(W3CSpecCss21_PropertyAspects_ImportModel model)
+        private void TryConvertToQuestionAboutMedia(PropertyAspectsImportModel model)
         {
             // Check conditions
             if (!MustConvertToQuestionAboutMedia(model.Media))
@@ -356,7 +388,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string propertyName = FormatPropertyName(model.Name);
+            string propertyName = ImportHelper.FormatTerm(model.PropertyName);
 
             // Set texts
             if (!IsPlural(propertyName))
@@ -367,11 +399,14 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             {
                 question.Text = String.Format("What media do the {0} properties apply to?", FormatPluralPropertyName(propertyName));
             }
-            question.Answers[0].Text = FormatAnswer(model.Media);
+            question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.Media);
 
             // Create links
-            QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
-            hashTagLink.LinkTo(question);
+            if (!String.IsNullOrWhiteSpace(model.HashTag))
+            {
+                QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
+                link.LinkTo(question);
+            }
 
             foreach (LinkModel linkModel in model.NameLinks.Union(model.MediaLinks))
             {
@@ -380,12 +415,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             // Add categories
-            AddCategory(question, "Css3", "Properties", "Media");
-            AddCategory(question, "Css3", "Properties", "BoxModel");
-            foreach (string propertyName2 in propertyName.Split(',').TrimAll())
-            {
-                AddCategory(question, "Css3", "Properties", propertyName2);
-            }
+            AddCategories(question, propertyName);
+            AddCategory(question, "Css3", "Properties", "Aspects", "Media");
 
             // Validate result
             ValidateQuestion(question);
@@ -398,10 +429,15 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 return false;
             }
 
+            if (!INCLUDE_ANSWERS_THAT_ARE_REFERENCES && ContainsSee(answer))
+            {
+                return false;
+            }
+
             return true;
         }
 
-        private void TryConvertToQuestionAboutComputedValue(W3CSpecCss21_PropertyAspects_ImportModel model)
+        private void TryConvertToQuestionAboutComputedValue(PropertyAspectsImportModel model)
         {
             // Check conditions
             if (!MustConvertToQuestionAboutComputedValue(model.ComputedValue))
@@ -412,7 +448,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string propertyName = FormatPropertyName(model.Name);
+            string propertyName = ImportHelper.FormatTerm(model.PropertyName);
 
             // Set texts
             if (!IsPlural(propertyName))
@@ -423,11 +459,14 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             {
                 question.Text = String.Format("What is the computed value for the {0} properties?", FormatPluralPropertyName(propertyName));
             }
-            question.Answers[0].Text = FormatAnswer(model.ComputedValue);
+            question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.ComputedValue);
 
             // Create links
-            QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
-            hashTagLink.LinkTo(question);
+            if (!String.IsNullOrWhiteSpace(model.HashTag))
+            {
+                QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
+                link.LinkTo(question);
+            }
 
             foreach (LinkModel linkModel in model.NameLinks.Union(model.ComputedValueLinks))
             {
@@ -436,12 +475,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             // Add categories
-            AddCategory(question, "Css3", "Properties", "ComputedValue");
-            AddCategory(question, "Css3", "Properties", "BoxModel");
-            foreach (string propertyName2 in propertyName.Split(',').TrimAll())
-            {
-                AddCategory(question, "Css3", "Properties", propertyName2);
-            }
+            AddCategories(question, propertyName);
+            AddCategory(question, "Css3", "Properties", "Aspects", "ComputedValue");
 
             // Validate result
             ValidateQuestion(question);
@@ -449,7 +484,17 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutComputedValue(string answer)
         {
+            if (String.IsNullOrEmpty(answer))
+            {
+                return false;
+            }
+
             if (answer == "see individual properties")
+            {
+                return false;
+            }
+
+            if (!INCLUDE_ANSWERS_THAT_ARE_REFERENCES && ContainsSee(answer))
             {
                 return false;
             }
@@ -457,7 +502,82 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             return true;
         }
 
+        private void TryConvertToQuestionAboutIsAnimatable(PropertyAspectsImportModel model)
+        {
+            // Check conditions
+            if (!MustConvertToQuestionAboutIsAnimatable(model.IsAnimatable))
+            {
+                return;
+            }
+
+            // Create question
+            Question question = ConvertToQuestion_BaseMethod();
+
+            string propertyName = ImportHelper.FormatTerm(model.PropertyName);
+
+            // Set texts
+            if (!IsPlural(propertyName))
+            {
+                question.Text = String.Format("Is the {0} property animatable?", propertyName);
+            }
+            else
+            {
+                question.Text = String.Format("Are the {0} properties animatable?", FormatPluralPropertyName(propertyName));
+            }
+            question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.IsAnimatable);
+
+            // Create links
+            if (!String.IsNullOrEmpty(model.HashTag))
+            {
+                QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
+                link.LinkTo(question);
+            }
+
+            foreach (LinkModel linkModel in model.NameLinks.Union(model.IsAnimatableLinks))
+            {
+                QuestionLink link = ConvertToLink(linkModel);
+                link.LinkTo(question);
+            }
+
+            // Add categories
+            AddCategories(question, propertyName);
+            AddCategory(question, "Css3", "Properties", "Aspects", "IsAnimatable");
+
+            // Validate result
+            ValidateQuestion(question);
+        }
+
+        private bool MustConvertToQuestionAboutIsAnimatable(string isAnimatable)
+        {
+            return !String.IsNullOrEmpty(isAnimatable);
+        }
+
         // Helpers
+
+        private void AddCategories(Question question, string propertyName)
+        {
+            //AddCategory(question, "Css3", "Properties", "PropertyAspects");
+            if (!String.IsNullOrEmpty(_categoryIdentifier))
+            {
+                AddCategory(question, "Css3", "Properties", _categoryIdentifier);
+            }
+            else
+            {
+                AddCategory(question, "Css3", "Properties");
+            }
+
+            foreach (string propertyName2 in ImportHelper.SplitPluralProperty(propertyName))
+            {
+                if (!String.IsNullOrEmpty(_categoryIdentifier))
+                {
+                    AddCategory(question, "Css3", "Properties", _categoryIdentifier, ImportHelper.FormatTerm(propertyName2));
+                }
+                else
+                {
+                    AddCategory(question, "Css3", "Properties", ImportHelper.FormatTerm(propertyName2));
+                }
+            }
+        }
 
         private QuestionLink CreateHashTagLink(string propertyName, string hashTag)
         {
@@ -470,6 +590,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             return link;
         }
 
+        private bool ContainsSee(string value)
+        {
+            Regex regex = new Regex(@"\bsee\b");
+            return regex.IsMatch(value);
+        }
+
+        /// <summary> Returns whether the name is plural based on whether the trimmed value contains spaces. </summary>
         private bool IsPlural(string name)
         {
             if (name == null) return false;
@@ -477,6 +604,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             return name.Trim().Contains(" ");
         }
 
+        /*/// <summary> Removes quotes and trims. </summary>
         private string FormatPropertyName(string value)
         {
             if (value == null) return null;
@@ -484,72 +612,15 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             value = value.Replace("'", "");
 
             return value.Trim();
-        }
+        }*/
 
-        // TODO: also do this in ImportW3CSpecCss3PropertyIndex.
         private string FormatPluralPropertyName(string value)
         {
             if (value == null) return null;
 
-            string[] propertyNames = value.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).TrimAll();
+            string[] propertyNames = ImportHelper.SplitPluralProperty(value);
 
             return String.Join(", ", propertyNames.Take(propertyNames.Length - 1)) + " and " + propertyNames.Last();
-        }
-
-        private string FormatValue(string value)
-        {
-            if (value == null) return null;
-
-            return value.Trim();
-        }
-
-        private void ValidateQuestion(Question question)
-        {
-            IValidator validator = new QuestionOpenQuestionValidator(question);
-            validator.Verify();
-        }
-
-        private Dictionary<string, string> _substitutionsInAnswer = new Dictionary<string, string>
-        {
-            { " | "                , ", "                                                                                                       },
-            { " || "               , ", "                                                                                                       },
-            { " ] [ "              , ", "                                                                                                       },
-            { "[ "                 , ""                                                                                                         },
-            { " ]"                 , ""                                                                                                         },
-            { "["                  , ""                                                                                                         },
-            { "]"                  , ""                                                                                                         },
-            { "?"                  , "(optional)"                                                                                               },
-            { "+"                  , ""                                                                                                         },
-            { "<'"                 , "<"                                                                                                        },
-            { "'>"                 , ">"                                                                                                        },
-            { "<padding-width>"    , "<length>, <percentage>"                                                                                   },
-            { "<border-style>"     , "none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset"                                },
-            { "<border-width>"     , "thin, medium, thick, <length>"                                                                            },
-            { "<shape>"            , "rect(<top>, <right>, <bottom>, <left>), rect(<length>/auto, <length>/auto, <length>/auto, <length>/auto)" },
-            { "<absolute-size>"    , "xx-small, x-small, small, medium, large, x-large, xx-large"                                               },
-            { "<relative-size>"    , "larger, smaller"                                                                                          },
-            { "<margin-width>"     , "<length>, <percentage>, auto"                                                                             },
-            { "<border-top-color>" , "<color>, transparent, inherit"                                                                            },
-            { "inherit, inherit"   , "inherit"                                                                                                  }
-        };
-
-        private string FormatAnswer(string input)
-        {
-            if (input == null)
-            {
-                return null;
-            }
-
-            string value = input;
-
-            foreach (var x in _substitutionsInAnswer)
-            {
-                value = value.Replace(x.Key, x.Value);
-            }
-
-            value = value.Trim();
-
-            return value;
         }
     }
 }

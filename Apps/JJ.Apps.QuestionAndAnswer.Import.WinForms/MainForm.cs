@@ -23,7 +23,7 @@ namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
 
         private void MainForm_OnRunProcess(object sender, EventArgs e)
         {
-            ImportHelper.RunAllImportsFromConfiguration(
+            ImportProcess.RunAllImportsFromConfiguration(
                 progressCallback: (message) => ShowProgress(message),
                 isCancelledCallback: () => !IsRunning);
         }

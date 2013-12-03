@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models
 {
-    public class W3CSpecCss21_LooseDefinition_ImportModel
+    public class LooseDefinitionImportModel
     {
         public string Context { get; set; }
         public string Term { get; set; }

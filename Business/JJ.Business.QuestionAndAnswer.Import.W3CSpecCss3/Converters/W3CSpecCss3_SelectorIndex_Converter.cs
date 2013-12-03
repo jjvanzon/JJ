@@ -25,8 +25,9 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             IQuestionLinkRepository questionLinkRepository,
             IQuestionTypeRepository questionTypeRepository,
             ISourceRepository sourceRepository,
-            Source source)
-            : base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source)
+            Source source,
+            string categoryIdentifier)
+            : base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source, categoryIdentifier)
         { }
 
         public override void ConvertToEntities(W3CSpecCss3_SelectorIndex_ImportModel model)
@@ -41,7 +42,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string pattern = FormatValue(model.Pattern);
+            string pattern = ImportHelper.TrimValue(model.Pattern);
 
             // Set texts
             if (!IsPlural(pattern))
@@ -53,7 +54,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 question.Text = String.Format("What do the selectors {0} mean?", pattern);
             }
 
-            question.Answers[0].Text = FormatValue(model.Meaning);
+            question.Answers[0].Text = ImportHelper.TrimValue(model.Meaning);
 
             // Create links
             if (model.DescribedInSectionLink != null)
@@ -86,8 +87,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string meaning = FormatValue(model.Meaning);
-            string pattern = FormatValue(model.Pattern);
+            string meaning = ImportHelper.TrimValue(model.Meaning);
+            string pattern = ImportHelper.TrimValue(model.Pattern);
 
             // Set texts
             if (!IsPlural(pattern))
@@ -131,7 +132,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Create question
             Question question = ConvertToQuestion_BaseMethod();
 
-            string pattern = FormatValue(model.Pattern);
+            string pattern = ImportHelper.TrimValue(model.Pattern);
 
             // Set texts
             if (!IsPlural(pattern))
@@ -142,7 +143,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             {
                 question.Text = String.Format("What type of selector are {0} ?", pattern);
             }
-            question.Answers[0].Text = FormatValue(model.DescribedInSection);
+            question.Answers[0].Text = ImportHelper.TrimValue(model.DescribedInSection);
 
             // Create links
             if (model.DescribedInSectionLink != null)
@@ -187,13 +188,6 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
             
             return name.Contains(" ");
-        }
-
-        private string FormatValue(string value)
-        {
-            if (value == null) return null;
-
-            return value.Trim();
         }
     }
 }
