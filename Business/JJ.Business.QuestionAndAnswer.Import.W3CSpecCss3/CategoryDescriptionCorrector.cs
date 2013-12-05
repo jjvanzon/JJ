@@ -16,6 +16,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
         public override void Execute()
         {
             CorrectCategoryDescription("Css3", "CSS3");
+            CorrectCategoryDescription("PropertyIndex", "Property Index");
 
             CorrectCategoryDescription("PropertyAspects", "Property Aspects");
             CorrectCategoryDescription("LooseDefinitions", "Loose Definitions");
@@ -28,6 +29,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
             CorrectCategoryDescription("PagedMedia", "Paged Media");
             CorrectCategoryDescription("ColorsAndBackgrounds", "Colors and Backgrounds");
             CorrectCategoryDescription("UserInterface", "User Interface");
+            CorrectCategoryDescription("BackgroundsAndBorders", "Backgrounds and Borders");
 
             CorrectCategoryDescription("PossibleValues", "Possible Values");
             CorrectCategoryDescription("InitialValue", "Initial Value");

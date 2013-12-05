@@ -75,64 +75,64 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
         private string GetName(XmlNode node)
         {
-            string xpath = "descendant::tr[1]/td";
+            string xpath = "descendant::tr[1]/*[2]";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetPossibleValues(XmlNode node)
         {
-            string xpath = "descendant::tr[2]/td";
+            string xpath = "descendant::tr[2]/*[2]";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetInitialValue(XmlNode node)
         {
-            string xpath = "descendant::tr[3]/td";
+            string xpath = "descendant::tr[3]/*[2]";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetAppliesTo(XmlNode node)
         {
-            string xpath = "descendant::tr[4]/td";
+            string xpath = "descendant::tr[4]/*[2]";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetIsInherited(XmlNode node)
         {
-            string xpath = "descendant::tr[5]/td";
+            string xpath = "descendant::tr[5]/*[2]";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetPercentages(XmlNode node)
         {
-            string xpath = "descendant::tr[6]/td";
+            string xpath = "descendant::tr[6]/*[2]";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetMedia(XmlNode node)
         {
-            string xpath = "descendant::tr[7]/td";
+            string xpath = "descendant::tr[7]/*[2]";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetComputedValue(XmlNode node)
         {
-            string xpath = "descendant::tr[8]/td";
+            string xpath = "descendant::tr[8]/*[2]";
             string value = SelectText(node, xpath);
             return value;
         }
 
         private string GetIsAnimatable(XmlNode node)
         {
-            string xpath = "descendant::tr[9]/td";
-            string value = SelectText(node, xpath);
+            string xpath = "descendant::tr[9]/*[2]";
+            string value = TrySelectText(node, xpath);
             return value;
         }
 
@@ -218,6 +218,18 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
         private string SelectText(XmlNode node, string xpath)
         {
             XmlNode node2 = XmlHelper.SelectNode(node, xpath);
+            string text = ImportHelper.FormatHtmlText(node2.InnerText);
+            return text;
+        }
+
+        private string TrySelectText(XmlNode node, string xpath)
+        {
+            XmlNode node2 = XmlHelper.TrySelectNode(node, xpath);
+            if (node2 == null)
+            {
+                return null;
+            }
+
             string text = ImportHelper.FormatHtmlText(node2.InnerText);
             return text;
         }

@@ -97,7 +97,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
             // Add categories
             AddCategories(question, term);
-            AddCategory(question, "Css3", "Properties", "Aspects", "LooseDefinitions");
+            AddCategory(question, "Css3", "Properties", "Aspects", "TermToMeaning");
 
             //ScanTextForExistingCategoriesAndLinkQuestionToThem(question, context);
 

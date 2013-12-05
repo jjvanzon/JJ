@@ -66,30 +66,6 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             }
         }
 
-        private bool MustReturnModel(LooseDefinitionImportModel model)
-        {
-            if (model.Context == null)
-            {
-                return true;
-            }
-
-            switch (model.Context.ToLower())
-            {
-                case "conformance":
-                case "cr exit criteria":
-                case "glossary":
-                    return false;
-            }
-
-            /*if (model.Context.StartsWith("W3C") &&
-                model.Context.Contains("Recommendation"))
-            {
-                return false;
-            }*/
-
-            return true;
-        }
-
         private IEnumerable<XmlNode> GetDlTags(XmlDocument doc)
         {
             string xpath = "//dl[not(parent::div[@class='head']) and not (@class='bibliography')]";
@@ -123,6 +99,25 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             string xpath = "following-sibling::dd[1]"; // [1] is required, because all dt's and dd's in a dl are sibblings.
             XmlNode ddTag = XmlHelper.SelectNode(dtTag, xpath);
             return ddTag;
+        }
+
+        private bool MustReturnModel(LooseDefinitionImportModel model)
+        {
+            if (model.Context == null)
+            {
+                return true;
+            }
+
+            switch (model.Context.ToLower())
+            {
+                case "conformance":
+                case "cr exit criteria":
+                case "glossary":
+                case "status of this document":
+                    return false;
+            }
+
+            return true;
         }
 
         private LooseDefinitionImportModel CreateDefinitionModel(Record record)

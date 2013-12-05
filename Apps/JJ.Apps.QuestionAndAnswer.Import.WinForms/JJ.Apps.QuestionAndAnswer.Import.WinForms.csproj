@@ -54,7 +54,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="IO Files\W3CSpecCss3_BackgroundsAndBorders.html">
+    <Content Include="IO Files\CSS Backgrounds and Borders Module Level 3.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="IO Files\CSS Marquee Module Level 3.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="IO Files\W3CSpecCss3_PropertyIndex.html">
