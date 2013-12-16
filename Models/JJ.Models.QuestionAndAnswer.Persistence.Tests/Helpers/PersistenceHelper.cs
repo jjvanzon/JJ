@@ -13,7 +13,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests.Helpers
     {
         public static IContext CreatePersistenceContext(string contextType)
         {
-            PersistenceConfiguration persistenceConfiguration = ConfigurationManager.GetSection<PersistenceConfiguration>();
+            PersistenceConfiguration persistenceConfiguration = CustomConfigurationManager.GetSection<PersistenceConfiguration>();
             
             return ContextFactory.CreateContext(
                 contextType,

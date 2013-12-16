@@ -8,9 +8,11 @@ namespace JJ.Models.QuestionAndAnswer
         private int _iD;
         private string _identifier;
         private string _description;
+        private bool _isActive;
         private Category _parentCategory;
         private IList<Category> _subCategories = new List<Category>();
         private IList<QuestionCategory> _categoryQuestions = new List<QuestionCategory>();
+        private IList<RunCategory> _categoryRuns = new List<RunCategory>();
 
         public virtual int ID
         {
@@ -29,6 +31,12 @@ namespace JJ.Models.QuestionAndAnswer
             get { return _identifier; }
             set { _identifier = value; }
         }
+
+        public virtual bool IsActive
+        {
+            get { return _isActive; }
+            set { _isActive = value; }
+        }
         
         public virtual Category ParentCategory
         {
@@ -46,6 +54,12 @@ namespace JJ.Models.QuestionAndAnswer
         {
             get { return _categoryQuestions; }
             set { _categoryQuestions = value; }
+        }
+
+        public virtual IList<RunCategory> CategoryRuns
+        {
+            get { return _categoryRuns; }
+            set { _categoryRuns = value; }
         }
     }
 }

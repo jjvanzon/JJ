@@ -28,6 +28,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         // Constructors
 
+        #region Constructors
+
         public QuestionPresenter()
         {
             Initialize(null, null, null);
@@ -82,6 +84,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 _context.Dispose();
             }
         }
+
+        #endregion
 
         // Actions
 

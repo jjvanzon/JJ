@@ -130,6 +130,9 @@
   <data name="Categories" xml:space="preserve">
     <value>Categories:</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language:</value>
+  </data>
   <data name="Selection" xml:space="preserve">
     <value>Selection:</value>
   </data>

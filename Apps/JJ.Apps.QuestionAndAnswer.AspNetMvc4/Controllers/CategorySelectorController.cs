@@ -12,11 +12,11 @@ using JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views;
 
 namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 {
-    public class CategorySelectorController : Controller
+    public class CategorySelectorController : MasterController
     {
         // GET: /CategorySelector/
 
-        public ViewResult Index()
+        public override ActionResult Index()
         {
             using (var presenter = new CategorySelectorPresenter())
             {

@@ -9,6 +9,8 @@ namespace JJ.Models.QuestionAndAnswer
         private string _description;
         private string _identifier;
         private string _url;
+        private bool _isActive;
+
         private IList<Question> _questions = new List<Question>();
 
         public virtual int ID
@@ -33,6 +35,12 @@ namespace JJ.Models.QuestionAndAnswer
         {
             get { return _url; }
             set { _url = value; }
+        }
+
+        public virtual bool IsActive
+        {
+            get { return _isActive; }
+            set { _isActive = value; }
         }
 
         public virtual IList<Question> Questions

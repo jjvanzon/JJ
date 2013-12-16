@@ -159,10 +159,15 @@
     <Compile Include="Controllers\CategorySelectorController.cs" />
     <Compile Include="Controllers\Helpers\ActionParameterNames.cs" />
     <Compile Include="Controllers\Helpers\ControllerNames.cs" />
+    <Compile Include="Controllers\Helpers\SessionKeys.cs" />
+    <Compile Include="Controllers\Helpers\ViewDataKeys.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Helpers\SessionWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ViewNames.cs" />
   </ItemGroup>
@@ -255,6 +260,9 @@
     <Content Include="Views\CategorySelector\_SelectedCategory.ascx" />
     <Content Include="Views\Questions\NotFound.aspx" />
     <Content Include="Views\Questions\Question.aspx" />
+    <Content Include="Views\Shared\_Header.ascx" />
+    <Content Include="Views\Shared\_Language.ascx" />
+    <Content Include="Views\Shared\_SmallLogin.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -267,10 +275,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\Site.Master" />
-    <Content Include="Views\Shared\Absolute.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

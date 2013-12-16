@@ -74,7 +74,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Helpers\ConfigurationSection.cs" />
-    <Compile Include="EntityFrameworkMappingsTests.cs" />
+    <Compile Include="QuestionAndAnswerOrmMappingsTests.cs" />
     <Compile Include="Helpers\PersistenceHelper.cs" />
     <Compile Include="IAppSettings.cs" />
     <Compile Include="QuestionRespositoryTests.cs" />

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
+    <Compile Include="Presenters\HeaderPresenter.cs" />
     <Compile Include="Presenters\QuestionPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
@@ -63,6 +64,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Titles.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\LanguageViewModel.cs" />
+    <Compile Include="ViewModels\SelectLanguageViewModel.cs" />
+    <Compile Include="ViewModels\SmallLoginViewModel.cs" />
+    <Compile Include="ViewModels\HeaderViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailViewModel.cs" />
     <Compile Include="ViewModels\LinkViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />

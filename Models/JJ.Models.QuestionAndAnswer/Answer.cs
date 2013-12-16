@@ -1,4 +1,5 @@
 using System;
+
 namespace JJ.Models.QuestionAndAnswer
 {
     public class Answer

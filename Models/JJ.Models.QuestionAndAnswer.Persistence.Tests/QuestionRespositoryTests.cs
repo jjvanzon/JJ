@@ -58,8 +58,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 
         private string[] GetContextTypes()
         {
-            //return ConfigurationManager.GetSection<ConfigurationSection>().PersistenceContextTypes;
-            return new string[] { ConfigurationManager.GetSection<PersistenceConfiguration>().ContextType };
+            //return CustomConfigurationManager.GetSection<ConfigurationSection>().PersistenceContextTypes;
+            return new string[] { CustomConfigurationManager.GetSection<PersistenceConfiguration>().ContextType };
         }
     }
 }

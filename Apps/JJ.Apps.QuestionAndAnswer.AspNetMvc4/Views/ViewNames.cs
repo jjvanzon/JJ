@@ -12,5 +12,8 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views
         public const string Index = "Index";
         public const string _AvailableCategory = "_AvailableCategory";
         public const string _SelectedCategory = "_SelectedCategory";
+        public const string _SmallLogin = "_SmallLogin";
+        public const string _Language = "_Language";
+        public const string _Header = "_Header";
     }
 }

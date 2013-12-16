@@ -77,6 +77,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
+    <Compile Include="UserAnswer.cs" />
+    <Compile Include="AnswerStatus.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="RunCategory.cs" />
+    <Compile Include="Run.cs" />
+    <Compile Include="QuestionFlag.cs" />
+    <Compile Include="FlagStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionCategory.cs" />
     <Compile Include="QuestionLink.cs" />

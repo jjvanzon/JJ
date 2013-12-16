@@ -4,27 +4,41 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="77b4c420a2394ac497cbd6ba61fd4e02" Name="Diagram1" ZoomLevel="92">
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Answer" Width="1.5" PointX="7.75" PointY="3.875" />
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Question" Width="2" PointX="3.75" PointY="3.875" />
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionCategory" Width="2" PointX="3.875" PointY="7.375" />
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionLink" Width="1.5" PointX="7.875" PointY="7" />
+      <Diagram DiagramId="77b4c420a2394ac497cbd6ba61fd4e02" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Answer" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Question" Width="2" PointX="3.375" PointY="3" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionCategory" Width="2" PointX="3.75" PointY="7.75" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionLink" Width="1.5" PointX="9.5" PointY="8.125" />
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionType" Width="1.5" PointX="0.625" PointY="6.5" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Answer_Question" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Question_QuestionType" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Question" />
-        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionLink_Question" ManuallyRouted="true" >
-          <ConnectorPoint PointX="3.791748046875" PointY="6.2398893229166656" />
-          <ConnectorPoint PointX="3.791748046875" PointY="7.15625" />
-          <ConnectorPoint PointX="4.729166666666667" PointY="7.1562499999999991" />
-          <ConnectorPoint PointX="4.895833333333333" PointY="7.15625" />
-          <ConnectorPoint PointX="7.875" PointY="7.15625" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionLink_Question" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Category" Width="2" PointX="3.75" PointY="10" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Category_ParentCategory" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Category" />
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Source" Width="1.5" PointX="0.625" PointY="3.375" />
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Question_Source" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.AnswerStatus" Width="1.5" PointX="12.875" PointY="9.375" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.FlagStatus" Width="1.5" PointX="8.5" PointY="14.25" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionFlag" Width="1.5" PointX="7.5" PointY="10.875" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Run" Width="1.5" PointX="15.125" PointY="14.625" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.RunCategory" Width="1.5" PointX="5.25" PointY="15.75" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.UserAnswer" Width="1.5" PointX="12.375" PointY="6.25" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.User" Width="2.5" PointX="16.125" PointY="4" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_AnswerStatus" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Category" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlagStatus" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Question_LastModifiedByUser" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Question" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Question" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlaggedByUser" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Users" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Run_Users" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Run" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Run" />
+        <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Users" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

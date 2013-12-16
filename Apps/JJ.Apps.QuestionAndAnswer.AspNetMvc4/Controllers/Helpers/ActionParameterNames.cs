@@ -9,5 +9,6 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
     {
         public const string c = "c";
         public const string categoryID = "categoryID";
+        public const string cultureName = "cultureName";
     }
 }

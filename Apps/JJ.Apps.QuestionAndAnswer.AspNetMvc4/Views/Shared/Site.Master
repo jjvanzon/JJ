@@ -1,4 +1,7 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers" %>
 
 <!DOCTYPE html>
 
@@ -9,16 +12,45 @@
     <link rel="stylesheet" type="text/css" href="/Content/Site.css" />
     <script src="/Scripts/jquery-1.10.2.js"></script>
 
+    <script>
+        $(document).ready(function()
+        {
+
+
+        });
+    </script>
+
     <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
 </head>
 <body>
     <header>
-        <h1>Question & Answer</h1>
+        LOGO HERE
+        <br />
+
+        <h1>Q&A</h1>
+
+        <% Html.RenderPartial(ViewNames._Header, (HeaderViewModel)ViewData[ViewDataKeys.HeaderViewModel]); %>
+
     </header>
 
     <nav>
-        <a href="/CategorySelector">Select Categories</a>
-        <a href="/Questions/Question">Random Question</a>
+        <ul>
+            <li><a href="/Questions/Question">Question</a></li>
+            <li><a href="/CategorySelector">Categories</a></li>
+            <li><a>Search</a></li>
+            <li><a>Statistics</a></li>
+            <li><a>Runs</a></li>
+            <li>
+                <span id="contentManagementMenuItemSpan">Content Management</span>
+
+                <ul>
+                    <li><a>Content Sources & Imports</a></li>
+                    <li><a>Categories</a></li>
+                    <li><a>Questions</a></li>
+                    <li><a>Flagged Content</a></li>
+                </ul>
+            </li>
+        </ul>
     </nav>
 
     <div>

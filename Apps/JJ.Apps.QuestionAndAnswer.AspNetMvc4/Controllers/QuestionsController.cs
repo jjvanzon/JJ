@@ -10,11 +10,16 @@ using JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views;
 
 namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 {
-    public class QuestionsController : Controller
+    public class QuestionsController : MasterController
     {
         public QuestionsController()
         {
             ValidateRequest = false;
+        }
+
+        public override ActionResult Index()
+        {
+            return Question(null);
         }
 
         // GET: /Questions/Question

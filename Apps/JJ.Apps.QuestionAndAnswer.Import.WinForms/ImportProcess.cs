@@ -23,7 +23,7 @@ namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
     {
         public static void RunAllImportsFromConfiguration(Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
         {
-            ImportConfiguration configSection = ConfigurationManager.GetSection<ImportConfiguration>();
+            ImportConfiguration configSection = CustomConfigurationManager.GetSection<ImportConfiguration>();
 
             foreach (ImportConfigurationImporter importerConfiguration in configSection.Importers)
             {

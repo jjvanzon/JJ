@@ -7,12 +7,19 @@
     <Schema Namespace="QuestionAndAnswerDB_DEVModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="QuestionAndAnswerDB_DEVModelStoreContainer">
           <EntitySet Name="Answer" EntityType="QuestionAndAnswerDB_DEVModel.Store.Answer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AnswerStatus" EntityType="QuestionAndAnswerDB_DEVModel.Store.AnswerStatus" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Category" EntityType="QuestionAndAnswerDB_DEVModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FlagStatus" EntityType="QuestionAndAnswerDB_DEVModel.Store.FlagStatus" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Question" EntityType="QuestionAndAnswerDB_DEVModel.Store.Question" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuestionCategory" EntityType="QuestionAndAnswerDB_DEVModel.Store.QuestionCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionFlag" EntityType="QuestionAndAnswerDB_DEVModel.Store.QuestionFlag" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuestionLink" EntityType="QuestionAndAnswerDB_DEVModel.Store.QuestionLink" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuestionType" EntityType="QuestionAndAnswerDB_DEVModel.Store.QuestionType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Run" EntityType="QuestionAndAnswerDB_DEVModel.Store.Run" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RunCategory" EntityType="QuestionAndAnswerDB_DEVModel.Store.RunCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Source" EntityType="QuestionAndAnswerDB_DEVModel.Store.Source" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserAnswer" EntityType="QuestionAndAnswerDB_DEVModel.Store.UserAnswer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="QuestionAndAnswerDB_DEVModel.Store.Users" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Answer_Question" Association="QuestionAndAnswerDB_DEVModel.Store.FK_Answer_Question">
             <End Role="Question" EntitySet="Question" />
             <End Role="Answer" EntitySet="Answer" />
@@ -20,6 +27,10 @@
           <AssociationSet Name="FK_Category_ParentCategory" Association="QuestionAndAnswerDB_DEVModel.Store.FK_Category_ParentCategory">
             <End Role="Category" EntitySet="Category" />
             <End Role="Category1" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_LastModifiedByUser" Association="QuestionAndAnswerDB_DEVModel.Store.FK_Question_LastModifiedByUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Question" EntitySet="Question" />
           </AssociationSet>
           <AssociationSet Name="FK_Question_QuestionType" Association="QuestionAndAnswerDB_DEVModel.Store.FK_Question_QuestionType">
             <End Role="QuestionType" EntitySet="QuestionType" />
@@ -37,9 +48,53 @@
             <End Role="Question" EntitySet="Question" />
             <End Role="QuestionCategory" EntitySet="QuestionCategory" />
           </AssociationSet>
+          <AssociationSet Name="FK_QuestionFlag_FlaggedByUser" Association="QuestionAndAnswerDB_DEVModel.Store.FK_QuestionFlag_FlaggedByUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="QuestionFlag" EntitySet="QuestionFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFlag_FlagStatus" Association="QuestionAndAnswerDB_DEVModel.Store.FK_QuestionFlag_FlagStatus">
+            <End Role="FlagStatus" EntitySet="FlagStatus" />
+            <End Role="QuestionFlag" EntitySet="QuestionFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFlag_Question" Association="QuestionAndAnswerDB_DEVModel.Store.FK_QuestionFlag_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionFlag" EntitySet="QuestionFlag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFlag_Users" Association="QuestionAndAnswerDB_DEVModel.Store.FK_QuestionFlag_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="QuestionFlag" EntitySet="QuestionFlag" />
+          </AssociationSet>
           <AssociationSet Name="FK_QuestionLink_Question" Association="QuestionAndAnswerDB_DEVModel.Store.FK_QuestionLink_Question">
             <End Role="Question" EntitySet="Question" />
             <End Role="QuestionLink" EntitySet="QuestionLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Run_Users" Association="QuestionAndAnswerDB_DEVModel.Store.FK_Run_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Run" EntitySet="Run" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunCategory_Category" Association="QuestionAndAnswerDB_DEVModel.Store.FK_RunCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="RunCategory" EntitySet="RunCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunCategory_Run" Association="QuestionAndAnswerDB_DEVModel.Store.FK_RunCategory_Run">
+            <End Role="Run" EntitySet="Run" />
+            <End Role="RunCategory" EntitySet="RunCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAnswer_AnswerStatus" Association="QuestionAndAnswerDB_DEVModel.Store.FK_UserAnswer_AnswerStatus">
+            <End Role="AnswerStatus" EntitySet="AnswerStatus" />
+            <End Role="UserAnswer" EntitySet="UserAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAnswer_Question" Association="QuestionAndAnswerDB_DEVModel.Store.FK_UserAnswer_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="UserAnswer" EntitySet="UserAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAnswer_Run" Association="QuestionAndAnswerDB_DEVModel.Store.FK_UserAnswer_Run">
+            <End Role="Run" EntitySet="Run" />
+            <End Role="UserAnswer" EntitySet="UserAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAnswer_Users" Association="QuestionAndAnswerDB_DEVModel.Store.FK_UserAnswer_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserAnswer" EntitySet="UserAnswer" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Answer">
@@ -47,27 +102,44 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="2048" />
           <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="2048" />
           <Property Name="IsCorrectAnswer" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnswerStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="128" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParentCategoryID" Type="int" />
           <Property Name="Identifier" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="ParentCategoryID" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlagStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="128" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="2048" />
           <Property Name="SourceID" Type="int" Nullable="false" />
           <Property Name="QuestionTypeID" Type="int" Nullable="false" />
+          <Property Name="LastModifiedByUserID" Type="int" />
+          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="2048" />
+          <Property Name="IsManual" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="QuestionCategory">
           <Key>
@@ -76,6 +148,18 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="QuestionID" Type="int" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionFlag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="FlaggedByUserID" Type="int" Nullable="false" />
+          <Property Name="LastModifiedByUserID" Type="int" Nullable="false" />
+          <Property Name="FlagStatusID" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="QuestionLink">
           <Key>
@@ -93,6 +177,23 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="196" />
         </EntityType>
+        <EntityType Name="Run">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RunCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RunID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Source">
           <Key>
             <PropertyRef Name="ID" />
@@ -101,6 +202,27 @@
           <Property Name="Identifier" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="Url" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAnswer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="AnswerStatusID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RunID" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Password" Type="nvarchar" MaxLength="64" />
         </EntityType>
         <Association Name="FK_Answer_Question">
           <End Role="Question" Type="QuestionAndAnswerDB_DEVModel.Store.Question" Multiplicity="1" />
@@ -123,6 +245,18 @@
             </Principal>
             <Dependent Role="Category1">
               <PropertyRef Name="ParentCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_LastModifiedByUser">
+          <End Role="Users" Type="QuestionAndAnswerDB_DEVModel.Store.Users" Multiplicity="0..1" />
+          <End Role="Question" Type="QuestionAndAnswerDB_DEVModel.Store.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="LastModifiedByUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -174,6 +308,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_QuestionFlag_FlaggedByUser">
+          <End Role="Users" Type="QuestionAndAnswerDB_DEVModel.Store.Users" Multiplicity="1" />
+          <End Role="QuestionFlag" Type="QuestionAndAnswerDB_DEVModel.Store.QuestionFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionFlag">
+              <PropertyRef Name="FlaggedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionFlag_FlagStatus">
+          <End Role="FlagStatus" Type="QuestionAndAnswerDB_DEVModel.Store.FlagStatus" Multiplicity="1" />
+          <End Role="QuestionFlag" Type="QuestionAndAnswerDB_DEVModel.Store.QuestionFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlagStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionFlag">
+              <PropertyRef Name="FlagStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionFlag_Question">
+          <End Role="Question" Type="QuestionAndAnswerDB_DEVModel.Store.Question" Multiplicity="1" />
+          <End Role="QuestionFlag" Type="QuestionAndAnswerDB_DEVModel.Store.QuestionFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionFlag">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionFlag_Users">
+          <End Role="Users" Type="QuestionAndAnswerDB_DEVModel.Store.Users" Multiplicity="1" />
+          <End Role="QuestionFlag" Type="QuestionAndAnswerDB_DEVModel.Store.QuestionFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionFlag">
+              <PropertyRef Name="LastModifiedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_QuestionLink_Question">
           <End Role="Question" Type="QuestionAndAnswerDB_DEVModel.Store.Question" Multiplicity="1" />
           <End Role="QuestionLink" Type="QuestionAndAnswerDB_DEVModel.Store.QuestionLink" Multiplicity="*" />
@@ -183,6 +365,90 @@
             </Principal>
             <Dependent Role="QuestionLink">
               <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Run_Users">
+          <End Role="Users" Type="QuestionAndAnswerDB_DEVModel.Store.Users" Multiplicity="1" />
+          <End Role="Run" Type="QuestionAndAnswerDB_DEVModel.Store.Run" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Run">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunCategory_Category">
+          <End Role="Category" Type="QuestionAndAnswerDB_DEVModel.Store.Category" Multiplicity="1" />
+          <End Role="RunCategory" Type="QuestionAndAnswerDB_DEVModel.Store.RunCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RunCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunCategory_Run">
+          <End Role="Run" Type="QuestionAndAnswerDB_DEVModel.Store.Run" Multiplicity="1" />
+          <End Role="RunCategory" Type="QuestionAndAnswerDB_DEVModel.Store.RunCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Run">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RunCategory">
+              <PropertyRef Name="RunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAnswer_AnswerStatus">
+          <End Role="AnswerStatus" Type="QuestionAndAnswerDB_DEVModel.Store.AnswerStatus" Multiplicity="1" />
+          <End Role="UserAnswer" Type="QuestionAndAnswerDB_DEVModel.Store.UserAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserAnswer">
+              <PropertyRef Name="AnswerStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAnswer_Question">
+          <End Role="Question" Type="QuestionAndAnswerDB_DEVModel.Store.Question" Multiplicity="1" />
+          <End Role="UserAnswer" Type="QuestionAndAnswerDB_DEVModel.Store.UserAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserAnswer">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAnswer_Run">
+          <End Role="Run" Type="QuestionAndAnswerDB_DEVModel.Store.Run" Multiplicity="1" />
+          <End Role="UserAnswer" Type="QuestionAndAnswerDB_DEVModel.Store.UserAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Run">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserAnswer">
+              <PropertyRef Name="RunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAnswer_Users">
+          <End Role="Users" Type="QuestionAndAnswerDB_DEVModel.Store.Users" Multiplicity="1" />
+          <End Role="UserAnswer" Type="QuestionAndAnswerDB_DEVModel.Store.UserAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserAnswer">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -226,6 +492,61 @@
             <End Role="Source" EntitySet="Sources" />
             <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
+          <EntitySet Name="AnswerStatus1" EntityType="QuestionAndAnswerDB_DEVModel.AnswerStatus" />
+          <EntitySet Name="FlagStatus1" EntityType="QuestionAndAnswerDB_DEVModel.FlagStatus" />
+          <EntitySet Name="QuestionFlags" EntityType="QuestionAndAnswerDB_DEVModel.QuestionFlag" />
+          <EntitySet Name="Runs" EntityType="QuestionAndAnswerDB_DEVModel.Run" />
+          <EntitySet Name="RunCategories" EntityType="QuestionAndAnswerDB_DEVModel.RunCategory" />
+          <EntitySet Name="UserAnswers" EntityType="QuestionAndAnswerDB_DEVModel.UserAnswer" />
+          <EntitySet Name="Users" EntityType="QuestionAndAnswerDB_DEVModel.User" />
+          <AssociationSet Name="FK_UserAnswer_AnswerStatus" Association="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_AnswerStatus">
+            <End Role="AnswerStatu" EntitySet="AnswerStatus1" />
+            <End Role="UserAnswer" EntitySet="UserAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunCategory_Category" Association="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="RunCategory" EntitySet="RunCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFlag_FlagStatus" Association="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlagStatus">
+            <End Role="FlagStatu" EntitySet="FlagStatus1" />
+            <End Role="QuestionFlag" EntitySet="QuestionFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_LastModifiedByUser" Association="QuestionAndAnswerDB_DEVModel.FK_Question_LastModifiedByUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFlag_Question" Association="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionFlag" EntitySet="QuestionFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAnswer_Question" Association="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="UserAnswer" EntitySet="UserAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFlag_FlaggedByUser" Association="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlaggedByUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="QuestionFlag" EntitySet="QuestionFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFlag_Users" Association="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="QuestionFlag" EntitySet="QuestionFlags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Run_Users" Association="QuestionAndAnswerDB_DEVModel.FK_Run_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Run" EntitySet="Runs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunCategory_Run" Association="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Run">
+            <End Role="Run" EntitySet="Runs" />
+            <End Role="RunCategory" EntitySet="RunCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAnswer_Run" Association="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Run">
+            <End Role="Run" EntitySet="Runs" />
+            <End Role="UserAnswer" EntitySet="UserAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAnswer_Users" Association="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserAnswer" EntitySet="UserAnswers" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Answer">
           <Key>
@@ -247,6 +568,10 @@
           <NavigationProperty Name="QuestionCategories" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Question" FromRole="Question" ToRole="QuestionCategory" />
           <NavigationProperty Name="QuestionLinks" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionLink_Question" FromRole="Question" ToRole="QuestionLink" />
           <NavigationProperty Name="Source" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_Source" FromRole="Question" ToRole="Source" />
+          <Property Type="Boolean" Name="IsManual" Nullable="false" />
+          <NavigationProperty Name="LastModifiedByUser" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_LastModifiedByUser" FromRole="Question" ToRole="User" />
+          <NavigationProperty Name="QuestionFlags" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Question" FromRole="Question" ToRole="QuestionFlag" />
+          <NavigationProperty Name="UserAnswers" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Question" FromRole="Question" ToRole="UserAnswer" />
         </EntityType>
         <EntityType Name="QuestionCategory">
           <Key>
@@ -299,6 +624,8 @@
           <NavigationProperty Name="SubCategories" Relationship="QuestionAndAnswerDB_DEVModel.FK_Category_ParentCategory" FromRole="Category" ToRole="Category1" />
           <NavigationProperty Name="ParentCategory" Relationship="QuestionAndAnswerDB_DEVModel.FK_Category_ParentCategory" FromRole="Category1" ToRole="Category" />
           <NavigationProperty Name="CategoryQuestions" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionCategory_Category" FromRole="Category" ToRole="QuestionCategory" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <NavigationProperty Name="CategoryRuns" Relationship="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Category" FromRole="Category" ToRole="RunCategory" />
         </EntityType>
         <Association Name="FK_Category_ParentCategory">
           <End Type="QuestionAndAnswerDB_DEVModel.Category" Role="Category" Multiplicity="0..1" />
@@ -317,10 +644,131 @@
           <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Url" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Questions" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_Source" FromRole="Source" ToRole="Question" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
         </EntityType>
         <Association Name="FK_Question_Source">
           <End Type="QuestionAndAnswerDB_DEVModel.Source" Role="Source" Multiplicity="1" />
           <End Type="QuestionAndAnswerDB_DEVModel.Question" Role="Question" Multiplicity="*" />
+        </Association>
+        <EntityType Name="AnswerStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserAnswers" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_AnswerStatus" FromRole="AnswerStatu" ToRole="UserAnswer" />
+        </EntityType>
+        <EntityType Name="FlagStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QuestionFlags" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlagStatus" FromRole="FlagStatu" ToRole="QuestionFlag" />
+        </EntityType>
+        <EntityType Name="QuestionFlag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FlagStatus" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlagStatus" FromRole="QuestionFlag" ToRole="FlagStatu" />
+          <NavigationProperty Name="Question" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Question" FromRole="QuestionFlag" ToRole="Question" />
+          <NavigationProperty Name="FlaggedByUser" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlaggedByUser" FromRole="QuestionFlag" ToRole="User" />
+          <NavigationProperty Name="LastModifiedByUser" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Users" FromRole="QuestionFlag" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Run">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="QuestionAndAnswerDB_DEVModel.FK_Run_Users" FromRole="Run" ToRole="User" />
+          <NavigationProperty Name="RunCategories" Relationship="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Run" FromRole="Run" ToRole="RunCategory" />
+          <NavigationProperty Name="UserAnswers" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Run" FromRole="Run" ToRole="UserAnswer" />
+        </EntityType>
+        <EntityType Name="RunCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Category" Relationship="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Category" FromRole="RunCategory" ToRole="Category" />
+          <NavigationProperty Name="Run" Relationship="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Run" FromRole="RunCategory" ToRole="Run" />
+        </EntityType>
+        <EntityType Name="UserAnswer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AnswerStatus" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_AnswerStatus" FromRole="UserAnswer" ToRole="AnswerStatu" />
+          <NavigationProperty Name="Question" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Question" FromRole="UserAnswer" ToRole="Question" />
+          <NavigationProperty Name="Run" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Run" FromRole="UserAnswer" ToRole="Run" />
+          <NavigationProperty Name="User" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Users" FromRole="UserAnswer" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AsLastModifiedByInQuestions" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_LastModifiedByUser" FromRole="User" ToRole="Question" />
+          <NavigationProperty Name="AsFlaggedByInQuestionFlags" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlaggedByUser" FromRole="User" ToRole="QuestionFlag" />
+          <NavigationProperty Name="AsLastModifiedByInQuestionFlags" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Users" FromRole="User" ToRole="QuestionFlag" />
+          <NavigationProperty Name="Runs" Relationship="QuestionAndAnswerDB_DEVModel.FK_Run_Users" FromRole="User" ToRole="Run" />
+          <NavigationProperty Name="UserAnswers" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Users" FromRole="User" ToRole="UserAnswer" />
+        </EntityType>
+        <Association Name="FK_UserAnswer_AnswerStatus">
+          <End Type="QuestionAndAnswerDB_DEVModel.AnswerStatus" Role="AnswerStatu" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.UserAnswer" Role="UserAnswer" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_RunCategory_Category">
+          <End Type="QuestionAndAnswerDB_DEVModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.RunCategory" Role="RunCategory" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_QuestionFlag_FlagStatus">
+          <End Type="QuestionAndAnswerDB_DEVModel.FlagStatus" Role="FlagStatu" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.QuestionFlag" Role="QuestionFlag" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Question_LastModifiedByUser">
+          <End Type="QuestionAndAnswerDB_DEVModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.Question" Role="Question" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_QuestionFlag_Question">
+          <End Type="QuestionAndAnswerDB_DEVModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.QuestionFlag" Role="QuestionFlag" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_UserAnswer_Question">
+          <End Type="QuestionAndAnswerDB_DEVModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.UserAnswer" Role="UserAnswer" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_QuestionFlag_FlaggedByUser">
+          <End Type="QuestionAndAnswerDB_DEVModel.User" Role="User" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.QuestionFlag" Role="QuestionFlag" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_QuestionFlag_Users">
+          <End Type="QuestionAndAnswerDB_DEVModel.User" Role="User" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.QuestionFlag" Role="QuestionFlag" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Run_Users">
+          <End Type="QuestionAndAnswerDB_DEVModel.User" Role="User" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.Run" Role="Run" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_RunCategory_Run">
+          <End Type="QuestionAndAnswerDB_DEVModel.Run" Role="Run" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.RunCategory" Role="RunCategory" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_UserAnswer_Run">
+          <End Type="QuestionAndAnswerDB_DEVModel.Run" Role="Run" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.UserAnswer" Role="UserAnswer" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_UserAnswer_Users">
+          <End Type="QuestionAndAnswerDB_DEVModel.User" Role="User" Multiplicity="1" />
+          <End Type="QuestionAndAnswerDB_DEVModel.UserAnswer" Role="UserAnswer" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -340,6 +788,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="IsManual" ColumnName="IsManual" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -404,6 +853,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -430,6 +880,7 @@
           <EntitySetMapping Name="Sources">
             <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Source">
               <MappingFragment StoreEntitySet="Source">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
@@ -443,6 +894,162 @@
             </EndProperty>
             <EndProperty Name="Source">
               <ScalarProperty Name="ID" ColumnName="SourceID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="AnswerStatus1">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.AnswerStatus">
+              <MappingFragment StoreEntitySet="AnswerStatus">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlagStatus1">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.FlagStatus">
+              <MappingFragment StoreEntitySet="FlagStatus">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionFlags">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.QuestionFlag">
+              <MappingFragment StoreEntitySet="QuestionFlag">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Runs">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Run">
+              <MappingFragment StoreEntitySet="Run">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunCategories">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.RunCategory">
+              <MappingFragment StoreEntitySet="RunCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAnswers">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.UserAnswer">
+              <MappingFragment StoreEntitySet="UserAnswer">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_UserAnswer_AnswerStatus" TypeName="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_AnswerStatus" StoreEntitySet="UserAnswer">
+            <EndProperty Name="UserAnswer">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="AnswerStatu">
+              <ScalarProperty Name="ID" ColumnName="AnswerStatusID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_RunCategory_Category" TypeName="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Category" StoreEntitySet="RunCategory">
+            <EndProperty Name="RunCategory">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Category">
+              <ScalarProperty Name="ID" ColumnName="CategoryID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_QuestionFlag_FlagStatus" TypeName="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlagStatus" StoreEntitySet="QuestionFlag">
+            <EndProperty Name="QuestionFlag">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="FlagStatu">
+              <ScalarProperty Name="ID" ColumnName="FlagStatusID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Question_LastModifiedByUser" TypeName="QuestionAndAnswerDB_DEVModel.FK_Question_LastModifiedByUser" StoreEntitySet="Question">
+            <EndProperty Name="Question">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="LastModifiedByUserID" />
+            </EndProperty>
+            <Condition ColumnName="LastModifiedByUserID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_QuestionFlag_Question" TypeName="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Question" StoreEntitySet="QuestionFlag">
+            <EndProperty Name="QuestionFlag">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Question">
+              <ScalarProperty Name="ID" ColumnName="QuestionID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_UserAnswer_Question" TypeName="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Question" StoreEntitySet="UserAnswer">
+            <EndProperty Name="UserAnswer">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Question">
+              <ScalarProperty Name="ID" ColumnName="QuestionID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_QuestionFlag_FlaggedByUser" TypeName="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_FlaggedByUser" StoreEntitySet="QuestionFlag">
+            <EndProperty Name="QuestionFlag">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="FlaggedByUserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_QuestionFlag_Users" TypeName="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Users" StoreEntitySet="QuestionFlag">
+            <EndProperty Name="QuestionFlag">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="LastModifiedByUserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Run_Users" TypeName="QuestionAndAnswerDB_DEVModel.FK_Run_Users" StoreEntitySet="Run">
+            <EndProperty Name="Run">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_RunCategory_Run" TypeName="QuestionAndAnswerDB_DEVModel.FK_RunCategory_Run" StoreEntitySet="RunCategory">
+            <EndProperty Name="RunCategory">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Run">
+              <ScalarProperty Name="ID" ColumnName="RunID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_UserAnswer_Run" TypeName="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Run" StoreEntitySet="UserAnswer">
+            <EndProperty Name="UserAnswer">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="Run">
+              <ScalarProperty Name="ID" ColumnName="RunID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_UserAnswer_Users" TypeName="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Users" StoreEntitySet="UserAnswer">
+            <EndProperty Name="UserAnswer">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="UserID" />
             </EndProperty>
           </AssociationSetMapping>
           </EntityContainerMapping>
