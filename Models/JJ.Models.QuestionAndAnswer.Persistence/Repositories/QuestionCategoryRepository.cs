@@ -15,7 +15,6 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
         public QuestionCategoryRepository(IContext context)
         {
             if (context == null) throw new ArgumentNullException("context");
-
             _context = context;
         }
 

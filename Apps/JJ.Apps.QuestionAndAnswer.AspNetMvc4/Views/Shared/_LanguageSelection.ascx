@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SelectLanguageViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<LanguageSelectionViewModel>" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
@@ -16,12 +16,13 @@
 
 <%: Labels.Language %>
 
-<%: Html.DropDownListFor(
+<%: 
+    Html.DropDownListFor(
         x => x.SelectedLanguageCultureName,
         Model.Languages.Select(x => new SelectListItem 
         { 
             Value = x.CultureName, 
-            Text = x.Name//, 
-            //Selected = x.CultureName == Model.SelectedLanguageCultureName 
+            Text = x.Name
         }),
-        htmlAttributes: new { id = "selectedLanguageDropDownListBox" })%>
+        htmlAttributes: new { id = "selectedLanguageDropDownListBox" })
+%>

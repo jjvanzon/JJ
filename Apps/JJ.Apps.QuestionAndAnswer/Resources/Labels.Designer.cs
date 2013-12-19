@@ -106,6 +106,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selection.
         /// </summary>
         public static string Selection {
@@ -120,6 +129,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         public static string TheCorrectAnswer {
             get {
                 return ResourceManager.GetString("TheCorrectAnswer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UserName.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
     }

@@ -14,5 +14,8 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
         public const string Remove = "Remove";
         public const string Index = "Index";
         public const string SetLanguage = "SetLanguage";
+        public const string LogOut = "LogOut";
+        public const string Flag = "Flag";
+        public const string Unflag = "Unflag";
     }
 }

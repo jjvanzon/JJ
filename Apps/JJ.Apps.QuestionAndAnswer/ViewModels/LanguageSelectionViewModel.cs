@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels
 {
-    public class HeaderViewModel
+    public class LanguageSelectionViewModel
     {
-        public SmallLoginViewModel Login { get; set; }
-        public SelectLanguageViewModel Language { get; set; }
+        public string SelectedLanguageCultureName { get; set; }
+        public IList<LanguageViewModel> Languages { get; set; }
     }
 }

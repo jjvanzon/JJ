@@ -133,10 +133,16 @@
   <data name="Language" xml:space="preserve">
     <value>Taal:</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Wachtwoord:</value>
+  </data>
   <data name="Selection" xml:space="preserve">
     <value>Selectie:</value>
   </data>
   <data name="TheCorrectAnswer" xml:space="preserve">
     <value>Het correcte antwoord is:</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Gebruikersnaam:</value>
   </data>
 </root>

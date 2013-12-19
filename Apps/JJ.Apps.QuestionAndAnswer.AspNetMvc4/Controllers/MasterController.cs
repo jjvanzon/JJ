@@ -1,6 +1,8 @@
 ﻿using JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers;
+using JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -20,27 +22,32 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var presenter = new HeaderPresenter();
-
-            HeaderViewModel viewModel = presenter.Show();
-
-            SetHeaderViewModel(viewModel);
-        }
-
-        public ActionResult SetLanguage(string cultureName)
-        {
-            var presenter = new HeaderPresenter();
-
-            HeaderViewModel viewModel = presenter.SetLanguage(cultureName);
-
-            SetHeaderViewModel(viewModel);
-
-            GetSessionWrapper().CultureName = viewModel.Language.SelectedLanguageCultureName;
-
-            return RedirectToAction(ActionNames.Index);
+            OnActionExecuted_SetLanguageSelectionViewModel();
+            OnActionExecuted_EnsureLoginViewModel();
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            OnActionExecuting_SetCurrentCulture();
+        }
+
+        private SessionWrapper GetSessionWrapper()
+        {
+            return new SessionWrapper(Session);
+        }
+
+        // Language
+
+        private void OnActionExecuted_SetLanguageSelectionViewModel()
+        {
+            var presenter = new LanguageSelectionPresenter();
+
+            LanguageSelectionViewModel viewModel = presenter.Show();
+
+            SetLanguageSelectionViewModel(viewModel);
+        }
+
+        private void OnActionExecuting_SetCurrentCulture()
         {
             string cultureName = GetSessionWrapper().CultureName;
 
@@ -50,9 +57,27 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             }
         }
 
-        private void SetHeaderViewModel(HeaderViewModel viewModel)
+        public ActionResult SetLanguage(string cultureName)
         {
-            ViewData[ViewDataKeys.HeaderViewModel] = viewModel;
+            var presenter = new LanguageSelectionPresenter();
+
+            LanguageSelectionViewModel viewModel = presenter.SetLanguage(cultureName);
+
+            SetLanguageSelectionViewModel(viewModel);
+
+            GetSessionWrapper().CultureName = viewModel.SelectedLanguageCultureName;
+
+            return RedirectToAction(ActionNames.Index);
+        }
+
+        public LanguageSelectionViewModel GetLanguageSelectionViewModel()
+        {
+            return (LanguageSelectionViewModel)ViewData[ViewDataKeys.LanguageSelectionViewModel];
+        }
+
+        private void SetLanguageSelectionViewModel(LanguageSelectionViewModel viewModel)
+        {
+            ViewData[ViewDataKeys.LanguageSelectionViewModel] = viewModel;
         }
 
         private void SetCurrentCulture(string cultureName)
@@ -62,9 +87,39 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
         }
 
-        private SessionWrapper GetSessionWrapper()
+        // Login
+
+        private void OnActionExecuted_EnsureLoginViewModel()
         {
-            return new SessionWrapper(Session);
+            LoginViewModel viewModel = GetLoginViewModel();
+
+            if (viewModel == null)
+            {
+                InitializeLoginViewModel();
+            }
+        }
+
+        public LoginViewModel GetLoginViewModel()
+        {
+            return GetSessionWrapper().LoginViewModel;
+        }
+
+        protected void SetLoginViewModel(LoginViewModel viewModel)
+        {
+            GetSessionWrapper().LoginViewModel = viewModel;
+        }
+
+        public ActionResult LogOut()
+        {
+            InitializeLoginViewModel();
+            return RedirectToAction(ActionNames.Index, ControllerNames.Login);
+        }
+
+        private void InitializeLoginViewModel()
+        {
+            var presenter = new SmallLoginPresenter();
+            LoginViewModel viewModel = presenter.Show();
+            SetLoginViewModel(viewModel);
         }
     }
 }

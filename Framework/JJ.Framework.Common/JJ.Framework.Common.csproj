@@ -39,10 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ValueNotSupportedException.cs" />
     <Compile Include="IEnumerableOfTExtensions.cs" />
     <Compile Include="StringExtensions.Split.cs" />
     <Compile Include="IEnumerableOfStringExtensions.cs" />
-    <Compile Include="InvalidEnumValueException.cs" />
+    <Compile Include="InvalidValueException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>

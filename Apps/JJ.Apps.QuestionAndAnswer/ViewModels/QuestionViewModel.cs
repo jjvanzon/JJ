@@ -14,5 +14,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
 
         public List<LinkViewModel> Links { get; set; }
         public List<CategoryViewModel> Categories { get; set; }
+        public QuestionFlagViewModel Flag { get; set; }
     }
 }

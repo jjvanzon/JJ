@@ -75,5 +75,13 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
                 return View(ViewNames.Question, viewModel2);
             }
         }
+
+        // POST: /Question/Flag/5
+
+        [HttpPost]
+        public ViewResult Flag(QuestionDetailViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

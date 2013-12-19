@@ -14,6 +14,7 @@ namespace JJ.Models.QuestionAndAnswer
         private System.Collections.IList _asLastModifiedByInQuestionFlags;
         private System.Collections.IList _asFlaggedByInQuestionFlags;
         private System.Collections.IList _asLastModifiedByInQuestions;
+        private System.String _securitySalt;
 
         public virtual System.Int32 Id
         {
@@ -116,6 +117,18 @@ namespace JJ.Models.QuestionAndAnswer
             set
             {
                 _asLastModifiedByInQuestions = value;
+            }
+        }
+
+        public virtual System.String SecuritySalt
+        {
+            get
+            {
+                return _securitySalt;
+            }
+            set
+            {
+                _securitySalt = value;
             }
         }
 

@@ -9,6 +9,7 @@ namespace JJ.Models.QuestionAndAnswer
         private string _name;
         private string _userName;
         private string _password;
+        private string _securitySalt;
 
         private IList<Run> _runs = new List<Run>();
         private IList<UserAnswer> _userAnswers = new List<UserAnswer>();
@@ -38,6 +39,12 @@ namespace JJ.Models.QuestionAndAnswer
         {
             get { return _password; }
             set { _password = value; }
+        }
+
+        public virtual string SecuritySalt
+        {
+            get { return _securitySalt; }
+            set { _securitySalt = value; }
         }
 
         public virtual IList<Run> Runs

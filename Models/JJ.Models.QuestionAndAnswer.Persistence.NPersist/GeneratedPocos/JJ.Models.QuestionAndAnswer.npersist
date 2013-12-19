@@ -102,6 +102,7 @@
     <property name="AsLastModifiedByInQuestionFlags" table="QuestionFlag" id-columns="LastModifiedByUserID" list="true" item-type="QuestionFlag" read-only="true" ref="ManyToOne" inverse="LastModifiedByUser" inherits-inverse="true" />
     <property name="AsFlaggedByInQuestionFlags" table="QuestionFlag" id-columns="FlaggedByUserID" list="true" item-type="QuestionFlag" read-only="true" ref="ManyToOne" inverse="FlaggedByUser" inherits-inverse="true" />
     <property name="AsLastModifiedByInQuestions" table="Question" id-columns="LastModifiedByUserID" list="true" item-type="Question" read-only="true" ref="ManyToOne" inverse="LastModifiedByUser" inherits-inverse="true" />
+    <property name="SecuritySalt" columns="SecuritySalt" type="System.String" />
   </class>
   <class name="UserAnswer" table="UserAnswer">
     <property name="Id" id="true" columns="ID" type="System.Int32" />
@@ -204,6 +205,7 @@
       <column name="Name" type="String" prec="255" length="510" scale="0" />
       <column name="Password" type="String" prec="64" allow-null="true" length="128" scale="0" />
       <column name="UserName" type="String" prec="128" length="256" scale="0" />
+      <column name="SecuritySalt" type="AnsiString" prec="128" allow-null="true" length="128" scale="0" />
     </table>
   </source>
 </domain>

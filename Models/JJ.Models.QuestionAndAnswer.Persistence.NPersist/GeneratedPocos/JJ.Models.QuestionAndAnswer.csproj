@@ -1,136 +1,157 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
-  <PropertyGroup>
-    <ProjectType>Local</ProjectType>
-    <ProductVersion>7.10.3077</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6d2bcdb9-d0b0-4449-8a67-3b536df8321d}</ProjectGuid>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon />
-    <AssemblyKeyContainerName />
-    <AssemblyName>JJ.Models.QuestionAndAnswer</AssemblyName>
-    <AssemblyOriginatorKeyFile />
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
-    <DelaySign>false</DelaySign>
-    <OutputType>Library</OutputType>
-    <RootNamespace>JJ.Models.QuestionAndAnswer</RootNamespace>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject />
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>0.0</OldToolsVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <ConfigurationOverrideFile />
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile />
-    <DebugSymbols>true</DebugSymbols>
-    <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn />
-    <Optimize>false</Optimize>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningLevel>4</WarningLevel>
-    <DebugType>full</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <ConfigurationOverrideFile />
-    <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile />
-    <DebugSymbols>false</DebugSymbols>
-    <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn />
-    <Optimize>true</Optimize>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningLevel>4</WarningLevel>
-    <DebugType>none</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Include="System.Data">
-      <Name>System.Data</Name>
-    </Reference>
-    <Reference Include="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Answer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AnswerStatus.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Category.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FlagStatus.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Question.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="QuestionCategory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="QuestionFlag.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="QuestionLink.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="QuestionType.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Run.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunCategory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Source.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="User.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UserAnswer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <EmbeddedResource Include="JJ.Models.QuestionAndAnswer.npersist" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent />
-    <PostBuildEvent />
-  </PropertyGroup>
-</Project>
+<VisualStudioProject>
+    <CSHARP
+        ProjectType = "Local"
+        ProductVersion = "7.10.3077"
+        SchemaVersion = "2.0"
+        ProjectGuid = "{f68857f3-d3f5-41d9-9566-f17b8fe9f561}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                AssemblyKeyContainerName = ""
+                AssemblyName = "JJ.Models.QuestionAndAnswer"
+                AssemblyOriginatorKeyFile = ""
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                DelaySign = "false"
+                OutputType = "Library"
+                PreBuildEvent  = ""
+                PostBuildEvent  = ""
+                RootNamespace = "JJ.Models.QuestionAndAnswer"
+                RunPostBuildEvent = "OnBuildSuccess"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "DEBUG;TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "true"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "false"
+                    OutputPath = "bin\Debug\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+                <Config
+                    Name = "Release"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "false"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "true"
+                    OutputPath = "bin\Release\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                />
+            </References>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "UserAnswer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "sysdiagram.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "FlagStatus.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "Category.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "AnswerStatus.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "Answer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "QuestionCategory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "Question.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "QuestionFlag.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "QuestionLink.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "User.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "Source.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "RunCategory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "Run.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "QuestionType.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "JJ.Models.QuestionAndAnswer.npersist"
+                    BuildAction = "EmbeddedResource"
+                />
+            </Include>
+        </Files>
+    </CSHARP>
+</VisualStudioProject>
+
+

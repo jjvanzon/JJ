@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Flag" xml:space="preserve">
+    <value>Markeren</value>
+  </data>
+  <data name="FlagContent" xml:space="preserve">
+    <value>Inhoud markeren</value>
+  </data>
   <data name="HideAnswer" xml:space="preserve">
     <value>Verberg antwoord</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Inloggen</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Uitloggen</value>
   </data>
   <data name="NextQuestion" xml:space="preserve">
     <value>Volgende vraag</value>
@@ -137,5 +149,8 @@
   </data>
   <data name="StartTraining" xml:space="preserve">
     <value>Training starten</value>
+  </data>
+  <data name="Unflag" xml:space="preserve">
+    <value>Marking verwijderen</value>
   </data>
 </root>

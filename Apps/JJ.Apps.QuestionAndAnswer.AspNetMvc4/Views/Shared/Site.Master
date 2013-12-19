@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers" %>
 
 <!DOCTYPE html>
@@ -28,8 +29,14 @@
         <br />
 
         <h1>Q&A</h1>
+        
+        <div id="languageDiv">
+            <% Html.RenderPartial(ViewNames._LanguageSelection, ((MasterController)this.ViewContext.Controller).GetLanguageSelectionViewModel()); %>
+        </div>
 
-        <% Html.RenderPartial(ViewNames._Header, (HeaderViewModel)ViewData[ViewDataKeys.HeaderViewModel]); %>
+        <div id="smallLoginDiv">
+            <% Html.RenderPartial(ViewNames._SmallLogin, ((MasterController)this.ViewContext.Controller).GetLoginViewModel()); %>
+        </div>
 
     </header>
 

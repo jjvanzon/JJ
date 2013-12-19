@@ -223,6 +223,7 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Password" Type="nvarchar" MaxLength="64" />
+          <Property Name="SecuritySalt" Type="varchar" MaxLength="128" />
         </EntityType>
         <Association Name="FK_Answer_Question">
           <End Role="Question" Type="QuestionAndAnswerDB_DEVModel.Store.Question" Multiplicity="1" />
@@ -721,6 +722,7 @@
           <NavigationProperty Name="AsLastModifiedByInQuestionFlags" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Users" FromRole="User" ToRole="QuestionFlag" />
           <NavigationProperty Name="Runs" Relationship="QuestionAndAnswerDB_DEVModel.FK_Run_Users" FromRole="User" ToRole="Run" />
           <NavigationProperty Name="UserAnswers" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Users" FromRole="User" ToRole="UserAnswer" />
+          <Property Type="String" Name="SecuritySalt" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_UserAnswer_AnswerStatus">
           <End Type="QuestionAndAnswerDB_DEVModel.AnswerStatus" Role="AnswerStatu" Multiplicity="1" />
@@ -948,6 +950,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="SecuritySalt" ColumnName="SecuritySalt" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

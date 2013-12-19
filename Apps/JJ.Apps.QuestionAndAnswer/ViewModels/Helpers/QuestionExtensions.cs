@@ -17,7 +17,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             
             return new QuestionDetailViewModel
             {
-                Question = entity.ToViewModel(),
+                Question = entity.ToViewModelWithRelatedEntities(),
                 SelectedCategories = new List<CategoryViewModel>(),
             };
         }
@@ -26,18 +26,23 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
         {
             if (entity == null) throw new ArgumentNullException("entity");
 
-            var model = new QuestionViewModel
+            return new QuestionViewModel
             {
                 ID = entity.ID,
                 Text = entity.Text,
-                // TODO: Refactor
-                Answer = entity.Answers[0].Text
+                Answer = entity.Answers[0].Text, // TODO: Refactor
+                Links = new List<LinkViewModel>(),
+                Categories = new List<CategoryViewModel>(),
             };
+        }
 
+        public static QuestionViewModel ToViewModelWithRelatedEntities(this Question entity)
+        {
+            if (entity == null) throw new ArgumentNullException("entity");
+
+            QuestionViewModel model = entity.ToViewModel();
 
             // Links
-            model.Links = new List<LinkViewModel>();
-
             foreach (QuestionLink questionLink in entity.QuestionLinks)
             {
                 var linkModel = new LinkViewModel(questionLink.Description, questionLink.Url);
@@ -45,8 +50,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             }
 
             // Categories
-            model.Categories = new List<CategoryViewModel>();
-
             foreach (Category category in entity.QuestionCategories.Select(x => x.Category))
             {
                 CategoryViewModel categoryModel = category.ToViewModel();

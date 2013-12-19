@@ -13,6 +13,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.NHibernate
             Map(x => x.Name);
             Map(x => x.UserName);
             Map(x => x.Password);
+            Map(x => x.SecuritySalt);
 
             HasMany(x => x.Runs).KeyColumn(ColumnNames.UserID).Inverse();
             HasMany(x => x.UserAnswers).KeyColumn(ColumnNames.UserID).Inverse();

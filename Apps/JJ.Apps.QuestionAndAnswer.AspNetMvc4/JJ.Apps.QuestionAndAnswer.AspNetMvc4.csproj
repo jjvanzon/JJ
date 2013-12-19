@@ -159,6 +159,7 @@
     <Compile Include="Controllers\CategorySelectorController.cs" />
     <Compile Include="Controllers\Helpers\ActionParameterNames.cs" />
     <Compile Include="Controllers\Helpers\ControllerNames.cs" />
+    <Compile Include="Controllers\Helpers\RepositoryFactory.cs" />
     <Compile Include="Controllers\Helpers\SessionKeys.cs" />
     <Compile Include="Controllers\Helpers\ViewDataKeys.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -258,10 +259,11 @@
     <Content Include="Views\CategorySelector\_AvailableCategory.ascx" />
     <Content Include="Views\CategorySelector\Index.aspx" />
     <Content Include="Views\CategorySelector\_SelectedCategory.ascx" />
+    <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Questions\NotFound.aspx" />
     <Content Include="Views\Questions\Question.aspx" />
-    <Content Include="Views\Shared\_Header.ascx" />
-    <Content Include="Views\Shared\_Language.ascx" />
+    <Content Include="Views\Questions\_SmallQuestionFlag.ascx" />
+    <Content Include="Views\Shared\_LanguageSelection.ascx" />
     <Content Include="Views\Shared\_SmallLogin.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -278,7 +280,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

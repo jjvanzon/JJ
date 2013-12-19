@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels
 {
-    public class SmallLoginViewModel
+    public class NotAuthenticatedViewModel
     {
-        public bool IsLoggedIn { get; set; }
-        public string UserName { get; set; }
     }
 }

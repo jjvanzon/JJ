@@ -56,7 +56,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             if (context == null)
             {
-                context = ContextHelper.CreateContext();
+                context = ContextHelper.CreateContextFromConfiguration();
                 contextIsOwned = true;
             }
 

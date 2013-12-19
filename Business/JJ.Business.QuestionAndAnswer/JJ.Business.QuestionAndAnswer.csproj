@@ -44,6 +44,7 @@
     <Compile Include="Extensions\AnswerExtensions.cs" />
     <Compile Include="Extensions\CategoryExtensions.cs" />
     <Compile Include="Extensions\CategoryExtensions.LinkTo.cs" />
+    <Compile Include="Extensions\QuestionFlagExtensions.cs" />
     <Compile Include="Extensions\SourceExtensions.cs" />
     <Compile Include="Extensions\QuestionCategoryExtensions.LinkTo.cs" />
     <Compile Include="Extensions\QuestionExtensions.Enums.cs" />

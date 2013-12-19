@@ -133,10 +133,16 @@
   <data name="Language" xml:space="preserve">
     <value>Language:</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password:</value>
+  </data>
   <data name="Selection" xml:space="preserve">
     <value>Selection:</value>
   </data>
   <data name="TheCorrectAnswer" xml:space="preserve">
     <value>The correct anwer is:</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User name:</value>
   </data>
 </root>
