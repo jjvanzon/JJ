@@ -11,19 +11,19 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     internal static class QuestionExtensions
     {
-        public static QuestionDetailViewModel ToDetailViewModel(this Question entity)
+        public static QuestionDetailViewModel ToDetailViewModel(this Question entity, QuestionFlag questionFlag = null)
         {
             if (entity == null) throw new ArgumentNullException("entity");
             
             return new QuestionDetailViewModel
             {
-                Question = entity.ToViewModelWithRelatedEntities(),
+                Question = entity.ToViewModelWithRelatedEntities(questionFlag),
                 SelectedCategories = new List<CategoryViewModel>(),
                 Login = new LoginViewModel(),
             };
         }
 
-        public static QuestionViewModel ToViewModelWithRelatedEntities(this Question entity)
+        public static QuestionViewModel ToViewModelWithRelatedEntities(this Question entity, QuestionFlag questionFlag = null)
         {
             if (entity == null) throw new ArgumentNullException("entity");
 
@@ -41,6 +41,11 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             {
                 CategoryViewModel categoryModel = category.ToViewModel();
                 viewModel.Categories.Add(categoryModel);
+            }
+
+            if (questionFlag != null)
+            {
+                viewModel.Flag = questionFlag.ToViewModel();
             }
 
             return viewModel;

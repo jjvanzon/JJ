@@ -82,44 +82,41 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.Question.Answer = null;
             viewModel.Question.Links.Clear(); // Links reveal answer.
             viewModel.SelectedCategories = selectedCategoryBranches.Select(x => x.ToViewModel()).ToList();
-            return viewModel;
-        }
-
-        public QuestionDetailViewModel ShowQuestion(LoginViewModel loginViewModel, params int[] categoryIDs)
-        {
-            if (loginViewModel == null) throw new NotImplementedException("loginViewModel");
-
-            QuestionDetailViewModel viewModel = ShowQuestion(categoryIDs);
-            viewModel.Login = loginViewModel;
-            ApplyLoginViewModel(viewModel, loginViewModel);
 
             return viewModel;
         }
 
         public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
         {
+            // Check conditions
             if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
             if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
+            if (viewModel.Login == null) { throw new ArgumentNullException("viewModel.Login"); }
 
-            Question model = _questionRepository.TryGet(viewModel.Question.ID);
-            if (model == null)
+            // Get entities
+            Question question = _questionRepository.TryGet(viewModel.Question.ID);
+            if (question == null)
             {
                 return NotFound(viewModel.Question.ID);
             }
+            User user = _userRepository.TryGetByUserName(viewModel.Login.UserName);
+            QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
 
-            QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
+            // Create new view model
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(questionFlag);
 
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = true;
+            if (user != null)
+            {
+                viewModel2.Question.Flag.CanFlag = true;
+            }
             if (viewModel.SelectedCategories != null)
             {
                 viewModel2.SelectedCategories = viewModel.SelectedCategories;
             }
             viewModel2.Login = viewModel.Login;
-
-            // Set user-specific properties
-            ApplyLoginViewModel(viewModel2, viewModel.Login);
 
             return viewModel2;
         }
@@ -130,27 +127,27 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
             if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
 
-            // Get entity
-            Question model = _questionRepository.TryGet(viewModel.Question.ID);
-            if (model == null)
+            // Get entities
+            Question question = _questionRepository.TryGet(viewModel.Question.ID);
+            if (question == null)
             {
                 return NotFound(viewModel.Question.ID);
             }
+            User user = _userRepository.TryGetByUserName(viewModel.Login.UserName);
+            QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
 
             // Create new view model
-            QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(questionFlag);
 
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = false;
+            viewModel2.Question.Flag.CanFlag = false;
             if (viewModel.SelectedCategories != null)
             {
                 viewModel2.SelectedCategories = viewModel.SelectedCategories;
             }
             viewModel2.Login = viewModel.Login;
-
-            // Set user-specific properties
-            ApplyLoginViewModel(viewModel2, viewModel2.Login);
 
             // Links reveal answer.
             viewModel2.Question.Links.Clear(); 
@@ -180,19 +177,16 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // Call business logic
             var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
             QuestionFlag questionFlag = questionFlagger.FlagQuestion(question, viewModel.Question.Flag.Comment);
-
             _questionFlagRepository.Commit();
 
             // Create new view model
-            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel();
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(questionFlag);
             
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
             viewModel2.Login = viewModel.Login;
-
-            // Set user-specific properties
-            ApplyLoginViewModel(viewModel2, viewModel.Login);
+            viewModel2.Question.Flag.CanFlag = viewModel.AnswerIsVisible;
 
             return viewModel2;
         }
@@ -218,7 +212,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // Call business logic
             var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
             questionFlagger.UnflagQuestion(question);
-
             _questionFlagRepository.Commit();
 
             // Create new view model
@@ -228,38 +221,23 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
             viewModel2.Login = viewModel.Login;
-
-            // Set user-specific properties
-            ApplyLoginViewModel(viewModel2, viewModel2.Login);
+            viewModel2.Question.Flag.CanFlag = viewModel.AnswerIsVisible;
 
             return viewModel2;
         }
 
-        private void ApplyLoginViewModel(QuestionDetailViewModel viewModel, LoginViewModel loginViewModel)
+        private QuestionFlag TryGetQuestionFlag(Question question, User user)
         {
-            if (loginViewModel == null)
+            if (question == null) throw new ArgumentNullException("question");
+            if (user == null)
             {
-                return;
+                return null;
             }
 
-            if (loginViewModel.IsLoggedIn)
-            {
-                User user = _userRepository.GetByUserName(loginViewModel.UserName);
-                Question question = _questionRepository.Get(viewModel.Question.ID);
+            var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
+            QuestionFlag questionFlag = questionFlagger.TryGetFlag(question);
 
-                var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
-                QuestionFlag questionFlag = questionFlagger.TryGetFlag(question);
-
-                if (questionFlag != null)
-                {
-                    viewModel.Question.Flag = questionFlag.ToViewModel();
-                }
-
-                if (viewModel.AnswerIsVisible)
-                {
-                    viewModel.Question.Flag.CanFlag = true;
-                }
-            }
+            return questionFlag;
         }
 
         private QuestionDetailViewModel NotFound(int id)

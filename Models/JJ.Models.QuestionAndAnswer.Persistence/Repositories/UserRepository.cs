@@ -29,7 +29,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 
             if (user == null)
             {
-                throw new Exception("User with UserName '{0}' not found.");
+                throw new Exception(String.Format("User with UserName '{0}' not found.", userName));
             }
 
             return user;

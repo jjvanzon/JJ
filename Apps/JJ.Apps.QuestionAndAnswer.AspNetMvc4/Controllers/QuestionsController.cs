@@ -32,14 +32,13 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         {
             QuestionPresenter presenter = CreatePresenter();
 
-            QuestionDetailViewModel viewModel = presenter.ShowQuestion(GetLoginViewModel(), c);
+            QuestionDetailViewModel viewModel = presenter.ShowQuestion(c);
 
             if (viewModel.NotFound)
             {
                 return View(ViewNames.NotFound);
             }
 
-            //return View(ViewNames.Question, viewModel);
             return View(viewModel);
         }
 

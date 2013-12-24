@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
-    public static class QuestionFlagExtensions
+    internal static class QuestionFlagExtensions
     {
         public static QuestionFlagViewModel ToViewModel(this QuestionFlag entity)
         {
