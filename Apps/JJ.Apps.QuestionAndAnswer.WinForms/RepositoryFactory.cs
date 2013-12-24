@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
+namespace JJ.Apps.QuestionAndAnswer.WinForms
 {
     internal static class RepositoryFactory
     {

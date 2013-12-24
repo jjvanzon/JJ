@@ -4,6 +4,7 @@
   <xs:complexType name="QuestionDetailViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnswerIsVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="tns:LoginViewModel" />
       <xs:element minOccurs="0" name="NotFound" type="xs:boolean" />
       <xs:element minOccurs="0" name="Question" nillable="true" type="tns:QuestionViewModel" />
       <xs:element minOccurs="0" name="SelectedCategories" nillable="true" type="tns:ArrayOfCategoryViewModel" />
@@ -11,10 +12,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="QuestionDetailViewModel" nillable="true" type="tns:QuestionDetailViewModel" />
+  <xs:complexType name="LoginViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsLoggedIn" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SecurityToken" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginViewModel" nillable="true" type="tns:LoginViewModel" />
   <xs:complexType name="QuestionViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="Answer" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Categories" nillable="true" type="tns:ArrayOfCategoryViewModel" />
+      <xs:element minOccurs="0" name="Flag" nillable="true" type="tns:QuestionFlagViewModel" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Links" nillable="true" type="tns:ArrayOfLinkViewModel" />
       <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
@@ -31,9 +43,19 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NameParts" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="SubCategories" nillable="true" type="tns:ArrayOfCategoryViewModel" />
+      <xs:element minOccurs="0" name="Visible" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CategoryViewModel" nillable="true" type="tns:CategoryViewModel" />
+  <xs:complexType name="QuestionFlagViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CanFlag" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsFlagged" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QuestionFlagViewModel" nillable="true" type="tns:QuestionFlagViewModel" />
   <xs:complexType name="ArrayOfLinkViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="LinkViewModel" nillable="true" type="tns:LinkViewModel" />

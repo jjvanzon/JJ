@@ -35,14 +35,15 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             {
                 base.SetLoginViewModel(viewModel2);
 
-                // What an assumption that we would want to go to the Quesion page. I would like to redirect to the page we were on before we tried to log in.
-                return RedirectToAction(ActionNames.Index, ControllerNames.Questions);
+                // What an assumption that we would want to go to the Question page. I would like to redirect to the page we were on before we tried to log in.
+                return RedirectToAction(ActionNames.Question, ControllerNames.Questions);
             }
         }
 
         private LoginPresenter CreatePresenter()
         {
-            IUserRepository userRepository = RepositoryFactory.CreateRepository<IUserRepository>();
+            IContext context = ContextHelper.CreateContextFromConfiguration();
+            IUserRepository userRepository = RepositoryFactory.CreateUserRepository(context);
             LoginPresenter presenter = new LoginPresenter(userRepository);
             return presenter;
         }

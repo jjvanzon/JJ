@@ -1,4 +1,6 @@
-﻿using JJ.Models.QuestionAndAnswer;
+﻿using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Models.QuestionAndAnswer;
+using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,57 +11,28 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 {
     public static class QuestionFlagExtensions
     {
-        public static void LinkTo(this QuestionFlag questionFlag, Question question)
+        public static void UnlinkRelatedEntities(this QuestionFlag questionFlag)
         {
-            questionFlag.Question = question;
-            if (!question.QuestionFlags.Contains(questionFlag))
-            {
-                question.QuestionFlags.Add(questionFlag);
-            }
-        }
+            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
 
-        public static void LinkToFlaggedByUser(this QuestionFlag questionFlag, User user)
-        {
-            questionFlag.FlaggedByUser = user;
-            if (!user.AsFlaggedByInQuestionFlags.Contains(questionFlag))
+            if (questionFlag.Question != null)
             {
-                user.AsFlaggedByInQuestionFlags.Add(questionFlag);
+                questionFlag.Unlink(questionFlag.Question);
             }
-        }
 
-        public static void LinkToLastModifiedByUser(this QuestionFlag questionFlag, User user)
-        {
-            questionFlag.LastModifiedByUser = user;
-            if (!user.AsLastModifiedByInQuestionFlags.Contains(questionFlag))
+            if (questionFlag.FlaggedByUser != null)
             {
-                user.AsLastModifiedByInQuestionFlags.Add(questionFlag);
+                questionFlag.UnlinkFlaggedByUser(questionFlag.FlaggedByUser);
             }
-        }
 
-        public static void Unlink(this QuestionFlag questionFlag, Question question)
-        {
-            questionFlag.Question = null;
-            if (question.QuestionFlags.Contains(questionFlag))
+            if (questionFlag.FlagStatus != null)
             {
-                question.QuestionFlags.Remove(questionFlag);
+                questionFlag.Unlink(questionFlag.FlagStatus);
             }
-        }
 
-        public static void UnlinkFlaggedByUser(this QuestionFlag questionFlag, User user)
-        {
-            questionFlag.FlaggedByUser = null;
-            if (user.AsFlaggedByInQuestionFlags.Contains(questionFlag))
+            if (questionFlag.LastModifiedByUser != null)
             {
-                user.AsFlaggedByInQuestionFlags.Remove(questionFlag);
-            }
-        }
-
-        public static void UnlinkLastModifiedByUser(this QuestionFlag questionFlag, User user)
-        {
-            questionFlag.LastModifiedByUser = null;
-            if (user.AsLastModifiedByInQuestionFlags.Contains(questionFlag))
-            {
-                user.AsLastModifiedByInQuestionFlags.Remove(questionFlag);
+                questionFlag.UnlinkLastModifiedByUser(questionFlag.LastModifiedByUser);
             }
         }
     }

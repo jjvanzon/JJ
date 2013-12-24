@@ -1,21 +1,31 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Apps.QuestionAndAnswer.ViewModels.QuestionViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Apps.QuestionAndAnswer.ViewModels.QuestionDetailViewModel>" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers" %>
 
-<h3><%:Titles.FlagContent %></h3>
+<% if (Model.Question.Flag.CanFlag) { %>
 
-<p>
-    <% if (!Model.Flag.IsFlagged)
-       { %>
-            <%: Html.ActionLink(Titles.Flag, ActionNames.Flag, ControllerNames.Questions) %>
-    <% } 
-       else
-       { %>
-            <%: Html.ActionLink(Titles.Unflag, ActionNames.Unflag, ControllerNames.Questions) %>
-    <% } %>
+    <br />
 
-    <% if (Model.Flag.IsFlagged)
-       { %>
-            <%: Html.TextAreaFor(x => x.Flag.Comment) %>            
-    <% } %>
-</p>
+    <div>
+
+        <%: Html.TextAreaFor(x => x.Question.Flag.Comment) %>            
+
+    </div>
+
+    <div>
+
+        <% if (!Model.Question.Flag.IsFlagged) { %>
+
+            <input type="submit" value="<%:Titles.Flag%>" formaction="<%:Url.Action(ActionNames.Flag, ControllerNames.Questions)%>" />
+
+        <% } %>
+
+        <% else { %>
+
+            <input type="submit" value="<%:Titles.Unflag%>" formaction="<%:Url.Action(ActionNames.Unflag, ControllerNames.Questions)%>" />
+
+        <% } %>
+
+    </div>
+
+<% } %>

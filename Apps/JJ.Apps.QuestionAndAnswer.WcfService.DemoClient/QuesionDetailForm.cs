@@ -64,7 +64,7 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService.DemoClient
                 buttonShowAnswer.Visible = true;
                 buttonShowAnswer.Enabled = false;
                 buttonHideAnswer.Visible = false;
-                MessageBox.Show(ResourceHelper.Messages.QuestionNotFound);
+                MessageBox.Show(ResourceHelper.Messages.NoQuestionsFound);
                 return;
             }
 

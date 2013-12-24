@@ -22,7 +22,7 @@
         <AssociationConnector Association="QuestionAndAnswerDB_DEVModel.FK_Question_Source" />
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.AnswerStatus" Width="1.5" PointX="12.875" PointY="9.375" />
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.FlagStatus" Width="1.5" PointX="8.5" PointY="14.25" />
-        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionFlag" Width="1.5" PointX="7.5" PointY="10.875" />
+        <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.QuestionFlag" Width="1.875" PointX="7.5" PointY="10.875" />
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.Run" Width="1.5" PointX="15.125" PointY="14.625" />
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.RunCategory" Width="1.5" PointX="5.25" PointY="15.75" />
         <EntityTypeShape EntityType="QuestionAndAnswerDB_DEVModel.UserAnswer" Width="1.5" PointX="12.375" PointY="6.25" />

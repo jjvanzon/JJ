@@ -70,15 +70,6 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FlagContent.
-        /// </summary>
-        public static string FlagContent {
-            get {
-                return ResourceManager.GetString("FlagContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to HideAnswer.
         /// </summary>
         public static string HideAnswer {

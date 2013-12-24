@@ -114,7 +114,12 @@
 
     <% } %>
 
+    <% Html.RenderPartial(ViewNames._SmallQuestionFlag, Model); %>
+
+    <%-- Extra HiddenFor's for information that has to be sent over the line too. --%>
+
     <%: Html.HiddenFor(x => x.Question.ID) %>
+    <%: Html.HiddenFor(() => Model.AnswerIsVisible, Model.AnswerIsVisible) %>
 
     <% for (int i = 0; i < Model.SelectedCategories.Count; i++) { %>
 

@@ -120,9 +120,6 @@
   <data name="Flag" xml:space="preserve">
     <value>Markeren</value>
   </data>
-  <data name="FlagContent" xml:space="preserve">
-    <value>Inhoud markeren</value>
-  </data>
   <data name="HideAnswer" xml:space="preserve">
     <value>Verberg antwoord</value>
   </data>

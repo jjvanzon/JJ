@@ -11,6 +11,7 @@ using JJ.Framework.Persistence;
 using JJ.Apps.QuestionAndAnswer.Resources;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.Presenters;
+using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 
 namespace JJ.Apps.QuestionAndAnswer.WinForms
 {
@@ -24,7 +25,7 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
         {
             InitializeComponent();
 
-            _presenter = new QuestionPresenter();
+            _presenter = CreatePresenter();
 
             SetTexts();
             NextQuestion();
@@ -99,6 +100,17 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
         private void buttonHideAnswer_Click(object sender, EventArgs e)
         {
             HideAnswer();
+        }
+
+        private QuestionPresenter CreatePresenter()
+        {
+            IContext context = ContextHelper.CreateContextFromConfiguration();
+            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
+            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
+            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
+            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
+            IUserRepository userRepository = RepositoryFactory.CreateUserRepository(context);
+            return new QuestionPresenter(questionRepository, categoryRepository, questionFlagRepository, flagStatusRepository, userRepository);
         }
     }
 }

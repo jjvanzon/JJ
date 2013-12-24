@@ -67,7 +67,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
             GetSessionWrapper().CultureName = viewModel.SelectedLanguageCultureName;
 
-            return RedirectToAction(ActionNames.Index);
+            return RedirectToAction(ActionNames.Question, ControllerNames.Questions);
         }
 
         public LanguageSelectionViewModel GetLanguageSelectionViewModel()

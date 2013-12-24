@@ -8,8 +8,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
 {
     public class QuestionFlagViewModel
     {
-        public LoginViewModel Login { get; set; }
-        public QuestionViewModel Question { get; set; }
+        public bool CanFlag { get; set; }
         public bool IsFlagged { get; set; }
         public string Comment { get; set; }
     }

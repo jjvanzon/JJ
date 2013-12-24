@@ -8,6 +8,6 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService
 {
     public class Messages
     {
-        public string QuestionNotFound { get; set; }
+        public string NoQuestionsFound { get; set; }
     }
 }

@@ -41,12 +41,14 @@
   <ItemGroup>
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\AnswerRepository.cs" />
+    <Compile Include="Repositories\FlagStatusRepository.cs" />
     <Compile Include="Repositories\QuestionFlagRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\QuestionCategoryRepository.cs" />
     <Compile Include="Repositories\QuestionLinkRepository.cs" />
     <Compile Include="Repositories\QuestionTypeRepository.cs" />
     <Compile Include="Repositories\SourceRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IFlagStatusRepository.cs" />
     <Compile Include="RepositoryInterfaces\IQuestionCategoryRepository.cs" />
     <Compile Include="RepositoryInterfaces\IQuestionFlagRepository.cs" />
     <Compile Include="RepositoryInterfaces\IQuestionLinkRepository.cs" />

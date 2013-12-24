@@ -14,72 +14,37 @@ using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
-    public class CategorySelectorPresenter : IDisposable
+    public class CategorySelectorPresenter
     {
-        private IContext _context;
-        private bool _contextIsOwned;
         private ICategoryRepository _categoryRepository;
         private IQuestionRepository _questionRepository;
+        private IQuestionFlagRepository _questionFlagRepository;
+        private IFlagStatusRepository _flagStatusRepository;
+        private IUserRepository _userRepository;
+
         private CategoryManager _categoryManager;
 
-        // Constructors
-
-        public CategorySelectorPresenter()
-        {
-            Initialize(null, null, null);
-        }
-
-        public CategorySelectorPresenter(IContext context)
-        {
-            if (context == null) throw new ArgumentNullException("context");
-
-            Initialize(context, null, null);
-        }
-
-        public CategorySelectorPresenter(ICategoryRepository categoryRepository, IQuestionRepository questionRepository)
+        public CategorySelectorPresenter(
+            ICategoryRepository categoryRepository, 
+            IQuestionRepository questionRepository,
+            IQuestionFlagRepository questionFlagRepository,
+            IFlagStatusRepository flagStatusRepository,
+            IUserRepository userRepository)
         {
             if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
+            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
+            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
+            if (userRepository == null) throw new ArgumentNullException("userRepository");
 
-            Initialize(null, categoryRepository, questionRepository);
-        }
-
-        private void Initialize(IContext context, ICategoryRepository categoryRepository, IQuestionRepository questionRepository)
-        {
-            bool contextIsOwned = false;
-
-            if (context == null)
-            {
-                context = ContextHelper.CreateContextFromConfiguration();
-                contextIsOwned = true;
-            }
-
-            if (categoryRepository == null)
-            {
-                categoryRepository = new CategoryRepository(context);
-            }
-
-            if (questionRepository == null)
-            {
-                questionRepository = new QuestionRepository(context, context.Location);
-            }
-
-            _context = context;
-            _contextIsOwned = contextIsOwned;
             _categoryRepository = categoryRepository;
-            _categoryManager = new CategoryManager(_categoryRepository);
             _questionRepository = questionRepository;
-        }
+            _questionFlagRepository = questionFlagRepository;
+            _flagStatusRepository = flagStatusRepository;
+            _userRepository = userRepository;
 
-        public void Dispose()
-        {
-            if (_contextIsOwned && _context != null)
-            {
-                _context.Dispose();
-            }
+            _categoryManager = new CategoryManager(_categoryRepository);
         }
-
-        // Actions
 
         public CategorySelectorViewModel Show()
         {
@@ -127,10 +92,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             var categoryIDs = new List<int>();
             AddSelectedCategoryIDsRecursive(categoryIDs, viewModel.SelectedCategories);
 
-            using (var questionPresenter = new QuestionPresenter(_questionRepository, _categoryRepository))
-            {
-                return questionPresenter.ShowQuestion(categoryIDs.ToArray());
-            }
+            var questionPresenter = new QuestionPresenter(_questionRepository, _categoryRepository, _questionFlagRepository, _flagStatusRepository, _userRepository);
+            return questionPresenter.ShowQuestion(categoryIDs.ToArray());
         }
 
         // Private Methods

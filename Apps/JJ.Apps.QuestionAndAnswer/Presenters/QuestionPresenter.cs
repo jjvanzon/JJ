@@ -18,76 +18,37 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
     /// A presenter has action methods that communicate by means of view models and ID's.
     /// A presenter can retrieve data from a context or repositories, but it will never communicate the entities themselves to the outside.
     /// </summary>
-    public class QuestionPresenter : IDisposable
+    public class QuestionPresenter
     {
-        private IContext _context;
-        private bool _contextIsOwned;
         private IQuestionRepository _questionRepository;
         private ICategoryRepository _categoryRepository;
+        private IQuestionFlagRepository _questionFlagRepository;
+        private IFlagStatusRepository _flagStatusRepository;
+        private IUserRepository _userRepository;
+
         private CategoryManager _categoryManager;
 
-        // Constructors
-
-        #region Constructors
-
-        public QuestionPresenter()
-        {
-            Initialize(null, null, null);
-        }
-
-        public QuestionPresenter(IContext context)
-        {
-            if (context == null) throw new ArgumentNullException("context");
-
-            Initialize(context, null, null);
-        }
-
-        public QuestionPresenter(IQuestionRepository questionRepository, ICategoryRepository categoryRepository)
+        public QuestionPresenter(
+            IQuestionRepository questionRepository,
+            ICategoryRepository categoryRepository,
+            IQuestionFlagRepository questionFlagRepository,
+            IFlagStatusRepository flagStatusRepository,
+            IUserRepository userRepository)
         {
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
             if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
+            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
+            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
+            if (userRepository == null) throw new ArgumentNullException("userRepository");
 
-            Initialize(null, questionRepository, categoryRepository);
-        }
-
-        private void Initialize(IContext context, IQuestionRepository questionRepository, ICategoryRepository categoryRepository)
-        {
-            bool contextIsOwned = false;
-
-            if (context == null)
-            {
-                context = ContextHelper.CreateContextFromConfiguration();
-                contextIsOwned = true;
-            }
-
-            if (questionRepository == null)
-            {
-                questionRepository = new QuestionRepository(context, context.Location);
-            }
-
-            if (categoryRepository == null)
-            {
-                categoryRepository = new CategoryRepository(context);
-            }
-
-            _context = context;
-            _contextIsOwned = contextIsOwned;
             _questionRepository = questionRepository;
             _categoryRepository = categoryRepository;
+            _questionFlagRepository = questionFlagRepository;
+            _flagStatusRepository = flagStatusRepository;
+            _userRepository = userRepository;
+
             _categoryManager = new CategoryManager(_categoryRepository);
         }
-
-        public void Dispose()
-        {
-            if (_contextIsOwned && _context != null)
-            {
-                _context.Dispose();
-            }
-        }
-
-        #endregion
-
-        // Actions
 
         public QuestionDetailViewModel ShowQuestion(params int[] categoryIDs)
         {
@@ -124,6 +85,192 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
+        public QuestionDetailViewModel ShowQuestion(LoginViewModel loginViewModel, params int[] categoryIDs)
+        {
+            if (loginViewModel == null) throw new NotImplementedException("loginViewModel");
+
+            QuestionDetailViewModel viewModel = ShowQuestion(categoryIDs);
+            viewModel.Login = loginViewModel;
+            ApplyLoginViewModel(viewModel, loginViewModel);
+
+            return viewModel;
+        }
+
+        public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
+        {
+            if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
+            if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
+
+            Question model = _questionRepository.TryGet(viewModel.Question.ID);
+            if (model == null)
+            {
+                return NotFound(viewModel.Question.ID);
+            }
+
+            QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
+
+            // Set non-persisted properties
+            viewModel2.UserAnswer = viewModel.UserAnswer;
+            viewModel2.AnswerIsVisible = true;
+            if (viewModel.SelectedCategories != null)
+            {
+                viewModel2.SelectedCategories = viewModel.SelectedCategories;
+            }
+            viewModel2.Login = viewModel.Login;
+
+            // Set user-specific properties
+            ApplyLoginViewModel(viewModel2, viewModel.Login);
+
+            return viewModel2;
+        }
+
+        public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel)
+        {
+            // Check conditions
+            if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
+            if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
+
+            // Get entity
+            Question model = _questionRepository.TryGet(viewModel.Question.ID);
+            if (model == null)
+            {
+                return NotFound(viewModel.Question.ID);
+            }
+
+            // Create new view model
+            QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
+
+            // Set non-persisted properties
+            viewModel2.UserAnswer = viewModel.UserAnswer;
+            viewModel2.AnswerIsVisible = false;
+            if (viewModel.SelectedCategories != null)
+            {
+                viewModel2.SelectedCategories = viewModel.SelectedCategories;
+            }
+            viewModel2.Login = viewModel.Login;
+
+            // Set user-specific properties
+            ApplyLoginViewModel(viewModel2, viewModel2.Login);
+
+            // Links reveal answer.
+            viewModel2.Question.Links.Clear(); 
+
+            return viewModel2;
+        }
+
+        /// <summary> Can return QuestionFlagViewModel, NotAuthenticatedViewModel. </summary>
+        /// <param name="loginViewModel">If loginViewModel.IsLoggedIn is true, the user is considered authenticated.</param>
+        public object Flag(QuestionDetailViewModel viewModel)
+        {
+            // Check conditions
+            if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
+            if (viewModel.Login == null) { throw new ArgumentNullException("viewModel.Login"); }
+            if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
+            if (viewModel.Question.Flag == null) { throw new ArgumentNullException("viewModel.Question.Flag"); }
+
+            if (!viewModel.Login.IsLoggedIn)
+            {
+                return new NotAuthenticatedViewModel();
+            }
+
+            // Get entities
+            User user = _userRepository.GetByUserName(viewModel.Login.UserName);
+            Question question = _questionRepository.Get(viewModel.Question.ID);
+
+            // Call business logic
+            var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
+            QuestionFlag questionFlag = questionFlagger.FlagQuestion(question, viewModel.Question.Flag.Comment);
+
+            _questionFlagRepository.Commit();
+
+            // Create new view model
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel();
+            
+            // Set non-persisted properties
+            viewModel2.UserAnswer = viewModel.UserAnswer;
+            viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
+            viewModel2.Login = viewModel.Login;
+
+            // Set user-specific properties
+            ApplyLoginViewModel(viewModel2, viewModel.Login);
+
+            return viewModel2;
+        }
+
+        /// <summary> Can return QuestionFlagViewModel, NotAuthenticatedViewModel. </summary>
+        /// <param name="loginViewModel">If loginViewModel.IsLoggedIn is true, the user is considered authenticated.</param>
+        public object Unflag(QuestionDetailViewModel viewModel)
+        {
+            // Check conditions
+            if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
+            if (viewModel.Login == null) { throw new ArgumentNullException("viewModel.Login"); }
+            if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
+
+            if (!viewModel.Login.IsLoggedIn)
+            {
+                return new NotAuthenticatedViewModel();
+            }
+
+            // Get entities
+            User user = _userRepository.GetByUserName(viewModel.Login.UserName);
+            Question question = _questionRepository.Get(viewModel.Question.ID);
+
+            // Call business logic
+            var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
+            questionFlagger.UnflagQuestion(question);
+
+            _questionFlagRepository.Commit();
+
+            // Create new view model
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel();
+
+            // Set non-persisted properties
+            viewModel2.UserAnswer = viewModel.UserAnswer;
+            viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
+            viewModel2.Login = viewModel.Login;
+
+            // Set user-specific properties
+            ApplyLoginViewModel(viewModel2, viewModel2.Login);
+
+            return viewModel2;
+        }
+
+        private void ApplyLoginViewModel(QuestionDetailViewModel viewModel, LoginViewModel loginViewModel)
+        {
+            if (loginViewModel == null)
+            {
+                return;
+            }
+
+            if (loginViewModel.IsLoggedIn)
+            {
+                User user = _userRepository.GetByUserName(loginViewModel.UserName);
+                Question question = _questionRepository.Get(viewModel.Question.ID);
+
+                var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
+                QuestionFlag questionFlag = questionFlagger.TryGetFlag(question);
+
+                if (questionFlag != null)
+                {
+                    viewModel.Question.Flag = questionFlag.ToViewModel();
+                }
+
+                if (viewModel.AnswerIsVisible)
+                {
+                    viewModel.Question.Flag.CanFlag = true;
+                }
+            }
+        }
+
+        private QuestionDetailViewModel NotFound(int id)
+        {
+            var viewModel = new QuestionDetailViewModel();
+            viewModel.Question = new QuestionViewModel();
+            viewModel.Question.ID = id;
+            viewModel.NotFound = true;
+            return viewModel;
+        }
+
         private List<Category> GetCategories(int[] ids)
         {
             var list = new List<Category>();
@@ -135,76 +282,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
 
             return list;
-        }
-
-        public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
-        {
-            if (viewModel == null)
-            {
-                throw new ArgumentNullException("viewModel");
-            }
-            if (viewModel.Question == null)
-            {
-                throw new ArgumentNullException("viewModel.Question");
-            }
-
-            Question model = _questionRepository.TryGet(viewModel.Question.ID);
-            if (model == null)
-            {
-                return NotFound(viewModel.Question.ID);
-            }
-
-            QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
-            viewModel2.UserAnswer = viewModel.UserAnswer;
-            viewModel2.AnswerIsVisible = true;
-
-            if (viewModel.SelectedCategories != null)
-            {
-                viewModel2.SelectedCategories = viewModel.SelectedCategories;
-            }
-
-            return viewModel2;
-        }
-
-        public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel)
-        {
-            if (viewModel == null)
-            {
-                throw new ArgumentNullException("viewModel");
-            }
-            if (viewModel.Question == null)
-            {
-                throw new ArgumentNullException("viewModel.Question");
-            }
-
-            Question model = _questionRepository.TryGet(viewModel.Question.ID);
-            if (model == null)
-            {
-                return NotFound(viewModel.Question.ID);
-            }
-
-            QuestionDetailViewModel viewModel2 = model.ToDetailViewModel();
-            viewModel2.UserAnswer = viewModel.UserAnswer;
-            viewModel2.AnswerIsVisible = false;
-
-            if (viewModel.SelectedCategories != null)
-            {
-                viewModel2.SelectedCategories = viewModel.SelectedCategories;
-            }
-
-            viewModel2.Question.Links.Clear(); // Links reveal answer.
-            return viewModel2;
-        }
-
-        // Reusable Methods
-
-        private QuestionDetailViewModel NotFound(int id)
-        {
-            var viewModel = new QuestionDetailViewModel();
-            viewModel.Question = new QuestionViewModel();
-            viewModel.Question.ID = id;
-            viewModel.NotFound = true;
-            return viewModel;
         }
     }
 }

@@ -14,5 +14,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views
         public const string _SelectedCategory = "_SelectedCategory";
         public const string _SmallLogin = "_SmallLogin";
         public const string _LanguageSelection = "_LanguageSelection";
+        public const string _SmallQuestionFlag = "_SmallQuestionFlag";
+        public const string NotAuthenticated = "NotAuthenticated";
     }
 }
