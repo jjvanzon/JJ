@@ -25,32 +25,33 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return new LoginViewModel();
         }
 
-        public LoginViewModel Login(LoginViewModel viewModel)
+        /// <summary>
+        /// Can return LoginViewModel or SmallLoginViewModel.
+        /// </summary>
+        public LoginViewModel Login(string password, string securityToken, LoginViewModel viewModel)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            string userName = viewModel.UserName;
 
-            User user = _userRepository.TryGetByUserName(viewModel.UserName);
-            if (user == null)
+            var viewModel2 = new LoginViewModel();
+            viewModel2.UserName = userName;
+
+            User user = _userRepository.TryGetByUserName(userName);
+            if (user != null)
             {
-                viewModel.IsLoggedIn = false;
-                viewModel.Password = null;
-                return viewModel;
+                string passwordFromClient = password;
+                string tokenFromClient = securityToken;
+                string passwordFromServer = user.Password;
+                string saltFromServer = user.SecuritySalt;
+                IAuthenticator authenticator = AuthenticationHelper.CreateAuthenticatorFromConfiguration();
+                bool isAuthentic = authenticator.IsAuthentic(passwordFromClient, tokenFromClient, passwordFromServer, saltFromServer);
+
+                if (isAuthentic)
+                {
+                    viewModel2.IsAuthenticated = true;
+                }
             }
 
-            string passwordFromClient = viewModel.Password;
-            string tokenFromClient = viewModel.SecurityToken;
-            string passwordFromServer = user.Password;
-            string saltFromServer = user.SecuritySalt;
-            IAuthenticator authenticator = AuthenticationHelper.CreateAuthenticatorFromConfiguration();
-            viewModel.IsLoggedIn = authenticator.IsAuthentic(passwordFromClient, tokenFromClient, passwordFromServer, saltFromServer);
-            viewModel.Password = null;
-
-            if (viewModel.IsLoggedIn)
-            {
-                viewModel.Name = user.Name;
-            }
-
-            return viewModel;
+            return viewModel2;
         }
     }
 }

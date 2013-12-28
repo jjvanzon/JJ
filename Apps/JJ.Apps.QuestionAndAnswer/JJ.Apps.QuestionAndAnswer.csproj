@@ -42,10 +42,11 @@
   <ItemGroup>
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Helpers\QuestionFlagExtensions.cs" />
     <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />
     <Compile Include="ViewModels\QuestionFlagViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\SmallLoginViewModel.cs" />
     <Compile Include="Presenters\SmallLoginPresenter.cs" />
     <Compile Include="Presenters\LanguageSelectionPresenter.cs" />
     <Compile Include="Presenters\QuestionPresenter.cs" />

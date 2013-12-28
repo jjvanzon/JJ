@@ -2,7 +2,9 @@
 using JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer;
+using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,6 +14,7 @@ using System.Web.Mvc;
 
 namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 {
+    // TODO: Summary text is obsolete.
     /// <summary>
     /// Provides basic view data and basic actions, such as setting the language.
     /// Adds the HeaderViewModel for the master page to the ViewData dictionary with the key "HeaderViewModel".
@@ -20,15 +23,19 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
     {
         public abstract ActionResult Index();
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            // In the constructor I have no Session.
+            InitializeSmallLoginSubController();
+
+            OnActionExecuting_SetCurrentCulture();
+        }
+
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             OnActionExecuted_SetLanguageSelectionViewModel();
-            OnActionExecuted_EnsureLoginViewModel();
-        }
 
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            OnActionExecuting_SetCurrentCulture();
+            OnActionExecuted_EnsureSmallLoginViewModel();
         }
 
         private SessionWrapper GetSessionWrapper()
@@ -89,37 +96,47 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
         // Login
 
-        private void OnActionExecuted_EnsureLoginViewModel()
-        {
-            LoginViewModel viewModel = GetLoginViewModel();
+        private SmallLoginSubController _smallLoginSubController;
 
-            if (viewModel == null)
-            {
-                InitializeLoginViewModel();
-            }
+        private void InitializeSmallLoginSubController()
+        {
+            _smallLoginSubController = new SmallLoginSubController(Session);
         }
 
-        public LoginViewModel GetLoginViewModel()
+        public SmallLoginViewModel GetSmallLoginViewModel()
         {
-            return GetSessionWrapper().LoginViewModel;
+            return _smallLoginSubController.GetSmallLoginViewModel();
         }
 
-        protected void SetLoginViewModel(LoginViewModel viewModel)
+        protected string TryGetAuthenticatedUserName()
         {
-            GetSessionWrapper().LoginViewModel = viewModel;
+            return GetSessionWrapper().AuthenticatedUserName;
+        }
+
+        // TODO: Replace ensure with just an auto-instantiating getter?
+        private void OnActionExecuted_EnsureSmallLoginViewModel()
+        {
+            _smallLoginSubController.EnsureSmallLoginViewModel();
+        }
+
+        public ActionResult SetAuthenticatedUserName(string authenticatedUserName)
+        {
+            GetSessionWrapper().AuthenticatedUserName = authenticatedUserName;
+
+            _smallLoginSubController.SetLoggedInUserName(authenticatedUserName);
+
+            // What an assumption that we would want to go to the Question page. I would like to redirect to the page we were on before we tried to log in.
+            return RedirectToAction(ActionNames.Question, ControllerNames.Questions);
         }
 
         public ActionResult LogOut()
         {
-            InitializeLoginViewModel();
-            return RedirectToAction(ActionNames.Index, ControllerNames.Login);
-        }
+            GetSessionWrapper().AuthenticatedUserName = null;
 
-        private void InitializeLoginViewModel()
-        {
-            var presenter = new SmallLoginPresenter();
-            LoginViewModel viewModel = presenter.Show();
-            SetLoginViewModel(viewModel);
+            _smallLoginSubController.SetIsLoggedOut();
+
+            // TODO: It feels strange that the presenter does not determine the program flow.
+            return RedirectToAction(ActionNames.Index, ControllerNames.Login);
         }
     }
 }

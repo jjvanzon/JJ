@@ -35,7 +35,7 @@
         </div>
 
         <div id="smallLoginDiv">
-            <% Html.RenderPartial(ViewNames._SmallLogin, ((MasterController)this.ViewContext.Controller).GetLoginViewModel()); %>
+            <% Html.RenderPartial(ViewNames._SmallLogin, ((MasterController)this.ViewContext.Controller).GetSmallLoginViewModel()); %>
         </div>
 
     </header>

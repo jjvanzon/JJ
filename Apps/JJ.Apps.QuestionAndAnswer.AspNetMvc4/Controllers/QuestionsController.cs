@@ -47,12 +47,10 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         [HttpPost]
         public ViewResult ShowAnswer(QuestionDetailViewModel viewModel)
         {
-            // TODO: This stinks.
-            viewModel.Login = GetLoginViewModel();
+            string authenticatedUserName = TryGetAuthenticatedUserName();
 
             QuestionPresenter presenter = CreatePresenter();
-
-            QuestionDetailViewModel viewModel2 = presenter.ShowAnswer(viewModel);
+            QuestionDetailViewModel viewModel2 = presenter.ShowAnswer(viewModel, authenticatedUserName);
 
             if (viewModel2.NotFound)
             {
@@ -67,12 +65,10 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         [HttpPost]
         public ViewResult HideAnswer(QuestionDetailViewModel viewModel)
         {
-            // TODO: This stinks.
-            viewModel.Login = GetLoginViewModel();
+            string authenticatedUserName = TryGetAuthenticatedUserName();
 
             QuestionPresenter presenter = CreatePresenter();
-
-            QuestionDetailViewModel viewModel2 = presenter.HideAnswer(viewModel);
+            QuestionDetailViewModel viewModel2 = presenter.HideAnswer(viewModel, authenticatedUserName);
 
             if (viewModel2.NotFound)
             {
@@ -87,11 +83,10 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         [HttpPost]
         public ViewResult Flag(QuestionDetailViewModel viewModel)
         {
-            // TODO: This stinks.
-            viewModel.Login = GetLoginViewModel();
+            string authenticatedUserName = TryGetAuthenticatedUserName();
 
             QuestionPresenter presenter = CreatePresenter();
-            object viewModel2 = presenter.Flag(viewModel);
+            object viewModel2 = presenter.Flag(viewModel, authenticatedUserName);
 
             Type viewType = viewModel2.GetType();
 
@@ -114,11 +109,10 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         [HttpPost]
         public ViewResult Unflag(QuestionDetailViewModel viewModel)
         {
-            // TODO: This stinks.
-            viewModel.Login = GetLoginViewModel();
+            string authenticatedUserName = TryGetAuthenticatedUserName();
 
             QuestionPresenter presenter = CreatePresenter();
-            object viewModel2 = presenter.Unflag(viewModel);
+            object viewModel2 = presenter.Unflag(viewModel, authenticatedUserName);
 
             Type viewType = viewModel2.GetType();
 

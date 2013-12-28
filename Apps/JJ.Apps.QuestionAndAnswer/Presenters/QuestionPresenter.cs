@@ -86,12 +86,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
+        public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel, string userName)
         {
             // Check conditions
             if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
             if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
-            if (viewModel.Login == null) { throw new ArgumentNullException("viewModel.Login"); }
 
             // Get entities
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
@@ -99,7 +98,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             {
                 return NotFound(viewModel.Question.ID);
             }
-            User user = _userRepository.TryGetByUserName(viewModel.Login.UserName);
+            User user = _userRepository.TryGetByUserName(userName);
             QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
 
             // Create new view model
@@ -116,12 +115,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             {
                 viewModel2.SelectedCategories = viewModel.SelectedCategories;
             }
-            viewModel2.Login = viewModel.Login;
 
             return viewModel2;
         }
 
-        public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel)
+        public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel, string userName)
         {
             // Check conditions
             if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
@@ -133,7 +131,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             {
                 return NotFound(viewModel.Question.ID);
             }
-            User user = _userRepository.TryGetByUserName(viewModel.Login.UserName);
+            User user = _userRepository.TryGetByUserName(userName);
             QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
 
             // Create new view model
@@ -147,7 +145,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             {
                 viewModel2.SelectedCategories = viewModel.SelectedCategories;
             }
-            viewModel2.Login = viewModel.Login;
 
             // Links reveal answer.
             viewModel2.Question.Links.Clear(); 
@@ -157,21 +154,15 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         /// <summary> Can return QuestionFlagViewModel, NotAuthenticatedViewModel. </summary>
         /// <param name="loginViewModel">If loginViewModel.IsLoggedIn is true, the user is considered authenticated.</param>
-        public object Flag(QuestionDetailViewModel viewModel)
+        public object Flag(QuestionDetailViewModel viewModel, string userName)
         {
             // Check conditions
             if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
-            if (viewModel.Login == null) { throw new ArgumentNullException("viewModel.Login"); }
             if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
             if (viewModel.Question.Flag == null) { throw new ArgumentNullException("viewModel.Question.Flag"); }
 
-            if (!viewModel.Login.IsLoggedIn)
-            {
-                return new NotAuthenticatedViewModel();
-            }
-
             // Get entities
-            User user = _userRepository.GetByUserName(viewModel.Login.UserName);
+            User user = _userRepository.GetByUserName(userName);
             Question question = _questionRepository.Get(viewModel.Question.ID);
 
             // Call business logic
@@ -185,28 +176,20 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
-            viewModel2.Login = viewModel.Login;
             viewModel2.Question.Flag.CanFlag = viewModel.AnswerIsVisible;
 
             return viewModel2;
         }
 
         /// <summary> Can return QuestionFlagViewModel, NotAuthenticatedViewModel. </summary>
-        /// <param name="loginViewModel">If loginViewModel.IsLoggedIn is true, the user is considered authenticated.</param>
-        public object Unflag(QuestionDetailViewModel viewModel)
+        public object Unflag(QuestionDetailViewModel viewModel, string userName)
         {
             // Check conditions
             if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
-            if (viewModel.Login == null) { throw new ArgumentNullException("viewModel.Login"); }
             if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
 
-            if (!viewModel.Login.IsLoggedIn)
-            {
-                return new NotAuthenticatedViewModel();
-            }
-
             // Get entities
-            User user = _userRepository.GetByUserName(viewModel.Login.UserName);
+            User user = _userRepository.GetByUserName(userName);
             Question question = _questionRepository.Get(viewModel.Question.ID);
 
             // Call business logic
@@ -220,7 +203,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
-            viewModel2.Login = viewModel.Login;
             viewModel2.Question.Flag.CanFlag = viewModel.AnswerIsVisible;
 
             return viewModel2;

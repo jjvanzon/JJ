@@ -18,8 +18,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             return new QuestionDetailViewModel
             {
                 Question = entity.ToViewModelWithRelatedEntities(questionFlag),
-                SelectedCategories = new List<CategoryViewModel>(),
-                Login = new LoginViewModel(),
+                SelectedCategories = new List<CategoryViewModel>()
             };
         }
 

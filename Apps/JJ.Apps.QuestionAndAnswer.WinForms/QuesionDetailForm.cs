@@ -39,13 +39,13 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
 
         private void ShowAnswer()
         {
-            _viewModel = _presenter.ShowAnswer(_viewModel);
+            _viewModel = _presenter.ShowAnswer(_viewModel, null);
             ApplyViewModel();
         }
 
         private void HideAnswer()
         {
-            _viewModel = _presenter.HideAnswer(_viewModel);
+            _viewModel = _presenter.HideAnswer(_viewModel, null);
             ApplyViewModel();
         }
 

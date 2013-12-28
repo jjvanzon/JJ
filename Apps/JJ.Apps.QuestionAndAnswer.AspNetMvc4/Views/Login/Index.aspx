@@ -24,7 +24,7 @@
             <%: Html.PasswordFor(x => x.Password) %>
         </p>
 
-        <input type="submit" value="<%: Titles.LogIn %>" />
+        <input type="submit" value="<%: Titles.LogIn %>" formaction="" />
     
     <% } %>
 </asp:Content>

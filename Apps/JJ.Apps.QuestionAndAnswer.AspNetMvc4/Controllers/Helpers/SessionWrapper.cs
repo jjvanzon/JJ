@@ -27,10 +27,16 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
             set { _session[SessionKeys.CultureName] = value; }
         }
 
-        public LoginViewModel LoginViewModel
+        public string AuthenticatedUserName
         {
-            get { return (LoginViewModel)_session[SessionKeys.LoginViewModel]; }
-            set { _session[SessionKeys.LoginViewModel] = value; }
+            get { return (string)_session[SessionKeys.AuthenticatedUserName]; }
+            set { _session[SessionKeys.AuthenticatedUserName] = value; }
+        }
+
+        public SmallLoginViewModel SmallLoginViewModel
+        {
+            get { return (SmallLoginViewModel)_session[SessionKeys.SmallLoginViewModel]; }
+            set { _session[SessionKeys.SmallLoginViewModel] = value; }
         }
     }
 }

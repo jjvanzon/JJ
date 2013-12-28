@@ -23,13 +23,13 @@ namespace JJ.Apps.QuestionAndAnswer.WcfService
         public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
         {
             QuestionPresenter presenter = CreatePresenter();
-            return presenter.ShowAnswer(viewModel);
+            return presenter.ShowAnswer(viewModel, null);
         }
 
         public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel)
         {
             QuestionPresenter presenter = CreatePresenter();
-            return presenter.HideAnswer(viewModel);
+            return presenter.HideAnswer(viewModel, null);
         }
 
         private QuestionPresenter CreatePresenter()

@@ -20,7 +20,5 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
         /// Used internally for selecting the next question.
         /// </summary>
         public List<CategoryViewModel> SelectedCategories { get; set; }
-
-        public LoginViewModel Login { get; set; }
     }
 }

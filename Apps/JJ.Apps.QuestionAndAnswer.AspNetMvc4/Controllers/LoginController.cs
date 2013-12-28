@@ -1,6 +1,7 @@
 ﻿using JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Framework.Common;
 using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using System;
@@ -23,20 +24,20 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         [HttpPost]
         public ActionResult Index(LoginViewModel viewModel)
         {
-            LoginPresenter presenter = CreatePresenter();
-            LoginViewModel viewModel2 = presenter.Login(viewModel);
+            string password = viewModel.Password;
+            string securityToken = viewModel.SecurityToken;
 
-            // TODO: Application navigation should become the presenters' reposibility.
-            if (!viewModel2.IsLoggedIn)
+            LoginPresenter presenter = CreatePresenter();
+
+            LoginViewModel viewModel2 = presenter.Login(password, securityToken, viewModel);
+
+            if (viewModel2.IsAuthenticated)
             {
-                return View(viewModel2);
+                return base.SetAuthenticatedUserName(viewModel2.UserName);
             }
             else
             {
-                base.SetLoginViewModel(viewModel2);
-
-                // What an assumption that we would want to go to the Question page. I would like to redirect to the page we were on before we tried to log in.
-                return RedirectToAction(ActionNames.Question, ControllerNames.Questions);
+                return View(viewModel2);
             }
         }
 
