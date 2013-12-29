@@ -8,6 +8,5 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
     public class ViewDataKeys
     {
         public const string LanguageSelectionViewModel = "LanguageSelectionViewModel";
-        public const string LoginViewModel = "LoginViewModel";
     }
 }

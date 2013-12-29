@@ -25,17 +25,11 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            // In the constructor I have no Session.
+            // In the constructor there is no Session.
+
             InitializeSmallLoginSubController();
 
-            OnActionExecuting_SetCurrentCulture();
-        }
-
-        protected override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-            OnActionExecuted_SetLanguageSelectionViewModel();
-
-            OnActionExecuted_EnsureSmallLoginViewModel();
+            SetCurrentCulture();
         }
 
         private SessionWrapper GetSessionWrapper()
@@ -45,22 +39,15 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
         // Language
 
-        private void OnActionExecuted_SetLanguageSelectionViewModel()
-        {
-            var presenter = new LanguageSelectionPresenter();
-
-            LanguageSelectionViewModel viewModel = presenter.Show();
-
-            SetLanguageSelectionViewModel(viewModel);
-        }
-
-        private void OnActionExecuting_SetCurrentCulture()
+        private void SetCurrentCulture()
         {
             string cultureName = GetSessionWrapper().CultureName;
 
             if (!String.IsNullOrEmpty(cultureName))
             {
-                SetCurrentCulture(cultureName);
+                CultureInfo culture = CultureInfo.GetCultureInfo(cultureName);
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+                System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
             }
         }
 
@@ -70,28 +57,32 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
             LanguageSelectionViewModel viewModel = presenter.SetLanguage(cultureName);
 
-            SetLanguageSelectionViewModel(viewModel);
+            LanguageSelectionViewModel = viewModel;
 
             GetSessionWrapper().CultureName = viewModel.SelectedLanguageCultureName;
 
             return RedirectToAction(ActionNames.Question, ControllerNames.Questions);
         }
 
-        public LanguageSelectionViewModel GetLanguageSelectionViewModel()
+        public LanguageSelectionViewModel LanguageSelectionViewModel
         {
-            return (LanguageSelectionViewModel)ViewData[ViewDataKeys.LanguageSelectionViewModel];
-        }
+            get
+            {
+                LanguageSelectionViewModel viewModel = (LanguageSelectionViewModel)ViewData[ViewDataKeys.LanguageSelectionViewModel];
 
-        private void SetLanguageSelectionViewModel(LanguageSelectionViewModel viewModel)
-        {
-            ViewData[ViewDataKeys.LanguageSelectionViewModel] = viewModel;
-        }
+                if (viewModel == null)
+                {
+                    var presenter = new LanguageSelectionPresenter();
+                    viewModel = presenter.Show();
+                    ViewData[ViewDataKeys.LanguageSelectionViewModel] = viewModel;
+                }
 
-        private void SetCurrentCulture(string cultureName)
-        {
-            CultureInfo culture = CultureInfo.GetCultureInfo(cultureName);
-            System.Threading.Thread.CurrentThread.CurrentCulture = culture;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
+                return viewModel;
+            }
+            private set
+            {
+                ViewData[ViewDataKeys.LanguageSelectionViewModel] = value;
+            }
         }
 
         // Login
@@ -100,23 +91,17 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
         private void InitializeSmallLoginSubController()
         {
-            _smallLoginSubController = new SmallLoginSubController(Session);
+            _smallLoginSubController = new SmallLoginSubController(this);
         }
 
-        public SmallLoginViewModel GetSmallLoginViewModel()
+        public SmallLoginViewModel SmallLoginViewModel
         {
-            return _smallLoginSubController.GetSmallLoginViewModel();
+            get { return _smallLoginSubController.Model; }
         }
 
         protected string TryGetAuthenticatedUserName()
         {
             return GetSessionWrapper().AuthenticatedUserName;
-        }
-
-        // TODO: Replace ensure with just an auto-instantiating getter?
-        private void OnActionExecuted_EnsureSmallLoginViewModel()
-        {
-            _smallLoginSubController.EnsureSmallLoginViewModel();
         }
 
         public ActionResult SetAuthenticatedUserName(string authenticatedUserName)

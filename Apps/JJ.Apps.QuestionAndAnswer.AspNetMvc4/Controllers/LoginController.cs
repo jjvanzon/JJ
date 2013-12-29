@@ -28,17 +28,14 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             string securityToken = viewModel.SecurityToken;
 
             LoginPresenter presenter = CreatePresenter();
-
             LoginViewModel viewModel2 = presenter.Login(password, securityToken, viewModel);
 
-            if (viewModel2.IsAuthenticated)
-            {
-                return base.SetAuthenticatedUserName(viewModel2.UserName);
-            }
-            else
+            if (!viewModel2.IsAuthenticated)
             {
                 return View(viewModel2);
             }
+
+            return base.SetAuthenticatedUserName(viewModel2.UserName);
         }
 
         private LoginPresenter CreatePresenter()

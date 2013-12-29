@@ -13,30 +13,33 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 {
     public class SmallLoginSubController
     {
-        private HttpSessionStateBase _session;
+        private readonly Controller _parentController;
 
-        public SmallLoginSubController(HttpSessionStateBase session)
+        public SmallLoginSubController(Controller parentController)
         {
-            if (session == null) { throw new ArgumentNullException("session"); }
+            if (parentController == null) { throw new ArgumentNullException("parentController"); }
 
-            _session = session;
+            _parentController = parentController;
         }
 
-        public SmallLoginViewModel GetSmallLoginViewModel()
+        public SmallLoginViewModel Model
         {
-            return GetSessionWrapper().SmallLoginViewModel;
-        }
-
-        // TODO: Replace ensure with just an auto-instantiating getter?
-        public void EnsureSmallLoginViewModel()
-        {
-            SmallLoginViewModel viewModel = GetSmallLoginViewModel();
-
-            if (viewModel == null)
+            get
             {
-                SmallLoginPresenter presenter = CreateSmallLoginPresenter();
-                viewModel = presenter.Show();
-                GetSessionWrapper().SmallLoginViewModel = viewModel;
+                SmallLoginViewModel viewModel = GetSessionWrapper().SmallLoginViewModel;
+
+                if (viewModel == null)
+                {
+                    SmallLoginPresenter presenter = CreateSmallLoginPresenter();
+                    viewModel = presenter.Show();
+                    GetSessionWrapper().SmallLoginViewModel = viewModel;
+                }
+
+                return viewModel;
+            }
+            private set
+            {
+                GetSessionWrapper().SmallLoginViewModel = value;
             }
         }
 
@@ -44,14 +47,14 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
         {
             SmallLoginPresenter presenter = CreateSmallLoginPresenter();
             SmallLoginViewModel viewModel = presenter.SetLoggedInUserName(authenticatedUserName);
-            GetSessionWrapper().SmallLoginViewModel = viewModel;
+            Model = viewModel;
         }
 
         public void SetIsLoggedOut()
         {
             SmallLoginPresenter presenter = CreateSmallLoginPresenter();
             SmallLoginViewModel viewModel = presenter.SetIsLoggedOut();
-            GetSessionWrapper().SmallLoginViewModel = viewModel;
+            Model = viewModel;
         }
 
         // Helpers
@@ -66,7 +69,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
         private SessionWrapper GetSessionWrapper()
         {
-            return new SessionWrapper(_session);
+            return new SessionWrapper(_parentController.Session);
         }
     }
 }

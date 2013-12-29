@@ -6,7 +6,6 @@ namespace JJ.Models.QuestionAndAnswer
     {
 
         private System.Int32 _id;
-        private System.String _name;
         private System.String _password;
         private System.Collections.IList _runs;
         private System.String _userName;
@@ -15,24 +14,13 @@ namespace JJ.Models.QuestionAndAnswer
         private System.Collections.IList _asFlaggedByInQuestionFlags;
         private System.Collections.IList _asLastModifiedByInQuestions;
         private System.String _securitySalt;
+        private System.String _displayName;
 
         public virtual System.Int32 Id
         {
             get
             {
                 return _id;
-            }
-        }
-
-        public virtual System.String Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
             }
         }
 
@@ -129,6 +117,18 @@ namespace JJ.Models.QuestionAndAnswer
             set
             {
                 _securitySalt = value;
+            }
+        }
+
+        public virtual System.String DisplayName
+        {
+            get
+            {
+                return _displayName;
+            }
+            set
+            {
+                _displayName = value;
             }
         }
 

@@ -220,7 +220,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="DisplayName" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Password" Type="nvarchar" MaxLength="64" />
           <Property Name="SecuritySalt" Type="varchar" MaxLength="128" />
@@ -714,7 +714,6 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Password" MaxLength="64" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AsLastModifiedByInQuestions" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_LastModifiedByUser" FromRole="User" ToRole="Question" />
@@ -723,6 +722,7 @@
           <NavigationProperty Name="Runs" Relationship="QuestionAndAnswerDB_DEVModel.FK_Run_Users" FromRole="User" ToRole="Run" />
           <NavigationProperty Name="UserAnswers" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Users" FromRole="User" ToRole="UserAnswer" />
           <Property Type="String" Name="SecuritySalt" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DisplayName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_UserAnswer_AnswerStatus">
           <End Type="QuestionAndAnswerDB_DEVModel.AnswerStatus" Role="AnswerStatu" Multiplicity="1" />
@@ -950,10 +950,10 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="SecuritySalt" ColumnName="SecuritySalt" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

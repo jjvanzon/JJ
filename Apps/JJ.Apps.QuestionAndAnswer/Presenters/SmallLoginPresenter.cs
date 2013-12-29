@@ -31,7 +31,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             User user = _userRepository.GetByUserName(userName);
 
-            return new SmallLoginViewModel { LogOutActionIsVisible = true, DisplayName = user.Name };
+            return new SmallLoginViewModel { LogOutActionIsVisible = true, DisplayName = user.DisplayName };
         }
 
         public SmallLoginViewModel SetIsLoggedOut()

@@ -10,7 +10,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.NHibernate
         {
             Id(x => x.ID);
 
-            Map(x => x.Name);
+            Map(x => x.DisplayName);
             Map(x => x.UserName);
             Map(x => x.Password);
             Map(x => x.SecuritySalt);

@@ -3,7 +3,7 @@
         ProjectType = "Local"
         ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
-        ProjectGuid = "{f68857f3-d3f5-41d9-9566-f17b8fe9f561}"
+        ProjectGuid = "{32b51c27-17cd-4d07-8615-9bc2b91d9898}"
     >
         <Build>
             <Settings
@@ -90,43 +90,7 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />                <File
-                    RelPath = "sysdiagram.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "FlagStatus.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "Category.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "AnswerStatus.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
                     RelPath = "Answer.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "QuestionCategory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "Question.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "QuestionFlag.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "QuestionLink.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "User.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />                <File
@@ -142,7 +106,39 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />                <File
+                    RelPath = "QuestionCategory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "Question.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "FlagStatus.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "Category.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "AnswerStatus.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "User.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
                     RelPath = "QuestionType.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "QuestionLink.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "QuestionFlag.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />                <File

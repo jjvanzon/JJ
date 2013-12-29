@@ -6,7 +6,7 @@ namespace JJ.Models.QuestionAndAnswer
     public class User
     {
         private int _iD;
-        private string _name;
+        private string _displayName;
         private string _userName;
         private string _password;
         private string _securitySalt;
@@ -23,10 +23,10 @@ namespace JJ.Models.QuestionAndAnswer
             set { _iD = value; }
         }
 
-        public virtual string Name
+        public virtual string DisplayName
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return _displayName; }
+            set { _displayName = value; }
         }
 
         public virtual string UserName

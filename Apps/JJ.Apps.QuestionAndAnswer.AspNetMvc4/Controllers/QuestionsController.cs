@@ -88,20 +88,19 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             QuestionPresenter presenter = CreatePresenter();
             object viewModel2 = presenter.Flag(viewModel, authenticatedUserName);
 
-            Type viewType = viewModel2.GetType();
-
-            if (viewType == typeof(QuestionDetailViewModel))
+            var questionDetailViewModel = viewModel2 as QuestionDetailViewModel;
+            if (questionDetailViewModel != null)
             {
-                return View(ViewNames.Question, viewModel2);
+                return View(ViewNames.Question, questionDetailViewModel);
             }
-            else if (viewType == typeof(NotAuthenticatedViewModel))
+
+            var notAuthenticatedViewModel = viewModel2 as NotAuthenticatedViewModel;
+            if (notAuthenticatedViewModel != null)
             {
                 return View(ViewNames.NotAuthenticated);
             }
-            else
-            {
-                throw new ValueNotSupportedException(viewType);
-            }
+
+            throw new Exception(String.Format("Unexpected view model type: '{0}'.", viewModel2.GetType().FullName));
         }
 
         // POST: /Question/Unflag/5
@@ -114,18 +113,19 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             QuestionPresenter presenter = CreatePresenter();
             object viewModel2 = presenter.Unflag(viewModel, authenticatedUserName);
 
-            Type viewType = viewModel2.GetType();
-
-            if (viewType == typeof(QuestionDetailViewModel))
+            var questionDetailViewModel = viewModel2 as QuestionDetailViewModel;
+            if (questionDetailViewModel != null)
             {
-                return View(ViewNames.Question, viewModel2);
+                return View(ViewNames.Question, questionDetailViewModel);
             }
-            else if (viewType == typeof(NotAuthenticatedViewModel))
+
+            var notAuthenticatedViewModel = viewModel2 as NotAuthenticatedViewModel;
+            if (notAuthenticatedViewModel != null)
             {
                 return View(ViewNames.NotAuthenticated);
             }
 
-            throw new ValueNotSupportedException(viewType);
+            throw new Exception(String.Format("Unexpected view model type: '{0}'.", viewModel2.GetType().FullName));
         }
 
         // Private Methods
