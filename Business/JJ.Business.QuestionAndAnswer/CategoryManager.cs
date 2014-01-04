@@ -24,7 +24,7 @@ namespace JJ.Business.QuestionAndAnswer
         /// </summary>
         public Category[] GetCategoryTree()
         {
-            IEnumerable<Category> allCategories = _categoryRepository.GetAll(); // For performance, make sure all POCO's are loaded.
+            IEnumerable<Category> allCategories = _categoryRepository.GetAll().ToArray(); // For performance, make sure all POCO's are loaded.
             IEnumerable<Category> rootCategories = allCategories.Where(x => x.ParentCategory == null);
             return rootCategories.ToArray();
         }

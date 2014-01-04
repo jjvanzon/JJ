@@ -87,13 +87,16 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return GetViewModel(selectedCategoryIDs);
         }
 
-        public QuestionDetailViewModel ShowQuestions(CategorySelectorViewModel viewModel)
+        /// <summary>
+        /// Can return RandomQuestionViewModel or QuestionNotFoundViewModel.
+        /// </summary>
+        public object ShowQuestions(CategorySelectorViewModel viewModel)
         {
             var categoryIDs = new List<int>();
             AddSelectedCategoryIDsRecursive(categoryIDs, viewModel.SelectedCategories);
 
-            var questionPresenter = new QuestionPresenter(_questionRepository, _categoryRepository, _questionFlagRepository, _flagStatusRepository, _userRepository);
-            return questionPresenter.ShowQuestion(categoryIDs.ToArray());
+            var randomQuestionPresenter = new RandomQuestionPresenter(_questionRepository, _categoryRepository, _questionFlagRepository, _flagStatusRepository, _userRepository);
+            return randomQuestionPresenter.Show(categoryIDs.ToArray());
         }
 
         // Private Methods

@@ -167,8 +167,10 @@ namespace JJ.Business.QuestionAndAnswer.Import
 
         protected void ValidateQuestion(Question question)
         {
-            IValidator validator = new QuestionOpenQuestionValidator(question);
-            validator.Verify();
+            IValidator validator1 = new BasicQuestionValidator(question);
+            IValidator validator2 = new OpenQuestionValidator(question);
+            validator1.Verify();
+            validator2.Verify();
         }
     }
 }

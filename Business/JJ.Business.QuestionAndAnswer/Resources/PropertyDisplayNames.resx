@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Answer" xml:space="preserve">
+    <value>Answer</value>
+  </data>
   <data name="AnswersCount" xml:space="preserve">
     <value>AnswersCount</value>
   </data>
   <data name="CorrectAnswerCount" xml:space="preserve">
     <value>CorrectAnswerCount</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="IsCorrectAnswer" xml:space="preserve">
     <value>IsCorrectAnswer</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="QuestionLink" xml:space="preserve">
+    <value>QuestionLink</value>
   </data>
   <data name="QuestionType" xml:space="preserve">
     <value>QuestionType</value>
@@ -134,5 +146,8 @@
   </data>
   <data name="Text" xml:space="preserve">
     <value>Text</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
   </data>
 </root>

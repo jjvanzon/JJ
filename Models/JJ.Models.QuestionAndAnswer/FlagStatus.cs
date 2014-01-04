@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace JJ.Models.QuestionAndAnswer
 {
+    [DebuggerDisplay("{ID} - {Description}")]
     public class FlagStatus
     {
         private int _iD;

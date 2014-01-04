@@ -8,7 +8,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views
     public static class ViewNames
     {
         public const string NotFound = "NotFound";
-        public const string Question = "Question";
+        public const string Random = "Random";
         public const string Index = "Index";
         public const string _AvailableCategory = "_AvailableCategory";
         public const string _SelectedCategory = "_SelectedCategory";
@@ -16,5 +16,6 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views
         public const string _LanguageSelection = "_LanguageSelection";
         public const string _SmallQuestionFlag = "_SmallQuestionFlag";
         public const string NotAuthenticated = "NotAuthenticated";
+        public const string Edit = "Edit";
     }
 }

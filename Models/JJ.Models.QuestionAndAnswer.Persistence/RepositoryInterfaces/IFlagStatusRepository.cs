@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface IFlagStatusRepository
-    {
-        FlagStatus Get(int id);
-    }
+    public interface IFlagStatusRepository : IRepository<FlagStatus, int>
+    { }
 }

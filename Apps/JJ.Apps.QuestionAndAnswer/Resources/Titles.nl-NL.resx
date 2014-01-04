@@ -117,11 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Flag" xml:space="preserve">
+  <data name="Add" xml:space="preserve">
+    <value>Toevoegen</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categorieën</value>
+  </data>
+  <data name="ContentFlags" xml:space="preserve">
+    <value>Content markeringen</value>
+  </data>
+  <data name="ContentIsFlagged" xml:space="preserve">
+    <value>Gemarkeerd</value>
+  </data>
+  <data name="ContentManagement" xml:space="preserve">
+    <value>Content management</value>
+  </data>
+  <data name="ContentSourcesAndImports" xml:space="preserve">
+    <value>Content bronnen en imports</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Bewerken</value>
+  </data>
+  <data name="EditQuestion" xml:space="preserve">
+    <value>Vraag bewerken</value>
+  </data>
+  <data name="FlagContent" xml:space="preserve">
     <value>Markeren</value>
+  </data>
+  <data name="FlaggedContent" xml:space="preserve">
+    <value>Gemarkeerde content</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Algemeen</value>
   </data>
   <data name="HideAnswer" xml:space="preserve">
     <value>Verberg antwoord</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Actief</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
   </data>
   <data name="LogIn" xml:space="preserve">
     <value>Inloggen</value>
@@ -132,11 +171,30 @@
   <data name="NextQuestion" xml:space="preserve">
     <value>Volgende vraag</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Nee</value>
+  </data>
   <data name="NoQuestionsFound" xml:space="preserve">
     <value>Geen vragen gevonden</value>
   </data>
   <data name="Question" xml:space="preserve">
     <value>Vraag</value>
+  </data>
+  <data name="Questions" xml:space="preserve">
+    <value>Vragen</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="Runs" xml:space="preserve">
+    <value>Runs</value>
+    <comment>&lt;TODO: explain what a 'run' means in the Question and Answer application&gt;</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Zoeken</value>
   </data>
   <data name="SelectCategories" xml:space="preserve">
     <value>Selecteer categorieën</value>
@@ -147,7 +205,13 @@
   <data name="StartTraining" xml:space="preserve">
     <value>Training starten</value>
   </data>
-  <data name="Unflag" xml:space="preserve">
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistieken</value>
+  </data>
+  <data name="UnflagContent" xml:space="preserve">
     <value>Marking verwijderen</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
 </root>

@@ -44,15 +44,17 @@
     <Compile Include="Enums\QuestionTypeEnum.cs" />
     <Compile Include="Extensions\AnswerExtensions.cs" />
     <Compile Include="Extensions\CategoryExtensions.cs" />
-    <Compile Include="Extensions\CategoryExtensions.LinkTo.cs" />
+    <Compile Include="Extensions\CategoryExtensions_LinkTo.cs" />
+    <Compile Include="Extensions\QuestionLinkExtensions_Other.cs" />
+    <Compile Include="Extensions\QuestionCategoryExtensions_Other.cs" />
     <Compile Include="Extensions\QuestionFlagExtensions.cs" />
     <Compile Include="Extensions\QuestionFlagExtensions_Enums.cs" />
     <Compile Include="Extensions\QuestionFlagExtensions_LinkTo.cs" />
     <Compile Include="Extensions\SourceExtensions.cs" />
-    <Compile Include="Extensions\QuestionCategoryExtensions.LinkTo.cs" />
-    <Compile Include="Extensions\QuestionExtensions.Enums.cs" />
-    <Compile Include="Extensions\QuestionExtensions.Other.cs" />
-    <Compile Include="Extensions\QuestionLinkExtensions.cs" />
+    <Compile Include="Extensions\QuestionCategoryExtensions_LinkTo.cs" />
+    <Compile Include="Extensions\QuestionExtensions_Enums.cs" />
+    <Compile Include="Extensions\QuestionExtensions_Other.cs" />
+    <Compile Include="Extensions\QuestionLinkExtensions_LinkTo.cs" />
     <Compile Include="Extensions\QuestionTypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionFlagger.cs" />
@@ -62,11 +64,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PropertyDisplayNames.resx</DependentUpon>
     </Compile>
-    <Compile Include="Validation\QuestionDefaultValidator.cs" />
-    <Compile Include="Validation\QuestionMultipleChoiceValidator.cs" />
-    <Compile Include="Validation\QuestionMultipleChoiceSeveralMayApplyValidator.cs" />
-    <Compile Include="Validation\QuestionOpenQuestionValidator.cs" />
-    <Compile Include="Validation\QuestionQuestionTypeValidator.cs" />
+    <Compile Include="Validation\AnswerValidator.cs" />
+    <Compile Include="Validation\BasicQuestionValidator.cs" />
+    <Compile Include="Validation\MultipleChoiceQuestionValidator.cs" />
+    <Compile Include="Validation\QuestionLinkValidator.cs" />
+    <Compile Include="Validation\QuestionValidator.cs" />
+    <Compile Include="Validation\SeveralMayApplyQuestionValidator.cs" />
+    <Compile Include="Validation\OpenQuestionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Maths\JJ.Framework.Maths.csproj">
@@ -91,13 +95,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\PropertyDisplayNames.en-US.resx" />
+    <EmbeddedResource Include="Resources\PropertyDisplayNames.nl-NL.resx" />
     <EmbeddedResource Include="Resources\PropertyDisplayNames.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PropertyDisplayNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\QuestionExtensions.LinkTo.cs" />
+    <Compile Include="Extensions\QuestionExtensions_LinkTo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

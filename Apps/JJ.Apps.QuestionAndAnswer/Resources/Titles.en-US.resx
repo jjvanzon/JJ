@@ -117,11 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Flag" xml:space="preserve">
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="ContentFlags" xml:space="preserve">
+    <value>Content Flaggings</value>
+  </data>
+  <data name="ContentIsFlagged" xml:space="preserve">
+    <value>Flagged</value>
+  </data>
+  <data name="ContentManagement" xml:space="preserve">
+    <value>Content Management</value>
+  </data>
+  <data name="ContentSourcesAndImports" xml:space="preserve">
+    <value>Content Sources &amp; Imports</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditQuestion" xml:space="preserve">
+    <value>Edit Question</value>
+  </data>
+  <data name="FlagContent" xml:space="preserve">
     <value>Flag</value>
+    <comment>Verb</comment>
+  </data>
+  <data name="FlaggedContent" xml:space="preserve">
+    <value>Flagged Content</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
   </data>
   <data name="HideAnswer" xml:space="preserve">
     <value>Hide Answer</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
   </data>
   <data name="LogIn" xml:space="preserve">
     <value>Log In</value>
@@ -132,11 +172,30 @@
   <data name="NextQuestion" xml:space="preserve">
     <value>Next Question</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="NoQuestionsFound" xml:space="preserve">
     <value>No Questions Found</value>
   </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
+  </data>
+  <data name="Questions" xml:space="preserve">
+    <value>Questions</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Runs" xml:space="preserve">
+    <value>Runs</value>
+    <comment>&lt;TODO: explain what a 'run' means in the Question and Answer application&gt;</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
   </data>
   <data name="SelectCategories" xml:space="preserve">
     <value>Select Categories</value>
@@ -147,7 +206,13 @@
   <data name="StartTraining" xml:space="preserve">
     <value>Start Training</value>
   </data>
-  <data name="Unflag" xml:space="preserve">
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="UnflagContent" xml:space="preserve">
     <value>Unflag</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

@@ -8,24 +8,10 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 {
-    public class QuestionCategoryRepository : IQuestionCategoryRepository
+    public class QuestionCategoryRepository : RepositoryBase<QuestionCategory, int>, IQuestionCategoryRepository
     {
-        private IContext _context;
-
         public QuestionCategoryRepository(IContext context)
-        {
-            if (context == null) throw new ArgumentNullException("context");
-            _context = context;
-        }
-
-        public QuestionCategory Create()
-        {
-            return _context.Create<QuestionCategory>();
-        }
-
-        public void Delete(QuestionCategory questionCategory)
-        {
-            _context.Delete(questionCategory);
-        }
+            : base(context)
+        { }
     }
 }

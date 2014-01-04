@@ -129,17 +129,50 @@
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ContentFlaggedBy" xml:space="preserve">
+    <value>ContentFlaggedBy</value>
+  </data>
+  <data name="DateAndTime" xml:space="preserve">
+    <value>DateAndTime</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="HasActiveFlags" xml:space="preserve">
+    <value>HasActiveFlags</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>IsActive</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="LastModifiedBy" xml:space="preserve">
+    <value>LastModifiedBy</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
   <data name="Selection" xml:space="preserve">
     <value>Selection</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
   <data name="TheCorrectAnswer" xml:space="preserve">
     <value>TheCorrectAnswer</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>UserName</value>

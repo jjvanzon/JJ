@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface IQuestionLinkRepository
-    {
-        QuestionLink Create();
-
-        void Delete(QuestionLink questionLink);
-    }
+    public interface IQuestionLinkRepository : IRepository<QuestionLink, int>
+    { }
 }

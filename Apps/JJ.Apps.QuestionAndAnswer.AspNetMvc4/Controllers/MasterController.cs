@@ -14,15 +14,11 @@ using System.Web.Mvc;
 
 namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 {
-    // TODO: Summary text is obsolete.
     /// <summary>
-    /// Provides basic view data and basic actions, such as setting the language.
-    /// Adds the HeaderViewModel for the master page to the ViewData dictionary with the key "HeaderViewModel".
+    /// Provides basic view data and basic actions, such as setting the language and a small login widget.
     /// </summary>
     public abstract class MasterController : Controller
     {
-        public abstract ActionResult Index();
-
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             // In the constructor there is no Session.
@@ -61,7 +57,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 
             GetSessionWrapper().CultureName = viewModel.SelectedLanguageCultureName;
 
-            return RedirectToAction(ActionNames.Question, ControllerNames.Questions);
+            return RedirectToAction(ActionNames.Random, ControllerNames.Questions);
         }
 
         public LanguageSelectionViewModel LanguageSelectionViewModel
@@ -111,7 +107,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
             _smallLoginSubController.SetLoggedInUserName(authenticatedUserName);
 
             // What an assumption that we would want to go to the Question page. I would like to redirect to the page we were on before we tried to log in.
-            return RedirectToAction(ActionNames.Question, ControllerNames.Questions);
+            return RedirectToAction(ActionNames.Random, ControllerNames.Questions);
         }
 
         public ActionResult LogOut()

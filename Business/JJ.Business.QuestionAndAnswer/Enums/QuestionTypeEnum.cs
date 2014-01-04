@@ -4,6 +4,6 @@
     {
         OpenQuestion = 1,
         MultipleChoice = 2,
-        MultipleChoiceSeveralMayApply = 3
+        SeveralMayApply = 3
     }
 }

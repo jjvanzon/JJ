@@ -6,53 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+using JJ.Framework.Common;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 {
-    public class QuestionRepository : IQuestionRepository
+    public class QuestionRepository : RepositoryBase<Question, int>, IQuestionRepository
     {
-        private IContext _context;
-
         private SqlExecutor _sqlExecutor;
 
         public QuestionRepository(IContext context, string sqlConnectionString)
+            : base(context)
         {
-            if (context == null) throw new ArgumentNullException("context");
-
-            _context = context;
-
             _sqlExecutor = new SqlExecutor(sqlConnectionString);
-        }
-
-        public IEnumerable<Question> GetAll()
-        {
-            return _context.Query<Question>().ToArray();
-        }
-
-        public Question TryGet(int id)
-        {
-            return _context.TryGet<Question>(id);
-        }
-
-        public Question Get(int id)
-        {
-            return _context.Get<Question>(id);
-        }
-
-        public Question Create()
-        {
-            Question entity = _context.Create<Question>();
-            return entity;
-        }
-
-        public void Delete(Question question)
-        {
-            _context.Delete(question);
-        }
-
-        public void Commit()
-        {
-            _context.Commit();
         }
 
         public Question TryGetRandomQuestion()
@@ -75,15 +40,15 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 
         // TODO: Handle circularities.
 
-        public int[] GetQuestionIDsByCategory(Category category)
+        public IList<int> GetQuestionIDsByCategory(Category category)
         {
             if (category == null) throw new ArgumentNullException("category");
 
-            List<int> ids = GetQuestionIDsByCategoryRecursive(category);
+            IList<int> ids = GetQuestionIDsByCategoryRecursive(category);
             return ids.Distinct().ToArray();
         }
 
-        private List<int> GetQuestionIDsByCategoryRecursive(Category category)
+        private IList<int> GetQuestionIDsByCategoryRecursive(Category category)
         {
             List<int> ids = category.CategoryQuestions.Select(x => x.Question.ID).ToList();
 
@@ -94,6 +59,30 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
             }
 
             return ids;
+        }
+
+        /// <summary>
+        /// mustFilterByFlagStatusID = false and flagStatusID = null are two 
+        /// different things. mustFilterByFlagStatusID = false means all Questions are returned.
+        /// flagStatusID = null means only questions without a flagging are returned.
+        /// </summary>
+        public IEnumerable<Question> GetByCriteria(bool mustFilterByFlagStatusID, int? flagStatusID)
+        {
+            if (!mustFilterByFlagStatusID)
+            {
+                return GetAll();
+            }
+            else
+            {
+                if (!flagStatusID.HasValue)
+                {
+                    return _context.Query<Question>().Where(x => x.QuestionFlags.Count == 0);
+                }
+                else
+                {
+                    return _context.Query<QuestionFlag>().Where(x => x.FlagStatus.ID == flagStatusID).Select(x => x.Question).Distinct();
+                }
+            }
         }
     }
 }

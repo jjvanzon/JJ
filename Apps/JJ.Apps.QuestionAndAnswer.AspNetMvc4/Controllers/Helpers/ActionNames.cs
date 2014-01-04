@@ -7,7 +7,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
 {
     public static class ActionNames
     {
-        public const string Question = "Question";
+        public const string Random = "Random";
         public const string HideAnswer = "HideAnswer";
         public const string ShowAnswer = "ShowAnswer";
         public const string Add = "Add";
@@ -17,5 +17,9 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
         public const string LogOut = "LogOut";
         public const string Flag = "Flag";
         public const string Unflag = "Unflag";
+        public const string Details = "Details";
+        public const string Edit = "Edit";
+        public const string AddLink = "AddLink";
+        public const string RemoveLink = "RemoveLink";
     }
 }

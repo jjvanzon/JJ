@@ -61,11 +61,101 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Flag.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
-        public static string Flag {
+        public static string Add {
             get {
-                return ResourceManager.GetString("Flag", resourceCulture);
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string Categories {
+            get {
+                return ResourceManager.GetString("Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContentFlags.
+        /// </summary>
+        public static string ContentFlags {
+            get {
+                return ResourceManager.GetString("ContentFlags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContentIsFlagged.
+        /// </summary>
+        public static string ContentIsFlagged {
+            get {
+                return ResourceManager.GetString("ContentIsFlagged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContentManagement.
+        /// </summary>
+        public static string ContentManagement {
+            get {
+                return ResourceManager.GetString("ContentManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContentSourcesAndImports.
+        /// </summary>
+        public static string ContentSourcesAndImports {
+            get {
+                return ResourceManager.GetString("ContentSourcesAndImports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EditQuestion.
+        /// </summary>
+        public static string EditQuestion {
+            get {
+                return ResourceManager.GetString("EditQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FlagContent.
+        /// </summary>
+        public static string FlagContent {
+            get {
+                return ResourceManager.GetString("FlagContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FlaggedContent.
+        /// </summary>
+        public static string FlaggedContent {
+            get {
+                return ResourceManager.GetString("FlaggedContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string General {
+            get {
+                return ResourceManager.GetString("General", resourceCulture);
             }
         }
         
@@ -75,6 +165,33 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         public static string HideAnswer {
             get {
                 return ResourceManager.GetString("HideAnswer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string ID {
+            get {
+                return ResourceManager.GetString("ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive.
+        /// </summary>
+        public static string IsActive {
+            get {
+                return ResourceManager.GetString("IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links.
+        /// </summary>
+        public static string Links {
+            get {
+                return ResourceManager.GetString("Links", resourceCulture);
             }
         }
         
@@ -106,6 +223,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NoQuestionsFound.
         /// </summary>
         public static string NoQuestionsFound {
@@ -120,6 +246,51 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         public static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Questions.
+        /// </summary>
+        public static string Questions {
+            get {
+                return ResourceManager.GetString("Questions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Runs.
+        /// </summary>
+        public static string Runs {
+            get {
+                return ResourceManager.GetString("Runs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
         
@@ -151,11 +322,29 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unflag.
+        ///   Looks up a localized string similar to Statistics.
         /// </summary>
-        public static string Unflag {
+        public static string Statistics {
             get {
-                return ResourceManager.GetString("Unflag", resourceCulture);
+                return ResourceManager.GetString("Statistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UnflagContent.
+        /// </summary>
+        public static string UnflagContent {
+            get {
+                return ResourceManager.GetString("UnflagContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

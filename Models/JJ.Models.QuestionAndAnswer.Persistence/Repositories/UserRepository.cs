@@ -1,22 +1,18 @@
 ﻿using JJ.Framework.Persistence;
+using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
+namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : RepositoryBase<User, int>, IUserRepository
     {
-        private IContext _context;
-
         public UserRepository(IContext context)
-        {
-            if (context == null) { throw new ArgumentNullException("context"); }
-
-            _context = context;
-        }
+            : base(context)
+        { }
 
         public User TryGetByUserName(string userName)
         {

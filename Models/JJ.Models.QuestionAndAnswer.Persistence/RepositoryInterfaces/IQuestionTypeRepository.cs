@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface IQuestionTypeRepository
-    {
-        QuestionType Get(int id);
-    }
+    public interface IQuestionTypeRepository : IRepository<QuestionType, int>
+    { }
 }

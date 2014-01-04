@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User, int>
     {
         User TryGetByUserName(string userName);
         User GetByUserName(string userName);

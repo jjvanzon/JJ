@@ -3,7 +3,7 @@
         ProjectType = "Local"
         ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
-        ProjectGuid = "{32b51c27-17cd-4d07-8615-9bc2b91d9898}"
+        ProjectGuid = "{cf4788db-2bdb-4978-8ec8-cb7f9e5c7e53}"
     >
         <Build>
             <Settings
@@ -86,23 +86,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "UserAnswer.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "Answer.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "Source.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "RunCategory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />                <File
-                    RelPath = "Run.cs"
+                    RelPath = "QuestionType.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />                <File
@@ -126,11 +110,11 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />                <File
-                    RelPath = "User.cs"
+                    RelPath = "Answer.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />                <File
-                    RelPath = "QuestionType.cs"
+                    RelPath = "Source.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />                <File
@@ -139,6 +123,22 @@
                     BuildAction = "Compile"
                 />                <File
                     RelPath = "QuestionFlag.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "RunCategory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "UserAnswer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "User.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />                <File
+                    RelPath = "Run.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />                <File

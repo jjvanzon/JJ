@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface IQuestionCategoryRepository
-    {
-        QuestionCategory Create();
-
-        void Delete(QuestionCategory questionCategory);
-    }
+    public interface IQuestionCategoryRepository : IRepository<QuestionCategory, int>
+    { }
 }

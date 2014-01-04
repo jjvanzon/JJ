@@ -7,17 +7,11 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface IQuestionRepository
+    public interface IQuestionRepository : IRepository<Question, int>
     {
-        IEnumerable<Question> GetAll();
-        Question Get(int id);
-        Question TryGet(int id);
-        Question Create();
-        void Delete(Question question);
-        void Commit();
-
         Question TryGetRandomQuestion();
         IEnumerable<Question> GetBySourceID(int sourceID);
-        int[] GetQuestionIDsByCategory(Category category);
+        IList<int> GetQuestionIDsByCategory(Category category);
+        IEnumerable<Question> GetByCriteria(bool mustFilterByFlagStatusID, int? flagStatusID);
     }
 }

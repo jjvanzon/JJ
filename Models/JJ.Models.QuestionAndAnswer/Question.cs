@@ -9,6 +9,7 @@ namespace JJ.Models.QuestionAndAnswer
 
         private string _text;
         private bool _isManual;
+        private bool _isActive;
 
         private QuestionType _questionType;
         private Source _source;
@@ -36,6 +37,12 @@ namespace JJ.Models.QuestionAndAnswer
         {
             get { return _isManual; }
             set { _isManual = value; }
+        }
+        
+        public virtual bool IsActive 
+        {
+            get { return _isActive; }
+            set { _isActive = value; }
         }
 
         public virtual QuestionType QuestionType

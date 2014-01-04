@@ -8,25 +8,10 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 {
-    public class AnswerRepository : IAnswerRepository
+    public class AnswerRepository : RepositoryBase<Answer, int>, IAnswerRepository
     {
-        private IContext _context;
-
         public AnswerRepository(IContext context)
-        {
-            if (context == null) throw new ArgumentNullException("context");
-
-            _context = context;
-        }
-
-        public Answer Create()
-        {
-            return _context.Create<Answer>();
-        }
-
-        public void Delete(Answer answer)
-        {
-            _context.Delete(answer);
-        }
+            : base(context)
+        { }
     }
 }

@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface IQuestionFlagRepository
+    public interface IQuestionFlagRepository : IRepository<QuestionFlag, int>
     {
         QuestionFlag TryGetByCriteria(int questionID, int flaggedByUserID);
-        QuestionFlag Create();
-        void Commit();
-        void Delete(QuestionFlag entity);
     }
 }

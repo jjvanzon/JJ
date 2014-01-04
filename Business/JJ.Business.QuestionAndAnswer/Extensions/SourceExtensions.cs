@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {
-    public static partial class SourceExtensions
+    public static class SourceExtensions
     {
         public static void LinkTo(this Source source, Question question)
         {

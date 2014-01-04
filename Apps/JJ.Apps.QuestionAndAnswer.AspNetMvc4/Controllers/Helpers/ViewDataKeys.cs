@@ -5,7 +5,7 @@ using System.Web;
 
 namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
 {
-    public class ViewDataKeys
+    public static class ViewDataKeys
     {
         public const string LanguageSelectionViewModel = "LanguageSelectionViewModel";
     }

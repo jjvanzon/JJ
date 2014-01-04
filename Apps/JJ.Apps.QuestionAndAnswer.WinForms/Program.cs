@@ -16,7 +16,7 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuesionDetailForm());
+            Application.Run(new RandomQuestionForm());
         }
     }
 }

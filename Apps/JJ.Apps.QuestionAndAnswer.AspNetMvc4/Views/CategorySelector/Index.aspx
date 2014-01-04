@@ -61,7 +61,7 @@
             var element = document.getElementById(elementId);
             var categoryID = element.getAttribute("data-category-id");
 
-            var url = '<%=UrlHelpers.GetUrl(ActionNames.Remove, ControllerNames.CategorySelector, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>(ActionParameterNames.categoryID, "") }) %>';
+            var url = '<%=UrlHelpers.GetUrl(ActionNames.Remove, ControllerNames.CategorySelector, ActionParameterNames.categoryID, "") %>'; // Parameter value is added later.
             url = url + encodeURI(categoryID);
 
             window.document.forms[0].action = url;
@@ -72,7 +72,7 @@
             var element = document.getElementById(elementId);
             var categoryID = element.getAttribute("data-category-id");
 
-            var url = '<%=UrlHelpers.GetUrl(ActionNames.Add, ControllerNames.CategorySelector, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>(ActionParameterNames.categoryID, "") }) %>';
+            var url = '<%=UrlHelpers.GetUrl(ActionNames.Add, ControllerNames.CategorySelector, ActionParameterNames.categoryID, "") %>'; // Parameter value is added later.
             url = url + encodeURI(categoryID);
 
             window.document.forms[0].action = url;
@@ -88,63 +88,58 @@
 
     <h2><%: Titles.SelectCategories %></h2>
 
-    <% if (Model.NoCategoriesAvailable)
-       { %>
-            <div id="divNoCategoriesAvailable">
-                <%: Messages.NoCategoriesAvailable %>
-            </div>
-    <% } 
-       else
-       { %>
-            <%-- <div class="trysomething">
-                qqwerqwrewr
-            </div>
-            --%>
-    
-            <table class="pane">
-                <tr>
-                    <td class="col1of2">
-                        <div id="divAvailableCategories"
-                             ondragover="divAvailableCategories_onDragOver(event)"
-                             ondrop="divAvailableCategories_onDrop(event)">
+    <% if (Model.NoCategoriesAvailable) { %>
 
-                            <h3><%: Labels.AvailableCategories %></h3>
+        <div id="divNoCategoriesAvailable">
+            <%: Messages.NoCategoriesAvailable %>
+        </div>
 
-                            <ul class="category available">
-                                <% foreach (var availableCategory in Model.AvailableCategories) { %>
+    <% } else { %>
+   
+        <table class="pane">
+            <tr>
+                <td class="col1of2">
+                    <div id="divAvailableCategories"
+                            ondragover="divAvailableCategories_onDragOver(event)"
+                            ondrop="divAvailableCategories_onDrop(event)">
 
-                                    <% Html.RenderPartial(ViewNames._AvailableCategory, availableCategory); %>
+                        <h3><%: Labels.AvailableCategories %></h3>
 
-                                <% } %>
-                            </ul>
-                        </div>
-                    </td>
+                        <ul class="category available">
+                            <% foreach (var availableCategory in Model.AvailableCategories) { %>
 
-                    <td class="col2of2">
-                        <div id="divSelectedCategories" 
-                             ondragover="divSelectedCategories_onDragOver(event)"
-                             ondrop="divSelectedCategories_onDrop(event)">
+                                <% Html.RenderPartial(ViewNames._AvailableCategory, availableCategory); %>
 
-                            <h3><%: Labels.Selection %></h3>
+                            <% } %>
+                        </ul>
+                    </div>
+                </td>
 
-                            <ul class="category selected">
+                <td class="col2of2">
+                    <div id="divSelectedCategories" 
+                            ondragover="divSelectedCategories_onDragOver(event)"
+                            ondrop="divSelectedCategories_onDrop(event)">
 
-                                <% using (Html.BeginCollection(() => Model.SelectedCategories)) {
+                        <h3><%: Labels.Selection %></h3>
+
+                        <ul class="category selected">
+
+                            <% using (Html.BeginCollection(() => Model.SelectedCategories)) {
             
-                                    foreach (var selectedCategory in Model.SelectedCategories) { %>
+                                foreach (var selectedCategory in Model.SelectedCategories) { %>
 
-                                        <% Html.RenderPartial(ViewNames._SelectedCategory, selectedCategory); %>
-
-                                    <% } %>
+                                    <% Html.RenderPartial(ViewNames._SelectedCategory, selectedCategory); %>
 
                                 <% } %>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </table>
 
-            <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Question, ControllerNames.Questions, ActionParameterNames.c, Model.SelectedCategories.SelectRecursive(x => x.SubCategories).Where(x => x.Visible).Select(x => x.ID).ToArray()) %>
+                            <% } %>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Random, ControllerNames.Questions, ActionParameterNames.c, Model.SelectedCategories.SelectRecursive(x => x.SubCategories).Where(x => x.Visible).Select(x => x.ID).ToArray()) %>
 
     <% } %>
     

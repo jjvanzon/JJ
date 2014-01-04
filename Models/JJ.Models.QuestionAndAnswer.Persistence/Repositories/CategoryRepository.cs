@@ -8,21 +8,11 @@ using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : RepositoryBase<Category, int>, ICategoryRepository
     {
-        private IContext _context;
-
         public CategoryRepository(IContext context)
-        {
-            if (context == null) throw new ArgumentNullException("context");
-
-            _context = context;
-        }
-
-        public Category Get(int id)
-        {
-            return _context.Get<Category>(id);
-        }
+            : base(context)
+        { }
 
         public Category TryGetByIdentifier(string identifier)
         {
@@ -48,11 +38,6 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 
             return category;
         }*/
-
-        public Category Create()
-        {
-            return _context.Create<Category>();
-        }
 
         /*public Category TryGetByParentAndIdentifier(Category parentCategory, string identifier)
         {
@@ -86,12 +71,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
                            .SingleOrDefault();
         }
 
-        public Category[] GetAll()
-        {
-            return _context.GetAll<Category>().ToArray();
-        }
-
-        public Category[] GetRootCategories()
+        public IList<Category> GetRootCategories()
         {
             return _context.Query<Category>()
                            .Where(x => x.ParentCategory == null)

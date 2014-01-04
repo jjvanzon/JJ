@@ -140,6 +140,7 @@
           <Property Name="LastModifiedByUserID" Type="int" />
           <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="2048" />
           <Property Name="IsManual" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="QuestionCategory">
           <Key>
@@ -573,6 +574,7 @@
           <NavigationProperty Name="LastModifiedByUser" Relationship="QuestionAndAnswerDB_DEVModel.FK_Question_LastModifiedByUser" FromRole="Question" ToRole="User" />
           <NavigationProperty Name="QuestionFlags" Relationship="QuestionAndAnswerDB_DEVModel.FK_QuestionFlag_Question" FromRole="Question" ToRole="QuestionFlag" />
           <NavigationProperty Name="UserAnswers" Relationship="QuestionAndAnswerDB_DEVModel.FK_UserAnswer_Question" FromRole="Question" ToRole="UserAnswer" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
         </EntityType>
         <EntityType Name="QuestionCategory">
           <Key>
@@ -790,6 +792,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="QuestionAndAnswerDB_DEVModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsManual" ColumnName="IsManual" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

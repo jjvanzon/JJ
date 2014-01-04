@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Views" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers" %>
 
@@ -16,8 +17,7 @@
     <script>
         $(document).ready(function()
         {
-
-
+            // TODO: make smallLoginDiv's smallLoginViewDropDown show and hide when you click on your display name.
         });
     </script>
 
@@ -42,19 +42,19 @@
 
     <nav>
         <ul>
-            <li><a href="/Questions/Question">Question</a></li>
-            <li><a href="/CategorySelector">Categories</a></li>
-            <li><a>Search</a></li>
-            <li><a>Statistics</a></li>
-            <li><a>Runs</a></li>
+            <li><a href="<%: Url.Action(ActionNames.Random, ControllerNames.Questions) %>"><%: Titles.Question %></a></li>
+            <li><a href="<%: Url.Action(ActionNames.Index, ControllerNames.CategorySelector) %>"><%: Titles.Categories %></a></li>
+            <li><a><%: Titles.Search %></a></li>
+            <li><a><%: Titles.Statistics %></a></li>
+            <li><a><%: Titles.Runs %></a></li>
             <li>
-                <span id="contentManagementMenuItemSpan">Content Management</span>
+                <span id="contentManagementMenuItemSpan"><%: Titles.ContentManagement %></span>
 
                 <ul>
-                    <li><a>Content Sources & Imports</a></li>
-                    <li><a>Categories</a></li>
-                    <li><a>Questions</a></li>
-                    <li><a>Flagged Content</a></li>
+                    <li><a><%: Titles.ContentSourcesAndImports %></a></li>
+                    <li><a><%: Titles.Categories %></a></li>
+                    <li><a href="<%: Url.Action(ActionNames.Index, ControllerNames.Questions) %>"><%: Titles.Questions %></a></li>
+                    <li><a><%: Titles.FlaggedContent %></a></li>
                 </ul>
             </li>
         </ul>

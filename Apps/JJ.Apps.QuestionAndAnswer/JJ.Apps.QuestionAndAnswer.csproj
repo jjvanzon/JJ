@@ -41,15 +41,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
+    <Compile Include="Presenters\Helpers\IEnumerableOfValidationMessageExtensions.cs" />
+    <Compile Include="Presenters\Helpers\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\QuestionListPresenter.cs" />
+    <Compile Include="Presenters\QuestionDetailPresenter.cs" />
+    <Compile Include="ViewModels\CurrentUserQuestionFlagViewModel.cs" />
+    <Compile Include="ViewModels\FlagStatusViewModel.cs" />
+    <Compile Include="ViewModels\Helpers\FlagStatusExtensions.cs" />
+    <Compile Include="ViewModels\Helpers\QuestionLinkExtensions.cs" />
+    <Compile Include="ViewModels\QuestionDetailViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Helpers\QuestionFlagExtensions.cs" />
     <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />
     <Compile Include="ViewModels\QuestionFlagViewModel.cs" />
+    <Compile Include="ViewModels\QuestionListViewModel.cs" />
+    <Compile Include="ViewModels\QuestionNotFoundViewModel.cs" />
     <Compile Include="ViewModels\SmallLoginViewModel.cs" />
     <Compile Include="Presenters\SmallLoginPresenter.cs" />
     <Compile Include="Presenters\LanguageSelectionPresenter.cs" />
-    <Compile Include="Presenters\QuestionPresenter.cs" />
+    <Compile Include="Presenters\RandomQuestionPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -73,8 +84,8 @@
     </Compile>
     <Compile Include="ViewModels\LanguageViewModel.cs" />
     <Compile Include="ViewModels\LanguageSelectionViewModel.cs" />
-    <Compile Include="ViewModels\QuestionDetailViewModel.cs" />
-    <Compile Include="ViewModels\LinkViewModel.cs" />
+    <Compile Include="ViewModels\RandomQuestionViewModel.cs" />
+    <Compile Include="ViewModels\QuestionLinkViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +116,14 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Security\JJ.Framework.Security.csproj">
       <Project>{4007568e-b2b4-4fc5-aa38-34edc272f010}</Project>
       <Name>JJ.Framework.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Validation\JJ.Framework.Validation.csproj">
+      <Project>{59ddc853-62af-4f86-a803-3d4dd491e978}</Project>
+      <Name>JJ.Framework.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\JJ.Models.Canonical\JJ.Models.Canonical.csproj">
+      <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
+      <Name>JJ.Models.Canonical</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.NHibernate\JJ.Models.QuestionAndAnswer.Persistence.NHibernate.csproj">
       <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>

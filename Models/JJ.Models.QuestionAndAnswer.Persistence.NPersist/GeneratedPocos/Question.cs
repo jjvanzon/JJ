@@ -16,6 +16,7 @@ namespace JJ.Models.QuestionAndAnswer
         private System.Collections.IList _questionFlags;
         private System.Collections.IList _userAnswers;
         private User _lastModifiedByUser;
+        private System.Boolean _isActive;
 
         public virtual System.Int32 Id
         {
@@ -142,6 +143,18 @@ namespace JJ.Models.QuestionAndAnswer
             set
             {
                 _lastModifiedByUser = value;
+            }
+        }
+
+        public virtual System.Boolean IsActive
+        {
+            get
+            {
+                return _isActive;
+            }
+            set
+            {
+                _isActive = value;
             }
         }
 

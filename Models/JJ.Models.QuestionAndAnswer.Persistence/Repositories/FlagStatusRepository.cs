@@ -8,20 +8,10 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
 {
-    public class FlagStatusRepository : IFlagStatusRepository
+    public class FlagStatusRepository : RepositoryBase<FlagStatus, int>, IFlagStatusRepository
     {
-        private IContext _context;
-
         public FlagStatusRepository(IContext context)
-        {
-            if (context == null) throw new ArgumentNullException("context");
-
-            _context = context;
-        }
-
-        public FlagStatus Get(int id)
-        {
-            return _context.Get<FlagStatus>(id);
-        }
+            : base(context)
+        { }
     }
 }

@@ -14,7 +14,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
 {
     public class LoginController : MasterController
     {
-        public override ActionResult Index()
+        public ActionResult Index()
         {
             LoginPresenter presenter = CreatePresenter();
             LoginViewModel viewModel = presenter.Show();

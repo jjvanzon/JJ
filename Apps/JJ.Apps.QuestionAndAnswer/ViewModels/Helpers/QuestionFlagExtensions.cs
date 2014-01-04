@@ -9,15 +9,29 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     internal static class QuestionFlagExtensions
     {
+        public static CurrentUserQuestionFlagViewModel ToCurrentUserQuestionFlagViewModel(this QuestionFlag entity)
+        {
+            if (entity == null) throw new Exception("entity");
+
+            return new CurrentUserQuestionFlagViewModel
+            {
+                CanFlag = true,
+                IsFlagged = true,
+                Comment = entity.Comment
+            };
+        }
         public static QuestionFlagViewModel ToViewModel(this QuestionFlag entity)
         {
             if (entity == null) throw new Exception("entity");
 
             return new QuestionFlagViewModel
             {
-                CanFlag = true,
-                IsFlagged = true,
-                Comment = entity.Comment
+                ID = entity.ID,
+                Comment = entity.Comment,
+                DateAndTime = entity.DateTime,
+                FlaggedBy = entity.FlaggedByUser.DisplayName,
+                LastModifiedBy = entity.LastModifiedByUser.DisplayName,
+                Status = entity.FlagStatus.ToViewModel()
             };
         }
     }

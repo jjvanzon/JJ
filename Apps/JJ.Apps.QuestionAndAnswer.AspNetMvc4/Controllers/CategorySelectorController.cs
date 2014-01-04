@@ -18,7 +18,7 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers
     {
         // GET: /CategorySelector/
 
-        public override ActionResult Index()
+        public ActionResult Index()
         {
             CategorySelectorPresenter presenter = CreatePresenter();
             CategorySelectorViewModel viewModel = presenter.Show();

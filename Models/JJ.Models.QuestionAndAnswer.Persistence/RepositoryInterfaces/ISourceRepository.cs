@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface ISourceRepository
+    public interface ISourceRepository : IRepository<Source, int>
     {
-        Source Get(int id);
         Source TryGetByIdentifier(string identifier);
         Source GetByIdentifier(string identifier);
-        Source Create();
     }
 }

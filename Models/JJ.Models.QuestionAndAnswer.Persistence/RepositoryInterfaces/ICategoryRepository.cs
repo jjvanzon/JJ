@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces
 {
-    public interface ICategoryRepository
+    public interface ICategoryRepository : IRepository<Category, int>
     {
-        Category Get(int id);
-        Category[] GetAll();
-        Category Create();
         Category TryGetByIdentifier(string identifier);
         Category TryGetCategoryByParentAndIdentifier(Category parentCategory, string identifier);
-        Category[] GetRootCategories();
+        IList<Category> GetRootCategories();
     }
 }

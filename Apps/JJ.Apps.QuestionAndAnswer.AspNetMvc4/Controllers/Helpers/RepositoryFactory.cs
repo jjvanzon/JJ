@@ -28,16 +28,34 @@ namespace JJ.Apps.QuestionAndAnswer.AspNetMvc4.Controllers.Helpers
             return new QuestionFlagRepository(context);
         }
 
-        internal static ICategoryRepository CreateCategoryRepository(IContext context)
+        public static ICategoryRepository CreateCategoryRepository(IContext context)
         {
             if (context == null) throw new ArgumentNullException("context");
             return new CategoryRepository(context);
         }
 
-        internal static IFlagStatusRepository CreateFlagStatusRepository(IContext context)
+        public static IFlagStatusRepository CreateFlagStatusRepository(IContext context)
         {
             if (context == null) throw new ArgumentNullException("context");
             return new FlagStatusRepository(context);
+        }
+
+        public static IAnswerRepository CreateAnswerRepository(IContext context)
+        {
+            if (context == null) throw new ArgumentNullException("context");
+            return new AnswerRepository(context);
+        }
+
+        public static IQuestionCategoryRepository CreateQuestionCategoryRepository(IContext context)
+        {
+            if (context == null) throw new ArgumentNullException("context");
+            return new QuestionCategoryRepository(context);
+        }
+
+        public static IQuestionLinkRepository CreateQuestionLinkRepository(IContext context)
+        {
+            if (context == null) throw new ArgumentNullException("context");
+            return new QuestionLinkRepository(context);
         }
     }
 }
