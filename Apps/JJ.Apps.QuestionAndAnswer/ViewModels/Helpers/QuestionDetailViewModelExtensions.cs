@@ -15,6 +15,21 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
     internal static class QuestionDetailViewModelExtensions
     {
         /// <summary>
+        /// Fills up the viewmodel with new objects where there are unexpected nulls.
+        /// </summary>
+        public static QuestionDetailViewModel NullCoallesce(this QuestionDetailViewModel viewModel)
+        {
+            viewModel = viewModel ?? new QuestionDetailViewModel();
+            viewModel.FlagStatuses = viewModel.FlagStatuses ?? new List<FlagStatusViewModel>();
+            viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<Models.Canonical.ValidationMessage>();
+            viewModel.Question = viewModel.Question ?? new QuestionViewModel();
+            viewModel.Question.Categories = viewModel.Question.Categories ?? new List<CategoryViewModel>();
+            viewModel.Question.Links = viewModel.Question.Links ?? new List<QuestionLinkViewModel>();
+            viewModel.Question.Flags = viewModel.Question.Flags ?? new List<QuestionFlagViewModel>();
+            return viewModel;
+        }
+
+        /// <summary>
         /// Converts a partially filled view model to an entity.
         /// First, a possibly existing entity is retrieved from the database.
         /// Next, the editable parts of the entity are taken over from the view model.
@@ -33,6 +48,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             if (viewModel.Question == null) throw new ArgumentNullException("viewModel.Question");
             if (viewModel.Question.Categories == null) throw new ArgumentNullException("viewModel.Question.Categories");
             if (viewModel.Question.Links == null) throw new ArgumentNullException("viewModel.Question.Links");
+            if (viewModel.Question.Flags == null) throw new ArgumentNullException("viewModel.Question.Flags");
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");
             if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");

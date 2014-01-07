@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Views" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link rel="stylesheet" type="text/css" href="/Content/Site.css" />
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/JJ.Framework.Check.js"></script>
+    <script src="/Scripts/JJ.Framework.Assert.js"></script>
+    <script src="/Scripts/JJ.Framework.Cookie.js"></script>
+    <script src="/Scripts/JJ.Framework.RememberScrollPosition.js"></script>
+
+    <script>
+        $(document).ready(function()
+        {
+            // TODO: make smallLoginDiv's smallLoginViewDropDown show and hide when you click on your display name.
+        });
+    </script>
+
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
+</head>
+<body>
+    <header>
+        LOGO HERE
+        <br />
+
+        <h1>Q&A</h1>
+        
+        <div id="languageDiv">
+            <% Html.RenderPartial(ViewNames._LanguageSelection, ((MasterController)this.ViewContext.Controller).LanguageSelectionViewModel); %>
+        </div>
+
+        <div id="smallLoginDiv">
+            <% Html.RenderPartial(ViewNames._SmallLogin, ((MasterController)this.ViewContext.Controller).SmallLoginViewModel); %>
+        </div>
+
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="<%: Url.Action(ActionNames.Random, ControllerNames.Questions) %>"><%: Titles.Question %></a></li>
+            <li><a href="<%: Url.Action(ActionNames.Index, ControllerNames.CategorySelector) %>"><%: Titles.Categories %></a></li>
+            <li><a><%: Titles.Search %></a></li>
+            <li><a><%: Titles.Statistics %></a></li>
+            <li><a><%: Titles.Runs %></a></li>
+            <li>
+                <span id="contentManagementMenuItemSpan"><%: Titles.ContentManagement %></span>
+
+                <ul>
+                    <li><a><%: Titles.ContentSourcesAndImports %></a></li>
+                    <li><a><%: Titles.Categories %></a></li>
+                    <li><a href="<%: Url.Action(ActionNames.Index, ControllerNames.Questions) %>"><%: Titles.Questions %></a></li>
+                    <li><a><%: Titles.FlaggedContent %></a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </div>
+</body>
+</html>

@@ -67,8 +67,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionDetailViewModel AddLink(QuestionDetailViewModel viewModel)
         {
-            // You can return QuestionDetailViewModel and never return QuestionNotFoundViewModel even though in high concurrency the question can disappear, because ToEntity recreates the question again.
-            if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
+            // You can always return QuestionDetailViewModel and never have to return QuestionNotFoundViewModel even though in high concurrency the question can disappear, because ToEntity recreates the question again.
+            viewModel = viewModel.NullCoallesce();
 
             // Get entity from database, with the viewmodel applied to it.
             Question question = viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository);
@@ -84,15 +84,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionDetailViewModel RemoveLink(QuestionDetailViewModel viewModel, int questionLinkID, Guid questionLinkTemporaryID)
         {
-            // You can return QuestionDetailViewModel and never return QuestionNotFoundViewModel even though in high concurrency the question can disappear, because ToEntity recreates the question again.
+            // You can always return QuestionDetailViewModel and never have to return QuestionNotFoundViewModel even though in high concurrency the question can disappear, because ToEntity recreates the question again.
 
             // The problem here is that you may want to remove one out of many uncommitted entities do not exist in the database yet,
             // and you cannot identify them uniquely with the ID (which is 0), which makes it impossible to perform the delete operation on the entity model when given an ID.
             // So in that case you perform the operation on the viewmodel which has a temporary ID.
 
-            if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
-            if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
-            if (viewModel.Question.Links == null) { throw new ArgumentNullException("viewModel.Question.Links"); }
+            viewModel = viewModel.NullCoallesce();
 
             // Perform operation on view model to remove an entity that does not exist in the database yet.
             if (questionLinkID == 0)
@@ -122,8 +120,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionDetailViewModel Save(QuestionDetailViewModel viewModel)
         {
-            // You can return QuestionDetailViewModel and never return QuestionNotFoundViewModel even though in high concurrency the question can disappear, because ToEntity recreates the question again.
-            if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
+            // You can always return QuestionDetailViewModel and never have to return QuestionNotFoundViewModel even though in high concurrency the question can disappear, because ToEntity recreates the question again.
+            viewModel = viewModel.NullCoallesce();
 
             // Converts a partially filled view model to an entity.
             Question question = viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository);

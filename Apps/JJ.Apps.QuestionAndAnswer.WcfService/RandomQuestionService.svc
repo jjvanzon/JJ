@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="JJ.Apps.QuestionAndAnswer.WcfService.RandomQuestionService" CodeBehind="RandomQuestionService.svc.cs" %>

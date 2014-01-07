@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.AspNetMvc4", "JJ.Apps.QuestionAndAnswer.AspNetMvc4\JJ.Apps.QuestionAndAnswer.AspNetMvc4.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.Mvc", "JJ.Apps.QuestionAndAnswer.Mvc\JJ.Apps.QuestionAndAnswer.Mvc.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer", "JJ.Apps.QuestionAndAnswer\JJ.Apps.QuestionAndAnswer.csproj", "{680C0600-E384-4F3D-9C2A-38ECC1FDB1CB}"
 EndProject
@@ -55,17 +55,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Tests", "..\Framework\JJ.Framework.Persistence.Tests\JJ.Framework.Persistence.Tests.csproj", "{30F1DFB1-BB06-42EA-AE91-56144B56DF45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.WcfService", "JJ.Apps.QuestionAndAnswer.WcfService\JJ.Apps.QuestionAndAnswer.WcfService.csproj", "{CE9782A1-2486-4217-BEA2-CC5C7499937A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.AppService", "JJ.Apps.QuestionAndAnswer.AppService\JJ.Apps.QuestionAndAnswer.AppService.csproj", "{CE9782A1-2486-4217-BEA2-CC5C7499937A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.WinForms", "JJ.Apps.QuestionAndAnswer.WinForms\JJ.Apps.QuestionAndAnswer.WinForms.csproj", "{61FE7964-2503-44FD-95F9-AC9045610C99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.AspNetMvc4", "..\Framework\JJ.Framework.Presentation.AspNetMvc4\JJ.Framework.Presentation.AspNetMvc4.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc", "..\Framework\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing", "..\Framework\JJ.Framework.Testing\JJ.Framework.Testing.csproj", "{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Tests", "..\Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Tests.csproj", "{EA2EC919-FC52-47B6-9149-B6A7018572CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.WcfService.DemoClient", "JJ.Apps.QuestionAndAnswer.WcfService.DemoClient\JJ.Apps.QuestionAndAnswer.WcfService.DemoClient.csproj", "{CC1E33CE-08E6-48FD-A303-B28E40A258D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.AppService.DemoClient", "JJ.Apps.QuestionAndAnswer.AppService.DemoClient\JJ.Apps.QuestionAndAnswer.AppService.DemoClient.csproj", "{CC1E33CE-08E6-48FD-A303-B28E40A258D3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OneOff", "OneOff", "{8811F001-E852-4533-A212-1050A0153972}"
 EndProject
@@ -96,6 +96,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.Canonical", "..\Models\JJ.Models.Canonical\JJ.Models.Canonical.csproj", "{08EA4A4E-D815-47AE-9277-DA6672D36214}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation", "..\Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj", "{79B0EAC3-5159-4FC8-B3D8-53315B205444}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.JavaScript", "..\Framework\JJ.Framework.Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.csproj", "{BD4CF454-BE0B-490F-997D-665DA7EBEC96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -354,6 +356,12 @@ Global
 		{79B0EAC3-5159-4FC8-B3D8-53315B205444}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{79B0EAC3-5159-4FC8-B3D8-53315B205444}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79B0EAC3-5159-4FC8-B3D8-53315B205444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD4CF454-BE0B-490F-997D-665DA7EBEC96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4CF454-BE0B-490F-997D-665DA7EBEC96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4CF454-BE0B-490F-997D-665DA7EBEC96}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4CF454-BE0B-490F-997D-665DA7EBEC96}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4CF454-BE0B-490F-997D-665DA7EBEC96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4CF454-BE0B-490F-997D-665DA7EBEC96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -396,6 +404,7 @@ Global
 		{F6EA0941-40FF-4679-A1A6-EACD5C9BA42B} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{4007568E-B2B4-4FC5-AA38-34EDC272F010} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{79B0EAC3-5159-4FC8-B3D8-53315B205444} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{BD4CF454-BE0B-490F-997D-665DA7EBEC96} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
