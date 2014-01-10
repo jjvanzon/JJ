@@ -16,8 +16,6 @@
 
         <h2><%: Titles.EditQuestion %></h2>
 
-        <%: Html.ValidationSummary() %>
-
         <table>
             <tr>
                 <td><%: Labels.ID %></td>
@@ -164,6 +162,8 @@
             <% } %>
 
         </fieldset>
+    
+        <%: Html.ValidationSummary() %>
 
         <p><input type="submit" value="<%: Titles.Save %>" /></p>
 

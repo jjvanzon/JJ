@@ -17,16 +17,20 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
         /// <summary>
         /// Fills up the viewmodel with new objects where there are unexpected nulls.
         /// </summary>
-        public static QuestionDetailViewModel NullCoallesce(this QuestionDetailViewModel viewModel)
+        public static void NullCoallesce(this QuestionDetailViewModel viewModel)
         {
-            viewModel = viewModel ?? new QuestionDetailViewModel();
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
             viewModel.FlagStatuses = viewModel.FlagStatuses ?? new List<FlagStatusViewModel>();
             viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<Models.Canonical.ValidationMessage>();
             viewModel.Question = viewModel.Question ?? new QuestionViewModel();
             viewModel.Question.Categories = viewModel.Question.Categories ?? new List<CategoryViewModel>();
             viewModel.Question.Links = viewModel.Question.Links ?? new List<QuestionLinkViewModel>();
             viewModel.Question.Flags = viewModel.Question.Flags ?? new List<QuestionFlagViewModel>();
-            return viewModel;
+
+            foreach (CategoryViewModel category in viewModel.Question.Categories)
+            {
+                category.NameParts = category.NameParts ?? new List<string>();
+            }
         }
 
         /// <summary>

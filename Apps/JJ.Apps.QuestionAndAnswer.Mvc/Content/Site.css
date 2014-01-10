@@ -225,7 +225,10 @@ li.category
 
     margin-top: 2px;
     margin-bottom: 4px;
-    padding: 8px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
 
     color: #345;
     font-weight: bold;

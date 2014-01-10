@@ -17,7 +17,7 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            For(Object.Text, PropertyDisplayNames.Text)
+            For(() => Object.Text, PropertyDisplayNames.Text)
                 .NotNullOrWhiteSpace();
         }
     }

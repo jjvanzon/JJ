@@ -28,7 +28,7 @@ namespace JJ.Framework.Reflection
             Visit(expression.Body);
         }
 
-        private void Visit(Expression node)
+        public void Visit(Expression node)
         {
             switch (node.NodeType)
             {
@@ -220,9 +220,19 @@ namespace JJ.Framework.Reflection
             VisitMember(memberExpression);
             var array = (Array)Stack.Pop();
 
-            var constantExpression = (ConstantExpression)node.Right;
-            int index = (int)constantExpression.Value;
-            Stack.Push(array.GetValue(index));
+            switch (node.Right.NodeType)
+            {
+                case ExpressionType.Constant:
+                    var constantExpression = (ConstantExpression)node.Right;
+                    int index = (int)constantExpression.Value;
+                    Stack.Push(array.GetValue(index));
+                    break;
+
+                case ExpressionType.MemberAccess:
+                    var memberExpression2 = (MemberExpression)node.Right;
+                    VisitMember(memberExpression2);
+                    break;
+            }
         }
 
         private void VisitNewArray(NewArrayExpression node)

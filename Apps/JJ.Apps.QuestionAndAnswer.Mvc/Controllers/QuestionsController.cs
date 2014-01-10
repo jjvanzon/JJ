@@ -12,6 +12,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Presentation;
 using JJ.Models.Canonical;
 using JJ.Apps.QuestionAndAnswer.Mvc.Views;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -52,6 +53,11 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             var detailViewModel = viewModel as QuestionDetailViewModel;
             if (detailViewModel != null)
             {
+                foreach (ValidationMessage validationMessage in detailViewModel.ValidationMessages)
+                {
+                    ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
+                }
+
                 return View(detailViewModel);
             }
 
@@ -73,20 +79,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             QuestionDetailPresenter presenter = CreateDetailPresenter();
             QuestionDetailViewModel viewModel2 = presenter.Save(viewModel);
 
-            if (viewModel2.ValidationMessages.Count > 0)
-            {
-                foreach (ValidationMessage validationMessage in viewModel2.ValidationMessages)
-                {
-                    ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
-                }
-
-                return View(viewModel2);
-            }
-            else
-            {
-                TempData[TempDataKeys.ViewModel] = viewModel2;
-                return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
-            }
+            TempData[TempDataKeys.ViewModel] = viewModel2;
+            return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
         }
 
         // POST: /Questions/AddLink
@@ -101,7 +95,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         }
 
         // POST: /Questions/RemoveLink?questionLink=&questionLinkTemporaryID=123456-7890-ABCDEF
-        // POST: /Questions/RemoveLink?questionLink=5&questionLinkTemporaryID=123456-7890-ABCDEF
+        // POST: /Questions/RemoveLink?questionLink=123&questionLinkTemporaryID=123456-7890-ABCDEF
 
         [HttpPost]
         public ActionResult RemoveLink(QuestionDetailViewModel viewModel, int questionLinkID, Guid questionLinkTemporaryID)

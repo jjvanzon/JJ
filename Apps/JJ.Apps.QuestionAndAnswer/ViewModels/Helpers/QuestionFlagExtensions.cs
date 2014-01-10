@@ -20,6 +20,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 Comment = entity.Comment
             };
         }
+
         public static QuestionFlagViewModel ToViewModel(this QuestionFlag entity)
         {
             if (entity == null) throw new Exception("entity");

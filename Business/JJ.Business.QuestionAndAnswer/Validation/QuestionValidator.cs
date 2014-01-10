@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Resources;
+using JJ.Framework.Common;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
@@ -48,6 +49,13 @@ namespace JJ.Business.QuestionAndAnswer.Validation
                         break;
                 }
             }
+
+            // HACK: Replace stuff in the property keys to at least see the invalid field highlighting work in the MVC view.
+            ValidationMessages.ForEach(x => x.PropertyKey = "Question." + x.PropertyKey);
+            ValidationMessages.ForEach(x => x.PropertyKey = x.PropertyKey.Replace("QuestionLinks", "Links"));
+            ValidationMessages.ForEach(x => x.PropertyKey = x.PropertyKey.Replace("QuestionCategories", "Categories"));
+            ValidationMessages.ForEach(x => x.PropertyKey = x.PropertyKey.Replace("QuestionFlags", "Flags"));
+            ValidationMessages.ForEach(x => x.PropertyKey = x.PropertyKey.Replace("Answers[0].Text", "Answer"));
         }
     }
 }

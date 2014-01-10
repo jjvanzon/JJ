@@ -22,14 +22,14 @@ namespace JJ.Business.QuestionAndAnswer.Validation
         {
             if (Object.QuestionType != null)
             {
-                For(Object.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionTypeEnum)
+                For(() => Object.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionTypeEnum)
                     .IsValue(QuestionTypeEnum.SeveralMayApply);
             }
 
-            For(Object.Answers.Count, PropertyDisplayNames.AnswersCount)
+            For(() => Object.Answers.Count, PropertyDisplayNames.AnswersCount)
                 .Above(1);
 
-            For(Object.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
+            For(() => Object.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
                 .Above(1);
         }
     }

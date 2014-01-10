@@ -1,4 +1,5 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
+using JJ.Framework.Reflection;
 using JJ.Framework.Validation;
 using JJ.Models.QuestionAndAnswer;
 using System;
@@ -21,24 +22,24 @@ namespace JJ.Business.QuestionAndAnswer.Validation
         {
             Question question = Object;
 
-            For(question.QuestionType, PropertyDisplayNames.QuestionType)
+            For(() => question.QuestionType, PropertyDisplayNames.QuestionType)
                 .NotNull();
 
-            For(question.Text, PropertyDisplayNames.Text)
+            For(() => question.Text, PropertyDisplayNames.Text)
                 .NotNullOrWhiteSpace();
 
-            foreach (Answer answer in question.Answers)
+            for (int i = 0; i < question.Answers.Count ; i++)
             {
-                string messageHeading = String.Format("{0}: ", PropertyDisplayNames.Answer);
+                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.Answer, i + 1);
 
-                Execute(new AnswerValidator(answer), messageHeading);
+                Execute(new AnswerValidator(question.Answers[i]), () => question.Answers[i], messagePrefix);
             }
 
-            foreach (QuestionLink questionLink in question.QuestionLinks)
+            for (int i = 0; i < question.QuestionLinks.Count; i++)
             {
-                string messageHeading = String.Format("{0}: ", PropertyDisplayNames.QuestionLink);
+                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionLink, i + 1);
 
-                Execute(new QuestionLinkValidator(questionLink), messageHeading);
+                Execute(new QuestionLinkValidator(question.QuestionLinks[i]), () => question.QuestionLinks[i], messagePrefix);
             }
         }
     }
