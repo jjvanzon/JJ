@@ -123,6 +123,9 @@
   <data name="AnswersCount" xml:space="preserve">
     <value>Aantal antwoorden</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
   <data name="CorrectAnswerCount" xml:space="preserve">
     <value>Aantal correcte antwoorden</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Question" xml:space="preserve">
     <value>Vraag</value>
+  </data>
+  <data name="QuestionCategory" xml:space="preserve">
+    <value>Vraagcategorie</value>
   </data>
   <data name="QuestionLink" xml:space="preserve">
     <value>Link</value>

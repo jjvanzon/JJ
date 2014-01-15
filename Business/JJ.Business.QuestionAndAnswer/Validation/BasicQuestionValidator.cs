@@ -41,6 +41,12 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
                 Execute(new QuestionLinkValidator(question.QuestionLinks[i]), () => question.QuestionLinks[i], messagePrefix);
             }
+
+            for (int i = 0; i < question.QuestionCategories.Count; i++)
+            {
+                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionCategory, i + 1);
+                Execute(new QuestionCategoryValidator(question.QuestionCategories[i]), () => question.QuestionCategories[i], messagePrefix);
+            }
         }
     }
 }

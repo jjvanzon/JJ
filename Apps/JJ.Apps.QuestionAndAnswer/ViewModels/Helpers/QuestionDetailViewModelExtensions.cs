@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Framework.Common;
 using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence;
@@ -17,20 +18,26 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
         /// <summary>
         /// Fills up the viewmodel with new objects where there are unexpected nulls.
         /// </summary>
-        public static void NullCoallesce(this QuestionDetailViewModel viewModel)
+        public static QuestionDetailViewModel NullCoallesce(this QuestionDetailViewModel viewModel)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            viewModel = viewModel ?? new QuestionDetailViewModel();
+
             viewModel.FlagStatuses = viewModel.FlagStatuses ?? new List<FlagStatusViewModel>();
+            viewModel.Categories = viewModel.Categories ?? new List<CategoryViewModel>();
             viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<Models.Canonical.ValidationMessage>();
+
             viewModel.Question = viewModel.Question ?? new QuestionViewModel();
-            viewModel.Question.Categories = viewModel.Question.Categories ?? new List<CategoryViewModel>();
+            viewModel.Question.Categories = viewModel.Question.Categories ?? new List<QuestionCategoryViewModel>();
             viewModel.Question.Links = viewModel.Question.Links ?? new List<QuestionLinkViewModel>();
             viewModel.Question.Flags = viewModel.Question.Flags ?? new List<QuestionFlagViewModel>();
 
-            foreach (CategoryViewModel category in viewModel.Question.Categories)
+            foreach (QuestionCategoryViewModel questionCategoryViewModel in viewModel.Question.Categories)
             {
-                category.NameParts = category.NameParts ?? new List<string>();
+                questionCategoryViewModel.Category = questionCategoryViewModel.Category ?? new CategoryViewModel();
+                questionCategoryViewModel.Category.NameParts = questionCategoryViewModel.Category.NameParts ?? new List<string>();
             }
+
+            return viewModel;
         }
 
         /// <summary>
@@ -80,26 +87,48 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             question.Answers[0].Text = viewModel.Question.Answer;
 
             // Categories
-            IList<int> entityCategoryIDs = question.QuestionCategories.Select(x => x.Category.ID).ToArray();
-            IList<int> viewModelCategoryIDs = viewModel.Question.Categories.Select(x => x.ID).ToArray();
 
-            // Add question categories
-            IList<int> categoryIDsToAdd = viewModelCategoryIDs.Except(entityCategoryIDs).ToArray();
-            foreach (int categoryID in categoryIDsToAdd)
+            // Add or update question categories
+            foreach (QuestionCategoryViewModel questionCategoryViewModel in viewModel.Question.Categories)
             {
-                QuestionCategory questionCategory = questionCategoryRepository.Create();
-                questionCategory.LinkTo(question);
-                Category category = categoryRepository.Get(categoryID);
-                questionCategory.LinkTo(category);
+                if (questionCategoryViewModel.Category == null)
+                {
+                    throw new Exception("viewModel.Question.Categories[i].Category cannot be null.");
+                }
+                
+                QuestionCategory questionCategory = TryGetExistingQuestionCategory(questionCategoryViewModel, questionCategoryRepository);
+                if (questionCategory == null)
+                {
+                    questionCategory = questionCategoryRepository.Create();
+                    questionCategory.LinkTo(question);
+                }
+
+                // Newly added items might not have a category filled in yet.
+                Category category = categoryRepository.TryGet(questionCategoryViewModel.Category.ID); // Empty view model question categories have Category.ID 0.
+                if (category != null)
+                {
+                    questionCategory.LinkTo(category);
+                }
             }
 
             // Delete question categories
-            IList<int> categoryIDsToRemove = entityCategoryIDs.Except(viewModelCategoryIDs).ToArray();
-            IList<QuestionCategory> questionCategiesToDelete = question.QuestionCategories.Where(x => categoryIDsToRemove.Contains(x.ID)).ToArray();
-            foreach (QuestionCategory questionCategory in questionCategiesToDelete)
+            IList<int> entityQuestionCategoryIDs = question.QuestionCategories.Where(x => x.ID != 0) // Exclude new entities which have ID 0.
+                                                                              .Select(x => x.ID)
+                                                                              .ToArray();
+
+            IList<int> viewModelQuestionCategoryIDs = viewModel.Question.Categories.Where(x => x.QuestionCategoryID != 0) // Exclude new entities which have ID 0.
+                                                                                   .Select(x => x.QuestionCategoryID)
+                                                                                   .ToArray();
+
+            IList<int> questionCategoryIDsToRemove = entityQuestionCategoryIDs.Except(viewModelQuestionCategoryIDs).ToArray();
+
+            foreach (QuestionCategory questionCategory in question.QuestionCategories.ToArray())
             {
-                questionCategory.UnlinkRelatedEntities();
-                questionCategoryRepository.Delete(questionCategory);
+                if (questionCategoryIDsToRemove.Contains(questionCategory.ID))
+                {
+                    questionCategory.UnlinkRelatedEntities();
+                    questionCategoryRepository.Delete(questionCategory);
+                }
             }
 
             // Links
@@ -107,12 +136,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             // Add or update links
             foreach (QuestionLinkViewModel questionLinkViewModel in viewModel.Question.Links)
             {
-                QuestionLink questionLink = null;
-                if (questionLinkViewModel.ID != 0) // New entities have ID 0 and don't exist in the database.
-                {
-                    questionLink = questionLinkRepository.TryGet(questionLinkViewModel.ID); // TryGet will return null for both new objects (with ID 0) and in case of ghost reads in high concurrency situations.
-                }
-
+                QuestionLink questionLink = TryGetExistingQuestionLink(questionLinkViewModel, questionLinkRepository);
                 if (questionLink == null)
                 {
                     questionLink = questionLinkRepository.Create();
@@ -155,6 +179,28 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             }
 
             return question;
+        }
+
+        private static QuestionLink TryGetExistingQuestionLink(QuestionLinkViewModel viewModel, IQuestionLinkRepository repository)
+        {
+            // Be careful adjusting this code. TryGet may return an existing new entity with ID 0 and may crash if there are multiple entities with ID 0.
+            bool isNew = viewModel.ID == 0;
+            if (!isNew)
+            {
+                return repository.TryGet(viewModel.ID); // TryGet will return null in case of ghost reads in high concurrency situations.
+            }
+            return null;
+        }
+
+        private static QuestionCategory TryGetExistingQuestionCategory(QuestionCategoryViewModel viewModel, IQuestionCategoryRepository repository)
+        {
+            // Be careful adjusting this code. TryGet may return an existing new entity with ID 0 and may crash if there are multiple entities with ID 0.
+            bool isNew = viewModel.QuestionCategoryID == 0;
+            if (!isNew)
+            {
+                return repository.TryGet(viewModel.QuestionCategoryID); // TryGet will return null in case of ghost reads in high concurrency situations.
+            }
+            return null;
         }
     }
 }

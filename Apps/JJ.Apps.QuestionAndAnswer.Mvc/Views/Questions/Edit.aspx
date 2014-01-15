@@ -2,6 +2,7 @@
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers" %>
 <%@ Import Namespace="JJ.Framework.Presentation.Mvc" %>
+<%@ Import Namespace="JJ.Framework.Common" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <%: Titles.EditQuestion %>
@@ -50,17 +51,44 @@
         <fieldset>
             <legend><%: Titles.Categories %></legend>
 
-            <% for (int i = 0; i < Model.Question.Categories.Count; i++) { %>
-                            
-                <div>
-                    <%: Model.Question.Categories[i].ID %> - 
-                    <%: String.Join(@" \ ", Model.Question.Categories[i].NameParts) %>
-                              
-                    <%: Html.HiddenFor(x => Model.Question.Categories[i].ID) %>
-                </div>
+            <table>
+                <% for (int i = 0; i < Model.Question.Categories.Count; i++) { %>
 
-            <% } %>
+                    <tr style="height:27px">
+                        <td>
 
+                            <%: Html.DropDownListFor(
+                                x => Model.Question.Categories[i].Category.ID,
+                                Model.Categories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
+                                {
+                                    Value = x.ID.ToString(), 
+                                    Text = String.Join(@" \ ", x.NameParts), 
+                                    Selected = x.ID == Model.Question.Categories[i].Category.ID
+                                }),
+                                "")%>
+
+                        </td>
+
+                        <td style="vertical-align:bottom;text-align:center;">
+                            <input type="submit" value="<%: Titles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 
+                                                                                                                   ControllerNames.Questions,
+                                                                                                                   ActionParameterNames.temporaryID,
+                                                                                                                   Model.Question.Categories[i].TemporaryID) %>" />
+                            <%: Html.HiddenFor(x => x.Question.Categories[i].QuestionCategoryID) %>
+                            <%: Html.HiddenFor(x => x.Question.Categories[i].TemporaryID) %>
+                        </td>
+
+                    </tr>
+
+                <% } %>
+            
+                <tr style="height:27px">
+                    <td />
+                    <td style="vertical-align:bottom;text-align:center;">
+                        <input type="submit" value="<%: Titles.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
+                    </td>
+                </tr>
+            </table>
         </fieldset>
         
         <fieldset>
@@ -85,7 +113,11 @@
                             </span>
                         </td>
                         <td style="vertical-align:bottom;text-align:center;">
-                            <input type="submit" value="<%: Titles.Remove %>" formaction="<%: UrlHelpers.GetUrl(ActionNames.RemoveLink, ControllerNames.Questions, ActionParameterNames.questionLinkID, Model.Question.Links[i].ID, ActionParameterNames.questionLinkTemporaryID, Model.Question.Links[i].TemporaryID) %>" />
+                            <input type="submit" value="<%: Titles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveLink, 
+                                                                                                                   ControllerNames.Questions, 
+                                                                                                                   ActionParameterNames.temporaryID, 
+                                                                                                                   Model.Question.Links[i].TemporaryID) %>" />
+
                             <%: Html.HiddenFor(x => x.Question.Links[i].ID) %>
                             <%: Html.HiddenFor(x => x.Question.Links[i].TemporaryID) %>
                         </td>
@@ -97,7 +129,7 @@
                     <td />
                     <td />
                     <td style="vertical-align:bottom;text-align:center;">
-                        <input type="submit" value="<%: Titles.Add %>" formaction="<%: UrlHelpers.GetUrl(ActionNames.AddLink, ControllerNames.Questions) %>" />
+                        <input type="submit" value="<%: Titles.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
                     </td>
                 </tr>
             </table>

@@ -13,8 +13,14 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
         {
             if (questionCategory == null) throw new ArgumentNullException("questionCategory");
 
-            questionCategory.Unlink(questionCategory.Question);
-            questionCategory.Unlink(questionCategory.Category);
+            if (questionCategory.Question != null)
+            {
+                questionCategory.Unlink(questionCategory.Question);
+            }
+            if (questionCategory.Category != null)
+            {
+                questionCategory.Unlink(questionCategory.Category);
+            }
         }
     }
 }

@@ -21,5 +21,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
         public const string Edit = "Edit";
         public const string AddLink = "AddLink";
         public const string RemoveLink = "RemoveLink";
+        public const string AddCategory = "AddCategory";
+        public const string RemoveCategory = "RemoveCategory";
     }
 }

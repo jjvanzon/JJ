@@ -1,15 +1,15 @@
-﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
-using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
-using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
-using JJ.Business.QuestionAndAnswer.Extensions;
-using JJ.Business.QuestionAndAnswer.Validation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Validation;
+using JJ.Models.QuestionAndAnswer;
+using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+using JJ.Business.QuestionAndAnswer.Extensions;
+using JJ.Business.QuestionAndAnswer.Validation;
+using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
@@ -61,13 +61,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 return new QuestionNotFoundViewModel { ID = id };
             }
 
-            QuestionDetailViewModel viewModel = question.ToDetailViewModel(_flagStatusRepository);
+            QuestionDetailViewModel viewModel = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
             return viewModel;
         }
 
         public QuestionDetailViewModel AddLink(QuestionDetailViewModel viewModel)
         {
-            // You can always return QuestionDetailViewModel and never have to return QuestionNotFoundViewModel even though in high concurrency the question can disappear, because ToEntity recreates the question again.
+            // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new ArgumentNullException("viewModel");
 
             viewModel.NullCoallesce();
@@ -80,65 +80,99 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             questionLink.LinkTo(question);
 
             // Create new view model
-            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository);
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
             return viewModel2;
         }
 
-        public QuestionDetailViewModel RemoveLink(QuestionDetailViewModel viewModel, int questionLinkID, Guid questionLinkTemporaryID)
+        public QuestionDetailViewModel RemoveLink(QuestionDetailViewModel viewModel, Guid temporaryID)
         {
-            // You can always return QuestionDetailViewModel and never have to return QuestionNotFoundViewModel even though in high concurrency the question can disappear, because ToEntity recreates the question again.
+            // If the question has disappeared, it is recreated.
 
             // The problem here is that you may want to remove one out of many uncommitted entities do not exist in the database yet,
-            // and you cannot identify them uniquely with the ID (which is 0), which makes it impossible to perform the delete operation on the entity model when given an ID.
-            // So in that case you perform the operation on the viewmodel which has a temporary ID.
+            // and you cannot identify them uniquely with the ID (which is 0),
+            // which makes it impossible to perform the delete operation on the entity model when given an ID.
+            // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
             if (viewModel == null) throw new ArgumentNullException("viewModel");
 
             viewModel.NullCoallesce();
 
-            // Perform operation on view model to remove an entity that does not exist in the database yet.
-            if (questionLinkID == 0)
+            // Perform operation
+            QuestionLinkViewModel questionLinkViewModel = viewModel.Question.Links.Where(x => x.TemporaryID == temporaryID).SingleOrDefault();
+            if (questionLinkViewModel == null)
             {
-                QuestionLinkViewModel questionLinkViewModel = viewModel.Question.Links.Where(x => x.TemporaryID == questionLinkTemporaryID).SingleOrDefault();
-                if (questionLinkViewModel == null)
-                {
-                    throw new Exception(String.Format("QuestionLinkViewModel with temporaryID '{0}' not found.", questionLinkTemporaryID));
-                }
-
-                viewModel.Question.Links.Remove(questionLinkViewModel);
+                throw new Exception(String.Format("QuestionLinkViewModel with TemporaryID '{0}' not found.", temporaryID));
             }
+            viewModel.Question.Links.Remove(questionLinkViewModel);
 
             // Get entity from database, with the viewmodel applied to it.
             Question question = viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository);
 
-            // Perform operation on entities to remove an entity that did exist in the database.
-            if (questionLinkID != 0)
-            {
-                QuestionLink questionLink = _questionLinkRepository.TryGet(questionLinkID);
-                if (questionLink != null)
-                {
-                    questionLink.UnlinkRelatedEntities();
-                    _questionLinkRepository.Delete(questionLink);
-                }
-            }
+            // Create new view model
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
+            return viewModel2;
+        }
+
+        public QuestionDetailViewModel AddCategory(QuestionDetailViewModel viewModel)
+        {
+            // If the question has disappeared, it is recreated.
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
+
+            viewModel.NullCoallesce();
+
+            // Get entity from database, with the viewmodel applied to it.
+            Question question = ViewModelToEntity(viewModel);
+
+            // Perform operation
+            QuestionCategory questionCategory = _questionCategoryRepository.Create();
+            questionCategory.LinkTo(question);
 
             // Create new view model
-            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository);
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
+            return viewModel2;
+        }
+
+        public QuestionDetailViewModel RemoveCategory(QuestionDetailViewModel viewModel, Guid temporaryID)
+        {
+            // If the question has disappeared, it is recreated.
+
+            // The problem here is that you may want to remove one out of many uncommitted entities do not exist in the database yet,
+            // and you cannot identify them uniquely with the ID (which is 0),
+            // which makes it impossible to perform the delete operation on the entity model when given an ID.
+            // So instead you have to perform the operation on the viewmodel which has temporary ID's.
+
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
+
+            viewModel.NullCoallesce();
+
+            // Perform operation
+            QuestionCategoryViewModel questionCategoryViewModel = viewModel.Question.Categories.Where(x => x.TemporaryID == temporaryID).FirstOrDefault();
+            if (questionCategoryViewModel == null)
+            {
+                throw new Exception(String.Format("questionCategoryViewModel with TemporaryID '{0}' not found.", temporaryID));
+            }
+            viewModel.Question.Categories.Remove(questionCategoryViewModel);
+
+            // Get entity from database, with the viewmodel applied to it.
+            Question question = ViewModelToEntity(viewModel);
+
+            // Create new view model
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
             return viewModel2;
         }
 
         public QuestionDetailViewModel Save(QuestionDetailViewModel viewModel)
         {
-            // You can always return QuestionDetailViewModel and never have to return QuestionNotFoundViewModel even though in high concurrency the question can disappear, because ToEntity recreates the question again.
+            // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new ArgumentNullException("viewModel");
 
             viewModel.NullCoallesce();
 
-            // Converts a partially filled view model to an entity.
-            Question question = viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository);
+            // Get entity from database, with the viewmodel applied to it.
+            Question question = ViewModelToEntity(viewModel);
 
             // Produce new complete view model
-            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository);
+            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
 
             // Validate
             IValidator validator = new QuestionValidator(question);
@@ -151,6 +185,12 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // Commit
             _questionRepository.Commit();
             return viewModel2;
+        }
+
+        private Question ViewModelToEntity(QuestionDetailViewModel viewModel)
+        {
+            // Get entity from database, with the viewmodel applied to it.
+            return viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository);
         }
     }
 }

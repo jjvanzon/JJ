@@ -61,7 +61,7 @@
             var element = document.getElementById(elementId);
             var categoryID = element.getAttribute("data-category-id");
 
-            var url = '<%=UrlHelpers.GetUrl(ActionNames.Remove, ControllerNames.CategorySelector, ActionParameterNames.categoryID, "") %>'; // Parameter value is added later.
+            var url = '<%= Url.ActionWithParams(ActionNames.Remove, ControllerNames.CategorySelector, ActionParameterNames.categoryID, "") %>'; // Parameter value is added later.
             url = url + encodeURI(categoryID);
 
             window.document.forms[0].action = url;
@@ -72,7 +72,7 @@
             var element = document.getElementById(elementId);
             var categoryID = element.getAttribute("data-category-id");
 
-            var url = '<%=UrlHelpers.GetUrl(ActionNames.Add, ControllerNames.CategorySelector, ActionParameterNames.categoryID, "") %>'; // Parameter value is added later.
+            var url = '<%= Url.ActionWithParams(ActionNames.Add, ControllerNames.CategorySelector, ActionParameterNames.categoryID, "" ) %>'; // Parameter value is added later.
             url = url + encodeURI(categoryID);
 
             window.document.forms[0].action = url;

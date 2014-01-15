@@ -12,6 +12,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
         public const string categoryID = "categoryID";
         public const string questionLinkID = "questionLinkID";
         public const string cultureName = "cultureName";
-        public const string questionLinkTemporaryID = "questionLinkTemporaryID";
+        public const string temporaryID = "temporaryID";
     }
 }

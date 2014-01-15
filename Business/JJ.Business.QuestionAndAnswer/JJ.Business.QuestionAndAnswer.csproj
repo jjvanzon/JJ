@@ -67,6 +67,7 @@
     <Compile Include="Validation\AnswerValidator.cs" />
     <Compile Include="Validation\BasicQuestionValidator.cs" />
     <Compile Include="Validation\MultipleChoiceQuestionValidator.cs" />
+    <Compile Include="Validation\QuestionCategoryValidator.cs" />
     <Compile Include="Validation\QuestionLinkValidator.cs" />
     <Compile Include="Validation\QuestionValidator.cs" />
     <Compile Include="Validation\SeveralMayApplyQuestionValidator.cs" />

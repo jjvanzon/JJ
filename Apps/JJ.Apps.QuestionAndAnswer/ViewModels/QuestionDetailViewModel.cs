@@ -13,6 +13,8 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
 
         public IList<FlagStatusViewModel> FlagStatuses { get; set; }
 
+        public IList<CategoryViewModel> Categories { get; set; }
+
         public IList<ValidationMessage> ValidationMessages { get; set; }
     }
 }

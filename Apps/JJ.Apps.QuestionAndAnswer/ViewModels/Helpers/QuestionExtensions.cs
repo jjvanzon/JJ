@@ -9,6 +9,8 @@ using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Models.Canonical;
+using JJ.Business.QuestionAndAnswer;
+using JJ.Framework.Common;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
@@ -25,20 +27,22 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 IsActive = entity.IsActive,
                 Answer = entity.Answers[0].Text, // TODO: Refactor
                 Links = new List<QuestionLinkViewModel>(),
-                Categories = new List<CategoryViewModel>(),
+                Categories = new List<QuestionCategoryViewModel>(),
                 Flags = new List<QuestionFlagViewModel>()
             };
         }
 
-        public static QuestionDetailViewModel ToDetailViewModel(this Question question, IFlagStatusRepository flagStatusRepository)
+        public static QuestionDetailViewModel ToDetailViewModel(this Question question, IFlagStatusRepository flagStatusRepository, ICategoryRepository categoryRepository)
         {
             if (question == null) throw new ArgumentNullException("question");
             if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
+            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
 
             var viewModel = new QuestionDetailViewModel
             {
                 Question = question.ToViewModel(),
                 FlagStatuses = new List<FlagStatusViewModel>(),
+                Categories = GetCategoriesViewModelRecursive(categoryRepository),
                 ValidationMessages = new List<ValidationMessage>()
             };
 
@@ -50,10 +54,10 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             }
 
             // Categories
-            foreach (Category category in question.QuestionCategories.Select(x => x.Category))
+            foreach (QuestionCategory questionCategory in question.QuestionCategories)
             {
-                CategoryViewModel categoryModel = category.ToViewModel();
-                viewModel.Question.Categories.Add(categoryModel);
+                QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
+                viewModel.Question.Categories.Add(questionCategoryViewModel);
             }
 
             // Flags
@@ -75,6 +79,26 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             return viewModel;
         }
 
+        /// <summary> Gets a tree of category view models. </summary>
+        private static IList<CategoryViewModel> GetCategoriesViewModelRecursive(ICategoryRepository categoryRepository)
+        {
+            if (categoryRepository == null) { throw new ArgumentNullException("categoryRepository"); }
+
+            var categoryManager = new CategoryManager(categoryRepository);
+
+            IEnumerable<Category> categories = categoryManager.GetCategoryTree();
+
+            var viewModels = new List<CategoryViewModel>();
+
+            foreach (Category category in categories)
+            {
+                CategoryViewModel viewModel = category.ToViewModelRecursive();
+                viewModels.Add(viewModel);
+            }
+
+            return viewModels;
+        }
+
         public static RandomQuestionViewModel ToRandomQuestionViewModel(this Question entity, QuestionFlag currentUserQuestionFlag = null)
         {
             if (entity == null) throw new ArgumentNullException("entity");
@@ -93,10 +117,10 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             }
 
             // Categories
-            foreach (Category category in entity.QuestionCategories.Select(x => x.Category))
+            foreach (QuestionCategory questionCategory in entity.QuestionCategories)
             {
-                CategoryViewModel categoryModel = category.ToViewModel();
-                viewModel.Question.Categories.Add(categoryModel);
+                QuestionCategoryViewModel questionCategoryModel = questionCategory.ToViewModel();
+                viewModel.Question.Categories.Add(questionCategoryModel);
             }
 
             // Current user flag
@@ -112,41 +136,5 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 
             return viewModel;
         }
-
-        /*private static QuestionViewModel ToViewModelWithRelatedEntities(this Question entity, QuestionFlag currentUserQuestionFlag = null)
-        {
-            if (entity == null) throw new ArgumentNullException("entity");
-
-            QuestionViewModel viewModel = entity.ToViewModel();
-
-            // Links
-            foreach (QuestionLink questionLink in entity.QuestionLinks)
-            {
-                var linkModel = new LinkViewModel(questionLink.Description, questionLink.Url);
-                viewModel.Links.Add(linkModel);
-            }
-
-            // Categories
-            foreach (Category category in entity.QuestionCategories.Select(x => x.Category))
-            {
-                CategoryViewModel categoryModel = category.ToViewModel();
-                viewModel.Categories.Add(categoryModel);
-            }
-
-            // Flags
-            foreach (QuestionFlag flag in entity.QuestionFlags)
-            {
-                QuestionFlagViewModel flagViewModel = flag.ToViewModel();
-                viewModel.Flags.Add(flagViewModel);
-            }
-
-            // Current user flag
-            if (currentUserQuestionFlag != null)
-            {
-                viewModel.CurrentUserFlag = currentUserQuestionFlag.ToViewModel();
-            }
-
-            return viewModel;
-        }*/
     }
 }

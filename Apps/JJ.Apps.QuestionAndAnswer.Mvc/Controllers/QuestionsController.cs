@@ -94,14 +94,35 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
         }
 
-        // POST: /Questions/RemoveLink?questionLink=&questionLinkTemporaryID=123456-7890-ABCDEF
-        // POST: /Questions/RemoveLink?questionLink=123&questionLinkTemporaryID=123456-7890-ABCDEF
+        // POST: /Questions/RemoveLink?temporaryID=12345678-90AB-CDEF
 
         [HttpPost]
-        public ActionResult RemoveLink(QuestionDetailViewModel viewModel, int questionLinkID, Guid questionLinkTemporaryID)
+        public ActionResult RemoveLink(QuestionDetailViewModel viewModel, Guid temporaryID)
         {
             QuestionDetailPresenter presenter = CreateDetailPresenter();
-            QuestionDetailViewModel viewModel2 = presenter.RemoveLink(viewModel, questionLinkID, questionLinkTemporaryID);
+            QuestionDetailViewModel viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
+            TempData[TempDataKeys.ViewModel] = viewModel2;
+            return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
+        }
+
+        // POST: /Questions/AddCategory
+
+        [HttpPost]
+        public ActionResult AddCategory(QuestionDetailViewModel viewModel)
+        {
+            QuestionDetailPresenter presenter = CreateDetailPresenter();
+            QuestionDetailViewModel viewModel2 = presenter.AddCategory(viewModel);
+            TempData[TempDataKeys.ViewModel] = viewModel2;
+            return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
+        }
+
+        // POST: /Questions/RemoveCategory?temporaryID=12345678-90AB-CDEF
+
+        [HttpPost]
+        public ActionResult RemoveCategory(QuestionDetailViewModel viewModel, Guid temporaryID)
+        {
+            QuestionDetailPresenter presenter = CreateDetailPresenter();
+            QuestionDetailViewModel viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
             TempData[TempDataKeys.ViewModel] = viewModel2;
             return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
         }

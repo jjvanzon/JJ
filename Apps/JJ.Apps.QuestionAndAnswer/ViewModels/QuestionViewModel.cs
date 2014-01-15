@@ -14,7 +14,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
         public string Answer { get; set; }
         
         public List<QuestionLinkViewModel> Links { get; set; }
-        public List<CategoryViewModel> Categories { get; set; }
+        public List<QuestionCategoryViewModel> Categories { get; set; }
 
         /// <summary> Not available in RandomQuestionViewModel. </summary>
         public List<QuestionFlagViewModel> Flags { get; set; }

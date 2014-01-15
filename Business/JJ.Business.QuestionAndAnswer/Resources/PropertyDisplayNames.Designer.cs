@@ -79,6 +79,15 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CorrectAnswerCount.
         /// </summary>
         internal static string CorrectAnswerCount {
@@ -111,6 +120,15 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         internal static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QuestionCategory.
+        /// </summary>
+        internal static string QuestionCategory {
+            get {
+                return ResourceManager.GetString("QuestionCategory", resourceCulture);
             }
         }
         

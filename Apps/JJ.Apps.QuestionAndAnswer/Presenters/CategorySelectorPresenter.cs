@@ -105,8 +105,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         private CategorySelectorViewModel GetViewModel()
         {
-            List<CategoryViewModel> availableCategories = GetCategoryViewModelRecursive();
-            List<CategoryViewModel> selectedCategories = GetCategoryViewModelRecursive();
+            List<CategoryViewModel> availableCategories = GetCategoriesViewModelRecursive();
+            List<CategoryViewModel> selectedCategories = GetCategoriesViewModelRecursive();
 
             HideAllNodesRecursive(selectedCategories);
 
@@ -129,7 +129,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        private List<CategoryViewModel> GetCategoryViewModelRecursive()
+        private List<CategoryViewModel> GetCategoriesViewModelRecursive()
         {
             IEnumerable<Category> categories = _categoryManager.GetCategoryTree();
 

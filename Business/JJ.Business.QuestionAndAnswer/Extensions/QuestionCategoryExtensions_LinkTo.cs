@@ -36,7 +36,11 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
             }
 
             questionCategory.Category = category;
-            category.CategoryQuestions.Add(questionCategory);
+            // TODO: These 'contains' checks should really be added to all the LinkTo extension methods.
+            if (!category.CategoryQuestions.Contains(questionCategory))
+            {
+                category.CategoryQuestions.Add(questionCategory);
+            }
         }
 
         public static void Unlink(this QuestionCategory questionCategory, Question question)

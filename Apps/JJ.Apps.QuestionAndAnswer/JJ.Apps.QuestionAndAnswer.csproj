@@ -46,6 +46,8 @@
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\QuestionListPresenter.cs" />
     <Compile Include="Presenters\QuestionDetailPresenter.cs" />
+    <Compile Include="ViewModels\Helpers\QuestionCategoryExtensions.cs" />
+    <Compile Include="ViewModels\QuestionCategoryViewModel.cs" />
     <Compile Include="ViewModels\CurrentUserQuestionFlagViewModel.cs" />
     <Compile Include="ViewModels\FlagStatusViewModel.cs" />
     <Compile Include="ViewModels\Helpers\FlagStatusExtensions.cs" />
