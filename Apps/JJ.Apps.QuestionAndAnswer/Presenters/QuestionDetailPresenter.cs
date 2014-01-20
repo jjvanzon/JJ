@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Framework.Common;
 using JJ.Framework.Validation;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
@@ -11,6 +12,7 @@ using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
+using JJ.Apps.QuestionAndAnswer.Validation;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -166,8 +168,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new ArgumentNullException("viewModel");
 
-            viewModel.NullCoallesce();
-
             // Get entity from database, with the viewmodel applied to it.
             Question question = ViewModelToEntity(viewModel);
 
@@ -175,10 +175,17 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
 
             // Validate
-            IValidator validator = new QuestionValidator(question);
-            if (!validator.IsValid)
+            IValidator validator1 = new QuestionDetailViewModelValidator(viewModel2);
+            if (!validator1.IsValid)
             {
-                viewModel2.ValidationMessages = validator.ValidationMessages.ToCanonical();
+                viewModel2.ValidationMessages = validator1.ValidationMessages.ToCanonical();
+                return viewModel2;
+            }
+
+            IValidator validator2 = new QuestionValidator(question);
+            if (!validator2.IsValid)
+            {
+                viewModel2.ValidationMessages = validator2.ValidationMessages.ToCanonical();
                 return viewModel2;
             }
 

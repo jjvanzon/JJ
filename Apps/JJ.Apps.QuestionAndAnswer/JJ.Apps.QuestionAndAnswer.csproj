@@ -46,7 +46,12 @@
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\QuestionListPresenter.cs" />
     <Compile Include="Presenters\QuestionDetailPresenter.cs" />
+    <Compile Include="Validation\QuestionCategoryViewModelValidator.cs" />
+    <Compile Include="Validation\QuestionDetailViewModelValidator.cs" />
+    <Compile Include="Validation\QuestionLinkViewModelValidator.cs" />
+    <Compile Include="Validation\QuestionViewModelValidator.cs" />
     <Compile Include="ViewModels\Helpers\QuestionCategoryExtensions.cs" />
+    <Compile Include="ViewModels\Helpers\ViewModelHelper.cs" />
     <Compile Include="ViewModels\QuestionCategoryViewModel.cs" />
     <Compile Include="ViewModels\CurrentUserQuestionFlagViewModel.cs" />
     <Compile Include="ViewModels\FlagStatusViewModel.cs" />

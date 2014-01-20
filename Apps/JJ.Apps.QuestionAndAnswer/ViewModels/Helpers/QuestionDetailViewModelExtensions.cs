@@ -20,7 +20,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
         /// </summary>
         public static QuestionDetailViewModel NullCoallesce(this QuestionDetailViewModel viewModel)
         {
-            viewModel = viewModel ?? new QuestionDetailViewModel();
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
 
             viewModel.FlagStatuses = viewModel.FlagStatuses ?? new List<FlagStatusViewModel>();
             viewModel.Categories = viewModel.Categories ?? new List<CategoryViewModel>();
@@ -56,10 +56,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             IFlagStatusRepository flagStatusRepository)
         {
             if (viewModel == null) throw new ArgumentNullException("viewModel");
-            if (viewModel.Question == null) throw new ArgumentNullException("viewModel.Question");
-            if (viewModel.Question.Categories == null) throw new ArgumentNullException("viewModel.Question.Categories");
-            if (viewModel.Question.Links == null) throw new ArgumentNullException("viewModel.Question.Links");
-            if (viewModel.Question.Flags == null) throw new ArgumentNullException("viewModel.Question.Flags");
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");
             if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
@@ -68,18 +64,22 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
             if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
 
+            viewModel.NullCoallesce();
+
             // Question
             Question question = questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
                 question = questionRepository.Create();
+                // TODO: Make sure you do this.
+                //question.SetQuestionTypeEnum(questionTypeRepository, QuestionTypeEnum.OpenQuestion);
                 question.AutoCreateRelatedEntities(answerRepository);
             }
             question.Text = viewModel.Question.Text;
             question.IsActive = viewModel.Question.IsActive;
 
             // Answer
-            // TODO: Refactor
+            // TODO: Refactor to support multiple answers
             if (question.Answers.Count == 0)
             {
                 question.Answers.Add(new Answer());
@@ -91,11 +91,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             // Add or update question categories
             foreach (QuestionCategoryViewModel questionCategoryViewModel in viewModel.Question.Categories)
             {
-                if (questionCategoryViewModel.Category == null)
-                {
-                    throw new Exception("viewModel.Question.Categories[i].Category cannot be null.");
-                }
-                
                 QuestionCategory questionCategory = TryGetExistingQuestionCategory(questionCategoryViewModel, questionCategoryRepository);
                 if (questionCategory == null)
                 {
@@ -105,10 +100,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 
                 // Newly added items might not have a category filled in yet.
                 Category category = categoryRepository.TryGet(questionCategoryViewModel.Category.ID); // Empty view model question categories have Category.ID 0.
-                if (category != null)
-                {
-                    questionCategory.LinkTo(category);
-                }
+                questionCategory.LinkTo(category);
             }
 
             // Delete question categories

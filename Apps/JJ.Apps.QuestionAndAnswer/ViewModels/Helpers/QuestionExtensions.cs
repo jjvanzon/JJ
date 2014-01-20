@@ -25,7 +25,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 ID = entity.ID,
                 Text = entity.Text,
                 IsActive = entity.IsActive,
-                Answer = entity.Answers[0].Text, // TODO: Refactor
+                Answer = entity.Answers[0].Text, // TODO: Refactor to support multiple answers.
                 Links = new List<QuestionLinkViewModel>(),
                 Categories = new List<QuestionCategoryViewModel>(),
                 Flags = new List<QuestionFlagViewModel>()

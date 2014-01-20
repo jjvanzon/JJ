@@ -13,7 +13,10 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
         {
             if (questionLink == null) throw new ArgumentNullException("questionLink");
 
-            questionLink.Unlink(questionLink.Question);
+            if (questionLink.Question != null)
+            {
+                questionLink.LinkTo((Question)null);
+            }
         }
     }
 }

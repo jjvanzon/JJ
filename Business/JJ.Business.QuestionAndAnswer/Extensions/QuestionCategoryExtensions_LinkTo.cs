@@ -11,60 +11,64 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
     {
         public static void LinkTo(this QuestionCategory questionCategory, Question question)
         {
-            if (questionCategory == null)
+            if (questionCategory == null) { throw new ArgumentNullException("questionCategory"); }
+
+            if (questionCategory.Question != null)
             {
-                throw new ArgumentNullException("questionCategory");
-            }
-            if (question == null)
-            {
-                throw new ArgumentNullException("question");
+                if (questionCategory.Question.QuestionCategories.Contains(questionCategory))
+                {
+                    questionCategory.Question.QuestionCategories.Remove(questionCategory);
+                }
             }
 
             questionCategory.Question = question;
-            question.QuestionCategories.Add(questionCategory);
+
+            if (questionCategory.Question != null)
+            {
+                if (!questionCategory.Question.QuestionCategories.Contains(questionCategory))
+                {
+                    questionCategory.Question.QuestionCategories.Add(questionCategory);
+                }
+            }
         }
 
         public static void LinkTo(this QuestionCategory questionCategory, Category category)
         {
-            if (questionCategory == null)
+            if (questionCategory == null) { throw new ArgumentNullException("questionCategory"); }
+
+            if (questionCategory.Category != null)
             {
-                throw new ArgumentNullException("questionCategory");
-            }
-            if (category == null)
-            {
-                throw new ArgumentNullException("category");
+                if (questionCategory.Category.CategoryQuestions.Contains(questionCategory))
+                {
+                    questionCategory.Category.CategoryQuestions.Remove(questionCategory);
+                }
             }
 
             questionCategory.Category = category;
-            // TODO: These 'contains' checks should really be added to all the LinkTo extension methods.
-            if (!category.CategoryQuestions.Contains(questionCategory))
+
+            if (questionCategory.Category != null)
             {
-                category.CategoryQuestions.Add(questionCategory);
+                if (!questionCategory.Category.CategoryQuestions.Contains(questionCategory))
+                {
+                    questionCategory.Category.CategoryQuestions.Add(questionCategory);
+                }
             }
         }
 
-        public static void Unlink(this QuestionCategory questionCategory, Question question)
-        {
-            if (questionCategory == null) throw new ArgumentNullException("questionCategory");
-            if (question == null) throw new ArgumentNullException("question");
+        //public static void Unlink(this QuestionCategory questionCategory, Question question)
+        //{
+        //    if (questionCategory == null) throw new ArgumentNullException("questionCategory");
+        //    if (question == null) throw new ArgumentNullException("question");
 
-            questionCategory.Question = null;
-            if (question.QuestionCategories.Contains(questionCategory))
-            {
-                question.QuestionCategories.Remove(questionCategory);
-            }
-        }
+        //    questionCategory.LinkTo((Question)null);
+        //}
 
-        public static void Unlink(this QuestionCategory questionCategory, Category category)
-        {
-            if (questionCategory == null) throw new ArgumentNullException("questionCategory");
-            if (category == null) throw new ArgumentNullException("category");
+        //public static void Unlink(this QuestionCategory questionCategory, Category category)
+        //{
+        //    if (questionCategory == null) throw new ArgumentNullException("questionCategory");
+        //    if (category == null) throw new ArgumentNullException("category");
 
-            questionCategory.Category = null;
-            if (category.CategoryQuestions.Contains(questionCategory))
-            {
-                category.CategoryQuestions.Remove(questionCategory);
-            }
-        }
+        //    questionCategory.LinkTo((Category)null);
+        //}
     }
 }

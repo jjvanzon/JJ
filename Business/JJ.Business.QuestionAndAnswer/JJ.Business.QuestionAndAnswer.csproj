@@ -42,20 +42,20 @@
     <Compile Include="CategoryManager.cs" />
     <Compile Include="Enums\FlagStatusEnum.cs" />
     <Compile Include="Enums\QuestionTypeEnum.cs" />
-    <Compile Include="Extensions\AnswerExtensions.cs" />
-    <Compile Include="Extensions\CategoryExtensions.cs" />
+    <Compile Include="Extensions\AnswerExtensions_LinkTo.cs" />
+    <Compile Include="Extensions\CategoryExtensions_Other.cs" />
     <Compile Include="Extensions\CategoryExtensions_LinkTo.cs" />
     <Compile Include="Extensions\QuestionLinkExtensions_Other.cs" />
     <Compile Include="Extensions\QuestionCategoryExtensions_Other.cs" />
-    <Compile Include="Extensions\QuestionFlagExtensions.cs" />
+    <Compile Include="Extensions\QuestionFlagExtensions_Other.cs" />
     <Compile Include="Extensions\QuestionFlagExtensions_Enums.cs" />
     <Compile Include="Extensions\QuestionFlagExtensions_LinkTo.cs" />
-    <Compile Include="Extensions\SourceExtensions.cs" />
+    <Compile Include="Extensions\SourceExtensions_LinkTo.cs" />
     <Compile Include="Extensions\QuestionCategoryExtensions_LinkTo.cs" />
     <Compile Include="Extensions\QuestionExtensions_Enums.cs" />
     <Compile Include="Extensions\QuestionExtensions_Other.cs" />
     <Compile Include="Extensions\QuestionLinkExtensions_LinkTo.cs" />
-    <Compile Include="Extensions\QuestionTypeExtensions.cs" />
+    <Compile Include="Extensions\QuestionTypeExtensions_LinkTo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionFlagger.cs" />
     <Compile Include="QuestionSelector.cs" />
@@ -63,6 +63,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PropertyDisplayNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\PropertyDisplayNames.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PropertyDisplayNames.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\PropertyDisplayNames.nl-NL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PropertyDisplayNames.nl-NL.resx</DependentUpon>
     </Compile>
     <Compile Include="Validation\AnswerValidator.cs" />
     <Compile Include="Validation\BasicQuestionValidator.cs" />
@@ -104,10 +114,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\PropertyDisplayNames.en-US.resx" />
-    <EmbeddedResource Include="Resources\PropertyDisplayNames.nl-NL.resx" />
+    <EmbeddedResource Include="Resources\PropertyDisplayNames.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PropertyDisplayNames.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PropertyDisplayNames.nl-NL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PropertyDisplayNames.nl-NL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\PropertyDisplayNames.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PropertyDisplayNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

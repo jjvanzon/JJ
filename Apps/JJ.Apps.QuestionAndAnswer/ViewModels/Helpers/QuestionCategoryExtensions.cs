@@ -25,22 +25,10 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             }
             else
             {
-                questionCategoryViewModel.Category = GetEmptyCategoryViewModel();
+                questionCategoryViewModel.Category = ViewModelHelper.CreateEmptyCategoryViewModel();
             }
 
             return questionCategoryViewModel;
-        }
-
-        // TODO: Find a better place for this.
-        private static CategoryViewModel GetEmptyCategoryViewModel()
-        {
-            return new CategoryViewModel
-            {
-                ID = 0,
-                NameParts = new List<string>(),
-                SubCategories = new List<CategoryViewModel>(),
-                Visible = true
-            };
         }
     }
 }

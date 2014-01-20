@@ -15,11 +15,12 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
             if (questionCategory.Question != null)
             {
-                questionCategory.Unlink(questionCategory.Question);
+                questionCategory.LinkTo((Question)null);
             }
+
             if (questionCategory.Category != null)
             {
-                questionCategory.Unlink(questionCategory.Category);
+                questionCategory.LinkTo((Category)null);
             }
         }
     }

@@ -263,3 +263,8 @@ a:link, a:hover, a:visited, a:active
 {
     color: #ADE2FF;
 }
+
+input[type="text"], textarea, select
+{
+    background-color: #B6C9D8;
+}

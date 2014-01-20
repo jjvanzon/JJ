@@ -11,77 +11,117 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
     {
         public static void LinkTo(this Question question, Answer answer)
         {
-            if (question == null)
+            if (question == null) { throw new ArgumentNullException("question"); }
+
+            if (answer.Question != null)
             {
-                throw new ArgumentNullException("question");
-            }
-            if (answer == null)
-            {
-                throw new ArgumentNullException("answer");
+                if (answer.Question.Answers.Contains(answer))
+                {
+                    answer.Question.Answers.Remove(answer);
+                }
             }
 
-            question.Answers.Add(answer);
             answer.Question = question;
+
+            if (answer.Question != null)
+            {
+                if (!answer.Question.Answers.Contains(answer))
+                {
+                    answer.Question.Answers.Add(answer);
+                }
+            }
         }
 
         public static void LinkTo(this Question question, QuestionCategory questionCategory)
         {
-            if (question == null)
+            if (question == null) { throw new ArgumentNullException("question"); }
+
+            if (questionCategory.Question != null)
             {
-                throw new ArgumentNullException("question");
-            }
-            if (questionCategory == null)
-            {
-                throw new ArgumentNullException("questionCategory");
+                if (questionCategory.Question.QuestionCategories.Contains(questionCategory))
+                {
+                    questionCategory.Question.QuestionCategories.Remove(questionCategory);
+                }
             }
 
-            question.QuestionCategories.Add(questionCategory);
             questionCategory.Question = question;
+
+            if (questionCategory.Question != null)
+            {
+                if (!questionCategory.Question.QuestionCategories.Contains(questionCategory))
+                {
+                    questionCategory.Question.QuestionCategories.Add(questionCategory);
+                }
+            }
         }
 
         public static void LinkTo(this Question question, QuestionLink questionLink)
         {
-            if (question == null)
+            if (question == null) { throw new ArgumentNullException("question"); }
+
+            if (questionLink.Question != null)
             {
-                throw new ArgumentNullException("question");
-            }
-            if (questionLink == null)
-            {
-                throw new ArgumentNullException("questionLink");
+                if (questionLink.Question.QuestionLinks.Contains(questionLink))
+                {
+                    questionLink.Question.QuestionLinks.Remove(questionLink);
+                }
             }
 
-            question.QuestionLinks.Add(questionLink);
             questionLink.Question = question;
+
+            if (questionLink.Question != null)
+            {
+                if (!questionLink.Question.QuestionLinks.Contains(questionLink))
+                {
+                    questionLink.Question.QuestionLinks.Add(questionLink);
+                }
+            }
         }
 
         public static void LinkTo(this Question question, QuestionType questionType)
         {
-            if (question == null)
+            if (question == null) { throw new ArgumentNullException("question"); }
+
+            if (question.QuestionType != null)
             {
-                throw new ArgumentNullException("question");
-            }
-            if (questionType == null)
-            {
-                throw new ArgumentNullException("questionLink");
+                if (question.QuestionType.Questions.Contains(question))
+                {
+                    question.QuestionType.Questions.Remove(question);
+                }
             }
 
             question.QuestionType = questionType;
-            questionType.Questions.Add(question);
+
+            if (question.QuestionType != null)
+            {
+                if (!question.QuestionType.Questions.Contains(question))
+                {
+                    question.QuestionType.Questions.Add(question);
+                }
+            }
         }
 
         public static void LinkTo(this Question question, Source source)
         {
-            if (question == null)
+            if (question == null) { throw new ArgumentNullException("question"); }
+
+            if (question.Source != null)
             {
-                throw new ArgumentNullException("question");
-            }
-            if (source == null)
-            {
-                throw new ArgumentNullException("source");
+                if (question.Source.Questions.Contains(question))
+                {
+                    question.Source.Questions.Remove(question);
+                }
             }
 
             question.Source = source;
-            source.Questions.Add(question);
+
+            if (question.Source != null)
+            {
+                if (!question.Source.Questions.Contains(question))
+                {
+                    question.Source.Questions.Add(question);
+                }
+            }
         }
     }
 }

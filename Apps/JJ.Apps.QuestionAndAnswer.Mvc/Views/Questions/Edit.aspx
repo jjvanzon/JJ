@@ -58,7 +58,7 @@
                         <td>
 
                             <%: Html.DropDownListFor(
-                                x => Model.Question.Categories[i].Category.ID,
+                                x => x.Question.Categories[i].Category.ID,
                                 Model.Categories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
                                 {
                                     Value = x.ID.ToString(), 
@@ -66,9 +66,7 @@
                                     Selected = x.ID == Model.Question.Categories[i].Category.ID
                                 }),
                                 "")%>
-
                         </td>
-
                         <td style="vertical-align:bottom;text-align:center;">
                             <input type="submit" value="<%: Titles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 
                                                                                                                    ControllerNames.Questions,
@@ -77,9 +75,11 @@
                             <%: Html.HiddenFor(x => x.Question.Categories[i].QuestionCategoryID) %>
                             <%: Html.HiddenFor(x => x.Question.Categories[i].TemporaryID) %>
                         </td>
+                        <td>
+                            <%: Html.ValidationMessageFor(x => x.Question.Categories[i].Category.ID) %>
+                        </td>
 
                     </tr>
-
                 <% } %>
             
                 <tr style="height:27px">
@@ -87,6 +87,7 @@
                     <td style="vertical-align:bottom;text-align:center;">
                         <input type="submit" value="<%: Titles.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
                     </td>
+                    <td />
                 </tr>
             </table>
         </fieldset>

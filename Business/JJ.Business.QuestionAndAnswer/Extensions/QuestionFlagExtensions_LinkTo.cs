@@ -12,97 +12,125 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
         public static void LinkTo(this QuestionFlag questionFlag, Question question)
         {
             if (questionFlag == null) throw new ArgumentNullException("questionFlag");
-            if (question == null) throw new ArgumentNullException("question");
+
+            if (questionFlag.Question != null)
+            {
+                if (questionFlag.Question.QuestionFlags.Contains(questionFlag))
+                {
+                    questionFlag.Question.QuestionFlags.Remove(questionFlag);
+                }
+            }
 
             questionFlag.Question = question;
-            if (!question.QuestionFlags.Contains(questionFlag))
+
+            if (questionFlag.Question != null)
             {
-                question.QuestionFlags.Add(questionFlag);
+                if (!questionFlag.Question.QuestionFlags.Contains(questionFlag))
+                {
+                    questionFlag.Question.QuestionFlags.Add(questionFlag);
+                }
             }
         }
 
         public static void LinkTo(this QuestionFlag questionFlag, FlagStatus flagStatus)
         {
             if (questionFlag == null) throw new ArgumentNullException("questionFlag");
-            if (flagStatus == null) throw new ArgumentNullException("flagStatus");
+
+            if (questionFlag.FlagStatus != null)
+            {
+                if (questionFlag.FlagStatus.QuestionFlags.Contains(questionFlag))
+                {
+                    questionFlag.FlagStatus.QuestionFlags.Remove(questionFlag);
+                }
+            }
 
             questionFlag.FlagStatus = flagStatus;
-            if (!flagStatus.QuestionFlags.Contains(questionFlag))
+
+            if (questionFlag.FlagStatus != null)
             {
-                flagStatus.QuestionFlags.Add(questionFlag);
+                if (!questionFlag.FlagStatus.QuestionFlags.Contains(questionFlag))
+                {
+                    questionFlag.FlagStatus.QuestionFlags.Add(questionFlag);
+                }
             }
         }
 
         public static void LinkToFlaggedByUser(this QuestionFlag questionFlag, User user)
         {
             if (questionFlag == null) throw new ArgumentNullException("questionFlag");
-            if (user == null) throw new ArgumentNullException("user");
+
+            if (questionFlag.FlaggedByUser != null)
+            {
+                if (questionFlag.FlaggedByUser.AsFlaggedByInQuestionFlags.Contains(questionFlag))
+                {
+                    questionFlag.FlaggedByUser.AsFlaggedByInQuestionFlags.Remove(questionFlag);
+                }
+            }
 
             questionFlag.FlaggedByUser = user;
-            if (!user.AsFlaggedByInQuestionFlags.Contains(questionFlag))
+
+            if (questionFlag.FlaggedByUser != null)
             {
-                user.AsFlaggedByInQuestionFlags.Add(questionFlag);
+                if (!questionFlag.FlaggedByUser.AsFlaggedByInQuestionFlags.Contains(questionFlag))
+                {
+                    questionFlag.FlaggedByUser.AsFlaggedByInQuestionFlags.Add(questionFlag);
+                }
             }
         }
 
         public static void LinkToLastModifiedByUser(this QuestionFlag questionFlag, User user)
         {
             if (questionFlag == null) throw new ArgumentNullException("questionFlag");
-            if (user == null) throw new ArgumentNullException("user");
+
+            if (questionFlag.LastModifiedByUser != null)
+            {
+                if (questionFlag.LastModifiedByUser.AsLastModifiedByInQuestionFlags.Contains(questionFlag))
+                {
+                    questionFlag.LastModifiedByUser.AsLastModifiedByInQuestionFlags.Remove(questionFlag);
+                }
+            }
 
             questionFlag.LastModifiedByUser = user;
-            if (!user.AsLastModifiedByInQuestionFlags.Contains(questionFlag))
+
+            if (questionFlag.LastModifiedByUser != null)
             {
-                user.AsLastModifiedByInQuestionFlags.Add(questionFlag);
+                if (!questionFlag.LastModifiedByUser.AsLastModifiedByInQuestionFlags.Contains(questionFlag))
+                {
+                    questionFlag.LastModifiedByUser.AsLastModifiedByInQuestionFlags.Add(questionFlag);
+                }
             }
         }
 
-        public static void Unlink(this QuestionFlag questionFlag, Question question)
-        {
-            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
-            if (question == null) throw new ArgumentNullException("question");
+        //public static void Unlink(this QuestionFlag questionFlag, Question question)
+        //{
+        //    if (questionFlag == null) throw new ArgumentNullException("questionFlag");
+        //    if (question == null) throw new ArgumentNullException("question");
 
-            questionFlag.Question = null;
-            if (question.QuestionFlags.Contains(questionFlag))
-            {
-                question.QuestionFlags.Remove(questionFlag);
-            }
-        }
+        //    questionFlag.Unlink((Question)null);
+        //}
 
-        public static void Unlink(this QuestionFlag questionFlag, FlagStatus flagStatus)
-        {
-            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
-            if (flagStatus == null) throw new ArgumentNullException("flagStatus");
+        //public static void Unlink(this QuestionFlag questionFlag, FlagStatus flagStatus)
+        //{
+        //    if (questionFlag == null) throw new ArgumentNullException("questionFlag");
+        //    if (flagStatus == null) throw new ArgumentNullException("flagStatus");
 
-            questionFlag.FlagStatus = null;
-            if (flagStatus.QuestionFlags.Contains(questionFlag))
-            {
-                flagStatus.QuestionFlags.Remove(questionFlag);
-            }
-        }
+        //    questionFlag.LinkTo((FlagStatus)null);
+        //}
 
-        public static void UnlinkFlaggedByUser(this QuestionFlag questionFlag, User user)
-        {
-            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
-            if (user == null) throw new ArgumentNullException("user");
+        //public static void UnlinkFlaggedByUser(this QuestionFlag questionFlag, User user)
+        //{
+        //    if (questionFlag == null) throw new ArgumentNullException("questionFlag");
+        //    if (user == null) throw new ArgumentNullException("user");
 
-            questionFlag.FlaggedByUser = null;
-            if (user.AsFlaggedByInQuestionFlags.Contains(questionFlag))
-            {
-                user.AsFlaggedByInQuestionFlags.Remove(questionFlag);
-            }
-        }
+        //    questionFlag.LinkToFlaggedByUser((User)null);
+        //}
 
-        public static void UnlinkLastModifiedByUser(this QuestionFlag questionFlag, User user)
-        {
-            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
-            if (user == null) throw new ArgumentNullException("user");
+        //public static void UnlinkLastModifiedByUser(this QuestionFlag questionFlag, User user)
+        //{
+        //    if (questionFlag == null) throw new ArgumentNullException("questionFlag");
+        //    if (user == null) throw new ArgumentNullException("user");
 
-            questionFlag.LastModifiedByUser = null;
-            if (user.AsLastModifiedByInQuestionFlags.Contains(questionFlag))
-            {
-                user.AsLastModifiedByInQuestionFlags.Remove(questionFlag);
-            }
-        }
+        //    questionFlag.LinkToLastModifiedByUser((User)null);
+        //}
     }
 }

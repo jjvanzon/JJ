@@ -32,20 +32,20 @@ namespace JJ.Business.QuestionAndAnswer.Validation
             {
                 string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.Answer, i + 1);
 
-                Execute(new AnswerValidator(question.Answers[i]), () => question.Answers[i], messagePrefix);
+                Execute(new AnswerValidator(question.Answers[i]), messagePrefix);
+            }
+
+            for (int i = 0; i < question.QuestionCategories.Count; i++)
+            {
+                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionCategory, i + 1);
+                Execute(new QuestionCategoryValidator(question.QuestionCategories[i]), messagePrefix);
             }
 
             for (int i = 0; i < question.QuestionLinks.Count; i++)
             {
                 string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionLink, i + 1);
 
-                Execute(new QuestionLinkValidator(question.QuestionLinks[i]), () => question.QuestionLinks[i], messagePrefix);
-            }
-
-            for (int i = 0; i < question.QuestionCategories.Count; i++)
-            {
-                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionCategory, i + 1);
-                Execute(new QuestionCategoryValidator(question.QuestionCategories[i]), () => question.QuestionCategories[i], messagePrefix);
+                Execute(new QuestionLinkValidator(question.QuestionLinks[i]), messagePrefix);
             }
         }
     }

@@ -12,22 +12,32 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
         public static void LinkTo(this QuestionLink questionLink, Question question)
         {
             if (questionLink == null) throw new ArgumentNullException("questionLink");
-            if (question == null) throw new ArgumentNullException("question");
+
+            if (questionLink.Question != null)
+            {
+                if (!questionLink.Question.QuestionLinks.Contains(questionLink))
+                {
+                    questionLink.Question.QuestionLinks.Remove(questionLink);
+                }
+            }
 
             questionLink.Question = question;
-            question.QuestionLinks.Add(questionLink);
-        }
 
-        public static void Unlink(this QuestionLink questionLink, Question question)
-        {
-            if (questionLink == null) throw new ArgumentNullException("questionLink");
-            if (question == null) throw new ArgumentNullException("question");
-
-            questionLink.Question = null;
-            if (question.QuestionLinks.Contains(questionLink))
+            if (questionLink.Question != null)
             {
-                question.QuestionLinks.Remove(questionLink);
+                if (!questionLink.Question.QuestionLinks.Contains(questionLink))
+                {
+                    questionLink.Question.QuestionLinks.Add(questionLink);
+                }
             }
         }
+
+        //public static void Unlink(this QuestionLink questionLink, Question question)
+        //{
+        //    if (questionLink == null) throw new ArgumentNullException("questionLink");
+        //    if (question == null) throw new ArgumentNullException("question");
+
+        //    questionLink.LinkTo((Question)null);
+        //}
     }
 }
