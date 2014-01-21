@@ -35,6 +35,28 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return View(viewModel);
         }
 
+        // GET: /Questions/Details/5
+
+        public ActionResult Details(int id)
+        {
+            QuestionDetailPresenter presenter = CreateDetailPresenter();
+            object viewModel = presenter.Show(id);
+
+            var detailViewModel = viewModel as QuestionDetailViewModel;
+            if (detailViewModel != null)
+            {
+                return View(detailViewModel);
+            }
+
+            var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
+            if (notFoundViewModel != null)
+            {
+                return View(ViewNames.NotFound, notFoundViewModel);
+            }
+
+            throw new UnexpectedViewModelTypeException(viewModel);
+        }
+
         // GET: /Questions/Edit/5
 
         public ActionResult Edit(int id)
@@ -79,8 +101,16 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             QuestionDetailPresenter presenter = CreateDetailPresenter();
             QuestionDetailViewModel viewModel2 = presenter.Save(viewModel);
 
-            TempData[TempDataKeys.ViewModel] = viewModel2;
-            return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
+            // TODO: Make this navigation logic part of the presenter.
+            if (viewModel2.ValidationMessages.Count > 0)
+            {
+                TempData[TempDataKeys.ViewModel] = viewModel2;
+                return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
+            }
+            else
+            {
+                return RedirectToAction(ActionNames.Details, new { id = viewModel2.Question.ID });
+            }
         }
 
         // POST: /Questions/AddLink

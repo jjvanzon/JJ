@@ -136,6 +136,9 @@
   <data name="ContentFlaggedBy" xml:space="preserve">
     <value>Gemarkeerd door:</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum:</value>
+  </data>
   <data name="DateAndTime" xml:space="preserve">
     <value>Datum en tijd:</value>
   </data>
@@ -156,6 +159,9 @@
   </data>
   <data name="LastModifiedBy" xml:space="preserve">
     <value>Laatst gewijzigd door:</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links:</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Wachtwoord:</value>

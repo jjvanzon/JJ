@@ -120,6 +120,12 @@
   <data name="Add" xml:space="preserve">
     <value>Toevoegen</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Terug naar lijst</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
   <data name="Categories" xml:space="preserve">
     <value>Categorieën</value>
   </data>
@@ -179,6 +185,9 @@
   </data>
   <data name="Question" xml:space="preserve">
     <value>Vraag</value>
+  </data>
+  <data name="QuestionDetails" xml:space="preserve">
+    <value>Vraag details</value>
   </data>
   <data name="Questions" xml:space="preserve">
     <value>Vragen</value>

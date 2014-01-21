@@ -115,6 +115,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DateAndTime.
         /// </summary>
         public static string DateAndTime {
@@ -174,6 +183,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         public static string LastModifiedBy {
             get {
                 return ResourceManager.GetString("LastModifiedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links.
+        /// </summary>
+        public static string Links {
+            get {
+                return ResourceManager.GetString("Links", resourceCulture);
             }
         }
         

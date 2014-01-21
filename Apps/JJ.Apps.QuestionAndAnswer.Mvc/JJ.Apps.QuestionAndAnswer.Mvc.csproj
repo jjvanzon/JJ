@@ -262,6 +262,7 @@
     <Content Include="Views\CategorySelector\Index.aspx" />
     <Content Include="Views\CategorySelector\_SelectedCategory.ascx" />
     <Content Include="Views\Login\Index.aspx" />
+    <Content Include="Views\Questions\Details.aspx" />
     <Content Include="Views\Questions\Edit.aspx" />
     <Content Include="Views\Questions\Index.aspx" />
     <Content Include="Views\Questions\NotFound.aspx" />

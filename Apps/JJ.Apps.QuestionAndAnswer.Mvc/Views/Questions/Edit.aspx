@@ -198,11 +198,11 @@
     
         <%: Html.ValidationSummary() %>
 
-        <p><input type="submit" value="<%: Titles.Save %>" /></p>
-
-        <div>
-            <%: Html.ActionLink("Back to List", "Index") %>
-        </div>
+        <p>
+            <input type="submit" value="<%: Titles.Save %>" />
+            <%: Html.ActionLink(Titles.Cancel, ActionNames.Details, new { id = Model.Question.ID })%>
+            <%: Html.ActionLink(Titles.BackToList, ActionNames.Index) %>
+        </p>
 
     <% } %>
 
