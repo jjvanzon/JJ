@@ -141,6 +141,9 @@
   <data name="ContentSourcesAndImports" xml:space="preserve">
     <value>Content Sources &amp; Imports</value>
   </data>
+  <data name="CreateQuestion" xml:space="preserve">
+    <value>Create Question</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -175,11 +178,17 @@
   <data name="LogOut" xml:space="preserve">
     <value>Log Out</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
   <data name="NextQuestion" xml:space="preserve">
     <value>Next Question</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="NoQuestionsFound" xml:space="preserve">
     <value>No Questions Found</value>
@@ -223,5 +232,14 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="DeleteQuestion" xml:space="preserve">
+    <value>Delete Question</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
 </root>

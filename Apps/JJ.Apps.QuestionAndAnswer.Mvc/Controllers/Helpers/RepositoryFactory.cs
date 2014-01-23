@@ -57,5 +57,17 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
             if (context == null) throw new ArgumentNullException("context");
             return new QuestionLinkRepository(context);
         }
+
+        public static ISourceRepository CreateSourceRepository(IContext context)
+        {
+            if (context == null) throw new ArgumentNullException("context");
+            return new SourceRepository(context);
+        }
+
+        internal static IQuestionTypeRepository CreateQuestionTypeRepository(IContext context)
+        {
+            if (context == null) throw new ArgumentNullException("context");
+            return new QuestionTypeRepository(context);
+        }
     }
 }

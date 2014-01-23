@@ -17,5 +17,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Views
         public const string _SmallQuestionFlag = "_SmallQuestionFlag";
         public const string NotAuthenticated = "NotAuthenticated";
         public const string Edit = "Edit";
+        public const string _Editor = "_Editor";
+        public const string Delete = "Delete";
+        public const string Deleted = "Deleted";
     }
 }

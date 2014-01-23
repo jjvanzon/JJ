@@ -4,17 +4,17 @@
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
-    <%: Titles.EditQuestion %>
+    <%: Titles.CreateQuestion %>
 </asp:Content>
 
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
 </asp:Content>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
-
+    
     <% using (Html.BeginForm()) { %>
 
-        <h2><%: Titles.EditQuestion %></h2>
+        <h2><%: Titles.CreateQuestion %></h2>
 
         <% Html.RenderPartial(ViewNames._Editor); %>
 
@@ -22,8 +22,10 @@
 
         <p>
             <input type="submit" value="<%: Titles.Save %>" /> |
-            <%: Html.ActionLink(Titles.Cancel, ActionNames.Details, new { id = Model.Question.ID }) %> |
-            <%: Html.ActionLink(Titles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
+            <a href="javascript:history.back()"> <%: Titles.Cancel %></a> |
+            <noscript>
+                <%: Html.ActionLink(Titles.Cancel, ActionNames.Index) %> ?
+            </noscript>
             <%: Html.ActionLink(Titles.BackToList, ActionNames.Index) %>
         </p>
 

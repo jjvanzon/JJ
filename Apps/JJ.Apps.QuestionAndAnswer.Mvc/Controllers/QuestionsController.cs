@@ -39,19 +39,79 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ActionResult Details(int id)
         {
-            QuestionDetailPresenter presenter = CreateDetailPresenter();
-            object viewModel = presenter.Show(id);
+            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            object viewModel = presenter.Details(id);
 
-            var detailViewModel = viewModel as QuestionDetailViewModel;
-            if (detailViewModel != null)
+            var detailModel = viewModel as QuestionDetailsViewModel;
+            if (detailModel != null)
             {
-                return View(detailViewModel);
+                return View(detailModel);
             }
 
             var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
             if (notFoundViewModel != null)
             {
                 return View(ViewNames.NotFound, notFoundViewModel);
+            }
+
+            throw new UnexpectedViewModelTypeException(viewModel);
+        }
+
+        // GET: /Questions/Create
+
+        public ActionResult Create()
+        {
+            object viewModel;
+            if (TempData.ContainsKey(TempDataKeys.ViewModel))
+            {
+                viewModel = TempData[TempDataKeys.ViewModel];
+            }
+            else
+            {
+                QuestionDetailsPresenter presenter = CreateDetailPresenter();
+                viewModel = presenter.Create();
+            }
+
+            var editViewModel = viewModel as QuestionEditViewModel;
+            if (editViewModel != null)
+            {
+                foreach (ValidationMessage validationMessage in editViewModel.ValidationMessages)
+                {
+                    ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
+                }
+
+                return View(editViewModel);
+            }
+
+            var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
+            if (notFoundViewModel != null)
+            {
+                return View(ViewNames.NotFound, notFoundViewModel);
+            }
+
+            throw new UnexpectedViewModelTypeException(viewModel);
+        }
+
+        // POST: /Questions/Create
+
+        /// <summary> Post create. Saves the new question. </summary>
+        [HttpPost]
+        public ActionResult Create(QuestionEditViewModel viewModel)
+        {
+            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            object viewModel2 = presenter.Save(viewModel);
+
+            var editViewModel = viewModel2 as QuestionEditViewModel;
+            if (editViewModel != null)
+            {
+                TempData[TempDataKeys.ViewModel] = editViewModel;
+                return RedirectToAction(ActionNames.Create);
+            }
+
+            var detailsViewModel = viewModel2 as QuestionDetailsViewModel;
+            if (detailsViewModel != null)
+            {
+                return RedirectToAction(ActionNames.Details, new { id = detailsViewModel.Question.ID });
             }
 
             throw new UnexpectedViewModelTypeException(viewModel);
@@ -68,19 +128,19 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
             else
             {
-                QuestionDetailPresenter presenter = CreateDetailPresenter();
-                viewModel = presenter.Show(id);
+                QuestionDetailsPresenter presenter = CreateDetailPresenter();
+                viewModel = presenter.Edit(id);
             }
 
-            var detailViewModel = viewModel as QuestionDetailViewModel;
-            if (detailViewModel != null)
+            var editViewModel = viewModel as QuestionEditViewModel;
+            if (editViewModel != null)
             {
-                foreach (ValidationMessage validationMessage in detailViewModel.ValidationMessages)
+                foreach (ValidationMessage validationMessage in editViewModel.ValidationMessages)
                 {
                     ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
                 }
 
-                return View(detailViewModel);
+                return View(editViewModel);
             }
 
             var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
@@ -96,41 +156,97 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         /// <summary> Post edit. Saves the question. </summary>
         [HttpPost]
-        public ActionResult Edit(QuestionDetailViewModel viewModel)
+        public ActionResult Edit(QuestionEditViewModel viewModel)
         {
-            QuestionDetailPresenter presenter = CreateDetailPresenter();
-            QuestionDetailViewModel viewModel2 = presenter.Save(viewModel);
+            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            object viewModel2 = presenter.Save(viewModel);
 
-            // TODO: Make this navigation logic part of the presenter.
-            if (viewModel2.ValidationMessages.Count > 0)
+            var editViewModel = viewModel2 as QuestionEditViewModel;
+            if (editViewModel != null)
             {
-                TempData[TempDataKeys.ViewModel] = viewModel2;
-                return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
+                TempData[TempDataKeys.ViewModel] = editViewModel;
+                return RedirectToAction(ActionNames.Edit, new { id = editViewModel.Question.ID });
             }
-            else
+
+            var detailsViewModel = viewModel2 as QuestionDetailsViewModel;
+            if (detailsViewModel != null)
             {
-                return RedirectToAction(ActionNames.Details, new { id = viewModel2.Question.ID });
+                return RedirectToAction(ActionNames.Details, new { id = detailsViewModel.Question.ID });   
             }
+
+            throw new UnexpectedViewModelTypeException(viewModel);
+        }
+
+        // GET: /Questions/Delete/5
+
+        /// <summary> Asks for confirmation that the question can be deleted. </summary>
+        public ActionResult Delete(int id)
+        {
+            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            object viewModel = presenter.Delete(id);
+
+            var confirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
+            if (confirmDeleteViewModel != null)
+            {
+                return View(ViewNames.Delete, confirmDeleteViewModel);
+            }
+
+            var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
+            if (notFoundViewModel != null)
+            {
+                return View(ViewNames.NotFound, notFoundViewModel);
+            }
+
+            throw new UnexpectedViewModelTypeException(viewModel);
+        }
+
+        // POST: /Questions/Delete/5
+
+        /// <summary> With this action the user confirms that the question can be deleted. </summary>
+        /// <param name="viewModel">
+        /// Do nothing with this view model. 
+        /// It is only provided to give the HTTP get and post actions different method signatures.
+        /// </param>
+        [HttpPost]
+        public ActionResult Delete(QuestionConfirmDeleteViewModel viewModel, int id)
+        {
+            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            object viewModel2 = presenter.ConfirmDelete(id);
+
+            var deleteConfirmedViewModel = viewModel2 as QuestionDeleteConfirmedViewModel;
+            if (deleteConfirmedViewModel != null)
+            {
+                return View(ViewNames.Deleted, deleteConfirmedViewModel);
+            }
+
+            var notFoundViewModel = viewModel2 as QuestionDeleteConfirmedViewModel;
+            if (notFoundViewModel != null)
+            {
+                return View(ViewNames.NotFound, notFoundViewModel);
+            }
+
+            throw new UnexpectedViewModelTypeException(viewModel2);
         }
 
         // POST: /Questions/AddLink
 
         [HttpPost]
-        public ActionResult AddLink(QuestionDetailViewModel viewModel)
+        public ActionResult AddLink(QuestionEditViewModel viewModel)
         {
-            QuestionDetailPresenter presenter = CreateDetailPresenter();
-            QuestionDetailViewModel viewModel2 = presenter.AddLink(viewModel);
+            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditViewModel viewModel2 = presenter.AddLink(viewModel);
             TempData[TempDataKeys.ViewModel] = viewModel2;
+
             return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
         }
 
         // POST: /Questions/RemoveLink?temporaryID=12345678-90AB-CDEF
 
         [HttpPost]
-        public ActionResult RemoveLink(QuestionDetailViewModel viewModel, Guid temporaryID)
+        public ActionResult RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
         {
-            QuestionDetailPresenter presenter = CreateDetailPresenter();
-            QuestionDetailViewModel viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
+            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditViewModel viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
             TempData[TempDataKeys.ViewModel] = viewModel2;
             return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
         }
@@ -138,10 +254,10 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         // POST: /Questions/AddCategory
 
         [HttpPost]
-        public ActionResult AddCategory(QuestionDetailViewModel viewModel)
+        public ActionResult AddCategory(QuestionEditViewModel viewModel)
         {
-            QuestionDetailPresenter presenter = CreateDetailPresenter();
-            QuestionDetailViewModel viewModel2 = presenter.AddCategory(viewModel);
+            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditViewModel viewModel2 = presenter.AddCategory(viewModel);
             TempData[TempDataKeys.ViewModel] = viewModel2;
             return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
         }
@@ -149,10 +265,10 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         // POST: /Questions/RemoveCategory?temporaryID=12345678-90AB-CDEF
 
         [HttpPost]
-        public ActionResult RemoveCategory(QuestionDetailViewModel viewModel, Guid temporaryID)
+        public ActionResult RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
         {
-            QuestionDetailPresenter presenter = CreateDetailPresenter();
-            QuestionDetailViewModel viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
+            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditViewModel viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
             TempData[TempDataKeys.ViewModel] = viewModel2;
             return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
         }
@@ -307,7 +423,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return new RandomQuestionPresenter(questionRepository, categoryRepository, questionFlagRepository, flagStatusRepository, userRepository);
         }
 
-        private QuestionDetailPresenter CreateDetailPresenter()
+        private QuestionDetailsPresenter CreateDetailPresenter()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
             IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
@@ -317,7 +433,9 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
             IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
             IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            return new QuestionDetailPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository);
+            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
+            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
+            return new QuestionDetailsPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
         }
 
         private QuestionListPresenter CreateListPresenter()

@@ -88,6 +88,8 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
 
             buttonShowAnswer.Visible = !viewModel.AnswerIsVisible;
             buttonHideAnswer.Visible = viewModel.AnswerIsVisible;
+
+            buttonShowAnswer.Enabled = true;
         }
 
         private void ApplyNotFoundViewModel(QuestionNotFoundViewModel viewModel)

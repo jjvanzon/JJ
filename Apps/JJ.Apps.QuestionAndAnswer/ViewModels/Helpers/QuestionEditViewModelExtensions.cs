@@ -13,12 +13,12 @@ using JJ.Business.QuestionAndAnswer.Enums;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
-    internal static class QuestionDetailViewModelExtensions
+    internal static class QuestionEditViewModelExtensions
     {
         /// <summary>
         /// Fills up the viewmodel with new objects where there are unexpected nulls.
         /// </summary>
-        public static QuestionDetailViewModel NullCoallesce(this QuestionDetailViewModel viewModel)
+        public static QuestionEditViewModel NullCoallesce(this QuestionEditViewModel viewModel)
         {
             if (viewModel == null) throw new ArgumentNullException("viewModel");
 
@@ -27,6 +27,8 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<Models.Canonical.ValidationMessage>();
 
             viewModel.Question = viewModel.Question ?? new QuestionViewModel();
+            viewModel.Question.Source = viewModel.Question.Source ?? new SourceViewModel();
+            viewModel.Question.Type = viewModel.Question.Type ?? new QuestionTypeViewModel();
             viewModel.Question.Categories = viewModel.Question.Categories ?? new List<QuestionCategoryViewModel>();
             viewModel.Question.Links = viewModel.Question.Links ?? new List<QuestionLinkViewModel>();
             viewModel.Question.Flags = viewModel.Question.Flags ?? new List<QuestionFlagViewModel>();
@@ -46,14 +48,16 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
         /// Next, the editable parts of the entity are taken over from the view model.
         /// </summary>
         public static Question ToEntity(
-            this QuestionDetailViewModel viewModel, 
+            this QuestionEditViewModel viewModel, 
             IQuestionRepository questionRepository, 
             IAnswerRepository answerRepository,
             ICategoryRepository categoryRepository,
             IQuestionCategoryRepository questionCategoryRepository,
             IQuestionLinkRepository questionLinkRepository,
             IQuestionFlagRepository questionFlagRepository,
-            IFlagStatusRepository flagStatusRepository)
+            IFlagStatusRepository flagStatusRepository,
+            ISourceRepository sourceRepository,
+            IQuestionTypeRepository questionTypeRepository)
         {
             if (viewModel == null) throw new ArgumentNullException("viewModel");
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
@@ -63,6 +67,8 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             if (questionLinkRepository == null) throw new ArgumentNullException("questionLinkRepository");
             if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
             if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
+            if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
+            if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
 
             viewModel.NullCoallesce();
 
@@ -71,12 +77,12 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             if (question == null)
             {
                 question = questionRepository.Create();
-                // TODO: Make sure you do this.
-                //question.SetQuestionTypeEnum(questionTypeRepository, QuestionTypeEnum.OpenQuestion);
                 question.AutoCreateRelatedEntities(answerRepository);
             }
             question.Text = viewModel.Question.Text;
             question.IsActive = viewModel.Question.IsActive;
+            question.Source = sourceRepository.Get(viewModel.Question.Source.ID);
+            question.QuestionType = questionTypeRepository.Get(viewModel.Question.Type.ID);
 
             // Answer
             // TODO: Refactor to support multiple answers
@@ -84,6 +90,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             {
                 question.Answers.Add(new Answer());
             }
+            question.Answers[0].IsCorrectAnswer = true;
             question.Answers[0].Text = viewModel.Question.Answer;
 
             // Categories

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.Validation
 {
-    public class QuestionDetailViewModelValidator : FluentValidator<QuestionDetailViewModel>
+    public class QuestionEditViewModelValidator : FluentValidator<QuestionEditViewModel>
     {
-        public QuestionDetailViewModelValidator(QuestionDetailViewModel obj)
+        public QuestionEditViewModelValidator(QuestionEditViewModel obj)
             : base(obj)
         { }
 

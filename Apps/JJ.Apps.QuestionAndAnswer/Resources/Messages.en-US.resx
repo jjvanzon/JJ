@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AreYouSureYouWishToDeleteTheFollowingQuestion" xml:space="preserve">
+    <value>Are you sure you wish to delete the following question?</value>
+  </data>
   <data name="NoCategoriesAvailable" xml:space="preserve">
     <value>No categories available.</value>
   </data>
   <data name="NoQuestionsFound" xml:space="preserve">
     <value>No questions found.</value>
+  </data>
+  <data name="QuestionIsDeleted" xml:space="preserve">
+    <value>The question has been deleted.</value>
   </data>
 </root>

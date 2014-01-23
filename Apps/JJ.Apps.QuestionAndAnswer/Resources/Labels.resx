@@ -171,11 +171,17 @@
   <data name="Selection" xml:space="preserve">
     <value>Selection</value>
   </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
   <data name="TheCorrectAnswer" xml:space="preserve">
     <value>TheCorrectAnswer</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="Url" xml:space="preserve">
     <value>Url</value>

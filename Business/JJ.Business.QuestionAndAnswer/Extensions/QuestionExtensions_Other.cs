@@ -32,7 +32,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
             foreach (Answer answer in question.Answers.ToArray())
             {
-                answer.Question = null;
+                answer.LinkTo((Question)null);
 
                 answerRepository.Delete(answer);
             }
@@ -41,7 +41,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
             foreach (QuestionCategory questionCategory in question.QuestionCategories.ToArray())
             {
-                questionCategory.Question = null;
+                questionCategory.LinkTo((Question)null);
 
                 questionCategoryRepository.Delete(questionCategory);
             }
@@ -50,12 +50,20 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
             foreach (QuestionLink questionLink in question.QuestionLinks.ToArray())
             {
-                questionLink.Question = null;
+                questionLink.LinkTo((Question)null);
 
                 questionLinkRepository.Delete(questionLink);
             }
 
             question.QuestionLinks.Clear();
         }
+
+        /// <summary> Unlinks only the non-owned related entities. </summary>
+        public static void UnlinkRelatedEntities(this Question question)
+        {
+            question.LinkTo((Source)null);
+            question.LinkTo((QuestionType)null);
+        }
     }
 }
+

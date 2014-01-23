@@ -179,13 +179,12 @@ table.pane td
 
 table.pane td.col1of2
 {
-
     /*float: left;*/
     /*position: absolute;*/
     top: 40px;
     bottom: 40px;
+    width: 100%;
     /*width: 50%;*/
-    
 }
 
 table.pane td.col2of2
@@ -194,7 +193,7 @@ table.pane td.col2of2
     /*position: absolute;*/
     top: 40px;
     bottom: 40px;
-    width: 500px;
+    min-width: 200px;
 }
 
 /*div.trysomething
@@ -212,6 +211,9 @@ table.pane td.col2of2
     bottom: 40px;
     width: 50%;
 }*/
+
+
+/* Category selector nuggets */
 
 li.category
 {
@@ -253,7 +255,7 @@ ul ul ul > li.category
     background-color: #ADE2FF;
 }
 
-ul > ul > ul > ul > li.category
+ul ul ul ul > li.category
 {
     font-size: 8pt;
     background-color: #8CDCFF;
@@ -267,4 +269,58 @@ a:link, a:hover, a:visited, a:active
 input[type="text"], textarea, select
 {
     background-color: #B6C9D8;
+}
+
+
+/* nav */
+
+nav
+{
+    margin-top: 20px;
+}
+
+nav a
+{
+    text-decoration: none;
+}
+
+nav a:hover
+{
+    color: #DDF3FF
+}
+
+nav > ul
+{
+    display: inline;
+    padding: 0px;
+}
+
+nav li
+{
+    /*border-width: 1px;
+    border-style: solid;
+    border-color: #777;*/
+    padding: 4px;
+    font-weight: 600;
+}
+
+nav > ul > li
+{
+    display: inline-block;
+    margin: 0px;
+    vertical-align: top;
+}
+
+nav > ul > li > ul
+{
+    padding: 0px;
+    padding-left: 16px;
+    margin-top: 4px;
+}
+
+nav > ul > li > ul > li
+{
+    display: block;
+    margin: 0px;
+    vertical-align: top;
 }

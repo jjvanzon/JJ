@@ -13,10 +13,12 @@ using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
 using JJ.Apps.QuestionAndAnswer.Validation;
+using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Business.QuestionAndAnswer.Extensions;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
-    public class QuestionDetailPresenter
+    public class QuestionDetailsPresenter
     {
         private IQuestionRepository _questionRepository;
         private IAnswerRepository _answerRepository;
@@ -25,15 +27,19 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private IQuestionLinkRepository _questionLinkRepository;
         private IQuestionFlagRepository _questionFlagRepository;
         private IFlagStatusRepository _flagStatusRepository;
+        private ISourceRepository _sourceRepository = null;
+        private IQuestionTypeRepository _questionTypeRepository = null;
 
-        public QuestionDetailPresenter(
+        public QuestionDetailsPresenter(
             IQuestionRepository questionRepository,
             IAnswerRepository answerRepository,
             ICategoryRepository categoryRepository,
             IQuestionCategoryRepository questionCategoryRepository,
             IQuestionLinkRepository questionLinkRepository,
             IQuestionFlagRepository questionFlagRepository,
-            IFlagStatusRepository flagStatusRepository)
+            IFlagStatusRepository flagStatusRepository,
+            ISourceRepository sourceRepository,
+            IQuestionTypeRepository questionTypeRepository)
         {
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");
@@ -41,7 +47,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             if (questionCategoryRepository == null) throw new ArgumentNullException("questionCategoryRepository");
             if (questionLinkRepository == null) throw new ArgumentNullException("questionLinkRepository");
             if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
-            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
+            if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
+            if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
 
             _questionRepository = questionRepository;
             _answerRepository = answerRepository;
@@ -50,12 +57,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _questionLinkRepository = questionLinkRepository;
             _questionFlagRepository = questionFlagRepository;
             _flagStatusRepository = flagStatusRepository;
+            _sourceRepository = sourceRepository;
+            _questionTypeRepository = questionTypeRepository;
         }
 
         /// <summary>
-        /// Can return QuestionDetailViewModel or QuestionNotFoundViewModel.
+        /// Can return QuestionDetailsViewModel or QuestionNotFoundViewModel.
         /// </summary>
-        public object Show(int id)
+        public object Details(int id)
         {
             Question question = _questionRepository.TryGet(id);
             if (question == null)
@@ -63,11 +72,74 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 return new QuestionNotFoundViewModel { ID = id };
             }
 
-            QuestionDetailViewModel viewModel = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
+            QuestionDetailsViewModel viewModel = question.ToDetailsViewModel();
             return viewModel;
         }
 
-        public QuestionDetailViewModel AddLink(QuestionDetailViewModel viewModel)
+        /// <summary>
+        /// Can return QuestionEditViewModel or QuestionNotFoundViewModel.
+        /// </summary>
+        public object Edit(int id)
+        {
+            Question question = _questionRepository.TryGet(id);
+            if (question == null)
+            {
+                return new QuestionNotFoundViewModel { ID = id };
+            }
+
+            QuestionEditViewModel viewModel = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
+            return viewModel;
+        }
+
+        private const string DEFAULT_SOURCE_IDENTIFIER = "Manual";
+
+        public QuestionEditViewModel Create()
+        {
+            QuestionEditViewModel viewModel = ViewModelHelper.CreateEmptyQuestionEditViewModel(_categoryRepository, _flagStatusRepository);
+
+            // These defaults are specific to the UI, not the business.
+            Source source = _sourceRepository.GetByIdentifier(DEFAULT_SOURCE_IDENTIFIER);
+            viewModel.Question.Source = source.ToViewModel();
+
+            QuestionType questionType = _questionTypeRepository.Get((int)QuestionTypeEnum.OpenQuestion);
+            viewModel.Question.Type = questionType.ToViewModel();
+
+            return viewModel;
+        }
+
+        /// <summary> Can return QuestionConfirmDeleteViewModel and QuestionNotFoundViewModel. </summary>
+        public object Delete(int id)
+        {
+            Question question = _questionRepository.TryGet(id);
+            if (question == null)
+            {
+                return new QuestionNotFoundViewModel { ID = id };
+            }
+
+            QuestionConfirmDeleteViewModel viewModel = question.ToConfirmDeleteViewModel();
+            return viewModel;
+        }
+
+        /// <summary> Can return QuestionDeleteConfirmedViewModel and QuestionNotFoundViewModel. </summary>
+        public object ConfirmDelete(int id)
+        {
+            Question question = _questionRepository.TryGet(id);
+            if (question == null)
+            {
+                return new QuestionNotFoundViewModel { ID = id };
+            }
+
+            question.DeleteRelatedEntities(_answerRepository, _questionCategoryRepository, _questionLinkRepository);
+            question.UnlinkRelatedEntities();
+
+            _questionRepository.Delete(question);
+            _questionRepository.Commit();
+
+            var viewModel = new QuestionDeleteConfirmedViewModel();
+            return viewModel;
+        }
+
+        public QuestionEditViewModel AddLink(QuestionEditViewModel viewModel)
         {
             // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new ArgumentNullException("viewModel");
@@ -75,18 +147,18 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.NullCoallesce();
 
             // Get entity from database, with the viewmodel applied to it.
-            Question question = viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository);
+            Question question = ViewModelToEntity(viewModel);
 
             // Perform operation
             QuestionLink questionLink = _questionLinkRepository.Create();
             questionLink.LinkTo(question);
 
             // Create new view model
-            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
             return viewModel2;
         }
 
-        public QuestionDetailViewModel RemoveLink(QuestionDetailViewModel viewModel, Guid temporaryID)
+        public QuestionEditViewModel RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
         {
             // If the question has disappeared, it is recreated.
 
@@ -108,14 +180,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.Question.Links.Remove(questionLinkViewModel);
 
             // Get entity from database, with the viewmodel applied to it.
-            Question question = viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository);
+            Question question = ViewModelToEntity(viewModel);
 
             // Create new view model
-            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
             return viewModel2;
         }
 
-        public QuestionDetailViewModel AddCategory(QuestionDetailViewModel viewModel)
+        public QuestionEditViewModel AddCategory(QuestionEditViewModel viewModel)
         {
             // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new ArgumentNullException("viewModel");
@@ -130,11 +202,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             questionCategory.LinkTo(question);
 
             // Create new view model
-            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
             return viewModel2;
         }
 
-        public QuestionDetailViewModel RemoveCategory(QuestionDetailViewModel viewModel, Guid temporaryID)
+        public QuestionEditViewModel RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
         {
             // If the question has disappeared, it is recreated.
 
@@ -159,11 +231,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = ViewModelToEntity(viewModel);
 
             // Create new view model
-            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
             return viewModel2;
         }
 
-        public QuestionDetailViewModel Save(QuestionDetailViewModel viewModel)
+        /// <summary>
+        /// Can return QuestionEditViewModel or QuestionDetailsViewModel
+        /// </summary>
+        public object Save(QuestionEditViewModel viewModel)
         {
             // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new ArgumentNullException("viewModel");
@@ -172,10 +247,10 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = ViewModelToEntity(viewModel);
 
             // Produce new complete view model
-            QuestionDetailViewModel viewModel2 = question.ToDetailViewModel(_flagStatusRepository, _categoryRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
 
             // Validate
-            IValidator validator1 = new QuestionDetailViewModelValidator(viewModel2);
+            IValidator validator1 = new QuestionEditViewModelValidator(viewModel2);
             if (!validator1.IsValid)
             {
                 viewModel2.ValidationMessages = validator1.ValidationMessages.ToCanonical();
@@ -191,13 +266,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             // Commit
             _questionRepository.Commit();
-            return viewModel2;
+            QuestionDetailsViewModel detailsViewModel = question.ToDetailsViewModel();
+            return detailsViewModel;
         }
 
-        private Question ViewModelToEntity(QuestionDetailViewModel viewModel)
+        private Question ViewModelToEntity(QuestionEditViewModel viewModel)
         {
             // Get entity from database, with the viewmodel applied to it.
-            return viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository);
+            return viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository, _sourceRepository, _questionTypeRepository);
         }
     }
 }

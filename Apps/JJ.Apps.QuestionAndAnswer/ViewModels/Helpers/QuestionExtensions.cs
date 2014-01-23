@@ -16,6 +16,10 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
     internal static class QuestionExtensions
     {
+        /// <summary>
+        /// Converts the entity to a view model, but does not convert the related entities.
+        /// (objects and lists will be created, though: no nulls.)
+        /// </summary>
         public static QuestionViewModel ToViewModel(this Question entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
@@ -26,25 +30,22 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 Text = entity.Text,
                 IsActive = entity.IsActive,
                 Answer = entity.Answers[0].Text, // TODO: Refactor to support multiple answers.
-                Links = new List<QuestionLinkViewModel>(),
+                Source = new SourceViewModel(),
+                Type = new QuestionTypeViewModel(),
                 Categories = new List<QuestionCategoryViewModel>(),
+                Links = new List<QuestionLinkViewModel>(),
                 Flags = new List<QuestionFlagViewModel>()
             };
         }
 
-        public static QuestionDetailViewModel ToDetailViewModel(this Question question, IFlagStatusRepository flagStatusRepository, ICategoryRepository categoryRepository)
+        public static QuestionDetailsViewModel ToDetailsViewModel(this Question question)
         {
             if (question == null) throw new ArgumentNullException("question");
-            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
 
-            var viewModel = new QuestionDetailViewModel
-            {
-                Question = question.ToViewModel(),
-                FlagStatuses = new List<FlagStatusViewModel>(),
-                Categories = GetCategoriesViewModelRecursive(categoryRepository),
-                ValidationMessages = new List<ValidationMessage>()
-            };
+            var viewModel = new QuestionDetailsViewModel();
+            viewModel.Question = question.ToViewModel();
+            viewModel.Question.Source = question.Source.ToViewModel();
+            viewModel.Question.Type = question.QuestionType.ToViewModel();
 
             // Links
             foreach (QuestionLink questionLink in question.QuestionLinks)
@@ -67,36 +68,51 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 viewModel.Question.Flags.Add(flagViewModel);
             }
 
-            // Flag statuses
-            foreach (FlagStatus flagStatus in flagStatusRepository.GetAll().ToArray())
-            {
-                FlagStatusViewModel flagStatusViewModel = flagStatus.ToViewModel();
-                viewModel.FlagStatuses.Add(flagStatusViewModel);
-            }
-
             viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.FlagStatus.ID == (int)FlagStatusEnum.Flagged).Any();
 
             return viewModel;
         }
 
-        /// <summary> Gets a tree of category view models. </summary>
-        private static IList<CategoryViewModel> GetCategoriesViewModelRecursive(ICategoryRepository categoryRepository)
+        public static QuestionEditViewModel ToEditViewModel(this Question question, ICategoryRepository categoryRepository, IFlagStatusRepository flagStatusRepository)
         {
-            if (categoryRepository == null) { throw new ArgumentNullException("categoryRepository"); }
+            if (question == null) throw new ArgumentNullException("question");
+            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
 
-            var categoryManager = new CategoryManager(categoryRepository);
-
-            IEnumerable<Category> categories = categoryManager.GetCategoryTree();
-
-            var viewModels = new List<CategoryViewModel>();
-
-            foreach (Category category in categories)
+            var viewModel = new QuestionEditViewModel
             {
-                CategoryViewModel viewModel = category.ToViewModelRecursive();
-                viewModels.Add(viewModel);
+                Question = question.ToViewModel(),
+                FlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel(flagStatusRepository),
+                Categories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository),
+                ValidationMessages = new List<ValidationMessage>()
+            };
+
+            viewModel.Question.Source = question.Source.ToViewModel();
+            viewModel.Question.Type = question.QuestionType.ToViewModel();
+
+            // Links
+            foreach (QuestionLink questionLink in question.QuestionLinks)
+            {
+                QuestionLinkViewModel linkModel = questionLink.ToViewModel();
+                viewModel.Question.Links.Add(linkModel);
             }
 
-            return viewModels;
+            // Question categories
+            foreach (QuestionCategory questionCategory in question.QuestionCategories)
+            {
+                QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
+                viewModel.Question.Categories.Add(questionCategoryViewModel);
+            }
+
+            // Flags
+            foreach (QuestionFlag flag in question.QuestionFlags)
+            {
+                QuestionFlagViewModel flagViewModel = flag.ToViewModel();
+                viewModel.Question.Flags.Add(flagViewModel);
+            }
+
+            viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.FlagStatus.ID == (int)FlagStatusEnum.Flagged).Any();
+
+            return viewModel;
         }
 
         public static RandomQuestionViewModel ToRandomQuestionViewModel(this Question entity, QuestionFlag currentUserQuestionFlag = null)
@@ -135,6 +151,17 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             }
 
             return viewModel;
+        }
+
+        public static QuestionConfirmDeleteViewModel ToConfirmDeleteViewModel(this Question question)
+        {
+            if (question == null) throw new ArgumentNullException("question");
+
+            return new QuestionConfirmDeleteViewModel
+            {
+                ID = question.ID,
+                Question = question.Text
+            };
         }
     }
 }

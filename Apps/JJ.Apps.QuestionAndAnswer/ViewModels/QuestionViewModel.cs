@@ -13,12 +13,15 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
         public string Text { get; set; }
         public string Answer { get; set; }
         
-        public List<QuestionLinkViewModel> Links { get; set; }
-        public List<QuestionCategoryViewModel> Categories { get; set; }
+        public IList<QuestionLinkViewModel> Links { get; set; }
+        public IList<QuestionCategoryViewModel> Categories { get; set; }
 
         /// <summary> Not available in RandomQuestionViewModel. </summary>
-        public List<QuestionFlagViewModel> Flags { get; set; }
+        public IList<QuestionFlagViewModel> Flags { get; set; }
 
         public bool IsFlagged { get; set; }
+
+        public SourceViewModel Source { get; set; }
+        public QuestionTypeViewModel Type { get; set; }
     }
 }
