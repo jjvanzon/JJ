@@ -13,8 +13,6 @@
 
     <h2><%: Titles.QuestionDetails %></h2>
 
-    <%-- Replace DisplayFor calls by literal properties? --%>
-
     <table>
         <colgroup>
             <col style="padding-right: 50px" />

@@ -13,6 +13,7 @@ using JJ.Framework.Presentation;
 using JJ.Models.Canonical;
 using JJ.Apps.QuestionAndAnswer.Mvc.Views;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
+using JJ.Apps.QuestionAndAnswer.Mvc.Views.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -40,7 +41,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Details(int id)
         {
             QuestionDetailsPresenter presenter = CreateDetailPresenter();
-            object viewModel = presenter.Details(id);
+            object viewModel = presenter.Show(id);
 
             var detailModel = viewModel as QuestionDetailsViewModel;
             if (detailModel != null)
@@ -68,7 +69,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
             else
             {
-                QuestionDetailsPresenter presenter = CreateDetailPresenter();
+                QuestionEditPresenter presenter = CreateEditPresenter();
                 viewModel = presenter.Create();
             }
 
@@ -80,7 +81,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                     ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
                 }
 
-                return View(editViewModel);
+                return View(ViewNames.Edit, editViewModel);
             }
 
             var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
@@ -98,7 +99,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult Create(QuestionEditViewModel viewModel)
         {
-            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditPresenter presenter = CreateEditPresenter();
             object viewModel2 = presenter.Save(viewModel);
 
             var editViewModel = viewModel2 as QuestionEditViewModel;
@@ -128,7 +129,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
             else
             {
-                QuestionDetailsPresenter presenter = CreateDetailPresenter();
+                QuestionEditPresenter presenter = CreateEditPresenter();
                 viewModel = presenter.Edit(id);
             }
 
@@ -158,7 +159,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult Edit(QuestionEditViewModel viewModel)
         {
-            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditPresenter presenter = CreateEditPresenter();
             object viewModel2 = presenter.Save(viewModel);
 
             var editViewModel = viewModel2 as QuestionEditViewModel;
@@ -182,8 +183,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         /// <summary> Asks for confirmation that the question can be deleted. </summary>
         public ActionResult Delete(int id)
         {
-            QuestionDetailsPresenter presenter = CreateDetailPresenter();
-            object viewModel = presenter.Delete(id);
+            QuestionDeletePresenter presenter = CreateDeletePresenter();
+            object viewModel = presenter.Show(id);
 
             var confirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
             if (confirmDeleteViewModel != null)
@@ -202,7 +203,9 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         // POST: /Questions/Delete/5
 
-        /// <summary> With this action the user confirms that the question can be deleted. </summary>
+        /// <summary>
+        /// With this action the user confirms that the question can be deleted.
+        /// </summary>
         /// <param name="viewModel">
         /// Do nothing with this view model. 
         /// It is only provided to give the HTTP get and post actions different method signatures.
@@ -210,8 +213,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult Delete(QuestionConfirmDeleteViewModel viewModel, int id)
         {
-            QuestionDetailsPresenter presenter = CreateDetailPresenter();
-            object viewModel2 = presenter.ConfirmDelete(id);
+            QuestionDeleteConfirmedPresenter presenter = CreateDeleteConfirmedPresenter();
+            object viewModel2 = presenter.Show(id);
 
             var deleteConfirmedViewModel = viewModel2 as QuestionDeleteConfirmedViewModel;
             if (deleteConfirmedViewModel != null)
@@ -233,11 +236,17 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult AddLink(QuestionEditViewModel viewModel)
         {
-            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditPresenter presenter = CreateEditPresenter();
             QuestionEditViewModel viewModel2 = presenter.AddLink(viewModel);
             TempData[TempDataKeys.ViewModel] = viewModel2;
-
-            return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
+            if (viewModel.IsNew)
+            {
+                return RedirectToAction(ActionNames.Create);
+            }
+            else
+            {
+                return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+            }
         }
 
         // POST: /Questions/RemoveLink?temporaryID=12345678-90AB-CDEF
@@ -245,10 +254,17 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
         {
-            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditPresenter presenter = CreateEditPresenter();
             QuestionEditViewModel viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
             TempData[TempDataKeys.ViewModel] = viewModel2;
-            return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
+            if (viewModel.IsNew)
+            {
+                return RedirectToAction(ActionNames.Create);
+            }
+            else
+            {
+                return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+            }
         }
 
         // POST: /Questions/AddCategory
@@ -256,10 +272,17 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult AddCategory(QuestionEditViewModel viewModel)
         {
-            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditPresenter presenter = CreateEditPresenter();
             QuestionEditViewModel viewModel2 = presenter.AddCategory(viewModel);
             TempData[TempDataKeys.ViewModel] = viewModel2;
-            return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
+            if (viewModel.IsNew)
+            {
+                return RedirectToAction(ActionNames.Create);
+            }
+            else
+            {
+                return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+            }
         }
 
         // POST: /Questions/RemoveCategory?temporaryID=12345678-90AB-CDEF
@@ -267,10 +290,17 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
         {
-            QuestionDetailsPresenter presenter = CreateDetailPresenter();
+            QuestionEditPresenter presenter = CreateEditPresenter();
             QuestionEditViewModel viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
             TempData[TempDataKeys.ViewModel] = viewModel2;
-            return RedirectToAction(ActionNames.Edit, new { id = viewModel2.Question.ID });
+            if (viewModel.IsNew)
+            {
+                return RedirectToAction(ActionNames.Create);
+            }
+            else
+            {
+                return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+            }
         }
 
         // GET: /Questions/Random
@@ -423,6 +453,21 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return new RandomQuestionPresenter(questionRepository, categoryRepository, questionFlagRepository, flagStatusRepository, userRepository);
         }
 
+        private QuestionEditPresenter CreateEditPresenter()
+        {
+            IContext context = ContextHelper.CreateContextFromConfiguration();
+            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
+            IAnswerRepository answerRepository = RepositoryFactory.CreateAnswerRepository(context);
+            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
+            IQuestionCategoryRepository questionCategoryRepository = RepositoryFactory.CreateQuestionCategoryRepository(context);
+            IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
+            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
+            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
+            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
+            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
+            return new QuestionEditPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
+        }
+
         private QuestionDetailsPresenter CreateDetailPresenter()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
@@ -438,11 +483,49 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return new QuestionDetailsPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
         }
 
+        private QuestionDeletePresenter CreateDeletePresenter()
+        {
+            IContext context = ContextHelper.CreateContextFromConfiguration();
+            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
+            IAnswerRepository answerRepository = RepositoryFactory.CreateAnswerRepository(context);
+            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
+            IQuestionCategoryRepository questionCategoryRepository = RepositoryFactory.CreateQuestionCategoryRepository(context);
+            IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
+            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
+            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
+            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
+            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
+            return new QuestionDeletePresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
+        }
+
+        private QuestionDeleteConfirmedPresenter CreateDeleteConfirmedPresenter()
+        {
+            IContext context = ContextHelper.CreateContextFromConfiguration();
+            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
+            IAnswerRepository answerRepository = RepositoryFactory.CreateAnswerRepository(context);
+            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
+            IQuestionCategoryRepository questionCategoryRepository = RepositoryFactory.CreateQuestionCategoryRepository(context);
+            IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
+            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
+            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
+            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
+            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
+            return new QuestionDeleteConfirmedPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
+        }
+
         private QuestionListPresenter CreateListPresenter()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
             IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            return new QuestionListPresenter(questionRepository);
+            IAnswerRepository answerRepository = RepositoryFactory.CreateAnswerRepository(context);
+            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
+            IQuestionCategoryRepository questionCategoryRepository = RepositoryFactory.CreateQuestionCategoryRepository(context);
+            IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
+            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
+            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
+            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
+            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
+            return new QuestionListPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
         }
     }
 }

@@ -44,6 +44,9 @@
     <Compile Include="Presenters\Helpers\IEnumerableOfValidationMessageExtensions.cs" />
     <Compile Include="Presenters\Helpers\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\QuestionDeleteConfirmedPresenter.cs" />
+    <Compile Include="Presenters\QuestionDeletePresenter.cs" />
+    <Compile Include="Presenters\QuestionEditPresenter.cs" />
     <Compile Include="Presenters\QuestionListPresenter.cs" />
     <Compile Include="Presenters\QuestionDetailsPresenter.cs" />
     <Compile Include="Validation\QuestionCategoryViewModelValidator.cs" />
@@ -52,6 +55,7 @@
     <Compile Include="Validation\QuestionViewModelValidator.cs" />
     <Compile Include="ViewModels\Helpers\QuestionTypeExtensions.cs" />
     <Compile Include="ViewModels\Helpers\SourceExtensions.cs" />
+    <Compile Include="ViewModels\PreviousViewModel.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />

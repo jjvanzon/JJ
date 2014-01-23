@@ -3,22 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JJ.Framework.Common;
-using JJ.Framework.Validation;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Business.QuestionAndAnswer.Extensions;
-using JJ.Business.QuestionAndAnswer.Validation;
-using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
-using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
-using JJ.Apps.QuestionAndAnswer.Validation;
-using JJ.Apps.QuestionAndAnswer.Resources;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
-    public class QuestionDetailsPresenter
+    public class QuestionDeleteConfirmedPresenter
     {
         private IQuestionRepository _questionRepository;
         private IAnswerRepository _answerRepository;
@@ -30,7 +23,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private ISourceRepository _sourceRepository;
         private IQuestionTypeRepository _questionTypeRepository;
 
-        public QuestionDetailsPresenter(
+        public QuestionDeleteConfirmedPresenter(
             IQuestionRepository questionRepository,
             IAnswerRepository answerRepository,
             ICategoryRepository categoryRepository,
@@ -60,8 +53,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _sourceRepository = sourceRepository;
             _questionTypeRepository = questionTypeRepository;
         }
-
-        /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
+        
+        /// <summary> Can return QuestionDeleteConfirmedViewModel and QuestionNotFoundViewModel. </summary>
         public object Show(int id)
         {
             Question question = _questionRepository.TryGet(id);
@@ -70,22 +63,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 return new QuestionNotFoundViewModel { ID = id };
             }
 
-            QuestionDetailsViewModel viewModel = question.ToDetailsViewModel();
+            question.DeleteRelatedEntities(_answerRepository, _questionCategoryRepository, _questionLinkRepository);
+            question.UnlinkRelatedEntities();
+
+            _questionRepository.Delete(question);
+            _questionRepository.Commit();
+
+            var viewModel = new QuestionDeleteConfirmedViewModel();
             return viewModel;
-        }
-
-        /// <summary> Can return QuestionEditViewModel or QuestionNotFoundViewModel. </summary>
-        public object Edit(int id)
-        {
-            var editPresenter = new QuestionEditPresenter(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository, _sourceRepository, _questionTypeRepository);
-            return editPresenter.Edit(id);
-        }
-
-        /// <summary> Can return QuestionConfirmDeleteViewModel and QuestionNotFoundViewModel. </summary>
-        public object Delete(int id)
-        {
-            var deletePresenter = new QuestionDeletePresenter(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository, _sourceRepository, _questionTypeRepository);
-            return deletePresenter.Show(id);
         }
 
         public QuestionListViewModel BackToList()

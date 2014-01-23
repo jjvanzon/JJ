@@ -129,4 +129,7 @@
   <data name="QuestionIsDeleted" xml:space="preserve">
     <value>De vraag is verwijderd.</value>
   </data>
+  <data name="YouHaveJavaScriptDisabled" xml:space="preserve">
+    <value>U heeft JavaScript uit staan. Hier is de alternatieve inhoud:</value>
+  </data>
 </root>

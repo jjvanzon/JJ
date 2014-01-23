@@ -95,5 +95,14 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
                 return ResourceManager.GetString("QuestionIsDeleted", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YouHaveNoJavaScript.
+        /// </summary>
+        public static string YouHaveNoJavaScript {
+            get {
+                return ResourceManager.GetString("YouHaveNoJavaScript", resourceCulture);
+            }
+        }
     }
 }

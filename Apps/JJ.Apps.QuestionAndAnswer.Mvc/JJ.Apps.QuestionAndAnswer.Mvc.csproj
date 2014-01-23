@@ -172,7 +172,7 @@
     </Compile>
     <Compile Include="Controllers\Helpers\SessionWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ViewNames.cs" />
+    <Compile Include="Views\Helpers\ViewNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -262,7 +262,6 @@
     <Content Include="Views\CategorySelector\Index.aspx" />
     <Content Include="Views\CategorySelector\_SelectedCategory.ascx" />
     <Content Include="Views\Login\Index.aspx" />
-    <Content Include="Views\Questions\Create.aspx" />
     <Content Include="Views\Questions\Delete.aspx" />
     <Content Include="Views\Questions\Deleted.aspx" />
     <Content Include="Views\Questions\Details.aspx" />
@@ -270,7 +269,6 @@
     <Content Include="Views\Questions\Index.aspx" />
     <Content Include="Views\Questions\NotFound.aspx" />
     <Content Include="Views\Questions\Random.aspx" />
-    <Content Include="Views\Questions\_Editor.ascx" />
     <Content Include="Views\Questions\_SmallQuestionFlag.ascx" />
     <Content Include="Views\Shared\_LanguageSelection.ascx" />
     <Content Include="Views\Shared\_SmallLogin.ascx" />

@@ -129,4 +129,7 @@
   <data name="QuestionIsDeleted" xml:space="preserve">
     <value>QuestionIsDeleted</value>
   </data>
+  <data name="YouHaveNoJavaScript" xml:space="preserve">
+    <value>YouHaveNoJavaScript</value>
+  </data>
 </root>

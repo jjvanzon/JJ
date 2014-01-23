@@ -83,7 +83,9 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 Question = question.ToViewModel(),
                 FlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel(flagStatusRepository),
                 Categories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository),
-                ValidationMessages = new List<ValidationMessage>()
+                ValidationMessages = new List<ValidationMessage>(),
+                IsNew = false,
+                CanDelete = true
             };
 
             viewModel.Question.Source = question.Source.ToViewModel();

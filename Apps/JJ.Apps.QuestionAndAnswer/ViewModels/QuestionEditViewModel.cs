@@ -16,5 +16,9 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
         public IList<CategoryViewModel> Categories { get; set; }
 
         public IList<ValidationMessage> ValidationMessages { get; set; }
+
+        public string Title { get; set; }
+        public bool IsNew { get; set; }
+        public bool CanDelete { get; set; }
     }
 }

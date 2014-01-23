@@ -6,7 +6,7 @@
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Views" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Views.Helpers" %>
 
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
 

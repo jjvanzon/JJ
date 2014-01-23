@@ -11,6 +11,7 @@ using JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Framework.Persistence;
 using JJ.Apps.QuestionAndAnswer.Mvc.Views;
+using JJ.Apps.QuestionAndAnswer.Mvc.Views.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {

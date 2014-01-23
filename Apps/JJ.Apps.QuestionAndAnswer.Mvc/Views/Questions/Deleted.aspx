@@ -3,14 +3,17 @@
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
-    <%: Messages.QuestionIsDeleted %>
+    <h2><%: Titles.DeleteQuestion %></h2>
 </asp:Content>
 
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
 </asp:Content>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h3><%: Messages.QuestionIsDeleted %></h3>
+
+    <h2><%: Titles.DeleteQuestion %></h2>
+    
+    <p><%: Messages.QuestionIsDeleted %></p>
 
     <p>
         <%: Html.ActionLink(Titles.BackToList, ActionNames.Index) %>
