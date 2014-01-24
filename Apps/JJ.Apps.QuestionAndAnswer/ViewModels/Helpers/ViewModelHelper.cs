@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
-    public static class ViewModelHelper
+    internal static class ViewModelHelper
     {
         public static QuestionEditViewModel CreateEmptyQuestionEditViewModel(ICategoryRepository categoryRepository, IFlagStatusRepository flagStatusRepository)
         {

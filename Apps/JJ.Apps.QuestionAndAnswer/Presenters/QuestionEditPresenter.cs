@@ -15,7 +15,6 @@ using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
 using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
-using JJ.Apps.QuestionAndAnswer.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -193,7 +192,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             // Dirty check
             Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
-            bool isDirty = DirtyChecker.IsDirty(viewModel.Question, question);
+
+            bool isDirty = viewModel.Question.SetIsDirtyRecursive(question);
 
             if (isDirty)
             {
@@ -219,8 +219,17 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 }
 
                 // Side-effects
+                User user = _repositories.UserRepository.GetByUserName(authenticatedUserName);
                 question.IsManual = true;
-                question.LastModifiedByUser = _repositories.UserRepository.GetByUserName(authenticatedUserName);
+                question.LastModifiedByUser = user;
+                foreach (QuestionFlagViewModel questionFlagViewModel in viewModel.Question.Flags)
+                {
+                    if (questionFlagViewModel.IsDirty)
+                    {
+                        QuestionFlag questionFlag = _repositories.QuestionFlagRepository.Get(questionFlagViewModel.ID);
+                        questionFlag.LastModifiedByUser = user;
+                    }
+                }
 
                 // Commit
                 _repositories.QuestionRepository.Commit();

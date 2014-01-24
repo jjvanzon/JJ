@@ -23,5 +23,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
 
         public SourceViewModel Source { get; set; }
         public QuestionTypeViewModel Type { get; set; }
+
+        internal bool IsDirty { get; set; }
     }
 }

@@ -16,43 +16,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
     internal static class QuestionEditViewModelExtensions
     {
         /// <summary>
-        /// Fills up the viewmodel with new objects where there are unexpected nulls.
-        /// </summary>
-        public static void NullCoallesce(this QuestionEditViewModel viewModel)
-        {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
-
-            viewModel.FlagStatuses = viewModel.FlagStatuses ?? new List<FlagStatusViewModel>();
-            viewModel.Categories = viewModel.Categories ?? new List<CategoryViewModel>();
-            viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<Models.Canonical.ValidationMessage>();
-            viewModel.Question = viewModel.Question ?? new QuestionViewModel();
-
-            viewModel.Question.NullCoallesce();
-        }
-
-        /// <summary>
-        /// Fills up the viewmodel with new objects where there are unexpected nulls.
-        /// </summary>
-        public static void NullCoallesce(this QuestionViewModel viewModel)
-        {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
-            
-            viewModel.Source = viewModel.Source ?? new SourceViewModel();
-            viewModel.Type = viewModel.Type ?? new QuestionTypeViewModel();
-            viewModel.Categories = viewModel.Categories ?? new List<QuestionCategoryViewModel>();
-            viewModel.Categories = viewModel.Categories ?? new List<QuestionCategoryViewModel>();
-            viewModel.Categories = viewModel.Categories ?? new List<QuestionCategoryViewModel>();
-            viewModel.Links = viewModel.Links ?? new List<QuestionLinkViewModel>();
-            viewModel.Flags = viewModel.Flags ?? new List<QuestionFlagViewModel>();
-
-            foreach (QuestionCategoryViewModel questionCategoryViewModel in viewModel.Categories)
-            {
-                questionCategoryViewModel.Category = questionCategoryViewModel.Category ?? new CategoryViewModel();
-                questionCategoryViewModel.Category.NameParts = questionCategoryViewModel.Category.NameParts ?? new List<string>();
-            }
-        }
-
-        /// <summary>
         /// Converts a partially filled view model to an entity.
         /// First, a possibly existing entity is retrieved from the database.
         /// Next, the editable parts of the entity are taken over from the view model.

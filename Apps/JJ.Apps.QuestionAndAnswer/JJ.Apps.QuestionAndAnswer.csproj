@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\DirtyChecker.cs" />
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
     <Compile Include="Presenters\Helpers\IEnumerableOfValidationMessageExtensions.cs" />
     <Compile Include="Presenters\Helpers\RepositoryContainer.cs" />
@@ -57,6 +56,8 @@
     <Compile Include="Validation\QuestionViewModelValidator.cs" />
     <Compile Include="ViewModels\Helpers\QuestionTypeExtensions.cs" />
     <Compile Include="ViewModels\Helpers\SourceExtensions.cs" />
+    <Compile Include="ViewModels\Helpers\ViewModelExtensions_IsDirty.cs" />
+    <Compile Include="ViewModels\Helpers\ViewModelExtensions_NullCoallesce.cs" />
     <Compile Include="ViewModels\PreviousViewModel.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
