@@ -14,6 +14,7 @@ using JJ.Models.Canonical;
 using JJ.Apps.QuestionAndAnswer.Mvc.Views;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 using JJ.Apps.QuestionAndAnswer.Mvc.Views.Helpers;
+using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -100,7 +101,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Create(QuestionEditViewModel viewModel)
         {
             QuestionEditPresenter presenter = CreateEditPresenter();
-            object viewModel2 = presenter.Save(viewModel);
+            string authenticatedUserName = TryGetAuthenticatedUserName();
+            object viewModel2 = presenter.Save(viewModel, authenticatedUserName);
 
             var editViewModel = viewModel2 as QuestionEditViewModel;
             if (editViewModel != null)
@@ -160,7 +162,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Edit(QuestionEditViewModel viewModel)
         {
             QuestionEditPresenter presenter = CreateEditPresenter();
-            object viewModel2 = presenter.Save(viewModel);
+            string authenticatedUserName = TryGetAuthenticatedUserName();
+            object viewModel2 = presenter.Save(viewModel, authenticatedUserName);
 
             var editViewModel = viewModel2 as QuestionEditViewModel;
             if (editViewModel != null)
@@ -456,76 +459,96 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         private QuestionEditPresenter CreateEditPresenter()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
-            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            IAnswerRepository answerRepository = RepositoryFactory.CreateAnswerRepository(context);
-            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
-            IQuestionCategoryRepository questionCategoryRepository = RepositoryFactory.CreateQuestionCategoryRepository(context);
-            IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
-            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
-            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
-            return new QuestionEditPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
+
+            RepositoryContainer repositories = new RepositoryContainer(
+                RepositoryFactory.CreateQuestionRepository(context),
+                RepositoryFactory.CreateAnswerRepository(context),
+                RepositoryFactory.CreateCategoryRepository(context),
+                RepositoryFactory.CreateQuestionCategoryRepository(context),
+                RepositoryFactory.CreateQuestionLinkRepository(context),
+                RepositoryFactory.CreateQuestionFlagRepository(context),
+                RepositoryFactory.CreateFlagStatusRepository(context),
+                RepositoryFactory.CreateSourceRepository(context),
+                RepositoryFactory.CreateQuestionTypeRepository(context),
+                RepositoryFactory.CreateUserRepository(context));
+
+            return new QuestionEditPresenter(repositories);
         }
 
         private QuestionDetailsPresenter CreateDetailPresenter()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
-            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            IAnswerRepository answerRepository = RepositoryFactory.CreateAnswerRepository(context);
-            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
-            IQuestionCategoryRepository questionCategoryRepository = RepositoryFactory.CreateQuestionCategoryRepository(context);
-            IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
-            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
-            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
-            return new QuestionDetailsPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
+
+            RepositoryContainer repositories = new RepositoryContainer(
+                RepositoryFactory.CreateQuestionRepository(context),
+                RepositoryFactory.CreateAnswerRepository(context),
+                RepositoryFactory.CreateCategoryRepository(context),
+                RepositoryFactory.CreateQuestionCategoryRepository(context),
+                RepositoryFactory.CreateQuestionLinkRepository(context),
+                RepositoryFactory.CreateQuestionFlagRepository(context),
+                RepositoryFactory.CreateFlagStatusRepository(context),
+                RepositoryFactory.CreateSourceRepository(context),
+                RepositoryFactory.CreateQuestionTypeRepository(context),
+                RepositoryFactory.CreateUserRepository(context));
+
+            return new QuestionDetailsPresenter(repositories);
         }
 
         private QuestionDeletePresenter CreateDeletePresenter()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
-            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            IAnswerRepository answerRepository = RepositoryFactory.CreateAnswerRepository(context);
-            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
-            IQuestionCategoryRepository questionCategoryRepository = RepositoryFactory.CreateQuestionCategoryRepository(context);
-            IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
-            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
-            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
-            return new QuestionDeletePresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
+
+            RepositoryContainer repositories = new RepositoryContainer(
+                RepositoryFactory.CreateQuestionRepository(context),
+                RepositoryFactory.CreateAnswerRepository(context),
+                RepositoryFactory.CreateCategoryRepository(context),
+                RepositoryFactory.CreateQuestionCategoryRepository(context),
+                RepositoryFactory.CreateQuestionLinkRepository(context),
+                RepositoryFactory.CreateQuestionFlagRepository(context),
+                RepositoryFactory.CreateFlagStatusRepository(context),
+                RepositoryFactory.CreateSourceRepository(context),
+                RepositoryFactory.CreateQuestionTypeRepository(context),
+                RepositoryFactory.CreateUserRepository(context));
+
+            return new QuestionDeletePresenter(repositories);
         }
 
         private QuestionDeleteConfirmedPresenter CreateDeleteConfirmedPresenter()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
-            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            IAnswerRepository answerRepository = RepositoryFactory.CreateAnswerRepository(context);
-            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
-            IQuestionCategoryRepository questionCategoryRepository = RepositoryFactory.CreateQuestionCategoryRepository(context);
-            IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
-            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
-            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
-            return new QuestionDeleteConfirmedPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
+
+            RepositoryContainer repositories = new RepositoryContainer(
+                RepositoryFactory.CreateQuestionRepository(context),
+                RepositoryFactory.CreateAnswerRepository(context),
+                RepositoryFactory.CreateCategoryRepository(context),
+                RepositoryFactory.CreateQuestionCategoryRepository(context),
+                RepositoryFactory.CreateQuestionLinkRepository(context),
+                RepositoryFactory.CreateQuestionFlagRepository(context),
+                RepositoryFactory.CreateFlagStatusRepository(context),
+                RepositoryFactory.CreateSourceRepository(context),
+                RepositoryFactory.CreateQuestionTypeRepository(context),
+                RepositoryFactory.CreateUserRepository(context));
+
+            return new QuestionDeleteConfirmedPresenter(repositories);
         }
 
         private QuestionListPresenter CreateListPresenter()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
-            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            IAnswerRepository answerRepository = RepositoryFactory.CreateAnswerRepository(context);
-            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
-            IQuestionCategoryRepository questionCategoryRepository = RepositoryFactory.CreateQuestionCategoryRepository(context);
-            IQuestionLinkRepository questionLinkRepository = RepositoryFactory.CreateQuestionLinkRepository(context);
-            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            ISourceRepository sourceRepository = RepositoryFactory.CreateSourceRepository(context);
-            IQuestionTypeRepository questionTypeRepository = RepositoryFactory.CreateQuestionTypeRepository(context);
-            return new QuestionListPresenter(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionFlagRepository, flagStatusRepository, sourceRepository, questionTypeRepository);
+
+            RepositoryContainer repositories = new RepositoryContainer(
+                RepositoryFactory.CreateQuestionRepository(context),
+                RepositoryFactory.CreateAnswerRepository(context),
+                RepositoryFactory.CreateCategoryRepository(context),
+                RepositoryFactory.CreateQuestionCategoryRepository(context),
+                RepositoryFactory.CreateQuestionLinkRepository(context),
+                RepositoryFactory.CreateQuestionFlagRepository(context),
+                RepositoryFactory.CreateFlagStatusRepository(context),
+                RepositoryFactory.CreateSourceRepository(context),
+                RepositoryFactory.CreateQuestionTypeRepository(context),
+                RepositoryFactory.CreateUserRepository(context));
+
+            return new QuestionListPresenter(repositories);
         }
     }
 }

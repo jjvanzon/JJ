@@ -18,28 +18,38 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
         /// <summary>
         /// Fills up the viewmodel with new objects where there are unexpected nulls.
         /// </summary>
-        public static QuestionEditViewModel NullCoallesce(this QuestionEditViewModel viewModel)
+        public static void NullCoallesce(this QuestionEditViewModel viewModel)
         {
             if (viewModel == null) throw new ArgumentNullException("viewModel");
 
             viewModel.FlagStatuses = viewModel.FlagStatuses ?? new List<FlagStatusViewModel>();
             viewModel.Categories = viewModel.Categories ?? new List<CategoryViewModel>();
             viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<Models.Canonical.ValidationMessage>();
-
             viewModel.Question = viewModel.Question ?? new QuestionViewModel();
-            viewModel.Question.Source = viewModel.Question.Source ?? new SourceViewModel();
-            viewModel.Question.Type = viewModel.Question.Type ?? new QuestionTypeViewModel();
-            viewModel.Question.Categories = viewModel.Question.Categories ?? new List<QuestionCategoryViewModel>();
-            viewModel.Question.Links = viewModel.Question.Links ?? new List<QuestionLinkViewModel>();
-            viewModel.Question.Flags = viewModel.Question.Flags ?? new List<QuestionFlagViewModel>();
 
-            foreach (QuestionCategoryViewModel questionCategoryViewModel in viewModel.Question.Categories)
+            viewModel.Question.NullCoallesce();
+        }
+
+        /// <summary>
+        /// Fills up the viewmodel with new objects where there are unexpected nulls.
+        /// </summary>
+        public static void NullCoallesce(this QuestionViewModel viewModel)
+        {
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            
+            viewModel.Source = viewModel.Source ?? new SourceViewModel();
+            viewModel.Type = viewModel.Type ?? new QuestionTypeViewModel();
+            viewModel.Categories = viewModel.Categories ?? new List<QuestionCategoryViewModel>();
+            viewModel.Categories = viewModel.Categories ?? new List<QuestionCategoryViewModel>();
+            viewModel.Categories = viewModel.Categories ?? new List<QuestionCategoryViewModel>();
+            viewModel.Links = viewModel.Links ?? new List<QuestionLinkViewModel>();
+            viewModel.Flags = viewModel.Flags ?? new List<QuestionFlagViewModel>();
+
+            foreach (QuestionCategoryViewModel questionCategoryViewModel in viewModel.Categories)
             {
                 questionCategoryViewModel.Category = questionCategoryViewModel.Category ?? new CategoryViewModel();
                 questionCategoryViewModel.Category.NameParts = questionCategoryViewModel.Category.NameParts ?? new List<string>();
             }
-
-            return viewModel;
         }
 
         /// <summary>

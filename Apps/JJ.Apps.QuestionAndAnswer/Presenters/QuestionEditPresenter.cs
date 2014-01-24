@@ -15,62 +15,31 @@ using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
 using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
+using JJ.Apps.QuestionAndAnswer.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionEditPresenter
     {
-        private IQuestionRepository _questionRepository;
-        private IAnswerRepository _answerRepository;
-        private ICategoryRepository _categoryRepository;
-        private IQuestionCategoryRepository _questionCategoryRepository;
-        private IQuestionLinkRepository _questionLinkRepository;
-        private IQuestionFlagRepository _questionFlagRepository;
-        private IFlagStatusRepository _flagStatusRepository;
-        private ISourceRepository _sourceRepository;
-        private IQuestionTypeRepository _questionTypeRepository;
+        private RepositoryContainer _repositories;
 
-        public QuestionEditPresenter(
-            IQuestionRepository questionRepository,
-            IAnswerRepository answerRepository,
-            ICategoryRepository categoryRepository,
-            IQuestionCategoryRepository questionCategoryRepository,
-            IQuestionLinkRepository questionLinkRepository,
-            IQuestionFlagRepository questionFlagRepository,
-            IFlagStatusRepository flagStatusRepository,
-            ISourceRepository sourceRepository,
-            IQuestionTypeRepository questionTypeRepository)
+        public QuestionEditPresenter(RepositoryContainer repositories)
         {
-            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
-            if (answerRepository == null) throw new ArgumentNullException("answerRepository");
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
-            if (questionCategoryRepository == null) throw new ArgumentNullException("questionCategoryRepository");
-            if (questionLinkRepository == null) throw new ArgumentNullException("questionLinkRepository");
-            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
-            if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
-            if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
+            if (repositories == null) throw new ArgumentNullException("repositories");
 
-            _questionRepository = questionRepository;
-            _answerRepository = answerRepository;
-            _categoryRepository = categoryRepository;
-            _questionCategoryRepository = questionCategoryRepository;
-            _questionLinkRepository = questionLinkRepository;
-            _questionFlagRepository = questionFlagRepository;
-            _flagStatusRepository = flagStatusRepository;
-            _sourceRepository = sourceRepository;
-            _questionTypeRepository = questionTypeRepository;
+            _repositories = repositories;
         }
 
         /// <summary> Can return QuestionEditViewModel or QuestionNotFoundViewModel. </summary>
         public object Edit(int id)
         {
-            Question question = _questionRepository.TryGet(id);
+            Question question = _repositories.QuestionRepository.TryGet(id);
             if (question == null)
             {
                 return new QuestionNotFoundViewModel { ID = id };
             }
 
-            QuestionEditViewModel viewModel = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
+            QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
             viewModel.IsNew = false;
             viewModel.CanDelete = true;
             viewModel.Title = Titles.EditQuestion;
@@ -81,16 +50,16 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionEditViewModel Create()
         {
-            QuestionEditViewModel viewModel = ViewModelHelper.CreateEmptyQuestionEditViewModel(_categoryRepository, _flagStatusRepository);
+            QuestionEditViewModel viewModel = ViewModelHelper.CreateEmptyQuestionEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
             viewModel.IsNew = true;
             viewModel.CanDelete = false;
             viewModel.Title = Titles.CreateQuestion;
 
             // These defaults are specific to the UI, not the business.
-            Source source = _sourceRepository.GetByIdentifier(DEFAULT_SOURCE_IDENTIFIER);
+            Source source = _repositories.SourceRepository.GetByIdentifier(DEFAULT_SOURCE_IDENTIFIER);
             viewModel.Question.Source = source.ToViewModel();
 
-            QuestionType questionType = _questionTypeRepository.Get((int)QuestionTypeEnum.OpenQuestion);
+            QuestionType questionType = _repositories.QuestionTypeRepository.Get((int)QuestionTypeEnum.OpenQuestion);
             viewModel.Question.Type = questionType.ToViewModel();
 
             return viewModel;
@@ -107,11 +76,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = ViewModelToEntity(viewModel);
 
             // Perform operation
-            QuestionLink questionLink = _questionLinkRepository.Create();
+            QuestionLink questionLink = _repositories.QuestionLinkRepository.Create();
             questionLink.LinkTo(question);
 
             // Create new view model
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
             // Copy non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -146,7 +115,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = ViewModelToEntity(viewModel);
 
             // Create new view model
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
             // Copy non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -167,11 +136,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = ViewModelToEntity(viewModel);
 
             // Perform operation
-            QuestionCategory questionCategory = _questionCategoryRepository.Create();
+            QuestionCategory questionCategory = _repositories.QuestionCategoryRepository.Create();
             questionCategory.LinkTo(question);
 
             // Create new view model
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
             // Copy non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -206,7 +175,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = ViewModelToEntity(viewModel);
 
             // Create new view model
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
             // Copy non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -217,34 +186,46 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         }
 
         /// <summary> Can return QuestionEditViewModel or QuestionDetailsViewModel </summary>
-        public object Save(QuestionEditViewModel viewModel)
+        public object Save(QuestionEditViewModel viewModel, string authenticatedUserName)
         {
             // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new ArgumentNullException("viewModel");
 
-            // Get entity from database, with the viewmodel applied to it.
-            Question question = ViewModelToEntity(viewModel);
+            // Dirty check
+            Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
+            bool isDirty = DirtyChecker.IsDirty(viewModel.Question, question);
 
-            // Produce new complete view model
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_categoryRepository, _flagStatusRepository);
-
-            // Validate
-            IValidator validator1 = new QuestionEditViewModelValidator(viewModel2);
-            if (!validator1.IsValid)
+            if (isDirty)
             {
-                viewModel2.ValidationMessages = validator1.ValidationMessages.ToCanonical();
-                return viewModel2;
+                // Get entity from database, with the viewmodel applied to it.
+                question = ViewModelToEntity(viewModel);
+
+                // Produce new complete view model
+                QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+
+                // Validate
+                IValidator validator1 = new QuestionEditViewModelValidator(viewModel2);
+                if (!validator1.IsValid)
+                {
+                    viewModel2.ValidationMessages = validator1.ValidationMessages.ToCanonical();
+                    return viewModel2;
+                }
+
+                IValidator validator2 = new QuestionValidator(question);
+                if (!validator2.IsValid)
+                {
+                    viewModel2.ValidationMessages = validator2.ValidationMessages.ToCanonical();
+                    return viewModel2;
+                }
+
+                // Side-effects
+                question.IsManual = true;
+                question.LastModifiedByUser = _repositories.UserRepository.GetByUserName(authenticatedUserName);
+
+                // Commit
+                _repositories.QuestionRepository.Commit();
             }
 
-            IValidator validator2 = new QuestionValidator(question);
-            if (!validator2.IsValid)
-            {
-                viewModel2.ValidationMessages = validator2.ValidationMessages.ToCanonical();
-                return viewModel2;
-            }
-
-            // Commit
-            _questionRepository.Commit();
             QuestionDetailsViewModel detailsViewModel = question.ToDetailsViewModel();
             return detailsViewModel;
         }
@@ -257,20 +238,20 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// <summary> Can return QuestionConfirmDeleteViewModel and QuestionNotFoundViewModel. </summary>
         public object Delete(QuestionEditViewModel viewModel)
         {
-            var deletePresenter = new QuestionDeletePresenter(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository, _sourceRepository, _questionTypeRepository);
+            var deletePresenter = new QuestionDeletePresenter(_repositories);
             return deletePresenter.Show(viewModel.Question.ID);
         }
 
         public QuestionListViewModel BackToList()
         {
-            var listPresenter = new QuestionListPresenter(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository, _sourceRepository, _questionTypeRepository);
+            var listPresenter = new QuestionListPresenter(_repositories);
             return listPresenter.Show();
         }
 
         private Question ViewModelToEntity(QuestionEditViewModel viewModel)
         {
             // Get entity from database, with the viewmodel applied to it.
-            return viewModel.ToEntity(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository, _sourceRepository, _questionTypeRepository);
+            return viewModel.ToEntity(_repositories.QuestionRepository, _repositories.AnswerRepository, _repositories.CategoryRepository, _repositories.QuestionCategoryRepository, _repositories.QuestionLinkRepository, _repositories.QuestionFlagRepository, _repositories.FlagStatusRepository, _repositories.SourceRepository, _repositories.QuestionTypeRepository);
         }
     }
 }

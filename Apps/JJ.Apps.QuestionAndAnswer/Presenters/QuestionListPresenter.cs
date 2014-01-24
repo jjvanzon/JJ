@@ -9,50 +9,19 @@ using System.Threading.Tasks;
 using System.Collections;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionListPresenter
     {
-        private IQuestionRepository _questionRepository;
-        private IAnswerRepository _answerRepository;
-        private ICategoryRepository _categoryRepository;
-        private IQuestionCategoryRepository _questionCategoryRepository;
-        private IQuestionLinkRepository _questionLinkRepository;
-        private IQuestionFlagRepository _questionFlagRepository;
-        private IFlagStatusRepository _flagStatusRepository;
-        private ISourceRepository _sourceRepository;
-        private IQuestionTypeRepository _questionTypeRepository;
+        private RepositoryContainer _repositories;
 
-        public QuestionListPresenter(
-            IQuestionRepository questionRepository,
-            IAnswerRepository answerRepository,
-            ICategoryRepository categoryRepository,
-            IQuestionCategoryRepository questionCategoryRepository,
-            IQuestionLinkRepository questionLinkRepository,
-            IQuestionFlagRepository questionFlagRepository,
-            IFlagStatusRepository flagStatusRepository,
-            ISourceRepository sourceRepository,
-            IQuestionTypeRepository questionTypeRepository)
+        public QuestionListPresenter(RepositoryContainer repositories)
         {
-            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
-            if (answerRepository == null) throw new ArgumentNullException("answerRepository");
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
-            if (questionCategoryRepository == null) throw new ArgumentNullException("questionCategoryRepository");
-            if (questionLinkRepository == null) throw new ArgumentNullException("questionLinkRepository");
-            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
-            if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
-            if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
+            if (repositories == null) throw new ArgumentNullException("repositories");
 
-            _questionRepository = questionRepository;
-            _answerRepository = answerRepository;
-            _categoryRepository = categoryRepository;
-            _questionCategoryRepository = questionCategoryRepository;
-            _questionLinkRepository = questionLinkRepository;
-            _questionFlagRepository = questionFlagRepository;
-            _flagStatusRepository = flagStatusRepository;
-            _sourceRepository = sourceRepository;
-            _questionTypeRepository = questionTypeRepository;
+            _repositories = repositories;
         }
 
         public QuestionListViewModel Show()
@@ -60,7 +29,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             var listViewModel = new QuestionListViewModel();
             listViewModel.List = new List<QuestionViewModel>();
 
-            foreach (Question question in _questionRepository.GetAll())
+            foreach (Question question in _repositories.QuestionRepository.GetAll())
             {
                 QuestionViewModel itemViewModel = question.ToViewModel();
                 itemViewModel.IsFlagged = question.QuestionFlags.Where(x => x.FlagStatus.ID == (int)FlagStatusEnum.Flagged).Any();
@@ -84,7 +53,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
 
             var viewModel = new QuestionListViewModel();
-            IEnumerable<Question> questions = _questionRepository.GetByCriteria(mustFilterByFlagStatusID, flagStatusID);
+            IEnumerable<Question> questions = _repositories.QuestionRepository.GetByCriteria(mustFilterByFlagStatusID, flagStatusID);
             viewModel.List = questions.Select(x => x.ToViewModel()).ToArray();
             return viewModel;
         }
@@ -92,21 +61,21 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Details(int questionID)
         {
-            var detailPresenter = new QuestionDetailsPresenter(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository, _sourceRepository, _questionTypeRepository);
+            var detailPresenter = new QuestionDetailsPresenter(_repositories);
             return detailPresenter.Show(questionID);
         }
 
         /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Edit(int questionID)
         {
-            var editPresenter = new QuestionEditPresenter(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository, _sourceRepository, _questionTypeRepository);
+            var editPresenter = new QuestionEditPresenter(_repositories);
             return editPresenter.Edit(questionID);
         }
 
         /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Delete(int questionID)
         {
-            var deletePresenter = new QuestionDeletePresenter(_questionRepository, _answerRepository, _categoryRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository, _flagStatusRepository, _sourceRepository, _questionTypeRepository);
+            var deletePresenter = new QuestionDeletePresenter(_repositories);
             return deletePresenter.Show(questionID);
         }
     }
