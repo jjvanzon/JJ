@@ -13,7 +13,7 @@ using JJ.Business.QuestionAndAnswer.Enums;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
-    internal static class QuestionEditViewModelExtensions
+    internal static class QuestionEditViewModelExtensions_ToEntity
     {
         /// <summary>
         /// Converts a partially filled view model to an entity.

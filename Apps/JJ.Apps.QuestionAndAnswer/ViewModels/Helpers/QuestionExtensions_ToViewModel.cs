@@ -14,7 +14,7 @@ using JJ.Framework.Common;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
-    internal static class QuestionExtensions
+    internal static class QuestionExtensions_ToViewModel
     {
         /// <summary>
         /// Converts the entity to a view model, but does not convert the related entities.
@@ -30,11 +30,13 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 Text = entity.Text,
                 IsActive = entity.IsActive,
                 Answer = entity.Answers[0].Text, // TODO: Refactor to support multiple answers.
+                LastModifiedBy = entity.LastModifiedByUser != null ? entity.LastModifiedByUser.DisplayName : "",
+                IsManual = entity.IsManual,
                 Source = new SourceViewModel(),
                 Type = new QuestionTypeViewModel(),
-                Categories = new List<QuestionCategoryViewModel>(),
-                Links = new List<QuestionLinkViewModel>(),
-                Flags = new List<QuestionFlagViewModel>()
+                Categories = new ListViewModel<QuestionCategoryViewModel>(),
+                Links = new ListViewModel<QuestionLinkViewModel>(),
+                Flags = new ListViewModel<QuestionFlagViewModel>()
             };
         }
 
@@ -47,18 +49,18 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
             viewModel.Question.Source = question.Source.ToViewModel();
             viewModel.Question.Type = question.QuestionType.ToViewModel();
 
-            // Links
-            foreach (QuestionLink questionLink in question.QuestionLinks)
-            {
-                QuestionLinkViewModel linkModel = questionLink.ToViewModel();
-                viewModel.Question.Links.Add(linkModel);
-            }
-
             // Categories
             foreach (QuestionCategory questionCategory in question.QuestionCategories)
             {
                 QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
                 viewModel.Question.Categories.Add(questionCategoryViewModel);
+            }
+
+            // Links
+            foreach (QuestionLink questionLink in question.QuestionLinks)
+            {
+                QuestionLinkViewModel linkModel = questionLink.ToViewModel();
+                viewModel.Question.Links.Add(linkModel);
             }
 
             // Flags

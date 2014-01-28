@@ -120,6 +120,9 @@
   <data name="AreYouSureYouWishToDeleteTheFollowingQuestion" xml:space="preserve">
     <value>AreYouSureYouWishToDeleteTheFollowingQuestion</value>
   </data>
+  <data name="ExplanationOfIsManualWithParenthesis" xml:space="preserve">
+    <value>ExplanationOfIsManualWithParenthesis</value>
+  </data>
   <data name="NoCategoriesAvailable" xml:space="preserve">
     <value>NoCategoriesAvailable</value>
   </data>

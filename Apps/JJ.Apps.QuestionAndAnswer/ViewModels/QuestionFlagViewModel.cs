@@ -16,6 +16,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
         public FlagStatusViewModel Status { get; set; }
 
         internal bool IsDirty { get; set; }
+        internal bool IsNew { get; set; }
     }
 }
 

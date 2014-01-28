@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
-    internal static class QuestionLinkExtensions
+    internal static class SourceExtensions_ToViewModel
     {
-        public static QuestionLinkViewModel ToViewModel(this QuestionLink entity)
+        public static SourceViewModel ToViewModel(this Source entity)
         {
             if (entity == null) { throw new ArgumentNullException("entity"); }
 
-            return new QuestionLinkViewModel
+            return new SourceViewModel
             {
                 ID = entity.ID,
-                TemporaryID = Guid.NewGuid(),
                 Description = entity.Description,
                 Url = entity.Url
             };

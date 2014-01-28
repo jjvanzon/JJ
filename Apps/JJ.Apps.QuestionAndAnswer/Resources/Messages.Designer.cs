@@ -70,6 +70,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ExplanationOfIsManualWithParenthesis.
+        /// </summary>
+        public static string ExplanationOfIsManualWithParenthesis {
+            get {
+                return ResourceManager.GetString("ExplanationOfIsManualWithParenthesis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NoCategoriesAvailable.
         /// </summary>
         public static string NoCategoriesAvailable {

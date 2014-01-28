@@ -153,6 +153,9 @@
   <data name="IsActive" xml:space="preserve">
     <value>IsActive</value>
   </data>
+  <data name="IsManual" xml:space="preserve">
+    <value>IsManual</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>

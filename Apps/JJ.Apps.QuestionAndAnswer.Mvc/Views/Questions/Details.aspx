@@ -87,9 +87,8 @@
                 
                 <% foreach (var link in Model.Question.Links) { %>
 
-                    <p>
-                        <%: link.Description %>: <a href="<%: link.Url %>" target="_blank"> <%: link.Url %> </a>
-                    </p>
+                    <%: link.Description %>: <a href="<%: link.Url %>" target="_blank"> <%: link.Url %> </a>
+                    <br />
 
                 <% } %>
 
@@ -99,6 +98,23 @@
 
                 <% } %>
 
+            </td>
+        </tr>
+        <tr>
+            <th><%: Labels.LastModifiedBy %></th>
+            <td><%: Model.Question.LastModifiedBy %> </td>
+        </tr>
+        <tr>
+            <th><%: Labels.IsManual %></th>
+            <td>
+                <%: Model.Question.IsManual ? Titles.Yes : Titles.No %>
+
+                <% if (Model.Question.IsManual) { %>
+
+                    <br />
+                    <%: Messages.ExplanationOfIsManualWithParenthesis %>
+
+                <% } %>
             </td>
         </tr>
     </table>

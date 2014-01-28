@@ -9,5 +9,8 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
     {
         public int ID { get; set; }
         public string Name { get; set; }
+
+        internal bool IsDirty { get; set; }
+        internal bool IsNew { get; set; }
     }
 }

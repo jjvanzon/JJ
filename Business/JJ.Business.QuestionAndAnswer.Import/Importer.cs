@@ -15,6 +15,9 @@ using JJ.Business.QuestionAndAnswer.Validation;
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {
+    /// <summary>
+    /// Runs a selector and a converter and returns progress info.
+    /// </summary>
     public class Importer<TModel, TSelector, TConverter> : IImporter
         where TSelector : ISelector<TModel>, new()
         where TConverter : ConverterBase<TModel>
@@ -28,6 +31,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
         private IQuestionLinkRepository _questionLinkRepository;
         private IQuestionTypeRepository _questionTypeRepository;
         private ISourceRepository _sourceRepository;
+        private IQuestionFlagRepository _questionFlagRepository;
 
         private Action<string> _progressCallback;
         private Func<bool> _isCancelledCallback;
@@ -42,7 +46,8 @@ namespace JJ.Business.QuestionAndAnswer.Import
             IQuestionCategoryRepository questionCategoryRepository,
             IQuestionLinkRepository questionLinkRepository,
             IQuestionTypeRepository questionTypeRepository,
-            ISourceRepository sourceRepository, 
+            ISourceRepository sourceRepository,
+            IQuestionFlagRepository questionFlagRepository,
             Source source,
             string categoryIdenfier)
         {
@@ -53,6 +58,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
             if (questionLinkRepository == null) throw new ArgumentNullException("questionLinkRepository");
             if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
             if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
+            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
             if (source == null) throw new ArgumentNullException("source");
 
             _questionRepository = questionRepository;
@@ -62,6 +68,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
             _questionLinkRepository = questionLinkRepository;
             _questionTypeRepository = questionTypeRepository;
             _sourceRepository = sourceRepository;
+            _questionFlagRepository = questionFlagRepository;
 
             _source = source;
             _categoryIdenfier = categoryIdenfier;
@@ -145,7 +152,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
         {
             foreach (Question question in GetExistingQuestions())
             {
-                question.DeleteRelatedEntities(_answerRepository, _questionCategoryRepository, _questionLinkRepository);
+                question.DeleteRelatedEntities(_answerRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository);
                 _questionRepository.Delete(question);
             }
         }

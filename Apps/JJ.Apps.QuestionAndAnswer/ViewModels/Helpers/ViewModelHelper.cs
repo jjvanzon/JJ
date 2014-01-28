@@ -36,9 +36,9 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
                 IsFlagged = false,
                 Source = new SourceViewModel { ID = 0, Description = "" },
                 Type = new QuestionTypeViewModel { ID = 0, Name = "" },
-                Categories = new List<QuestionCategoryViewModel>(),
-                Links = new List<QuestionLinkViewModel>(),
-                Flags = new List<QuestionFlagViewModel>()
+                Categories = new ListViewModel<QuestionCategoryViewModel>(),
+                Links = new ListViewModel<QuestionLinkViewModel>(),
+                Flags = new ListViewModel<QuestionFlagViewModel>()
             };
         }
 

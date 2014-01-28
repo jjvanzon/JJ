@@ -154,6 +154,9 @@
   <data name="IsActive" xml:space="preserve">
     <value>Active:</value>
   </data>
+  <data name="IsManual" xml:space="preserve">
+    <value>Manually edited:</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language:</value>
   </data>

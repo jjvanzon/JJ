@@ -169,6 +169,15 @@ namespace JJ.Apps.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IsManual.
+        /// </summary>
+        public static string IsManual {
+            get {
+                return ResourceManager.GetString("IsManual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {

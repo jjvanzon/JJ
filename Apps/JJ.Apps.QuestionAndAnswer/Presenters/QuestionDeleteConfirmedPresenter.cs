@@ -32,7 +32,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 return new QuestionNotFoundViewModel { ID = id };
             }
 
-            question.DeleteRelatedEntities(_repositories.AnswerRepository, _repositories.QuestionCategoryRepository, _repositories.QuestionLinkRepository);
+            question.DeleteRelatedEntities(_repositories.AnswerRepository, _repositories.QuestionCategoryRepository, _repositories.QuestionLinkRepository, _repositories.QuestionFlagRepository);
             question.UnlinkRelatedEntities();
 
             _repositories.QuestionRepository.Delete(question);

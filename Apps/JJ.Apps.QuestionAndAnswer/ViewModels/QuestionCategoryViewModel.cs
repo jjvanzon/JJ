@@ -15,5 +15,8 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
         public int QuestionCategoryID { get; set; }
 
         public CategoryViewModel Category { get; set; }
+
+        internal bool IsDirty { get; set; }
+        internal bool IsNew { get; set; }
     }
 }

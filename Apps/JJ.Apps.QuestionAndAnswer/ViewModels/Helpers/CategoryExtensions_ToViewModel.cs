@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 {
-    internal static class CategoryExtensions
+    internal static class CategoryExtensions_ToViewModel
     {
         // TODO: Use GetRecursive method.
 

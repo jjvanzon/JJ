@@ -61,6 +61,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             QuestionType questionType = _repositories.QuestionTypeRepository.Get((int)QuestionTypeEnum.OpenQuestion);
             viewModel.Question.Type = questionType.ToViewModel();
 
+            viewModel.Question.IsManual = true;
+
             return viewModel;
         }
 
@@ -190,58 +192,105 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new ArgumentNullException("viewModel");
 
-            // Dirty check
+            viewModel.NullCoallesce();
+
+            // Mark object states
             Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
+            viewModel.Question.SetIsDirtyRecursive(question);
+            viewModel.Question.SetIsNewRecursive(question);
 
-            bool isDirty = viewModel.Question.SetIsDirtyRecursive(question);
+            // Get entity from database, with the viewmodel applied to it.
+            question = ViewModelToEntity(viewModel);
 
-            if (isDirty)
+            // Side-effects
+            User user = _repositories.UserRepository.GetByUserName(authenticatedUserName);
+
+            if (MustSetIsManual(viewModel.Question))
             {
-                // Get entity from database, with the viewmodel applied to it.
-                question = ViewModelToEntity(viewModel);
-
-                // Produce new complete view model
-                QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
-
-                // Validate
-                IValidator validator1 = new QuestionEditViewModelValidator(viewModel2);
-                if (!validator1.IsValid)
-                {
-                    viewModel2.ValidationMessages = validator1.ValidationMessages.ToCanonical();
-                    return viewModel2;
-                }
-
-                IValidator validator2 = new QuestionValidator(question);
-                if (!validator2.IsValid)
-                {
-                    viewModel2.ValidationMessages = validator2.ValidationMessages.ToCanonical();
-                    return viewModel2;
-                }
-
-                // Side-effects
-                User user = _repositories.UserRepository.GetByUserName(authenticatedUserName);
                 question.IsManual = true;
-                question.LastModifiedByUser = user;
-                foreach (QuestionFlagViewModel questionFlagViewModel in viewModel.Question.Flags)
-                {
-                    if (questionFlagViewModel.IsDirty)
-                    {
-                        QuestionFlag questionFlag = _repositories.QuestionFlagRepository.Get(questionFlagViewModel.ID);
-                        questionFlag.LastModifiedByUser = user;
-                    }
-                }
-
-                // Commit
-                _repositories.QuestionRepository.Commit();
             }
 
+            if (MustSetLastModifiedByUser(viewModel.Question))
+            {
+                question.LastModifiedByUser = user;
+            }
+
+            foreach (QuestionFlagViewModel questionFlagViewModel in viewModel.Question.Flags)
+            {
+                if (MustSetLastModifiedByUser(questionFlagViewModel))
+                {
+                    QuestionFlag questionFlag = question.QuestionFlags.Where(x => x.ID == questionFlagViewModel.ID).Single();
+                    questionFlag.LastModifiedByUser = user;
+                }
+            }
+
+            // Produce new, complete view model
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+
+            // Validate
+            IValidator validator1 = new QuestionEditViewModelValidator(viewModel2);
+            if (!validator1.IsValid)
+            {
+                viewModel2.ValidationMessages = validator1.ValidationMessages.ToCanonical();
+                return viewModel2;
+            }
+
+            IValidator validator2 = new QuestionValidator(question);
+            if (!validator2.IsValid)
+            {
+                viewModel2.ValidationMessages = validator2.ValidationMessages.ToCanonical();
+                return viewModel2;
+            }
+
+            // Commit
+            _repositories.QuestionRepository.Commit();
+
+            // On success: go to Details view model.
             QuestionDetailsViewModel detailsViewModel = question.ToDetailsViewModel();
             return detailsViewModel;
         }
 
-        public PreviousViewModel Cancel()
+        private bool MustSetIsManual(QuestionViewModel viewModel)
         {
-            return new PreviousViewModel();
+            // MustSetIsManual is almost determined by 'anything is dirty' except for question flag status changes.
+
+            return viewModel.IsDirty || 
+                   viewModel.IsNew ||
+                   viewModel.Type.IsDirty || 
+                   viewModel.Type.IsNew ||
+                   viewModel.Source.IsDirty || 
+                   viewModel.Source.IsNew ||
+                   viewModel.Categories.IsDirty ||
+                   viewModel.Categories.Any(x => x.IsDirty) || 
+                   viewModel.Categories.Any(x => x.IsNew) ||
+                   viewModel.Links.IsDirty ||
+                   viewModel.Links.Any(x => x.IsDirty) || 
+                   viewModel.Links.Any(x => x.IsNew);
+        }
+
+        private bool MustSetLastModifiedByUser(QuestionViewModel viewModel)
+        {
+            return viewModel.IsDirty ||
+                   viewModel.IsNew ||
+                   viewModel.Type.IsDirty ||
+                   viewModel.Type.IsNew ||
+                   viewModel.Source.IsDirty ||
+                   viewModel.Source.IsNew ||
+                   viewModel.Categories.IsDirty ||
+                   viewModel.Categories.Any(x => x.IsDirty) ||
+                   viewModel.Categories.Any(x => x.IsNew) ||
+                   viewModel.Links.IsDirty ||
+                   viewModel.Links.Any(x => x.IsDirty) ||
+                   viewModel.Links.Any(x => x.IsNew) ||
+                   viewModel.Flags.IsDirty ||
+                   viewModel.Flags.Any(x => x.IsDirty) ||
+                   viewModel.Flags.Any(x => x.IsNew);
+        }
+
+        private bool MustSetLastModifiedByUser(QuestionFlagViewModel questionFlagViewModel)
+        {
+            return questionFlagViewModel.IsDirty ||
+                   questionFlagViewModel.IsNew;
         }
 
         /// <summary> Can return QuestionConfirmDeleteViewModel and QuestionNotFoundViewModel. </summary>

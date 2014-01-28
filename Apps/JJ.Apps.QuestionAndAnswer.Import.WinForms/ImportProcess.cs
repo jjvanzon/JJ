@@ -61,6 +61,7 @@ namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
                     IQuestionLinkRepository questionLinkRepository = new QuestionLinkRepository(context);
                     IQuestionTypeRepository questionTypeRepository = new QuestionTypeRepository(context);
                     ISourceRepository sourceRepository = new SourceRepository(context);
+                    IQuestionFlagRepository questionFlagRepository = new QuestionFlagRepository(context);
 
                     Source source = sourceRepository.TryGetByIdentifier(sourceIdentifier);
                     if (source == null)
@@ -83,6 +84,7 @@ namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
                         questionLinkRepository,
                         questionTypeRepository,
                         sourceRepository,
+                        questionFlagRepository,
                         source,
                         categoryIdentifier);
 

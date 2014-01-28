@@ -25,7 +25,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
             }
         }
 
-        public static void DeleteRelatedEntities(this Question question, IAnswerRepository answerRepository, IQuestionCategoryRepository questionCategoryRepository, IQuestionLinkRepository questionLinkRepository)
+        public static void DeleteRelatedEntities(this Question question, IAnswerRepository answerRepository, IQuestionCategoryRepository questionCategoryRepository, IQuestionLinkRepository questionLinkRepository, IQuestionFlagRepository questionFlagRepository)
         {
             if (question == null) throw new ArgumentNullException("question");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");
@@ -33,29 +33,30 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
             foreach (Answer answer in question.Answers.ToArray())
             {
                 answer.LinkTo((Question)null);
-
                 answerRepository.Delete(answer);
             }
-
             question.Answers.Clear();
 
             foreach (QuestionCategory questionCategory in question.QuestionCategories.ToArray())
             {
                 questionCategory.LinkTo((Question)null);
-
                 questionCategoryRepository.Delete(questionCategory);
             }
-
             question.QuestionCategories.Clear();
 
             foreach (QuestionLink questionLink in question.QuestionLinks.ToArray())
             {
                 questionLink.LinkTo((Question)null);
-
                 questionLinkRepository.Delete(questionLink);
             }
-
             question.QuestionLinks.Clear();
+
+            foreach (QuestionFlag questionFlag in question.QuestionFlags.ToArray())
+            {
+                questionFlag.LinkTo((Question)null);
+                questionFlagRepository.Delete(questionFlag);
+            }
+            question.QuestionFlags.Clear();
         }
 
         /// <summary> Unlinks only the non-owned related entities. </summary>

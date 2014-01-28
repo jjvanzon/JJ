@@ -62,6 +62,23 @@
                     <%: Html.HiddenFor(x => x.Question.Type.ID) %>
                 </td>
             </tr>
+            <tr>
+                <th><%: Labels.LastModifiedBy %></th>
+                <td style="text-align:right"><%: Model.Question.LastModifiedBy %> </td>
+            </tr>
+            <tr>
+                <th><%: Labels.IsManual %></th>
+                <td style="text-align:right">
+                    <%: Model.Question.IsManual ? Titles.Yes : Titles.No %>
+
+                    <% if (Model.Question.IsManual) { %>
+
+                        <br />
+                        <%: Messages.ExplanationOfIsManualWithParenthesis %>
+
+                    <% } %>
+                </td>
+            </tr>
         </table>
 
         <div class="editor-label"><%: Labels.Question %> <%: Html.ValidationMessageFor(x => x.Question.Text) %></div>

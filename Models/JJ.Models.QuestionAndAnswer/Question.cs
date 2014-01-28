@@ -57,6 +57,9 @@ namespace JJ.Models.QuestionAndAnswer
             set { _source = value; }
         }
 
+        /// <summary>
+        /// nullable
+        /// </summary>
         public virtual User LastModifiedByUser
         {
             get { return _lastModifiedByUser; }

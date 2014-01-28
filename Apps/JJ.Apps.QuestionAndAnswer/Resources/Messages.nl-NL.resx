@@ -126,6 +126,9 @@
   <data name="NoQuestionsFound" xml:space="preserve">
     <value>Geen vragen gevonden.</value>
   </data>
+  <data name="ExplanationOfIsManualWithParenthesis" xml:space="preserve">
+    <value>(Handmatig bewerkte vragen zullen niet worden overschreven door automatische processen.)</value>
+  </data>
   <data name="QuestionIsDeleted" xml:space="preserve">
     <value>De vraag is verwijderd.</value>
   </data>

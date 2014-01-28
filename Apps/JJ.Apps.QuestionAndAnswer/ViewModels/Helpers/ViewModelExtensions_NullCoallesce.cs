@@ -34,19 +34,34 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
 
             viewModel.Source = viewModel.Source ?? new SourceViewModel();
             viewModel.Type = viewModel.Type ?? new QuestionTypeViewModel();
-            viewModel.Categories = viewModel.Categories ?? new List<QuestionCategoryViewModel>();
-            viewModel.Links = viewModel.Links ?? new List<QuestionLinkViewModel>();
-            viewModel.Flags = viewModel.Flags ?? new List<QuestionFlagViewModel>();
+            viewModel.Categories = viewModel.Categories ?? new ListViewModel<QuestionCategoryViewModel>();
+            viewModel.Links = viewModel.Links ?? new ListViewModel<QuestionLinkViewModel>();
+            viewModel.Flags = viewModel.Flags ?? new ListViewModel<QuestionFlagViewModel>();
 
             foreach (QuestionCategoryViewModel questionCategoryViewModel in viewModel.Categories)
             {
                 NullCoallesce(questionCategoryViewModel);
             }
 
+            foreach (QuestionLinkViewModel questionLinkViewModel in viewModel.Links)
+            {
+                NullCoallesce(questionLinkViewModel);
+            }
+
             foreach (QuestionFlagViewModel questionFlagViewModel in viewModel.Flags)
             {
                 NullCoallesce(questionFlagViewModel);
             }
+        }
+
+        /// <summary>
+        /// Fills up the viewmodel with new objects where there are unexpected nulls.
+        /// </summary>
+        private static void NullCoallesce(QuestionLinkViewModel viewModel)
+        {
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
+
+            // No child-objects to null-coallesce.
         }
 
         /// <summary>

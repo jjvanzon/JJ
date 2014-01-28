@@ -126,6 +126,9 @@
   <data name="NoQuestionsFound" xml:space="preserve">
     <value>No questions found.</value>
   </data>
+  <data name="ExplanationOfIsManualWithParenthesis" xml:space="preserve">
+    <value>(Manually edited questions will not be overwritten by automatic processes.)</value>
+  </data>
   <data name="QuestionIsDeleted" xml:space="preserve">
     <value>The question has been deleted.</value>
   </data>
