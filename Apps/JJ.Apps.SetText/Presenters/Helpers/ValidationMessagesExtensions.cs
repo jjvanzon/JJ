@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
+namespace JJ.Apps.SetText.Presenters.Helpers
 {
-    internal static class IEnumerableOfValidationMessageExtensions
+    internal static class ValidationMessagesExtensions
     {
-        public static List<JJ.Models.Canonical.ValidationMessage> ToCanonical(this IEnumerable<JJ.Framework.Validation.ValidationMessage> sourceList)
+        public static IList<JJ.Models.Canonical.ValidationMessage> ToCanonical(this IEnumerable<JJ.Framework.Validation.ValidationMessage> sourceList)
         {
             var destList = new List<JJ.Models.Canonical.ValidationMessage>();
 
