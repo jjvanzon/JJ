@@ -30,8 +30,6 @@
         <% foreach (var question in Model.List) { %>
 
             <tr>
-                <%-- TODO: These actions must be reflected by the Presenter code. --%>
-
                 <td><%: question.ID %></td>
                 <td><%: Html.ActionLink(question.Text, ActionNames.Details, new { id = question.ID }) %></td>
                 <td><%: question.IsFlagged ? Titles.Yes : Titles.No %></td>

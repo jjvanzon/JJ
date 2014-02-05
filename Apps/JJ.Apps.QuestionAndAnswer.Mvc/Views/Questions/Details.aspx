@@ -157,8 +157,6 @@
 
     </fieldset>
 
-    <%-- TODO: These actions must be reflected by the Presenter code. --%>
-
     <p>
         <%: Html.ActionLink(Titles.Edit, ActionNames.Edit, new { id = Model.Question.ID }) %> |
         <%: Html.ActionLink(Titles.New, ActionNames.Create) %> |
