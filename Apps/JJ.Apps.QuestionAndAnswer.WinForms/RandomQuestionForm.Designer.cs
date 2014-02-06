@@ -130,7 +130,7 @@
             this.buttonHideAnswer.UseVisualStyleBackColor = true;
             this.buttonHideAnswer.Click += new System.EventHandler(this.buttonHideAnswer_Click);
             // 
-            // QuesionDetailForm
+            // RandomQuestionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -140,9 +140,11 @@
             this.Controls.Add(this.buttonNextQuestion);
             this.Controls.Add(this.labelQuestion);
             this.Controls.Add(this.buttonShowAnswer);
-            this.Name = "QuesionDetailForm";
+            this.Name = "RandomQuestionForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RandomQuestionForm_FormClosed);
+            this.Load += new System.EventHandler(this.RandomQuestionForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

@@ -158,8 +158,9 @@
     <Compile Include="Controllers\Helpers\ActionNames.cs" />
     <Compile Include="Controllers\CategorySelectorController.cs" />
     <Compile Include="Controllers\Helpers\ActionParameterNames.cs" />
+    <Compile Include="Controllers\Helpers\CategorySelectorRepositories.cs" />
     <Compile Include="Controllers\Helpers\ControllerNames.cs" />
-    <Compile Include="Controllers\Helpers\RepositoryFactory.cs" />
+    <Compile Include="Controllers\Helpers\UserRepositoryWrapper.cs" />
     <Compile Include="Controllers\Helpers\SessionKeys.cs" />
     <Compile Include="Controllers\Helpers\TempDataKeys.cs" />
     <Compile Include="Controllers\Helpers\ViewDataKeys.cs" />

@@ -12,6 +12,7 @@ using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Framework.Persistence;
 using JJ.Apps.QuestionAndAnswer.Mvc.Views;
 using JJ.Apps.QuestionAndAnswer.Mvc.Views.Helpers;
+using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -21,9 +22,12 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ActionResult Index()
         {
-            CategorySelectorPresenter presenter = CreatePresenter();
-            CategorySelectorViewModel viewModel = presenter.Show();
-            return View(viewModel);
+            using (CategorySelectorRepositories repositories = CreateRepositories())
+            {
+                CategorySelectorPresenter presenter = CreatePresenter(repositories);
+                CategorySelectorViewModel viewModel = presenter.Show();
+                return View(viewModel);
+            }
         }
 
         // POST: /CategorySelector/Add/5
@@ -31,9 +35,12 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ViewResult Add(int categoryID, CategorySelectorViewModel viewModel)
         {
-            CategorySelectorPresenter presenter = CreatePresenter();
-            CategorySelectorViewModel viewModel2 = presenter.Add(viewModel, categoryID);
-            return View(ViewNames.Index, viewModel2);
+            using (CategorySelectorRepositories repositories = CreateRepositories())
+            {
+                CategorySelectorPresenter presenter = CreatePresenter(repositories);
+                CategorySelectorViewModel viewModel2 = presenter.Add(viewModel, categoryID);
+                return View(ViewNames.Index, viewModel2);
+            }
         }
 
         // POST: /CategorySelector/AddCategory/5
@@ -41,21 +48,35 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ViewResult Remove(int categoryID, CategorySelectorViewModel viewModel)
         {
-            CategorySelectorPresenter presenter = CreatePresenter();
-            CategorySelectorViewModel viewModel2 = presenter.Remove(viewModel, categoryID);
-            return View(ViewNames.Index, viewModel2);
+            using (CategorySelectorRepositories repositories = CreateRepositories())
+            {
+                CategorySelectorPresenter presenter = CreatePresenter(repositories);
+                CategorySelectorViewModel viewModel2 = presenter.Remove(viewModel, categoryID);
+                return View(ViewNames.Index, viewModel2);
+            }
         }
 
-        private CategorySelectorPresenter CreatePresenter()
+        private CategorySelectorPresenter CreatePresenter(CategorySelectorRepositories repositories)
+        {
+            return new CategorySelectorPresenter(
+                repositories.CategoryRepository, 
+                repositories.QuestionRepository, 
+                repositories.QuestionFlagRepository, 
+                repositories.FlagStatusRepository, 
+                repositories.UserRepository);
+        }
+
+        private CategorySelectorRepositories CreateRepositories()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
-            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
-            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            IUserRepository userRepository = RepositoryFactory.CreateUserRepository(context);
-            CategorySelectorPresenter presenter = new CategorySelectorPresenter(categoryRepository, questionRepository, questionFlagRepository, flagStatusRepository, userRepository);
-            return presenter;
+
+            return new CategorySelectorRepositories(
+                new CategoryRepository(context),
+                new QuestionRepository(context, context.Location),
+                new QuestionFlagRepository(context),
+                new FlagStatusRepository(context),
+                new UserRepository(context),
+                context);
         }
     }
 }

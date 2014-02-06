@@ -1,6 +1,6 @@
 ﻿namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 {
-    partial class QuesionDetailForm
+    partial class RandomQuesionForm
     {
         /// <summary>
         /// Required designer variable.

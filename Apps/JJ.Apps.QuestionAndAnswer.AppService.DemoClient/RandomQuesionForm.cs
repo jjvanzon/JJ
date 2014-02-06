@@ -7,16 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.QuestionService;
+using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.RandomQuestionService;
 
 namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 {
-    public partial class QuesionDetailForm : Form
+    public partial class RandomQuesionForm : Form
     {
         private QuestionController _controller;
-        private QuestionDetailViewModel _viewModel;
+        private RandomQuestionViewModel _viewModel;
 
-        public QuesionDetailForm()
+        public RandomQuesionForm()
         {
             InitializeComponent();
 
@@ -55,7 +55,9 @@ namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 
         private void ApplyViewModel()
         {
-            if (_viewModel.NotFound)
+            // TODO: Polymorphic web method results should return either QuestionNotFoundviewModel or RandomQuestionViewModel.
+            bool isNotFound = String.IsNullOrEmpty(_viewModel.Question.Text);
+            if (isNotFound)
             {
                 labelQuestion.Text = "";
                 labelAnswerText.Text = "";
@@ -75,6 +77,8 @@ namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 
             buttonShowAnswer.Visible = !_viewModel.AnswerIsVisible;
             buttonHideAnswer.Visible = _viewModel.AnswerIsVisible;
+
+            buttonShowAnswer.Enabled = true;
         }
 
         private void buttonShowAnswer_Click(object sender, EventArgs e)

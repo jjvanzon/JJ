@@ -66,6 +66,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Tests", "..\Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Tests.csproj", "{EA2EC919-FC52-47B6-9149-B6A7018572CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.AppService.DemoClient", "JJ.Apps.QuestionAndAnswer.AppService.DemoClient\JJ.Apps.QuestionAndAnswer.AppService.DemoClient.csproj", "{CC1E33CE-08E6-48FD-A303-B28E40A258D3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CE9782A1-2486-4217-BEA2-CC5C7499937A} = {CE9782A1-2486-4217-BEA2-CC5C7499937A}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OneOff", "OneOff", "{8811F001-E852-4533-A212-1050A0153972}"
 EndProject
@@ -243,6 +246,7 @@ Global
 		{30F1DFB1-BB06-42EA-AE91-56144B56DF45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30F1DFB1-BB06-42EA-AE91-56144B56DF45}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CE9782A1-2486-4217-BEA2-CC5C7499937A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE9782A1-2486-4217-BEA2-CC5C7499937A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE9782A1-2486-4217-BEA2-CC5C7499937A}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE9782A1-2486-4217-BEA2-CC5C7499937A}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{CE9782A1-2486-4217-BEA2-CC5C7499937A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -272,6 +276,7 @@ Global
 		{EA2EC919-FC52-47B6-9149-B6A7018572CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA2EC919-FC52-47B6-9149-B6A7018572CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{CC1E33CE-08E6-48FD-A303-B28E40A258D3}.Release|Any CPU.ActiveCfg = Release|Any CPU

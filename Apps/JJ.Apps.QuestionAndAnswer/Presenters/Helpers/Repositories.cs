@@ -24,7 +24,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
 
         /// <param name="underlyingDataStore">Optional. Will be disposed when the PersistenceContainer is disposed.</param>
         public Repositories(
-            IDisposable underlyingDataStore,
             IQuestionRepository questionRepository,
             IAnswerRepository answerRepository,
             ICategoryRepository categoryRepository,
@@ -34,7 +33,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
             IFlagStatusRepository flagStatusRepository,
             ISourceRepository sourceRepository,
             IQuestionTypeRepository questionTypeRepository,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            IDisposable underlyingDataStore)
         {
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");

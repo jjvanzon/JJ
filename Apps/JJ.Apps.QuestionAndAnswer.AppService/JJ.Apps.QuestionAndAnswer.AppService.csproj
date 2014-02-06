@@ -90,7 +90,6 @@
     </Compile>
     <Compile Include="IRandomQuestionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryFactory.cs" />
     <Compile Include="ResourceService.svc.cs">
       <DependentUpon>ResourceService.svc</DependentUpon>
     </Compile>

@@ -13,23 +13,36 @@ using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Framework.Presentation;
+using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 
 namespace JJ.Apps.QuestionAndAnswer.WinForms
 {
     public partial class RandomQuestionForm : Form
     {
-        private readonly RandomQuestionPresenter _presenter;
-
+        private IContext _context;
+        private RandomQuestionPresenter _presenter;
         private RandomQuestionViewModel _viewModel;
 
         public RandomQuestionForm()
         {
             InitializeComponent();
+        }
 
-            _presenter = CreatePresenter();
+        private void RandomQuestionForm_Load(object sender, EventArgs e)
+        {
+            _context = ContextHelper.CreateContextFromConfiguration();
+            _presenter = CreatePresenter(_context);
 
             SetTitlesAndLabels();
             NextQuestion();
+        }
+
+        private void RandomQuestionForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+            }
         }
 
         private void NextQuestion()
@@ -125,15 +138,14 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
             HideAnswer();
         }
 
-        private RandomQuestionPresenter CreatePresenter()
+        private RandomQuestionPresenter CreatePresenter(IContext context)
         {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
-            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
-            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            IUserRepository userRepository = RepositoryFactory.CreateUserRepository(context);
-            return new RandomQuestionPresenter(questionRepository, categoryRepository, questionFlagRepository, flagStatusRepository, userRepository);
+            return new RandomQuestionPresenter(
+                new QuestionRepository(context, context.Location),
+                new CategoryRepository(context),
+                new QuestionFlagRepository(context),
+                new FlagStatusRepository(context),
+                new UserRepository(context));
         }
     }
 }

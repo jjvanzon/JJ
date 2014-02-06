@@ -1,10 +1,10 @@
-﻿using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.QuestionService;
-using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.ResourceService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.RandomQuestionService;
+using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.ResourceService;
 
 namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 {

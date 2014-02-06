@@ -9,6 +9,7 @@ using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 
 namespace JJ.Apps.QuestionAndAnswer.AppService
 {
@@ -16,31 +17,67 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
     {
         public RandomQuestionViewModel ShowQuestion()
         {
-            RandomQuestionPresenter presenter = CreatePresenter();
-            return presenter.Show();
+            using (IContext context = ContextHelper.CreateContextFromConfiguration())
+            {
+                RandomQuestionPresenter presenter = CreatePresenter(context);
+                // TODO: Polymorphic results.
+                object viewModel = presenter.Show();
+                if (viewModel is RandomQuestionViewModel)
+                {
+                    return viewModel as RandomQuestionViewModel;
+                }
+                else
+                {
+                    return new RandomQuestionViewModel { Question = new QuestionViewModel() };
+                }
+            }
         }
 
         public RandomQuestionViewModel ShowAnswer(RandomQuestionViewModel viewModel)
         {
-            RandomQuestionPresenter presenter = CreatePresenter();
-            return presenter.ShowAnswer(viewModel, null);
+            using (IContext context = ContextHelper.CreateContextFromConfiguration())
+            {
+                RandomQuestionPresenter presenter = CreatePresenter(context);
+                // TODO: Polymorphic results.
+                object viewModel2 = presenter.ShowAnswer(viewModel, null);
+                if (viewModel2 is RandomQuestionViewModel)
+                {
+                    return viewModel2 as RandomQuestionViewModel;
+                }
+                else
+                {
+                    return new RandomQuestionViewModel { Question = new QuestionViewModel() };
+                }
+            }
         }
 
         public RandomQuestionViewModel HideAnswer(RandomQuestionViewModel viewModel)
         {
-            RandomQuestionPresenter presenter = CreatePresenter();
-            return presenter.HideAnswer(viewModel, null);
+            using (IContext context = ContextHelper.CreateContextFromConfiguration())
+            {
+                RandomQuestionPresenter presenter = CreatePresenter(context);
+
+                // TODO: Polymorphic results.
+                object viewModel2 = presenter.HideAnswer(viewModel, null);
+                if (viewModel2 is RandomQuestionViewModel)
+                {
+                    return viewModel2 as RandomQuestionViewModel;
+                }
+                else
+                {
+                    return new RandomQuestionViewModel { Question = new QuestionViewModel() };
+                }
+            }
         }
 
-        private RandomQuestionPresenter CreatePresenter()
+        private RandomQuestionPresenter CreatePresenter(IContext context)
         {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
-            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
-            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            IUserRepository userRepository = RepositoryFactory.CreateUserRepository(context);
-            return new RandomQuestionPresenter(questionRepository, categoryRepository, questionFlagRepository, flagStatusRepository, userRepository);
+            return new RandomQuestionPresenter(
+                new QuestionRepository(context, context.Location),
+                new CategoryRepository(context),
+                new QuestionFlagRepository(context),
+                new FlagStatusRepository(context),
+                new UserRepository(context));
         }
     }
 }

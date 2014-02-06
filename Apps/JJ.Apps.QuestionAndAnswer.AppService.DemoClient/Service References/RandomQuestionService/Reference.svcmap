@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="225de4e7-a503-401c-ba75-42eb818a67c5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:52160/RandomQuestionService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RandomQuestionService.disco" MetadataType="Disco" ID="f0de683d-7ba3-40ef-a4a1-3738587364e1" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?disco" />
+    <MetadataFile FileName="RandomQuestionService.wsdl" MetadataType="Wsdl" ID="e0d8cd2d-e8b0-47ef-a963-11536006c1c0" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?wsdl" />
+    <MetadataFile FileName="RandomQuestionService.xsd" MetadataType="Schema" ID="10bb45d1-492b-4958-86a4-2e9b22e75657" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?xsd=xsd3" />
+    <MetadataFile FileName="RandomQuestionService1.xsd" MetadataType="Schema" ID="8be89f8a-21e7-461d-9a0a-27b6b3e332c2" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?xsd=xsd2" />
+    <MetadataFile FileName="RandomQuestionService2.xsd" MetadataType="Schema" ID="7d2ef752-8475-45c2-8e2b-82d80a7b23dd" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?xsd=xsd1" />
+    <MetadataFile FileName="RandomQuestionService3.xsd" MetadataType="Schema" ID="138fc197-61a9-48b3-be0d-ee846b28b3f5" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

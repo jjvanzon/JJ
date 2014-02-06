@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.QuestionService;
 using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.ResourceService;
+using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.RandomQuestionService;
 
 namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 {
     public class QuestionController
     {
-        private QuestionServiceClient _service = new QuestionServiceClient();
+        private RandomQuestionServiceClient _service = new RandomQuestionServiceClient();
 
-        public QuestionDetailViewModel ShowQuestion()
+        public RandomQuestionViewModel ShowQuestion()
         {
             return _service.ShowQuestion();
         }
 
-        public QuestionDetailViewModel ShowAnswer(QuestionDetailViewModel viewModel)
+        public RandomQuestionViewModel ShowAnswer(RandomQuestionViewModel viewModel)
         {
             return _service.ShowAnswer(viewModel);
         }
 
-        public QuestionDetailViewModel HideAnswer(QuestionDetailViewModel viewModel)
+        public RandomQuestionViewModel HideAnswer(RandomQuestionViewModel viewModel)
         {
             return _service.HideAnswer(viewModel);
         }

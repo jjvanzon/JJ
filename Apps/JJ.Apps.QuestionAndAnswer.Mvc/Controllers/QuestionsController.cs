@@ -348,23 +348,26 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ViewResult Random(int[] c)
         {
-            RandomQuestionPresenter presenter = CreateRandomQuestionPresenter();
-            
-            object viewModel = presenter.Show(c);
-
-            var randomQuestionViewModel = viewModel as RandomQuestionViewModel;
-            if (randomQuestionViewModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                return View(randomQuestionViewModel);
-            }
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
 
-            var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
+                object viewModel = presenter.Show(c);
 
-            throw new UnexpectedViewModelTypeException(viewModel);
+                var randomQuestionViewModel = viewModel as RandomQuestionViewModel;
+                if (randomQuestionViewModel != null)
+                {
+                    return View(randomQuestionViewModel);
+                }
+
+                var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
+                if (notFoundViewModel != null)
+                {
+                    return View(ViewNames.NotFound, notFoundViewModel);
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel);
+            }
         }
 
         // POST: /Questions/ShowAnswer/5
@@ -374,22 +377,25 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             string authenticatedUserName = TryGetAuthenticatedUserName();
 
-            RandomQuestionPresenter presenter = CreateRandomQuestionPresenter();
-            object viewModel2 = presenter.ShowAnswer(viewModel, authenticatedUserName);
-
-            var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
-            if (randomQuestionViewModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                return View(ViewNames.Random, randomQuestionViewModel);
-            }
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                object viewModel2 = presenter.ShowAnswer(viewModel, authenticatedUserName);
 
-            var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
+                var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
+                if (randomQuestionViewModel != null)
+                {
+                    return View(ViewNames.Random, randomQuestionViewModel);
+                }
 
-            throw new UnexpectedViewModelTypeException(viewModel2);
+                var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
+                if (notFoundViewModel != null)
+                {
+                    return View(ViewNames.NotFound, notFoundViewModel);
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel2);
+            }
         }
 
         // POST: /Questions/HideAnswer/5
@@ -399,22 +405,25 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             string authenticatedUserName = TryGetAuthenticatedUserName();
 
-            RandomQuestionPresenter presenter = CreateRandomQuestionPresenter();
-            object viewModel2 = presenter.HideAnswer(viewModel, authenticatedUserName);
-
-            var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
-            if (randomQuestionViewModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                return View(ViewNames.Random, randomQuestionViewModel);
-            }
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                object viewModel2 = presenter.HideAnswer(viewModel, authenticatedUserName);
 
-            var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
+                var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
+                if (randomQuestionViewModel != null)
+                {
+                    return View(ViewNames.Random, randomQuestionViewModel);
+                }
 
-            throw new UnexpectedViewModelTypeException(viewModel2);
+                var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
+                if (notFoundViewModel != null)
+                {
+                    return View(ViewNames.NotFound, notFoundViewModel);
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel2);
+            }
         }
 
         // POST: /Question/Flag/5
@@ -424,28 +433,31 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             string authenticatedUserName = TryGetAuthenticatedUserName();
 
-            RandomQuestionPresenter presenter = CreateRandomQuestionPresenter();
-            object viewModel2 = presenter.Flag(viewModel, authenticatedUserName);
-
-            var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
-            if (randomQuestionViewModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                return View(ViewNames.Random, randomQuestionViewModel);
-            }
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                object viewModel2 = presenter.Flag(viewModel, authenticatedUserName);
 
-            var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
+                var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
+                if (randomQuestionViewModel != null)
+                {
+                    return View(ViewNames.Random, randomQuestionViewModel);
+                }
 
-            var notAuthenticatedViewModel = viewModel2 as NotAuthenticatedViewModel;
-            if (notAuthenticatedViewModel != null)
-            {
-                return View(ViewNames.NotAuthenticated);
-            }
+                var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
+                if (notFoundViewModel != null)
+                {
+                    return View(ViewNames.NotFound, notFoundViewModel);
+                }
 
-            throw new UnexpectedViewModelTypeException(viewModel2);
+                var notAuthenticatedViewModel = viewModel2 as NotAuthenticatedViewModel;
+                if (notAuthenticatedViewModel != null)
+                {
+                    return View(ViewNames.NotAuthenticated);
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel2);
+            }
         }
 
         // POST: /Question/Unflag/5
@@ -455,42 +467,43 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             string authenticatedUserName = TryGetAuthenticatedUserName();
 
-            RandomQuestionPresenter presenter = CreateRandomQuestionPresenter();
-            object viewModel2 = presenter.Unflag(viewModel, authenticatedUserName);
-
-
-            var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
-            if (randomQuestionViewModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                return View(ViewNames.Random, randomQuestionViewModel);
-            }
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                object viewModel2 = presenter.Unflag(viewModel, authenticatedUserName);
 
-            var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
+                var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
+                if (randomQuestionViewModel != null)
+                {
+                    return View(ViewNames.Random, randomQuestionViewModel);
+                }
 
-            var notAuthenticatedViewModel = viewModel2 as NotAuthenticatedViewModel;
-            if (notAuthenticatedViewModel != null)
-            {
-                return View(ViewNames.NotAuthenticated);
-            }
+                var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
+                if (notFoundViewModel != null)
+                {
+                    return View(ViewNames.NotFound, notFoundViewModel);
+                }
 
-            throw new UnexpectedViewModelTypeException(viewModel2);
+                var notAuthenticatedViewModel = viewModel2 as NotAuthenticatedViewModel;
+                if (notAuthenticatedViewModel != null)
+                {
+                    return View(ViewNames.NotAuthenticated);
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel2);
+            }
         }
 
         // Helpers
 
-        private RandomQuestionPresenter CreateRandomQuestionPresenter()
+        private RandomQuestionPresenter CreateRandomQuestionPresenter(Repositories repositories)
         {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
-            IQuestionRepository questionRepository = new QuestionRepository(context, context.Location);
-            ICategoryRepository categoryRepository = new CategoryRepository(context);
-            IQuestionFlagRepository questionFlagRepository = new QuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = new FlagStatusRepository(context);
-            IUserRepository userRepository = new UserRepository(context);
-            return new RandomQuestionPresenter(questionRepository, categoryRepository, questionFlagRepository, flagStatusRepository, userRepository);
+            return new RandomQuestionPresenter(
+                repositories.QuestionRepository, 
+                repositories.CategoryRepository, 
+                repositories.QuestionFlagRepository, 
+                repositories.FlagStatusRepository, 
+                repositories.UserRepository);
         }
 
         private Repositories CreateRepositories()
@@ -498,7 +511,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             IContext context = ContextHelper.CreateContextFromConfiguration();
 
             Repositories repositories = new Repositories(
-                context,
                 new QuestionRepository(context, context.Location),
                 new AnswerRepository(context),
                 new CategoryRepository(context),
@@ -508,7 +520,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 new FlagStatusRepository(context),
                 new SourceRepository(context),
                 new QuestionTypeRepository(context),
-                new UserRepository(context));
+                new UserRepository(context),
+                context);
 
             return repositories;
         }
