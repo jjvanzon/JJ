@@ -14,9 +14,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionDeleteConfirmedPresenter
     {
-        private RepositoryContainer _repositories;
+        private Repositories _repositories;
 
-        public QuestionDeleteConfirmedPresenter(RepositoryContainer repositories)
+        public QuestionDeleteConfirmedPresenter(Repositories repositories)
         {
             if (repositories == null) throw new ArgumentNullException("repositories");
 

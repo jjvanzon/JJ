@@ -15,6 +15,7 @@ using JJ.Apps.QuestionAndAnswer.Mvc.Views;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
 using JJ.Apps.QuestionAndAnswer.Mvc.Views.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
+using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -32,31 +33,37 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ActionResult Index()
         {
-            QuestionListPresenter presenter = CreateListPresenter();
-            QuestionListViewModel viewModel = presenter.Show();
-            return View(viewModel);
+            using (Repositories repositories = CreateRepositories())
+            {
+                QuestionListPresenter presenter = new QuestionListPresenter(repositories);
+                QuestionListViewModel viewModel = presenter.Show();
+                return View(viewModel);
+            }
         }
 
         // GET: /Questions/Details/5
 
         public ActionResult Details(int id)
         {
-            QuestionDetailsPresenter presenter = CreateDetailPresenter();
-            object viewModel = presenter.Show(id);
-
-            var detailModel = viewModel as QuestionDetailsViewModel;
-            if (detailModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                return View(detailModel);
-            }
+                QuestionDetailsPresenter presenter = new QuestionDetailsPresenter(repositories);
+                object viewModel = presenter.Show(id);
 
-            var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
+                var detailModel = viewModel as QuestionDetailsViewModel;
+                if (detailModel != null)
+                {
+                    return View(detailModel);
+                }
 
-            throw new UnexpectedViewModelTypeException(viewModel);
+                var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
+                if (notFoundViewModel != null)
+                {
+                    return View(ViewNames.NotFound, notFoundViewModel);
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel);
+            }
         }
 
         // GET: /Questions/Create
@@ -70,8 +77,11 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
             else
             {
-                QuestionEditPresenter presenter = CreateEditPresenter();
-                viewModel = presenter.Create();
+                using (Repositories repositories = CreateRepositories())
+                {
+                    QuestionEditPresenter presenter = new QuestionEditPresenter(repositories);
+                    viewModel = presenter.Create();
+                }
             }
 
             var editViewModel = viewModel as QuestionEditViewModel;
@@ -100,24 +110,27 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult Create(QuestionEditViewModel viewModel)
         {
-            QuestionEditPresenter presenter = CreateEditPresenter();
-            string authenticatedUserName = TryGetAuthenticatedUserName();
-            object viewModel2 = presenter.Save(viewModel, authenticatedUserName);
-
-            var editViewModel = viewModel2 as QuestionEditViewModel;
-            if (editViewModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                TempData[TempDataKeys.ViewModel] = editViewModel;
-                return RedirectToAction(ActionNames.Create);
-            }
+                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories);
+                string authenticatedUserName = TryGetAuthenticatedUserName();
+                object viewModel2 = presenter.Save(viewModel, authenticatedUserName);
 
-            var detailsViewModel = viewModel2 as QuestionDetailsViewModel;
-            if (detailsViewModel != null)
-            {
-                return RedirectToAction(ActionNames.Details, new { id = detailsViewModel.Question.ID });
-            }
+                var editViewModel = viewModel2 as QuestionEditViewModel;
+                if (editViewModel != null)
+                {
+                    TempData[TempDataKeys.ViewModel] = editViewModel;
+                    return RedirectToAction(ActionNames.Create);
+                }
 
-            throw new UnexpectedViewModelTypeException(viewModel);
+                var detailsViewModel = viewModel2 as QuestionDetailsViewModel;
+                if (detailsViewModel != null)
+                {
+                    return RedirectToAction(ActionNames.Details, new { id = detailsViewModel.Question.ID });
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel);
+            }
         }
 
         // GET: /Questions/Edit/5
@@ -131,8 +144,11 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
             else
             {
-                QuestionEditPresenter presenter = CreateEditPresenter();
-                viewModel = presenter.Edit(id);
+                using (Repositories repositories = CreateRepositories())
+                {
+                    QuestionEditPresenter presenter = new QuestionEditPresenter(repositories);
+                    viewModel = presenter.Edit(id);
+                }
             }
 
             var editViewModel = viewModel as QuestionEditViewModel;
@@ -161,24 +177,27 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult Edit(QuestionEditViewModel viewModel)
         {
-            QuestionEditPresenter presenter = CreateEditPresenter();
-            string authenticatedUserName = TryGetAuthenticatedUserName();
-            object viewModel2 = presenter.Save(viewModel, authenticatedUserName);
-
-            var editViewModel = viewModel2 as QuestionEditViewModel;
-            if (editViewModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                TempData[TempDataKeys.ViewModel] = editViewModel;
-                return RedirectToAction(ActionNames.Edit, new { id = editViewModel.Question.ID });
-            }
+                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories);
+                string authenticatedUserName = TryGetAuthenticatedUserName();
+                object viewModel2 = presenter.Save(viewModel, authenticatedUserName);
 
-            var detailsViewModel = viewModel2 as QuestionDetailsViewModel;
-            if (detailsViewModel != null)
-            {
-                return RedirectToAction(ActionNames.Details, new { id = detailsViewModel.Question.ID });   
-            }
+                var editViewModel = viewModel2 as QuestionEditViewModel;
+                if (editViewModel != null)
+                {
+                    TempData[TempDataKeys.ViewModel] = editViewModel;
+                    return RedirectToAction(ActionNames.Edit, new { id = editViewModel.Question.ID });
+                }
 
-            throw new UnexpectedViewModelTypeException(viewModel);
+                var detailsViewModel = viewModel2 as QuestionDetailsViewModel;
+                if (detailsViewModel != null)
+                {
+                    return RedirectToAction(ActionNames.Details, new { id = detailsViewModel.Question.ID });
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel);
+            }
         }
 
         // GET: /Questions/Delete/5
@@ -186,22 +205,25 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         /// <summary> Asks for confirmation that the question can be deleted. </summary>
         public ActionResult Delete(int id)
         {
-            QuestionDeletePresenter presenter = CreateDeletePresenter();
-            object viewModel = presenter.Show(id);
-
-            var confirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
-            if (confirmDeleteViewModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                return View(ViewNames.Delete, confirmDeleteViewModel);
-            }
+                QuestionDeletePresenter presenter = new QuestionDeletePresenter(repositories);
+                object viewModel = presenter.Show(id);
 
-            var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
+                var confirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
+                if (confirmDeleteViewModel != null)
+                {
+                    return View(ViewNames.Delete, confirmDeleteViewModel);
+                }
 
-            throw new UnexpectedViewModelTypeException(viewModel);
+                var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
+                if (notFoundViewModel != null)
+                {
+                    return View(ViewNames.NotFound, notFoundViewModel);
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel);
+            }
         }
 
         // POST: /Questions/Delete/5
@@ -216,22 +238,25 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult Delete(QuestionConfirmDeleteViewModel viewModel, int id)
         {
-            QuestionDeleteConfirmedPresenter presenter = CreateDeleteConfirmedPresenter();
-            object viewModel2 = presenter.Show(id);
-
-            var deleteConfirmedViewModel = viewModel2 as QuestionDeleteConfirmedViewModel;
-            if (deleteConfirmedViewModel != null)
+            using (Repositories repositories = CreateRepositories())
             {
-                return View(ViewNames.Deleted, deleteConfirmedViewModel);
-            }
+                QuestionDeleteConfirmedPresenter presenter = new QuestionDeleteConfirmedPresenter(repositories);
+                object viewModel2 = presenter.Show(id);
 
-            var notFoundViewModel = viewModel2 as QuestionDeleteConfirmedViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
+                var deleteConfirmedViewModel = viewModel2 as QuestionDeleteConfirmedViewModel;
+                if (deleteConfirmedViewModel != null)
+                {
+                    return View(ViewNames.Deleted, deleteConfirmedViewModel);
+                }
 
-            throw new UnexpectedViewModelTypeException(viewModel2);
+                var notFoundViewModel = viewModel2 as QuestionDeleteConfirmedViewModel;
+                if (notFoundViewModel != null)
+                {
+                    return View(ViewNames.NotFound, notFoundViewModel);
+                }
+
+                throw new UnexpectedViewModelTypeException(viewModel2);
+            }
         }
 
         // POST: /Questions/AddLink
@@ -239,16 +264,19 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult AddLink(QuestionEditViewModel viewModel)
         {
-            QuestionEditPresenter presenter = CreateEditPresenter();
-            QuestionEditViewModel viewModel2 = presenter.AddLink(viewModel);
-            TempData[TempDataKeys.ViewModel] = viewModel2;
-            if (viewModel.IsNew)
+            using (Repositories repositories = CreateRepositories())
             {
-                return RedirectToAction(ActionNames.Create);
-            }
-            else
-            {
-                return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories);
+                QuestionEditViewModel viewModel2 = presenter.AddLink(viewModel);
+                TempData[TempDataKeys.ViewModel] = viewModel2;
+                if (viewModel.IsNew)
+                {
+                    return RedirectToAction(ActionNames.Create);
+                }
+                else
+                {
+                    return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+                }
             }
         }
 
@@ -257,16 +285,19 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
         {
-            QuestionEditPresenter presenter = CreateEditPresenter();
-            QuestionEditViewModel viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
-            TempData[TempDataKeys.ViewModel] = viewModel2;
-            if (viewModel.IsNew)
+            using (Repositories repositories = CreateRepositories())
             {
-                return RedirectToAction(ActionNames.Create);
-            }
-            else
-            {
-                return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories);
+                QuestionEditViewModel viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
+                TempData[TempDataKeys.ViewModel] = viewModel2;
+                if (viewModel.IsNew)
+                {
+                    return RedirectToAction(ActionNames.Create);
+                }
+                else
+                {
+                    return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+                }
             }
         }
 
@@ -275,16 +306,19 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult AddCategory(QuestionEditViewModel viewModel)
         {
-            QuestionEditPresenter presenter = CreateEditPresenter();
-            QuestionEditViewModel viewModel2 = presenter.AddCategory(viewModel);
-            TempData[TempDataKeys.ViewModel] = viewModel2;
-            if (viewModel.IsNew)
+            using (Repositories repositories = CreateRepositories())
             {
-                return RedirectToAction(ActionNames.Create);
-            }
-            else
-            {
-                return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories);
+                QuestionEditViewModel viewModel2 = presenter.AddCategory(viewModel);
+                TempData[TempDataKeys.ViewModel] = viewModel2;
+                if (viewModel.IsNew)
+                {
+                    return RedirectToAction(ActionNames.Create);
+                }
+                else
+                {
+                    return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+                }
             }
         }
 
@@ -293,16 +327,19 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
         {
-            QuestionEditPresenter presenter = CreateEditPresenter();
-            QuestionEditViewModel viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
-            TempData[TempDataKeys.ViewModel] = viewModel2;
-            if (viewModel.IsNew)
+            using (Repositories repositories = CreateRepositories())
             {
-                return RedirectToAction(ActionNames.Create);
-            }
-            else
-            {
-                return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories);
+                QuestionEditViewModel viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
+                TempData[TempDataKeys.ViewModel] = viewModel2;
+                if (viewModel.IsNew)
+                {
+                    return RedirectToAction(ActionNames.Create);
+                }
+                else
+                {
+                    return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
+                }
             }
         }
 
@@ -448,107 +485,32 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         private RandomQuestionPresenter CreateRandomQuestionPresenter()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
-            IQuestionRepository questionRepository = RepositoryFactory.CreateQuestionRepository(context);
-            ICategoryRepository categoryRepository = RepositoryFactory.CreateCategoryRepository(context);
-            IQuestionFlagRepository questionFlagRepository = RepositoryFactory.CreateQuestionFlagRepository(context);
-            IFlagStatusRepository flagStatusRepository = RepositoryFactory.CreateFlagStatusRepository(context);
-            IUserRepository userRepository = RepositoryFactory.CreateUserRepository(context);
+            IQuestionRepository questionRepository = new QuestionRepository(context, context.Location);
+            ICategoryRepository categoryRepository = new CategoryRepository(context);
+            IQuestionFlagRepository questionFlagRepository = new QuestionFlagRepository(context);
+            IFlagStatusRepository flagStatusRepository = new FlagStatusRepository(context);
+            IUserRepository userRepository = new UserRepository(context);
             return new RandomQuestionPresenter(questionRepository, categoryRepository, questionFlagRepository, flagStatusRepository, userRepository);
         }
 
-        private QuestionEditPresenter CreateEditPresenter()
+        private Repositories CreateRepositories()
         {
             IContext context = ContextHelper.CreateContextFromConfiguration();
 
-            RepositoryContainer repositories = new RepositoryContainer(
-                RepositoryFactory.CreateQuestionRepository(context),
-                RepositoryFactory.CreateAnswerRepository(context),
-                RepositoryFactory.CreateCategoryRepository(context),
-                RepositoryFactory.CreateQuestionCategoryRepository(context),
-                RepositoryFactory.CreateQuestionLinkRepository(context),
-                RepositoryFactory.CreateQuestionFlagRepository(context),
-                RepositoryFactory.CreateFlagStatusRepository(context),
-                RepositoryFactory.CreateSourceRepository(context),
-                RepositoryFactory.CreateQuestionTypeRepository(context),
-                RepositoryFactory.CreateUserRepository(context));
+            Repositories repositories = new Repositories(
+                context,
+                new QuestionRepository(context, context.Location),
+                new AnswerRepository(context),
+                new CategoryRepository(context),
+                new QuestionCategoryRepository(context),
+                new QuestionLinkRepository(context),
+                new QuestionFlagRepository(context),
+                new FlagStatusRepository(context),
+                new SourceRepository(context),
+                new QuestionTypeRepository(context),
+                new UserRepository(context));
 
-            return new QuestionEditPresenter(repositories);
-        }
-
-        private QuestionDetailsPresenter CreateDetailPresenter()
-        {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
-
-            RepositoryContainer repositories = new RepositoryContainer(
-                RepositoryFactory.CreateQuestionRepository(context),
-                RepositoryFactory.CreateAnswerRepository(context),
-                RepositoryFactory.CreateCategoryRepository(context),
-                RepositoryFactory.CreateQuestionCategoryRepository(context),
-                RepositoryFactory.CreateQuestionLinkRepository(context),
-                RepositoryFactory.CreateQuestionFlagRepository(context),
-                RepositoryFactory.CreateFlagStatusRepository(context),
-                RepositoryFactory.CreateSourceRepository(context),
-                RepositoryFactory.CreateQuestionTypeRepository(context),
-                RepositoryFactory.CreateUserRepository(context));
-
-            return new QuestionDetailsPresenter(repositories);
-        }
-
-        private QuestionDeletePresenter CreateDeletePresenter()
-        {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
-
-            RepositoryContainer repositories = new RepositoryContainer(
-                RepositoryFactory.CreateQuestionRepository(context),
-                RepositoryFactory.CreateAnswerRepository(context),
-                RepositoryFactory.CreateCategoryRepository(context),
-                RepositoryFactory.CreateQuestionCategoryRepository(context),
-                RepositoryFactory.CreateQuestionLinkRepository(context),
-                RepositoryFactory.CreateQuestionFlagRepository(context),
-                RepositoryFactory.CreateFlagStatusRepository(context),
-                RepositoryFactory.CreateSourceRepository(context),
-                RepositoryFactory.CreateQuestionTypeRepository(context),
-                RepositoryFactory.CreateUserRepository(context));
-
-            return new QuestionDeletePresenter(repositories);
-        }
-
-        private QuestionDeleteConfirmedPresenter CreateDeleteConfirmedPresenter()
-        {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
-
-            RepositoryContainer repositories = new RepositoryContainer(
-                RepositoryFactory.CreateQuestionRepository(context),
-                RepositoryFactory.CreateAnswerRepository(context),
-                RepositoryFactory.CreateCategoryRepository(context),
-                RepositoryFactory.CreateQuestionCategoryRepository(context),
-                RepositoryFactory.CreateQuestionLinkRepository(context),
-                RepositoryFactory.CreateQuestionFlagRepository(context),
-                RepositoryFactory.CreateFlagStatusRepository(context),
-                RepositoryFactory.CreateSourceRepository(context),
-                RepositoryFactory.CreateQuestionTypeRepository(context),
-                RepositoryFactory.CreateUserRepository(context));
-
-            return new QuestionDeleteConfirmedPresenter(repositories);
-        }
-
-        private QuestionListPresenter CreateListPresenter()
-        {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
-
-            RepositoryContainer repositories = new RepositoryContainer(
-                RepositoryFactory.CreateQuestionRepository(context),
-                RepositoryFactory.CreateAnswerRepository(context),
-                RepositoryFactory.CreateCategoryRepository(context),
-                RepositoryFactory.CreateQuestionCategoryRepository(context),
-                RepositoryFactory.CreateQuestionLinkRepository(context),
-                RepositoryFactory.CreateQuestionFlagRepository(context),
-                RepositoryFactory.CreateFlagStatusRepository(context),
-                RepositoryFactory.CreateSourceRepository(context),
-                RepositoryFactory.CreateQuestionTypeRepository(context),
-                RepositoryFactory.CreateUserRepository(context));
-
-            return new QuestionListPresenter(repositories);
+            return repositories;
         }
     }
 }

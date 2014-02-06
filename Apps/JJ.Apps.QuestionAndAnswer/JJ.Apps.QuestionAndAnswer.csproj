@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
     <Compile Include="Presenters\Helpers\ValidationMessagesExtensions.cs" />
-    <Compile Include="Presenters\Helpers\RepositoryContainer.cs" />
+    <Compile Include="Presenters\Helpers\Repositories.cs" />
     <Compile Include="Presenters\Helpers\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\QuestionDeleteConfirmedPresenter.cs" />

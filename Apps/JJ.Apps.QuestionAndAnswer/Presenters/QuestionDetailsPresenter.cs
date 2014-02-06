@@ -20,9 +20,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionDetailsPresenter
     {
-        private RepositoryContainer _repositories;
+        private Repositories _repositories;
 
-        public QuestionDetailsPresenter(RepositoryContainer repositories)
+        public QuestionDetailsPresenter(Repositories repositories)
         {
             if (repositories == null) throw new ArgumentNullException("repositories");
 

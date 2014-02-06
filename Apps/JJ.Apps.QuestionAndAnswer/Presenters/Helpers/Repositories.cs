@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
 {
-    public class RepositoryContainer
+    public class Repositories : IDisposable
     {
+        private IDisposable _underlyingDataStore;
+
         public IQuestionRepository QuestionRepository { get; private set; }
         public IAnswerRepository AnswerRepository { get; private set; }
         public ICategoryRepository CategoryRepository { get; private set; }
@@ -20,7 +22,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
         public IQuestionTypeRepository QuestionTypeRepository { get; private set; }
         public IUserRepository UserRepository { get; private set; }
 
-        public RepositoryContainer(
+        /// <param name="underlyingDataStore">Optional. Will be disposed when the PersistenceContainer is disposed.</param>
+        public Repositories(
+            IDisposable underlyingDataStore,
             IQuestionRepository questionRepository,
             IAnswerRepository answerRepository,
             ICategoryRepository categoryRepository,
@@ -52,6 +56,16 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
             SourceRepository = sourceRepository;
             QuestionTypeRepository = questionTypeRepository;
             UserRepository = userRepository;
+
+            _underlyingDataStore = underlyingDataStore;
+        }
+
+        public void Dispose()
+        {
+            if (_underlyingDataStore != null)
+            {
+                _underlyingDataStore.Dispose();
+            }
         }
     }
 }

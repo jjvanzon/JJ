@@ -8,6 +8,7 @@ using System.Web;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
 {
+    // TODO: Remove this class after refactoring creation of presenters with repository sets other than for QuestionDetail and stuff.
     internal static class RepositoryFactory
     {
         public static IUserRepository CreateUserRepository(IContext context)
