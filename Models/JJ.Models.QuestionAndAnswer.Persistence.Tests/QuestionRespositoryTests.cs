@@ -19,7 +19,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
         {
             foreach (string contextType in GetContextTypes())
             {
-                using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
+                using (IContext context = ContextHelper.CreateContext(contextType))
                 {
                     int id = AppSettings<IAppSettings>.Get(x => x.ExistingQuestionID);
                     IQuestionRepository repository = new QuestionRepository(context, context.Location);
@@ -33,7 +33,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
         {
             foreach (string contextType in GetContextTypes())
             {
-                using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
+                using (IContext context = ContextHelper.CreateContext(contextType))
                 {
                     IQuestionRepository repository = new QuestionRepository(context, context.Location);
                     List<Question> list = repository.GetAll().ToList();
@@ -48,7 +48,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
         {
             foreach (string contextType in GetContextTypes())
             {
-                using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
+                using (IContext context = ContextHelper.CreateContext(contextType))
                 {
                     IQuestionRepository repository = new QuestionRepository(context, context.Location);
                     Question[] list = repository.GetBySourceID(TEST_SOURCE_ID).ToArray();
@@ -58,7 +58,8 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 
         private string[] GetContextTypes()
         {
-            //return CustomConfigurationManager.GetSection<ConfigurationSection>().PersistenceContextTypes;
+            //return CustomConfigurationManager.GetSection<ConfigurationSection>();
+
             return new string[] { CustomConfigurationManager.GetSection<PersistenceConfiguration>().ContextType };
         }
     }

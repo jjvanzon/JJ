@@ -9,16 +9,17 @@ using JJ.Framework.Persistence;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Tests.Helpers
 {
-    public static class PersistenceHelper
+    public static class ContextHelper
     {
-        public static IContext CreatePersistenceContext(string contextType)
+        public static IContext CreateContext(string contextType)
         {
-            PersistenceConfiguration persistenceConfiguration = CustomConfigurationManager.GetSection<PersistenceConfiguration>();
+            PersistenceConfiguration configuration = CustomConfigurationManager.GetSection<PersistenceConfiguration>();
             
             return ContextFactory.CreateContext(
                 contextType,
-                persistenceConfiguration.Location,
-                persistenceConfiguration.ModelAssemblies);
+                configuration.Location,
+                configuration.ModelAssembly,
+                configuration.MappingAssembly);
         }
     }
 }

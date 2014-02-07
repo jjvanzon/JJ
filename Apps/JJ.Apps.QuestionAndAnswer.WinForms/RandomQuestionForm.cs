@@ -30,7 +30,7 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
 
         private void RandomQuestionForm_Load(object sender, EventArgs e)
         {
-            _context = ContextHelper.CreateContextFromConfiguration();
+            _context = ContextFactory.CreateContextFromConfiguration();
             _presenter = CreatePresenter(_context);
 
             SetTitlesAndLabels();

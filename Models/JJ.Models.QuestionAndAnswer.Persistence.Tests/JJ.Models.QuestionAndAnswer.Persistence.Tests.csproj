@@ -74,8 +74,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Helpers\ConfigurationSection.cs" />
+    <Compile Include="Helpers\ConfigurationContextType.cs" />
     <Compile Include="QuestionAndAnswerOrmMappingsTests.cs" />
-    <Compile Include="Helpers\PersistenceHelper.cs" />
+    <Compile Include="Helpers\ContextHelper.cs" />
     <Compile Include="IAppSettings.cs" />
     <Compile Include="QuestionRespositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

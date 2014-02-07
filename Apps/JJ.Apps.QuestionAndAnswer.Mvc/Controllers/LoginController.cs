@@ -47,7 +47,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         private UserRepositoryWrapper CreateRepositoryWrapper()
         {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
+            IContext context = ContextFactory.CreateContextFromConfiguration();
             IUserRepository userRepository = new UserRepository(context);
             return new UserRepositoryWrapper(userRepository, context);
         }

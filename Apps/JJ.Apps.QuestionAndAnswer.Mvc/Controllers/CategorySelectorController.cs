@@ -68,7 +68,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         private CategorySelectorRepositories CreateRepositories()
         {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
+            IContext context = ContextFactory.CreateContextFromConfiguration();
 
             return new CategorySelectorRepositories(
                 new CategoryRepository(context),

@@ -27,7 +27,7 @@ namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
 
             foreach (ImportConfigurationImporter importerConfiguration in configSection.Importers)
             {
-                using (IContext context = ContextHelper.CreateContextFromConfiguration())
+                using (IContext context = ContextFactory.CreateContextFromConfiguration())
                 {
                     string inputFilePath = importerConfiguration.InputFilePath;
 
@@ -103,7 +103,7 @@ namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
             }
 
             // Correct category descriptions
-            using (IContext context = ContextHelper.CreateContextFromConfiguration())
+            using (IContext context = ContextFactory.CreateContextFromConfiguration())
             {
                 ICategoryRepository categoryRepository = new CategoryRepository(context);
 

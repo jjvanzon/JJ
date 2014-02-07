@@ -508,7 +508,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         private Repositories CreateRepositories()
         {
-            IContext context = ContextHelper.CreateContextFromConfiguration();
+            IContext context = ContextFactory.CreateContextFromConfiguration();
 
             Repositories repositories = new Repositories(
                 new QuestionRepository(context, context.Location),

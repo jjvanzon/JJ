@@ -17,7 +17,7 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
     {
         public RandomQuestionViewModel ShowQuestion()
         {
-            using (IContext context = ContextHelper.CreateContextFromConfiguration())
+            using (IContext context = ContextFactory.CreateContextFromConfiguration())
             {
                 RandomQuestionPresenter presenter = CreatePresenter(context);
                 // TODO: Polymorphic results.
@@ -35,7 +35,7 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
 
         public RandomQuestionViewModel ShowAnswer(RandomQuestionViewModel viewModel)
         {
-            using (IContext context = ContextHelper.CreateContextFromConfiguration())
+            using (IContext context = ContextFactory.CreateContextFromConfiguration())
             {
                 RandomQuestionPresenter presenter = CreatePresenter(context);
                 // TODO: Polymorphic results.
@@ -53,7 +53,7 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
 
         public RandomQuestionViewModel HideAnswer(RandomQuestionViewModel viewModel)
         {
-            using (IContext context = ContextHelper.CreateContextFromConfiguration())
+            using (IContext context = ContextFactory.CreateContextFromConfiguration())
             {
                 RandomQuestionPresenter presenter = CreatePresenter(context);
 

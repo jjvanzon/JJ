@@ -7,9 +7,12 @@ using System.Xml.Serialization;
 
 namespace JJ.Models.QuestionAndAnswer.Persistence.Tests.Helpers
 {
-    public class ConfigurationSection
+    public class ConfigurationContextType
     {
-        [XmlArrayItem("contextType")]
-        public string[] ContextTypes { get; set; }
+        [XmlAttribute]
+        public string Name { get; set; }
+
+        [XmlAttribute]
+        public string MappingAssembly { get; set; }
     }
 }

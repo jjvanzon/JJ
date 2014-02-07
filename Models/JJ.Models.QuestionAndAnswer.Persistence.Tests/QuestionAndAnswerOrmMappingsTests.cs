@@ -35,7 +35,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 
             string persistenceTypeName = "JJ.Framework.Persistence.EntityFramework5";
 
-            using (IContext context = ContextFactory.CreateContext(persistenceTypeName, config.Location, config.ModelAssemblies))
+            using (IContext context = ContextFactory.CreateContext(persistenceTypeName, config.Location, config.ModelAssembly, config.MappingAssembly))
             {
                 Question question = context.Get<Question>(existingQuestionID);
             }
@@ -50,7 +50,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 
             string persistenceTypeName = "JJ.Framework.Persistence.NHibernate";
 
-            using (IContext context = ContextFactory.CreateContext(persistenceTypeName, config.Location, config.ModelAssemblies))
+            using (IContext context = ContextFactory.CreateContext(persistenceTypeName, config.Location, config.ModelAssembly, config.MappingAssembly))
             {
                 Question question = context.Get<Question>(existingQuestionID);
             }
