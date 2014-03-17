@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Configuration;
 using JJ.Framework.Persistence;
+using JJ.Models.QuestionAndAnswer.Persistence.Tests.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
     public class QuestionAndAnswerOrmMappingsTests
     {
         [TestMethod]
-        public void Test_OrmMapping_EntityFramework5_Directly()
+        public void Test_QuestionAndAnswerOrmMappings_EntityFramework5_Directly()
         {
             string specialConnectionString = @"metadata=res://*/QuestionAndAnswer.csdl|res://*/QuestionAndAnswer.ssdl|res://*/QuestionAndAnswer.msl;provider=System.Data.SqlClient;provider connection string=""data source=.\SQLEXPRESS;initial catalog=QuestionAndAnswerDB_UnitTests_DEV;persist security info=True;user id=development;password=development;MultipleActiveResultSets=True;App=EntityFramework"";";
             using (DbContext context = new JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.QuestionAndAnswerContext(specialConnectionString))
@@ -27,33 +28,53 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
         }
 
         [TestMethod]
-        public void Test_OrmMapping_EntityFramework5_UsingIContext()
+        public void Test_QuestionAndAnswerOrmMappings_EntityFramework5_UsingIContext()
         {
-            PersistenceConfiguration config = CustomConfigurationManager.GetSection<PersistenceConfiguration>();
-
-            int existingQuestionID = AppSettings<IAppSettings>.Get(x => x.ExistingQuestionID);
-
-            string persistenceTypeName = "JJ.Framework.Persistence.EntityFramework5";
-
-            using (IContext context = ContextFactory.CreateContext(persistenceTypeName, config.Location, config.ModelAssembly, config.MappingAssembly))
+            using (IContext context = CreateEntityFramework5Context())
             {
+                int existingQuestionID = GetExistingQuestionID();
                 Question question = context.Get<Question>(existingQuestionID);
             }
         }
 
         [TestMethod]
-        public void Test_OrmMapping_NHibernate_UsingIContext()
+        public void Test_QuestionAndAnswerOrmMappings_NHibernate_UsingIContext()
         {
-            PersistenceConfiguration config = CustomConfigurationManager.GetSection<PersistenceConfiguration>();
-
-            int existingQuestionID = AppSettings<IAppSettings>.Get(x => x.ExistingQuestionID);
-
-            string persistenceTypeName = "JJ.Framework.Persistence.NHibernate";
-
-            using (IContext context = ContextFactory.CreateContext(persistenceTypeName, config.Location, config.ModelAssembly, config.MappingAssembly))
+            using (IContext context = CreateNHibernateContext())
             {
+                int existingQuestionID = GetExistingQuestionID();
                 Question question = context.Get<Question>(existingQuestionID);
             }
+        }
+
+        private IContext CreateNHibernateContext()
+        {
+            PersistenceConfiguration persistenceConfiguration = GetNHibernatePersistenceConfiguration();
+            return ContextFactory.CreateContextFromConfiguration(persistenceConfiguration);
+        }
+
+        private PersistenceConfiguration GetNHibernatePersistenceConfiguration()
+        {
+            string contextTypeName = "JJ.Framework.Persistence.NHibernate";
+            return CustomConfigurationManager.GetSection<ConfigurationSection>().PersistenceConfigurations.Where(x => x.ContextType == contextTypeName).Single();
+        }
+
+        private IContext CreateEntityFramework5Context()
+        {
+            PersistenceConfiguration persistenceConfiguration = GetEntityFramework5PersistenceConfiguration();
+            return ContextFactory.CreateContextFromConfiguration(persistenceConfiguration);
+        }
+
+        private PersistenceConfiguration GetEntityFramework5PersistenceConfiguration()
+        {
+            string contextTypeName = "JJ.Framework.Persistence.EntityFramework5";
+            return CustomConfigurationManager.GetSection<ConfigurationSection>().PersistenceConfigurations.Where(x => x.ContextType == contextTypeName).Single();
+        }
+
+        private int GetExistingQuestionID()
+        {
+            int existingQuestionID = CustomConfigurationManager.GetSection<ConfigurationSection>().ExistingQuestionID;
+            return existingQuestionID;
         }
     }
 }

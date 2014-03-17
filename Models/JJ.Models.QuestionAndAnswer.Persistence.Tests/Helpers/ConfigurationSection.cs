@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Persistence;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,10 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests.Helpers
 {
     public class ConfigurationSection
     {
-        [XmlArrayItem("contextType")]
-        public string[] ContextTypes { get; set; }
+        [XmlAttribute]
+        public int ExistingQuestionID { get; set; }
+
+        [XmlArrayItem("persistenceConfiguration")]
+        public PersistenceConfiguration[] PersistenceConfigurations { get; set; }
     }
 }

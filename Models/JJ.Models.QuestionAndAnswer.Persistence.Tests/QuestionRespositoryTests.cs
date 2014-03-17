@@ -17,11 +17,11 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
         [TestMethod]
         public void Test_QuestionRepository_Get()
         {
-            foreach (string contextType in GetContextTypes())
+            foreach (PersistenceConfiguration persistenceConfiguration in GetPersistenceConfigurations())
             {
-                using (IContext context = ContextHelper.CreateContext(contextType))
+                using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
                 {
-                    int id = AppSettings<IAppSettings>.Get(x => x.ExistingQuestionID);
+                    int id = GetExistingQuestionID();
                     IQuestionRepository repository = new QuestionRepository(context, context.Location);
                     Question item = repository.Get(id);
                 }
@@ -31,9 +31,9 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
         [TestMethod]
         public void Test_QuestionRepository_GetAll()
         {
-            foreach (string contextType in GetContextTypes())
+            foreach (PersistenceConfiguration persistenceConfiguration in GetPersistenceConfigurations())
             {
-                using (IContext context = ContextHelper.CreateContext(contextType))
+                using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
                 {
                     IQuestionRepository repository = new QuestionRepository(context, context.Location);
                     List<Question> list = repository.GetAll().ToList();
@@ -46,9 +46,9 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
         [TestMethod]
         public void Test_QuestionRepository_GetBySource()
         {
-            foreach (string contextType in GetContextTypes())
+            foreach (PersistenceConfiguration persistenceConfiguration in GetPersistenceConfigurations())
             {
-                using (IContext context = ContextHelper.CreateContext(contextType))
+                using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
                 {
                     IQuestionRepository repository = new QuestionRepository(context, context.Location);
                     Question[] list = repository.GetBySourceID(TEST_SOURCE_ID).ToArray();
@@ -56,11 +56,15 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
             }
         }
 
-        private string[] GetContextTypes()
+        private PersistenceConfiguration[] GetPersistenceConfigurations()
         {
-            //return CustomConfigurationManager.GetSection<ConfigurationSection>();
+            return CustomConfigurationManager.GetSection<ConfigurationSection>().PersistenceConfigurations;
+        }
 
-            return new string[] { CustomConfigurationManager.GetSection<PersistenceConfiguration>().ContextType };
+        private int GetExistingQuestionID()
+        {
+            int existingQuestionID = CustomConfigurationManager.GetSection<ConfigurationSection>().ExistingQuestionID;
+            return existingQuestionID;
         }
     }
 }
