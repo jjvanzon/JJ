@@ -55,7 +55,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 
         private PersistenceConfiguration GetNHibernatePersistenceConfiguration()
         {
-            string contextTypeName = "JJ.Framework.Persistence.NHibernate";
+            string contextTypeName = "NHibernate";
             return CustomConfigurationManager.GetSection<ConfigurationSection>().PersistenceConfigurations.Where(x => x.ContextType == contextTypeName).Single();
         }
 
@@ -67,7 +67,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
 
         private PersistenceConfiguration GetEntityFramework5PersistenceConfiguration()
         {
-            string contextTypeName = "JJ.Framework.Persistence.EntityFramework5";
+            string contextTypeName = "EntityFramework5";
             return CustomConfigurationManager.GetSection<ConfigurationSection>().PersistenceConfigurations.Where(x => x.ContextType == contextTypeName).Single();
         }
 

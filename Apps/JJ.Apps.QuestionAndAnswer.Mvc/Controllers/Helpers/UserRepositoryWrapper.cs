@@ -13,11 +13,11 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
 
         public IUserRepository UserRepository { get; private set; }
 
-        public UserRepositoryWrapper(IUserRepository userRepository, IDisposable _underlyingDataStore = null)
+        public UserRepositoryWrapper(IUserRepository userRepository, IDisposable underlyingDataStore = null)
         {
             if (userRepository == null) throw new ArgumentNullException("userRepository");
             UserRepository = userRepository;
-            _underlyingDataStore = _underlyingDataStore;
+            _underlyingDataStore = underlyingDataStore;
         }
 
         public void Dispose()
