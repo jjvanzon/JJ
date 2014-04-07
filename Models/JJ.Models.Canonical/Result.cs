@@ -5,8 +5,6 @@ using System.Text;
 
 namespace JJ.Models.Canonical
 {
-    // TODO: This class is not used yet, so may not be finished.
-
     public class Result
     {
         public bool Successful { get; set; }

@@ -18,7 +18,7 @@ namespace JJ.Framework.Persistence.Xml
         }
 
         private object _lock = new object();
-        private Dictionary<string, IEntityStore> _entityStoreDictionary = new Dictionary<string, IEntityStore>();
+        private Dictionary<Type, IEntityStore> _entityStoreDictionary = new Dictionary<Type, IEntityStore>();
 
         // Expose underlying persistence technology for specialized repository.
         public XmlDocument GetDocument<TEntity>()
@@ -38,20 +38,20 @@ namespace JJ.Framework.Persistence.Xml
         {
             lock (_lock)
             {
-                string entityName = typeof(TEntity).Name;
+                IEntityStore entityStore;
+                Type entityType = typeof(TEntity);
 
-                if (_entityStoreDictionary.ContainsKey(entityName))
+                if (!_entityStoreDictionary.TryGetValue(entityType, out entityStore))
                 {
-                    return (EntityStore<TEntity>)_entityStoreDictionary[entityName];
+                    string entityName = entityType.Name;
+                    string filePath = Path.Combine(Location, entityName) + ".xml";
+                    IXmlMapping xmlMapping = XmlMappingResolver.GetXmlMapping(entityType, MappingAssembly);
+                    entityStore = new EntityStore<TEntity>(filePath, xmlMapping);
+
+                    _entityStoreDictionary[entityType] = entityStore;
                 }
 
-                string filePath = Path.Combine(Location, entityName) + ".xml";
-                IXmlMapping xmlMapping = XmlMappingResolver.GetXmlMapping(typeof(TEntity), MappingAssembly);
-                EntityStore<TEntity> entityStore = new EntityStore<TEntity>(filePath, xmlMapping);
-
-                _entityStoreDictionary[entityName] = entityStore;
-
-                return entityStore;
+                return (EntityStore<TEntity>)entityStore;
             }
         }
 
