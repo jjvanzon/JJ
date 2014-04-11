@@ -309,7 +309,16 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private Question ViewModelToEntity(QuestionEditViewModel viewModel)
         {
             // Get entity from database, with the viewmodel applied to it.
-            return viewModel.ToEntity(_repositories.QuestionRepository, _repositories.AnswerRepository, _repositories.CategoryRepository, _repositories.QuestionCategoryRepository, _repositories.QuestionLinkRepository, _repositories.QuestionFlagRepository, _repositories.FlagStatusRepository, _repositories.SourceRepository, _repositories.QuestionTypeRepository);
+            return viewModel.ToEntity(
+                _repositories.QuestionRepository, 
+                _repositories.AnswerRepository, 
+                _repositories.CategoryRepository, 
+                _repositories.QuestionCategoryRepository, 
+                _repositories.QuestionLinkRepository, 
+                _repositories.QuestionFlagRepository, 
+                _repositories.FlagStatusRepository, 
+                _repositories.SourceRepository, 
+                _repositories.QuestionTypeRepository);
         }
     }
 }
