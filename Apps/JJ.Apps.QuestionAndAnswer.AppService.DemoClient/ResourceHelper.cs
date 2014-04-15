@@ -10,24 +10,25 @@ namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 {
     public static class ResourceHelper
     {
-        private static ResourceServiceClient _service = new ResourceServiceClient();
-
         static ResourceHelper()
         {
-            InitializeResources();
+            LoadResources();
         }
 
         public static Labels Labels { get; private set; }
         public static Titles Titles { get; private set; }
         public static Messages Messages { get; private set; }
 
-        private static void InitializeResources()
+        private static void LoadResources()
         {
             string cultureName = GetCultureName();
 
-            Labels = _service.GetLabels(cultureName);
-            Titles = _service.GetTitles(cultureName);
-            Messages = _service.GetMessages(cultureName);
+            using (var service = new ResourceServiceClient())
+            {
+                Labels = service.GetLabels(cultureName);
+                Titles = service.GetTitles(cultureName);
+                Messages = service.GetMessages(cultureName);
+            }
         }
 
         private static string GetCultureName()
