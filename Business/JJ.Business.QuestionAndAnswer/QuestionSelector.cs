@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Maths;
+﻿using JJ.Framework.Mathematics;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using System;

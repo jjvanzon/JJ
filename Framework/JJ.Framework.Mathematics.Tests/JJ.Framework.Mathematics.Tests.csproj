@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{80473C02-D43B-483F-9D00-21C64FCCC342}</ProjectGuid>
+    <ProjectGuid>{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Apps.SetText.AppService.Tests</RootNamespace>
-    <AssemblyName>JJ.Apps.SetText.AppService.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>JJ.Framework.Maths.Tests</RootNamespace>
+    <AssemblyName>JJ.Framework.Maths.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,9 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -53,35 +51,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SetTextAppService_OverHttp_Tests.cs" />
+    <Compile Include="MathsTests.cs" />
+    <Compile Include="NumberBaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.csproj">
-      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
-      <Name>JJ.Framework.Common</Name>
+    <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj">
+      <Project>{810b90b9-f501-4b91-b019-2ad5aad63304}</Project>
+      <Name>JJ.Framework.Mathematics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Soap\JJ.Framework.Soap.csproj">
-      <Project>{2b86213c-a758-4db9-bd37-5e7d2f4d7c4d}</Project>
-      <Name>JJ.Framework.Soap</Name>
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
+      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
+      <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj">
-      <Project>{8dcbf3f3-b30f-4c11-8957-bea7f43ee173}</Project>
-      <Name>JJ.Framework.Xml.Linq</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.Canonical\JJ.Models.Canonical.csproj">
-      <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
-      <Name>JJ.Models.Canonical</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Apps.SetText\JJ.Apps.SetText.csproj">
-      <Project>{44b139ab-bdf0-414a-aa01-4b7e62adcf57}</Project>
-      <Name>JJ.Apps.SetText</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="TestResources\Save_WithValidationMessages.xml" />
-    <EmbeddedResource Include="TestResources\Save.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
