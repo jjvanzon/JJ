@@ -1,4 +1,4 @@
-﻿using JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers;
+﻿using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Persistence;
@@ -33,9 +33,10 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                     return viewModel;
                 }
 
-                using (UserRepositoryWrapper userRepositoryWrapper = CreateRepositoryWrapper())
+                using (IContext context = PersistenceHelper.CreateContext())
                 {
-                    var presenter = new SmallLoginPresenter(userRepositoryWrapper.UserRepository);
+                    IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
+                    SmallLoginPresenter presenter = new SmallLoginPresenter(userRepository);
                     viewModel = presenter.Show();
                     GetSessionWrapper().SmallLoginViewModel = viewModel;
                     return viewModel;
@@ -49,35 +50,27 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public void SetLoggedInUserName(string authenticatedUserName)
         {
-            using (UserRepositoryWrapper repositoryWrapper = CreateRepositoryWrapper())
+            using (IContext context = PersistenceHelper.CreateContext())
             {
-                using (UserRepositoryWrapper userRepositoryWrapper = CreateRepositoryWrapper())
-                {
-                    SmallLoginPresenter presenter = new SmallLoginPresenter(userRepositoryWrapper.UserRepository);
-                    SmallLoginViewModel viewModel = presenter.SetLoggedInUserName(authenticatedUserName);
-                    Model = viewModel;
-                }
+                IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
+                SmallLoginPresenter presenter = new SmallLoginPresenter(userRepository);
+                SmallLoginViewModel viewModel = presenter.SetLoggedInUserName(authenticatedUserName);
+                Model = viewModel;
             }
         }
 
         public void SetIsLoggedOut()
         {
-            using (UserRepositoryWrapper repositoryWrapper = CreateRepositoryWrapper())
+            using (IContext context = PersistenceHelper.CreateContext())
             {
-                SmallLoginPresenter presenter = new SmallLoginPresenter(repositoryWrapper.UserRepository);
+                IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
+                SmallLoginPresenter presenter = new SmallLoginPresenter(userRepository);
                 SmallLoginViewModel viewModel = presenter.SetIsLoggedOut();
                 Model = viewModel;
             }
         }
 
         // Helpers
-
-        private UserRepositoryWrapper CreateRepositoryWrapper()
-        {
-            IContext context = ContextFactory.CreateContextFromConfiguration();
-            IUserRepository userRepository = new UserRepository(context);
-            return new UserRepositoryWrapper(userRepository, context);
-        }
 
         private SessionWrapper GetSessionWrapper()
         {

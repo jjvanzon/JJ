@@ -1,11 +1,12 @@
-﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
+﻿using JJ.Apps.QuestionAndAnswer.Mvc.Names;
+using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
+namespace JJ.Apps.QuestionAndAnswer.Mvc.Helpers
 {
     public class SessionWrapper
     {
@@ -13,11 +14,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
 
         public SessionWrapper(HttpSessionStateBase session)
         {
-            if (session == null)
-            {
-                throw new ArgumentNullException("session");
-            }
-            
+            if (session == null) throw new ArgumentNullException("session");
             _session = session;
         }
 

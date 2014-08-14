@@ -30,7 +30,7 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
 
         private void RandomQuestionForm_Load(object sender, EventArgs e)
         {
-            _context = ContextFactory.CreateContextFromConfiguration();
+            _context = PersistenceHelper.CreateContext();
             _presenter = CreatePresenter(_context);
 
             SetTitlesAndLabels();
@@ -141,11 +141,11 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
         private RandomQuestionPresenter CreatePresenter(IContext context)
         {
             return new RandomQuestionPresenter(
-                new QuestionRepository(context, context.Location),
-                new CategoryRepository(context),
-                new QuestionFlagRepository(context),
-                new FlagStatusRepository(context),
-                new UserRepository(context));
+                PersistenceHelper.CreateRepository<IQuestionRepository>(context),
+                PersistenceHelper.CreateRepository<ICategoryRepository>(context),
+                PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context),
+                PersistenceHelper.CreateRepository<IFlagStatusRepository>(context),
+                PersistenceHelper.CreateRepository<IUserRepository>(context));
         }
     }
 }

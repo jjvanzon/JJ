@@ -1,4 +1,4 @@
-﻿using JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers;
+﻿using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Common;
@@ -17,9 +17,10 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
     {
         public ActionResult Index()
         {
-            using (UserRepositoryWrapper repositoryWrapper = CreateRepositoryWrapper())
+            using (IContext context = PersistenceHelper.CreateContext())
             {
-                LoginPresenter presenter = new LoginPresenter(repositoryWrapper.UserRepository);
+                IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
+                LoginPresenter presenter = new LoginPresenter(userRepository);
                 LoginViewModel viewModel = presenter.Show();
                 return View(viewModel);
             }
@@ -28,12 +29,14 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         [HttpPost]
         public ActionResult Index(LoginViewModel viewModel)
         {
-            using (UserRepositoryWrapper repositoryWrapper = CreateRepositoryWrapper())
+            using (IContext context = PersistenceHelper.CreateContext())
             {
+                IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
+                LoginPresenter presenter = new LoginPresenter(userRepository);
+
                 string password = viewModel.Password;
                 string securityToken = viewModel.SecurityToken;
 
-                LoginPresenter presenter = new LoginPresenter(repositoryWrapper.UserRepository);
                 LoginViewModel viewModel2 = presenter.Login(password, securityToken, viewModel);
 
                 if (!viewModel2.IsAuthenticated)
@@ -43,13 +46,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
                 return base.SetAuthenticatedUserName(viewModel2.UserName);
             }
-        }
-
-        private UserRepositoryWrapper CreateRepositoryWrapper()
-        {
-            IContext context = ContextFactory.CreateContextFromConfiguration();
-            IUserRepository userRepository = new UserRepository(context);
-            return new UserRepositoryWrapper(userRepository, context);
         }
     }
 }

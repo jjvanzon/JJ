@@ -17,9 +17,10 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
     {
         public RandomQuestionViewModel ShowQuestion()
         {
-            using (IContext context = ContextFactory.CreateContextFromConfiguration())
+            using (IContext context = PersistenceHelper.CreateContext())
             {
                 RandomQuestionPresenter presenter = CreatePresenter(context);
+
                 // TODO: Polymorphic results.
                 object viewModel = presenter.Show();
                 if (viewModel is RandomQuestionViewModel)
@@ -35,9 +36,10 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
 
         public RandomQuestionViewModel ShowAnswer(RandomQuestionViewModel viewModel)
         {
-            using (IContext context = ContextFactory.CreateContextFromConfiguration())
+            using (IContext context = PersistenceHelper.CreateContext())
             {
                 RandomQuestionPresenter presenter = CreatePresenter(context);
+
                 // TODO: Polymorphic results.
                 object viewModel2 = presenter.ShowAnswer(viewModel, null);
                 if (viewModel2 is RandomQuestionViewModel)
@@ -53,7 +55,7 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
 
         public RandomQuestionViewModel HideAnswer(RandomQuestionViewModel viewModel)
         {
-            using (IContext context = ContextFactory.CreateContextFromConfiguration())
+            using (IContext context = PersistenceHelper.CreateContext())
             {
                 RandomQuestionPresenter presenter = CreatePresenter(context);
 
@@ -73,11 +75,11 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
         private RandomQuestionPresenter CreatePresenter(IContext context)
         {
             return new RandomQuestionPresenter(
-                new QuestionRepository(context, context.Location),
-                new CategoryRepository(context),
-                new QuestionFlagRepository(context),
-                new FlagStatusRepository(context),
-                new UserRepository(context));
+                PersistenceHelper.CreateRepository<IQuestionRepository>(context),
+                PersistenceHelper.CreateRepository<ICategoryRepository>(context),
+                PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context),
+                PersistenceHelper.CreateRepository<IFlagStatusRepository>(context),
+                PersistenceHelper.CreateRepository<IUserRepository>(context));
         }
     }
 }

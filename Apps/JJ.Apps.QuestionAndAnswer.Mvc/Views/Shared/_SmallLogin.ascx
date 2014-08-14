@@ -1,7 +1,8 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SmallLoginViewModel>" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Helpers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
 
 <% if (Model.LogInActionIsVisible) { %>
 

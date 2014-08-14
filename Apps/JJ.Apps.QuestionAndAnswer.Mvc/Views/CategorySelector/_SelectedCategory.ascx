@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Apps.QuestionAndAnswer.ViewModels.CategoryViewModel>" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Views.Helpers" %>
 <%@ Import Namespace="JJ.Framework.Presentation.Mvc" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
 
 <% using (Html.BeginCollectionItem()) { %>
 

@@ -85,6 +85,7 @@
     <Compile Include="IResourceService.cs" />
     <Compile Include="Labels.cs" />
     <Compile Include="Messages.cs" />
+    <Compile Include="PersistenceHelper.cs" />
     <Compile Include="RandomQuestionService.svc.cs">
       <DependentUpon>RandomQuestionService.svc</DependentUpon>
     </Compile>

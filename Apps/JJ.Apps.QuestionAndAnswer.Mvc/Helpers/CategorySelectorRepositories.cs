@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
+namespace JJ.Apps.QuestionAndAnswer.Mvc.Helpers
 {
-    public class CategorySelectorRepositories : IDisposable
+    public class CategorySelectorRepositories
     {
-        private IDisposable _underlyingDataStore;
-
         public ICategoryRepository CategoryRepository { get; private set; }
         public IQuestionRepository QuestionRepository { get; private set; }
         public IQuestionFlagRepository QuestionFlagRepository { get; private set; }
@@ -21,8 +19,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
             IQuestionRepository questionRepository,
             IQuestionFlagRepository questionFlagRepository,
             IFlagStatusRepository flagStatusRepository,
-            IUserRepository userRepository,
-            IDisposable underlyingDataStore = null)
+            IUserRepository userRepository)
         {
             if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
@@ -35,16 +32,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers
             QuestionFlagRepository = questionFlagRepository;
             FlagStatusRepository = flagStatusRepository;
             UserRepository = userRepository;
-
-            _underlyingDataStore = underlyingDataStore;
-        }
-
-        public void Dispose()
-        {
-            if (_underlyingDataStore != null)
-            {
-                _underlyingDataStore.Dispose();
-            }
         }
     }
 }

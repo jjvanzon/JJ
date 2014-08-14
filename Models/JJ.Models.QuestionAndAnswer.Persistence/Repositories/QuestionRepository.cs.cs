@@ -14,9 +14,11 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
     {
         private SqlExecutor _sqlExecutor;
 
-        public QuestionRepository(IContext context, string sqlConnectionString)
+        public QuestionRepository(IContext context)
             : base(context)
         {
+            // TODO: This only works for SQL Server.
+            string sqlConnectionString = context.Location;
             _sqlExecutor = new SqlExecutor(sqlConnectionString);
         }
 

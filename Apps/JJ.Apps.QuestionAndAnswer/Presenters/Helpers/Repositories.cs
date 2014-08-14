@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
 {
-    public class Repositories : IDisposable
+    public class Repositories
     {
-        private IDisposable _underlyingDataStore;
-
         public IQuestionRepository QuestionRepository { get; private set; }
         public IAnswerRepository AnswerRepository { get; private set; }
         public ICategoryRepository CategoryRepository { get; private set; }
@@ -22,7 +20,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
         public IQuestionTypeRepository QuestionTypeRepository { get; private set; }
         public IUserRepository UserRepository { get; private set; }
 
-        /// <param name="underlyingDataStore">Optional. Will be disposed when the PersistenceContainer is disposed.</param>
         public Repositories(
             IQuestionRepository questionRepository,
             IAnswerRepository answerRepository,
@@ -33,8 +30,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
             IFlagStatusRepository flagStatusRepository,
             ISourceRepository sourceRepository,
             IQuestionTypeRepository questionTypeRepository,
-            IUserRepository userRepository,
-            IDisposable underlyingDataStore)
+            IUserRepository userRepository)
         {
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");
             if (answerRepository == null) throw new ArgumentNullException("answerRepository");
@@ -56,16 +52,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters.Helpers
             SourceRepository = sourceRepository;
             QuestionTypeRepository = questionTypeRepository;
             UserRepository = userRepository;
-
-            _underlyingDataStore = underlyingDataStore;
-        }
-
-        public void Dispose()
-        {
-            if (_underlyingDataStore != null)
-            {
-                _underlyingDataStore.Dispose();
-            }
         }
     }
 }

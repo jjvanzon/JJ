@@ -1,4 +1,5 @@
-﻿using JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers;
+﻿using JJ.Apps.QuestionAndAnswer.Mvc.Names;
+using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Persistence;

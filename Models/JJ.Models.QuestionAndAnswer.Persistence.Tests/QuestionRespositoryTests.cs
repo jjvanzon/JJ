@@ -22,7 +22,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
                 using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
                 {
                     int id = GetExistingQuestionID();
-                    IQuestionRepository repository = new QuestionRepository(context, context.Location);
+                    IQuestionRepository repository = new QuestionRepository(context);
                     Question item = repository.Get(id);
                 }
             }
@@ -35,7 +35,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
             {
                 using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
                 {
-                    IQuestionRepository repository = new QuestionRepository(context, context.Location);
+                    IQuestionRepository repository = new QuestionRepository(context);
                     List<Question> list = repository.GetAll().ToList();
                 }
             }
@@ -50,7 +50,7 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Tests
             {
                 using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
                 {
-                    IQuestionRepository repository = new QuestionRepository(context, context.Location);
+                    IQuestionRepository repository = new QuestionRepository(context);
                     Question[] list = repository.GetBySourceID(TEST_SOURCE_ID).ToArray();
                 }
             }

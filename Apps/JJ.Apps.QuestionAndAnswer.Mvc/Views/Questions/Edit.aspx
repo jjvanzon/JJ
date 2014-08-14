@@ -2,8 +2,8 @@
 <%@ Import Namespace="JJ.Framework.Common" %>
 <%@ Import Namespace="JJ.Framework.Presentation.Mvc" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Views.Helpers" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers.Helpers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Helpers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <%: Model.Title %>
