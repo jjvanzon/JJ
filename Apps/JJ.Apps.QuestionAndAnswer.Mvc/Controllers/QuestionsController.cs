@@ -525,16 +525,16 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         private Repositories CreateRepositories(IContext context)
         {
             return new Repositories(
-                PersistenceHelper.CreateRepository<QuestionRepository>(context),
-                PersistenceHelper.CreateRepository<AnswerRepository>(context),
-                PersistenceHelper.CreateRepository<CategoryRepository>(context),
-                PersistenceHelper.CreateRepository<QuestionCategoryRepository>(context),
-                PersistenceHelper.CreateRepository<QuestionLinkRepository>(context),
-                PersistenceHelper.CreateRepository<QuestionFlagRepository>(context),
-                PersistenceHelper.CreateRepository<FlagStatusRepository>(context),
-                PersistenceHelper.CreateRepository<SourceRepository>(context),
-                PersistenceHelper.CreateRepository<QuestionTypeRepository>(context),
-                PersistenceHelper.CreateRepository<UserRepository>(context));
+                PersistenceHelper.CreateRepository<IQuestionRepository>(context),
+                PersistenceHelper.CreateRepository<IAnswerRepository>(context),
+                PersistenceHelper.CreateRepository<ICategoryRepository>(context),
+                PersistenceHelper.CreateRepository<IQuestionCategoryRepository>(context),
+                PersistenceHelper.CreateRepository<IQuestionLinkRepository>(context),
+                PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context),
+                PersistenceHelper.CreateRepository<IFlagStatusRepository>(context),
+                PersistenceHelper.CreateRepository<ISourceRepository>(context),
+                PersistenceHelper.CreateRepository<IQuestionTypeRepository>(context),
+                PersistenceHelper.CreateRepository<IUserRepository>(context));
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Views.Helpers" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers" %>

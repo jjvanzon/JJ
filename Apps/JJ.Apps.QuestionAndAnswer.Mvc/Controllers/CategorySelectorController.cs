@@ -71,11 +71,11 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         private CategorySelectorRepositories CreateRepositories(IContext context)
         {
             return new CategorySelectorRepositories(
-                PersistenceHelper.CreateRepository<CategoryRepository>(context),
-                PersistenceHelper.CreateRepository<QuestionRepository>(context),
-                PersistenceHelper.CreateRepository<QuestionFlagRepository>(context),
-                PersistenceHelper.CreateRepository<FlagStatusRepository>(context),
-                PersistenceHelper.CreateRepository<UserRepository>(context));
+                PersistenceHelper.CreateRepository<ICategoryRepository>(context),
+                PersistenceHelper.CreateRepository<IQuestionRepository>(context),
+                PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context),
+                PersistenceHelper.CreateRepository<IFlagStatusRepository>(context),
+                PersistenceHelper.CreateRepository<IUserRepository>(context));
         }
     }
 }

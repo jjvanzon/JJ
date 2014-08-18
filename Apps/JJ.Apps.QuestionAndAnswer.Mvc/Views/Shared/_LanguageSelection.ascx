@@ -2,7 +2,6 @@
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Views" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Helpers" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
 
