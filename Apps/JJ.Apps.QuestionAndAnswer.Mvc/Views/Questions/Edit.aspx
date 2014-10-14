@@ -116,9 +116,9 @@
                             </td>
                             <td style="vertical-align:bottom;text-align:center;">
                                 <input type="submit" value="<%: Titles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 
-                                                                                                                        ControllerNames.Questions,
-                                                                                                                        ActionParameterNames.temporaryID,
-                                                                                                                        Model.Question.Categories[i].TemporaryID) %>" />
+                                                                                                                       ControllerNames.Questions,
+                                                                                                                       ActionParameterNames.temporaryID,
+                                                                                                                       Model.Question.Categories[i].TemporaryID) %>" />
                                 <%: Html.HiddenFor(x => x.Question.Categories[i].QuestionCategoryID) %>
                                 <%: Html.HiddenFor(x => x.Question.Categories[i].TemporaryID) %>
                             </td>
@@ -187,9 +187,9 @@
                             </td>
                             <td style="vertical-align:bottom;text-align:center;">
                                 <input type="submit" value="<%: Titles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveLink, 
-                                                                                                                        ControllerNames.Questions, 
-                                                                                                                        ActionParameterNames.temporaryID, 
-                                                                                                                        Model.Question.Links[i].TemporaryID) %>" />
+                                                                                                                       ControllerNames.Questions, 
+                                                                                                                       ActionParameterNames.temporaryID, 
+                                                                                                                       Model.Question.Links[i].TemporaryID) %>" />
 
                                 <%: Html.HiddenFor(x => x.Question.Links[i].ID) %>
                                 <%: Html.HiddenFor(x => x.Question.Links[i].TemporaryID) %>
