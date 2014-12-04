@@ -59,26 +59,26 @@
     <Compile Include="Extensions\SourceExtensions_ToViewModel.cs" />
     <Compile Include="Extensions\ViewModelExtensions_IsDirty.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoallesce.cs" />
-    <Compile Include="ViewModels\ListViewModel.cs" />
+    <Compile Include="ViewModels\Entities\ListViewModel.cs" />
     <Compile Include="ViewModels\PreviousViewModel.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />
     <Compile Include="Extensions\QuestionCategoryExtensions_ToViewModel.cs" />
     <Compile Include="Helpers\ViewModelHelper.cs" />
-    <Compile Include="ViewModels\QuestionCategoryViewModel.cs" />
-    <Compile Include="ViewModels\CurrentUserQuestionFlagViewModel.cs" />
-    <Compile Include="ViewModels\FlagStatusViewModel.cs" />
+    <Compile Include="ViewModels\Entities\QuestionCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Entities\CurrentUserQuestionFlagViewModel.cs" />
+    <Compile Include="ViewModels\Entities\FlagStatusViewModel.cs" />
     <Compile Include="Extensions\FlagStatusExtensions_ToViewModel.cs" />
     <Compile Include="Extensions\QuestionLinkExtensions_ToViewModel.cs" />
     <Compile Include="ViewModels\QuestionEditViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Extensions\QuestionFlagExtensions_ToViewModel.cs" />
     <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />
-    <Compile Include="ViewModels\QuestionFlagViewModel.cs" />
+    <Compile Include="ViewModels\Entities\QuestionFlagViewModel.cs" />
     <Compile Include="ViewModels\QuestionListViewModel.cs" />
     <Compile Include="ViewModels\QuestionNotFoundViewModel.cs" />
-    <Compile Include="ViewModels\QuestionTypeViewModel.cs" />
+    <Compile Include="ViewModels\Entities\QuestionTypeViewModel.cs" />
     <Compile Include="ViewModels\SmallLoginViewModel.cs" />
     <Compile Include="Presenters\SmallLoginPresenter.cs" />
     <Compile Include="Presenters\LanguageSelectionPresenter.cs" />
@@ -90,7 +90,7 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CategorySelectorViewModel.cs" />
-    <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Entities\CategoryViewModel.cs" />
     <Compile Include="Extensions\CategoryExtensions_ToViewModel.cs" />
     <Compile Include="Extensions\QuestionEditViewModelExtensions_ToEntity.cs" />
     <Compile Include="Extensions\QuestionExtensions_ToViewModel.cs" />
@@ -104,12 +104,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Titles.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\LanguageViewModel.cs" />
+    <Compile Include="ViewModels\Entities\LanguageViewModel.cs" />
     <Compile Include="ViewModels\LanguageSelectionViewModel.cs" />
     <Compile Include="ViewModels\RandomQuestionViewModel.cs" />
-    <Compile Include="ViewModels\QuestionLinkViewModel.cs" />
-    <Compile Include="ViewModels\QuestionViewModel.cs" />
-    <Compile Include="ViewModels\SourceViewModel.cs" />
+    <Compile Include="ViewModels\Entities\QuestionLinkViewModel.cs" />
+    <Compile Include="ViewModels\Entities\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\Entities\SourceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">

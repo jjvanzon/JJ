@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Apps.QuestionAndAnswer.Helpers
 {

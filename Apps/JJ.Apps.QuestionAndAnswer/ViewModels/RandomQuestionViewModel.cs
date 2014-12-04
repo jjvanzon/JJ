@@ -1,4 +1,5 @@
 ﻿using JJ.Apps.QuestionAndAnswer.Resources;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

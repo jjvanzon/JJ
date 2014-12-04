@@ -1,6 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.QuestionDeleteConfirmedViewModel>" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<QuestionDeleteConfirmedViewModel>" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <h2><%: Titles.DeleteQuestion %></h2>

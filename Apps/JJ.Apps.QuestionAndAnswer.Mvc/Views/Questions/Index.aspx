@@ -1,11 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.QuestionListViewModel>" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<QuestionListViewModel>" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <%: Titles.Questions %>
 </asp:Content>
-
 
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
 </asp:Content>

@@ -1,4 +1,5 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Framework.Validation;
 using System;
 using System.Collections.Generic;

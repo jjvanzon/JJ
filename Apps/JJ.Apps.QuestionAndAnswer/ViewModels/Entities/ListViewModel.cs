@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Apps.QuestionAndAnswer.ViewModels
+namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
 {
     public class ListViewModel<T> : List<T>
     {

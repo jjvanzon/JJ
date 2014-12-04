@@ -1,4 +1,5 @@
-﻿using JJ.Models.Canonical;
+﻿using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Models.Canonical;
 using System;
 using System.Collections.Generic;
 using System.Linq;

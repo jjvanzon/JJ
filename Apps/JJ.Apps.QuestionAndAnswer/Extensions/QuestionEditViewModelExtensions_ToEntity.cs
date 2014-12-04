@@ -11,6 +11,7 @@ using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Apps.QuestionAndAnswer.Extensions
 {

@@ -1,11 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.CategorySelectorViewModel>" %>
-<%@ Import Namespace="JJ.Framework.Common" %>
-<%@ Import Namespace="JJ.Framework.Presentation.Mvc" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Extensions" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Helpers" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Helpers" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<CategorySelectorViewModel>" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <%: Titles.SelectCategories %>

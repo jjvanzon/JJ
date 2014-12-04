@@ -1,6 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Apps.QuestionAndAnswer.ViewModels.RandomQuestionViewModel>" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
+﻿<%@ Control Language="C#" Inherits ="ViewUserControl<RandomQuestionViewModel>" %>
 
 <% if (Model.CurrentUserQuestionFlag.CanFlag) { %>
 

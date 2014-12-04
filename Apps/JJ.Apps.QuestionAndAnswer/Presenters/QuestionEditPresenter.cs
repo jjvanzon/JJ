@@ -11,10 +11,12 @@ using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {

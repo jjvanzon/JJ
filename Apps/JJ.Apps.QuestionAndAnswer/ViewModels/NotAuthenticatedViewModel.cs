@@ -7,6 +7,5 @@ using System.Threading.Tasks;
 namespace JJ.Apps.QuestionAndAnswer.ViewModels
 {
     public class NotAuthenticatedViewModel
-    {
-    }
+    { }
 }

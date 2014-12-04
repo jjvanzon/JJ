@@ -1,15 +1,6 @@
-﻿<%@ Page Title="" Language="C#" 
-         MasterPageFile="~/Views/Shared/Site.Master" 
-         Inherits="System.Web.Mvc.ViewPage<JJ.Apps.QuestionAndAnswer.ViewModels.RandomQuestionViewModel>" %>
-<%@ Import Namespace="JJ.Framework.Presentation.Mvc" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Controllers" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Helpers" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<RandomQuestionViewModel>" %>
 
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
-
 </asp:Content>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">

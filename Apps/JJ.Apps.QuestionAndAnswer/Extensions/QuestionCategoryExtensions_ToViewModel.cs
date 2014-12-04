@@ -1,5 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;

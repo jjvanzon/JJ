@@ -1,6 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Apps.QuestionAndAnswer.ViewModels.CategoryViewModel>" %>
-<%@ Import Namespace="JJ.Framework.Presentation.Mvc" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
+﻿<%@ Control Language="C#" Inherits="ViewUserControl<CategoryViewModel>" %>
 
 <% if (Model.Visible) { %>
 

@@ -1,4 +1,5 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Framework.Validation;
 using System;

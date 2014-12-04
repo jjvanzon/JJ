@@ -7,6 +7,7 @@ using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Models.QuestionAndAnswer.Persistence.Repositories;

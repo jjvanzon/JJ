@@ -1,9 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<LanguageSelectionViewModel>" %>
-<%@ Import Namespace="System.Linq" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Helpers" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
+﻿<%@ Control Language="C#" Inherits="ViewUserControl<LanguageSelectionViewModel>" %>
 
 <script>
     $(document).ready(function () {

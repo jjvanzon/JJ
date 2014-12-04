@@ -12,6 +12,7 @@ using JJ.Models.Canonical;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Framework.Common;
 using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Apps.QuestionAndAnswer.Extensions
 {
