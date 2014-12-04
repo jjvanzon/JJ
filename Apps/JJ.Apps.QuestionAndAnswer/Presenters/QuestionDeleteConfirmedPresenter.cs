@@ -7,8 +7,8 @@ using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
-using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
-using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
+using JJ.Apps.QuestionAndAnswer.Extensions;
+using JJ.Apps.QuestionAndAnswer.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {

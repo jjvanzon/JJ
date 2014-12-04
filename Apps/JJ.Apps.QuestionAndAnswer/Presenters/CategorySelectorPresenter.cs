@@ -10,7 +10,7 @@ using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
-using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
+using JJ.Apps.QuestionAndAnswer.Extensions;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {

@@ -12,8 +12,8 @@ using JJ.Framework.Common;
 using JJ.Framework.Presentation;
 using JJ.Models.Canonical;
 using JJ.Apps.QuestionAndAnswer.Mvc.Names;
-using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
-using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
+using JJ.Apps.QuestionAndAnswer.Extensions;
+using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers

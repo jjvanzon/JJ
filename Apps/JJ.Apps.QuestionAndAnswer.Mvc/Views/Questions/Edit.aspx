@@ -105,14 +105,14 @@
                             <td>
 
                                 <%: Html.DropDownListFor(
-                                    x => x.Question.Categories[i].Category.ID,
-                                    Model.Categories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
-                                    {
-                                        Value = x.ID.ToString(), 
-                                        Text = String.Join(@" \ ", x.NameParts), 
-                                        Selected = x.ID == Model.Question.Categories[i].Category.ID
-                                    }),
-                                    "")%>
+                                        x => x.Question.Categories[i].Category.ID,
+                                        Model.Categories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
+                                        {
+                                            Value = x.ID.ToString(), 
+                                            Text = String.Join(@" \ ", x.NameParts), 
+                                            Selected = x.ID == Model.Question.Categories[i].Category.ID
+                                        }),
+                                        "")%>
                             </td>
                             <td style="vertical-align:bottom;text-align:center;">
                                 <input type="submit" value="<%: Titles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 

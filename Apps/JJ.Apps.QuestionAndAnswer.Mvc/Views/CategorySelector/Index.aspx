@@ -2,7 +2,8 @@
 <%@ Import Namespace="JJ.Framework.Common" %>
 <%@ Import Namespace="JJ.Framework.Presentation.Mvc" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Resources" %>
-<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.ViewModels.Helpers" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Extensions" %>
+<%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Helpers" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Helpers" %>
 <%@ Import Namespace="JJ.Apps.QuestionAndAnswer.Mvc.Names" %>
 

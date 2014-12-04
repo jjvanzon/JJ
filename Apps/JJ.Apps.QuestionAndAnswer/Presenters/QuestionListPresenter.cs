@@ -1,6 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
-using JJ.Apps.QuestionAndAnswer.ViewModels.Helpers;
+using JJ.Apps.QuestionAndAnswer.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
-using JJ.Apps.QuestionAndAnswer.Presenters.Helpers;
+using JJ.Apps.QuestionAndAnswer.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {

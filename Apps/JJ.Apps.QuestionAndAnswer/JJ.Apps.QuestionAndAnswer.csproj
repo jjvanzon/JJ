@@ -41,9 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
-    <Compile Include="Presenters\Helpers\Repositories.cs" />
-    <Compile Include="Presenters\Helpers\ValidationMessagesExtensions.cs" />
-    <Compile Include="Presenters\Helpers\ValidationMessageExtensions.cs" />
+    <Compile Include="Helpers\Repositories.cs" />
+    <Compile Include="Extensions\ValidationMessagesExtensions.cs" />
+    <Compile Include="Extensions\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\QuestionDeleteConfirmedPresenter.cs" />
     <Compile Include="Presenters\QuestionDeletePresenter.cs" />
@@ -54,26 +54,26 @@
     <Compile Include="Validation\QuestionEditViewModelValidator.cs" />
     <Compile Include="Validation\QuestionLinkViewModelValidator.cs" />
     <Compile Include="Validation\QuestionViewModelValidator.cs" />
-    <Compile Include="ViewModels\Helpers\ViewModelExtensions_IsNew.cs" />
-    <Compile Include="ViewModels\Helpers\QuestionTypeExtensions_ToViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\SourceExtensions_ToViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\ViewModelExtensions_IsDirty.cs" />
-    <Compile Include="ViewModels\Helpers\ViewModelExtensions_NullCoallesce.cs" />
+    <Compile Include="Extensions\ViewModelExtensions_IsNew.cs" />
+    <Compile Include="Extensions\QuestionTypeExtensions_ToViewModel.cs" />
+    <Compile Include="Extensions\SourceExtensions_ToViewModel.cs" />
+    <Compile Include="Extensions\ViewModelExtensions_IsDirty.cs" />
+    <Compile Include="Extensions\ViewModelExtensions_NullCoallesce.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\PreviousViewModel.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\QuestionCategoryExtensions_ToViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\ViewModelHelper.cs" />
+    <Compile Include="Extensions\QuestionCategoryExtensions_ToViewModel.cs" />
+    <Compile Include="Helpers\ViewModelHelper.cs" />
     <Compile Include="ViewModels\QuestionCategoryViewModel.cs" />
     <Compile Include="ViewModels\CurrentUserQuestionFlagViewModel.cs" />
     <Compile Include="ViewModels\FlagStatusViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\FlagStatusExtensions_ToViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\QuestionLinkExtensions_ToViewModel.cs" />
+    <Compile Include="Extensions\FlagStatusExtensions_ToViewModel.cs" />
+    <Compile Include="Extensions\QuestionLinkExtensions_ToViewModel.cs" />
     <Compile Include="ViewModels\QuestionEditViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\QuestionFlagExtensions_ToViewModel.cs" />
+    <Compile Include="Extensions\QuestionFlagExtensions_ToViewModel.cs" />
     <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />
     <Compile Include="ViewModels\QuestionFlagViewModel.cs" />
     <Compile Include="ViewModels\QuestionListViewModel.cs" />
@@ -91,9 +91,9 @@
     </Compile>
     <Compile Include="ViewModels\CategorySelectorViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\CategoryExtensions_ToViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\QuestionEditViewModelExtensions_ToEntity.cs" />
-    <Compile Include="ViewModels\Helpers\QuestionExtensions_ToViewModel.cs" />
+    <Compile Include="Extensions\CategoryExtensions_ToViewModel.cs" />
+    <Compile Include="Extensions\QuestionEditViewModelExtensions_ToEntity.cs" />
+    <Compile Include="Extensions\QuestionExtensions_ToViewModel.cs" />
     <Compile Include="Resources\Labels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
