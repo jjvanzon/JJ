@@ -9,6 +9,7 @@ using JJ.Models.QuestionAndAnswer.Persistence;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.Extensions;
+using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
 using JJ.Business.QuestionAndAnswer;

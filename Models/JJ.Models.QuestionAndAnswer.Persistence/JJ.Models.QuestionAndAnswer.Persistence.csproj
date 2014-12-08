@@ -32,18 +32,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\AnswerRepository.cs" />
     <Compile Include="Repositories\FlagStatusRepository.cs" />
     <Compile Include="Repositories\QuestionFlagRepository.cs" />
-    <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\QuestionCategoryRepository.cs" />
     <Compile Include="Repositories\QuestionLinkRepository.cs" />
@@ -54,7 +49,6 @@
     <Compile Include="RepositoryInterfaces\IQuestionFlagRepository.cs" />
     <Compile Include="RepositoryInterfaces\IQuestionLinkRepository.cs" />
     <Compile Include="RepositoryInterfaces\IQuestionTypeRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IRepository.cs" />
     <Compile Include="RepositoryInterfaces\ISourceRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICategoryRepository.cs" />
     <Compile Include="RepositoryInterfaces\IAnswerRepository.cs" />

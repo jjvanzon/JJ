@@ -90,7 +90,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj">
       <Project>{810b90b9-f501-4b91-b019-2ad5aad63304}</Project>
-      <Name>JJ.Framework.Maths</Name>
+      <Name>JJ.Framework.Mathematics</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>

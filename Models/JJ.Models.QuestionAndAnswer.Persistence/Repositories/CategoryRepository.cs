@@ -21,46 +21,6 @@ namespace JJ.Models.QuestionAndAnswer.Persistence.Repositories
                            .SingleOrDefault();
         }
 
-        /*public Category TryGetByIdentifier(string identifier)
-        {
-            Category category;
-
-            category = _context.QueryUncommitted<Category>()
-                               .Where(x => x.Identifier == identifier)
-                               .SingleOrDefault();
-
-            if (category == null)
-            {
-                category = _context.Query<Category>()
-                           .Where(x => x.Identifier == identifier)
-                           .SingleOrDefault();
-            }
-
-            return category;
-        }*/
-
-        /*public Category TryGetByParentAndIdentifier(Category parentCategory, string identifier)
-        {
-            if (parentCategory == null) throw new ArgumentNullException("parentCategory");
-
-            Category category;
-
-            category = _context.QueryUncommitted<Category>()
-                               .Where(x => x.ParentCategory == parentCategory)
-                               .Where(x => x.Identifier == identifier)
-                               .SingleOrDefault();
-
-            if (category == null)
-            {
-                category = _context.Query<Category>()
-                                   .Where(x => x.ParentCategory == parentCategory)
-                                   .Where(x => x.Identifier == identifier)
-                                   .SingleOrDefault();
-            }
-
-            return category;
-        }*/
-
         public Category TryGetCategoryByParentAndIdentifier(Category parentCategory, string identifier)
         {
             if (parentCategory == null) throw new ArgumentNullException("parentCategory");

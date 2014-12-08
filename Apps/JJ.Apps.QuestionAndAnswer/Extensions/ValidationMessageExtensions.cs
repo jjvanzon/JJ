@@ -8,7 +8,8 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 {
     internal static class ValidationMessageExtensions
     {
-        public static JJ.Models.Canonical.ValidationMessage ToCanonical(this JJ.Framework.Validation.ValidationMessage sourceEntity)
+        public static JJ.Models.Canonical.ValidationMessage ToCanonical(
+            this JJ.Framework.Validation.ValidationMessage sourceEntity)
         {
             return new Models.Canonical.ValidationMessage
             {

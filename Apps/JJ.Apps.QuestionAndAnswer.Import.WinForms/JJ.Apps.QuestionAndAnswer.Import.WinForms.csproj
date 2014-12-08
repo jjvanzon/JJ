@@ -175,13 +175,13 @@
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
       <Name>JJ.Framework.Presentation.WinForms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.csproj">
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.EntityFramework5\JJ.Models.QuestionAndAnswer.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5</Name>
+      <Name>JJ.Models.QuestionAndAnswer.EntityFramework5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.NHibernate\JJ.Models.QuestionAndAnswer.Persistence.NHibernate.csproj">
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.NHibernate\JJ.Models.QuestionAndAnswer.NHibernate.csproj">
       <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.Persistence.NHibernate</Name>
+      <Name>JJ.Models.QuestionAndAnswer.NHibernate</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence\JJ.Models.QuestionAndAnswer.Persistence.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>

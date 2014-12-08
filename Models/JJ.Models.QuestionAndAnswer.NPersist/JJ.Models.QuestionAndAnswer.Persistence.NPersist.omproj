@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>JJ.Models.QuestionAndAnswer.NPersist</Name>
+  <MetaData />
+  <Resources>
+    <Resource>
+      <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\JJ.Models.QuestionAndAnswer.NPersist.npersist</FilePath>
+      <HintPath>JJ.Models.QuestionAndAnswer.NPersist.npersist</HintPath>
+      <Name>JJ.Models.QuestionAndAnswer</Name>
+      <ResourceType>XmlDomainMap</ResourceType>
+      <Resources />
+      <Configs>
+        <DomainConfig>
+          <Name>Default configuration</Name>
+          <MetaData />
+          <ClassesToCodeConfig>
+            <Name />
+            <MetaData />
+            <TargetFolder>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos</TargetFolder>
+            <ImplementIInterceptable>false</ImplementIInterceptable>
+            <ImplementIObjectHelper>false</ImplementIObjectHelper>
+            <ImplementIObservable>false</ImplementIObservable>
+            <IncludeRegions>false</IncludeRegions>
+            <IncludeComments>false</IncludeComments>
+            <IncludeDocComments>false</IncludeDocComments>
+            <IncludeModelInfoInDocComments>false</IncludeModelInfoInDocComments>
+            <NotifyOnlyWhenRequired>false</NotifyOnlyWhenRequired>
+            <NotifyLightWeight>false</NotifyLightWeight>
+            <NotifyAfterGet>false</NotifyAfterGet>
+            <NotifyAfterSet>false</NotifyAfterSet>
+            <ImplementShadows>false</ImplementShadows>
+            <AddPropertyNotifyMethods>false</AddPropertyNotifyMethods>
+            <GeneratePOCO>true</GeneratePOCO>
+            <TargetLanguage>CSharp</TargetLanguage>
+            <TargetMapper>NPersist</TargetMapper>
+            <ReallyNoRegions>true</ReallyNoRegions>
+            <UseTypedCollections>false</UseTypedCollections>
+            <WrapCollections>false</WrapCollections>
+            <EmbedXml>false</EmbedXml>
+            <SourceCodeFiles>
+              <SourceCodeFile>
+                <Name>AnswerHistory.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\AnswerHistory.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>AnswerHistory</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2013-12-05T23:19:50.6506825+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>AnswerStatus.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\AnswerStatus.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>AnswerStatus</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0347851+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>FlagStatus.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\FlagStatus.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>FlagStatus</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0503852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionFlag.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\QuestionFlag.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>QuestionFlag</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0659852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>Run.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\Run.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>Run</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0815852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>RunCategory.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\RunCategory.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>RunCategory</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0971852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>User.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\User.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>User</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0971852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>AssemblyInfo.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\AssemblyInfo.cs</FilePath>
+                <MapObjectType />
+                <MapObjectName>AssemblyInfo</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.1127853+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>JJ.Models.QuestionAndAnswer.npersist</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\JJ.Models.QuestionAndAnswer.npersist</FilePath>
+                <MapObjectType />
+                <MapObjectName>MapFile</MapObjectName>
+                <FileType>NPersist</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.1283853+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>Answer.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\Answer.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>Answer</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0347851+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>Category.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\Category.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>Category</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0503852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>Question.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\Question.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>Question</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0659852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionCategory.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\QuestionCategory.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>QuestionCategory</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0659852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionLink.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\QuestionLink.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>QuestionLink</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0815852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>QuestionType.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\QuestionType.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>QuestionType</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0815852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>Source.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\Source.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>Source</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.0971852+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>JJ.Models.QuestionAndAnswer.csproj</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\JJ.Models.QuestionAndAnswer.csproj</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.DomainMap</MapObjectType>
+                <MapObjectName>JJ.Models.QuestionAndAnswer</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.1283853+01:00</LastWrittenTo>
+              </SourceCodeFile>
+              <SourceCodeFile>
+                <Name>UserAnswer.cs</Name>
+                <MetaData />
+                <FilePath>D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Models\JJ.Models.QuestionAndAnswer.NPersist\GeneratedPocos\UserAnswer.cs</FilePath>
+                <MapObjectType>Puzzle.NPersist.Framework.Mapping.ClassMap</MapObjectType>
+                <MapObjectName>UserAnswer</MapObjectName>
+                <FileType>CSharp</FileType>
+                <LastWrittenTo>2014-01-02T20:30:41.1127853+01:00</LastWrittenTo>
+              </SourceCodeFile>
+            </SourceCodeFiles>
+            <PutAllClassesInOneFile>false</PutAllClassesInOneFile>
+            <XmlFilePerClass>false</XmlFilePerClass>
+          </ClassesToCodeConfig>
+          <ClassesToTablesConfig>
+            <Name />
+            <MetaData />
+            <TablePrefix />
+            <TableSuffix />
+          </ClassesToTablesConfig>
+          <TablesToClassesConfig>
+            <Name />
+            <MetaData />
+            <TableToClassNameConverter />
+            <ColumnToPropertyNameConverter />
+            <PropertyToInverseNameConverter />
+            <GenerateInverseProperties>true</GenerateInverseProperties>
+          </TablesToClassesConfig>
+          <IsActive>true</IsActive>
+        </DomainConfig>
+      </Configs>
+      <Diagrams>
+        <UmlDiagram>
+          <Name>JJ.Models.QuestionAndAnswer</Name>
+          <MetaData />
+          <UmlClasses />
+          <UmlLines />
+          <Location>
+            <X>0</X>
+            <Y>0</Y>
+          </Location>
+          <Size>
+            <Width>957</Width>
+            <Height>613</Height>
+          </Size>
+          <Zoom>1</Zoom>
+          <Selected>true</Selected>
+          <DisplayAssociationArrows>false</DisplayAssociationArrows>
+          <DrawShadows>true</DrawShadows>
+          <DrawShadowsPass2>true</DrawShadowsPass2>
+          <ShadowColor1>
+            <A>128</A>
+            <R>196</R>
+            <G>196</G>
+            <B>196</B>
+          </ShadowColor1>
+          <ShadowColor2>
+            <A>128</A>
+            <R>128</R>
+            <G>128</G>
+            <B>128</B>
+          </ShadowColor2>
+          <ShadowBrushStyle>GradientBrush</ShadowBrushStyle>
+          <ShadowGradientMode>ForwardDiagonal</ShadowGradientMode>
+          <ColorSynchError>
+            <A>255</A>
+            <R>139</R>
+            <G>0</G>
+            <B>0</B>
+          </ColorSynchError>
+          <ColorError>
+            <A>255</A>
+            <R>255</R>
+            <G>0</G>
+            <B>0</B>
+          </ColorError>
+          <UseGrid>true</UseGrid>
+          <GridSize>50</GridSize>
+          <GridColor1>
+            <A>255</A>
+            <R>208</R>
+            <G>208</G>
+            <B>208</B>
+          </GridColor1>
+          <GridColor2>
+            <A>255</A>
+            <R>240</R>
+            <G>240</G>
+            <B>240</B>
+          </GridColor2>
+          <ForeColor>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </ForeColor>
+          <BackColor1>
+            <A>255</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </BackColor1>
+          <BackColor2>
+            <A>255</A>
+            <R>224</R>
+            <G>224</G>
+            <B>224</B>
+          </BackColor2>
+          <BgBrushStyle>SolidBrush</BgBrushStyle>
+          <BgGradientMode>ForwardDiagonal</BgGradientMode>
+          <FontSize>8.25</FontSize>
+          <FontFamily>Microsoft Sans Serif</FontFamily>
+          <FontColor>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </FontColor>
+          <FontStyle>Regular</FontStyle>
+          <ClassBgBrushStyle>GradientBrush</ClassBgBrushStyle>
+          <ClassBgGradientMode>ForwardDiagonal</ClassBgGradientMode>
+          <ClassBackColor1>
+            <A>255</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </ClassBackColor1>
+          <ClassBackColor2>
+            <A>255</A>
+            <R>224</R>
+            <G>224</G>
+            <B>224</B>
+          </ClassBackColor2>
+          <ArrowBaseLength>20</ArrowBaseLength>
+          <RadarSize>100</RadarSize>
+          <DisplayRadar>true</DisplayRadar>
+          <RadarForeColor>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </RadarForeColor>
+          <RadarBackColor>
+            <A>255</A>
+            <R>211</R>
+            <G>211</G>
+            <B>211</B>
+          </RadarBackColor>
+          <RadarClassForeColor>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </RadarClassForeColor>
+          <RadarClassBackColor>
+            <A>255</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </RadarClassBackColor>
+          <RadarViewColor>
+            <A>255</A>
+            <R>165</R>
+            <G>42</G>
+            <B>42</B>
+          </RadarViewColor>
+          <RadarViewStyle>Dash</RadarViewStyle>
+          <DisplayInheritedProperties>false</DisplayInheritedProperties>
+          <DisplayLineProperties>false</DisplayLineProperties>
+        </UmlDiagram>
+      </Diagrams>
+    </Resource>
+  </Resources>
+</Project>

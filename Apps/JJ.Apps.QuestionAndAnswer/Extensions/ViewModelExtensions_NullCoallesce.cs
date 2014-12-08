@@ -10,8 +10,6 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 {
     internal static class ViewModelExtensions_NullCoallesce
     {
-        // TODO: Consider null-coallescing the collection items.
-
         /// <summary>
         /// Fills up the viewmodel with new objects where there are unexpected nulls.
         /// </summary>

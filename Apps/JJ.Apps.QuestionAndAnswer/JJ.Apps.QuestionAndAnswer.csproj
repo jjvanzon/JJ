@@ -55,8 +55,8 @@
     <Compile Include="Validation\QuestionLinkViewModelValidator.cs" />
     <Compile Include="Validation\QuestionViewModelValidator.cs" />
     <Compile Include="Extensions\ViewModelExtensions_IsNew.cs" />
-    <Compile Include="Extensions\QuestionTypeExtensions_ToViewModel.cs" />
-    <Compile Include="Extensions\SourceExtensions_ToViewModel.cs" />
+    <Compile Include="ToViewModel\QuestionTypeExtensions.cs" />
+    <Compile Include="ToViewModel\SourceExtensions.cs" />
     <Compile Include="Extensions\ViewModelExtensions_IsDirty.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoallesce.cs" />
     <Compile Include="ViewModels\Entities\ListViewModel.cs" />
@@ -64,16 +64,16 @@
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />
-    <Compile Include="Extensions\QuestionCategoryExtensions_ToViewModel.cs" />
+    <Compile Include="ToViewModel\QuestionCategoryExtensions.cs" />
     <Compile Include="Helpers\ViewModelHelper.cs" />
     <Compile Include="ViewModels\Entities\QuestionCategoryViewModel.cs" />
     <Compile Include="ViewModels\Entities\CurrentUserQuestionFlagViewModel.cs" />
     <Compile Include="ViewModels\Entities\FlagStatusViewModel.cs" />
-    <Compile Include="Extensions\FlagStatusExtensions_ToViewModel.cs" />
-    <Compile Include="Extensions\QuestionLinkExtensions_ToViewModel.cs" />
+    <Compile Include="ToViewModel\FlagStatusExtensions.cs" />
+    <Compile Include="ToViewModel\QuestionLinkExtensions.cs" />
     <Compile Include="ViewModels\QuestionEditViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="Extensions\QuestionFlagExtensions_ToViewModel.cs" />
+    <Compile Include="ToViewModel\QuestionFlagExtensions.cs" />
     <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />
     <Compile Include="ViewModels\Entities\QuestionFlagViewModel.cs" />
     <Compile Include="ViewModels\QuestionListViewModel.cs" />
@@ -91,9 +91,9 @@
     </Compile>
     <Compile Include="ViewModels\CategorySelectorViewModel.cs" />
     <Compile Include="ViewModels\Entities\CategoryViewModel.cs" />
-    <Compile Include="Extensions\CategoryExtensions_ToViewModel.cs" />
-    <Compile Include="Extensions\QuestionEditViewModelExtensions_ToEntity.cs" />
-    <Compile Include="Extensions\QuestionExtensions_ToViewModel.cs" />
+    <Compile Include="ToViewModel\CategoryExtensions.cs" />
+    <Compile Include="ToEntity\QuestionEditViewModelExtensions.cs" />
+    <Compile Include="ToViewModel\QuestionExtensions.cs" />
     <Compile Include="Resources\Labels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -148,9 +148,9 @@
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
       <Name>JJ.Models.Canonical</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence.NHibernate\JJ.Models.QuestionAndAnswer.Persistence.NHibernate.csproj">
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.NHibernate\JJ.Models.QuestionAndAnswer.NHibernate.csproj">
       <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.Persistence.NHibernate</Name>
+      <Name>JJ.Models.QuestionAndAnswer.NHibernate</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Persistence\JJ.Models.QuestionAndAnswer.Persistence.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
