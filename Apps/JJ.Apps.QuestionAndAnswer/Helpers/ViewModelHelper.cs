@@ -33,13 +33,9 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
         {
             return new QuestionViewModel
             {
-                ID = 0,
-                Text = "",
-                Answer = "",
                 IsActive = true,
-                IsFlagged = false,
-                Source = new SourceViewModel { ID = 0, Description = "" },
-                Type = new QuestionTypeViewModel { ID = 0, Name = "" },
+                Source = new SourceViewModel(),
+                Type = new QuestionTypeViewModel(),
                 Categories = new ListViewModel<QuestionCategoryViewModel>(),
                 Links = new ListViewModel<QuestionLinkViewModel>(),
                 Flags = new ListViewModel<QuestionFlagViewModel>()
@@ -85,7 +81,6 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
         {
             return new CategoryViewModel
             {
-                ID = 0,
                 NameParts = new List<string>(),
                 SubCategories = new List<CategoryViewModel>(),
                 Visible = true

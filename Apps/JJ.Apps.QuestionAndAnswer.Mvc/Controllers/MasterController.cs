@@ -49,7 +49,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ActionResult SetLanguage(string cultureName)
         {
-            LanguageSelectionPresenter presenter = new LanguageSelectionPresenter();
+            LanguageSelectorPresenter presenter = new LanguageSelectorPresenter();
 
             LanguageSelectionViewModel viewModel = presenter.SetLanguage(cultureName);
 
@@ -68,7 +68,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
                 if (viewModel == null)
                 {
-                    var presenter = new LanguageSelectionPresenter();
+                    var presenter = new LanguageSelectorPresenter();
                     viewModel = presenter.Show();
                     ViewData[ViewDataKeys.LanguageSelectionViewModel] = viewModel;
                 }

@@ -13,6 +13,7 @@ using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.Extensions;
+using JJ.Apps.QuestionAndAnswer.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.ToEntity
 {
@@ -25,40 +26,24 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
         /// </summary>
         public static Question ToEntity(
             this QuestionEditViewModel viewModel, 
-            IQuestionRepository questionRepository, 
-            IAnswerRepository answerRepository,
-            ICategoryRepository categoryRepository,
-            IQuestionCategoryRepository questionCategoryRepository,
-            IQuestionLinkRepository questionLinkRepository,
-            IQuestionFlagRepository questionFlagRepository,
-            IFlagStatusRepository flagStatusRepository,
-            ISourceRepository sourceRepository,
-            IQuestionTypeRepository questionTypeRepository)
+            Repositories repositories)
         {
             if (viewModel == null) throw new ArgumentNullException("viewModel");
-            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
-            if (answerRepository == null) throw new ArgumentNullException("answerRepository");
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
-            if (questionCategoryRepository == null) throw new ArgumentNullException("questionCategoryRepository");
-            if (questionLinkRepository == null) throw new ArgumentNullException("questionLinkRepository");
-            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
-            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
-            if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
-            if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
+            if (repositories == null) throw new ArgumentNullException("repositories");
 
             viewModel.NullCoallesce();
 
             // Question
-            Question question = questionRepository.TryGet(viewModel.Question.ID);
+            Question question = repositories.QuestionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                question = questionRepository.Create();
-                question.AutoCreateRelatedEntities(answerRepository);
+                question = repositories.QuestionRepository.Create();
+                question.AutoCreateRelatedEntities(repositories.AnswerRepository);
             }
             question.Text = viewModel.Question.Text;
             question.IsActive = viewModel.Question.IsActive;
-            question.Source = sourceRepository.Get(viewModel.Question.Source.ID);
-            question.QuestionType = questionTypeRepository.Get(viewModel.Question.Type.ID);
+            question.Source = repositories.SourceRepository.Get(viewModel.Question.Source.ID);
+            question.QuestionType = repositories.QuestionTypeRepository.Get(viewModel.Question.Type.ID);
 
             // Answer
             // TODO: Refactor to support multiple answers
@@ -74,15 +59,15 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             // Add or update question categories
             foreach (QuestionCategoryViewModel questionCategoryViewModel in viewModel.Question.Categories)
             {
-                QuestionCategory questionCategory = TryGetExistingQuestionCategory(questionCategoryViewModel, questionCategoryRepository);
+                QuestionCategory questionCategory = TryGetExistingQuestionCategory(questionCategoryViewModel, repositories.QuestionCategoryRepository);
                 if (questionCategory == null)
                 {
-                    questionCategory = questionCategoryRepository.Create();
+                    questionCategory = repositories.QuestionCategoryRepository.Create();
                     questionCategory.LinkTo(question);
                 }
 
                 // Newly added items might not have a category filled in yet.
-                Category category = categoryRepository.TryGet(questionCategoryViewModel.Category.ID); // Empty view model question categories have Category.ID 0.
+                Category category = repositories.CategoryRepository.TryGet(questionCategoryViewModel.Category.ID); // Empty view model question categories have Category.ID 0.
                 questionCategory.LinkTo(category);
             }
 
@@ -102,7 +87,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
                 if (questionCategoryIDsToRemove.Contains(questionCategory.ID))
                 {
                     questionCategory.UnlinkRelatedEntities();
-                    questionCategoryRepository.Delete(questionCategory);
+                    repositories.QuestionCategoryRepository.Delete(questionCategory);
                 }
             }
 
@@ -111,10 +96,10 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             // Add or update links
             foreach (QuestionLinkViewModel questionLinkViewModel in viewModel.Question.Links)
             {
-                QuestionLink questionLink = TryGetExistingQuestionLink(questionLinkViewModel, questionLinkRepository);
+                QuestionLink questionLink = TryGetExistingQuestionLink(questionLinkViewModel, repositories.QuestionLinkRepository);
                 if (questionLink == null)
                 {
-                    questionLink = questionLinkRepository.Create();
+                    questionLink = repositories.QuestionLinkRepository.Create();
                     questionLink.LinkTo(question);
                 }
 
@@ -138,17 +123,17 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
                 if (questionLinkIDsToRemove.Contains(questionLink.ID))
                 {
                     questionLink.UnlinkRelatedEntities();
-                    questionLinkRepository.Delete(questionLink);
+                    repositories.QuestionLinkRepository.Delete(questionLink);
                 }
             }
 
             // Update content flags
             foreach (QuestionFlagViewModel questionFlagViewModel in viewModel.Question.Flags)
             {
-                QuestionFlag questionFlag = questionFlagRepository.TryGet(questionFlagViewModel.ID);
+                QuestionFlag questionFlag = repositories.QuestionFlagRepository.TryGet(questionFlagViewModel.ID);
                 if (questionFlag != null) // Concurrency
                 {
-                    questionFlag.FlagStatus = flagStatusRepository.Get(questionFlagViewModel.Status.ID);
+                    questionFlag.FlagStatus = repositories.FlagStatusRepository.Get(questionFlagViewModel.Status.ID);
                     questionFlag.Comment = questionFlagViewModel.Comment;
                 }
             }

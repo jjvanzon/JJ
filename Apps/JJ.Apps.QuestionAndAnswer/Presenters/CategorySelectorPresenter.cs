@@ -50,7 +50,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public CategorySelectorViewModel Show()
         {
-            return GetViewModel();
+            return CreateViewModel();
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
             selectedCategoryIDs.Add(categoryID);
 
-            return GetViewModel(selectedCategoryIDs);
+            return CreateViewModel(selectedCategoryIDs);
         }
 
         /// <summary>
@@ -86,13 +86,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 selectedCategoryIDs.Remove(categoryID);
             }
 
-            return GetViewModel(selectedCategoryIDs);
+            return CreateViewModel(selectedCategoryIDs);
         }
 
         /// <summary>
         /// Can return RandomQuestionViewModel or QuestionNotFoundViewModel.
         /// </summary>
-        public object ShowQuestions(CategorySelectorViewModel viewModel)
+        public object StartTraining(CategorySelectorViewModel viewModel)
         {
             var categoryIDs = new List<int>();
             AddSelectedCategoryIDsRecursive(categoryIDs, viewModel.SelectedCategories);
@@ -103,12 +103,10 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         // Private Methods
 
-        // TODO: Use GetRecursive method.
-
-        private CategorySelectorViewModel GetViewModel()
+        private CategorySelectorViewModel CreateViewModel()
         {
-            List<CategoryViewModel> availableCategories = GetCategoriesViewModelRecursive();
-            List<CategoryViewModel> selectedCategories = GetCategoriesViewModelRecursive();
+            List<CategoryViewModel> availableCategories = CreateCategoriesViewModelRecursive();
+            List<CategoryViewModel> selectedCategories = CreateCategoriesViewModelRecursive();
 
             HideAllNodesRecursive(selectedCategories);
 
@@ -123,15 +121,15 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        private CategorySelectorViewModel GetViewModel(IEnumerable<int> selectedCategoryIDs)
+        private CategorySelectorViewModel CreateViewModel(IEnumerable<int> selectedCategoryIDs)
         {
-            CategorySelectorViewModel viewModel = GetViewModel();
+            CategorySelectorViewModel viewModel = CreateViewModel();
             HideSelectedLeafNodesRecursive(viewModel.AvailableCategories, selectedCategoryIDs);
             ShowSelectedNodesRecursive(viewModel.SelectedCategories, selectedCategoryIDs);
             return viewModel;
         }
 
-        private List<CategoryViewModel> GetCategoriesViewModelRecursive()
+        private List<CategoryViewModel> CreateCategoriesViewModelRecursive()
         {
             IEnumerable<Category> categories = _categoryManager.GetCategoryTree();
 
@@ -203,25 +201,5 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 HideSelectedLeafNodesRecursive(categoryViewModel.SubCategories, selectedCategoryIDs);
             }
         }
-
-        // A start at code, that works statefully.
-
-        //private CategorySelectorViewModel _viewModel;
-
-        /*public void Add(int categoryID)
-        {
-            if (_viewModel == null)
-            {
-                throw new Exception("Call Show before calling other methods.");
-            }
-            
-            bool alreadyPresent = _viewModel.SelectedCategories.Any(x => x.ID == categoryID);
-            if (!alreadyPresent)
-            {
-                Category category = _categoryRepository.Get(categoryID);
-                CategoryViewModel categoryModel = category.ToViewModel();
-                _viewModel.SelectedCategories.Add(categoryModel);
-            }
-        }*/
     }
 }

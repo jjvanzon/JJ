@@ -100,9 +100,9 @@ namespace JJ.Business.QuestionAndAnswer
         /// When a parent and some child categories are selected, you have to take those child categories.
         /// Effectively this means first excluding the parent nodes from the selected branches and then flattening the hierarchy of the nodes that remain.
         /// </summary>
-        public List<Category> SelectNodesRecursive(IEnumerable<Category> selectedCategories)
+        public IList<Category> SelectNodesRecursive(IEnumerable<Category> selectedCategories)
         {
-            List<Category> ancestors = GetAncestorsRecursive(selectedCategories);
+            IList<Category> ancestors = GetAncestorsRecursive(selectedCategories);
             Category[] selectedBranches = selectedCategories.Except(ancestors).ToArray();
 
             var list = new List<Category>();
@@ -115,7 +115,7 @@ namespace JJ.Business.QuestionAndAnswer
             return list;
         }
 
-        private List<Category> GetAncestorsRecursive(IEnumerable<Category> categories)
+        private IList<Category> GetAncestorsRecursive(IEnumerable<Category> categories)
         {
             var list = new List<Category>();
             foreach (Category category in categories)

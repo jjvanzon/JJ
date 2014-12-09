@@ -213,7 +213,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = CreateRepositories(context);
-                QuestionDeletePresenter presenter = new QuestionDeletePresenter(repositories);
+                QuestionConfirmDeletePresenter presenter = new QuestionConfirmDeletePresenter(repositories);
                 object viewModel = presenter.Show(id);
 
                 var confirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;

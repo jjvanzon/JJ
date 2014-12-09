@@ -16,6 +16,10 @@ namespace JJ.Business.QuestionAndAnswer
 
         private readonly List<int> _ids;
 
+        public QuestionSelector(IQuestionRepository questionRepository, IEnumerable<Category> categories)
+            : this(questionRepository, categories.ToArray())
+        { }
+
         public QuestionSelector(IQuestionRepository questionRepository, params Category[] categories)
         {
             if (questionRepository == null) throw new ArgumentNullException("questionRepository");

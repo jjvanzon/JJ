@@ -25,17 +25,28 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public SmallLoginViewModel Show()
         {
-            return new SmallLoginViewModel { LogInActionIsVisible = true };
+            return CreateViewModel();
         }
 
         public SmallLoginViewModel SetLoggedInUserName(string userName)
         {
             User user = _userRepository.GetByUserName(userName);
 
-            return new SmallLoginViewModel { LogOutActionIsVisible = true, DisplayName = user.DisplayName };
+            var viewModel = new SmallLoginViewModel 
+            { 
+                LogOutActionIsVisible = true,
+                DisplayName = user.DisplayName 
+            };
+
+            return viewModel;
         }
 
         public SmallLoginViewModel SetIsLoggedOut()
+        {
+            return CreateViewModel();   
+        }
+
+        private SmallLoginViewModel CreateViewModel()
         {
             return new SmallLoginViewModel { LogInActionIsVisible = true };
         }

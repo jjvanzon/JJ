@@ -1,18 +1,16 @@
-﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
-using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Models.QuestionAndAnswer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using JJ.Framework.Common;
+using JJ.Models.QuestionAndAnswer;
+using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 {
     internal static class CategoryExtensions
     {
-        // TODO: Use GetRecursive method.
-
         public static CategoryViewModel ToViewModelRecursive(this Category category)
         {
             if (category == null) throw new ArgumentNullException("category");

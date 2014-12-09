@@ -23,12 +23,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionEditPresenter
     {
+        private const string DEFAULT_SOURCE_IDENTIFIER = "Manual";
+
         private Repositories _repositories;
 
         public QuestionEditPresenter(Repositories repositories)
         {
             if (repositories == null) throw new ArgumentNullException("repositories");
-
             _repositories = repositories;
         }
 
@@ -42,19 +43,17 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
 
             QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
-            viewModel.IsNew = false;
+            viewModel.IsNew = false; // TODO: Do I need to set this default?
             viewModel.CanDelete = true;
             viewModel.Title = Titles.EditQuestion;
             return viewModel;
         }
 
-        private const string DEFAULT_SOURCE_IDENTIFIER = "Manual";
-
         public QuestionEditViewModel Create()
         {
             QuestionEditViewModel viewModel = ViewModelHelper.CreateEmptyQuestionEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
             viewModel.IsNew = true;
-            viewModel.CanDelete = false;
+            viewModel.CanDelete = false; // TODO: Do I need to set this default?
             viewModel.Title = Titles.CreateQuestion;
 
             // These defaults are specific to the UI, not the business.
@@ -77,7 +76,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.NullCoallesce();
 
             // Get entity from database, with the viewmodel applied to it.
-            Question question = ViewModelToEntity(viewModel);
+            Question question = viewModel.ToEntity(_repositories);
 
             // Perform operation
             QuestionLink questionLink = _repositories.QuestionLinkRepository.Create();
@@ -116,7 +115,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.Question.Links.Remove(questionLinkViewModel);
 
             // Get entity from database, with the viewmodel applied to it.
-            Question question = ViewModelToEntity(viewModel);
+            Question question = viewModel.ToEntity(_repositories);
 
             // Create new view model
             QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
@@ -137,7 +136,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.NullCoallesce();
 
             // Get entity from database, with the viewmodel applied to it.
-            Question question = ViewModelToEntity(viewModel);
+            Question question = viewModel.ToEntity(_repositories);
 
             // Perform operation
             QuestionCategory questionCategory = _repositories.QuestionCategoryRepository.Create();
@@ -176,7 +175,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.Question.Categories.Remove(questionCategoryViewModel);
 
             // Get entity from database, with the viewmodel applied to it.
-            Question question = ViewModelToEntity(viewModel);
+            Question question = viewModel.ToEntity(_repositories);
 
             // Create new view model
             QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
@@ -203,7 +202,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.Question.SetIsNewRecursive(question);
 
             // Get entity from database, with the viewmodel applied to it.
-            question = ViewModelToEntity(viewModel);
+            question = viewModel.ToEntity(_repositories);
 
             // Side-effects
             User user = _repositories.UserRepository.GetByUserName(authenticatedUserName);
@@ -299,7 +298,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// <summary> Can return QuestionConfirmDeleteViewModel and QuestionNotFoundViewModel. </summary>
         public object Delete(QuestionEditViewModel viewModel)
         {
-            var deletePresenter = new QuestionDeletePresenter(_repositories);
+            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories);
             return deletePresenter.Show(viewModel.Question.ID);
         }
 
@@ -307,21 +306,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             var listPresenter = new QuestionListPresenter(_repositories);
             return listPresenter.Show();
-        }
-
-        private Question ViewModelToEntity(QuestionEditViewModel viewModel)
-        {
-            // Get entity from database, with the viewmodel applied to it.
-            return viewModel.ToEntity(
-                _repositories.QuestionRepository, 
-                _repositories.AnswerRepository, 
-                _repositories.CategoryRepository, 
-                _repositories.QuestionCategoryRepository, 
-                _repositories.QuestionLinkRepository, 
-                _repositories.QuestionFlagRepository, 
-                _repositories.FlagStatusRepository, 
-                _repositories.SourceRepository, 
-                _repositories.QuestionTypeRepository);
         }
     }
 }

@@ -26,9 +26,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return new LoginViewModel();
         }
 
-        /// <summary>
-        /// Can return LoginViewModel or SmallLoginViewModel.
-        /// </summary>
         public LoginViewModel Login(string password, string securityToken, LoginViewModel viewModel)
         {
             string userName = viewModel.UserName;

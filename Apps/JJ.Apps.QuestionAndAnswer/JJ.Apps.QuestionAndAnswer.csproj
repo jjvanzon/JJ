@@ -31,22 +31,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
     <Compile Include="Helpers\Repositories.cs" />
-    <Compile Include="Extensions\ValidationMessagesExtensions.cs" />
     <Compile Include="Extensions\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\QuestionDeleteConfirmedPresenter.cs" />
-    <Compile Include="Presenters\QuestionDeletePresenter.cs" />
+    <Compile Include="Presenters\QuestionConfirmDeletePresenter.cs" />
     <Compile Include="Presenters\QuestionEditPresenter.cs" />
     <Compile Include="Presenters\QuestionListPresenter.cs" />
     <Compile Include="Presenters\QuestionDetailsPresenter.cs" />
@@ -81,7 +74,7 @@
     <Compile Include="ViewModels\Entities\QuestionTypeViewModel.cs" />
     <Compile Include="ViewModels\SmallLoginViewModel.cs" />
     <Compile Include="Presenters\SmallLoginPresenter.cs" />
-    <Compile Include="Presenters\LanguageSelectionPresenter.cs" />
+    <Compile Include="Presenters\LanguageSelectorPresenter.cs" />
     <Compile Include="Presenters\RandomQuestionPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Messages.Designer.cs">

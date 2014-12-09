@@ -77,7 +77,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Delete(int questionID)
         {
-            var deletePresenter = new QuestionDeletePresenter(_repositories);
+            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories);
             return deletePresenter.Show(questionID);
         }
     }

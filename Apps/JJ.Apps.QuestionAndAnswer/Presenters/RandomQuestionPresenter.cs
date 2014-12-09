@@ -16,10 +16,6 @@ using JJ.Business.QuestionAndAnswer;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
-    /// <summary>
-    /// A presenter has action methods that communicate by means of view models and ID's.
-    /// A presenter can retrieve data from a context or repositories, but it will never communicate the entities themselves to the outside.
-    /// </summary>
     public class RandomQuestionPresenter
     {
         private IQuestionRepository _questionRepository;
@@ -57,21 +53,21 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// </summary>
         public object Show(params int[] categoryIDs)
         {
-            categoryIDs = categoryIDs ?? new int[] { };
+            categoryIDs = categoryIDs ?? new int[0];
 
             // Get Categories
-            List<Category> selectedCategoryBranches = GetCategories(categoryIDs);
-            IEnumerable<Category> selectedCategoryNodes = _categoryManager.SelectNodesRecursive(selectedCategoryBranches);
+            IList<Category> selectedCategoryBranches = GetCategories(categoryIDs);
+            IList<Category> selectedCategoryNodes = _categoryManager.SelectNodesRecursive(selectedCategoryBranches);
 
             // Get Random Question
             Question question;
-            if (selectedCategoryNodes.Count() == 0)
+            if (selectedCategoryNodes.Count == 0)
             {
                 question = _questionRepository.TryGetRandomQuestion();
             }
             else
             {
-                QuestionSelector selector = new QuestionSelector(_questionRepository, selectedCategoryNodes.ToArray());
+                QuestionSelector selector = new QuestionSelector(_questionRepository, selectedCategoryNodes);
                 question = selector.TryGetRandomQuestion();
             }
 
@@ -83,8 +79,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             // Create ViewModel
             RandomQuestionViewModel viewModel = question.ToRandomQuestionViewModel();
-            viewModel.AnswerIsVisible = false;
-            viewModel.Question.Answer = null;
+            viewModel.AnswerIsVisible = false; // TODO: Do I need to set this default?
+            viewModel.Question.Answer = null; // TODO: Do I need to set this default?
             viewModel.Question.Links.Clear(); // Links reveal answer.
             viewModel.SelectedCategories = selectedCategoryBranches.Select(x => x.ToViewModel()).ToList();
 
@@ -97,8 +93,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         public object ShowAnswer(RandomQuestionViewModel viewModel, string userName)
         {
             // Check conditions
-            if (viewModel == null) { throw new ArgumentNullException("viewModel"); }
-            if (viewModel.Question == null) { throw new ArgumentNullException("viewModel.Question"); }
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel.Question == null) throw new ArgumentNullException("viewModel.Question");
 
             // Get entities
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
@@ -150,8 +146,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;
-            viewModel2.AnswerIsVisible = false;
-            viewModel2.CurrentUserQuestionFlag.CanFlag = false;
+            viewModel2.AnswerIsVisible = false; // TODO: Do I have to set this default.
+            viewModel2.CurrentUserQuestionFlag.CanFlag = false; // TODO: Do I have to set this default.
             if (viewModel.SelectedCategories != null)
             {
                 viewModel2.SelectedCategories = viewModel.SelectedCategories;

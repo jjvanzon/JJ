@@ -14,11 +14,11 @@ using JJ.Apps.QuestionAndAnswer.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
-    public class QuestionDeletePresenter
+    public class QuestionConfirmDeletePresenter
     {
         private Repositories _repositories;
 
-        public QuestionDeletePresenter(Repositories repositories)
+        public QuestionConfirmDeletePresenter(Repositories repositories)
         {
             if (repositories == null) throw new ArgumentNullException("repositories");
 
@@ -39,12 +39,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         }
 
         /// <summary> Can return QuestionDeleteConfirmedViewModel and QuestionNotFoundViewModel. </summary>
-        public object ConfirmDelete(int id)
+        public object Confirm(int id)
         {
             var deleteConfirmedPresenter = new QuestionDeleteConfirmedPresenter(_repositories);
             return deleteConfirmedPresenter.Show(id);
         }
-
         
         public PreviousViewModel Cancel()
         {

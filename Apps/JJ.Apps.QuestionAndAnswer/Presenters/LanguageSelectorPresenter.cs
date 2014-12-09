@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
-    public class LanguageSelectionPresenter
+    public class LanguageSelectorPresenter
     {
         private readonly string[] _availableCultureNames = new string[] { "en-US", "nl-NL" };
         private const string DEFAULT_CULTURE_NAME = "en-US";
@@ -38,7 +38,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             var viewModel = new LanguageSelectionViewModel();
             
-            // Fill culture list6
+            // Fill culture list
             viewModel.Languages = new List<LanguageViewModel>();
 
             foreach (string cultureName in _availableCultureNames)

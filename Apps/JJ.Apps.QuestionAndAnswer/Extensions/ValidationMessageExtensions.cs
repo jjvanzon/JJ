@@ -8,8 +8,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 {
     internal static class ValidationMessageExtensions
     {
-        public static JJ.Models.Canonical.ValidationMessage ToCanonical(
-            this JJ.Framework.Validation.ValidationMessage sourceEntity)
+        public static JJ.Models.Canonical.ValidationMessage ToCanonical(this JJ.Framework.Validation.ValidationMessage sourceEntity)
         {
             return new Models.Canonical.ValidationMessage
             {
@@ -17,5 +16,19 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
                 Text = sourceEntity.Text
             };
         }
+
+        public static List<JJ.Models.Canonical.ValidationMessage> ToCanonical(this IEnumerable<JJ.Framework.Validation.ValidationMessage> sourceList)
+        {
+            var destList = new List<JJ.Models.Canonical.ValidationMessage>();
+
+            foreach (JJ.Framework.Validation.ValidationMessage sourceItem in sourceList)
+            {
+                JJ.Models.Canonical.ValidationMessage destItem = sourceItem.ToCanonical();
+                destList.Add(destItem);
+            }
+
+            return destList;
+        }
+
     }
 }
