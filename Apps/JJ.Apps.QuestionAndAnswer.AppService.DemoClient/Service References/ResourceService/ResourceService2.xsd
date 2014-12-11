@@ -15,20 +15,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetLabels">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="cultureName" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetLabelsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.AppService" minOccurs="0" name="GetLabelsResult" nillable="true" type="q2:Labels" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetTitles">
     <xs:complexType>
       <xs:sequence>
@@ -39,7 +25,35 @@
   <xs:element name="GetTitlesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.AppService" minOccurs="0" name="GetTitlesResult" nillable="true" type="q3:Titles" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.AppService" minOccurs="0" name="GetTitlesResult" nillable="true" type="q2:Titles" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPropertyDisplayNames">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cultureName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPropertyDisplayNamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.AppService" minOccurs="0" name="GetPropertyDisplayNamesResult" nillable="true" type="q3:PropertyDisplayNames" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommonTitles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cultureName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommonTitlesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.AppService" minOccurs="0" name="GetCommonTitlesResult" nillable="true" type="q4:CommonTitles" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

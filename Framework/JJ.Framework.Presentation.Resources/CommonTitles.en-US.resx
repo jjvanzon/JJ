@@ -112,85 +112,51 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdditionalInformation" xml:space="preserve">
-    <value>Additional information:</value>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="Answer" xml:space="preserve">
-    <value>Answer:</value>
-    <comment>Noun</comment>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="AvailableCategories" xml:space="preserve">
-    <value>Available categories:</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="Categories" xml:space="preserve">
-    <value>Categories:</value>
-  </data>
-  <data name="Comment" xml:space="preserve">
-    <value>Comment:</value>
-  </data>
-  <data name="ContentFlaggedBy" xml:space="preserve">
-    <value>Flagged by:</value>
-  </data>
-  <data name="Date" xml:space="preserve">
-    <value>Date:</value>
-  </data>
-  <data name="DateAndTime" xml:space="preserve">
-    <value>Date and time:</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description:</value>
-  </data>
-  <data name="HasActiveFlags" xml:space="preserve">
-    <value>Has active flaggings:</value>
-  </data>
-  <data name="ID" xml:space="preserve">
-    <value>ID:</value>
-  </data>
-  <data name="IsActive" xml:space="preserve">
-    <value>Active:</value>
-  </data>
-  <data name="IsManual" xml:space="preserve">
-    <value>Manually edited:</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language:</value>
+    <value>Language</value>
   </data>
-  <data name="LastModifiedBy" xml:space="preserve">
-    <value>Last modified by:</value>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log In</value>
   </data>
-  <data name="Links" xml:space="preserve">
-    <value>Links:</value>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log Out</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password:</value>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
   </data>
-  <data name="Question" xml:space="preserve">
-    <value>Question:</value>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
-  <data name="Selection" xml:space="preserve">
-    <value>Selection:</value>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
   </data>
-  <data name="Source" xml:space="preserve">
-    <value>Source:</value>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status:</value>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="TheCorrectAnswer" xml:space="preserve">
-    <value>The correct anwer is:</value>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
   </data>
-  <data name="Type" xml:space="preserve">
-    <value>Type:</value>
-  </data>
-  <data name="Url" xml:space="preserve">
-    <value>URL:</value>
-  </data>
-  <data name="UserName" xml:space="preserve">
-    <value>User name:</value>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

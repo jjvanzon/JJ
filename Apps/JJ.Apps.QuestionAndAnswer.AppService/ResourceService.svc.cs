@@ -14,19 +14,24 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
 {
     public class ResourceService : IResourceService
     {
+        public PropertyDisplayNames GetPropertyDisplayNames(string cultureName)
+        {
+            return ConvertResources<JJ.Business.QuestionAndAnswer.Resources.PropertyDisplayNames, PropertyDisplayNames>(cultureName);
+        }
+
         public Messages GetMessages(string cultureName)
         {
             return ConvertResources<Resources.Messages, Messages>(cultureName);
         }
 
-        public Labels GetLabels(string cultureName)
-        {
-            return ConvertResources<Resources.Labels, Labels>(cultureName);
-        }
-
         public Titles GetTitles(string cultureName)
         {
             return ConvertResources<Resources.Titles, Titles>(cultureName);
+        }
+
+        public CommonTitles GetCommonTitles(string cultureName)
+        {
+            return ConvertResources<JJ.Framework.Presentation.Resources.CommonTitles, CommonTitles>(cultureName);
         }
 
         private TDest ConvertResources<TSource, TDest>(string cultureName)

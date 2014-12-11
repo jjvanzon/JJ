@@ -37,7 +37,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _repositories.QuestionRepository.TryGet(id);
             if (question == null)
             {
-                return new QuestionNotFoundViewModel { ID = id };
+                var presenter2 = new QuestionNotFoundPresenter();
+                return presenter2.Show();
             }
 
             QuestionDetailsViewModel viewModel = question.ToDetailsViewModel();

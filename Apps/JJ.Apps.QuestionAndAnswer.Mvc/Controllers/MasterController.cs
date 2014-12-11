@@ -21,7 +21,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            // In the constructor there is no Session.
+            // In the constructor there is no Session. That is why we need to use OnActionExecuting.
 
             InitializeSmallLoginSubController();
 
@@ -51,33 +51,33 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             LanguageSelectorPresenter presenter = new LanguageSelectorPresenter();
 
-            LanguageSelectionViewModel viewModel = presenter.SetLanguage(cultureName);
+            LanguageSelectorViewModel viewModel = presenter.SetLanguage(cultureName);
 
-            LanguageSelectionViewModel = viewModel;
+            LanguageSelectorViewModel = viewModel;
 
             GetSessionWrapper().CultureName = viewModel.SelectedLanguageCultureName;
 
             return RedirectToAction(ActionNames.Random, ControllerNames.Questions);
         }
 
-        public LanguageSelectionViewModel LanguageSelectionViewModel
+        public LanguageSelectorViewModel LanguageSelectorViewModel
         {
             get
             {
-                LanguageSelectionViewModel viewModel = (LanguageSelectionViewModel)ViewData[ViewDataKeys.LanguageSelectionViewModel];
+                LanguageSelectorViewModel viewModel = (LanguageSelectorViewModel)ViewData[ViewDataKeys.LanguageSelectorViewModel];
 
                 if (viewModel == null)
                 {
                     var presenter = new LanguageSelectorPresenter();
                     viewModel = presenter.Show();
-                    ViewData[ViewDataKeys.LanguageSelectionViewModel] = viewModel;
+                    ViewData[ViewDataKeys.LanguageSelectorViewModel] = viewModel;
                 }
 
                 return viewModel;
             }
             private set
             {
-                ViewData[ViewDataKeys.LanguageSelectionViewModel] = value;
+                ViewData[ViewDataKeys.LanguageSelectorViewModel] = value;
             }
         }
 

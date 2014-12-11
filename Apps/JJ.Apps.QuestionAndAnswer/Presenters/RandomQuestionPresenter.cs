@@ -100,7 +100,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                return new QuestionNotFoundViewModel { ID = viewModel.Question.ID };
+                var presenter2 = new QuestionNotFoundPresenter();
+                return presenter2.Show();
             }
             User user = _userRepository.TryGetByUserName(userName);
             QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
@@ -136,7 +137,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                return new QuestionNotFoundViewModel { ID = viewModel.Question.ID };
+                var presenter2 = new QuestionNotFoundPresenter();
+                return presenter2.Show();
             }
             User user = _userRepository.TryGetByUserName(userName);
             QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
@@ -172,7 +174,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                return new QuestionNotFoundViewModel { ID = viewModel.Question.ID };
+                var presenter2 = new QuestionNotFoundPresenter();
+                return presenter2.Show();
             }
 
             // Call business logic
@@ -204,7 +207,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                return new QuestionNotFoundViewModel { ID = viewModel.Question.ID };
+                var presenter2 = new QuestionNotFoundPresenter();
+                return presenter2.Show();
             }
 
             // Call business logic

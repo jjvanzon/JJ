@@ -96,10 +96,14 @@
     <None Include="Service References\RandomQuestionService\RandomQuestionService1.xsd" />
     <None Include="Service References\RandomQuestionService\RandomQuestionService2.xsd" />
     <None Include="Service References\RandomQuestionService\RandomQuestionService3.xsd" />
-    <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.AppService.DemoClient.ResourceService.Labels.datasource">
+    <None Include="Service References\RandomQuestionService\RandomQuestionService4.xsd" />
+    <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.AppService.DemoClient.ResourceService.CommonTitles.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.AppService.DemoClient.ResourceService.Messages.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.AppService.DemoClient.ResourceService.PropertyDisplayNames.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ResourceService\JJ.Apps.QuestionAndAnswer.AppService.DemoClient.ResourceService.Titles.datasource">

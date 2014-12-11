@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="ViewUserControl<LanguageSelectionViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="ViewUserControl<LanguageSelectorViewModel>" %>
 
 <script>
     $(document).ready(function () {
@@ -9,7 +9,7 @@
     });
 </script>
 
-<%: Labels.Language %>
+<%: CommonTitles.Language %>
 
 <%: 
     Html.DropDownListFor(

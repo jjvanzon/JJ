@@ -2,7 +2,7 @@
 
 <% if (Model.LogInActionIsVisible) { %>
 
-    <%: Html.ActionLink(Titles.LogIn, ActionNames.Index, ControllerNames.Login) %>
+    <%: Html.ActionLink(CommonTitles.LogIn, ActionNames.Index, ControllerNames.Login) %>
 
 <% } %>
 
@@ -11,7 +11,7 @@
 <% if (Model.LogOutActionIsVisible) { %>
 
     <div id="smallLoginViewDropDown">
-        <%: Html.ActionLink(Titles.LogOut, ActionNames.LogOut, ControllerNames.Login) %>
+        <%: Html.ActionLink(CommonTitles.LogOut, ActionNames.LogOut, ControllerNames.Login) %>
     </div>
 
 <% } %>

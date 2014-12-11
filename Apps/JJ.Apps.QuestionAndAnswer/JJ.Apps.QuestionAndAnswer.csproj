@@ -38,11 +38,13 @@
     <Compile Include="Helpers\Repositories.cs" />
     <Compile Include="Extensions\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\NotAuthenticatedViewModel.cs" />
     <Compile Include="Presenters\QuestionDeleteConfirmedPresenter.cs" />
     <Compile Include="Presenters\QuestionConfirmDeletePresenter.cs" />
     <Compile Include="Presenters\QuestionEditPresenter.cs" />
     <Compile Include="Presenters\QuestionListPresenter.cs" />
     <Compile Include="Presenters\QuestionDetailsPresenter.cs" />
+    <Compile Include="Presenters\QuestionNotFoundPresenter.cs" />
     <Compile Include="Validation\QuestionCategoryViewModelValidator.cs" />
     <Compile Include="Validation\QuestionEditViewModelValidator.cs" />
     <Compile Include="Validation\QuestionLinkViewModelValidator.cs" />
@@ -53,7 +55,7 @@
     <Compile Include="Extensions\ViewModelExtensions_IsDirty.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoallesce.cs" />
     <Compile Include="ViewModels\Entities\ListViewModel.cs" />
-    <Compile Include="ViewModels\PreviousViewModel.cs" />
+    <Compile Include="ViewModels\NotAuthenticatedPresenter.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />
@@ -67,7 +69,6 @@
     <Compile Include="ViewModels\QuestionEditViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ToViewModel\QuestionFlagExtensions.cs" />
-    <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />
     <Compile Include="ViewModels\Entities\QuestionFlagViewModel.cs" />
     <Compile Include="ViewModels\QuestionListViewModel.cs" />
     <Compile Include="ViewModels\QuestionNotFoundViewModel.cs" />
@@ -87,18 +88,13 @@
     <Compile Include="ToViewModel\CategoryExtensions.cs" />
     <Compile Include="ToEntity\QuestionEditViewModelExtensions.cs" />
     <Compile Include="ToViewModel\QuestionExtensions.cs" />
-    <Compile Include="Resources\Labels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Labels.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\Titles.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Titles.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Entities\LanguageViewModel.cs" />
-    <Compile Include="ViewModels\LanguageSelectionViewModel.cs" />
+    <Compile Include="ViewModels\LanguageSelectorViewModel.cs" />
     <Compile Include="ViewModels\RandomQuestionViewModel.cs" />
     <Compile Include="ViewModels\Entities\QuestionLinkViewModel.cs" />
     <Compile Include="ViewModels\Entities\QuestionViewModel.cs" />
@@ -124,6 +120,10 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj">
+      <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>
+      <Name>JJ.Framework.Presentation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
@@ -155,12 +155,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Labels.en-US.resx" />
-    <EmbeddedResource Include="Resources\Labels.nl-NL.resx" />
-    <EmbeddedResource Include="Resources\Labels.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Messages.en-US.resx" />
     <EmbeddedResource Include="Resources\Messages.nl-NL.resx" />
     <EmbeddedResource Include="Resources\Messages.resx">

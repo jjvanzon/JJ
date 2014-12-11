@@ -49,7 +49,6 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\External Components\NHibernate\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NHibernate">
       <HintPath>..\..\External Components\NHibernate\NHibernate.dll</HintPath>
     </Reference>
@@ -62,9 +61,6 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
@@ -72,7 +68,6 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="RandomQuestionService.svc" />
@@ -82,10 +77,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonTitles.cs" />
     <Compile Include="IResourceService.cs" />
-    <Compile Include="Labels.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="PersistenceHelper.cs" />
+    <Compile Include="PropertyDisplayNames.cs" />
     <Compile Include="RandomQuestionService.svc.cs">
       <DependentUpon>RandomQuestionService.svc</DependentUpon>
     </Compile>
@@ -115,6 +111,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
+      <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
+      <Name>JJ.Business.QuestionAndAnswer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.EntityFramework5.csproj">
       <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
       <Name>JJ.Framework.Persistence.EntityFramework5</Name>
@@ -126,6 +126,10 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.csproj">
+      <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
+      <Name>JJ.Framework.Presentation.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.EntityFramework5\JJ.Models.QuestionAndAnswer.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>

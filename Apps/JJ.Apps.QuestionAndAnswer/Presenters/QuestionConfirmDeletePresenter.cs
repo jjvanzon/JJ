@@ -11,6 +11,7 @@ using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Framework.Presentation;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -31,7 +32,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _repositories.QuestionRepository.TryGet(id);
             if (question == null)
             {
-                return new QuestionNotFoundViewModel { ID = id };
+                var presenter2 = new QuestionNotFoundPresenter();
+                return presenter2.Show();
             }
 
             QuestionConfirmDeleteViewModel viewModel = question.ToConfirmDeleteViewModel();
@@ -41,8 +43,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// <summary> Can return QuestionDeleteConfirmedViewModel and QuestionNotFoundViewModel. </summary>
         public object Confirm(int id)
         {
-            var deleteConfirmedPresenter = new QuestionDeleteConfirmedPresenter(_repositories);
-            return deleteConfirmedPresenter.Show(id);
+            var presenter2 = new QuestionDeleteConfirmedPresenter(_repositories);
+            return presenter2.Show(id);
         }
         
         public PreviousViewModel Cancel()

@@ -1,123 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:52160/RandomQuestionService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:import schemaLocation="http://localhost:52160/RandomQuestionService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:52160/RandomQuestionService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels.Entities" />
   <xs:complexType name="RandomQuestionViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnswerIsVisible" type="xs:boolean" />
-      <xs:element minOccurs="0" name="CurrentUserQuestionFlag" nillable="true" type="tns:CurrentUserQuestionFlagViewModel" />
-      <xs:element minOccurs="0" name="Question" nillable="true" type="tns:QuestionViewModel" />
-      <xs:element minOccurs="0" name="SelectedCategories" nillable="true" type="tns:ArrayOfCategoryViewModel" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels.Entities" minOccurs="0" name="CurrentUserQuestionFlag" nillable="true" type="q1:CurrentUserQuestionFlagViewModel" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels.Entities" minOccurs="0" name="Question" nillable="true" type="q2:QuestionViewModel" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/JJ.Apps.QuestionAndAnswer.ViewModels.Entities" minOccurs="0" name="SelectedCategories" nillable="true" type="q3:ArrayOfCategoryViewModel" />
       <xs:element minOccurs="0" name="UserAnswer" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RandomQuestionViewModel" nillable="true" type="tns:RandomQuestionViewModel" />
-  <xs:complexType name="CurrentUserQuestionFlagViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CanFlag" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IsFlagged" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CurrentUserQuestionFlagViewModel" nillable="true" type="tns:CurrentUserQuestionFlagViewModel" />
-  <xs:complexType name="QuestionViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Answer" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Categories" nillable="true" type="tns:ArrayOfQuestionCategoryViewModel" />
-      <xs:element minOccurs="0" name="Flags" nillable="true" type="tns:ArrayOfQuestionFlagViewModel" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
-      <xs:element minOccurs="0" name="IsFlagged" type="xs:boolean" />
-      <xs:element minOccurs="0" name="IsManual" type="xs:boolean" />
-      <xs:element minOccurs="0" name="LastModifiedBy" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Links" nillable="true" type="tns:ArrayOfQuestionLinkViewModel" />
-      <xs:element minOccurs="0" name="Source" nillable="true" type="tns:SourceViewModel" />
-      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Type" nillable="true" type="tns:QuestionTypeViewModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="QuestionViewModel" nillable="true" type="tns:QuestionViewModel" />
-  <xs:complexType name="ArrayOfQuestionCategoryViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="QuestionCategoryViewModel" nillable="true" type="tns:QuestionCategoryViewModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfQuestionCategoryViewModel" nillable="true" type="tns:ArrayOfQuestionCategoryViewModel" />
-  <xs:complexType name="QuestionCategoryViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Category" nillable="true" type="tns:CategoryViewModel" />
-      <xs:element minOccurs="0" name="QuestionCategoryID" type="xs:int" />
-      <xs:element minOccurs="0" name="TemporaryID" type="ser:guid" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="QuestionCategoryViewModel" nillable="true" type="tns:QuestionCategoryViewModel" />
-  <xs:complexType name="CategoryViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NameParts" nillable="true" type="q1:ArrayOfstring" />
-      <xs:element minOccurs="0" name="SubCategories" nillable="true" type="tns:ArrayOfCategoryViewModel" />
-      <xs:element minOccurs="0" name="Visible" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CategoryViewModel" nillable="true" type="tns:CategoryViewModel" />
-  <xs:complexType name="ArrayOfCategoryViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="CategoryViewModel" nillable="true" type="tns:CategoryViewModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCategoryViewModel" nillable="true" type="tns:ArrayOfCategoryViewModel" />
-  <xs:complexType name="ArrayOfQuestionFlagViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="QuestionFlagViewModel" nillable="true" type="tns:QuestionFlagViewModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfQuestionFlagViewModel" nillable="true" type="tns:ArrayOfQuestionFlagViewModel" />
-  <xs:complexType name="QuestionFlagViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DateAndTime" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="FlaggedBy" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="LastModifiedBy" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:FlagStatusViewModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="QuestionFlagViewModel" nillable="true" type="tns:QuestionFlagViewModel" />
-  <xs:complexType name="FlagStatusViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="FlagStatusViewModel" nillable="true" type="tns:FlagStatusViewModel" />
-  <xs:complexType name="ArrayOfQuestionLinkViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="QuestionLinkViewModel" nillable="true" type="tns:QuestionLinkViewModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfQuestionLinkViewModel" nillable="true" type="tns:ArrayOfQuestionLinkViewModel" />
-  <xs:complexType name="QuestionLinkViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="TemporaryID" type="ser:guid" />
-      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="QuestionLinkViewModel" nillable="true" type="tns:QuestionLinkViewModel" />
-  <xs:complexType name="SourceViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="SourceViewModel" nillable="true" type="tns:SourceViewModel" />
-  <xs:complexType name="QuestionTypeViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="QuestionTypeViewModel" nillable="true" type="tns:QuestionTypeViewModel" />
 </xs:schema>

@@ -112,85 +112,51 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdditionalInformation" xml:space="preserve">
-    <value>Extra informatie:</value>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="Answer" xml:space="preserve">
-    <value>Antwoord:</value>
-    <comment>Noun</comment>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="AvailableCategories" xml:space="preserve">
-    <value>Beschikbare categorieën:</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="Categories" xml:space="preserve">
-    <value>Categorieën:</value>
-  </data>
-  <data name="Comment" xml:space="preserve">
-    <value>Commentaar:</value>
-  </data>
-  <data name="ContentFlaggedBy" xml:space="preserve">
-    <value>Gemarkeerd door:</value>
-  </data>
-  <data name="Date" xml:space="preserve">
-    <value>Datum:</value>
-  </data>
-  <data name="DateAndTime" xml:space="preserve">
-    <value>Datum en tijd:</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Omschrijving:</value>
-  </data>
-  <data name="HasActiveFlags" xml:space="preserve">
-    <value>Heeft actieve markeringen:</value>
-  </data>
-  <data name="ID" xml:space="preserve">
-    <value>ID:</value>
-  </data>
-  <data name="IsActive" xml:space="preserve">
-    <value>Actief:</value>
-  </data>
-  <data name="IsManual" xml:space="preserve">
-    <value>Handmantig bewerkt:</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Taal:</value>
+    <value>Language</value>
   </data>
-  <data name="LastModifiedBy" xml:space="preserve">
-    <value>Laatst gewijzigd door:</value>
+  <data name="LogIn" xml:space="preserve">
+    <value>LogIn</value>
   </data>
-  <data name="Links" xml:space="preserve">
-    <value>Links:</value>
+  <data name="LogOut" xml:space="preserve">
+    <value>LogOut</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Wachtwoord:</value>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
   </data>
-  <data name="Question" xml:space="preserve">
-    <value>Vraag:</value>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
-  <data name="Selection" xml:space="preserve">
-    <value>Selectie:</value>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
   </data>
-  <data name="Source" xml:space="preserve">
-    <value>Bron:</value>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status:</value>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="TheCorrectAnswer" xml:space="preserve">
-    <value>Het correcte antwoord is:</value>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
   </data>
-  <data name="Type" xml:space="preserve">
-    <value>Soort:</value>
-  </data>
-  <data name="Url" xml:space="preserve">
-    <value>URL:</value>
-  </data>
-  <data name="UserName" xml:space="preserve">
-    <value>Gebruikersnaam:</value>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

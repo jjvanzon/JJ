@@ -17,25 +17,25 @@
             <col />
         </colgroup>
         <tr>
-            <th><%: Labels.ID %></th>
+            <th><%: PropertyDisplayNames.ID %></th>
             <td><%: Model.Question.ID %></td>
         </tr>
 
         <tr>
-            <th><%: Labels.Question %></th>
+            <th><%: PropertyDisplayNames.Question %></th>
             <td><%: Model.Question.Text %></td>
         </tr>
         <tr>
-            <th><%: Labels.Answer %></th>
+            <th><%: PropertyDisplayNames.Answer %></th>
             <td><%: Model.Question.Answer %></td>
         </tr>
 
         <tr>
-            <th><%: Labels.IsActive %></th>
-            <td><%: Model.Question.IsActive ? Titles.Yes : Titles.No %></td>
+            <th><%: PropertyDisplayNames.IsActive %></th>
+            <td><%: Model.Question.IsActive ? CommonTitles.Yes : CommonTitles.No %></td>
         </tr>
         <tr>
-            <th><%: Labels.Source %></th>
+            <th><%: PropertyDisplayNames.Source %></th>
             <td>
                 <% if (!String.IsNullOrEmpty(Model.Question.Source.Url)) { %>
 
@@ -53,12 +53,12 @@
             </td>
         </tr>
         <tr>
-            <th><%: Labels.Type %></th>
+            <th><%: Titles.Type %></th>
             <td><%: Model.Question.Type.Name %></td>
         </tr>
 
         <tr>
-            <th><%: Labels.Categories %></th>
+            <th><%: PropertyDisplayNames.Categories %></th>
             <td>
 
                 <% foreach (var category in Model.Question.Categories.Select(x => x.Category)) { %>
@@ -73,14 +73,14 @@
                 
                 <% if (Model.Question.Categories.Count == 0) { %>
 
-                    <%: Titles.None %>
+                    <%: CommonTitles.None %>
 
                 <% } %>
 
             </td>
         </tr>
         <tr>
-            <th><%: Labels.Links %></th>
+            <th><%: Titles.Links %></th>
             <td>
                 
                 <% foreach (var link in Model.Question.Links) { %>
@@ -92,20 +92,20 @@
 
                 <% if (Model.Question.Links.Count == 0) { %>
 
-                    <%: Titles.None %>
+                    <%: CommonTitles.None %>
 
                 <% } %>
 
             </td>
         </tr>
         <tr>
-            <th><%: Labels.LastModifiedBy %></th>
+            <th><%: PropertyDisplayNames.LastModifiedByUser %></th>
             <td><%: Model.Question.LastModifiedBy %> </td>
         </tr>
         <tr>
-            <th><%: Labels.IsManual %></th>
+            <th><%: PropertyDisplayNames.IsManual %></th>
             <td>
-                <%: Model.Question.IsManual ? Titles.Yes : Titles.No %>
+                <%: Model.Question.IsManual ? CommonTitles.Yes : CommonTitles.No %>
 
                 <% if (Model.Question.IsManual) { %>
 
@@ -122,8 +122,8 @@
 
         <table>
             <tr>
-                <th><%: Labels.HasActiveFlags %></th>
-                <td><%: Model.Question.IsFlagged ? Titles.Yes : Titles.No %></td>
+                <th><%: Titles.HasActiveFlags %></th>
+                <td><%: Model.Question.IsFlagged ? CommonTitles.Yes : CommonTitles.No %></td>
             </tr>
 
             <% foreach (var flag in Model.Question.Flags) { %>
@@ -132,19 +132,19 @@
                     <th><%: flag.FlaggedBy%></th>
                     <td>
                         <div>
-                            <%: Labels.DateAndTime %>
+                            <%: PropertyDisplayNames.DateTime %>
                             <%: flag.DateAndTime.ToString() %>
                         </div>
                         <div>
-                            <%: Labels.Status %>
+                            <%: PropertyDisplayNames.FlagStatus %>
                             <%: flag.Status.Description %>
                         </div>
                         <div>
-                            <%: Labels.Comment %>
+                            <%: PropertyDisplayNames.Comment %>
                             <%: flag.Comment %>
                         </div>
                         <div>
-                            <%: Labels.LastModifiedBy %>
+                            <%: PropertyDisplayNames.LastModifiedByUser %>
                             <%: flag.LastModifiedBy %>
                         </div>
                     </td>
@@ -156,9 +156,9 @@
     </fieldset>
 
     <p>
-        <%: Html.ActionLink(Titles.Edit, ActionNames.Edit, new { id = Model.Question.ID }) %> |
-        <%: Html.ActionLink(Titles.New, ActionNames.Create) %> |
-        <%: Html.ActionLink(Titles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
+        <%: Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new { id = Model.Question.ID }) %> |
+        <%: Html.ActionLink(CommonTitles.New, ActionNames.Create) %> |
+        <%: Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
         <%: Html.ActionLink(Titles.BackToList, ActionNames.Index) %>
     </p>
 

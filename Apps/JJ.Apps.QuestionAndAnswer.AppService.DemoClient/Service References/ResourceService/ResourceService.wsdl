@@ -13,30 +13,40 @@
   <wsdl:message name="IResourceService_GetMessages_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMessagesResponse" />
   </wsdl:message>
-  <wsdl:message name="IResourceService_GetLabels_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetLabels" />
-  </wsdl:message>
-  <wsdl:message name="IResourceService_GetLabels_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetLabelsResponse" />
-  </wsdl:message>
   <wsdl:message name="IResourceService_GetTitles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTitles" />
   </wsdl:message>
   <wsdl:message name="IResourceService_GetTitles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTitlesResponse" />
   </wsdl:message>
+  <wsdl:message name="IResourceService_GetPropertyDisplayNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPropertyDisplayNames" />
+  </wsdl:message>
+  <wsdl:message name="IResourceService_GetPropertyDisplayNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPropertyDisplayNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResourceService_GetCommonTitles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommonTitles" />
+  </wsdl:message>
+  <wsdl:message name="IResourceService_GetCommonTitles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommonTitlesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IResourceService">
     <wsdl:operation name="GetMessages">
       <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetMessages" message="tns:IResourceService_GetMessages_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetMessagesResponse" message="tns:IResourceService_GetMessages_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetLabels">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetLabels" message="tns:IResourceService_GetLabels_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetLabelsResponse" message="tns:IResourceService_GetLabels_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetTitles">
       <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetTitles" message="tns:IResourceService_GetTitles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetTitlesResponse" message="tns:IResourceService_GetTitles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPropertyDisplayNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetPropertyDisplayNames" message="tns:IResourceService_GetPropertyDisplayNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetPropertyDisplayNamesResponse" message="tns:IResourceService_GetPropertyDisplayNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommonTitles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetCommonTitles" message="tns:IResourceService_GetCommonTitles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetCommonTitlesResponse" message="tns:IResourceService_GetCommonTitles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IResourceService" type="tns:IResourceService">
@@ -50,8 +60,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetLabels">
-      <soap:operation soapAction="http://tempuri.org/IResourceService/GetLabels" style="document" />
+    <wsdl:operation name="GetTitles">
+      <soap:operation soapAction="http://tempuri.org/IResourceService/GetTitles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -59,8 +69,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTitles">
-      <soap:operation soapAction="http://tempuri.org/IResourceService/GetTitles" style="document" />
+    <wsdl:operation name="GetPropertyDisplayNames">
+      <soap:operation soapAction="http://tempuri.org/IResourceService/GetPropertyDisplayNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommonTitles">
+      <soap:operation soapAction="http://tempuri.org/IResourceService/GetCommonTitles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

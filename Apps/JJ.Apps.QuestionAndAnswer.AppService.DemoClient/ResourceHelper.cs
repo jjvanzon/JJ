@@ -15,9 +15,9 @@ namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
             LoadResources();
         }
 
-        public static Labels Labels { get; private set; }
         public static Titles Titles { get; private set; }
         public static Messages Messages { get; private set; }
+        public static PropertyDisplayNames PropertyDisplayNames { get; private set; }
 
         private static void LoadResources()
         {
@@ -25,9 +25,9 @@ namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 
             using (var service = new ResourceServiceClient())
             {
-                Labels = service.GetLabels(cultureName);
                 Titles = service.GetTitles(cultureName);
                 Messages = service.GetMessages(cultureName);
+                PropertyDisplayNames = service.GetPropertyDisplayNames(cultureName);
             }
         }
 

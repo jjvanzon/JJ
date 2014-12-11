@@ -15,12 +15,12 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private readonly string[] _availableCultureNames = new string[] { "en-US", "nl-NL" };
         private const string DEFAULT_CULTURE_NAME = "en-US";
 
-        public LanguageSelectionViewModel Show()
+        public LanguageSelectorViewModel Show()
         {
             return CreateLanguageSelectionViewModel();
         }
 
-        public LanguageSelectionViewModel SetLanguage(string cultureName)
+        public LanguageSelectorViewModel SetLanguage(string cultureName)
         {
             SetCulture(cultureName);
 
@@ -34,9 +34,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Thread.CurrentThread.CurrentUICulture = culture;
         }
 
-        private LanguageSelectionViewModel CreateLanguageSelectionViewModel()
+        private LanguageSelectorViewModel CreateLanguageSelectionViewModel()
         {
-            var viewModel = new LanguageSelectionViewModel();
+            var viewModel = new LanguageSelectorViewModel();
             
             // Fill culture list
             viewModel.Languages = new List<LanguageViewModel>();

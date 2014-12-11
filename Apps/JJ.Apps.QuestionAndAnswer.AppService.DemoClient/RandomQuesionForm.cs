@@ -46,8 +46,8 @@ namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 
         private void SetTexts()
         {
-            Text = ResourceHelper.Titles.Question + " [Service Client]";
-            labelAnswerTitle.Text = ResourceHelper.Labels.Answer;
+            Text = ResourceHelper.PropertyDisplayNames.Question + " [Service Client]";
+            labelAnswerTitle.Text = ResourceHelper.PropertyDisplayNames.Answer;
             buttonNextQuestion.Text = ResourceHelper.Titles.NextQuestion;
             buttonShowAnswer.Text = ResourceHelper.Titles.ShowAnswer;
             buttonHideAnswer.Text = ResourceHelper.Titles.HideAnswer;

@@ -123,6 +123,9 @@
   <data name="AnswersCount" xml:space="preserve">
     <value>Aantal antwoorden</value>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categorieën</value>
+  </data>
   <data name="Category" xml:space="preserve">
     <value>Categorie</value>
   </data>
@@ -131,6 +134,12 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Omschrijving</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Actief</value>
   </data>
   <data name="IsCorrectAnswer" xml:space="preserve">
     <value>Is correct antwoord</value>
@@ -144,10 +153,10 @@
   <data name="QuestionLink" xml:space="preserve">
     <value>Link</value>
   </data>
-  <data name="QuestionType" xml:space="preserve">
-    <value>Vraagsoort</value>
+  <data name="Questions" xml:space="preserve">
+    <value>Vragen</value>
   </data>
-  <data name="QuestionTypeEnum" xml:space="preserve">
+  <data name="QuestionType" xml:space="preserve">
     <value>Vraagsoort</value>
   </data>
   <data name="Text" xml:space="preserve">
@@ -155,5 +164,35 @@
   </data>
   <data name="Url" xml:space="preserve">
     <value>URL</value>
+  </data>
+  <data name="Runs" xml:space="preserve">
+    <value>Trainingen</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Commentaar</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Datum en tijd</value>
+  </data>
+  <data name="IsManual" xml:space="preserve">
+    <value>Handmatig bewerk</value>
+  </data>
+  <data name="LastModifiedByUser" xml:space="preserve">
+    <value>Laatst gewijzigd door</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Wachtwoord</value>
+  </data>
+  <data name="QuestionLinks" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Bron</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Gebruikersnaam</value>
+  </data>
+  <data name="FlagStatus" xml:space="preserve">
+    <value>Markering status</value>
   </data>
 </root>

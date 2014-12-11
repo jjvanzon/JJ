@@ -123,6 +123,9 @@
   <data name="AnswersCount" xml:space="preserve">
     <value>Number of answers</value>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
@@ -131,6 +134,12 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Active</value>
   </data>
   <data name="IsCorrectAnswer" xml:space="preserve">
     <value>Is correct answer</value>
@@ -144,10 +153,10 @@
   <data name="QuestionLink" xml:space="preserve">
     <value>Link</value>
   </data>
-  <data name="QuestionType" xml:space="preserve">
-    <value>Question type</value>
+  <data name="Questions" xml:space="preserve">
+    <value>Questions</value>
   </data>
-  <data name="QuestionTypeEnum" xml:space="preserve">
+  <data name="QuestionType" xml:space="preserve">
     <value>Question type</value>
   </data>
   <data name="Text" xml:space="preserve">
@@ -155,5 +164,36 @@
   </data>
   <data name="Url" xml:space="preserve">
     <value>URL</value>
+  </data>
+  <data name="Runs" xml:space="preserve">
+    <value>Runs</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Date and time</value>
+  </data>
+  <data name="IsManual" xml:space="preserve">
+    <value>Manually edited</value>
+  </data>
+  <data name="LastModifiedByUser" xml:space="preserve">
+    <value>Last modified by</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="QuestionLinks" xml:space="preserve">
+    <value>Links</value>
+    <comment>As in world wide web links</comment>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="FlagStatus" xml:space="preserve">
+    <value>Flag status</value>
   </data>
 </root>

@@ -30,7 +30,7 @@
         <h1>Q&A</h1>
         
         <div id="languageDiv">
-            <% Html.RenderPartial(ViewNames._LanguageSelection, ((MasterController)this.ViewContext.Controller).LanguageSelectionViewModel); %>
+            <% Html.RenderPartial(ViewNames._LanguageSelector, ((MasterController)this.ViewContext.Controller).LanguageSelectorViewModel); %>
         </div>
 
         <div id="smallLoginDiv">
@@ -41,18 +41,18 @@
 
     <nav>
         <ul>
-            <li><a href="<%: Url.Action(ActionNames.Random, ControllerNames.Questions) %>"><%: Titles.Question %></a></li>
-            <li><a href="<%: Url.Action(ActionNames.Index, ControllerNames.CategorySelector) %>"><%: Titles.Categories %></a></li>
-            <li><a><%: Titles.Search %></a></li>
+            <li><a href="<%: Url.Action(ActionNames.Random, ControllerNames.Questions) %>"><%: PropertyDisplayNames.Question %></a></li>
+            <li><a href="<%: Url.Action(ActionNames.Index, ControllerNames.CategorySelector) %>"><%: PropertyDisplayNames.Categories %></a></li>
+            <li><a><%: CommonTitles.Search %></a></li>
             <li><a><%: Titles.Statistics %></a></li>
-            <li><a><%: Titles.Runs %></a></li>
+            <li><a><%: PropertyDisplayNames.Runs %></a></li>
             <li>
                 <span id="contentManagementMenuItemSpan"><%: Titles.ContentManagement %></span>
 
                 <ul>
                     <li><a><%: Titles.ContentSourcesAndImports %></a></li>
-                    <li><a><%: Titles.Categories %></a></li>
-                    <li><a href="<%: Url.Action(ActionNames.Index, ControllerNames.Questions) %>"><%: Titles.Questions %></a></li>
+                    <li><a><%: PropertyDisplayNames.Categories %></a></li>
+                    <li><a href="<%: Url.Action(ActionNames.Index, ControllerNames.Questions) %>"><%: PropertyDisplayNames.Questions %></a></li>
                     <li><a><%: Titles.FlaggedContent %></a></li>
                 </ul>
             </li>

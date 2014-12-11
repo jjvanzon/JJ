@@ -23,7 +23,7 @@ namespace JJ.Business.QuestionAndAnswer.Validation
         {
             if (Object.QuestionType != null)
             {
-                For(() => Object.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionTypeEnum)
+                For(() => Object.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
                     .IsValue(QuestionTypeEnum.OpenQuestion);
             }
 

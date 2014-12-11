@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,7 +22,7 @@ namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
 
         private void MainForm_OnRunProcess(object sender, EventArgs e)
         {
-            ImportProcess.RunAllImportsFromConfiguration(
+            ImportExecutor.RunAllImportsFromConfiguration(
                 progressCallback: (message) => ShowProgress(message),
                 isCancelledCallback: () => !IsRunning);
         }

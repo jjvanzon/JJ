@@ -4,14 +4,14 @@
 </asp:Content>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
-    <%: Titles.Question %>
+    <%: PropertyDisplayNames.Question %>
 </asp:Content>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
 <% using (Html.BeginForm()) {%>
     
-    <h2><%: Titles.Question %></h2>
+    <h2><%: PropertyDisplayNames.Question %></h2>
 
     <div class="display-field">
         <%: Html.DisplayFor(x => x.Question.Text) %>
@@ -20,7 +20,7 @@
     <br />
 
     <div class="display-label">
-        <%: Labels.Answer %>
+        <%: PropertyDisplayNames.Answer %>
     </div>
     <div class="text-field">
         <%: Html.TextBoxFor(x => x.UserAnswer, new { autocomplete = "off", style="width:80%;" })%>
@@ -49,7 +49,7 @@
             <br />
 
             <div class="display-label">
-                <%: Labels.TheCorrectAnswer %>
+                <%: Titles.TheCorrectAnswer %>
             </div>
 
             <br />
@@ -70,7 +70,7 @@
 
             <br />
 
-            <%: Labels.AdditionalInformation %>
+            <%: Titles.AdditionalInformation %>
 
             <ul>
 
@@ -94,7 +94,7 @@
       
                 <br />
 
-                <%: Labels.Categories %>
+                <%: PropertyDisplayNames.Categories %>
 
                 <%: String.Join(" | ", Model.Question.Categories.SelectMany(x => x.Category.NameParts).Distinct()) %>
         

@@ -24,6 +24,7 @@
   <Metadata>
     <MetadataFile FileName="RandomQuestionService.disco" MetadataType="Disco" ID="f0de683d-7ba3-40ef-a4a1-3738587364e1" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?disco" />
     <MetadataFile FileName="RandomQuestionService.wsdl" MetadataType="Wsdl" ID="e0d8cd2d-e8b0-47ef-a963-11536006c1c0" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?wsdl" />
+    <MetadataFile FileName="RandomQuestionService4.xsd" MetadataType="Schema" ID="a167ebff-be2b-44aa-9557-fdfa63ba7a50" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?xsd=xsd4" />
     <MetadataFile FileName="RandomQuestionService.xsd" MetadataType="Schema" ID="10bb45d1-492b-4958-86a4-2e9b22e75657" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?xsd=xsd3" />
     <MetadataFile FileName="RandomQuestionService1.xsd" MetadataType="Schema" ID="8be89f8a-21e7-461d-9a0a-27b6b3e332c2" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?xsd=xsd2" />
     <MetadataFile FileName="RandomQuestionService2.xsd" MetadataType="Schema" ID="7d2ef752-8475-45c2-8e2b-82d80a7b23dd" SourceId="1" SourceUrl="http://localhost:52160/RandomQuestionService.svc?xsd=xsd1" />

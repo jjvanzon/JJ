@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<QuestionListViewModel>" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
-    <%: Titles.Questions %>
+    <%: PropertyDisplayNames.Questions %>
 </asp:Content>
 
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
@@ -9,7 +9,7 @@
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%: Titles.Questions %></h2>
+    <h2><%: PropertyDisplayNames.Questions %></h2>
 
     <p>
         <%: Html.ActionLink(Titles.CreateQuestion, ActionNames.Create) %>
@@ -18,8 +18,8 @@
     <table>
 
         <tr>
-            <th><%: Titles.ID %></th>
-            <th><%: Titles.Question %></th>
+            <th><%: PropertyDisplayNames.ID %></th>
+            <th><%: PropertyDisplayNames.Question %></th>
             <th><%: Titles.ContentIsFlagged %> </th>
             <th></th>
         </tr>
@@ -29,9 +29,9 @@
             <tr>
                 <td><%: question.ID %></td>
                 <td><%: Html.ActionLink(question.Text, ActionNames.Details, new { id = question.ID }) %></td>
-                <td><%: question.IsFlagged ? Titles.Yes : Titles.No %></td>
-                <td><%: Html.ActionLink(Titles.Edit, ActionNames.Edit, new { id = question.ID }) %> </td>
-                <td><%: Html.ActionLink(Titles.Delete, ActionNames.Delete, new { id = question.ID })%> </td>
+                <td><%: question.IsFlagged ? CommonTitles.Yes : CommonTitles.No %></td>
+                <td><%: Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new { id = question.ID }) %> </td>
+                <td><%: Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = question.ID })%> </td>
             </tr>
 
         <% } %>

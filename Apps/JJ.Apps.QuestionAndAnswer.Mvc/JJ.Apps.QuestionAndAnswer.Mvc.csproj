@@ -271,7 +271,7 @@
     <Content Include="Views\Questions\NotFound.aspx" />
     <Content Include="Views\Questions\Random.aspx" />
     <Content Include="Views\Questions\_SmallQuestionFlag.ascx" />
-    <Content Include="Views\Shared\_LanguageSelection.ascx" />
+    <Content Include="Views\Shared\_LanguageSelector.ascx" />
     <Content Include="Views\Shared\_SmallLogin.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -332,6 +332,10 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.csproj">
+      <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
+      <Name>JJ.Framework.Presentation.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.Canonical\JJ.Models.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>

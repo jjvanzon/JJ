@@ -97,6 +97,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
+      <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
+      <Name>JJ.Business.QuestionAndAnswer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.EntityFramework5.csproj">
       <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
       <Name>JJ.Framework.Persistence.EntityFramework5</Name>

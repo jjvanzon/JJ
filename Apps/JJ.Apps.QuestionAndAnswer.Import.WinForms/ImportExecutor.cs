@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
 {
-    internal static class ImportProcess
+    internal static class ImportExecutor
     {
         public static void RunAllImportsFromConfiguration(Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
         {

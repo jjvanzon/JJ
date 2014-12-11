@@ -14,9 +14,12 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
         Messages GetMessages(string cultureName);
 
         [OperationContract]
-        Labels GetLabels(string cultureName);
+        Titles GetTitles(string cultureName);
 
         [OperationContract]
-        Titles GetTitles(string cultureName);
+        PropertyDisplayNames GetPropertyDisplayNames(string cultureName);
+
+        [OperationContract]
+        CommonTitles GetCommonTitles(string cultureName);
     }
 }

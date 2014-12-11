@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<LoginViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <%: Titles.LogIn %>
+    <%: CommonTitles.LogIn %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
@@ -11,19 +11,19 @@
 
     <% using (Html.BeginForm()) { %>
 
-        <h2><%: Titles.LogIn %></h2>
+        <h2><%: CommonTitles.LogIn %></h2>
 
         <p>
-            <%: Labels.UserName %>
+            <%: PropertyDisplayNames.UserName %>
             <%: Html.TextBoxFor(x => x.UserName) %>
         </p>
 
         <p>
-            <%: Labels.Password %>
+            <%: PropertyDisplayNames.Password %>
             <%: Html.PasswordFor(x => x.Password) %>
         </p>
 
-        <input type="submit" value="<%: Titles.LogIn %>" />
+        <input type="submit" value="<%: CommonTitles.LogIn %>" />
     
     <% } %>
 </asp:Content>

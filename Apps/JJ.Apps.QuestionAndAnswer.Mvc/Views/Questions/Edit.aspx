@@ -17,21 +17,21 @@
 
         <table>
             <tr>
-                <th><%: Labels.ID %></th>
+                <th><%: PropertyDisplayNames.ID %></th>
                 <td style="text-align:right">
                     <%: Model.Question.ID %>
                     <%: Html.HiddenFor(x => x.Question.ID) %>
                 </td>
             </tr>
             <tr>
-                <th><%: Labels.IsActive %></th>
+                <th><%: PropertyDisplayNames.IsActive %></th>
                 <td style="text-align:right">
                     <%: Html.CheckBoxFor(x => x.Question.IsActive) %>
                     <%: Html.ValidationMessageFor(x => x.Question.IsActive) %>
                 </td>
             </tr>
             <tr>
-                <th><%: Labels.Source %></th>
+                <th><%: PropertyDisplayNames.Source %></th>
                 <td style="text-align:right">
                     <% if (!String.IsNullOrEmpty(Model.Question.Source.Url)) { %>
 
@@ -51,20 +51,20 @@
                 </td>
             </tr>
             <tr>
-                <th><%: Labels.Type %></th>
+                <th><%: PropertyDisplayNames.QuestionType %></th>
                 <td style="text-align:right">
                     <%: Model.Question.Type.Name %>
                     <%: Html.HiddenFor(x => x.Question.Type.ID) %>
                 </td>
             </tr>
             <tr>
-                <th><%: Labels.LastModifiedBy %></th>
+                <th><%: PropertyDisplayNames.LastModifiedByUser %></th>
                 <td style="text-align:right"><%: Model.Question.LastModifiedBy %> </td>
             </tr>
             <tr>
-                <th><%: Labels.IsManual %></th>
+                <th><%: PropertyDisplayNames.IsManual %></th>
                 <td style="text-align:right">
-                    <%: Model.Question.IsManual ? Titles.Yes : Titles.No %>
+                    <%: Model.Question.IsManual ? CommonTitles.Yes : CommonTitles.No %>
 
                     <% if (Model.Question.IsManual) { %>
 
@@ -76,12 +76,12 @@
             </tr>
         </table>
 
-        <div class="editor-label"><%: Labels.Question %> <%: Html.ValidationMessageFor(x => x.Question.Text) %></div>
+        <div class="editor-label"><%: PropertyDisplayNames.Question %> <%: Html.ValidationMessageFor(x => x.Question.Text) %></div>
         <div>
             <%: Html.TextAreaFor(x => x.Question.Text) %>
         </div>
         
-        <div class="editor-label"><%: Labels.Answer %> <%: Html.ValidationMessageFor(x => x.Question.Answer) %></div>
+        <div class="editor-label"><%: PropertyDisplayNames.Answer %> <%: Html.ValidationMessageFor(x => x.Question.Answer) %></div>
         <div>
             <%: Html.TextAreaFor(x => x.Question.Answer) %>
         </div>
@@ -89,7 +89,7 @@
         <br />
         
         <fieldset>
-            <legend><%: Titles.Categories %></legend>
+            <legend><%: PropertyDisplayNames.Categories %></legend>
 
             <% if (Model.Question.Categories.Count != 0) { %>
 
@@ -110,10 +110,10 @@
                                         "")%>
                             </td>
                             <td style="vertical-align:bottom;text-align:center;">
-                                <input type="submit" value="<%: Titles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 
-                                                                                                                       ControllerNames.Questions,
-                                                                                                                       ActionParameterNames.temporaryID,
-                                                                                                                       Model.Question.Categories[i].TemporaryID) %>" />
+                                <input type="submit" value="<%: CommonTitles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 
+                                                                                                                             ControllerNames.Questions,
+                                                                                                                             ActionParameterNames.temporaryID,
+                                                                                                                             Model.Question.Categories[i].TemporaryID) %>" />
                                 <%: Html.HiddenFor(x => x.Question.Categories[i].QuestionCategoryID) %>
                                 <%: Html.HiddenFor(x => x.Question.Categories[i].TemporaryID) %>
                             </td>
@@ -128,7 +128,7 @@
                     <tr style="height:27px">
                         <td />
                         <td style="vertical-align:bottom;text-align:center;">
-                            <input type="submit" value="<%: Titles.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
+                            <input type="submit" value="<%: CommonTitles.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
                         </td>
                         <td />
                     </tr>
@@ -137,7 +137,7 @@
             <% } else { %>
 
                 <br />
-                <input type="submit" value="<%: Titles.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
+                <input type="submit" value="<%: CommonTitles.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
 
             <% } %>
 
@@ -154,7 +154,7 @@
 
                         <tr style="height:47px">
                             <td>
-                                <%: Labels.Description %>
+                                <%: PropertyDisplayNames.Description %>
                                 <span class="editor-field">
                                     <%: Html.TextBoxFor(x => x.Question.Links[i].Description, new { style = "width:200px;" }) %>
                                     <%: Html.ValidationMessageFor(x => x.Question.Links[i].Description) %>
@@ -167,7 +167,7 @@
 
                                 <% } %>
 
-                                <%: Labels.Url %>
+                                <%: PropertyDisplayNames.Url %>
 
                                 <% if (!String.IsNullOrEmpty(Model.Question.Links[i].Url)) { %>
 
@@ -181,10 +181,10 @@
                                 </span>
                             </td>
                             <td style="vertical-align:bottom;text-align:center;">
-                                <input type="submit" value="<%: Titles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveLink, 
-                                                                                                                       ControllerNames.Questions, 
-                                                                                                                       ActionParameterNames.temporaryID, 
-                                                                                                                       Model.Question.Links[i].TemporaryID) %>" />
+                                <input type="submit" value="<%: CommonTitles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveLink, 
+                                                                                                                             ControllerNames.Questions, 
+                                                                                                                             ActionParameterNames.temporaryID, 
+                                                                                                                             Model.Question.Links[i].TemporaryID) %>" />
 
                                 <%: Html.HiddenFor(x => x.Question.Links[i].ID) %>
                                 <%: Html.HiddenFor(x => x.Question.Links[i].TemporaryID) %>
@@ -197,7 +197,7 @@
                         <td />
                         <td />
                         <td style="vertical-align:bottom;text-align:center;">
-                            <input type="submit" value="<%: Titles.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
+                            <input type="submit" value="<%: CommonTitles.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
                         </td>
                     </tr>
                 </table>
@@ -205,7 +205,7 @@
             <% } else { %>
 
                 <br />
-                <input type="submit" value="<%: Titles.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
+                <input type="submit" value="<%: CommonTitles.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
 
             <% } %>
 
@@ -214,7 +214,7 @@
         <fieldset>
             <legend><%: Titles.ContentFlags %></legend>
 
-            <%: Labels.HasActiveFlags %> <%: Model.Question.IsFlagged ? Titles.Yes : Titles.No %>
+            <%: Titles.HasActiveFlags %> <%: Model.Question.IsFlagged ? CommonTitles.Yes : CommonTitles.No %>
 
             <br />
 
@@ -228,7 +228,7 @@
                     <legend><%: Model.Question.Flags[i].FlaggedBy%>, <%: Model.Question.Flags[i].DateAndTime.ToShortDateString() %></legend>
                     <table>
                         <tr>
-                            <th class="editor-label"><%: Labels.Status%></th>
+                            <th class="editor-label"><%: PropertyDisplayNames.FlagStatus %></th>
                             <td class="editor-field">
                                 <%: Html.DropDownListFor(
                                         x => Model.Question.Flags[i].Status.ID,
@@ -244,7 +244,7 @@
                         </tr>
 
                         <tr>
-                            <th class="editor-label"><%: Labels.Comment%></th>
+                            <th class="editor-label"><%: PropertyDisplayNames.Comment%></th>
                             <td class="editor-field">
                                 <%: Html.TextAreaFor(x => Model.Question.Flags[i].Comment)%>
                                 <%: Html.ValidationMessageFor(x => Model.Question.Flags[i].Comment)%>
@@ -252,7 +252,7 @@
                         </tr>
 
                         <tr>
-                            <th class="editor-label"><%: Labels.LastModifiedBy%></th>
+                            <th class="editor-label"><%: PropertyDisplayNames.LastModifiedByUser%></th>
                             <td class="editor-field">
                                 <%: Model.Question.Flags[i].LastModifiedBy%>
                             </td>
@@ -275,29 +275,29 @@
 
         <p>
             <%-- Save --%>
-            <input type="submit" value="<%: Titles.Save %>" /> |
+            <input type="submit" value="<%: CommonTitles.Save %>" /> |
 
             <%-- TODO: The view is not supposed to make these decisions. --%>
 
             <%-- Cancel --%>
             <% if (Model.IsNew) { %>
 
-                <a href="javascript:history.back()"> <%: Titles.Cancel %></a> |
+                <a href="javascript:history.back()"> <%: CommonTitles.Cancel %></a> |
                 <noscript>
                     <%: Messages.YouHaveNoJavaScript %>
-                    <%: Html.ActionLink(Titles.Cancel, ActionNames.Index) %> ?
+                    <%: Html.ActionLink(CommonTitles.Cancel, ActionNames.Index) %> ?
                 </noscript>
 
             <% } else { %>
 
-                <%: Html.ActionLink(Titles.Cancel, ActionNames.Details, new { id = Model.Question.ID }) %> |
+                <%: Html.ActionLink(CommonTitles.Cancel, ActionNames.Details, new { id = Model.Question.ID }) %> |
 
             <% } %>
 
             <%-- Delete --%>
             <% if (Model.CanDelete) { %>
 
-                <%: Html.ActionLink(Titles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
+                <%: Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
 
             <% } %>
 

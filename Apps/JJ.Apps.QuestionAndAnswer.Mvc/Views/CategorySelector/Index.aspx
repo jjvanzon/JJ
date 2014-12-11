@@ -97,7 +97,7 @@
                             ondragover="divAvailableCategories_onDragOver(event)"
                             ondrop="divAvailableCategories_onDrop(event)">
 
-                        <h3><%: Labels.AvailableCategories %></h3>
+                        <h3><%: Titles.AvailableCategories %></h3>
 
                         <ul class="category available">
                             <% foreach (var availableCategory in Model.AvailableCategories) { %>
@@ -114,7 +114,7 @@
                             ondragover="divSelectedCategories_onDragOver(event)"
                             ondrop="divSelectedCategories_onDrop(event)">
 
-                        <h3><%: Labels.Selection %></h3>
+                        <h3><%: Titles.Selection %></h3>
 
                         <ul class="category selected">
 

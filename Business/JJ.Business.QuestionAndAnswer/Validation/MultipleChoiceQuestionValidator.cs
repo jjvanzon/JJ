@@ -22,7 +22,7 @@ namespace JJ.Business.QuestionAndAnswer.Validation
         {
             if (Object.QuestionType != null)
             {
-                For(() => Object.QuestionType.ID, PropertyDisplayNames.QuestionTypeEnum)
+                For(() => Object.QuestionType.ID, PropertyDisplayNames.QuestionType)
                     .IsValue((int)QuestionTypeEnum.MultipleChoice);
             }
 

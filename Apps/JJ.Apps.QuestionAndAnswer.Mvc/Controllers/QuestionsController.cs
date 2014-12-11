@@ -22,8 +22,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
     {
         public QuestionsController()
         {
-            // The request must not be validated because so much text in the questions and answers will contain '<' and '>' characters,
-            // because many questions are about HTML.
             ValidateRequest = false;
         }
 

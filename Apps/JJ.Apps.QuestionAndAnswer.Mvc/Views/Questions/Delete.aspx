@@ -17,18 +17,18 @@
 
         <table>
             <tr>
-                <th> <%: Labels.ID %> </th>
+                <th> <%: PropertyDisplayNames.ID %> </th>
                 <td> <%: Model.ID %> </td>
             </tr>
             <tr>
-                <th> <%: Labels.Question %> </th>
+                <th> <%: PropertyDisplayNames.Question %> </th>
                 <td> <%: Model.Question %> </td>
             </tr>
         </table>
 
         <p>
             <input type="submit" value="<%: Titles.Confirm %>" /> |
-            <a href="javascript:history.back()"> <%: Titles.Cancel %> </a>
+            <a href="javascript:history.back()"> <%: CommonTitles.Cancel %> </a>
         </p>
 
     <% } %>

@@ -14,6 +14,7 @@ using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Framework.Presentation;
 using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
+using JJ.Business.QuestionAndAnswer.Resources;
 
 namespace JJ.Apps.QuestionAndAnswer.WinForms
 {
@@ -65,8 +66,8 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
 
         private void SetTitlesAndLabels()
         {
-            Text = Titles.Question;
-            labelAnswerTitle.Text = Labels.Answer;
+            Text = PropertyDisplayNames.Question;
+            labelAnswerTitle.Text = PropertyDisplayNames.Answer;
             buttonNextQuestion.Text = Titles.NextQuestion;
             buttonShowAnswer.Text = Titles.ShowAnswer;
             buttonHideAnswer.Text = Titles.HideAnswer;
@@ -107,9 +108,9 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
 
         private void ApplyNotFoundViewModel(QuestionNotFoundViewModel viewModel)
         {
-            labelQuestion.Text = "";
-            labelAnswerText.Text = "";
-            textBoxUserAnswer.Text = "";
+            labelQuestion.Text = null;
+            labelAnswerText.Text = null;
+            textBoxUserAnswer.Text = null;
             labelAnswerText.Visible = false;
             buttonShowAnswer.Visible = true;
             buttonShowAnswer.Enabled = false;
