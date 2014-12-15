@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Business.QuestionAndAnswer.Extensions
+namespace JJ.Business.QuestionAndAnswer.LinkTo
 {
-    public static class QuestionFlagExtensions_LinkTo
+    public static class QuestionFlagExtensions
     {
         public static void LinkTo(this QuestionFlag questionFlag, Question question)
         {

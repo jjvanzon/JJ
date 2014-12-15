@@ -11,21 +11,13 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
     {
         public static bool IsLeaf(this Category category)
         {
-            if (category == null)
-            {
-                throw new ArgumentNullException("category");
-            }
-
+            if (category == null) throw new ArgumentNullException("category");
             return category.SubCategories.Count == 0;
         }
 
         public static bool IsRoot(this Category category)
         {
-            if (category == null)
-            {
-                throw new ArgumentNullException("category");
-            }
-
+            if (category == null) throw new ArgumentNullException("category");
             return category.ParentCategory == null;
         }
     }

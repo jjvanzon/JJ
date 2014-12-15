@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 
 namespace JJ.Business.QuestionAndAnswer
 {

@@ -9,6 +9,7 @@ using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using System.Collections;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {

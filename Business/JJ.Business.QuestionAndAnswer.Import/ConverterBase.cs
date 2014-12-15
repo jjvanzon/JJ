@@ -11,6 +11,7 @@ using JJ.Business.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Validation;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {

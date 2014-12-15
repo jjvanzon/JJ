@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Business.QuestionAndAnswer.Extensions
+namespace JJ.Business.QuestionAndAnswer.LinkTo
 {
-    public static class CategoryExtensions_LinkTo
+    public static class CategoryExtensions
     {
         public static void LinkToParentCategory(this Category category, Category parentCategory)
         {

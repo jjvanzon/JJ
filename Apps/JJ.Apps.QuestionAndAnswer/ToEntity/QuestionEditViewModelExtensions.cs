@@ -14,6 +14,7 @@ using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 
 namespace JJ.Apps.QuestionAndAnswer.ToEntity
 {
