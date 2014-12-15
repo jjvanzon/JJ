@@ -55,8 +55,8 @@
     <Compile Include="RepositoryInterfaces\IQuestionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryInterfaces\IUserRepository.cs" />
-    <Compile Include="SQL\SqlEnum.cs" />
-    <Compile Include="SQL\SqlExecutor.cs" />
+    <Compile Include="Sql\SqlEnum.cs" />
+    <Compile Include="Sql\SqlExecutor.cs" />
     <Compile Include="Repositories\QuestionRepository.cs.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,7 +74,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SQL\TryGetRandomQuestionID.sql" />
+    <EmbeddedResource Include="Sql\TryGetRandomQuestionID.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

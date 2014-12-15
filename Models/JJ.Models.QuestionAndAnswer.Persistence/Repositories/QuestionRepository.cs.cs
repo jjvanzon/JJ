@@ -1,5 +1,5 @@
 ﻿using JJ.Framework.Persistence;
-using JJ.Models.QuestionAndAnswer.Persistence.SQL;
+using JJ.Models.QuestionAndAnswer.Persistence.Sql;
 using System;
 using System.Collections.Generic;
 using System.Linq;

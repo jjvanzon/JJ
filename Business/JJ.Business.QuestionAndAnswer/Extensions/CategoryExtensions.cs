@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {
-    public static class CategoryExtensions_Other
+    public static class CategoryExtensions
     {
         public static bool IsLeaf(this Category category)
         {

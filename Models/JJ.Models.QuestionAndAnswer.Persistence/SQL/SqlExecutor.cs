@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Models.QuestionAndAnswer.Persistence.SQL
+namespace JJ.Models.QuestionAndAnswer.Persistence.Sql
 {
     internal class SqlExecutor
     {

@@ -45,7 +45,7 @@ namespace JJ.Business.QuestionAndAnswer
             questionFlag.LinkToLastModifiedByUser(_user);
             questionFlag.DateTime = DateTime.Now;
             questionFlag.Comment = comment;
-            questionFlag.SetFlagStatusEnum(_flagStatusRepository, FlagStatusEnum.Flagged);
+            questionFlag.SetFlagStatusEnum(FlagStatusEnum.Flagged, _flagStatusRepository);
 
             return questionFlag;
         }

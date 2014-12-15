@@ -73,7 +73,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
         {
             Question question = _questionRepository.Create();
             question.AutoCreateRelatedEntities(_answerRepository);
-            question.SetQuestionTypeEnum(_questionTypeRepository, QuestionTypeEnum.OpenQuestion);
+            question.SetQuestionTypeEnum(QuestionTypeEnum.OpenQuestion, _questionTypeRepository);
             question.Answers[0].IsCorrectAnswer = true;
 
             question.LinkTo(_source);

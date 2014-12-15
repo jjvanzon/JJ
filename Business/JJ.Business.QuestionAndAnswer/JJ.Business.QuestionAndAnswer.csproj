@@ -37,20 +37,13 @@
     <Compile Include="CategoryManager.cs" />
     <Compile Include="Enums\FlagStatusEnum.cs" />
     <Compile Include="Enums\QuestionTypeEnum.cs" />
-    <Compile Include="LinkTo\AnswerExtensions.cs" />
-    <Compile Include="Extensions\CategoryExtensions_Other.cs" />
-    <Compile Include="LinkTo\CategoryExtensions.cs" />
-    <Compile Include="Extensions\QuestionLinkExtensions_Other.cs" />
-    <Compile Include="Extensions\QuestionCategoryExtensions_Other.cs" />
-    <Compile Include="Extensions\QuestionFlagExtensions_Other.cs" />
-    <Compile Include="Extensions\QuestionFlagExtensions_Enums.cs" />
-    <Compile Include="LinkTo\QuestionFlagExtensions.cs" />
-    <Compile Include="LinkTo\SourceExtensions.cs" />
-    <Compile Include="LinkTo\QuestionCategoryExtensions.cs" />
-    <Compile Include="Extensions\QuestionExtensions_Enums.cs" />
-    <Compile Include="Extensions\QuestionExtensions_Other.cs" />
-    <Compile Include="LinkTo\QuestionLinkExtensions.cs" />
-    <Compile Include="LinkTo\QuestionTypeExtensions.cs" />
+    <Compile Include="Extensions\AutoCreateRelatedEntitiesExtensions.cs" />
+    <Compile Include="Extensions\CategoryExtensions.cs" />
+    <Compile Include="Extensions\DeleteRelatedEntitiesExtensions.cs" />
+    <Compile Include="Extensions\EntityEnumExtensions.cs" />
+    <Compile Include="Extensions\UnlinkRelatedEntitiesExtensions.cs" />
+    <Compile Include="LinkTo\LinkToExtensions.cs" />
+    <Compile Include="LinkTo\UnlinkExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionFlagger.cs" />
     <Compile Include="QuestionSelector.cs" />
@@ -121,9 +114,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PropertyDisplayNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="LinkTo\QuestionExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
