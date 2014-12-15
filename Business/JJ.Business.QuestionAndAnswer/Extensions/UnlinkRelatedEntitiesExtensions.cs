@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {

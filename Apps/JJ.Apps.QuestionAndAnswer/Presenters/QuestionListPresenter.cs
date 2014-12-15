@@ -1,6 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using System;
 using System.Collections.Generic;

@@ -8,7 +8,7 @@ using JJ.Business.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Framework.Validation;
 using JJ.Framework.Common;
 using JJ.Business.QuestionAndAnswer.Validation;

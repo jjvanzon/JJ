@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using JJ.Framework.Persistence;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.Presenters;
-using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Framework.Common;
 using JJ.Framework.Presentation;
@@ -14,7 +14,7 @@ using JJ.Models.Canonical;
 using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
-using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
+using JJ.Models.QuestionAndAnswer.Repositories;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {

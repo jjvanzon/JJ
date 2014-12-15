@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using JJ.Framework.Common;
 using JJ.Framework.Validation;
 using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;

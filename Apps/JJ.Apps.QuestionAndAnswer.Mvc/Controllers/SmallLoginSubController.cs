@@ -1,14 +1,15 @@
-﻿using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
-using JJ.Apps.QuestionAndAnswer.Presenters;
-using JJ.Apps.QuestionAndAnswer.ViewModels;
-using JJ.Framework.Persistence;
-using JJ.Models.QuestionAndAnswer.Persistence.Repositories;
-using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JJ.Framework.Persistence;
+using JJ.Framework.Reflection;
+using JJ.Models.QuestionAndAnswer.Repositories;
+using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
+using JJ.Apps.QuestionAndAnswer.Presenters;
+using JJ.Apps.QuestionAndAnswer.ViewModels;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -18,7 +19,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public SmallLoginSubController(Controller parentController)
         {
-            if (parentController == null) { throw new ArgumentNullException("parentController"); }
+            if (parentController == null) throw new ArgumentNullException("parentController");
 
             _parentController = parentController;
         }

@@ -1,4 +1,4 @@
-﻿using JJ.Models.QuestionAndAnswer.Persistence.RepositoryInterfaces;
+﻿using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
