@@ -7,6 +7,7 @@ using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Framework.Reflection;
 
 namespace JJ.Business.QuestionAndAnswer
 {
@@ -16,7 +17,7 @@ namespace JJ.Business.QuestionAndAnswer
 
         public CategoryManager(ICategoryRepository categoryRepository)
         {
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
+            if (categoryRepository == null) throw new NullException(() => categoryRepository);
             _categoryRepository = categoryRepository;
         }
 
@@ -34,7 +35,7 @@ namespace JJ.Business.QuestionAndAnswer
 
         public Category TryGetCategoryByIdentifierPath(params string[] identifiers)
         {
-            if (identifiers == null) throw new ArgumentNullException("identifiers");
+            if (identifiers == null) throw new NullException(() => identifiers);
             if (identifiers.Length == 0) throw new Exception("identifiers collection cannot be empty.");
 
             string rootIdentifier = identifiers[0];
@@ -62,7 +63,7 @@ namespace JJ.Business.QuestionAndAnswer
 
         public Category FindOrCreateCategoryByIdentifierPath(params string[] identifiers)
         {
-            if (identifiers == null) throw new ArgumentNullException("identifiers");
+            if (identifiers == null) throw new NullException(() => identifiers);
             if (identifiers.Length == 0) throw new Exception("identifiers collection cannot be empty.");
 
             string rootIdentifier = identifiers[0];

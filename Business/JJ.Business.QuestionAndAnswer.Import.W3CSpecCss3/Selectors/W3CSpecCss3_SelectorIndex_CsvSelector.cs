@@ -1,6 +1,7 @@
 ﻿using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Framework.Common;
 using JJ.Framework.IO;
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
     {
         public IEnumerable<W3CSpecCss3_SelectorIndex_ImportModel> GetSelection(Stream stream)
         {
-            if (stream == null) throw new ArgumentNullException("stream");
+            if (stream == null) throw new NullException(() => stream);
 
             using (CsvReader reader = new CsvReader(stream))
             {

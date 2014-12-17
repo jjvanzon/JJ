@@ -1,4 +1,5 @@
-﻿using JJ.Models.QuestionAndAnswer;
+﻿using JJ.Framework.Reflection;
+using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,13 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
     {
         public static bool IsLeaf(this Category category)
         {
-            if (category == null) throw new ArgumentNullException("category");
+            if (category == null) throw new NullException(() => category);
             return category.SubCategories.Count == 0;
         }
 
         public static bool IsRoot(this Category category)
         {
-            if (category == null) throw new ArgumentNullException("category");
+            if (category == null) throw new NullException(() => category);
             return category.ParentCategory == null;
         }
     }

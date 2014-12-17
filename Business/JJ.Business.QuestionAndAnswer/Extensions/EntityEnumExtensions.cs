@@ -6,6 +6,7 @@ using JJ.Models.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Framework.Reflection;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {
@@ -18,8 +19,8 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
         public static void SetQuestionTypeEnum(this Question entity, QuestionTypeEnum value, IQuestionTypeRepository questionTypeRepository)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
-            if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
+            if (entity == null) throw new NullException(() => entity);
+            if (questionTypeRepository == null) throw new NullException(() => questionTypeRepository);
 
             QuestionType questionType = questionTypeRepository.Get((int)value);
             questionType.LinkTo(entity);
@@ -32,8 +33,8 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
         public static void SetFlagStatusEnum(this QuestionFlag entity, FlagStatusEnum value, IFlagStatusRepository flagStatusRepository)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
-            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
+            if (entity == null) throw new NullException(() => entity);
+            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
 
             FlagStatus flagStatus = flagStatusRepository.Get((int)value);
             entity.LinkTo(flagStatus);

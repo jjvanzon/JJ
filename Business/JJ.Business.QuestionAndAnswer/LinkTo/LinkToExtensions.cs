@@ -1,4 +1,5 @@
-﻿using JJ.Models.QuestionAndAnswer;
+﻿using JJ.Framework.Reflection;
+using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
     {
         public static void LinkTo(this Answer answer, Question question)
         {
-            if (answer == null) { throw new ArgumentNullException("answer"); }
+            if (answer == null) throw new NullException(() => answer);
 
             if (answer.Question != null)
             {
@@ -34,7 +35,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkToParentCategory(this Category category, Category parentCategory)
         {
-            if (category == null) { throw new ArgumentNullException("category"); }
+            if (category == null) throw new NullException(() => category);
 
             if (category.ParentCategory != null)
             {
@@ -57,7 +58,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkToSubCategory(this Category category, Category subCategory)
         {
-            if (category == null) { throw new ArgumentNullException("category"); }
+            if (category == null) throw new NullException(() => category);
 
             if (subCategory.ParentCategory.SubCategories.Contains(subCategory))
             {
@@ -74,7 +75,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this Category category, QuestionCategory categoryQuestion)
         {
-            if (category == null) { throw new ArgumentNullException("category"); }
+            if (category == null) throw new NullException(() => category);
 
             if (categoryQuestion.Category != null)
             {
@@ -97,7 +98,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this QuestionCategory questionCategory, Question question)
         {
-            if (questionCategory == null) { throw new ArgumentNullException("questionCategory"); }
+            if (questionCategory == null) throw new NullException(() => questionCategory);
 
             if (questionCategory.Question != null)
             {
@@ -120,7 +121,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this QuestionCategory questionCategory, Category category)
         {
-            if (questionCategory == null) { throw new ArgumentNullException("questionCategory"); }
+            if (questionCategory == null) throw new NullException(() => questionCategory);
 
             if (questionCategory.Category != null)
             {
@@ -143,7 +144,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this Question question, Answer answer)
         {
-            if (question == null) { throw new ArgumentNullException("question"); }
+            if (question == null) throw new NullException(() => question);
 
             if (answer.Question != null)
             {
@@ -166,7 +167,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this Question question, QuestionCategory questionCategory)
         {
-            if (question == null) { throw new ArgumentNullException("question"); }
+            if (question == null) throw new NullException(() => question);
 
             if (questionCategory.Question != null)
             {
@@ -189,7 +190,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this Question question, QuestionLink questionLink)
         {
-            if (question == null) { throw new ArgumentNullException("question"); }
+            if (question == null) throw new NullException(() => question);
 
             if (questionLink.Question != null)
             {
@@ -212,7 +213,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this Question question, QuestionType questionType)
         {
-            if (question == null) { throw new ArgumentNullException("question"); }
+            if (question == null) throw new NullException(() => question);
 
             if (question.QuestionType != null)
             {
@@ -235,7 +236,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this Question question, Source source)
         {
-            if (question == null) { throw new ArgumentNullException("question"); }
+            if (question == null) throw new NullException(() => question);
 
             if (question.Source != null)
             {
@@ -258,7 +259,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this QuestionFlag questionFlag, Question question)
         {
-            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
+            if (questionFlag == null) throw new NullException(() => questionFlag);
 
             if (questionFlag.Question != null)
             {
@@ -281,7 +282,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this QuestionFlag questionFlag, FlagStatus flagStatus)
         {
-            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
+            if (questionFlag == null) throw new NullException(() => questionFlag);
 
             if (questionFlag.FlagStatus != null)
             {
@@ -304,7 +305,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkToFlaggedByUser(this QuestionFlag questionFlag, User user)
         {
-            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
+            if (questionFlag == null) throw new NullException(() => questionFlag);
 
             if (questionFlag.FlaggedByUser != null)
             {
@@ -327,7 +328,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkToLastModifiedByUser(this QuestionFlag questionFlag, User user)
         {
-            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
+            if (questionFlag == null) throw new NullException(() => questionFlag);
 
             if (questionFlag.LastModifiedByUser != null)
             {
@@ -350,7 +351,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this QuestionLink questionLink, Question question)
         {
-            if (questionLink == null) throw new ArgumentNullException("questionLink");
+            if (questionLink == null) throw new NullException(() => questionLink);
 
             if (questionLink.Question != null)
             {
@@ -373,7 +374,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this QuestionType questionType, Question question)
         {
-            if (questionType == null) { throw new ArgumentNullException("questionType"); }
+            if (questionType == null) throw new NullException(() => questionType);
 
             if (question.QuestionType != null)
             {
@@ -396,7 +397,7 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
         public static void LinkTo(this Source source, Question question)
         {
-            if (source == null) { throw new ArgumentNullException("source"); }
+            if (source == null) throw new NullException(() => source);
 
             if (question.Source != null)
             {

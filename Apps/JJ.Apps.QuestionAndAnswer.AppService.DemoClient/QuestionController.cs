@@ -8,7 +8,7 @@ using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.RandomQuestionService;
 
 namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 {
-    public class QuestionController
+    internal class QuestionController
     {
         private RandomQuestionServiceClient _service = new RandomQuestionServiceClient();
 

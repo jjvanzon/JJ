@@ -17,18 +17,22 @@ using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
+using JJ.Framework.Reflection;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionDetailsPresenter
     {
         private Repositories _repositories;
+        private string _authenticatedUserName;
 
-        public QuestionDetailsPresenter(Repositories repositories)
+        /// <param name="authenticatedUserName">nullable</param>
+        public QuestionDetailsPresenter(Repositories repositories, string authenticatedUserName)
         {
-            if (repositories == null) throw new ArgumentNullException("repositories");
+            if (repositories == null) throw new NullException(() => repositories);
 
             _repositories = repositories;
+            _authenticatedUserName = authenticatedUserName;
         }
 
         /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
@@ -48,20 +52,20 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// <summary> Can return QuestionEditViewModel or QuestionNotFoundViewModel. </summary>
         public object Edit(int id)
         {
-            var editPresenter = new QuestionEditPresenter(_repositories);
+            var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName);
             return editPresenter.Edit(id);
         }
 
         /// <summary> Can return QuestionConfirmDeleteViewModel and QuestionNotFoundViewModel. </summary>
         public object Delete(int id)
         {
-            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories);
+            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
             return deletePresenter.Show(id);
         }
 
         public QuestionListViewModel BackToList()
         {
-            var listPresenter = new QuestionListPresenter(_repositories);
+            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
             return listPresenter.Show();
         }
     }

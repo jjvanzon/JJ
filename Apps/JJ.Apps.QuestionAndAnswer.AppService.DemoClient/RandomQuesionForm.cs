@@ -11,7 +11,7 @@ using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.RandomQuestionService;
 
 namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 {
-    public partial class RandomQuesionForm : Form
+    internal partial class RandomQuesionForm : Form
     {
         private QuestionController _controller;
         private RandomQuestionViewModel _viewModel;

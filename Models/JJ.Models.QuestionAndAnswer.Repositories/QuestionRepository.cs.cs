@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Framework.Common;
+using JJ.Framework.Reflection;
 
 namespace JJ.Models.QuestionAndAnswer.Repositories
 {
@@ -29,7 +30,7 @@ namespace JJ.Models.QuestionAndAnswer.Repositories
 
         public IList<int> GetQuestionIDsByCategory(Category category)
         {
-            if (category == null) throw new ArgumentNullException("category");
+            if (category == null) throw new NullException(() => category);
 
             IList<int> ids = GetQuestionIDsByCategoryRecursive(category);
             return ids.Distinct().ToArray();

@@ -8,7 +8,7 @@ using JJ.Apps.QuestionAndAnswer.AppService.DemoClient.ResourceService;
 
 namespace JJ.Apps.QuestionAndAnswer.AppService.DemoClient
 {
-    public static class ResourceHelper
+    internal static class ResourceHelper
     {
         static ResourceHelper()
         {

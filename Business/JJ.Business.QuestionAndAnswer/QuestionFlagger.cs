@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Framework.Reflection;
 
 namespace JJ.Business.QuestionAndAnswer
 {
@@ -20,9 +21,9 @@ namespace JJ.Business.QuestionAndAnswer
 
         public QuestionFlagger(IQuestionFlagRepository questionFlagRepository, IFlagStatusRepository flagStatusRepository, User user)
         {
-            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
-            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
-            if (user == null) throw new ArgumentNullException("user");
+            if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
+            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
+            if (user == null) throw new NullException(() => user);
 
             _questionFlagRepository = questionFlagRepository;
             _flagStatusRepository = flagStatusRepository;
@@ -32,7 +33,7 @@ namespace JJ.Business.QuestionAndAnswer
         /// <summary> Flags a question. If an existing flag already exists for this user, then it is updated. </summary>
         public QuestionFlag FlagQuestion(Question question, string comment)
         {
-            if (question == null) throw new ArgumentNullException("question");
+            if (question == null) throw new NullException(() => question);
 
             QuestionFlag questionFlag = TryGetFlag(question);
             if (questionFlag == null)

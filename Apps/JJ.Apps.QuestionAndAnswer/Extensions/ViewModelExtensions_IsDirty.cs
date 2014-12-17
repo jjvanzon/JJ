@@ -1,5 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections;
@@ -19,7 +20,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         /// </summary>
         public static void SetIsDirtyRecursive(this QuestionViewModel viewModel, Question question)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.NullCoallesce();
 
@@ -128,7 +129,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 
         private static bool GetIsDirty(this QuestionViewModel viewModel, Question entity)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             if (entity == null) return false;
             
@@ -141,7 +142,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 
         private static bool GetIsDirty(this QuestionCategoryViewModel viewModel, QuestionCategory entity)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             if (entity == null)
             {
@@ -153,7 +154,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 
         private static bool GetIsDirty(this QuestionLinkViewModel viewModel, QuestionLink entity)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             if (entity == null)
             {
@@ -166,7 +167,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 
         private static bool GetIsDirty(QuestionFlagViewModel viewModel, QuestionFlag entity)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             if (entity == null)
             {
@@ -198,10 +199,10 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
             IList<TEntity> entities, Func<TEntity, object> getEntityKey, 
             bool ingoreOrder = false)
         {
-            if (listViewModel == null) { throw new ArgumentNullException("listViewModel"); }
-            if (getViewModelKey == null) { throw new ArgumentNullException("getViewModelKey"); }
-            if (entities == null) { throw new ArgumentNullException("entities"); }
-            if (getEntityKey == null) { throw new ArgumentNullException("getEntityKey"); }
+            if (listViewModel == null) throw new NullException(() => listViewModel);
+            if (getViewModelKey == null) throw new NullException(() => getViewModelKey);
+            if (entities == null) throw new NullException(() => entities);
+            if (getEntityKey == null) throw new NullException(() => getEntityKey);
 
             if (listViewModel.Count != entities.Count)
             {

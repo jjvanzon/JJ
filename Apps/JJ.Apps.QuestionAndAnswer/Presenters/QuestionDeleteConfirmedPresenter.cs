@@ -10,18 +10,22 @@ using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Framework.Reflection;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionDeleteConfirmedPresenter
     {
         private Repositories _repositories;
+        private string _authenticatedUserName;
 
-        public QuestionDeleteConfirmedPresenter(Repositories repositories)
+        /// <param name="authenticatedUserName">nullable</param>
+        public QuestionDeleteConfirmedPresenter(Repositories repositories, string authenticatedUserName)
         {
-            if (repositories == null) throw new ArgumentNullException("repositories");
+            if (repositories == null) throw new NullException(() => repositories);
 
             _repositories = repositories;
+            _authenticatedUserName = authenticatedUserName;
         }
         
         /// <summary> Can return QuestionDeleteConfirmedViewModel and QuestionNotFoundViewModel. </summary>
@@ -46,7 +50,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionListViewModel BackToList()
         {
-            var listPresenter = new QuestionListPresenter(_repositories);
+            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
             return listPresenter.Show();
         }
     }

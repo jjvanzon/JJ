@@ -1,4 +1,5 @@
-﻿using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+﻿using JJ.Framework.Reflection;
+using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,15 +33,15 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
             IQuestionTypeRepository questionTypeRepository,
             IUserRepository userRepository)
         {
-            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
-            if (answerRepository == null) throw new ArgumentNullException("answerRepository");
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
-            if (questionCategoryRepository == null) throw new ArgumentNullException("questionCategoryRepository");
-            if (questionLinkRepository == null) throw new ArgumentNullException("questionLinkRepository");
-            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
-            if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
-            if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
-            if (userRepository == null) throw new ArgumentNullException("userRepository");
+            if (questionRepository == null) throw new NullException(() => questionRepository);
+            if (answerRepository == null) throw new NullException(() => answerRepository);
+            if (categoryRepository == null) throw new NullException(() => categoryRepository);
+            if (questionCategoryRepository == null) throw new NullException(() => questionCategoryRepository);
+            if (questionLinkRepository == null) throw new NullException(() => questionLinkRepository);
+            if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
+            if (sourceRepository == null) throw new NullException(() => sourceRepository);
+            if (questionTypeRepository == null) throw new NullException(() => questionTypeRepository);
+            if (userRepository == null) throw new NullException(() => userRepository);
 
             QuestionRepository = questionRepository;
             AnswerRepository = answerRepository;

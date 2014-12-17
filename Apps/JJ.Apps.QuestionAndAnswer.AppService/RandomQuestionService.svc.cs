@@ -42,7 +42,7 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
                 RandomQuestionPresenter presenter = CreatePresenter(context);
 
                 // TODO: Polymorphic results.
-                object viewModel2 = presenter.ShowAnswer(viewModel, null);
+                object viewModel2 = presenter.ShowAnswer(viewModel);
                 if (viewModel2 is RandomQuestionViewModel)
                 {
                     return viewModel2 as RandomQuestionViewModel;
@@ -61,7 +61,7 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
                 RandomQuestionPresenter presenter = CreatePresenter(context);
 
                 // TODO: Polymorphic results.
-                object viewModel2 = presenter.HideAnswer(viewModel, null);
+                object viewModel2 = presenter.HideAnswer(viewModel);
                 if (viewModel2 is RandomQuestionViewModel)
                 {
                     return viewModel2 as RandomQuestionViewModel;
@@ -80,7 +80,8 @@ namespace JJ.Apps.QuestionAndAnswer.AppService
                 PersistenceHelper.CreateRepository<ICategoryRepository>(context),
                 PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context),
                 PersistenceHelper.CreateRepository<IFlagStatusRepository>(context),
-                PersistenceHelper.CreateRepository<IUserRepository>(context));
+                PersistenceHelper.CreateRepository<IUserRepository>(context),
+                authenticatedUserName: null);
         }
     }
 }

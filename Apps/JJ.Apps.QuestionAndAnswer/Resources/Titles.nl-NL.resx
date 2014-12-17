@@ -193,18 +193,18 @@
     <value>Gemarkeerd door</value>
   </data>
   <data name="Date" xml:space="preserve">
-    <value>Datum:</value>
+    <value>Datum</value>
   </data>
   <data name="HasActiveFlags" xml:space="preserve">
     <value>Heeft actieve markeringen</value>
   </data>
   <data name="Selection" xml:space="preserve">
-    <value>Selectie:</value>
+    <value>Selectie</value>
   </data>
   <data name="TheCorrectAnswer" xml:space="preserve">
     <value>Het correcte antwoord is</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Soort:</value>
+    <value>Soort</value>
   </data>
 </root>

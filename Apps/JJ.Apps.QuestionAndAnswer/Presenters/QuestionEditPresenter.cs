@@ -19,6 +19,7 @@ using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
+using JJ.Framework.Reflection;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -27,11 +28,15 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private const string DEFAULT_SOURCE_IDENTIFIER = "Manual";
 
         private Repositories _repositories;
+        private string _authenticatedUserName;
 
-        public QuestionEditPresenter(Repositories repositories)
+        /// <param name="authenticatedUserName">nullable</param>
+        public QuestionEditPresenter(Repositories repositories, string authenticatedUserName)
         {
-            if (repositories == null) throw new ArgumentNullException("repositories");
+            if (repositories == null) throw new NullException(() => repositories);
+
             _repositories = repositories;
+            _authenticatedUserName = authenticatedUserName;
         }
 
         /// <summary> Can return QuestionEditViewModel or QuestionNotFoundViewModel. </summary>
@@ -45,7 +50,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
 
             QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
-            viewModel.IsNew = false; // TODO: Do I need to set this default?
             viewModel.CanDelete = true;
             viewModel.Title = Titles.EditQuestion;
             return viewModel;
@@ -55,7 +59,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             QuestionEditViewModel viewModel = ViewModelHelper.CreateEmptyQuestionEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
             viewModel.IsNew = true;
-            viewModel.CanDelete = false; // TODO: Do I need to set this default?
             viewModel.Title = Titles.CreateQuestion;
 
             // These defaults are specific to the UI, not the business.
@@ -73,7 +76,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         public QuestionEditViewModel AddLink(QuestionEditViewModel viewModel)
         {
             // If the question has disappeared, it is recreated.
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.NullCoallesce();
 
@@ -104,7 +107,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // which makes it impossible to perform the delete operation on the entity model when given an ID.
             // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.NullCoallesce();
 
@@ -133,7 +136,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         public QuestionEditViewModel AddCategory(QuestionEditViewModel viewModel)
         {
             // If the question has disappeared, it is recreated.
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.NullCoallesce();
 
@@ -164,7 +167,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // which makes it impossible to perform the delete operation on the entity model when given an ID.
             // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.NullCoallesce();
 
@@ -191,10 +194,10 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         }
 
         /// <summary> Can return QuestionEditViewModel or QuestionDetailsViewModel </summary>
-        public object Save(QuestionEditViewModel viewModel, string authenticatedUserName)
+        public object Save(QuestionEditViewModel viewModel)
         {
             // If the question has disappeared, it is recreated.
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.NullCoallesce();
 
@@ -207,7 +210,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             question = viewModel.ToEntity(_repositories);
 
             // Side-effects
-            User user = _repositories.UserRepository.GetByUserName(authenticatedUserName);
+            User user = _repositories.UserRepository.GetByUserName(_authenticatedUserName);
 
             if (MustSetIsManual(viewModel.Question))
             {
@@ -300,13 +303,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// <summary> Can return QuestionConfirmDeleteViewModel and QuestionNotFoundViewModel. </summary>
         public object Delete(QuestionEditViewModel viewModel)
         {
-            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories);
+            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
             return deletePresenter.Show(viewModel.Question.ID);
         }
 
         public QuestionListViewModel BackToList()
         {
-            var listPresenter = new QuestionListPresenter(_repositories);
+            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
             return listPresenter.Show();
         }
     }

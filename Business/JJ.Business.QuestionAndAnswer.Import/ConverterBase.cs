@@ -12,6 +12,7 @@ using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Framework.Reflection;
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {
@@ -43,14 +44,14 @@ namespace JJ.Business.QuestionAndAnswer.Import
             Source source,
             string categoryIdentifier)
         {
-            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
-            if (answerRepository == null) throw new ArgumentNullException("answerRepository");
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
-            if (questionCategoryRepository == null) throw new ArgumentNullException("questionCategoryRepository");
-            if (questionLinkRepository == null) throw new ArgumentNullException("questionLinkRepository");
-            if (questionTypeRepository == null) throw new ArgumentNullException("questionTypeRepository");
-            if (sourceRepository == null) throw new ArgumentNullException("sourceRepository");
-            if (source == null) throw new ArgumentNullException("source");
+            if (questionRepository == null) throw new NullException(() => questionRepository);
+            if (answerRepository == null) throw new NullException(() => answerRepository);
+            if (categoryRepository == null) throw new NullException(() => categoryRepository);
+            if (questionCategoryRepository == null) throw new NullException(() => questionCategoryRepository);
+            if (questionLinkRepository == null) throw new NullException(() => questionLinkRepository);
+            if (questionTypeRepository == null) throw new NullException(() => questionTypeRepository);
+            if (sourceRepository == null) throw new NullException(() => sourceRepository);
+            if (source == null) throw new NullException(() => source);
 
             _questionRepository = questionRepository;
             _answerRepository = answerRepository;

@@ -13,6 +13,7 @@ using JJ.Business.QuestionAndAnswer;
 using JJ.Framework.Common;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Reflection;
 
 namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 {
@@ -24,7 +25,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
         /// </summary>
         public static QuestionViewModel ToViewModel(this Question entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            if (entity == null) throw new NullException(() => entity);
 
             return new QuestionViewModel
             {
@@ -44,7 +45,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
         public static QuestionDetailsViewModel ToDetailsViewModel(this Question question)
         {
-            if (question == null) throw new ArgumentNullException("question");
+            if (question == null) throw new NullException(() => question);
 
             var viewModel = new QuestionDetailsViewModel();
             viewModel.Question = question.ToViewModel();
@@ -79,8 +80,8 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
         public static QuestionEditViewModel ToEditViewModel(this Question question, ICategoryRepository categoryRepository, IFlagStatusRepository flagStatusRepository)
         {
-            if (question == null) throw new ArgumentNullException("question");
-            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
+            if (question == null) throw new NullException(() => question);
+            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
 
             var viewModel = new QuestionEditViewModel
             {
@@ -88,7 +89,6 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
                 FlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel(flagStatusRepository),
                 Categories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository),
                 ValidationMessages = new List<ValidationMessage>(),
-                IsNew = false,
                 CanDelete = true
             };
 
@@ -123,7 +123,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
         public static RandomQuestionViewModel ToRandomQuestionViewModel(this Question entity, QuestionFlag currentUserQuestionFlag = null)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            if (entity == null) throw new NullException(() => entity);
 
             var viewModel = new RandomQuestionViewModel()
             {
@@ -161,7 +161,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
         public static QuestionConfirmDeleteViewModel ToConfirmDeleteViewModel(this Question question)
         {
-            if (question == null) throw new ArgumentNullException("question");
+            if (question == null) throw new NullException(() => question);
 
             return new QuestionConfirmDeleteViewModel
             {

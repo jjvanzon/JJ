@@ -5,7 +5,7 @@ using System.Web;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Names
 {
-    public static class TempDataKeys
+    internal static class TempDataKeys
     {
         public const string ViewModel = "ViewModel";
     }

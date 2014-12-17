@@ -1,5 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections;
@@ -19,7 +20,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         /// </summary>
         public static void SetIsNewRecursive(this QuestionViewModel viewModel, Question question)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.NullCoallesce();
 
@@ -108,7 +109,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 
         private static bool GetIsNew(this object viewModel, object entity)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
             return entity == null;
         }
     }

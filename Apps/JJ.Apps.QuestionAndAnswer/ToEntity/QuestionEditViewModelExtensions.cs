@@ -14,6 +14,7 @@ using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Framework.Reflection;
 
 namespace JJ.Apps.QuestionAndAnswer.ToEntity
 {
@@ -28,8 +29,8 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             this QuestionEditViewModel viewModel, 
             Repositories repositories)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
-            if (repositories == null) throw new ArgumentNullException("repositories");
+            if (viewModel == null) throw new NullException(() => viewModel);
+            if (repositories == null) throw new NullException(() => repositories);
 
             viewModel.NullCoallesce();
 

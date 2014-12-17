@@ -1,4 +1,5 @@
-﻿using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+﻿using JJ.Framework.Reflection;
+using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Helpers
 {
-    public class CategorySelectorRepositories
+    internal class CategorySelectorRepositories
     {
         public ICategoryRepository CategoryRepository { get; private set; }
         public IQuestionRepository QuestionRepository { get; private set; }
@@ -21,11 +22,11 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Helpers
             IFlagStatusRepository flagStatusRepository,
             IUserRepository userRepository)
         {
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
-            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
-            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
-            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
-            if (userRepository == null) throw new ArgumentNullException("userRepository");
+            if (categoryRepository == null) throw new NullException(() => categoryRepository);
+            if (questionRepository == null) throw new NullException(() => questionRepository);
+            if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
+            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
+            if (userRepository == null) throw new NullException(() => userRepository);
 
             CategoryRepository = categoryRepository;
             QuestionRepository = questionRepository;

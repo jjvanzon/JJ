@@ -5,6 +5,7 @@ using System.Text;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Framework.Reflection;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {
@@ -12,7 +13,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
     {
         public static void UnlinkRelatedEntities(this QuestionCategory questionCategory)
         {
-            if (questionCategory == null) throw new ArgumentNullException("questionCategory");
+            if (questionCategory == null) throw new NullException(() => questionCategory);
 
             questionCategory.UnlinkQuestion();
             questionCategory.UnlinkCategory();
@@ -21,7 +22,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
         /// <summary> Unlinks only the non-owned related entities. </summary>
         public static void UnlinkRelatedEntities(this Question question)
         {
-            if (question == null) throw new ArgumentNullException("question");
+            if (question == null) throw new NullException(() => question);
 
             question.UnlinkSource();
             question.UnlinkQuestionType();
@@ -29,7 +30,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
         public static void UnlinkRelatedEntities(this QuestionFlag questionFlag)
         {
-            if (questionFlag == null) throw new ArgumentNullException("questionFlag");
+            if (questionFlag == null) throw new NullException(() => questionFlag);
 
             questionFlag.UnlinkQuestion();
             questionFlag.UnlinkFlaggedByUser();
@@ -39,7 +40,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 
         public static void UnlinkRelatedEntities(this QuestionLink questionLink)
         {
-            if (questionLink == null) throw new ArgumentNullException("questionLink");
+            if (questionLink == null) throw new NullException(() => questionLink);
 
             questionLink.UnlinkQuestion();
         }

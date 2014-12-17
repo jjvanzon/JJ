@@ -1,5 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Reflection;
 using JJ.Framework.Security;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
@@ -17,7 +18,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public LoginPresenter(IUserRepository userRepository)
         {
-            if (userRepository == null) { throw new ArgumentNullException("userRepository"); }
+            if (userRepository == null) throw new NullException(() => userRepository);
             _userRepository = userRepository;
         }
 

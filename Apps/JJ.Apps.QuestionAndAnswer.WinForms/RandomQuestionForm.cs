@@ -18,7 +18,7 @@ using JJ.Business.QuestionAndAnswer.Resources;
 
 namespace JJ.Apps.QuestionAndAnswer.WinForms
 {
-    public partial class RandomQuestionForm : Form
+    internal partial class RandomQuestionForm : Form
     {
         private IContext _context;
         private RandomQuestionPresenter _presenter;
@@ -54,13 +54,13 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
 
         private void ShowAnswer()
         {
-            object viewModel = _presenter.ShowAnswer(_viewModel, null);
+            object viewModel = _presenter.ShowAnswer(_viewModel);
             ApplyViewModel(viewModel);
         }
 
         private void HideAnswer()
         {
-            object viewModel = _presenter.HideAnswer(_viewModel, null);
+            object viewModel = _presenter.HideAnswer(_viewModel);
             ApplyViewModel(viewModel);
         }
 
@@ -146,7 +146,8 @@ namespace JJ.Apps.QuestionAndAnswer.WinForms
                 PersistenceHelper.CreateRepository<ICategoryRepository>(context),
                 PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context),
                 PersistenceHelper.CreateRepository<IFlagStatusRepository>(context),
-                PersistenceHelper.CreateRepository<IUserRepository>(context));
+                PersistenceHelper.CreateRepository<IUserRepository>(context),
+                authenticatedUserName: null);
         }
     }
 }

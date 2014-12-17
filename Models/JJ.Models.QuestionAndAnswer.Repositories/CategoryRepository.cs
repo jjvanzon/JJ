@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Framework.Reflection;
 
 namespace JJ.Models.QuestionAndAnswer.Repositories
 {
@@ -23,7 +24,7 @@ namespace JJ.Models.QuestionAndAnswer.Repositories
 
         public Category TryGetCategoryByParentAndIdentifier(Category parentCategory, string identifier)
         {
-            if (parentCategory == null) throw new ArgumentNullException("parentCategory");
+            if (parentCategory == null) throw new NullException(() => parentCategory);
 
             return _context.Query<Category>()
                            .Where(x => x.ParentCategory == parentCategory)

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
+using JJ.Framework.Reflection;
 
 namespace JJ.Apps.QuestionAndAnswer.Helpers
 {
@@ -44,7 +45,7 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
 
         public static IList<FlagStatusViewModel> CreateFlagStatusListViewModel(IFlagStatusRepository flagStatusRepository)
         {
-            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
+            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
 
             var list = new List<FlagStatusViewModel>();
 
@@ -60,7 +61,7 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
         /// <summary> Gets a tree of category view models. </summary>
         public static IList<CategoryViewModel> CreateCategoryListViewModelRecursive(ICategoryRepository categoryRepository)
         {
-            if (categoryRepository == null) { throw new ArgumentNullException("categoryRepository"); }
+            if (categoryRepository == null) throw new NullException(() => categoryRepository);
 
             var categoryManager = new CategoryManager(categoryRepository);
 

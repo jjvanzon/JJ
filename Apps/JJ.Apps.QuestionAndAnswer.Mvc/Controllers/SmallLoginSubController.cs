@@ -19,7 +19,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public SmallLoginSubController(Controller parentController)
         {
-            if (parentController == null) throw new ArgumentNullException("parentController");
+            if (parentController == null) throw new NullException(() => parentController);
 
             _parentController = parentController;
         }

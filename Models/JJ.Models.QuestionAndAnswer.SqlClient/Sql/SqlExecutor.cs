@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -16,7 +17,7 @@ namespace JJ.Models.QuestionAndAnswer.SqlClient.Sql
 
         public SqlExecutor(string connectionString)
         {
-            if (String.IsNullOrEmpty(connectionString)) throw new ArgumentNullException("connectionString");
+            if (String.IsNullOrEmpty(connectionString)) throw new NullException(() => connectionString);
 
             _connectionString = connectionString;
         }

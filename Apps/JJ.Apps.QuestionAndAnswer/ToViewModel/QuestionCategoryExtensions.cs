@@ -1,6 +1,7 @@
 ﻿using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
     {
         public static QuestionCategoryViewModel ToViewModel(this QuestionCategory questionCategory)
         {
-            if (questionCategory == null) throw new ArgumentNullException("questionCategory");
+            if (questionCategory == null) throw new NullException(() => questionCategory);
 
             var questionCategoryViewModel = new QuestionCategoryViewModel
             {

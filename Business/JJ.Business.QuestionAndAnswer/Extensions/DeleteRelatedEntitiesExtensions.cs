@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Framework.Reflection;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {
@@ -13,11 +14,11 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
     {
         public static void DeleteRelatedEntities(this Question question, IAnswerRepository answerRepository, IQuestionCategoryRepository questionCategoryRepository, IQuestionLinkRepository questionLinkRepository, IQuestionFlagRepository questionFlagRepository)
         {
-            if (question == null) throw new ArgumentNullException("question");
-            if (answerRepository == null) throw new ArgumentNullException("answerRepository");
-            if (questionCategoryRepository == null) throw new ArgumentNullException("questionCategoryRepository");
-            if (questionLinkRepository == null) throw new ArgumentNullException("questionLinkRepository");
-            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
+            if (question == null) throw new NullException(() => question);
+            if (answerRepository == null) throw new NullException(() => answerRepository);
+            if (questionCategoryRepository == null) throw new NullException(() => questionCategoryRepository);
+            if (questionLinkRepository == null) throw new NullException(() => questionLinkRepository);
+            if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
 
             foreach (Answer answer in question.Answers.ToArray())
             {

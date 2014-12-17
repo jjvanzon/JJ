@@ -1,5 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Helpers
 
         public SessionWrapper(HttpSessionStateBase session)
         {
-            if (session == null) throw new ArgumentNullException("session");
+            if (session == null) throw new NullException(() => session);
             _session = session;
         }
 

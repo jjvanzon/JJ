@@ -13,6 +13,7 @@ using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Apps.QuestionAndAnswer.Extensions;
+using JJ.Framework.Reflection;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -25,25 +26,30 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private IUserRepository _userRepository;
 
         private CategoryManager _categoryManager;
+        private string _authenticatedUserName;
 
+        /// <param name="authenticatedUserName">nullable</param>
         public CategorySelectorPresenter(
             ICategoryRepository categoryRepository, 
             IQuestionRepository questionRepository,
             IQuestionFlagRepository questionFlagRepository,
             IFlagStatusRepository flagStatusRepository,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            string authenticatedUserName)
         {
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
-            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
-            if (questionFlagRepository == null) throw new ArgumentNullException("questionFlagRepository");
-            if (flagStatusRepository == null) throw new ArgumentNullException("flagStatusRepository");
-            if (userRepository == null) throw new ArgumentNullException("userRepository");
+            if (categoryRepository == null) throw new NullException(() => categoryRepository);
+            if (questionRepository == null) throw new NullException(() => questionRepository);
+            if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
+            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
+            if (userRepository == null) throw new NullException(() => userRepository);
 
             _categoryRepository = categoryRepository;
             _questionRepository = questionRepository;
             _questionFlagRepository = questionFlagRepository;
             _flagStatusRepository = flagStatusRepository;
             _userRepository = userRepository;
+
+            _authenticatedUserName = authenticatedUserName;
 
             _categoryManager = new CategoryManager(_categoryRepository);
         }
@@ -59,9 +65,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// </summary>
         public CategorySelectorViewModel Add(CategorySelectorViewModel viewModel, int categoryID)
         {
-            // TODO: I need to rebuild the complete viewmodel here, because the passed view model is not in tact.
-            // But this does not comform to the stateful / stateless nature of the presenters.
-
             var selectedCategoryIDs = new List<int>();
             AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
             selectedCategoryIDs.Add(categoryID);
@@ -75,9 +78,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// </summary>
         public CategorySelectorViewModel Remove(CategorySelectorViewModel viewModel, int categoryID)
         {
-            // TODO: I need to rebuild the complete viewmodel here, because the passed view model is not in tact.
-            // But this does not comform to the stateful / stateless nature of the presenters.
-
             var selectedCategoryIDs = new List<int>();
             AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
 
@@ -97,7 +97,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             var categoryIDs = new List<int>();
             AddSelectedCategoryIDsRecursive(categoryIDs, viewModel.SelectedCategories);
 
-            var randomQuestionPresenter = new RandomQuestionPresenter(_questionRepository, _categoryRepository, _questionFlagRepository, _flagStatusRepository, _userRepository);
+            var randomQuestionPresenter = new RandomQuestionPresenter(_questionRepository, _categoryRepository, _questionFlagRepository, _flagStatusRepository, _userRepository, _authenticatedUserName);
             return randomQuestionPresenter.Show(categoryIDs.ToArray());
         }
 

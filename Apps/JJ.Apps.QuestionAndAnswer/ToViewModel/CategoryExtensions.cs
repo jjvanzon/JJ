@@ -6,6 +6,7 @@ using JJ.Framework.Common;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Reflection;
 
 namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 {
@@ -13,7 +14,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
     {
         public static CategoryViewModel ToViewModelRecursive(this Category category)
         {
-            if (category == null) throw new ArgumentNullException("category");
+            if (category == null) throw new NullException(() => category);
 
             CategoryViewModel viewModel = category.ToViewModel();
 
@@ -31,7 +32,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
         public static CategoryViewModel ToViewModel(this Category category)
         {
-            if (category == null) throw new ArgumentNullException("category");
+            if (category == null) throw new NullException(() => category);
 
             var categoryViewModel = new CategoryViewModel
             {

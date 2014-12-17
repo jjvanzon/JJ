@@ -1,5 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         /// </summary>
         public static void NullCoallesce(this QuestionEditViewModel viewModel)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.FlagStatuses = viewModel.FlagStatuses ?? new List<FlagStatusViewModel>();
             viewModel.Categories = viewModel.Categories ?? new List<CategoryViewModel>();
@@ -30,7 +31,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         /// </summary>
         public static void NullCoallesce(this QuestionViewModel viewModel)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.Source = viewModel.Source ?? new SourceViewModel();
             viewModel.Type = viewModel.Type ?? new QuestionTypeViewModel();
@@ -59,7 +60,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         /// </summary>
         private static void NullCoallesce(QuestionLinkViewModel viewModel)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             // No child-objects to null-coallesce.
         }
@@ -69,7 +70,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         /// </summary>
         public static void NullCoallesce(this QuestionCategoryViewModel viewModel)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.Category = viewModel.Category ?? new CategoryViewModel();
             viewModel.Category.NameParts = viewModel.Category.NameParts ?? new List<string>();
@@ -80,7 +81,7 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         /// </summary>
         public static void NullCoallesce(this QuestionFlagViewModel viewModel)
         {
-            if (viewModel == null) throw new ArgumentNullException("viewModel");
+            if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.Status = viewModel.Status ?? new FlagStatusViewModel();
         }

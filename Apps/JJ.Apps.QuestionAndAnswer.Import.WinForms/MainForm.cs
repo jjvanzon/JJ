@@ -13,7 +13,7 @@ using JJ.Framework.Configuration;
 
 namespace JJ.Apps.QuestionAndAnswer.Import.WinForms
 {
-    public partial class MainForm : SimpleFileProcessForm
+    internal partial class MainForm : SimpleFileProcessForm
     {
         public MainForm()
         {

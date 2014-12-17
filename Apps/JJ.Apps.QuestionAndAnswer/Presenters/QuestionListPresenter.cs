@@ -12,18 +12,21 @@ using JJ.Models.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
+using JJ.Framework.Reflection;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionListPresenter
     {
         private Repositories _repositories;
+        private string _authenticatedUserName;
 
-        public QuestionListPresenter(Repositories repositories)
+        public QuestionListPresenter(Repositories repositories, string authenticatedUserName)
         {
-            if (repositories == null) throw new ArgumentNullException("repositories");
+            if (repositories == null) throw new NullException(() => repositories);
 
             _repositories = repositories;
+            _authenticatedUserName = authenticatedUserName;
         }
 
         public QuestionListViewModel Show()
@@ -41,7 +44,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return listViewModel;
         }
 
-        public QuestionListViewModel ShowByCriteria(bool? isFlagged)
+        public QuestionListViewModel Filter(bool? isFlagged)
         {
             // TODO: We probably need more criteria.
             bool mustFilterByFlagStatusID = isFlagged.HasValue;
@@ -63,21 +66,21 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Details(int questionID)
         {
-            var detailPresenter = new QuestionDetailsPresenter(_repositories);
+            var detailPresenter = new QuestionDetailsPresenter(_repositories, _authenticatedUserName);
             return detailPresenter.Show(questionID);
         }
 
         /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Edit(int questionID)
         {
-            var editPresenter = new QuestionEditPresenter(_repositories);
+            var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName);
             return editPresenter.Edit(questionID);
         }
 
         /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Delete(int questionID)
         {
-            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories);
+            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
             return deletePresenter.Show(questionID);
         }
     }

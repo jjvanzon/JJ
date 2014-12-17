@@ -10,6 +10,7 @@ using System.Xml;
 using JJ.Framework.Common;
 using JJ.Framework.Xml;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
+using JJ.Framework.Reflection;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
@@ -25,7 +26,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
         public IEnumerable<LooseDefinitionImportModel> GetSelection(Stream stream)
         {
-            if (stream == null) throw new ArgumentNullException("stream");
+            if (stream == null) throw new NullException(() => stream);
 
             var streamReader = new StreamReader(stream);
 

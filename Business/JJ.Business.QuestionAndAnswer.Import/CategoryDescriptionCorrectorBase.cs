@@ -1,4 +1,5 @@
-﻿using JJ.Models.QuestionAndAnswer;
+﻿using JJ.Framework.Reflection;
+using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
 
         public CategoryDescriptionCorrectorBase(ICategoryRepository categoryRepository)
         {
-            if (categoryRepository == null) throw new ArgumentNullException("categoryRepository");
+            if (categoryRepository == null) throw new NullException(() => categoryRepository);
 
             _categoryRepository = categoryRepository;
         }

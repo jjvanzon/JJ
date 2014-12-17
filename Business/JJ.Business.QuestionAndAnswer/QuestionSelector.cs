@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Mathematics;
+using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using System;
@@ -22,8 +23,8 @@ namespace JJ.Business.QuestionAndAnswer
 
         public QuestionSelector(IQuestionRepository questionRepository, params Category[] categories)
         {
-            if (questionRepository == null) throw new ArgumentNullException("questionRepository");
-            if (categories == null) throw new ArgumentNullException("categories");
+            if (questionRepository == null) throw new NullException(() => questionRepository);
+            if (categories == null) throw new NullException(() => categories);
 
             _questionRepository = questionRepository;
 

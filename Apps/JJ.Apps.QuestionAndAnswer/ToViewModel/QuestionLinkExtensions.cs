@@ -1,5 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
     {
         public static QuestionLinkViewModel ToViewModel(this QuestionLink entity)
         {
-            if (entity == null) { throw new ArgumentNullException("entity"); }
+            if (entity == null) throw new NullException(() => entity);
 
             return new QuestionLinkViewModel
             {
