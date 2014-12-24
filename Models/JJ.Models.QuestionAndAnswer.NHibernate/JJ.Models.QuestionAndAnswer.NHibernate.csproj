@@ -51,24 +51,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColumnNames.cs" />
-    <Compile Include="CategoryMapping.cs" />
-    <Compile Include="AnswerStatusMapping.cs" />
-    <Compile Include="UserAnswerMapping.cs" />
-    <Compile Include="UserMapping.cs" />
-    <Compile Include="RunCategoryMapping.cs" />
-    <Compile Include="RunMapping.cs" />
-    <Compile Include="QuestionFlagMapping.cs" />
-    <Compile Include="FlagStatusMapping.cs" />
-    <Compile Include="QuestionTypeMapping.cs" />
-    <Compile Include="QuestionCategoryMapping.cs" />
-    <Compile Include="QuestionLinkMapping.cs" />
-    <Compile Include="SourceMapping.cs" />
-    <Compile Include="QuestionMapping.cs" />
-    <Compile Include="AnswerMapping.cs" />
+    <Compile Include="Names\ColumnNames.cs" />
+    <Compile Include="Mapping\CategoryMapping.cs" />
+    <Compile Include="Mapping\AnswerStatusMapping.cs" />
+    <Compile Include="Mapping\UserAnswerMapping.cs" />
+    <Compile Include="Mapping\UserMapping.cs" />
+    <Compile Include="Mapping\RunCategoryMapping.cs" />
+    <Compile Include="Mapping\RunMapping.cs" />
+    <Compile Include="Mapping\QuestionFlagMapping.cs" />
+    <Compile Include="Mapping\FlagStatusMapping.cs" />
+    <Compile Include="Mapping\QuestionTypeMapping.cs" />
+    <Compile Include="Mapping\QuestionCategoryMapping.cs" />
+    <Compile Include="Mapping\QuestionLinkMapping.cs" />
+    <Compile Include="Mapping\SourceMapping.cs" />
+    <Compile Include="Mapping\QuestionMapping.cs" />
+    <Compile Include="Mapping\AnswerMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AnswerRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj">
+      <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
+      <Name>JJ.Framework.Persistence.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
+      <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
+      <Name>JJ.Framework.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Models.QuestionAndAnswer.Repositories\JJ.Models.QuestionAndAnswer.Repositories.csproj">
+      <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
+      <Name>JJ.Models.QuestionAndAnswer.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj">
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>
       <Name>JJ.Models.QuestionAndAnswer</Name>

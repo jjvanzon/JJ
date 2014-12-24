@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentNHibernate.Mapping;
+using JJ.Models.QuestionAndAnswer.NHibernate.Names;
 
-namespace JJ.Models.QuestionAndAnswer.NHibernate
+namespace JJ.Models.QuestionAndAnswer.NHibernate.Mapping
 {
     public class AnswerStatusMapping : ClassMap<AnswerStatus>
     {

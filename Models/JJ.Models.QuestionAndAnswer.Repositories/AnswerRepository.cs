@@ -13,5 +13,12 @@ namespace JJ.Models.QuestionAndAnswer.Repositories
         public AnswerRepository(IContext context)
             : base(context)
         { }
+
+        public virtual Answer GetByQuestionID(int questionID)
+        {
+            return _context.Query<Answer>()
+                           .Where(x => x.Question.ID == questionID)
+                           .Single();
+        }
     }
 }

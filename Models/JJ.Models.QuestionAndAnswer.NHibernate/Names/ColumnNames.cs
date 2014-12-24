@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using FluentNHibernate.Mapping;
 
-namespace JJ.Models.QuestionAndAnswer.NHibernate
+namespace JJ.Models.QuestionAndAnswer.NHibernate.Names
 {
     internal static class ColumnNames
     {

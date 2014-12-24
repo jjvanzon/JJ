@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Apps.QuestionAndAnswer.ViewModels
 {
     public class NotAuthenticatedViewModel
     { }

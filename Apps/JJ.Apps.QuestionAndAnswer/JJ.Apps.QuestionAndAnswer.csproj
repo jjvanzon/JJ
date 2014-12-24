@@ -38,13 +38,17 @@
     <Compile Include="Helpers\Repositories.cs" />
     <Compile Include="Extensions\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
-    <Compile Include="Presenters\NotAuthenticatedViewModel.cs" />
+    <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />
     <Compile Include="Presenters\QuestionDeleteConfirmedPresenter.cs" />
     <Compile Include="Presenters\QuestionConfirmDeletePresenter.cs" />
     <Compile Include="Presenters\QuestionEditPresenter.cs" />
     <Compile Include="Presenters\QuestionListPresenter.cs" />
     <Compile Include="Presenters\QuestionDetailsPresenter.cs" />
     <Compile Include="Presenters\QuestionNotFoundPresenter.cs" />
+    <Compile Include="ToEntity\QuestionCategoryViewModelExtensions.cs" />
+    <Compile Include="ToEntity\QuestionFlagExtensions.cs" />
+    <Compile Include="ToEntity\QuestionLinkViewModelExtensions.cs" />
+    <Compile Include="ToEntity\QuestionViewModelExtensions.cs" />
     <Compile Include="Validation\QuestionCategoryViewModelValidator.cs" />
     <Compile Include="Validation\QuestionEditViewModelValidator.cs" />
     <Compile Include="Validation\QuestionLinkViewModelValidator.cs" />
@@ -55,7 +59,7 @@
     <Compile Include="Extensions\ViewModelExtensions_IsDirty.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoallesce.cs" />
     <Compile Include="ViewModels\Entities\ListViewModel.cs" />
-    <Compile Include="ViewModels\NotAuthenticatedPresenter.cs" />
+    <Compile Include="Presenters\NotAuthenticatedPresenter.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />
