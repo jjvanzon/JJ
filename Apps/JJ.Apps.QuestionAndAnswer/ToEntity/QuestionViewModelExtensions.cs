@@ -38,7 +38,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
 
         public static Answer ToAnswer(this QuestionViewModel viewModel, IAnswerRepository answerRepository)
         {
-            // TODO: Maybe it is better to simply use the question entity as the source of the answer, instead of the repository.
+            // TODO: Low prio: Maybe it is better to simply use the question entity as the source of the answer, instead of the repository.
             Answer answer = answerRepository.GetByQuestionID(viewModel.ID);
             if (answer == null)
             {

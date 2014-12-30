@@ -20,13 +20,12 @@ using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
 using JJ.Framework.Reflection;
+using JJ.Apps.QuestionAndAnswer.SideEffects;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class QuestionEditPresenter
     {
-        private const string DEFAULT_SOURCE_IDENTIFIER = "Manual";
-
         private Repositories _repositories;
         private string _authenticatedUserName;
 
@@ -61,36 +60,28 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.IsNew = true;
             viewModel.Title = Titles.CreateQuestion;
 
-            // These defaults are specific to the UI, not the business.
-            Source source = _repositories.SourceRepository.GetByIdentifier(DEFAULT_SOURCE_IDENTIFIER);
-            viewModel.Question.Source = source.ToViewModel();
-
-            QuestionType questionType = _repositories.QuestionTypeRepository.Get((int)QuestionTypeEnum.OpenQuestion);
-            viewModel.Question.Type = questionType.ToViewModel();
-
-            viewModel.Question.IsManual = true;
+            ISideEffect setDefaults = new QuestionViewModel_SetDefaults_SideEffect(viewModel.Question, _repositories.SourceRepository, _repositories.QuestionTypeRepository);
+            setDefaults.Execute();
 
             return viewModel;
         }
 
         public QuestionEditViewModel AddLink(QuestionEditViewModel viewModel)
         {
-            // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new NullException(() => viewModel);
-
             viewModel.NullCoallesce();
 
-            // Get entity from database, with the viewmodel applied to it.
+            // ToEntity
             Question question = viewModel.ToEntity(_repositories);
 
-            // Perform operation
+            // Business
             QuestionLink questionLink = _repositories.QuestionLinkRepository.Create();
             questionLink.LinkTo(question);
 
-            // Create new view model
+            // ToViewModel
             QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
-            // Copy non-persisted properties
+            // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
             viewModel2.CanDelete = viewModel.CanDelete;
             viewModel2.Title = viewModel.Title;
@@ -100,18 +91,15 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionEditViewModel RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
         {
-            // If the question has disappeared, it is recreated.
-
             // The problem here is that you may want to remove one out of many uncommitted entities do not exist in the database yet,
             // and you cannot identify them uniquely with the ID (which is 0),
             // which makes it impossible to perform the delete operation on the entity model when given an ID.
             // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
             if (viewModel == null) throw new NullException(() => viewModel);
-
             viewModel.NullCoallesce();
 
-            // Perform operation
+            // 'Business'
             QuestionLinkViewModel questionLinkViewModel = viewModel.Question.Links.Where(x => x.TemporaryID == temporaryID).SingleOrDefault();
             if (questionLinkViewModel == null)
             {
@@ -119,13 +107,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
             viewModel.Question.Links.Remove(questionLinkViewModel);
 
-            // Get entity from database, with the viewmodel applied to it.
+            // ToEntity
             Question question = viewModel.ToEntity(_repositories);
 
-            // Create new view model
+            // ToViewModel
             QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
-            // Copy non-persisted properties
+            // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
             viewModel2.CanDelete = viewModel.CanDelete;
             viewModel2.Title = viewModel.Title;
@@ -135,22 +123,20 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionEditViewModel AddCategory(QuestionEditViewModel viewModel)
         {
-            // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new NullException(() => viewModel);
-
             viewModel.NullCoallesce();
 
-            // Get entity from database, with the viewmodel applied to it.
+            // ToEntity
             Question question = viewModel.ToEntity(_repositories);
 
-            // Perform operation
+            // Businesss
             QuestionCategory questionCategory = _repositories.QuestionCategoryRepository.Create();
             questionCategory.LinkTo(question);
 
-            // Create new view model
+            // ToViewModel
             QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
-            // Copy non-persisted properties
+            // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
             viewModel2.CanDelete = viewModel.CanDelete;
             viewModel2.Title = viewModel.Title;
@@ -160,18 +146,15 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionEditViewModel RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
         {
-            // If the question has disappeared, it is recreated.
-
             // The problem here is that you may want to remove one out of many uncommitted entities do not exist in the database yet,
             // and you cannot identify them uniquely with the ID (which is 0),
             // which makes it impossible to perform the delete operation on the entity model when given an ID.
             // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
             if (viewModel == null) throw new NullException(() => viewModel);
-
             viewModel.NullCoallesce();
 
-            // Perform operation
+            // 'Business'
             QuestionCategoryViewModel questionCategoryViewModel = viewModel.Question.Categories.Where(x => x.TemporaryID == temporaryID).FirstOrDefault();
             if (questionCategoryViewModel == null)
             {
@@ -179,13 +162,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
             viewModel.Question.Categories.Remove(questionCategoryViewModel);
 
-            // Get entity from database, with the viewmodel applied to it.
+            // ToEntity
             Question question = viewModel.ToEntity(_repositories);
 
-            // Create new view model
+            // ToViewModel
             QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
-            // Copy non-persisted properties
+            // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
             viewModel2.CanDelete = viewModel.CanDelete;
             viewModel2.Title = viewModel.Title;
@@ -196,42 +179,33 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// <summary> Can return QuestionEditViewModel or QuestionDetailsViewModel </summary>
         public object Save(QuestionEditViewModel viewModel)
         {
-            // If the question has disappeared, it is recreated.
             if (viewModel == null) throw new NullException(() => viewModel);
-
             viewModel.NullCoallesce();
 
-            // Mark object states
+            // Mark IsNew, IsDirty
             Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
             viewModel.Question.SetIsDirtyRecursive(question);
             viewModel.Question.SetIsNewRecursive(question);
 
-            // Get entity from database, with the viewmodel applied to it.
+            // ToEntity
             question = viewModel.ToEntity(_repositories);
 
             // Side-effects
+            ISideEffect setIsManual = new Question_SetIsManual_SideEffect(question, viewModel.Question);
+            setIsManual.Execute();
+
             User user = _repositories.UserRepository.GetByUserName(_authenticatedUserName);
-
-            if (MustSetIsManual(viewModel.Question))
-            {
-                question.IsManual = true;
-            }
-
-            if (MustSetLastModifiedByUser(viewModel.Question))
-            {
-                question.LastModifiedByUser = user;
-            }
+            ISideEffect setLastModifiedByUser = new Question_SetLastModifiedByUser_SideEffect(question, user, viewModel.Question);
+            setLastModifiedByUser.Execute();
 
             foreach (QuestionFlagViewModel questionFlagViewModel in viewModel.Question.Flags)
             {
-                if (MustSetLastModifiedByUser(questionFlagViewModel))
-                {
-                    QuestionFlag questionFlag = question.QuestionFlags.Where(x => x.ID == questionFlagViewModel.ID).Single();
-                    questionFlag.LastModifiedByUser = user;
-                }
+                QuestionFlag questionFlag = question.QuestionFlags.Where(x => x.ID == questionFlagViewModel.ID).Single();
+                ISideEffect questionFlag_SetLastModifiedByUser = new QuestionFlag_SetLastModifiedByUser_SideEffect(questionFlag, user, questionFlagViewModel);
+                questionFlag_SetLastModifiedByUser.Execute();
             }
 
-            // Produce new, complete view model
+            // ToViewModel
             QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
             // Validate
@@ -255,49 +229,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // On success: go to Details view model.
             QuestionDetailsViewModel detailsViewModel = question.ToDetailsViewModel();
             return detailsViewModel;
-        }
-
-        private bool MustSetIsManual(QuestionViewModel viewModel)
-        {
-            // MustSetIsManual is almost determined by 'anything is dirty' except for question flag status changes.
-
-            return viewModel.IsDirty || 
-                   viewModel.IsNew ||
-                   viewModel.Type.IsDirty || 
-                   viewModel.Type.IsNew ||
-                   viewModel.Source.IsDirty || 
-                   viewModel.Source.IsNew ||
-                   viewModel.Categories.IsDirty ||
-                   viewModel.Categories.Any(x => x.IsDirty) || 
-                   viewModel.Categories.Any(x => x.IsNew) ||
-                   viewModel.Links.IsDirty ||
-                   viewModel.Links.Any(x => x.IsDirty) || 
-                   viewModel.Links.Any(x => x.IsNew);
-        }
-
-        private bool MustSetLastModifiedByUser(QuestionViewModel viewModel)
-        {
-            return viewModel.IsDirty ||
-                   viewModel.IsNew ||
-                   viewModel.Type.IsDirty ||
-                   viewModel.Type.IsNew ||
-                   viewModel.Source.IsDirty ||
-                   viewModel.Source.IsNew ||
-                   viewModel.Categories.IsDirty ||
-                   viewModel.Categories.Any(x => x.IsDirty) ||
-                   viewModel.Categories.Any(x => x.IsNew) ||
-                   viewModel.Links.IsDirty ||
-                   viewModel.Links.Any(x => x.IsDirty) ||
-                   viewModel.Links.Any(x => x.IsNew) ||
-                   viewModel.Flags.IsDirty ||
-                   viewModel.Flags.Any(x => x.IsDirty) ||
-                   viewModel.Flags.Any(x => x.IsNew);
-        }
-
-        private bool MustSetLastModifiedByUser(QuestionFlagViewModel questionFlagViewModel)
-        {
-            return questionFlagViewModel.IsDirty ||
-                   questionFlagViewModel.IsNew;
         }
 
         /// <summary> Can return QuestionConfirmDeleteViewModel and QuestionNotFoundViewModel. </summary>
