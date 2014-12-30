@@ -29,6 +29,5 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 
             return destList;
         }
-
     }
 }

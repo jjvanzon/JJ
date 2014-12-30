@@ -106,7 +106,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             IList<QuestionLink> entities,
             IQuestionLinkRepository questionLinkRepository)
         {
-            var newEntities = new List<QuestionLink>();
+            var insertedEntities = new List<QuestionLink>();
 
             foreach (QuestionLinkViewModel viewModel in viewModels)
             {
@@ -115,7 +115,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
                 bool isNew = viewModel.ID == 0;
                 if (isNew)
                 {
-                    newEntities.Add(entity);
+                    insertedEntities.Add(entity);
                 }
             }
 
@@ -128,7 +128,6 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
 
             ISet<int> idsToDelete = new HashSet<int>(entityIDs.Except(viewModelIDs));
 
-            // TODO: What happened to set operations on entities thenselves?
             foreach (QuestionLink entity in entities.ToArray())
             {
                 if (idsToDelete.Contains(entity.ID))
@@ -138,7 +137,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
                 }
             }
 
-            return newEntities;
+            return insertedEntities;
         }
     }
 }
