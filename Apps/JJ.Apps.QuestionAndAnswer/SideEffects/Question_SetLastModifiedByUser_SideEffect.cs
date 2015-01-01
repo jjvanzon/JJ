@@ -1,5 +1,5 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Framework.Common;
+using JJ.Framework.Business;
 using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using System;

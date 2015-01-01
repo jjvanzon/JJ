@@ -21,6 +21,7 @@ using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
 using JJ.Framework.Reflection;
 using JJ.Apps.QuestionAndAnswer.SideEffects;
+using JJ.Framework.Business;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {

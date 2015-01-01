@@ -13,6 +13,8 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 {
     internal static class ViewModelExtensions_IsNew
     {
+        // TODO: Not 'Recursive', 'WithRelatedEntities'.
+
         /// <summary>
         /// Marks different pieces of the view model as new,
         /// by setting IsNew properties in the view model,
