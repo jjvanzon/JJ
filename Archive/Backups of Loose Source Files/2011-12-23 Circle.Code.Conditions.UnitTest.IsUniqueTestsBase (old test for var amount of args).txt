@@ -1,0 +1,290 @@
+
+        /// <summary>
+        /// Systematically tests all the IsUnique methods with variable amounts of arguments,
+        /// to solely check if the overloads will pass the arguments correctly to the base method.
+        /// </summary>
+        /*[TestMethod]
+        public void Test_Condition_IsUnique_VariableAmountOfArguments_Old()
+        {
+            // TODO: When it tests the IsUnique overload with 8 key fields it is very inefficient.
+            // In theory, you would only have to check if switching one of the key values makes a difference,
+            // Yet it checks each combination of key values.
+            // If you do it more efficiently, you can not use just 1's and 0's as key values,
+            // but you would have to give each key field its own set of values,
+            // because otherwise you would not be testing if the methods pass the arguments in the correct order.
+
+            int[] item1;
+            int[] item2;
+            int[][] list;
+            bool isUnique;
+            Func<int[], bool> filter = null;
+
+            for (int a = 0; a <= 1; a++)
+            {
+                for (int b = 0; b <= 1; b++)
+                {
+                    item1 = new int[] { a };
+                    item2 = new int[] { b };
+                    list = new int[][] { item1, item2 };
+
+                    isUnique =
+                        item1[0] != item2[0];
+
+                    if (isUnique)
+                    {
+                        Condition.IsUniqueByValue(list, x => x[0], item1[0], "Item", alreadyPresent: true);
+                        Condition.IsUniqueByValue(list, x => x[0], item1[0], "Item", filter, alreadyPresent: true);
+                        Condition.IsUniqueByKey(list, x => x[0], item1, "Item", alreadyPresent: true);
+                        Condition.IsUniqueByKey(list, x => x[0], item1, "Item", filter, alreadyPresent: true);
+                        Condition.IsUniqueListByKey(list, x => x[0], "List");
+                    }
+                    else
+                    {
+                        Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], "Item", alreadyPresent: true), "Item should be unique.");
+                        Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], "Item", filter, alreadyPresent: true), "Item should be unique.");
+                        Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], item1, "Item", alreadyPresent: true), "Item should be unique.");
+                        Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], item1, "Item", filter, alreadyPresent: true), "Item should be unique.");
+                        Assert.ThrowsException(() => Condition.IsUniqueListByKey(list, x => x[0], "List"), "List should be unique.");
+                    }
+
+                    for (int c = 0; c <= 1; c++)
+                    {
+                        for (int d = 0; d <= 1; d++)
+                        {
+
+                            item1 = new int[] { a, b };
+                            item2 = new int[] { c, d };
+                            list = new int[][] { item1, item2 };
+
+                            isUnique =
+                                item1[0] != item2[0] ||
+                                item1[1] != item2[1];
+
+                            if (isUnique)
+                            {
+                                Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], "Item", alreadyPresent: true);
+                                Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], "Item", filter, alreadyPresent: true);
+                                Condition.IsUniqueByKey(list, x => x[0], x => x[1], item1, "Item", alreadyPresent: true);
+                                Condition.IsUniqueByKey(list, x => x[0], x => x[1], item1, "Item", filter, alreadyPresent: true);
+                                Condition.IsUniqueListByKey(list, x => x[0], x => x[1], "List");
+                            }
+                            else
+                            {
+                                Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], "Item", alreadyPresent: true), "Item should be unique.");
+                                Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], item1, "Item", alreadyPresent: true), "Item should be unique.");
+                                Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], item1, "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                Assert.ThrowsException(() => Condition.IsUniqueListByKey(list, x => x[0], x => x[1], "List"), "List should be unique.");
+                            }
+
+                            for (int e = 0; e <= 1; e++)
+                            {
+                                for (int f = 0; f <= 1; f++)
+                                {
+                                    item1 = new int[] { a, b, c };
+                                    item2 = new int[] { d, e, f };
+                                    list = new int[][] { item1, item2 };
+
+                                    isUnique =
+                                        item1[0] != item2[0] ||
+                                        item1[1] != item2[1] ||
+                                        item1[2] != item2[2];
+
+                                    if (isUnique)
+                                    {
+                                        Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], "Item", alreadyPresent: true);
+                                        Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], "Item", filter, alreadyPresent: true);
+                                        Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], item1, "Item", alreadyPresent: true);
+                                        Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], item1, "Item", filter, alreadyPresent: true);
+                                        Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], "List");
+                                    }
+                                    else
+                                    {
+                                        Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], "Item", alreadyPresent: true), "Item should be unique.");
+                                        Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                        Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], item1, "Item", alreadyPresent: true), "Item should be unique.");
+                                        Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], item1, "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                        Assert.ThrowsException(() => Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], "List"), "List should be unique.");
+                                    }
+
+                                    for (int g = 0; g <= 1; g++)
+                                    {
+                                        for (int h = 0; h <= 1; h++)
+                                        {
+                                            item1 = new int[] { a, b, c, d };
+                                            item2 = new int[] { e, f, g, h };
+                                            list = new int[][] { item1, item2 };
+
+                                            isUnique =
+                                                item1[0] != item2[0] ||
+                                                item1[1] != item2[1] ||
+                                                item1[2] != item2[2] ||
+                                                item1[3] != item2[3];
+
+                                            if (isUnique)
+                                            {
+                                                Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], "Item", alreadyPresent: true);
+                                                Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], "Item", filter, alreadyPresent: true);
+                                                Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], item1, "Item", alreadyPresent: true);
+                                                Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], item1, "Item", filter, alreadyPresent: true);
+                                                Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], "List");
+                                            }
+                                            else
+                                            {
+                                                Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], "Item", alreadyPresent: true), "Item should be unique.");
+                                                Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], item1, "Item", alreadyPresent: true), "Item should be unique.");
+                                                Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], item1, "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                Assert.ThrowsException(() => Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], "List"), "List should be unique.");
+                                            }
+
+                                            for (int i = 0; i <= 1; i++)
+                                            {
+                                                for (int j = 0; j <= 1; j++)
+                                                {
+                                                    item1 = new int[] { a, b, c, d, e };
+                                                    item2 = new int[] { f, g, h, i, j };
+                                                    list = new int[][] { item1, item2 };
+
+                                                    isUnique =
+                                                        item1[0] != item2[0] ||
+                                                        item1[1] != item2[1] ||
+                                                        item1[2] != item2[2] ||
+                                                        item1[3] != item2[3] ||
+                                                        item1[4] != item2[4];
+
+                                                    if (isUnique)
+                                                    {
+                                                        Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], "Item", alreadyPresent: true);
+                                                        Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], "Item", filter, alreadyPresent: true);
+                                                        Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], item1, "Item", alreadyPresent: true);
+                                                        Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], item1, "Item", filter, alreadyPresent: true);
+                                                        Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], "List");
+                                                    }
+                                                    else
+                                                    {
+                                                        Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], "Item", alreadyPresent: true), "Item should be unique.");
+                                                        Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                        Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], item1, "Item", alreadyPresent: true), "Item should be unique.");
+                                                        Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], item1, "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                        Assert.ThrowsException(() => Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], "List"), "List should be unique.");
+                                                    }
+
+                                                    for (int k = 0; k <= 1; k++)
+                                                    {
+                                                        for (int l = 0; l <= 1; l++)
+                                                        {
+                                                            item1 = new int[] { a, b, c, d, e, f };
+                                                            item2 = new int[] { g, h, i, j, k, l };
+                                                            list = new int[][] { item1, item2 };
+
+                                                            isUnique =
+                                                                item1[0] != item2[0] ||
+                                                                item1[1] != item2[1] ||
+                                                                item1[2] != item2[2] ||
+                                                                item1[3] != item2[3] ||
+                                                                item1[4] != item2[4] ||
+                                                                item1[5] != item2[5];
+
+                                                            if (isUnique)
+                                                            {
+                                                                Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], "Item", alreadyPresent: true);
+                                                                Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], "Item", filter, alreadyPresent: true);
+                                                                Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], item1, "Item", alreadyPresent: true);
+                                                                Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], item1, "Item", filter, alreadyPresent: true);
+                                                                Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], "List");
+                                                            }
+                                                            else
+                                                            {
+                                                                Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], "Item", alreadyPresent: true), "Item should be unique.");
+                                                                Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                                Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], item1, "Item", alreadyPresent: true), "Item should be unique.");
+                                                                Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], item1, "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                                Assert.ThrowsException(() => Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], "List"), "List should be unique.");
+                                                            }
+
+                                                            for (int m = 0; m <= 1; m++)
+                                                            {
+                                                                for (int n = 0; n <= 1; n++)
+                                                                {
+                                                                    item1 = new int[] { a, b, c, d, e, f, g };
+                                                                    item2 = new int[] { h, i, j, k, l, m, n };
+                                                                    list = new int[][] { item1, item2 };
+
+                                                                    isUnique =
+                                                                        item1[0] != item2[0] ||
+                                                                        item1[1] != item2[1] ||
+                                                                        item1[2] != item2[2] ||
+                                                                        item1[3] != item2[3] ||
+                                                                        item1[4] != item2[4] ||
+                                                                        item1[5] != item2[5] ||
+                                                                        item1[6] != item2[6];
+
+                                                                    if (isUnique)
+                                                                    {
+                                                                        Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], x => x[6], item1[6], "Item", alreadyPresent: true);
+                                                                        Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], x => x[6], item1[6], "Item", filter, alreadyPresent: true);
+                                                                        Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], item1, "Item", alreadyPresent: true);
+                                                                        Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], item1, "Item", filter, alreadyPresent: true);
+                                                                        Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], "List");
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], x => x[6], item1[6], "Item", alreadyPresent: true), "Item should be unique.");
+                                                                        Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], x => x[6], item1[6], "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                                        Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], item1, "Item", alreadyPresent: true), "Item should be unique.");
+                                                                        Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], item1, "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                                        Assert.ThrowsException(() => Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], "List"), "List should be unique.");
+                                                                    }
+
+                                                                    for (int o = 0; o <= 1; o++)
+                                                                    {
+                                                                        for (int p = 0; p <= 1; p++)
+                                                                        {
+                                                                            item1 = new int[] { a, b, c, d, e, f, g, h };
+                                                                            item2 = new int[] { i, j, k, l, m, n, o, p };
+                                                                            list = new int[][] { item1, item2 };
+
+                                                                            isUnique =
+                                                                                item1[0] != item2[0] ||
+                                                                                item1[1] != item2[1] ||
+                                                                                item1[2] != item2[2] ||
+                                                                                item1[3] != item2[3] ||
+                                                                                item1[4] != item2[4] ||
+                                                                                item1[5] != item2[5] ||
+                                                                                item1[6] != item2[6] ||
+                                                                                item1[7] != item2[7];
+
+                                                                            if (isUnique)
+                                                                            {
+                                                                                Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], x => x[6], item1[6], x => x[7], item1[7], "Item", alreadyPresent: true);
+                                                                                Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], x => x[6], item1[6], x => x[7], item1[7], "Item", filter, alreadyPresent: true);
+                                                                                Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], x => x[7], item1, "Item", alreadyPresent: true);
+                                                                                Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], x => x[7], item1, "Item", filter, alreadyPresent: true);
+                                                                                Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], x => x[7], "List");
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], x => x[6], item1[6], x => x[7], item1[7], "Item", alreadyPresent: true), "Item should be unique.");
+                                                                                Assert.ThrowsException(() => Condition.IsUniqueByValue(list, x => x[0], item1[0], x => x[1], item1[1], x => x[2], item1[2], x => x[3], item1[3], x => x[4], item1[4], x => x[5], item1[5], x => x[6], item1[6], x => x[7], item1[7], "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                                                Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], x => x[7], item1, "Item", alreadyPresent: true), "Item should be unique.");
+                                                                                Assert.ThrowsException(() => Condition.IsUniqueByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], x => x[7], item1, "Item", filter, alreadyPresent: true), "Item should be unique.");
+                                                                                Assert.ThrowsException(() => Condition.IsUniqueListByKey(list, x => x[0], x => x[1], x => x[2], x => x[3], x => x[4], x => x[5], x => x[6], x => x[7], "List"), "List should be unique.");
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }*/

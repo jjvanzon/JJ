@@ -1,0 +1,35 @@
+using JJ.Models.QuestionAndAnswer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JJ.Apps.QuestionAndAnswer.ViewModels.Helpers
+{
+    public static class QuestionLinkExtensions
+    {
+        public static QuestionLinkViewModel ToViewModel(this QuestionLink entity)
+        {
+            if (entity == null) { throw new ArgumentNullException("entity"); }
+
+            var viewModel = new QuestionLinkViewModel
+            {
+                TemporaryID = Guid.NewGuid(),
+                Description = entity.Description,
+                Url = entity.Url
+            };
+
+            if (entity.ID != 0)
+            {
+                viewModel.ID = entity.ID;
+            }
+            else
+            {
+                viewModel.ID = null;
+            }
+
+            return viewModel;
+        }
+    }
+}

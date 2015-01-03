@@ -1,0 +1,363 @@
+        /// <summary>
+        /// Systematically tests all the UniqueByKey constructors methods with variable amounts of arguments,
+        /// to solely check if the overloads will pass the arguments correctly to the base method.
+        /// </summary>
+        /*[TestMethod]
+        public void Test_UniqueByKey_VariableAmountOfArguments()
+        {
+            // TODO: When it tests the IsUnique overload with 8 key fields it is very inefficient.
+            // In theory, you would only have to check if switching one of the key values makes a difference,
+            // Yet it checks each combination of key values.
+            // If you do it more efficiently, you can not use just 1's and 0's as key values,
+            // but you would have to give each key field its own set of values,
+            // because otherwise you would not be testing if the methods pass the arguments in the correct order.
+
+            Item item1;
+            Item item2;
+            var list = new ListWithEvents<Item>();
+            bool isUnique;
+
+            Func<Item, bool> filter = null;
+
+            UniqueByKey<Item> unique;
+
+            for (int a = 0; a <= 1; a++)
+            {
+                for (int b = 0; b <= 1; b++)
+                {
+                    item1 = new Item 
+                    { 
+                        Fields = new Events<int>[] { 
+                            new Events<int> { Value = a } } 
+                    };
+                    item2 = new Item 
+                    { 
+                        Fields = new Events<int>[] { 
+                            new Events<int> { Value = b } } 
+                    };
+                    list = new ListWithEvents<Item> { item1, item2 };
+
+                    isUnique =
+                        item1.Fields[0].Value != item2.Fields[0].Value;
+
+                    if (isUnique)
+                    {
+                        unique = new UniqueByKey<Item>(list, x => x.Fields[0], "Item");
+                        unique = new UniqueByKey<Item>(list, x => x.Fields[0], "Item", filter);
+                    }
+                    else
+                    {
+                        Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], "Item"), "Item should be unique.");
+                        Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], "Item", filter), "Item should be unique.");
+                    }
+
+                    for (int c = 0; c <= 1; c++)
+                    {
+                        for (int d = 0; d <= 1; d++)
+                        {
+                            item1 = new Item
+                            {
+                                Fields = new Events<int>[] { 
+                                    new Events<int> { Value = a }, 
+                                    new Events<int> { Value = b } }
+                            };
+                            item2 = new Item
+                            {
+                                Fields = new Events<int>[] { 
+                                    new Events<int> { Value = c }, 
+                                    new Events<int> { Value = d } }
+                            };
+                            list = new ListWithEvents<Item> { item1, item2 };
+
+                            isUnique =
+                                item1.Fields[0].Value != item2.Fields[0].Value ||
+                                item1.Fields[1].Value != item2.Fields[1].Value;
+
+                            if (isUnique)
+                            {
+                                unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], "Item");
+                                unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], "Item", filter);
+                            }
+                            else
+                            {
+                                Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], "Item"), "Item should be unique.");
+                                Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], "Item", filter), "Item should be unique.");
+                            }
+
+                            for (int e = 0; e <= 1; e++)
+                            {
+                                for (int f = 0; f <= 1; f++)
+                                {
+                                    item1 = new Item
+                                    {
+                                        Fields = new Events<int>[] { 
+                                            new Events<int> { Value = a }, 
+                                            new Events<int> { Value = b },
+                                            new Events<int> { Value = c }}
+                                    };
+                                    item2 = new Item
+                                    {
+                                        Fields = new Events<int>[] { 
+                                            new Events<int> { Value = d }, 
+                                            new Events<int> { Value = e },
+                                            new Events<int> { Value = f }}
+                                    };
+                                    list = new ListWithEvents<Item> { item1, item2 };
+
+                                    isUnique =
+                                        item1.Fields[0].Value != item2.Fields[0].Value ||
+                                        item1.Fields[1].Value != item2.Fields[1].Value ||
+                                        item1.Fields[2].Value != item2.Fields[2].Value;
+
+                                    if (isUnique)
+                                    {
+                                        unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], "Item");
+                                        unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], "Item", filter);
+                                    }
+                                    else
+                                    {
+                                        Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], "Item"), "Item should be unique.");
+                                        Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], "Item", filter), "Item should be unique.");
+                                    }
+
+                                    for (int g = 0; g <= 1; g++)
+                                    {
+                                        for (int h = 0; h <= 1; h++)
+                                        {
+                                            item1 = new Item
+                                            {
+                                                Fields = new Events<int>[] { 
+                                                    new Events<int> { Value = a }, 
+                                                    new Events<int> { Value = b },
+                                                    new Events<int> { Value = c },
+                                                    new Events<int> { Value = d }}
+                                            };
+                                            item2 = new Item
+                                            {
+                                                Fields = new Events<int>[] { 
+                                                    new Events<int> { Value = e }, 
+                                                    new Events<int> { Value = f },
+                                                    new Events<int> { Value = g },
+                                                    new Events<int> { Value = h }}
+                                            };
+                                            list = new ListWithEvents<Item> { item1, item2 };
+
+                                            isUnique =
+                                                item1.Fields[0].Value != item2.Fields[0].Value ||
+                                                item1.Fields[1].Value != item2.Fields[1].Value ||
+                                                item1.Fields[2].Value != item2.Fields[2].Value ||
+                                                item1.Fields[3].Value != item2.Fields[3].Value;
+
+                                            if (isUnique)
+                                            {
+                                                unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], "Item");
+                                                unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], "Item", filter);
+                                            }
+                                            else
+                                            {
+                                                Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], "Item"), "Item should be unique.");
+                                                Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], "Item", filter), "Item should be unique.");
+                                            }
+
+                                            for (int i = 0; i <= 1; i++)
+                                            {
+                                                for (int j = 0; j <= 1; j++)
+                                                {
+                                                    item1 = new Item
+                                                    {
+                                                        Fields = new Events<int>[] { 
+                                                            new Events<int> { Value = a }, 
+                                                            new Events<int> { Value = b },
+                                                            new Events<int> { Value = c },
+                                                            new Events<int> { Value = d },
+                                                            new Events<int> { Value = e }}
+                                                    };
+                                                    item2 = new Item
+                                                    {
+                                                        Fields = new Events<int>[] { 
+                                                            new Events<int> { Value = f }, 
+                                                            new Events<int> { Value = g },
+                                                            new Events<int> { Value = h },
+                                                            new Events<int> { Value = i },
+                                                            new Events<int> { Value = j }}
+                                                    };
+                                                    list = new ListWithEvents<Item> { item1, item2 };
+
+                                                    isUnique =
+                                                        item1.Fields[0].Value != item2.Fields[0].Value ||
+                                                        item1.Fields[1].Value != item2.Fields[1].Value ||
+                                                        item1.Fields[2].Value != item2.Fields[2].Value ||
+                                                        item1.Fields[3].Value != item2.Fields[3].Value ||
+                                                        item1.Fields[4].Value != item2.Fields[4].Value;
+
+                                                    if (isUnique)
+                                                    {
+                                                        unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], "Item");
+                                                        unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], "Item", filter);
+                                                    }
+                                                    else
+                                                    {
+                                                        Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], "Item"), "Item should be unique.");
+                                                        Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], "Item", filter), "Item should be unique.");
+                                                    }
+
+                                                    for (int k = 0; k <= 1; k++)
+                                                    {
+                                                        for (int l = 0; l <= 1; l++)
+                                                        {
+                                                            item1 = new Item
+                                                            {
+                                                                Fields = new Events<int>[] { 
+                                                                    new Events<int> { Value = a }, 
+                                                                    new Events<int> { Value = b },
+                                                                    new Events<int> { Value = c },
+                                                                    new Events<int> { Value = d },
+                                                                    new Events<int> { Value = e },
+                                                                    new Events<int> { Value = f }}
+                                                            };
+                                                            item2 = new Item
+                                                            {
+                                                                Fields = new Events<int>[] { 
+                                                                    new Events<int> { Value = g }, 
+                                                                    new Events<int> { Value = h },
+                                                                    new Events<int> { Value = i },
+                                                                    new Events<int> { Value = j },
+                                                                    new Events<int> { Value = k },
+                                                                    new Events<int> { Value = l }}
+                                                            };
+                                                            list = new ListWithEvents<Item> { item1, item2 };
+
+                                                            isUnique =
+                                                                item1.Fields[0].Value != item2.Fields[0].Value ||
+                                                                item1.Fields[1].Value != item2.Fields[1].Value ||
+                                                                item1.Fields[2].Value != item2.Fields[2].Value ||
+                                                                item1.Fields[3].Value != item2.Fields[3].Value ||
+                                                                item1.Fields[4].Value != item2.Fields[4].Value ||
+                                                                item1.Fields[5].Value != item2.Fields[5].Value;
+
+                                                            if (isUnique)
+                                                            {
+                                                                unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], "Item");
+                                                                unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], "Item", filter);
+                                                            }
+                                                            else
+                                                            {
+                                                                Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], "Item"), "Item should be unique.");
+                                                                Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], "Item", filter), "Item should be unique.");
+                                                            }
+
+                                                            for (int m = 0; m <= 1; m++)
+                                                            {
+                                                                for (int n = 0; n <= 1; n++)
+                                                                {
+                                                                    item1 = new Item
+                                                                    {
+                                                                        Fields = new Events<int>[] { 
+                                                                            new Events<int> { Value = a }, 
+                                                                            new Events<int> { Value = b },
+                                                                            new Events<int> { Value = c },
+                                                                            new Events<int> { Value = d },
+                                                                            new Events<int> { Value = e },
+                                                                            new Events<int> { Value = f },
+                                                                            new Events<int> { Value = g }}
+                                                                    };
+                                                                    item2 = new Item
+                                                                    {
+                                                                        Fields = new Events<int>[] { 
+                                                                            new Events<int> { Value = h }, 
+                                                                            new Events<int> { Value = i },
+                                                                            new Events<int> { Value = j },
+                                                                            new Events<int> { Value = k },
+                                                                            new Events<int> { Value = l },
+                                                                            new Events<int> { Value = m },
+                                                                            new Events<int> { Value = n }}
+                                                                    };
+                                                                    list = new ListWithEvents<Item> { item1, item2 };
+
+                                                                    isUnique =
+                                                                        item1.Fields[0].Value != item2.Fields[0].Value ||
+                                                                        item1.Fields[1].Value != item2.Fields[1].Value ||
+                                                                        item1.Fields[2].Value != item2.Fields[2].Value ||
+                                                                        item1.Fields[3].Value != item2.Fields[3].Value ||
+                                                                        item1.Fields[4].Value != item2.Fields[4].Value ||
+                                                                        item1.Fields[5].Value != item2.Fields[5].Value ||
+                                                                        item1.Fields[6].Value != item2.Fields[6].Value;
+
+                                                                    if (isUnique)
+                                                                    {
+                                                                        unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], x => x.Fields[6], "Item");
+                                                                        unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], x => x.Fields[6], "Item", filter);
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], x => x.Fields[6], "Item"), "Item should be unique.");
+                                                                        Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], x => x.Fields[6], "Item", filter), "Item should be unique.");
+                                                                    }
+
+                                                                    for (int o = 0; o <= 1; o++)
+                                                                    {
+                                                                        for (int p = 0; p <= 1; p++)
+                                                                        {
+                                                                            item1 = new Item
+                                                                            {
+                                                                                Fields = new Events<int>[] { 
+                                                                                    new Events<int> { Value = a }, 
+                                                                                    new Events<int> { Value = b },
+                                                                                    new Events<int> { Value = c },
+                                                                                    new Events<int> { Value = d },
+                                                                                    new Events<int> { Value = e },
+                                                                                    new Events<int> { Value = f },
+                                                                                    new Events<int> { Value = g },
+                                                                                    new Events<int> { Value = h }}
+                                                                            };
+                                                                            item2 = new Item
+                                                                            {
+                                                                                Fields = new Events<int>[] { 
+                                                                                    new Events<int> { Value = i }, 
+                                                                                    new Events<int> { Value = j },
+                                                                                    new Events<int> { Value = k },
+                                                                                    new Events<int> { Value = l },
+                                                                                    new Events<int> { Value = m },
+                                                                                    new Events<int> { Value = n },
+                                                                                    new Events<int> { Value = o },
+                                                                                    new Events<int> { Value = p }}
+                                                                            };
+                                                                            list = new ListWithEvents<Item> { item1, item2 };
+
+                                                                            isUnique =
+                                                                                item1.Fields[0].Value != item2.Fields[0].Value ||
+                                                                                item1.Fields[1].Value != item2.Fields[1].Value ||
+                                                                                item1.Fields[2].Value != item2.Fields[2].Value ||
+                                                                                item1.Fields[3].Value != item2.Fields[3].Value ||
+                                                                                item1.Fields[4].Value != item2.Fields[4].Value ||
+                                                                                item1.Fields[5].Value != item2.Fields[5].Value ||
+                                                                                item1.Fields[6].Value != item2.Fields[6].Value ||
+                                                                                item1.Fields[7].Value != item2.Fields[7].Value;
+
+                                                                            if (isUnique)
+                                                                            {
+                                                                                unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], x => x.Fields[6], x => x.Fields[7], "Item");
+                                                                                unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], x => x.Fields[6], x => x.Fields[7], "Item", filter);
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], x => x.Fields[6], x => x.Fields[7], "Item"), "Item should be unique.");
+                                                                                Assert.ThrowsException(() => unique = new UniqueByKey<Item>(list, x => x.Fields[0], x => x.Fields[1], x => x.Fields[2], x => x.Fields[3], x => x.Fields[4], x => x.Fields[5], x => x.Fields[6], x => x.Fields[7], "Item", filter), "Item should be unique.");
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }*/

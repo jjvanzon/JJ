@@ -1,0 +1,39 @@
+        
+        /*public static void DrawImage_Org(Graphics graphics, Image image, Rectangle rectangle = default(Rectangle), float opacity = 1)
+        {
+            // Resolve defaults
+
+            if (rectangle == default(Rectangle)) rectangle = new Rectangle(0, 0, image.Width, image.Height);
+
+            // Unscaled
+
+            if (image.Width == rectangle.Width && 
+                image.Height == rectangle.Height && 
+                opacity == 1)
+            {
+                graphics.DrawImageUnscaled(image, rectangle);
+                return;
+            }
+
+            // Scaled, no opacity
+
+            if (opacity == 1)
+            {
+                graphics.DrawImage(image, rectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
+                return;
+            }
+
+            // Scaled or opacity
+
+            ColorMatrix colorMatrix = new ColorMatrix (new float[][] {
+                new float[] {1, 0, 0, 0, 0},
+                new float[] {0, 1, 0, 0, 0},
+                new float[] {0, 0, 1, 0, 0},
+                new float[] {0, 0, 0, opacity, 0},
+                new float[] {0, 0, 0, 0, 1}});
+
+            ImageAttributes imageAttributes = new ImageAttributes();
+            imageAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+            graphics.DrawImage(image, rectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributes);
+        }*/

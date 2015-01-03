@@ -1,0 +1,545 @@
+
+//  Circle.Code.Concepts.Response
+//
+//      Author: Jan-Joost van Zon
+//      Date: 24-06-2011 - 20-07-2011
+//
+//  -----
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Circle.Code.Events;
+using System.Reflection;
+using Circle.Code.Conditions;
+using Circle.StringFunctions;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
+using Circle.Data.Collections;
+
+namespace Circle.Code.Concepts
+{
+    // TODO: consider using new Circle.Data collections.
+    // TODO: the event procedures are repeated in EventsT. Code smell.
+
+    /// <summary>
+    /// Using reflection,
+    /// this class go through the sub-objects of Roots,
+    /// detects IHear objects, sees if they match the criteria,
+    /// and then sets their event response so that they delegate to Response's own events.
+    /// Also, when a sub-object is changed,
+    /// the old object's events are unbound and the new object's events are bound
+    /// so that its events escalate to the Response's own events. 
+    /// Circularity is taken into account, so that no stack overflow exceptions can occur.
+    /// </summary>
+    public class Response
+    {
+        // TODO: Response can not work with lists yet.
+
+        // Constructor
+
+        public Response()
+        {
+            InitializeMembers();
+            InitializeExcludedMembers();
+        }
+
+        ~Response()
+        {
+            Annull();
+        }
+
+        // Events
+
+        public event Getting<object> Getting;
+        public event Gotten<object> Gotten;
+        public event Assigning<object> Assigning;
+        public event Changing<object> Changing;
+        public event Changed<object> Changed;
+
+        // Roots
+
+        public readonly ListWithEvents<object> Roots = new ListWithEvents<object>(); 
+
+        public object Root
+        {
+            get
+            {
+                Condition.AboveZero(Roots.Count, "Roots.Count");
+                return Roots[0];
+            }
+            set
+            {
+                if (Roots.Count == 0) Roots.Add(value);
+                else Roots[0] = value;
+            }
+        }
+
+        // Types
+
+        /// <summary>
+        /// Also add the roots' types to this list.
+        /// </summary>
+
+        public readonly ListWithEvents<Type> Types = new ListWithEvents<Type>(); 
+
+        public Type Type
+        {
+            get
+            {
+                Condition.AboveZero(Types.Count, "Types.Count");
+                return Types[0];
+            }
+            set
+            {
+                if (Types.Count == 0) Types.Add(value);
+                else Types[0] = value;
+            }
+        }
+
+        // Excluded Types
+
+        public readonly ListWithEvents<Type> ExcludedTypes = new ListWithEvents<Type>(); 
+
+        // Members
+
+        public readonly ListWithEvents<string> Members = new ListWithEvents<string>();
+
+        private readonly List<Regex> MemberRegexs = new List<Regex>();
+
+        public string Member
+        {
+            get
+            {
+                Condition.AboveZero(Members.Count, "Members.Count");
+                return Members[0];
+            }
+            set
+            {
+                if (Members.Count == 0) Members.Add(value);
+                else Members[0] = value;
+            }
+        }
+
+        private void InitializeMembers()
+        {
+            Members.Added += (e) => MemberRegexs.Insert(e.Index, null);
+            Members.Removed += (e) => MemberRegexs.RemoveAt(e.Index);
+            Members.Changed += (e) => MemberRegexs[e.Index] = CreateRegex(e.Item);
+        }
+
+        // Excluded Members
+
+        public readonly ListWithEvents<string> ExcludedMembers = new ListWithEvents<string>();
+
+        private readonly List<Regex> ExcludedMemberRegexs = new List<Regex>();
+
+        private void InitializeExcludedMembers()
+        {
+            ExcludedMembers.Added += (e) => ExcludedMemberRegexs.Insert(e.Index, null);
+            ExcludedMembers.Removed += (e) => ExcludedMemberRegexs.RemoveAt(e.Index);
+            ExcludedMembers.Changed += (e) => ExcludedMemberRegexs[e.Index] = CreateRegex(e.Item);
+        }
+
+        // TypesToFollow
+
+        public readonly ListWithEvents<Type> TypesToFollow = new ListWithEvents<Type>(); // TODO: This may also require live events.
+
+        // Regex
+
+        private Regex CreateRegex(string format)
+        {
+            format = format.Replace("*", ".*");
+            format = format.Replace("?", ".?");
+            return new Regex(format); // RegexOptions.Compiled was slower
+        }
+
+        // Joint Points
+
+        // TODO: these lists should not be just public. Intercept the add, removed and changed events.
+
+        public readonly ListWithEvents<IHear> IHearJoinPoints = new ListWithEvents<IHear>(); 
+
+        public readonly ListWithEvents<Events.Events> EventsJoinPoints = new ListWithEvents<Events.Events>(); 
+
+        // Set
+
+        /// <summary>
+        /// Binds the events of all matching sub-objects so that they raise Response's own events.
+        /// </summary>
+        public void Set()
+        {
+            Annull();
+
+            // Collect join points
+            foreach (var root in Roots)
+            {
+                SetFieldsAndProperties(root, done: new HashSet<object>());
+            }
+        }
+
+        private void SetFieldsAndProperties(object parent, HashSet<object> done)
+        {
+            // Conditions
+            if (parent == null) return; // Skip nulls
+            if (parent is ValueType) return; // Values cannot be parents
+
+            // Handle doubles
+            if (done.Contains(parent)) return;
+            done.Add(parent);
+
+            // Traverse fields
+            foreach (var field in ReflectionCache.GetFields(parent.GetType()))
+            {
+                SetField(parent, field, done);
+            }
+
+            // Traverse properties
+            foreach (var property in ReflectionCache.GetProperties(parent.GetType()))
+            {
+                SetProperty(parent, property, done);
+            }
+        }
+
+        private void SetField(object parent, FieldInfo field, HashSet<object> done)
+        {
+            // Get value
+            object value = field.GetValue(parent);
+
+            // Mutual base method
+            SetFieldOrProperty(parent, value, field.Name, done);
+        }
+
+        private void SetProperty(object parent, PropertyInfo property, HashSet<object> done)
+        {
+            // Skip indexers
+            if (property.GetIndexParameters().Length > 0) return;
+
+            // Check existence of getter.
+            if (!property.CanRead) return;
+
+            // Get value 
+            object value = null;
+            try { value = property.GetValue(parent, null); }
+            catch { return; }
+
+            // Mutual base method
+            SetFieldOrProperty(parent, value, property.Name, done);
+        }
+
+        private void SetFieldOrProperty(object parent, object value, string name, HashSet<object> done)
+        {
+            // Skip nulls
+            if (value == null) return;
+            
+            // Match parent
+            Type parentType = parent.GetType();
+            bool isParentMatch = IsTypeMatch(parentType) && !IsTypeExcluded(parentType);
+            if (isParentMatch)
+            {
+                // Match member and bind
+                MatchAndBind(value, name);
+            }
+
+            // Recursive call
+            if (isParentMatch || IsTypeToFollow(parentType))
+            {
+                SetFieldsAndProperties(value, done);
+            }
+        }
+
+        private void MatchAndBind(
+            object value, 
+            string name)
+        {
+            // Is IHear?
+
+            if (!(value is IHear)) return;
+            IHear hear = value as IHear;
+
+            // Never check IsCreated to prevent auto-instantiation,
+            // because even when it is not created, you still have to unbind OnLive.
+
+            // Match
+
+            if (!IsMemberMatch(name)) return;
+            if (IsMemberExcluded(name)) return;
+
+            // Bind
+
+            Bind(hear);
+        }
+
+        public void Bind(IHear hear)
+        {
+            // Bind to IHear
+
+            IHearJoinPoints.Add(hear);
+            hear.Changed += OnChanged;
+
+            hear.Changed += OnLive;
+
+            // Bind to Events
+
+            if (hear is Events.Events)
+            {
+                Events.Events events = hear as Events.Events;
+
+                EventsJoinPoints.Add(events);
+                events.Getting += OnGetting;
+                events.Gotten += OnGotten;
+                events.Assigning += OnAssigning;
+                events.Changing += OnChanging;
+            }
+        }
+
+        // Annull
+
+        public void Annull()
+        {
+            foreach (IHear joinPoint in IHearJoinPoints)
+            {
+                joinPoint.Changed -= OnChanged;
+                joinPoint.Changed -= OnLive;
+            }
+
+            IHearJoinPoints.Clear();
+
+            foreach (Events.Events joinPoint in EventsJoinPoints)
+            {
+                joinPoint.Getting -= OnGetting;
+                joinPoint.Gotten -= OnGotten;
+                joinPoint.Assigning -= OnAssigning;
+                joinPoint.Changing -= OnChanging;
+            }
+
+            EventsJoinPoints.Clear();
+        }
+
+        private void AnnullFieldsAndProperties(object parent, HashSet<object> done)
+        {
+            // Conditions            
+            if (parent == null) return; // Skip nulls
+            if (parent is ValueType) return; // Values cannot be parents
+
+            // Handle circularity
+            if (done.Contains(parent)) { return; }
+            done.Add(parent);
+
+            // Traverse fields
+            foreach (var field in parent.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
+            {
+                AnnullField(parent, field, done);
+            }
+
+            // Traverse properties
+            foreach (var property in parent.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                AnnullProperty(parent, property, done);
+            }
+        }
+
+        private void AnnullField(object parent, FieldInfo field, HashSet<object> done)
+        {
+            // Get value
+            object value = field.GetValue(parent);
+
+            // Mutual base method
+            AnnullFieldOrProperty(parent, value, field.Name, done);
+        }
+
+        private void AnnullProperty(object parent, PropertyInfo property, HashSet<object> done)
+        {
+            // Skip indexers
+            if (property.GetIndexParameters().Length > 0) return;
+
+            // Get value
+            object value = property.GetValue(parent, null);
+
+            // Mutual base method
+            AnnullFieldOrProperty(parent, value, property.Name, done);
+        }
+
+        private void AnnullFieldOrProperty(object parent, object value, string name, HashSet<object> done)
+        {
+            // Skip nulls
+            if (value == null) return;
+
+            // Match parent
+            Type parentType = parent.GetType();
+            bool isParentMatch = IsTypeMatch(parentType) && !IsTypeExcluded(parentType);
+            if (isParentMatch)
+            {
+                // Match member and unbind
+                MatchAndUnbind(value, name);
+            }
+
+            // Recursive call
+            if (isParentMatch || IsTypeToFollow(parentType))
+            {
+                AnnullFieldsAndProperties(value, done);
+            }
+        }
+
+        private void MatchAndUnbind(
+            object value,
+            string name)
+        {
+            // Is IHear?
+
+            if (!(value is IHear)) return;
+            IHear hear = value as IHear;
+
+            // Never check IsCreated to prevent auto-instantiation,
+            // because even when it is not created, you still have to unbind OnLive.
+
+            // Match
+
+            if (!IsMemberMatch(name)) return;
+            if (IsMemberExcluded(name)) return;
+
+            // Unbind
+
+            Unbind(hear);
+        }
+
+        private void Unbind(IHear hear)
+        {
+            // Unbind IHear
+
+            IHearJoinPoints.Remove(hear);
+            hear.Changed -= OnChanged;
+            hear.Changed -= OnLive;
+
+            // Unbind Events
+
+            if (hear is Events.Events)
+            {
+                Events.Events events = hear as Events.Events;
+
+                EventsJoinPoints.Remove(events);
+
+                events.Getting -= OnGetting;
+                events.Gotten -= OnGotten;
+                events.Assigning -= OnAssigning;
+                events.Changing -= OnChanging;
+            }
+        }
+
+        // Helpers
+
+        private bool IsTypeMatch(Type type)
+        {
+            if (Types.Contains(type))
+            {
+                return true;
+            }
+
+            foreach (var x in Types)
+            {
+                if (type.IsSubclassOf(x)) return true;
+            }
+
+            return false;
+        }
+
+        private bool IsTypeExcluded(Type type)
+        {
+            if (ExcludedTypes.Contains(type))
+            {
+                return true;
+            }
+
+            foreach (var x in ExcludedTypes)
+            {
+                if (type.IsSubclassOf(x)) return true;
+            }
+
+            return false;
+        }
+
+        private bool IsTypeToFollow(Type type)
+        {
+            if (TypesToFollow.Contains(type))
+            {
+                return true;
+            }
+
+            foreach (var x in TypesToFollow)
+            {
+                if (type.IsSubclassOf(x)) return true;
+            }
+
+            return false;
+        }
+
+        private bool IsMemberMatch(string name)
+        {
+            foreach (var member in MemberRegexs)
+            {
+                if (member.IsMatch(name))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsMemberExcluded(string name)
+        {
+            foreach (var excludedMember in ExcludedMemberRegexs)
+            {
+                if (excludedMember.IsMatch(name))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        // Live creation of new join points
+
+        private void OnLive(ChangedEventArgs<object> e)
+        {
+            if (e.Old != null)
+            {
+                AnnullFieldsAndProperties(e.Old, done: new HashSet<object>());
+            }
+
+            if (e.Value != null)
+            {
+                SetFieldsAndProperties(e.Value, done: new HashSet<object>());
+            }
+        }
+
+        // Event procedures
+
+        private void OnGetting(GettingEventArgs<object> e)
+        {
+            if (Getting != null) Getting(e);
+        }
+
+        private void OnGotten(GottenEventArgs<object> e)
+        {
+            if (Gotten != null) Gotten(e);
+        }
+
+        private void OnAssigning(AssigningEventArgs<object> e)
+        {
+            if (Assigning != null) Assigning(e);
+        }
+
+        private void OnChanging(ChangingEventArgs<object> e)
+        {
+            if (Changing != null) Changing(e);
+        }
+
+        private void OnChanged(ChangedEventArgs<object> e)
+        {
+            if (Changed != null) Changed(e);
+        }
+    }
+}

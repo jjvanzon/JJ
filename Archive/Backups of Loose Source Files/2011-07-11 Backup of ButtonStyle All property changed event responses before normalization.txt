@@ -1,0 +1,319 @@
+            All.BackStyle.ColorEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.BackStyle == null) x.BackStyle = new BackStyle();
+                    x.BackStyle.Color = value;
+                }
+            };
+
+            All.TextStyle.FontEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.TextStyle == null) x.TextStyle = new TextStyle();
+                    x.TextStyle.Font = value;
+                }
+            };
+
+            All.TextStyle.ColorEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.TextStyle == null) x.TextStyle = new TextStyle();
+                    x.TextStyle.Color = value;
+                }
+            };
+
+            All.TextStyle.AbbreviateEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.TextStyle == null) x.TextStyle = new TextStyle();
+                    x.TextStyle.Abbreviate = value;
+                }
+            };
+
+            All.TextStyle.WrapEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.TextStyle == null) x.TextStyle = new TextStyle();
+                    x.TextStyle.Wrap = value;
+                }
+            };
+
+            All.TextStyle.HorizontalAlignmentEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.TextStyle == null) x.TextStyle = new TextStyle();
+                    x.TextStyle.HorizontalAlignment = value;
+                }
+            };
+
+            All.TextStyle.VerticalAlignmentEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.TextStyle == null) x.TextStyle = new TextStyle();
+                    x.TextStyle.VerticalAlignment = value;
+                }
+            };
+
+            All.Positioning.Margin.TopEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.Positioning == null) x.Positioning = new BoxPositioning();
+                    x.Positioning.Margin.Top = value;
+                }
+            };
+
+            All.Positioning.Margin.RightEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.Positioning == null) x.Positioning = new BoxPositioning();
+                    x.Positioning.Margin.Right = value;
+                }
+            };
+
+            All.Positioning.Margin.BottomEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.Positioning == null) x.Positioning = new BoxPositioning();
+                    x.Positioning.Margin.Bottom = value;
+                }
+            };
+
+            All.Positioning.Padding.TopEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.Positioning == null) x.Positioning = new BoxPositioning();
+                    x.Positioning.Padding.Top = value;
+                }
+            };
+
+            All.Positioning.Margin.LeftEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.Positioning == null) x.Positioning = new BoxPositioning();
+                    x.Positioning.Margin.Left = value;
+                }
+            };
+
+            All.Positioning.Padding.RightEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.Positioning == null) x.Positioning = new BoxPositioning();
+                    x.Positioning.Padding.Right = value;
+                }
+            };
+
+            All.Positioning.Padding.BottomEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.Positioning == null) x.Positioning = new BoxPositioning();
+                    x.Positioning.Padding.Bottom = value;
+                }
+            };
+
+            All.Positioning.Padding.LeftEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.Positioning == null) x.Positioning = new BoxPositioning();
+                    x.Positioning.Padding.Left = value;
+                }
+            };
+
+            All.Positioning.BackPositioningEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.Positioning == null) x.Positioning = new BoxPositioning();
+                    x.Positioning.BackPositioning = value;
+                }
+            };
+
+            All.LineStyles.Top.WidthEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Top == null) x.LineStyles.Top = new LineStyle();
+                    x.LineStyles.Top.Width = value;
+                }
+            };
+
+            All.LineStyles.Top.ColorEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Top == null) x.LineStyles.Top = new LineStyle();
+                    x.LineStyles.Top.Color = value;
+                }
+            };
+
+            All.LineStyles.Top.DashEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Top == null) x.LineStyles.Top = new LineStyle();
+                    x.LineStyles.Top.Dash = value;
+                }
+            };
+
+            All.LineStyles.Top.ZIndexEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Top == null) x.LineStyles.Top = new LineStyle();
+                    x.LineStyles.Top.ZIndex = value;
+                }
+            };
+            
+            All.LineStyles.Right.WidthEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Right == null) x.LineStyles.Right = new LineStyle();
+                    x.LineStyles.Right.Width = value;
+                }
+            };
+
+            All.LineStyles.Right.ColorEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Right == null) x.LineStyles.Right = new LineStyle();
+                    x.LineStyles.Right.Color = value;
+                }
+            };
+
+            All.LineStyles.Right.DashEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Right == null) x.LineStyles.Right = new LineStyle();
+                    x.LineStyles.Right.Dash = value;
+                }
+            };
+
+            All.LineStyles.Right.ZIndexEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Right == null) x.LineStyles.Right = new LineStyle();
+                    x.LineStyles.Right.ZIndex = value;
+                }
+            };
+            
+            All.LineStyles.Bottom.WidthEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Bottom == null) x.LineStyles.Bottom = new LineStyle();
+                    x.LineStyles.Bottom.Width = value;
+                }
+            };
+
+            All.LineStyles.Bottom.ColorEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Bottom == null) x.LineStyles.Bottom = new LineStyle();
+                    x.LineStyles.Bottom.Color = value;
+                }
+            };
+
+            All.LineStyles.Bottom.DashEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Bottom == null) x.LineStyles.Bottom = new LineStyle();
+                    x.LineStyles.Bottom.Dash = value;
+                }
+            };
+
+            All.LineStyles.Bottom.ZIndexEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Bottom == null) x.LineStyles.Bottom = new LineStyle();
+                    x.LineStyles.Bottom.ZIndex = value;
+                }
+            };
+
+            All.LineStyles.Left.WidthEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Left == null) x.LineStyles.Left = new LineStyle();
+                    x.LineStyles.Left.Width = value;
+                }
+            };
+
+            All.LineStyles.Left.ColorEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Left == null) x.LineStyles.Left = new LineStyle();
+                    x.LineStyles.Left.Color = value;
+                }
+            };
+
+            All.LineStyles.Left.DashEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Left == null) x.LineStyles.Left = new LineStyle();
+                    x.LineStyles.Left.Dash = value;
+                }
+            };
+
+            All.LineStyles.Left.ZIndexEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    if (x.LineStyles.Left == null) x.LineStyles.Left = new LineStyle();
+                    x.LineStyles.Left.ZIndex = value;
+                }
+            };
+
+            All.CornerStyles.TopLeft.LineEndPositioningEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    x.CornerStyles.TopLeft.LineEndPositioning = value;
+                }
+            };
+
+            All.CornerStyles.TopRight.LineEndPositioningEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    x.CornerStyles.TopRight.LineEndPositioning = value;
+                }
+            };
+
+            All.CornerStyles.TopLeft.LineEndPositioningEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    x.CornerStyles.TopLeft.LineEndPositioning = value;
+                }
+            };
+
+            All.CornerStyles.BottomRight.LineEndPositioningEvents.Changed += (old, value) =>
+            {
+                foreach (var x in this)
+                {
+                    x.CornerStyles.BottomRight.LineEndPositioning = value;
+                }
+            };

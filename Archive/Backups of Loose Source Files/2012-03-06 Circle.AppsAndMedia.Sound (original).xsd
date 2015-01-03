@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Workspace">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MainDocument">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Patch">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="SampleOperator">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Sample" type="xs:string" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DocumentOperator">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Document">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Name" type="xs:string" />
+                                <xs:element name="Type" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Operand" type="xs:string" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Outlet">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Operand" type="xs:string" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Transport">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Sample">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="FilePath" type="xs:string" />
+                          <xs:element name="Bit" type="xs:unsignedByte" />
+                          <xs:element name="MonoStereo" type="xs:string" />
+                          <xs:element name="SamplingRate" type="xs:unsignedShort" />
+                          <xs:element name="Amplifier" type="xs:float" />
+                          <xs:element name="BytesToSkip" type="xs:unsignedByte" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="WaveFileOutput">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="LeftChannel">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Operator" type="xs:string" />
+                                <xs:element name="Patch" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="FilePath" type="xs:string" />
+                          <xs:element name="Format" type="xs:string" />
+                          <xs:element name="Bit" type="xs:unsignedByte" />
+                          <xs:element name="MonoStereo" type="xs:string" />
+                          <xs:element name="Amplifier" type="xs:unsignedShort" />
+                          <xs:element name="StartTime" type="xs:unsignedByte" />
+                          <xs:element name="EndTime" type="xs:decimal" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Instrument">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Curve">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Node">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Time" type="xs:decimal" />
+                          <xs:element name="Value" type="xs:decimal" />
+                          <xs:element name="Type" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Patch">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Inlet">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="CurveIn">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Curve" type="xs:string" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Sine">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Volume" type="xs:string" />
+                          <xs:element name="Pitch" type="xs:string" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Outlet">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Operand" type="xs:string" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Outlet">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Operator" type="xs:string" />
+                    <xs:element name="Patch" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element maxOccurs="unbounded" name="BlackBox">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Patch">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Inlet">
+                        <xs:complexType>
+                          <xs:attribute name="name" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element maxOccurs="unbounded" name="ValueOperator">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Value" type="xs:decimal" />
+                          </xs:sequence>
+                          <xs:attribute name="name" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Divide">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Numerator" type="xs:string" />
+                            <xs:element name="Denominator" type="xs:string" />
+                          </xs:sequence>
+                          <xs:attribute name="name" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="TimeAdd">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Signal" type="xs:string" />
+                            <xs:element name="TimeDifference" type="xs:string" />
+                          </xs:sequence>
+                          <xs:attribute name="name" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="TimePower">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Signal" type="xs:string" />
+                            <xs:element name="Exponent" type="xs:string" />
+                          </xs:sequence>
+                          <xs:attribute name="name" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Outlet">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Operand" type="xs:string" />
+                          </xs:sequence>
+                          <xs:attribute name="name" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Adder">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="Operand" type="xs:string" />
+                          </xs:sequence>
+                          <xs:attribute name="name" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="DocumentOperator">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Document">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="Name" type="xs:string" />
+                                  <xs:element name="Type" type="xs:string" />
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Operand" type="xs:string" />
+                          </xs:sequence>
+                          <xs:attribute name="name" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Outlet">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Operator" type="xs:string" />
+                    <xs:element name="Patch" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Template">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Curve">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Node">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Time" type="xs:decimal" />
+                          <xs:element name="Value" type="xs:decimal" />
+                          <xs:element name="Type" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Patch">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="CurveIn">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Curve" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Divide">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Numerator" />
+                            <xs:element name="Denominator" />
+                            <xs:element name="Origin" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="ValueOperator">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Value" type="xs:decimal" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Multiply">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="OperandA" type="xs:unsignedByte" />
+                            <xs:element name="OperandB" type="xs:unsignedByte" />
+                            <xs:element name="Origin" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="PitchOperator">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Pitch">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="BaseHertz" type="xs:unsignedShort" />
+                                  <xs:element name="Factor" type="xs:unsignedByte" />
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Power">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Base" type="xs:unsignedByte" />
+                            <xs:element name="Exponent" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Sine">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Volume" type="xs:unsignedByte" />
+                            <xs:element name="Pitch" type="xs:unsignedByte" />
+                            <xs:element name="Level" type="xs:unsignedByte" />
+                            <xs:element name="PhaseStart" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Substract">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="OperandA" type="xs:unsignedByte" />
+                            <xs:element name="OperandB" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="TimeDivide">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Signal" type="xs:unsignedByte" />
+                            <xs:element name="TimeDivider" type="xs:unsignedByte" />
+                            <xs:element name="Origin" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="TimeMultiply">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Signal" type="xs:unsignedByte" />
+                            <xs:element name="TimeMultiplier" type="xs:unsignedByte" />
+                            <xs:element name="Origin" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="TimePower">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Signal" type="xs:unsignedByte" />
+                            <xs:element name="Exponent" type="xs:unsignedByte" />
+                            <xs:element name="Origin" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="TimeSubstract">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Signal" type="xs:unsignedByte" />
+                            <xs:element name="TimeDifference" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Transport">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Sample">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Bit" type="xs:unsignedByte" />
+                          <xs:element name="MonoStereo" type="xs:string" />
+                          <xs:element name="SamplingRate" type="xs:unsignedShort" />
+                          <xs:element name="TimeMultiplier" type="xs:decimal" />
+                          <xs:element name="Interpolation" type="xs:string" />
+                          <xs:element name="Active" type="xs:boolean" />
+                          <xs:element name="BytesToSkip" type="xs:unsignedByte" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="WaveFileOutput">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="LeftChannel">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Operator" type="xs:unsignedByte" />
+                                <xs:element name="Patch" type="xs:unsignedByte" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="RightChannel">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Operator" type="xs:unsignedByte" />
+                                <xs:element name="Patch" type="xs:unsignedByte" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Format" type="xs:string" />
+                          <xs:element name="Bit" type="xs:unsignedByte" />
+                          <xs:element name="MonoStereo" type="xs:string" />
+                          <xs:element name="SamplingRate" type="xs:unsignedShort" />
+                          <xs:element name="TimeMultiplier" type="xs:decimal" />
+                          <xs:element name="StartTime" type="xs:unsignedByte" />
+                          <xs:element name="EndTime" type="xs:unsignedByte" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ExternalWorkspace">
+          <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="path" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,28 @@
+
+            /*if (Style.Positioning != null && 
+                Style.Positioning.LineEndPositioning == LineEndPositioning.Extend)
+            {
+                if (Style.LineStyles.Left != null)
+                {
+                    TopLine.PointA.X -= Style.LineStyles.Left.Width / 2;
+                    BottomLine.PointB.X -= Style.LineStyles.Left.Width / 2;
+                }
+
+                if (Style.LineStyles.Right != null)
+                {
+                    TopLine.PointB.X += Style.LineStyles.Right.Width / 2;
+                    BottomLine.PointA.X += Style.LineStyles.Right.Width / 2;
+                }
+
+                if (Style.LineStyles.Top != null)
+                {
+                    RightLine.PointA.Y -= Style.LineStyles.Top.Width / 2;
+                    LeftLine.PointB.Y -= Style.LineStyles.Top.Width / 2;
+                }
+
+                if (Style.LineStyles.Bottom != null)
+                {
+                    RightLine.PointB.Y += Style.LineStyles.Bottom.Width / 2;
+                    LeftLine.PointA.Y += Style.LineStyles.Bottom.Width / 2;
+                }
+            }*/

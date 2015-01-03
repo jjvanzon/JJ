@@ -1,0 +1,166 @@
+//
+//  Circle.Data.Concepts.Unique
+//
+//      Author: Jan-Joost van Zon
+//      Date: 25-11-2011 - 25-11-2011
+//
+//  -----
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Circle.Code.Events;
+using Circle.Code.Conditions;
+using System.Collections;
+using Circle.Data.Collections;
+
+namespace Circle.Data.Concepts
+{
+    public class Unique<TListParent, TItem, TValue>
+    {
+        // Constructor
+
+        public Unique(
+            Events<TListParent> parent,
+            Func<TListParent, ListWithEvents<TItem>> getList,
+            Func<TItem, TValue> getValue,
+            Events<TValue> value,
+            string name = null)
+        {
+            InitializeParent(parent);
+            InitializeGetList(getList);
+            InitializeList();
+            InitializeGetValue(getValue);
+            InitializeValue(value);
+            InitializeName(name);
+
+            ApplyParent();
+            Evaluate(List, Value.Value);
+        }
+
+        // Parent
+
+        private Events<TListParent> Parent;
+
+        private void InitializeParent(Events<TListParent> parent)
+        {
+            Condition.NotNull(parent, "parent");
+            Parent = parent;
+            Parent.Changed += Parent_Changed;
+        }
+
+        private void Parent_Changed(object sender, ChangedEventArgs<TListParent> e)
+        {
+            ApplyParent();
+        }
+
+        private void ApplyParent()
+        {
+            if (Parent.Value == null) { List = null; return; }
+
+            List = GetList(Parent.Value);
+        }
+
+        // GetList
+
+        private Func<TListParent, ListWithEvents<TItem>> GetList;
+
+        private void InitializeGetList(Func<TListParent, ListWithEvents<TItem>> getList)
+        {
+            Condition.NotNull(getList, "getList");
+            GetList = getList;
+        }
+
+        // List
+
+        private ListWithEvents<TItem> List
+        {
+            get { return ListEvents.Value; }
+            set { ListEvents.Value = value; }
+        }
+
+        private Events<ListWithEvents<TItem>> ListEvents = new Events<ListWithEvents<TItem>>();
+
+        private void InitializeList()
+        {
+            ListEvents.Changing += (s, e) => Evaluate(e.Value, Value.Value);
+
+            ListEvents.Changed += (s, e) =>
+            {
+                if (e.Old != null)
+                {
+                    e.Old.ItemChanging -= List_ItemChanging;
+                }
+
+                if (e.New != null)
+                {
+                    e.New.ItemChanging += List_ItemChanging;
+                }
+            };
+        }
+
+        void List_ItemChanging(object sender, ListItemChangingEventArgs<TItem> e)
+        {
+            if (e.Item == Value.Value)
+            {
+                Evaluate(List, Value);
+            }
+        }
+
+        // GetValue
+
+        private Func<TItem, TValue> GetValue;
+
+        private void InitializeGetValue(Func<TItem, TValue> getValue)
+        {
+            Condition.NotNull(getValue, "getValue");
+            GetValue = getValue;
+        }
+
+        // Value
+
+        private Events<TValue> Value;
+
+        private void InitializeValue(Events<TValue> value)
+        {
+            Condition.NotNull(value, "value");
+            Value = value;
+            Value.Changing += (s, e) => Evaluate(List, e.Value);
+        }
+
+        // Name
+
+        private string Name;
+
+        private void InitializeName(string name)
+        {
+            if (!String.IsNullOrEmpty(name))
+            {
+                Name = name;
+            }
+            else
+            {
+                Name = Value.Name;
+            }
+        }
+
+        // Evaluate
+
+        private void Evaluate(ListWithEvents<TItem> list, TValue value)
+        {
+            if (List == null) return;
+
+            Condition.IsUnique(list, GetValue, value, Name);
+        }
+    }
+}
+
+
+/*            OperatorNamesUnique = new Unique<Patch, Operator, string>
+            (
+                PatchEvents, 
+                x => x.Operators, 
+                x => x.Name, 
+                NameEvents
+            );*/
