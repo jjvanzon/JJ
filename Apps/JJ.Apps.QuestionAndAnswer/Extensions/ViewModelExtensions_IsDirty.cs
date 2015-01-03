@@ -1,5 +1,7 @@
-﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
+﻿using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Business;
 using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using System;
@@ -18,110 +20,75 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         /// by setting IsDirty properties in the view model,
         /// depending on the differences with the passed entity.
         /// </summary>
-        public static void SetIsDirtyRecursive(this QuestionViewModel viewModel, Question question)
+        /// <param name="entity"> nullable </param>
+        public static void SetIsDirtyWithRelatedEntities(this QuestionViewModel viewModel, Question entity)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
 
             viewModel.NullCoallesce();
 
-            viewModel.SetIsDirty(question);
+            viewModel.IsDirty = GetIsDirty(viewModel, entity);
 
-            if (question != null)
+            if (entity != null)
             {
-                viewModel.Categories.SetListIsDirty(question.QuestionCategories);
-                viewModel.Categories.SetItemsAreDirty(question.QuestionCategories);
+                viewModel.Categories.IsDirty = EntityStatusHelper.GetListIsDirty(viewModel.Categories, x => x.QuestionCategoryID, entity.QuestionCategories, x => x.ID);
+                viewModel.Categories.SetItemsAreDirty(entity.QuestionCategories);
 
-                viewModel.Links.SetListIsDirty(question.QuestionLinks);
-                viewModel.Links.SetItemsAreDirty(question.QuestionLinks);
+                viewModel.Links.IsDirty = EntityStatusHelper.GetListIsDirty(viewModel.Links, x => x.ID, entity.QuestionLinks, x => x.ID);
+                viewModel.Links.SetItemsAreDirty(entity.QuestionLinks);
 
-                viewModel.Flags.SetListIsDirty(question.QuestionFlags);
-                viewModel.Flags.SetItemsAreDirty(question.QuestionFlags);
+                viewModel.Flags.IsDirty = EntityStatusHelper.GetListIsDirty(viewModel.Flags, x => x.ID, entity.QuestionFlags, x => x.ID);
+                viewModel.Flags.SetItemsAreDirty(entity.QuestionFlags);
             }
         }
 
-        private static bool SetIsDirty(this QuestionCategoryViewModel viewModel, QuestionCategory entity)
-        {
-            return viewModel.IsDirty = GetIsDirty(viewModel, entity);
-        }
+        // SetItemsAreDirty
 
-        private static bool SetIsDirty(this QuestionLinkViewModel viewModel, QuestionLink entity)
+        private static void SetItemsAreDirty(this IList<QuestionCategoryViewModel> listViewModel, IList<QuestionCategory> entities)
         {
-            return viewModel.IsDirty = GetIsDirty(viewModel, entity);
-        }
+            var tuples = from viewModel in listViewModel
+                         join entity in entities on viewModel.QuestionCategoryID equals entity.ID
+                         select new 
+                         { 
+                             ViewModel = viewModel, 
+                             Entity = entity 
+                         };
 
-        private static bool SetIsDirty(this QuestionViewModel viewModel, Question entity)
-        {
-            return viewModel.IsDirty = GetIsDirty(viewModel, entity);
-        }
-
-        private static bool SetIsDirty(this QuestionFlagViewModel viewModel, QuestionFlag entity)
-        {
-            return viewModel.IsDirty = GetIsDirty(viewModel, entity);
-        }
-
-        private static void SetListIsDirty(this ListViewModel<QuestionCategoryViewModel> listViewModel, IList<QuestionCategory> entities)
-        {
-            listViewModel.IsDirty = GetListIsDirty(listViewModel, entities);
-        }
-
-        private static void SetListIsDirty(this ListViewModel<QuestionLinkViewModel> listViewModel, IList<QuestionLink> entityList)
-        {
-            listViewModel.IsDirty = GetListIsDirty(listViewModel, entityList);
-        }
-
-        private static void SetListIsDirty(this ListViewModel<QuestionFlagViewModel> listViewModel, IList<QuestionFlag> entityList)
-        {
-            listViewModel.IsDirty = GetListIsDirty(listViewModel, entityList);
-        }
-
-        private static void SetItemsAreDirty(this ListViewModel<QuestionCategoryViewModel> listViewModel, IList<QuestionCategory> entities)
-        {
-            IEnumerable<int> ids1 = listViewModel.Select(x => x.QuestionCategoryID);
-            IEnumerable<int> ids2 = entities.Select(x => x.ID);
-
-            foreach (int id in Enumerable.Union(ids1, ids2))
+            foreach (var tuple in tuples)
             {
-                QuestionCategoryViewModel viewModel = listViewModel.Where(x => x.QuestionCategoryID == id).SingleOrDefault();
-                QuestionCategory entity = entities.Where(x => x.ID == id).SingleOrDefault();
-
-                if (viewModel != null && entity != null)
-                {
-                    viewModel.SetIsDirty(entity);
-                }
+                tuple.ViewModel.IsDirty = GetIsDirty(tuple.ViewModel, tuple.Entity);
             }
         }
 
-        private static void SetItemsAreDirty(this ListViewModel<QuestionLinkViewModel> listViewModel, IList<QuestionLink> entities)
+        private static void SetItemsAreDirty(this IList<QuestionLinkViewModel> listViewModel, IList<QuestionLink> entities)
         {
-            IEnumerable<int> ids1 = listViewModel.Select(x => x.ID);
-            IEnumerable<int> ids2 = entities.Select(x => x.ID);
+            var tuples = from viewModel in listViewModel
+                         join entity in entities on viewModel.ID equals entity.ID
+                         select new
+                         {
+                             ViewModel = viewModel,
+                             Entity = entity
+                         };
 
-            foreach (int id in Enumerable.Union(ids1, ids2))
+            foreach (var tuple in tuples)
             {
-                QuestionLinkViewModel viewModel = listViewModel.Where(x => x.ID == id).SingleOrDefault();
-                QuestionLink entity = entities.Where(x => x.ID == id).SingleOrDefault();
-
-                if (viewModel != null && entity != null)
-                {
-                    viewModel.SetIsDirty(entity);
-                }
+                tuple.ViewModel.IsDirty = GetIsDirty(tuple.ViewModel, tuple.Entity);
             }
         }
 
-        private static void SetItemsAreDirty(this ListViewModel<QuestionFlagViewModel> listViewModel, IList<QuestionFlag> entities)
+        private static void SetItemsAreDirty(this IList<QuestionFlagViewModel> listViewModel, IList<QuestionFlag> entities)
         {
-            IEnumerable<int> ids1 = listViewModel.Select(x => x.ID);
-            IEnumerable<int> ids2 = entities.Select(x => x.ID);
+            var tuples = from viewModel in listViewModel
+                         join entity in entities on viewModel.ID equals entity.ID
+                         select new
+                         {
+                             ViewModel = viewModel,
+                             Entity = entity
+                         };
 
-            foreach (int id in Enumerable.Union(ids1, ids2))
+            foreach (var tuple in tuples)
             {
-                QuestionFlagViewModel viewModel = listViewModel.Where(x => x.ID == id).SingleOrDefault();
-                QuestionFlag entity = entities.Where(x => x.ID == id).SingleOrDefault();
-
-                if (viewModel != null && entity != null)
-                {
-                    viewModel.SetIsDirty(entity);
-                }
+                tuple.ViewModel.IsDirty = GetIsDirty(tuple.ViewModel, tuple.Entity);
             }
         }
 
@@ -129,105 +96,35 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 
         private static bool GetIsDirty(this QuestionViewModel viewModel, Question entity)
         {
-            if (viewModel == null) throw new NullException(() => viewModel);
-
             if (entity == null) return false;
             
-            return viewModel.Answer != entity.Answers[0].Text || // TODO: Support multiple answers.
+            return !String.Equals(viewModel.Answer, entity.Answers[0].Text) || 
                    viewModel.IsActive != entity.IsActive ||
-                   viewModel.Text != entity.Text ||
+                   !String.Equals(viewModel.Text, entity.Text) ||
                    viewModel.Type.ID != entity.QuestionType.ID ||
                    viewModel.Source.ID != entity.Source.ID;
         }
 
         private static bool GetIsDirty(this QuestionCategoryViewModel viewModel, QuestionCategory entity)
         {
-            if (viewModel == null) throw new NullException(() => viewModel);
-
-            if (entity == null)
-            {
-                return false;
-            }
+            if (entity == null) return false;
 
             return viewModel.Category.ID != entity.Category.ID;
         }
 
         private static bool GetIsDirty(this QuestionLinkViewModel viewModel, QuestionLink entity)
         {
-            if (viewModel == null) throw new NullException(() => viewModel);
+            if (entity == null) return false;
 
-            if (entity == null)
-            {
-                return false;
-            }
-
-            return viewModel.Url != entity.Url ||
-                   viewModel.Description != entity.Description;
+            return !String.Equals(viewModel.Url, entity.Url) ||
+                   !String.Equals(viewModel.Description, entity.Description);
         }
 
         private static bool GetIsDirty(QuestionFlagViewModel viewModel, QuestionFlag entity)
         {
-            if (viewModel == null) throw new NullException(() => viewModel);
-
-            if (entity == null)
-            {
-                return false;
-            }
+            if (entity == null) return false;
 
             return entity.FlagStatus.ID != viewModel.Status.ID;
-        }
-
-        private static bool GetListIsDirty(this IList<QuestionCategoryViewModel> listViewModel, IList<QuestionCategory> entities)
-        {
-            return GetListIsDirty(listViewModel, x => x.QuestionCategoryID, entities, x => x.ID);
-        }
-
-        private static bool GetListIsDirty(this IList<QuestionLinkViewModel> listViewModel, IList<QuestionLink> entities)
-        {
-            return GetListIsDirty(listViewModel, x => x.ID, entities, x => x.ID);
-        }
-
-        private static bool GetListIsDirty(this IList<QuestionFlagViewModel> listViewModel, IList<QuestionFlag> entities)
-        {
-            return GetListIsDirty(listViewModel, x => x.ID, entities, x => x.ID);
-        }
-
-        // TODO: Move to a Framework or a if it proves useful for reuse.
-
-        private static bool GetListIsDirty<TViewModel, TEntity>(
-            IList<TViewModel> listViewModel, Func<TViewModel, object> getViewModelKey, 
-            IList<TEntity> entities, Func<TEntity, object> getEntityKey, 
-            bool ingoreOrder = false)
-        {
-            if (listViewModel == null) throw new NullException(() => listViewModel);
-            if (getViewModelKey == null) throw new NullException(() => getViewModelKey);
-            if (entities == null) throw new NullException(() => entities);
-            if (getEntityKey == null) throw new NullException(() => getEntityKey);
-
-            if (listViewModel.Count != entities.Count)
-            {
-                return true;
-            }
-
-            // If the order does not matter you have to sort the list and compare the sorted lists.
-            if (ingoreOrder)
-            {
-                listViewModel = listViewModel.OrderBy(getViewModelKey).ToArray();
-                entities = entities.OrderBy(getEntityKey).ToArray();
-            }
-
-            for (int i = 0; i < listViewModel.Count; i++)
-            {
-                object key1 = getViewModelKey(listViewModel[i]);
-                object key2 = getEntityKey(entities[i]);
-
-                if (!Object.Equals(key1, key2))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
     }
 }

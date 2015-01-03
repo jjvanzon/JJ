@@ -185,8 +185,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             // Mark IsNew, IsDirty
             Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
-            viewModel.Question.SetIsDirtyRecursive(question);
-            viewModel.Question.SetIsNewRecursive(question);
+            viewModel.Question.SetIsDirtyWithRelatedEntities(question);
+            viewModel.Question.SetIsNewWithRelatedEntities(question);
 
             // ToEntity
             question = viewModel.ToEntity(_repositories);
