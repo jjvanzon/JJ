@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
 {
-    public class QuestionCategoryViewModel
+    public sealed class QuestionCategoryViewModel
     {
         /// <summary> Available for both committed and newly added entities. </summary>
         public Guid TemporaryID { get; set; }
@@ -15,8 +14,5 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
         public int QuestionCategoryID { get; set; }
 
         public CategoryViewModel Category { get; set; }
-
-        internal bool IsDirty { get; set; }
-        internal bool IsNew { get; set; }
     }
 }

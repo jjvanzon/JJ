@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
 {
-    public class ListViewModel<T> : List<T>
+    public sealed class ListViewModel<T> : List<T>
     {
         /// <summary>
         /// Indicates whether items were added or removed and possibly if they changed order,

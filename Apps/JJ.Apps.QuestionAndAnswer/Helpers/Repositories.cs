@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Reflection;
+﻿using JJ.Framework.Business;
+using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
         public ISourceRepository SourceRepository { get; private set; }
         public IQuestionTypeRepository QuestionTypeRepository { get; private set; }
         public IUserRepository UserRepository { get; private set; }
+
+        public EntityStatusManager EntityStatusManager { get; private set; }
 
         public Repositories(
             IQuestionRepository questionRepository,
@@ -53,6 +56,8 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
             SourceRepository = sourceRepository;
             QuestionTypeRepository = questionTypeRepository;
             UserRepository = userRepository;
+
+            EntityStatusManager = new EntityStatusManager();
         }
     }
 }

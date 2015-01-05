@@ -5,12 +5,9 @@ using System.Text;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
 {
-    public class QuestionTypeViewModel
+    public sealed class QuestionTypeViewModel
     {
         public int ID { get; set; }
         public string Name { get; set; }
-
-        internal bool IsDirty { get; set; }
-        internal bool IsNew { get; set; }
     }
 }

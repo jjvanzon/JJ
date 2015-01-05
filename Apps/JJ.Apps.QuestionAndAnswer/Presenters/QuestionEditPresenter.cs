@@ -22,6 +22,7 @@ using JJ.Apps.QuestionAndAnswer.Resources;
 using JJ.Framework.Reflection;
 using JJ.Apps.QuestionAndAnswer.SideEffects;
 using JJ.Framework.Business;
+using JJ.Business.QuestionAndAnswer.SideEffects;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -183,26 +184,26 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             if (viewModel == null) throw new NullException(() => viewModel);
             viewModel.NullCoallesce();
 
-            // Mark IsNew, IsDirty
+            // GetEntities
+            User user = _repositories.UserRepository.GetByUserName(_authenticatedUserName);
             Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
-            viewModel.Question.SetIsDirtyWithRelatedEntities(question);
-            viewModel.Question.SetIsNewWithRelatedEntities(question);
+            
+            // Set Entity Status
+            ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(_repositories.EntityStatusManager, question, viewModel.Question);
 
             // ToEntity
             question = viewModel.ToEntity(_repositories);
 
             // Side-effects
-            ISideEffect setIsManual = new Question_SetIsManual_SideEffect(question, viewModel.Question);
+            ISideEffect setIsManual = new Question_SetIsManual_SideEffect(question, _repositories.EntityStatusManager);
             setIsManual.Execute();
 
-            User user = _repositories.UserRepository.GetByUserName(_authenticatedUserName);
-            ISideEffect setLastModifiedByUser = new Question_SetLastModifiedByUser_SideEffect(question, user, viewModel.Question);
+            ISideEffect setLastModifiedByUser = new Question_SetLastModifiedByUser_SideEffect(question, user, _repositories.EntityStatusManager);
             setLastModifiedByUser.Execute();
 
-            foreach (QuestionFlagViewModel questionFlagViewModel in viewModel.Question.Flags)
+            foreach (QuestionFlag questionFlag in question.QuestionFlags)
             {
-                QuestionFlag questionFlag = question.QuestionFlags.Where(x => x.ID == questionFlagViewModel.ID).Single();
-                ISideEffect questionFlag_SetLastModifiedByUser = new QuestionFlag_SetLastModifiedByUser_SideEffect(questionFlag, user, questionFlagViewModel);
+                ISideEffect questionFlag_SetLastModifiedByUser = new QuestionFlag_SetLastModifiedByUser_SideEffect(questionFlag, user, _repositories.EntityStatusManager);
                 questionFlag_SetLastModifiedByUser.Execute();
             }
 

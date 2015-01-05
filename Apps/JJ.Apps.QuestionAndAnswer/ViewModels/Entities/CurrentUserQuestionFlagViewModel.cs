@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
 {
-    public class CurrentUserQuestionFlagViewModel
+    public sealed class CurrentUserQuestionFlagViewModel
     {
         public string Comment { get; set; }
         public bool CanFlag { get; set; }

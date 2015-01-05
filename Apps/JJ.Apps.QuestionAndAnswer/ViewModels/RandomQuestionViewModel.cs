@@ -1,5 +1,4 @@
-﻿using JJ.Apps.QuestionAndAnswer.Resources;
-using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+﻿using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Text;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels
 {
-    public class RandomQuestionViewModel
+    public sealed class RandomQuestionViewModel
     {
         public QuestionViewModel Question { get; set; }
 

@@ -27,11 +27,11 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             viewModel.NullCoallesce();
 
             // Question
-            Question question = viewModel.Question.ToEntity(repositories.QuestionRepository, repositories.AnswerRepository, repositories.SourceRepository, repositories.QuestionTypeRepository);
+            Question question = viewModel.Question.ToEntity(repositories.QuestionRepository, repositories.AnswerRepository, repositories.SourceRepository, repositories.QuestionTypeRepository, repositories.EntityStatusManager);
 
             // Answer
             // For now multiple answers are not supported.
-            Answer answer = viewModel.Question.ToAnswer(repositories.AnswerRepository);
+            Answer answer = viewModel.Question.ToAnswer(repositories.AnswerRepository, repositories.EntityStatusManager);
             question.Answers[0] = answer;
             answer.Question = question;
 
@@ -43,14 +43,14 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             }
 
             // Categories
-            IList<QuestionCategory> newQuestionCategories = ListViewModelConverter.ConvertQuestionCategories(viewModel.Question.Categories, question.QuestionCategories, repositories.QuestionCategoryRepository, repositories.CategoryRepository);
+            IList<QuestionCategory> newQuestionCategories = ListViewModelConverter.ConvertQuestionCategories(viewModel.Question.Categories, question.QuestionCategories, repositories.QuestionCategoryRepository, repositories.CategoryRepository, repositories.EntityStatusManager);
             foreach (QuestionCategory newQuestionCategory in newQuestionCategories)
             {
                 newQuestionCategory.LinkTo(question);
             }
 
             // Links
-            IList<QuestionLink> newQuestionLinks = ListViewModelConverter.ConvertQuestionLinks(viewModel.Question.Links, question.QuestionLinks, repositories.QuestionLinkRepository);
+            IList<QuestionLink> newQuestionLinks = ListViewModelConverter.ConvertQuestionLinks(viewModel.Question.Links, question.QuestionLinks, repositories.QuestionLinkRepository, repositories.EntityStatusManager);
             foreach (QuestionLink newQuestionLink in newQuestionLinks)
             {
                 newQuestionLink.LinkTo(question);

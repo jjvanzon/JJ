@@ -62,6 +62,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PropertyDisplayNames.nl-NL.resx</DependentUpon>
     </Compile>
+    <Compile Include="SideEffects\QuestionFlag_SetLastModifiedByUser_SideEffect.cs" />
+    <Compile Include="SideEffects\Question_SetIsManual_SideEffect.cs" />
+    <Compile Include="SideEffects\Question_SetLastModifiedByUser_SideEffect.cs" />
     <Compile Include="Validation\AnswerValidator.cs" />
     <Compile Include="Validation\BasicQuestionValidator.cs" />
     <Compile Include="Validation\MultipleChoiceQuestionValidator.cs" />
@@ -72,6 +75,10 @@
     <Compile Include="Validation\OpenQuestionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Business\JJ.Framework.Business.csproj">
+      <Project>{f44d03e8-feec-40d4-b866-a87799185b4c}</Project>
+      <Name>JJ.Framework.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.csproj">
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>

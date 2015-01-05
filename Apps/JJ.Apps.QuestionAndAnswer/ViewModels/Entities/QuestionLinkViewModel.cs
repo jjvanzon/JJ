@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
 {
-    public class QuestionLinkViewModel
+    public sealed class QuestionLinkViewModel
     {
         /// <summary> Available for both committed and newly added entities. </summary>
         public Guid TemporaryID { get; set; }
@@ -14,8 +14,5 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
         public int ID { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }
-
-        internal bool IsDirty { get; set; }
-        internal bool IsNew { get; set; }
     }
 }

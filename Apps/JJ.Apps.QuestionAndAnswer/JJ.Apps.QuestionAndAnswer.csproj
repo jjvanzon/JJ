@@ -39,10 +39,7 @@
     <Compile Include="Helpers\Repositories.cs" />
     <Compile Include="Extensions\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
-    <Compile Include="SideEffects\QuestionFlag_SetLastModifiedByUser_SideEffect.cs" />
     <Compile Include="SideEffects\QuestionViewModel_SetDefaults_SideEffect.cs" />
-    <Compile Include="SideEffects\Question_SetIsManual_SideEffect.cs" />
-    <Compile Include="SideEffects\Question_SetLastModifiedByUser_SideEffect.cs" />
     <Compile Include="ToEntity\ListViewModelConverter.cs" />
     <Compile Include="ToEntity\EntityViewModelExtensions.cs" />
     <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />
@@ -57,10 +54,8 @@
     <Compile Include="Validation\QuestionEditViewModelValidator.cs" />
     <Compile Include="Validation\QuestionLinkViewModelValidator.cs" />
     <Compile Include="Validation\QuestionViewModelValidator.cs" />
-    <Compile Include="Extensions\ViewModelExtensions_IsNew.cs" />
     <Compile Include="ToViewModel\QuestionTypeExtensions.cs" />
     <Compile Include="ToViewModel\SourceExtensions.cs" />
-    <Compile Include="Extensions\ViewModelExtensions_IsDirty.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoallesce.cs" />
     <Compile Include="ViewModels\Entities\ListViewModel.cs" />
     <Compile Include="Presenters\NotAuthenticatedPresenter.cs" />

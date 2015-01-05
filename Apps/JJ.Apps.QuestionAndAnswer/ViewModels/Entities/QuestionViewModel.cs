@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
 {
-    public class QuestionViewModel
+    public sealed class QuestionViewModel
     {
         public int ID { get; set; }
         public bool IsActive { get; set; }
@@ -26,8 +25,5 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
 
         /// <summary> Not available in RandomQuestionViewModel. </summary>
         public ListViewModel<QuestionFlagViewModel> Flags { get; set; }
-
-        internal bool IsDirty { get; set; }
-        internal bool IsNew { get; set; }
     }
 }

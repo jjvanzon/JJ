@@ -7,17 +7,19 @@ using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Business;
 
 namespace JJ.Apps.QuestionAndAnswer.ToEntity
 {
     internal static class EntityViewModelExtensions
     {
-        public static QuestionCategory ToEntity(this QuestionCategoryViewModel viewModel, IQuestionCategoryRepository repository, ICategoryRepository categoryRepository)
+        public static QuestionCategory ToEntity(this QuestionCategoryViewModel viewModel, IQuestionCategoryRepository questionCategoryRepository, ICategoryRepository categoryRepository, EntityStatusManager entityStatusManager)
         {
-            QuestionCategory entity = repository.TryGet(viewModel.QuestionCategoryID);
+            QuestionCategory entity = questionCategoryRepository.TryGet(viewModel.QuestionCategoryID);
             if (entity == null)
             {
-                entity = repository.Create();
+                entity = questionCategoryRepository.Create();
+                entityStatusManager.SetIsNew(entity);
             }
 
             Category category = categoryRepository.TryGet(viewModel.Category.ID);
@@ -39,12 +41,13 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             return questionFlag;
         }
 
-        public static QuestionLink ToEntity(this QuestionLinkViewModel viewModel, IQuestionLinkRepository repository)
+        public static QuestionLink ToEntity(this QuestionLinkViewModel viewModel, IQuestionLinkRepository repository, EntityStatusManager entityStatusManager)
         {
             QuestionLink entity = repository.TryGet(viewModel.ID);
             if (entity == null)
             {
                 entity = repository.Create();
+                entityStatusManager.SetIsNew(entity);
             }
 
             entity.Url = viewModel.Url;

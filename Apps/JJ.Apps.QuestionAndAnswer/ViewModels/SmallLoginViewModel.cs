@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels
 {
-    public class SmallLoginViewModel
+    public sealed class SmallLoginViewModel
     {
         public string DisplayName { get; set; }
         public bool LogInActionIsVisible { get; set; }

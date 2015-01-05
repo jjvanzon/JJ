@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Framework.Business;
 
 namespace JJ.Apps.QuestionAndAnswer.ToEntity
 {
@@ -17,16 +18,16 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             IList<QuestionCategoryViewModel> viewModels,
             IList<QuestionCategory> entities,
             IQuestionCategoryRepository questionCategoryRepository,
-            ICategoryRepository categoryRepository)
+            ICategoryRepository categoryRepository,
+            EntityStatusManager entityStatusManager)
         {
             var newEntities = new List<QuestionCategory>();
 
             foreach (QuestionCategoryViewModel viewModel in viewModels)
             {
-                QuestionCategory entity = viewModel.ToEntity(questionCategoryRepository, categoryRepository);
+                QuestionCategory entity = viewModel.ToEntity(questionCategoryRepository, categoryRepository, entityStatusManager);
 
-                bool isNew = viewModel.QuestionCategoryID == 0;
-                if (isNew)
+                if (entityStatusManager.IsNew(entity))
                 {
                     newEntities.Add(entity);
                 }
@@ -57,16 +58,16 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
         public static IList<QuestionLink> ConvertQuestionLinks(
             IList<QuestionLinkViewModel> viewModels,
             IList<QuestionLink> entities,
-            IQuestionLinkRepository questionLinkRepository)
+            IQuestionLinkRepository questionLinkRepository,
+            EntityStatusManager entityStatusManager)
         {
             var insertedEntities = new List<QuestionLink>();
 
             foreach (QuestionLinkViewModel viewModel in viewModels)
             {
-                QuestionLink entity = viewModel.ToEntity(questionLinkRepository);
+                QuestionLink entity = viewModel.ToEntity(questionLinkRepository, entityStatusManager);
 
-                bool isNew = viewModel.ID == 0;
-                if (isNew)
+                if (entityStatusManager.IsNew(entity))
                 {
                     insertedEntities.Add(entity);
                 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
 {
-    public class FlagStatusViewModel
+    public sealed class FlagStatusViewModel
     {
         public int ID { get; set; }
         public string Description { get; set; }

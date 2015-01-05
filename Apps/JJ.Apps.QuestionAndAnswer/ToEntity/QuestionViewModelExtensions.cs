@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Framework.Business;
 
 namespace JJ.Apps.QuestionAndAnswer.ToEntity
 {
@@ -18,7 +19,8 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             IQuestionRepository questionRepository, 
             IAnswerRepository answerRepository,
             ISourceRepository sourceRepository,
-            IQuestionTypeRepository questionTypeRepository)
+            IQuestionTypeRepository questionTypeRepository,
+            EntityStatusManager entityStatusManager)
         {
             Question question = questionRepository.TryGet(viewModel.ID);
 
@@ -26,6 +28,8 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             {
                 question = questionRepository.Create();
                 question.AutoCreateRelatedEntities(answerRepository);
+
+                entityStatusManager.SetIsNew(question);
             }
 
             question.Text = viewModel.Text;
@@ -36,14 +40,17 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             return question;
         }
 
-        public static Answer ToAnswer(this QuestionViewModel viewModel, IAnswerRepository answerRepository)
+        public static Answer ToAnswer(this QuestionViewModel viewModel, IAnswerRepository answerRepository, EntityStatusManager entityStatusManager)
         {
             // TODO: Low prio: Maybe it is better to simply use the question entity as the source of the answer, instead of the repository.
             Answer answer = answerRepository.GetByQuestionID(viewModel.ID);
             if (answer == null)
             {
                 answer = answerRepository.Create();
+
+                entityStatusManager.SetIsNew(answer);
             }
+
             answer.IsCorrectAnswer = true;
             answer.Text = viewModel.Answer;
             return answer;
