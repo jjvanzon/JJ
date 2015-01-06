@@ -32,8 +32,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             // Answer
             // For now multiple answers are not supported.
             Answer answer = viewModel.Question.ToAnswer(repositories.AnswerRepository, repositories.EntityStatusManager);
-            question.Answers[0] = answer;
-            answer.Question = question;
+            question.LinkTo(answer);
 
             // Flags
             foreach (QuestionFlagViewModel questionFlagViewModel in viewModel.Question.Flags)

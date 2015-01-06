@@ -16,9 +16,19 @@ namespace JJ.Models.QuestionAndAnswer.Repositories
 
         public virtual Answer GetByQuestionID(int questionID)
         {
+            Answer entity = TryGetByQuestionID(questionID);
+            if (entity == null)
+            {
+                throw new Exception(String.Format("Answer with QuestionID '{0}' not found.", questionID));
+            }
+            return entity;
+        }
+
+        public virtual Answer TryGetByQuestionID(int questionID)
+        {
             return _context.Query<Answer>()
                            .Where(x => x.Question.ID == questionID)
-                           .Single();
+                           .SingleOrDefault();
         }
     }
 }

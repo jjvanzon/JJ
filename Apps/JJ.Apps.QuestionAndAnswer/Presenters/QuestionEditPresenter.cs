@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Common;
 using JJ.Framework.Validation;
+using JJ.Framework.Reflection;
+using JJ.Framework.Business;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Business.QuestionAndAnswer.SideEffects;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
@@ -19,10 +22,7 @@ using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
-using JJ.Framework.Reflection;
 using JJ.Apps.QuestionAndAnswer.SideEffects;
-using JJ.Framework.Business;
-using JJ.Business.QuestionAndAnswer.SideEffects;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -58,12 +58,20 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionEditViewModel Create()
         {
-            QuestionEditViewModel viewModel = ViewModelHelper.CreateEmptyQuestionEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+            Question entity = _repositories.QuestionRepository.Create();
+            _repositories.EntityStatusManager.SetIsNew(entity);
+
+            entity.AutoCreateRelatedEntities(_repositories.AnswerRepository);
+
+            ISideEffect setDefaults1 = new Question_SetOpenQuestionDefaults_SideEffect(entity, _repositories.QuestionTypeRepository, _repositories.EntityStatusManager);
+            setDefaults1.Execute();
+
+            ISideEffect setDefaults2 = new Question_SetOpenQuestionDefaults_FrontEnd_SideEffect(entity, _repositories.SourceRepository, _repositories.EntityStatusManager);
+            setDefaults2.Execute();
+
+            QuestionEditViewModel viewModel = entity.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
             viewModel.IsNew = true;
             viewModel.Title = Titles.CreateQuestion;
-
-            ISideEffect setDefaults = new QuestionViewModel_SetDefaults_SideEffect(viewModel.Question, _repositories.SourceRepository, _repositories.QuestionTypeRepository);
-            setDefaults.Execute();
 
             return viewModel;
         }

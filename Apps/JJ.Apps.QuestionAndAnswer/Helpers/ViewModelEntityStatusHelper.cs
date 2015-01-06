@@ -26,7 +26,10 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
 
             if (entity != null)
             {
-                SetPropertiesAreDirty(statusManager, entity.Answers[0], viewModel);
+                if (entity.Answers.Count > 0)
+                {
+                    SetPropertiesAreDirty(statusManager, entity.Answers[0], viewModel);
+                }
 
                 if (EntityStatusHelper.GetListIsDirty(viewModel.Categories, x => x.QuestionCategoryID, entity.QuestionCategories, x => x.ID))
                 {

@@ -39,7 +39,7 @@
     <Compile Include="Helpers\Repositories.cs" />
     <Compile Include="Extensions\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
-    <Compile Include="SideEffects\QuestionViewModel_SetDefaults_SideEffect.cs" />
+    <Compile Include="SideEffects\Question_SetOpenQuestionDefaults_FrontEnd_SideEffect.cs" />
     <Compile Include="ToEntity\ListViewModelConverter.cs" />
     <Compile Include="ToEntity\EntityViewModelExtensions.cs" />
     <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />

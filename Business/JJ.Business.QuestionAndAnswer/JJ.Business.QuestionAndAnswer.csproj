@@ -63,6 +63,7 @@
       <DependentUpon>PropertyDisplayNames.nl-NL.resx</DependentUpon>
     </Compile>
     <Compile Include="SideEffects\QuestionFlag_SetLastModifiedByUser_SideEffect.cs" />
+    <Compile Include="SideEffects\Question_SetOpenQuestionDefaults_SideEffect.cs" />
     <Compile Include="SideEffects\Question_SetIsManual_SideEffect.cs" />
     <Compile Include="SideEffects\Question_SetLastModifiedByUser_SideEffect.cs" />
     <Compile Include="Validation\AnswerValidator.cs" />

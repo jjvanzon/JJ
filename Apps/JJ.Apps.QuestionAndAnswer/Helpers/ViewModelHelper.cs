@@ -17,32 +17,6 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
 {
     internal static class ViewModelHelper
     {
-        public static QuestionEditViewModel CreateEmptyQuestionEditViewModel(ICategoryRepository categoryRepository, IFlagStatusRepository flagStatusRepository)
-        {
-            var viewModel = new QuestionEditViewModel
-            {
-                Question = ViewModelHelper.CreateEmptyQuestionViewModel(),
-                FlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel(flagStatusRepository),
-                Categories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository),
-                ValidationMessages = new List<ValidationMessage>()
-            };
-
-            return viewModel;
-        }
-
-        private static QuestionViewModel CreateEmptyQuestionViewModel()
-        {
-            return new QuestionViewModel
-            {
-                IsActive = true,
-                Source = new SourceViewModel(),
-                Type = new QuestionTypeViewModel(),
-                Categories = new ListViewModel<QuestionCategoryViewModel>(),
-                Links = new ListViewModel<QuestionLinkViewModel>(),
-                Flags = new ListViewModel<QuestionFlagViewModel>()
-            };
-        }
-
         public static IList<FlagStatusViewModel> CreateFlagStatusListViewModel(IFlagStatusRepository flagStatusRepository)
         {
             if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);

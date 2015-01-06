@@ -7,7 +7,8 @@ using JJ.Framework.Persistence;
 namespace JJ.Models.QuestionAndAnswer.Repositories.Interfaces
 {
     public interface IAnswerRepository : IRepository<Answer, int>
-    { 
+    {
+        Answer TryGetByQuestionID(int questionID);
         Answer GetByQuestionID(int questionID);
     }
 }

@@ -9,6 +9,8 @@ namespace JJ.Models.QuestionAndAnswer.NHibernate.Mapping
     {
         public UserMapping()
         {
+            Table(TableNames.Users);
+
             Id(x => x.ID);
 
             Map(x => x.DisplayName);

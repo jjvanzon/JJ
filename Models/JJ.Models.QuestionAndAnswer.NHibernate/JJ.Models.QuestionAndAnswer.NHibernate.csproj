@@ -66,6 +66,7 @@
     <Compile Include="Mapping\SourceMapping.cs" />
     <Compile Include="Mapping\QuestionMapping.cs" />
     <Compile Include="Mapping\AnswerMapping.cs" />
+    <Compile Include="Names\TableNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AnswerRepository.cs" />
   </ItemGroup>

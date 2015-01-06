@@ -27,12 +27,11 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
         {
             if (entity == null) throw new NullException(() => entity);
 
-            return new QuestionViewModel
+            var viewModel = new QuestionViewModel
             {
                 ID = entity.ID,
                 Text = entity.Text,
                 IsActive = entity.IsActive,
-                Answer = entity.Answers[0].Text, // TODO: Refactor to support multiple answers.
                 LastModifiedBy = entity.LastModifiedByUser != null ? entity.LastModifiedByUser.DisplayName : "",
                 IsManual = entity.IsManual,
                 Source = new SourceViewModel(),
@@ -41,6 +40,14 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
                 Links = new ListViewModel<QuestionLinkViewModel>(),
                 Flags = new ListViewModel<QuestionFlagViewModel>()
             };
+
+            // TODO: Refactor to support multiple answers.
+            if (entity.Answers.Count > 0)
+            {
+                viewModel.Answer = entity.Answers[0].Text; 
+            }
+
+            return viewModel;
         }
 
         public static QuestionDetailsViewModel ToDetailsViewModel(this Question question)

@@ -27,7 +27,6 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             if (question == null)
             {
                 question = questionRepository.Create();
-                question.AutoCreateRelatedEntities(answerRepository);
 
                 entityStatusManager.SetIsNew(question);
             }
@@ -43,7 +42,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
         public static Answer ToAnswer(this QuestionViewModel viewModel, IAnswerRepository answerRepository, EntityStatusManager entityStatusManager)
         {
             // TODO: Low prio: Maybe it is better to simply use the question entity as the source of the answer, instead of the repository.
-            Answer answer = answerRepository.GetByQuestionID(viewModel.ID);
+            Answer answer = answerRepository.TryGetByQuestionID(viewModel.ID);
             if (answer == null)
             {
                 answer = answerRepository.Create();
