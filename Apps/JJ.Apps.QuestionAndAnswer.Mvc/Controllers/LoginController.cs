@@ -21,8 +21,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
                 LoginPresenter presenter = new LoginPresenter(userRepository);
-                LoginViewModel viewModel = presenter.Show();
-                return View(viewModel);
+                object viewModel = presenter.Show();
+                return ViewPolymorphic(viewModel);
             }
         }
 

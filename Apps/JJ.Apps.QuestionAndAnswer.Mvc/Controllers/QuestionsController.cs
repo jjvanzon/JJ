@@ -34,8 +34,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 Repositories repositories = CreateRepositories(context);
                 QuestionListPresenter presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
-                QuestionListViewModel viewModel = presenter.Show();
-                return View(viewModel);
+                object viewModel = presenter.Show();
+                return ViewPolymorphic(viewModel);
             }
         }
 
@@ -48,20 +48,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionDetailsPresenter presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel = presenter.Show(id);
-
-                var detailModel = viewModel as QuestionDetailsViewModel;
-                if (detailModel != null)
-                {
-                    return View(detailModel);
-                }
-
-                var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
-                if (notFoundViewModel != null)
-                {
-                    return View(ViewNames.NotFound, notFoundViewModel);
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel);
+                return ViewPolymorphic(viewModel);
             }
         }
 
@@ -84,29 +71,11 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            var editViewModel = viewModel as QuestionEditViewModel;
-            if (editViewModel != null)
-            {
-                foreach (ValidationMessage validationMessage in editViewModel.ValidationMessages)
-                {
-                    ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
-                }
-
-                return View(ViewNames.Edit, editViewModel);
-            }
-
-            var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
-
-            throw new UnexpectedViewModelTypeException(viewModel);
+            return ViewPolymorphic(viewModel);
         }
 
         // POST: /Questions/Create
 
-        /// <summary> Post create. Saves the new question. </summary>
         [HttpPost]
         public ActionResult Create(QuestionEditViewModel viewModel)
         {
@@ -115,21 +84,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
-
-                var editViewModel = viewModel2 as QuestionEditViewModel;
-                if (editViewModel != null)
-                {
-                    TempData[TempDataKeys.ViewModel] = editViewModel;
-                    return RedirectToAction(ActionNames.Create);
-                }
-
-                var detailsViewModel = viewModel2 as QuestionDetailsViewModel;
-                if (detailsViewModel != null)
-                {
-                    return RedirectToAction(ActionNames.Details, new { id = detailsViewModel.Question.ID });
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel);
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
@@ -152,24 +107,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            var editViewModel = viewModel as QuestionEditViewModel;
-            if (editViewModel != null)
-            {
-                foreach (ValidationMessage validationMessage in editViewModel.ValidationMessages)
-                {
-                    ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
-                }
-
-                return View(editViewModel);
-            }
-
-            var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
-            if (notFoundViewModel != null)
-            {
-                return View(ViewNames.NotFound, notFoundViewModel);
-            }
-
-            throw new UnexpectedViewModelTypeException(viewModel);
+            return ViewPolymorphic(viewModel);
         }
 
         // POST: /Questions/Edit/5
@@ -183,21 +121,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
-
-                var editViewModel = viewModel2 as QuestionEditViewModel;
-                if (editViewModel != null)
-                {
-                    TempData[TempDataKeys.ViewModel] = editViewModel;
-                    return RedirectToAction(ActionNames.Edit, new { id = editViewModel.Question.ID });
-                }
-
-                var detailsViewModel = viewModel2 as QuestionDetailsViewModel;
-                if (detailsViewModel != null)
-                {
-                    return RedirectToAction(ActionNames.Details, new { id = detailsViewModel.Question.ID });
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel);
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
@@ -211,20 +135,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionConfirmDeletePresenter presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel = presenter.Show(id);
-
-                var confirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
-                if (confirmDeleteViewModel != null)
-                {
-                    return View(ViewNames.Delete, confirmDeleteViewModel);
-                }
-
-                var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
-                if (notFoundViewModel != null)
-                {
-                    return View(ViewNames.NotFound, notFoundViewModel);
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel);
+                return ViewPolymorphic(viewModel);
             }
         }
 
@@ -245,20 +156,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionDeleteConfirmedPresenter presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Show(id);
-
-                var deleteConfirmedViewModel = viewModel2 as QuestionDeleteConfirmedViewModel;
-                if (deleteConfirmedViewModel != null)
-                {
-                    return View(ViewNames.Deleted, deleteConfirmedViewModel);
-                }
-
-                var notFoundViewModel = viewModel2 as QuestionDeleteConfirmedViewModel;
-                if (notFoundViewModel != null)
-                {
-                    return View(ViewNames.NotFound, notFoundViewModel);
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel2);
+                return ViewPolymorphic(viewModel2);
             }
         }
 
@@ -272,15 +170,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 QuestionEditViewModel viewModel2 = presenter.AddLink(viewModel);
-                TempData[TempDataKeys.ViewModel] = viewModel2;
-                if (viewModel.IsNew)
-                {
-                    return RedirectToAction(ActionNames.Create);
-                }
-                else
-                {
-                    return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
-                }
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
@@ -294,15 +184,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 QuestionEditViewModel viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
-                TempData[TempDataKeys.ViewModel] = viewModel2;
-                if (viewModel.IsNew)
-                {
-                    return RedirectToAction(ActionNames.Create);
-                }
-                else
-                {
-                    return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
-                }
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
@@ -316,15 +198,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 QuestionEditViewModel viewModel2 = presenter.AddCategory(viewModel);
-                TempData[TempDataKeys.ViewModel] = viewModel2;
-                if (viewModel.IsNew)
-                {
-                    return RedirectToAction(ActionNames.Create);
-                }
-                else
-                {
-                    return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
-                }
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
@@ -338,15 +212,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 QuestionEditViewModel viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
-                TempData[TempDataKeys.ViewModel] = viewModel2;
-                if (viewModel.IsNew)
-                {
-                    return RedirectToAction(ActionNames.Create);
-                }
-                else
-                {
-                    return RedirectToAction(ActionNames.Edit, new { id = viewModel.Question.ID });
-                }
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
@@ -359,22 +225,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
-
                 object viewModel = presenter.Show(c);
-
-                var randomQuestionViewModel = viewModel as RandomQuestionViewModel;
-                if (randomQuestionViewModel != null)
-                {
-                    return View(randomQuestionViewModel);
-                }
-
-                var notFoundViewModel = viewModel as QuestionNotFoundViewModel;
-                if (notFoundViewModel != null)
-                {
-                    return View(ViewNames.NotFound, notFoundViewModel);
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel);
+                return ViewPolymorphic(viewModel);
             }
         }
 
@@ -388,20 +240,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.ShowAnswer(viewModel);
-
-                var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
-                if (randomQuestionViewModel != null)
-                {
-                    return View(ViewNames.Random, randomQuestionViewModel);
-                }
-
-                var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
-                if (notFoundViewModel != null)
-                {
-                    return View(ViewNames.NotFound, notFoundViewModel);
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel2);
+                return ViewPolymorphic(viewModel2);
             }
         }
 
@@ -415,20 +254,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.HideAnswer(viewModel);
-
-                var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
-                if (randomQuestionViewModel != null)
-                {
-                    return View(ViewNames.Random, randomQuestionViewModel);
-                }
-
-                var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
-                if (notFoundViewModel != null)
-                {
-                    return View(ViewNames.NotFound, notFoundViewModel);
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel2);
+                return ViewPolymorphic(viewModel2);
             }
         }
 
@@ -442,26 +268,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Flag(viewModel);
-
-                var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
-                if (randomQuestionViewModel != null)
-                {
-                    return View(ViewNames.Random, randomQuestionViewModel);
-                }
-
-                var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
-                if (notFoundViewModel != null)
-                {
-                    return View(ViewNames.NotFound, notFoundViewModel);
-                }
-
-                var notAuthenticatedViewModel = viewModel2 as NotAuthenticatedViewModel;
-                if (notAuthenticatedViewModel != null)
-                {
-                    return View(ViewNames.NotAuthenticated);
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel2);
+                return ViewPolymorphic(viewModel2);
             }
         }
 
@@ -475,26 +282,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Unflag(viewModel);
-
-                var randomQuestionViewModel = viewModel2 as RandomQuestionViewModel;
-                if (randomQuestionViewModel != null)
-                {
-                    return View(ViewNames.Random, randomQuestionViewModel);
-                }
-
-                var notFoundViewModel = viewModel2 as QuestionNotFoundViewModel;
-                if (notFoundViewModel != null)
-                {
-                    return View(ViewNames.NotFound, notFoundViewModel);
-                }
-
-                var notAuthenticatedViewModel = viewModel2 as NotAuthenticatedViewModel;
-                if (notAuthenticatedViewModel != null)
-                {
-                    return View(ViewNames.NotAuthenticated);
-                }
-
-                throw new UnexpectedViewModelTypeException(viewModel2);
+                return ViewPolymorphic(viewModel2);
             }
         }
 

@@ -17,7 +17,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
     /// <summary>
     /// Provides basic view data and basic actions, such as setting the language and a small login widget.
     /// </summary>
-    public abstract class MasterController : Controller
+    public abstract class MasterController : BaseController
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {

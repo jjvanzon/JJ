@@ -25,8 +25,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 CategorySelectorRepositories repositories = CreateRepositories(context);
                 CategorySelectorPresenter presenter = CreatePresenter(repositories);
-                CategorySelectorViewModel viewModel = presenter.Show();
-                return View(viewModel);
+                object viewModel = presenter.Show();
+                return ViewPolymorphic(viewModel);
             }
         }
 
@@ -39,8 +39,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 CategorySelectorRepositories repositories = CreateRepositories(context);
                 CategorySelectorPresenter presenter = CreatePresenter(repositories);
-                CategorySelectorViewModel viewModel2 = presenter.Add(viewModel, categoryID);
-                return View(ViewNames.Index, viewModel2);
+                object viewModel2 = presenter.Add(viewModel, categoryID);
+                return ViewPolymorphic(viewModel2);
             }
         }
 
@@ -53,8 +53,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 CategorySelectorRepositories repositories = CreateRepositories(context);
                 CategorySelectorPresenter presenter = CreatePresenter(repositories);
-                CategorySelectorViewModel viewModel2 = presenter.Remove(viewModel, categoryID);
-                return View(ViewNames.Index, viewModel2);
+                object viewModel2 = presenter.Remove(viewModel, categoryID);
+                return ViewPolymorphic(viewModel2);
             }
         }
 

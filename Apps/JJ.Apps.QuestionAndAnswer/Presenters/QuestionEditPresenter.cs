@@ -218,6 +218,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // ToViewModel
             QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
 
+            // Non-persisted properties
+            viewModel2.IsNew = viewModel.IsNew;
+            viewModel2.CanDelete = viewModel.CanDelete;
+            viewModel2.Title = viewModel.Title;
+
             // Validate
             IValidator validator1 = new QuestionEditViewModelValidator(viewModel2);
             if (!validator1.IsValid)
