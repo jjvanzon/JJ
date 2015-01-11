@@ -51,9 +51,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _categoryManager = new CategoryManager(_categoryRepository);
         }
 
-        /// <summary>
-        /// Can return RandomQuestionViewModel or QuestionNotFoundViewModel.
-        /// </summary>
         public object Show(params int[] categoryIDs)
         {
             categoryIDs = categoryIDs ?? new int[0];
@@ -88,9 +85,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        /// <summary>
-        /// Can return RandomQuestionViewModel or QuestionNotFoundViewModel.
-        /// </summary>
         public object ShowAnswer(RandomQuestionViewModel viewModel)
         {
             // Check conditions
@@ -125,9 +119,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel2;
         }
 
-        /// <summary>
-        /// Can return RandomQuestionViewModel or QuestionNotFoundViewModel.
-        /// </summary>
         public object HideAnswer(RandomQuestionViewModel viewModel)
         {
             // Check conditions
@@ -160,7 +151,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel2;
         }
 
-        /// <summary> Can return RandomQuestionViewModel, QuestionNotFoundViewModel or NotAuthenticatedViewModel. </summary>
         public object Flag(RandomQuestionViewModel viewModel)
         {
             // Check conditions
@@ -193,7 +183,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel2;
         }
 
-        /// <summary> Can return RandomQuestionViewModel, QuestionNotFoundViewModel or NotAuthenticatedViewModel. </summary>
         public object Unflag(RandomQuestionViewModel viewModel)
         {
             // Check conditions

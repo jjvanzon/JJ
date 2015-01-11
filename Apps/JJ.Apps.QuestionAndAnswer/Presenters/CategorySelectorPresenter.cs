@@ -89,9 +89,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return CreateViewModel(selectedCategoryIDs);
         }
 
-        /// <summary>
-        /// Can return RandomQuestionViewModel or QuestionNotFoundViewModel.
-        /// </summary>
         public object StartTraining(CategorySelectorViewModel viewModel)
         {
             var categoryIDs = new List<int>();

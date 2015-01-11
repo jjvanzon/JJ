@@ -35,7 +35,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _authenticatedUserName = authenticatedUserName;
         }
 
-        /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Show(int id)
         {
             Question question = _repositories.QuestionRepository.TryGet(id);
@@ -49,14 +48,12 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        /// <summary> Can return QuestionEditViewModel or QuestionNotFoundViewModel. </summary>
         public object Edit(int id)
         {
             var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName);
             return editPresenter.Edit(id);
         }
 
-        /// <summary> Can return QuestionConfirmDeleteViewModel and QuestionNotFoundViewModel. </summary>
         public object Delete(int id)
         {
             var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);

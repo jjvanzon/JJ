@@ -63,21 +63,18 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Details(int questionID)
         {
             var detailPresenter = new QuestionDetailsPresenter(_repositories, _authenticatedUserName);
             return detailPresenter.Show(questionID);
         }
 
-        /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Edit(int questionID)
         {
             var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName);
             return editPresenter.Edit(questionID);
         }
 
-        /// <summary> Can return QuestionDetailsViewModel or QuestionNotFoundViewModel. </summary>
         public object Delete(int questionID)
         {
             var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
