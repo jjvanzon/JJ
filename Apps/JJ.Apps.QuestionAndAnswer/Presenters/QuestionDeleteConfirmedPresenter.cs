@@ -30,6 +30,12 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         
         public object Show(int id)
         {
+            if (String.IsNullOrEmpty(_authenticatedUserName))
+            {
+                var presenter2 = new LoginPresenter(_repositories.UserRepository);
+                return presenter2.Show();
+            }
+
             Question question = _repositories.QuestionRepository.TryGet(id);
             if (question == null)
             {

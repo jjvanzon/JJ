@@ -1,79 +1,64 @@
-﻿using JJ.Apps.QuestionAndAnswer.Mvc.Names;
-using JJ.Apps.QuestionAndAnswer.ViewModels;
-using JJ.Framework.Presentation;
-using JJ.Framework.Reflection;
-using JJ.Models.Canonical;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JJ.Models.Canonical;
+using JJ.Framework.Reflection;
+using JJ.Framework.Presentation;
+using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
     public abstract class BaseController : Controller
     {
-        // View()
-
-        private Dictionary<Type, string> _viewNameDictionary = new Dictionary<Type, string>()
+        private class Names
         {
-            { typeof(CategorySelectorViewModel), ViewNames.Index },
-            { typeof(LoginViewModel), ViewNames.Index },
-            { typeof(QuestionConfirmDeleteViewModel), ViewNames.Delete },
-            { typeof(QuestionDeleteConfirmedViewModel), ViewNames.Deleted },
-            { typeof(QuestionDetailsViewModel), ViewNames.Details },
-            { typeof(QuestionListViewModel), ViewNames.Index },
-            { typeof(QuestionNotFoundViewModel), ViewNames.NotFound },
-            { typeof(RandomQuestionViewModel), ViewNames.Random }
-        };
-
-        public ViewResult ViewPolymorphic(object viewModel)
-        {
-            if (viewModel == null) throw new NullException(() => viewModel);
-
-            string viewName;
-            if (_viewNameDictionary.TryGetValue(viewModel.GetType(), out viewName))
+            public Names(string controllerName, string actionName, string viewName)
             {
-                return View(viewName, viewModel);
+                ControllerName = controllerName;
+                ActionName = actionName;
+                ViewName = viewName;
             }
 
-            var questionEditViewModel = viewModel as QuestionEditViewModel;
-            if (questionEditViewModel != null)
-            {
-                foreach (ValidationMessage validationMessage in questionEditViewModel.ValidationMessages)
-                {
-                    ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
-                }
-
-                return View(ViewNames.Edit, viewModel);
-            }
-
-            throw new UnexpectedViewModelTypeException(viewModel);
+            public string ControllerName { get; private set; }
+            public string ActionName { get; private set; }
+            public string ViewName { get; private set; }
         }
 
-        private Dictionary<Type, string> _actionNameDictionary = new Dictionary<Type, string>()
+        private static IDictionary<Type, Names> _dictionary = new Dictionary<Type, Names>()
         {
-            { typeof(CategorySelectorViewModel), ActionNames.Index },
-            { typeof(LoginViewModel), ActionNames.Index },
-            { typeof(QuestionConfirmDeleteViewModel), ActionNames.Delete },
-            //{ typeof(QuestionDeleteConfirmedViewModel), ActionNames.Deleted },
-            { typeof(QuestionListViewModel), ActionNames.Index },
-            //{ typeof(QuestionNotFoundViewModel), ActionNames.NotFound },
-            { typeof(RandomQuestionViewModel), ActionNames.Random }
+            { typeof(CategorySelectorViewModel),        new Names(ControllerNames.CategorySelector, ActionNames.Index,      ViewNames.Index) },
+            { typeof(LoginViewModel),                   new Names(ControllerNames.Login,            ActionNames.Index,      ViewNames.Index) },
+            { typeof(QuestionConfirmDeleteViewModel),   new Names(ControllerNames.Questions,        ActionNames.Delete,     ViewNames.Delete) },
+            { typeof(QuestionDeleteConfirmedViewModel), new Names(ControllerNames.Questions,        null,                   ViewNames.Deleted) },
+            { typeof(QuestionDetailsViewModel),         new Names(ControllerNames.Questions,        ActionNames.Details,    ViewNames.Details) },
+            { typeof(QuestionListViewModel),            new Names(ControllerNames.Questions,        ActionNames.Index,      ViewNames.Index) },
+            { typeof(QuestionNotFoundViewModel),        new Names(ControllerNames.Questions,        null,                   ViewNames.NotFound) },
+            { typeof(RandomQuestionViewModel),          new Names(ControllerNames.Questions,        ActionNames.Random,     ViewNames.Random) }
         };
 
-        // RedirectToAction
-
-        public ActionResult RedirectToActionPolymorphic(object viewModel)
+        protected ActionResult GetActionResult(string sourceActionName, object viewModel)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
 
-            TempData[TempDataKeys.ViewModel] = viewModel;
+            string sourceControllerName = GetControllerName();
 
-            string actionName;
-            if (_actionNameDictionary.TryGetValue(viewModel.GetType(), out actionName))
+            var questionDetailsViewModel = viewModel as QuestionDetailsViewModel;
+            if (questionDetailsViewModel != null)
             {
-                return RedirectToAction(actionName);
+                bool isSameControllerAndAction = String.Equals(sourceControllerName, ControllerNames.Questions) &&
+                                                 String.Equals(sourceActionName, ActionNames.Details);
+                if (isSameControllerAndAction)
+                {
+                    return View(viewModel);
+                }
+                else
+                {
+                    TempData[TempDataKeys.ViewModel] = viewModel;
+                    return RedirectToAction(ActionNames.Details, new { id = questionDetailsViewModel.Question.ID });
+                }
             }
 
             var questionEditViewModel = viewModel as QuestionEditViewModel;
@@ -81,21 +66,73 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 if (questionEditViewModel.IsNew)
                 {
-                    return RedirectToAction(ActionNames.Create);
+                    bool isSameControllerAndAction = String.Equals(sourceControllerName, ControllerNames.Questions) &&
+                                                     String.Equals(sourceActionName, ActionNames.Create);
+                    if (isSameControllerAndAction)
+                    {
+                        foreach (ValidationMessage validationMessage in questionEditViewModel.ValidationMessages)
+                        {
+                            ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
+                        }
+
+                        return View(ViewNames.Edit, viewModel);
+                    }
+                    else
+                    {
+                        TempData[TempDataKeys.ViewModel] = viewModel;
+                        return RedirectToAction(ActionNames.Create);
+                    }
                 }
                 else
                 {
-                    return RedirectToAction(ActionNames.Edit, new { id = questionEditViewModel.Question.ID });
+                    bool isSameControllerAndAction = String.Equals(sourceControllerName, ControllerNames.Questions) &&
+                                                     String.Equals(sourceActionName, ActionNames.Edit);
+                    if (isSameControllerAndAction)
+                    {
+                        foreach (ValidationMessage validationMessage in questionEditViewModel.ValidationMessages)
+                        {
+                            ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
+                        }
+
+                        return View(ViewNames.Edit, viewModel);
+                    }
+                    else
+                    {
+                        TempData[TempDataKeys.ViewModel] = viewModel;
+                        return RedirectToAction(ActionNames.Edit, new { id = questionEditViewModel.Question.ID });
+                    }
                 }
             }
 
-            var questionDetailsViewModel = viewModel as QuestionDetailsViewModel;
-            if (questionDetailsViewModel != null)
+            Names names;
+            if (_dictionary.TryGetValue(viewModel.GetType(), out names))
             {
-                return RedirectToAction(ActionNames.Details, new { id = questionDetailsViewModel.Question.ID });
+                bool hasActionName = !String.IsNullOrEmpty(names.ActionName);
+                if (!hasActionName)
+                {
+                    return View(names.ViewName, viewModel);
+                }
+
+                bool isSameControllerAndAction = String.Equals(names.ControllerName, sourceControllerName) &&
+                                                 String.Equals(names.ActionName, sourceActionName);
+                if (isSameControllerAndAction)
+                {
+                    return View(names.ViewName, viewModel);
+                }
+                else
+                {
+                    TempData[TempDataKeys.ViewModel] = viewModel;
+                    return RedirectToAction(names.ActionName, names.ControllerName);
+                }
             }
 
             throw new UnexpectedViewModelTypeException(viewModel);
+        }
+
+        private string GetControllerName()
+        {
+            string controllerName = (string)ControllerContext.RequestContext.RouteData.Values["controller"];
+            return controllerName;
         }
     }
 }

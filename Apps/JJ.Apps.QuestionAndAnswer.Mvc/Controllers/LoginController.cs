@@ -1,4 +1,5 @@
 ﻿using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
+using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Common;
@@ -17,13 +18,18 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
     {
         public ActionResult Index()
         {
-            using (IContext context = PersistenceHelper.CreateContext())
+            object viewModel;
+            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
             {
-                IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
-                LoginPresenter presenter = new LoginPresenter(userRepository);
-                object viewModel = presenter.Show();
-                return ViewPolymorphic(viewModel);
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
+                    LoginPresenter presenter = new LoginPresenter(userRepository);
+                    viewModel = presenter.Show();
+                }
             }
+
+            return GetActionResult(ActionNames.Index, viewModel);
         }
 
         [HttpPost]

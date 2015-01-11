@@ -30,26 +30,36 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ActionResult Index()
         {
-            using (IContext context = PersistenceHelper.CreateContext())
+            object viewModel;
+            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
             {
-                Repositories repositories = CreateRepositories(context);
-                QuestionListPresenter presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
-                object viewModel = presenter.Show();
-                return ViewPolymorphic(viewModel);
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    Repositories repositories = CreateRepositories(context);
+                    QuestionListPresenter presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
+                    viewModel = presenter.Show();
+                }
             }
+
+            return GetActionResult(ActionNames.Index, viewModel);
         }
 
         // GET: /Questions/Details/5
 
         public ActionResult Details(int id)
         {
-            using (IContext context = PersistenceHelper.CreateContext())
+            object viewModel;
+            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
             {
-                Repositories repositories = CreateRepositories(context);
-                QuestionDetailsPresenter presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName());
-                object viewModel = presenter.Show(id);
-                return ViewPolymorphic(viewModel);
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    Repositories repositories = CreateRepositories(context);
+                    QuestionDetailsPresenter presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName());
+                    viewModel = presenter.Show(id);
+                }
             }
+
+            return GetActionResult(ActionNames.Details, viewModel);
         }
 
         // GET: /Questions/Create
@@ -67,7 +77,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return ViewPolymorphic(viewModel);
+            return GetActionResult(ActionNames.Create, viewModel);
         }
 
         // POST: /Questions/Create
@@ -80,7 +90,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
-                return RedirectToActionPolymorphic(viewModel2);
+                return GetActionResult(ActionNames.Create, viewModel2);
             }
         }
 
@@ -99,7 +109,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return ViewPolymorphic(viewModel);
+            return GetActionResult(ActionNames.Edit, viewModel);
         }
 
         // POST: /Questions/Edit/5
@@ -112,7 +122,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
-                return RedirectToActionPolymorphic(viewModel2);
+                return GetActionResult(ActionNames.Edit, viewModel2);
             }
         }
 
@@ -120,13 +130,18 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ActionResult Delete(int id)
         {
-            using (IContext context = PersistenceHelper.CreateContext())
+            object viewModel;
+            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
             {
-                Repositories repositories = CreateRepositories(context);
-                QuestionConfirmDeletePresenter presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
-                object viewModel = presenter.Show(id);
-                return ViewPolymorphic(viewModel);
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    Repositories repositories = CreateRepositories(context);
+                    QuestionConfirmDeletePresenter presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
+                    viewModel = presenter.Show(id);
+                }
             }
+
+            return GetActionResult(ActionNames.Delete, viewModel);
         }
 
         // POST: /Questions/Delete/5
@@ -139,7 +154,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 QuestionDeleteConfirmedPresenter presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Show(id);
-                return ViewPolymorphic(viewModel2);
+                return GetActionResult(ActionNames.Delete, viewModel2);
             }
         }
 
@@ -152,8 +167,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                QuestionEditViewModel viewModel2 = presenter.AddLink(viewModel);
-                return RedirectToActionPolymorphic(viewModel2);
+                object viewModel2 = presenter.AddLink(viewModel);
+                return GetActionResult(ActionNames.AddLink, viewModel2);
             }
         }
 
@@ -166,8 +181,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                QuestionEditViewModel viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
-                return RedirectToActionPolymorphic(viewModel2);
+                object viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
+                return GetActionResult(ActionNames.RemoveLink, viewModel2);
             }
         }
 
@@ -180,8 +195,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                QuestionEditViewModel viewModel2 = presenter.AddCategory(viewModel);
-                return RedirectToActionPolymorphic(viewModel2);
+                object viewModel2 = presenter.AddCategory(viewModel);
+                return GetActionResult(ActionNames.AddCategory, viewModel2);
             }
         }
 
@@ -194,15 +209,15 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 Repositories repositories = CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                QuestionEditViewModel viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
-                return RedirectToActionPolymorphic(viewModel2);
+                object viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
+                return GetActionResult(ActionNames.RemoveCategory, viewModel2);
             }
         }
 
         // GET: /Questions/Random
         // GET: /Questions/Random?c=1&c=2
 
-        public ViewResult Random(int[] c)
+        public ActionResult Random(int[] c)
         {
             object viewModel;
             if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
@@ -215,7 +230,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return ViewPolymorphic(viewModel);
+            return GetActionResult(ActionNames.Random, viewModel);
         }
 
         // POST: /Questions/ShowAnswer/5
@@ -228,7 +243,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.ShowAnswer(viewModel);
-                return RedirectToActionPolymorphic(viewModel2);
+                return GetActionResult(ActionNames.ShowAnswer, viewModel2);
             }
         }
 
@@ -242,7 +257,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.HideAnswer(viewModel);
-                return RedirectToActionPolymorphic(viewModel2);
+                return GetActionResult(ActionNames.HideAnswer, viewModel2);
             }
         }
 
@@ -256,7 +271,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Flag(viewModel);
-                return RedirectToActionPolymorphic(viewModel2);
+                return GetActionResult(ActionNames.Flag, viewModel2);
             }
         }
 
@@ -270,7 +285,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Unflag(viewModel);
-                return RedirectToActionPolymorphic(viewModel2);
+                return GetActionResult(ActionNames.Unflag, viewModel2);
             }
         }
 

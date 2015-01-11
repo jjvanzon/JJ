@@ -42,6 +42,12 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public object Edit(int id)
         {
+            if (String.IsNullOrEmpty(_authenticatedUserName))
+            {
+                var presenter2 = new LoginPresenter(_repositories.UserRepository);
+                return presenter2.Show();
+            }
+
             Question question = _repositories.QuestionRepository.TryGet(id);
             if (question == null)
             {
@@ -55,8 +61,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        public QuestionEditViewModel Create()
+        public object Create()
         {
+            if (String.IsNullOrEmpty(_authenticatedUserName))
+            {
+                var presenter2 = new LoginPresenter(_repositories.UserRepository);
+                return presenter2.Show();
+            }
+
             Question entity = _repositories.QuestionRepository.Create();
             _repositories.EntityStatusManager.SetIsNew(entity);
 
@@ -75,7 +87,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        public QuestionEditViewModel AddLink(QuestionEditViewModel viewModel)
+        public object AddLink(QuestionEditViewModel viewModel)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
             viewModel.NullCoallesce();
@@ -189,6 +201,12 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             if (viewModel == null) throw new NullException(() => viewModel);
             viewModel.NullCoallesce();
+
+            if (String.IsNullOrEmpty(_authenticatedUserName))
+            {
+                var presenter2 = new LoginPresenter(_repositories.UserRepository);
+                return presenter2.Show();
+            }
 
             // GetEntities
             User user = _repositories.UserRepository.GetByUserName(_authenticatedUserName);
