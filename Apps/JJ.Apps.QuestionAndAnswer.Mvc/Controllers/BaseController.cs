@@ -53,7 +53,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         private Dictionary<Type, string> _actionNameDictionary = new Dictionary<Type, string>()
         {
-            // TODO: Figure out these outcommented entries.
             { typeof(CategorySelectorViewModel), ActionNames.Index },
             { typeof(LoginViewModel), ActionNames.Index },
             { typeof(QuestionConfirmDeleteViewModel), ActionNames.Delete },

@@ -21,40 +21,45 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ActionResult Index()
         {
-            using (IContext context = PersistenceHelper.CreateContext())
+            object viewModel;
+            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
             {
-                CategorySelectorRepositories repositories = CreateRepositories(context);
-                CategorySelectorPresenter presenter = CreatePresenter(repositories);
-                object viewModel = presenter.Show();
-                return ViewPolymorphic(viewModel);
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    CategorySelectorRepositories repositories = CreateRepositories(context);
+                    CategorySelectorPresenter presenter = CreatePresenter(repositories);
+                    viewModel = presenter.Show();
+                }
             }
+
+            return ViewPolymorphic(viewModel);
         }
 
         // POST: /CategorySelector/Add/5
 
         [HttpPost]
-        public ViewResult Add(int categoryID, CategorySelectorViewModel viewModel)
+        public ActionResult Add(int categoryID, CategorySelectorViewModel viewModel)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 CategorySelectorRepositories repositories = CreateRepositories(context);
                 CategorySelectorPresenter presenter = CreatePresenter(repositories);
                 object viewModel2 = presenter.Add(viewModel, categoryID);
-                return ViewPolymorphic(viewModel2);
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
         // POST: /CategorySelector/AddCategory/5
 
         [HttpPost]
-        public ViewResult Remove(int categoryID, CategorySelectorViewModel viewModel)
+        public ActionResult Remove(int categoryID, CategorySelectorViewModel viewModel)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 CategorySelectorRepositories repositories = CreateRepositories(context);
                 CategorySelectorPresenter presenter = CreatePresenter(repositories);
                 object viewModel2 = presenter.Remove(viewModel, categoryID);
-                return ViewPolymorphic(viewModel2);
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 

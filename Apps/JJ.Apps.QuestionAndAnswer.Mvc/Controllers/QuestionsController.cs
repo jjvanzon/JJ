@@ -57,11 +57,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Create()
         {
             object viewModel;
-            if (TempData.ContainsKey(TempDataKeys.ViewModel))
-            {
-                viewModel = TempData[TempDataKeys.ViewModel];
-            }
-            else
+            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
@@ -93,11 +89,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Edit(int id)
         {
             object viewModel;
-            if (TempData.ContainsKey(TempDataKeys.ViewModel))
-            {
-                viewModel = TempData[TempDataKeys.ViewModel];
-            }
-            else
+            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
@@ -112,7 +104,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         // POST: /Questions/Edit/5
 
-        /// <summary> Post edit. Saves the question. </summary>
         [HttpPost]
         public ActionResult Edit(QuestionEditViewModel viewModel)
         {
@@ -127,7 +118,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         // GET: /Questions/Delete/5
 
-        /// <summary> Asks for confirmation that the question can be deleted. </summary>
         public ActionResult Delete(int id)
         {
             using (IContext context = PersistenceHelper.CreateContext())
@@ -141,13 +131,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         // POST: /Questions/Delete/5
 
-        /// <summary>
-        /// With this action the user confirms that the question can be deleted.
-        /// </summary>
-        /// <param name="viewModel">
-        /// Do nothing with this view model. 
-        /// It is only provided to give the HTTP get and post actions different method signatures.
-        /// </param>
         [HttpPost]
         public ActionResult Delete(QuestionConfirmDeleteViewModel viewModel, int id)
         {
@@ -221,68 +204,73 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ViewResult Random(int[] c)
         {
-            using (IContext context = PersistenceHelper.CreateContext())
+            object viewModel;
+            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
             {
-                Repositories repositories = CreateRepositories(context);
-                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
-                object viewModel = presenter.Show(c);
-                return ViewPolymorphic(viewModel);
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    Repositories repositories = CreateRepositories(context);
+                    RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                    viewModel = presenter.Show(c);
+                }
             }
+
+            return ViewPolymorphic(viewModel);
         }
 
         // POST: /Questions/ShowAnswer/5
 
         [HttpPost]
-        public ViewResult ShowAnswer(RandomQuestionViewModel viewModel)
+        public ActionResult ShowAnswer(RandomQuestionViewModel viewModel)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.ShowAnswer(viewModel);
-                return ViewPolymorphic(viewModel2);
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
         // POST: /Questions/HideAnswer/5
 
         [HttpPost]
-        public ViewResult HideAnswer(RandomQuestionViewModel viewModel)
+        public ActionResult HideAnswer(RandomQuestionViewModel viewModel)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.HideAnswer(viewModel);
-                return ViewPolymorphic(viewModel2);
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
         // POST: /Question/Flag/5
 
         [HttpPost]
-        public ViewResult Flag(RandomQuestionViewModel viewModel)
+        public ActionResult Flag(RandomQuestionViewModel viewModel)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Flag(viewModel);
-                return ViewPolymorphic(viewModel2);
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
         // POST: /Question/Unflag/5
 
         [HttpPost]
-        public ViewResult Unflag(RandomQuestionViewModel viewModel)
+        public ActionResult Unflag(RandomQuestionViewModel viewModel)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Unflag(viewModel);
-                return ViewPolymorphic(viewModel2);
+                return RedirectToActionPolymorphic(viewModel2);
             }
         }
 
