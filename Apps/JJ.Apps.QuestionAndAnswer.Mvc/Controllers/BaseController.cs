@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JJ.Framework.Presentation.Mvc;
 using JJ.Models.Canonical;
 using JJ.Framework.Reflection;
 using JJ.Framework.Presentation;
@@ -45,6 +46,9 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
             string sourceControllerName = GetControllerName();
 
+            // TODO: Low prio: do the generalized case first?
+            // TODO: Low prio: method too long? split up into multiple methods?
+
             var questionDetailsViewModel = viewModel as QuestionDetailsViewModel;
             if (questionDetailsViewModel != null)
             {
@@ -70,6 +74,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                                                      String.Equals(sourceActionName, ActionNames.Create);
                     if (isSameControllerAndAction)
                     {
+                        ModelState.ClearModelErrors();
                         foreach (ValidationMessage validationMessage in questionEditViewModel.ValidationMessages)
                         {
                             ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
@@ -89,6 +94,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                                                      String.Equals(sourceActionName, ActionNames.Edit);
                     if (isSameControllerAndAction)
                     {
+                        ModelState.ClearModelErrors();
                         foreach (ValidationMessage validationMessage in questionEditViewModel.ValidationMessages)
                         {
                             ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);

@@ -11,7 +11,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
         public bool IsActive { get; set; }
         public string Text { get; set; }
         public string Answer { get; set; }
-
         public string LastModifiedBy { get; set; }
         public bool IsManual { get; set; }
 

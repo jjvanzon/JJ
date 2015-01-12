@@ -42,7 +42,6 @@
     <Compile Include="SideEffects\Question_SetOpenQuestionDefaults_FrontEnd_SideEffect.cs" />
     <Compile Include="ToEntity\ListViewModelConverter.cs" />
     <Compile Include="ToEntity\EntityViewModelExtensions.cs" />
-    <Compile Include="ViewModels\NotAuthenticatedViewModel.cs" />
     <Compile Include="Presenters\QuestionDeleteConfirmedPresenter.cs" />
     <Compile Include="Presenters\QuestionConfirmDeletePresenter.cs" />
     <Compile Include="Presenters\QuestionEditPresenter.cs" />
@@ -58,7 +57,6 @@
     <Compile Include="ToViewModel\SourceExtensions.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoallesce.cs" />
     <Compile Include="ViewModels\Entities\ListViewModel.cs" />
-    <Compile Include="Presenters\NotAuthenticatedPresenter.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />
