@@ -10,63 +10,66 @@ using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Apps.QuestionAndAnswer.Presenters.Partials;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
-    public class SmallLoginSubController
+    public class LoginPartialController
     {
         private readonly Controller _parentController;
 
-        public SmallLoginSubController(Controller parentController)
+        public LoginPartialController(Controller parentController)
         {
             if (parentController == null) throw new NullException(() => parentController);
 
             _parentController = parentController;
         }
 
-        public SmallLoginViewModel Model
+        public LoginPartialViewModel Model
         {
             get
             {
-                SmallLoginViewModel viewModel = GetSessionWrapper().SmallLoginViewModel;
-                if (viewModel != null)
+                LoginPartialViewModel viewModel = GetSessionWrapper().LoginPartialViewModel;
+                if (viewModel == null)
                 {
-                    return viewModel;
+                    using (IContext context = PersistenceHelper.CreateContext())
+                    {
+                        IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
+                        SmallLoginPartialPresenter presenter = new SmallLoginPartialPresenter(userRepository);
+                        viewModel = presenter.ShowLoggedOut();
+                        GetSessionWrapper().LoginPartialViewModel = viewModel;
+                        return viewModel;
+                    }
                 }
 
-                using (IContext context = PersistenceHelper.CreateContext())
-                {
-                    IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
-                    SmallLoginPresenter presenter = new SmallLoginPresenter(userRepository);
-                    viewModel = presenter.Show();
-                    GetSessionWrapper().SmallLoginViewModel = viewModel;
-                    return viewModel;
-                }
+                return viewModel;
             }
             private set
             {
-                GetSessionWrapper().SmallLoginViewModel = value;
+                GetSessionWrapper().LoginPartialViewModel = value;
             }
         }
 
-        public void SetLoggedInUserName(string authenticatedUserName)
+        public void ShowLoggedIn(string authenticatedUserName)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
-                SmallLoginPresenter presenter = new SmallLoginPresenter(userRepository);
-                SmallLoginViewModel viewModel = presenter.SetLoggedInUserName(authenticatedUserName);
+                SmallLoginPartialPresenter presenter = new SmallLoginPartialPresenter(userRepository);
+                LoginPartialViewModel viewModel = presenter.ShowLoggedIn(authenticatedUserName);
                 Model = viewModel;
             }
         }
 
-        public void SetIsLoggedOut()
+        public void ShowLoggedOut()
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
-                SmallLoginPresenter presenter = new SmallLoginPresenter(userRepository);
-                SmallLoginViewModel viewModel = presenter.SetIsLoggedOut();
+                SmallLoginPartialPresenter presenter = new SmallLoginPartialPresenter(userRepository);
+                LoginPartialViewModel viewModel = presenter.ShowLoggedOut();
                 Model = viewModel;
             }
         }

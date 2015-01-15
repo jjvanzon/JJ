@@ -1,5 +1,7 @@
-﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
+﻿using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Framework.Presentation;
 using JJ.Framework.Reflection;
 using JJ.Framework.Security;
 using JJ.Models.QuestionAndAnswer;
@@ -14,31 +16,41 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
     public class LoginPresenter
     {
-        private IUserRepository _userRepository;
+        private static ActionDescriptor _defaultSourceAction;
 
-        public LoginPresenter(IUserRepository userRepository)
+        private Repositories _repositories;
+
+        static LoginPresenter()
         {
-            if (userRepository == null) throw new NullException(() => userRepository);
-            _userRepository = userRepository;
+            _defaultSourceAction = ActionDescriptorHelper.CreateActionDescriptor<RandomQuestionPresenter>(x => x.Show(null));
+        }
+
+        public LoginPresenter(Repositories repositories)
+        {
+            if (repositories == null) throw new NullException(() => repositories);
+            _repositories = repositories;
         }
 
         public LoginViewModel Show()
         {
-            return new LoginViewModel();
+            return Show(_defaultSourceAction);
         }
 
-        public LoginViewModel Login(string password, string securityToken, LoginViewModel viewModel)
+        public LoginViewModel Show(ActionDescriptor sourceAction)
         {
-            string userName = viewModel.UserName;
-
-            var viewModel2 = new LoginViewModel();
-            viewModel2.UserName = userName;
-
-            User user = _userRepository.TryGetByUserName(userName);
+            return new LoginViewModel
+            {
+                SourceAction = sourceAction
+            };
+        }
+        
+        public object Login(LoginViewModel viewModel)
+        {
+            User user = _repositories.UserRepository.TryGetByUserName(viewModel.UserName);
             if (user != null)
             {
-                string passwordFromClient = password;
-                string tokenFromClient = securityToken;
+                string passwordFromClient = viewModel.Password;
+                string tokenFromClient = viewModel.SecurityToken;
                 string passwordFromServer = user.Password;
                 string saltFromServer = user.SecuritySalt;
                 IAuthenticator authenticator = AuthenticationHelper.CreateAuthenticatorFromConfiguration();
@@ -46,11 +58,15 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
                 if (isAuthentic)
                 {
-                    viewModel2.IsAuthenticated = true;
+                    object viewModel2 = ActionDispatcher.GetViewModel(viewModel.SourceAction, _repositories, viewModel.UserName);
+                    return viewModel2;
                 }
             }
 
-            return viewModel2;
+            return new LoginViewModel
+            {
+                UserName = viewModel.UserName
+            };
         }
     }
 }

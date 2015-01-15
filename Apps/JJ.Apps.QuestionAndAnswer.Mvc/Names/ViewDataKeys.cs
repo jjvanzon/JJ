@@ -7,6 +7,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Names
 {
     public static class ViewDataKeys
     {
-        public const string LanguageSelectorViewModel = "LanguageSelectorViewModel";
+        public const string LanguageSelectorPartialViewModel = "LanguageSelectorPartialViewModel";
     }
 }

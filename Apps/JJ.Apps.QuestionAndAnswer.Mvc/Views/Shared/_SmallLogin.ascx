@@ -1,14 +1,14 @@
-﻿<%@ Control Language="C#" Inherits="ViewUserControl<SmallLoginViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="ViewUserControl<LoginPartialViewModel>" %>
 
-<% if (Model.LogInActionIsVisible) { %>
+<% if (Model.CanLogIn) { %>
 
     <%: Html.ActionLink(CommonTitles.LogIn, ActionNames.Index, ControllerNames.Login) %>
 
 <% } %>
 
-<%: Model.DisplayName %>
+<%: Model.UserDisplayName %>
 
-<% if (Model.LogOutActionIsVisible) { %>
+<% if (Model.CanLogOut) { %>
 
     <div id="smallLoginViewDropDown">
         <%: Html.ActionLink(CommonTitles.LogOut, ActionNames.LogOut, ControllerNames.Login) %>

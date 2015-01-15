@@ -85,7 +85,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                     else
                     {
                         TempData[TempDataKeys.ViewModel] = viewModel;
-                        return RedirectToAction(ActionNames.Create);
+                        return RedirectToAction(ActionNames.Create, ControllerNames.Questions);
                     }
                 }
                 else
@@ -105,7 +105,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                     else
                     {
                         TempData[TempDataKeys.ViewModel] = viewModel;
-                        return RedirectToAction(ActionNames.Edit, new { id = questionEditViewModel.Question.ID });
+                        return RedirectToAction(ActionNames.Edit, ControllerNames.Questions, new { id = questionEditViewModel.Question.ID });
                     }
                 }
             }

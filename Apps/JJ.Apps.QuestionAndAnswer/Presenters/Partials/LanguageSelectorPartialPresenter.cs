@@ -1,5 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,19 +9,19 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace JJ.Apps.QuestionAndAnswer.Presenters
+namespace JJ.Apps.QuestionAndAnswer.Presenters.Partials
 {
-    public class LanguageSelectorPresenter
+    public class LanguageSelectorPartialPresenter
     {
         private readonly string[] _availableCultureNames = new string[] { "en-US", "nl-NL" };
         private const string DEFAULT_CULTURE_NAME = "en-US";
 
-        public LanguageSelectorViewModel Show()
+        public LanguageSelectorPartialViewModel Show()
         {
             return CreateLanguageSelectionViewModel();
         }
 
-        public LanguageSelectorViewModel SetLanguage(string cultureName)
+        public LanguageSelectorPartialViewModel SetLanguage(string cultureName)
         {
             SetCulture(cultureName);
 
@@ -34,9 +35,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Thread.CurrentThread.CurrentUICulture = culture;
         }
 
-        private LanguageSelectorViewModel CreateLanguageSelectionViewModel()
+        private LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel()
         {
-            var viewModel = new LanguageSelectorViewModel();
+            var viewModel = new LanguageSelectorPartialViewModel();
             
             // Fill culture list
             viewModel.Languages = new List<LanguageViewModel>();

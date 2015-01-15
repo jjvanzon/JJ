@@ -1,9 +1,11 @@
-﻿using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
+﻿using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Common;
 using JJ.Framework.Persistence;
+using JJ.Framework.Presentation;
 using JJ.Models.QuestionAndAnswer.Repositories;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using System;
@@ -23,8 +25,8 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
-                    IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
-                    LoginPresenter presenter = new LoginPresenter(userRepository);
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
+                    LoginPresenter presenter = new LoginPresenter(repositories);
                     viewModel = presenter.Show();
                 }
             }
@@ -37,20 +39,17 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
-                LoginPresenter presenter = new LoginPresenter(userRepository);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
+                LoginPresenter presenter = new LoginPresenter(repositories);
+                object viewModel2 = presenter.Login(viewModel);
 
-                string password = viewModel.Password;
-                string securityToken = viewModel.SecurityToken;
-
-                LoginViewModel viewModel2 = presenter.Login(password, securityToken, viewModel);
-
-                if (!viewModel2.IsAuthenticated)
+                // TODO: This is dirty.
+                if (!(viewModel2 is LoginViewModel))
                 {
-                    return View(viewModel2);
+                    base.SetAuthenticatedUserName(viewModel.UserName);
                 }
 
-                return base.SetAuthenticatedUserName(viewModel2.UserName);
+                return GetActionResult(ActionNames.Index, viewModel2);
             }
         }
     }

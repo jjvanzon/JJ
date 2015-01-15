@@ -168,7 +168,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
-    <Compile Include="Controllers\SmallLoginSubController.cs" />
+    <Compile Include="Controllers\LoginPartialController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -272,6 +272,8 @@
     <Content Include="Views\Questions\NotFound.aspx" />
     <Content Include="Views\Questions\Random.aspx" />
     <Content Include="Views\Questions\_SmallQuestionFlag.ascx" />
+    <Content Include="Views\Shared\_ParameterDescriptor.ascx" />
+    <Content Include="Views\Shared\_ActionDescriptor.ascx" />
     <Content Include="Views\Shared\_LanguageSelector.ascx" />
     <Content Include="Views\Shared\_SmallLogin.ascx" />
     <Content Include="Web.config">

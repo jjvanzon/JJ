@@ -1,5 +1,6 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
@@ -11,45 +12,45 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace JJ.Apps.QuestionAndAnswer.Presenters
+namespace JJ.Apps.QuestionAndAnswer.Presenters.Partials
 {
-    public class SmallLoginPresenter
+    public class SmallLoginPartialPresenter
     {
         private IUserRepository _userRepository;
 
-        public SmallLoginPresenter(IUserRepository userRepository)
+        public SmallLoginPartialPresenter(IUserRepository userRepository)
         {
             if (userRepository == null) throw new NullException(() => userRepository);
 
             _userRepository = userRepository;
         }
 
-        public SmallLoginViewModel Show()
+        public LoginPartialViewModel Show()
         {
             return CreateViewModel();
         }
 
-        public SmallLoginViewModel SetLoggedInUserName(string userName)
+        public LoginPartialViewModel ShowLoggedOut()
+        {
+            return CreateViewModel();
+        }
+
+        public LoginPartialViewModel ShowLoggedIn(string userName)
         {
             User user = _userRepository.GetByUserName(userName);
 
-            var viewModel = new SmallLoginViewModel 
+            var viewModel = new LoginPartialViewModel 
             { 
-                LogOutActionIsVisible = true,
-                DisplayName = user.DisplayName 
+                CanLogOut = true,
+                UserDisplayName = user.DisplayName 
             };
 
             return viewModel;
         }
 
-        public SmallLoginViewModel SetIsLoggedOut()
+        private LoginPartialViewModel CreateViewModel()
         {
-            return CreateViewModel();   
-        }
-
-        private SmallLoginViewModel CreateViewModel()
-        {
-            return new SmallLoginViewModel { LogInActionIsVisible = true };
+            return new LoginPartialViewModel { CanLogIn = true };
         }
     }
 }

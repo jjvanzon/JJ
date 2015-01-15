@@ -34,6 +34,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ActionDispatcher.cs" />
     <Compile Include="Helpers\ViewModelEntityStatusHelper.cs" />
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
     <Compile Include="Helpers\Repositories.cs" />
@@ -74,9 +75,9 @@
     <Compile Include="ViewModels\QuestionListViewModel.cs" />
     <Compile Include="ViewModels\QuestionNotFoundViewModel.cs" />
     <Compile Include="ViewModels\Entities\QuestionTypeViewModel.cs" />
-    <Compile Include="ViewModels\SmallLoginViewModel.cs" />
-    <Compile Include="Presenters\SmallLoginPresenter.cs" />
-    <Compile Include="Presenters\LanguageSelectorPresenter.cs" />
+    <Compile Include="ViewModels\Partials\LoginPartialViewModel.cs" />
+    <Compile Include="Presenters\Partials\SmallLoginPartialPresenter.cs" />
+    <Compile Include="Presenters\Partials\LanguageSelectorPartialPresenter.cs" />
     <Compile Include="Presenters\RandomQuestionPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
@@ -95,7 +96,7 @@
       <DependentUpon>Titles.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Entities\LanguageViewModel.cs" />
-    <Compile Include="ViewModels\LanguageSelectorViewModel.cs" />
+    <Compile Include="ViewModels\Partials\LanguageSelectorPartialViewModel.cs" />
     <Compile Include="ViewModels\RandomQuestionViewModel.cs" />
     <Compile Include="ViewModels\Entities\QuestionLinkViewModel.cs" />
     <Compile Include="ViewModels\Entities\QuestionViewModel.cs" />

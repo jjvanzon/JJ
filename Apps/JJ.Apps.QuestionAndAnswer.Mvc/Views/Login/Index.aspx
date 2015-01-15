@@ -24,6 +24,11 @@
         </p>
 
         <input type="submit" value="<%: CommonTitles.LogIn %>" />
-    
+
+        <% using (Html.BeginItem(() => Model.SourceAction)) { %>
+
+            <% Html.RenderPartial(ViewNames._ActionDescriptor, Model.SourceAction); %>
+
+        <% } %>
     <% } %>
 </asp:Content>

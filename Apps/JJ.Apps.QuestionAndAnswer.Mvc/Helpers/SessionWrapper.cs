@@ -1,5 +1,7 @@
 ﻿using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using System;
@@ -31,10 +33,10 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Helpers
             set { _session[SessionKeys.AuthenticatedUserName] = value; }
         }
 
-        public SmallLoginViewModel SmallLoginViewModel
+        public LoginPartialViewModel LoginPartialViewModel
         {
-            get { return (SmallLoginViewModel)_session[SessionKeys.SmallLoginViewModel]; }
-            set { _session[SessionKeys.SmallLoginViewModel] = value; }
+            get { return (LoginPartialViewModel)_session[SessionKeys.LoginPartialViewModel]; }
+            set { _session[SessionKeys.LoginPartialViewModel] = value; }
         }
     }
 }

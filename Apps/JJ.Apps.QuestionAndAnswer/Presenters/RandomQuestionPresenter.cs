@@ -51,6 +51,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _categoryManager = new CategoryManager(_categoryRepository);
         }
 
+        /// <param name="categoryIDs">nullable</param>
         public object Show(params int[] categoryIDs)
         {
             categoryIDs = categoryIDs ?? new int[0];

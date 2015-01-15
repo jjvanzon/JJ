@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Apps.QuestionAndAnswer.ViewModels
+namespace JJ.Apps.QuestionAndAnswer.ViewModels.Partials
 {
-    public sealed class LanguageSelectorViewModel
+    public sealed class LanguageSelectorPartialViewModel
     {
         public string SelectedLanguageCultureName { get; set; }
         public IList<LanguageViewModel> Languages { get; set; }

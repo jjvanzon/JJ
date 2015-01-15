@@ -23,6 +23,8 @@ using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
 using JJ.Apps.QuestionAndAnswer.SideEffects;
+using JJ.Framework.Presentation;
+using System.Linq.Expressions;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -44,8 +46,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
-                var presenter2 = new LoginPresenter(_repositories.UserRepository);
-                return presenter2.Show();
+                var presenter2 = new LoginPresenter(_repositories);
+                return presenter2.Show(CreateSourceAction(() => Edit(id)));
             }
 
             Question question = _repositories.QuestionRepository.TryGet(id);
@@ -65,8 +67,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
-                var presenter2 = new LoginPresenter(_repositories.UserRepository);
-                return presenter2.Show();
+                var presenter2 = new LoginPresenter(_repositories);
+                return presenter2.Show(CreateSourceAction(() => Create()));
             }
 
             Question entity = _repositories.QuestionRepository.Create();
@@ -204,8 +206,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
-                var presenter2 = new LoginPresenter(_repositories.UserRepository);
-                return presenter2.Show();
+                return new NotAuthenticatedViewModel();
             }
 
             // GetEntities
@@ -272,6 +273,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
             return listPresenter.Show();
+        }
+
+        private ActionDescriptor CreateSourceAction(Expression<Func<object>> methodCallExpression)
+        {
+            return ActionDescriptorHelper.CreateActionDescriptor(GetType(), methodCallExpression);
         }
     }
 }

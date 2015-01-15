@@ -30,11 +30,11 @@
         <h1>Q&A</h1>
         
         <div id="languageDiv">
-            <% Html.RenderPartial(ViewNames._LanguageSelector, ((MasterController)this.ViewContext.Controller).LanguageSelectorViewModel); %>
+            <% Html.RenderPartial(ViewNames._LanguageSelector, ((MasterController)this.ViewContext.Controller).LanguageSelectorPartialViewModel); %>
         </div>
 
         <div id="smallLoginDiv">
-            <% Html.RenderPartial(ViewNames._SmallLogin, ((MasterController)this.ViewContext.Controller).SmallLoginViewModel); %>
+            <% Html.RenderPartial(ViewNames._SmallLogin, ((MasterController)this.ViewContext.Controller).LoginPartialViewModel); %>
         </div>
 
     </header>

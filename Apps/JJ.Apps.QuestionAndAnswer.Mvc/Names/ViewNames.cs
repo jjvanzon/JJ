@@ -20,5 +20,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Names
         public const string Delete = "Delete";
         public const string Deleted = "Deleted";
         public const string Details = "Details";
+        public const string _ActionDescriptor = "_ActionDescriptor";
+        public const string _ParameterDescriptor = "_ParameterDescriptor";
     }
 }

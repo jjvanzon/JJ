@@ -11,6 +11,9 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Apps.QuestionAndAnswer.Presenters.Partials;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -23,7 +26,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             // In the constructor there is no Session. That is why we need to use OnActionExecuting.
 
-            InitializeSmallLoginSubController();
+            InitializeLoginPartialController();
 
             SetCurrentCulture();
         }
@@ -49,50 +52,50 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         public ActionResult SetLanguage(string cultureName)
         {
-            LanguageSelectorPresenter presenter = new LanguageSelectorPresenter();
+            LanguageSelectorPartialPresenter presenter = new LanguageSelectorPartialPresenter();
 
-            LanguageSelectorViewModel viewModel = presenter.SetLanguage(cultureName);
+            LanguageSelectorPartialViewModel viewModel = presenter.SetLanguage(cultureName);
 
-            LanguageSelectorViewModel = viewModel;
+            LanguageSelectorPartialViewModel = viewModel;
 
             GetSessionWrapper().CultureName = viewModel.SelectedLanguageCultureName;
 
             return RedirectToAction(ActionNames.Random, ControllerNames.Questions);
         }
 
-        public LanguageSelectorViewModel LanguageSelectorViewModel
+        public LanguageSelectorPartialViewModel LanguageSelectorPartialViewModel
         {
             get
             {
-                LanguageSelectorViewModel viewModel = (LanguageSelectorViewModel)ViewData[ViewDataKeys.LanguageSelectorViewModel];
+                LanguageSelectorPartialViewModel viewModel = (LanguageSelectorPartialViewModel)ViewData[ViewDataKeys.LanguageSelectorPartialViewModel];
 
                 if (viewModel == null)
                 {
-                    var presenter = new LanguageSelectorPresenter();
+                    var presenter = new LanguageSelectorPartialPresenter();
                     viewModel = presenter.Show();
-                    ViewData[ViewDataKeys.LanguageSelectorViewModel] = viewModel;
+                    ViewData[ViewDataKeys.LanguageSelectorPartialViewModel] = viewModel;
                 }
 
                 return viewModel;
             }
             private set
             {
-                ViewData[ViewDataKeys.LanguageSelectorViewModel] = value;
+                ViewData[ViewDataKeys.LanguageSelectorPartialViewModel] = value;
             }
         }
 
         // Login
 
-        private SmallLoginSubController _smallLoginSubController;
+        private LoginPartialController _loginPartialController;
 
-        private void InitializeSmallLoginSubController()
+        private void InitializeLoginPartialController()
         {
-            _smallLoginSubController = new SmallLoginSubController(this);
+            _loginPartialController = new LoginPartialController(this);
         }
 
-        public SmallLoginViewModel SmallLoginViewModel
+        public LoginPartialViewModel LoginPartialViewModel
         {
-            get { return _smallLoginSubController.Model; }
+            get { return _loginPartialController.Model; }
         }
 
         protected string TryGetAuthenticatedUserName()
@@ -100,26 +103,24 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return GetSessionWrapper().AuthenticatedUserName;
         }
 
-        public ActionResult SetAuthenticatedUserName(string authenticatedUserName)
+        public void SetAuthenticatedUserName(string authenticatedUserName)
         {
             GetSessionWrapper().AuthenticatedUserName = authenticatedUserName;
 
-            _smallLoginSubController.SetLoggedInUserName(authenticatedUserName);
+            _loginPartialController.ShowLoggedIn(authenticatedUserName);
 
             // What an assumption that we would want to go to the Question page. I would like to redirect to the page we were on before we tried to log in.
-            return RedirectToAction(ActionNames.Random, ControllerNames.Questions);
+            //return RedirectToAction(ActionNames.Random, ControllerNames.Questions);
         }
 
         public ActionResult LogOut()
         {
             GetSessionWrapper().AuthenticatedUserName = null;
 
-            _smallLoginSubController.SetIsLoggedOut();
+            _loginPartialController.ShowLoggedOut();
 
             // TODO: It feels strange that the presenter does not determine the program flow.
             return RedirectToAction(ActionNames.Index, ControllerNames.Login);
         }
     }
 }
-
-

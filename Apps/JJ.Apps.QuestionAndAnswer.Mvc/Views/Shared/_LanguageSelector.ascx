@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="ViewUserControl<LanguageSelectorViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="ViewUserControl<LanguageSelectorPartialViewModel>" %>
 
 <script>
     $(document).ready(function () {

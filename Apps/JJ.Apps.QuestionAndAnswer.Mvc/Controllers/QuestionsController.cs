@@ -35,7 +35,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
-                    Repositories repositories = CreateRepositories(context);
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     QuestionListPresenter presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Show();
                 }
@@ -53,7 +53,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
-                    Repositories repositories = CreateRepositories(context);
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     QuestionDetailsPresenter presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Show(id);
                 }
@@ -71,7 +71,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
-                    Repositories repositories = CreateRepositories(context);
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Create();
                 }
@@ -87,7 +87,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
                 return GetActionResult(ActionNames.Create, viewModel2);
@@ -103,7 +103,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
-                    Repositories repositories = CreateRepositories(context);
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Edit(id);
                 }
@@ -119,7 +119,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
                 return GetActionResult(ActionNames.Edit, viewModel2);
@@ -135,7 +135,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
-                    Repositories repositories = CreateRepositories(context);
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     QuestionConfirmDeletePresenter presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Show(id);
                 }
@@ -151,7 +151,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 QuestionDeleteConfirmedPresenter presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Show(id);
                 return GetActionResult(ActionNames.Delete, viewModel2);
@@ -165,7 +165,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.AddLink(viewModel);
                 return GetActionResult(ActionNames.AddLink, viewModel2);
@@ -179,7 +179,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
                 return GetActionResult(ActionNames.RemoveLink, viewModel2);
@@ -193,7 +193,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.AddCategory(viewModel);
                 return GetActionResult(ActionNames.AddCategory, viewModel2);
@@ -207,7 +207,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
                 return GetActionResult(ActionNames.RemoveCategory, viewModel2);
@@ -224,7 +224,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
-                    Repositories repositories = CreateRepositories(context);
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                     viewModel = presenter.Show(c);
                 }
@@ -240,7 +240,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.ShowAnswer(viewModel);
                 return GetActionResult(ActionNames.ShowAnswer, viewModel2);
@@ -254,7 +254,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.HideAnswer(viewModel);
                 return GetActionResult(ActionNames.HideAnswer, viewModel2);
@@ -268,7 +268,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Flag(viewModel);
                 return GetActionResult(ActionNames.Flag, viewModel2);
@@ -282,7 +282,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
-                Repositories repositories = CreateRepositories(context);
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Unflag(viewModel);
                 return GetActionResult(ActionNames.Unflag, viewModel2);
@@ -300,21 +300,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 repositories.FlagStatusRepository, 
                 repositories.UserRepository,
                 TryGetAuthenticatedUserName());
-        }
-
-        private Repositories CreateRepositories(IContext context)
-        {
-            return new Repositories(
-                PersistenceHelper.CreateRepository<IQuestionRepository>(context),
-                PersistenceHelper.CreateRepository<IAnswerRepository>(context),
-                PersistenceHelper.CreateRepository<ICategoryRepository>(context),
-                PersistenceHelper.CreateRepository<IQuestionCategoryRepository>(context),
-                PersistenceHelper.CreateRepository<IQuestionLinkRepository>(context),
-                PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context),
-                PersistenceHelper.CreateRepository<IFlagStatusRepository>(context),
-                PersistenceHelper.CreateRepository<ISourceRepository>(context),
-                PersistenceHelper.CreateRepository<IQuestionTypeRepository>(context),
-                PersistenceHelper.CreateRepository<IUserRepository>(context));
         }
     }
 }
