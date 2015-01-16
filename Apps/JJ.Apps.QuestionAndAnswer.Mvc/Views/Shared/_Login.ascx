@@ -10,7 +10,7 @@
 
 <% if (Model.CanLogOut) { %>
 
-    <div id="smallLoginViewDropDown">
+    <div id="loginPartialViewDropDown">
         <%: Html.ActionLink(CommonTitles.LogOut, ActionNames.LogOut, ControllerNames.Login) %>
     </div>
 

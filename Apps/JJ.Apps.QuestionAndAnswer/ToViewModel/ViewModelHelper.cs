@@ -12,8 +12,9 @@ using System.Threading.Tasks;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Framework.Reflection;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 
-namespace JJ.Apps.QuestionAndAnswer.Helpers
+namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 {
     internal static class ViewModelHelper
     {
@@ -59,6 +60,30 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
                 NameParts = new List<string>(),
                 SubCategories = new List<CategoryViewModel>(),
                 Visible = true
+            };
+        }
+
+        /// <param name="authenticatedUserName">nullable</param>
+        public static LoginPartialViewModel CreateLoginPartialViewModel(string authenticatedUserName, IUserRepository userRepository)
+        {
+            if (userRepository == null) throw new NullException(() => userRepository);
+
+            User user = userRepository.TryGetByUserName(authenticatedUserName);
+            if (user != null)
+            {
+                return user.ToLoginPartialViewModel();
+            }
+            else
+            {
+                return ViewModelHelper.CreateLoggedOutLoginPartialViewModel();
+            }
+        }
+
+        private static LoginPartialViewModel CreateLoggedOutLoginPartialViewModel()
+        {
+            return new LoginPartialViewModel
+            {
+                CanLogIn = true
             };
         }
     }

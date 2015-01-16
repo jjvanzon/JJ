@@ -1,4 +1,5 @@
 ﻿using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Models.Canonical;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
 {
     public sealed class QuestionEditViewModel
     {
+        public LoginPartialViewModel Login { get; set; }
+
         public QuestionViewModel Question { get; set; }
 
         public IList<FlagStatusViewModel> FlagStatuses { get; set; }

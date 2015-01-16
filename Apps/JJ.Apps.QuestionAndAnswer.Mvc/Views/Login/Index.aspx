@@ -4,6 +4,9 @@
     <%: CommonTitles.LogIn %>
 </asp:Content>
 
+<asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderContent" runat="server">
+</asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
 </asp:Content>
 

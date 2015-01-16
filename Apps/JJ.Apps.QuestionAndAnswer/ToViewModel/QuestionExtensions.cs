@@ -14,6 +14,7 @@ using JJ.Framework.Common;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Framework.Reflection;
+using JJ.Apps.QuestionAndAnswer.Presenters.Partials;
 
 namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 {
@@ -36,9 +37,9 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
                 IsManual = entity.IsManual,
                 Source = new SourceViewModel(),
                 Type = new QuestionTypeViewModel(),
-                Categories = new ListViewModel<QuestionCategoryViewModel>(),
-                Links = new ListViewModel<QuestionLinkViewModel>(),
-                Flags = new ListViewModel<QuestionFlagViewModel>()
+                Categories = new List<QuestionCategoryViewModel>(),
+                Links = new List<QuestionLinkViewModel>(),
+                Flags = new List<QuestionFlagViewModel>()
             };
 
             // TODO: Refactor to support multiple answers.
@@ -50,7 +51,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             return viewModel;
         }
 
-        public static QuestionDetailsViewModel ToDetailsViewModel(this Question question)
+        public static QuestionDetailsViewModel ToDetailsViewModel(this Question question, IUserRepository userRepository, string authenticatedUserName)
         {
             if (question == null) throw new NullException(() => question);
 
@@ -58,6 +59,9 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             viewModel.Question = question.ToViewModel();
             viewModel.Question.Source = question.Source.ToViewModel();
             viewModel.Question.Type = question.QuestionType.ToViewModel();
+
+            // Login
+            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
 
             // Categories
             foreach (QuestionCategory questionCategory in question.QuestionCategories)
@@ -85,7 +89,12 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             return viewModel;
         }
 
-        public static QuestionEditViewModel ToEditViewModel(this Question question, ICategoryRepository categoryRepository, IFlagStatusRepository flagStatusRepository)
+        public static QuestionEditViewModel ToEditViewModel(
+            this Question question, 
+            ICategoryRepository categoryRepository, 
+            IFlagStatusRepository flagStatusRepository, 
+            IUserRepository userRepository,
+            string authenticatedUserName)
         {
             if (question == null) throw new NullException(() => question);
             if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
@@ -101,6 +110,9 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
             viewModel.Question.Source = question.Source.ToViewModel();
             viewModel.Question.Type = question.QuestionType.ToViewModel();
+
+            // Login
+            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
 
             // Links
             foreach (QuestionLink questionLink in question.QuestionLinks)
@@ -128,7 +140,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             return viewModel;
         }
 
-        public static RandomQuestionViewModel ToRandomQuestionViewModel(this Question entity, QuestionFlag currentUserQuestionFlag = null)
+        public static RandomQuestionViewModel ToRandomQuestionViewModel(this Question entity, IUserRepository userRepository, string authenticatedUserName, QuestionFlag currentUserQuestionFlag = null)
         {
             if (entity == null) throw new NullException(() => entity);
 
@@ -137,6 +149,9 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
                 SelectedCategories = new List<CategoryViewModel>(),
                 Question = entity.ToViewModel()
             };
+
+            // Login
+            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
 
             // Links
             foreach (QuestionLink questionLink in entity.QuestionLinks)
@@ -166,15 +181,19 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             return viewModel;
         }
 
-        public static QuestionConfirmDeleteViewModel ToConfirmDeleteViewModel(this Question question)
+        public static QuestionConfirmDeleteViewModel ToConfirmDeleteViewModel(this Question question, IUserRepository userRepository, string authenticatedUserName)
         {
             if (question == null) throw new NullException(() => question);
 
-            return new QuestionConfirmDeleteViewModel
+            var viewModel = new QuestionConfirmDeleteViewModel
             {
                 ID = question.ID,
                 Question = question.Text
             };
+
+            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+
+            return viewModel;
         }
     }
 }

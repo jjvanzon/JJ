@@ -46,7 +46,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 // TODO: This is dirty.
                 if (!(viewModel2 is LoginViewModel))
                 {
-                    base.SetAuthenticatedUserName(viewModel.UserName);
+                    SetAuthenticatedUserName(viewModel.UserName);
                 }
 
                 return GetActionResult(ActionNames.Index, viewModel2);

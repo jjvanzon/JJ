@@ -41,6 +41,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 listViewModel.List.Add(itemViewModel);
             }
 
+            listViewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
+
             return listViewModel;
         }
 

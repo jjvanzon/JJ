@@ -35,9 +35,9 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
 
             viewModel.Source = viewModel.Source ?? new SourceViewModel();
             viewModel.Type = viewModel.Type ?? new QuestionTypeViewModel();
-            viewModel.Categories = viewModel.Categories ?? new ListViewModel<QuestionCategoryViewModel>();
-            viewModel.Links = viewModel.Links ?? new ListViewModel<QuestionLinkViewModel>();
-            viewModel.Flags = viewModel.Flags ?? new ListViewModel<QuestionFlagViewModel>();
+            viewModel.Categories = viewModel.Categories ?? new List<QuestionCategoryViewModel>();
+            viewModel.Links = viewModel.Links ?? new List<QuestionLinkViewModel>();
+            viewModel.Flags = viewModel.Flags ?? new List<QuestionFlagViewModel>();
 
             foreach (QuestionCategoryViewModel questionCategoryViewModel in viewModel.Categories)
             {

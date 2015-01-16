@@ -76,6 +76,10 @@
     </script>
 </asp:Content>
 
+<asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderContent" runat="server">
+    <div id="loginDiv"> <% Html.RenderPartial(ViewNames._Login, Model.Login); %> </div>
+</asp:Content>
+
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
 <% using (Html.BeginForm()) {%>

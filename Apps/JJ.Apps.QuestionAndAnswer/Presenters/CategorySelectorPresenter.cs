@@ -115,6 +115,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             viewModel.NoCategoriesAvailable = viewModel.AvailableCategories.Count == 0;
 
+            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _userRepository);
+
             return viewModel;
         }
 

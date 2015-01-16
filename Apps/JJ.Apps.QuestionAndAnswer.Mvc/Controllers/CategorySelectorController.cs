@@ -72,7 +72,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 repositories.QuestionRepository, 
                 repositories.QuestionFlagRepository, 
                 repositories.FlagStatusRepository, 
-                repositories.UserRepository, 
+                repositories.UserRepository,
                 TryGetAuthenticatedUserName());
         }
 

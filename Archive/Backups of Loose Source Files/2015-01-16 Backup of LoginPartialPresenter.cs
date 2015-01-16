@@ -1,4 +1,5 @@
-﻿using JJ.Apps.QuestionAndAnswer.ViewModels;
+﻿using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Framework.Reflection;
@@ -14,25 +15,24 @@ using System.Threading.Tasks;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters.Partials
 {
-    public class SmallLoginPartialPresenter
+    [Obsolete("Embed LoginPartialViewModel in view model using other presenters instead.")]
+    public class LoginPartialPresenter
     {
         private IUserRepository _userRepository;
 
-        public SmallLoginPartialPresenter(IUserRepository userRepository)
+        public LoginPartialPresenter(IUserRepository userRepository)
         {
             if (userRepository == null) throw new NullException(() => userRepository);
 
             _userRepository = userRepository;
         }
 
-        public LoginPartialViewModel Show()
-        {
-            return CreateViewModel();
-        }
-
         public LoginPartialViewModel ShowLoggedOut()
         {
-            return CreateViewModel();
+            return new LoginPartialViewModel 
+            {
+                CanLogIn = true 
+            };
         }
 
         public LoginPartialViewModel ShowLoggedIn(string userName)
@@ -46,11 +46,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters.Partials
             };
 
             return viewModel;
-        }
-
-        private LoginPartialViewModel CreateViewModel()
-        {
-            return new LoginPartialViewModel { CanLogIn = true };
         }
     }
 }

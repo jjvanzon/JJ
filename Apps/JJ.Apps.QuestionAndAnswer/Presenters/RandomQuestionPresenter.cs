@@ -75,11 +75,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // Not Found
             if (question == null)
             {
-                return new QuestionNotFoundViewModel();
+                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
+                QuestionNotFoundViewModel viewModel2 = presenter2.Show();
+                return viewModel2;
             }
 
             // Create ViewModel
-            RandomQuestionViewModel viewModel = question.ToRandomQuestionViewModel();
+            RandomQuestionViewModel viewModel = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName);
             viewModel.Question.Links.Clear(); // Links reveal answer.
             viewModel.SelectedCategories = selectedCategoryBranches.Select(x => x.ToViewModel()).ToList();
 
@@ -96,14 +98,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter();
+                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
                 return presenter2.Show();
             }
             User user = _userRepository.TryGetByUserName(_authenticatedUserName);
             QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
 
             // Create new view model
-            RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(questionFlag);
+            RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
 
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;
@@ -130,14 +132,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter();
+                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
                 return presenter2.Show();
             }
             User user = _userRepository.TryGetByUserName(_authenticatedUserName);
             QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
 
             // Create new view model
-            RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(questionFlag);
+            RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
 
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;
@@ -164,7 +166,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter();
+                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
                 return presenter2.Show();
             }
 
@@ -174,7 +176,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _questionFlagRepository.Commit();
 
             // Create new view model
-            RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(questionFlag);
+            RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
             
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;
@@ -196,7 +198,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter();
+                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
                 return presenter2.Show();
             }
 
@@ -206,7 +208,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _questionFlagRepository.Commit();
 
             // Create new view model
-            RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel();
+            RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName);
 
             // Set non-persisted properties
             viewModel2.UserAnswer = viewModel.UserAnswer;

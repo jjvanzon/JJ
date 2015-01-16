@@ -13,6 +13,7 @@ using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Framework.Reflection;
 using JJ.Framework.Presentation;
 using System.Linq.Expressions;
+using JJ.Apps.QuestionAndAnswer.ToViewModel;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -41,7 +42,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _repositories.QuestionRepository.TryGet(id);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter();
+                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _repositories.UserRepository);
                 return presenter2.Show();
             }
 
@@ -52,6 +53,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _repositories.QuestionRepository.Commit();
 
             var viewModel = new QuestionDeleteConfirmedViewModel();
+
+            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
+
             return viewModel;
         }
 

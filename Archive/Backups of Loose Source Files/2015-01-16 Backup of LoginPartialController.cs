@@ -13,6 +13,7 @@ using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.Presenters.Partials;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
+using JJ.Apps.QuestionAndAnswer.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -37,7 +38,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                     using (IContext context = PersistenceHelper.CreateContext())
                     {
                         IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
-                        SmallLoginPartialPresenter presenter = new SmallLoginPartialPresenter(userRepository);
+                        LoginPartialPresenter presenter = new LoginPartialPresenter(userRepository);
                         viewModel = presenter.ShowLoggedOut();
                         GetSessionWrapper().LoginPartialViewModel = viewModel;
                         return viewModel;
@@ -57,7 +58,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
-                SmallLoginPartialPresenter presenter = new SmallLoginPartialPresenter(userRepository);
+                LoginPartialPresenter presenter = new LoginPartialPresenter(userRepository);
                 LoginPartialViewModel viewModel = presenter.ShowLoggedIn(authenticatedUserName);
                 Model = viewModel;
             }
@@ -68,7 +69,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 IUserRepository userRepository = PersistenceHelper.CreateRepository<IUserRepository>(context);
-                SmallLoginPartialPresenter presenter = new SmallLoginPartialPresenter(userRepository);
+                LoginPartialPresenter presenter = new LoginPartialPresenter(userRepository);
                 LoginPartialViewModel viewModel = presenter.ShowLoggedOut();
                 Model = viewModel;
             }

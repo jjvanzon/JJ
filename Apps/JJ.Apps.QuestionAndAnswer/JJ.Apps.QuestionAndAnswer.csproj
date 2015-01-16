@@ -50,6 +50,7 @@
     <Compile Include="Presenters\QuestionDetailsPresenter.cs" />
     <Compile Include="Presenters\QuestionNotFoundPresenter.cs" />
     <Compile Include="ToEntity\QuestionViewModelExtensions.cs" />
+    <Compile Include="ToViewModel\UserExtensions.cs" />
     <Compile Include="Validation\QuestionCategoryViewModelValidator.cs" />
     <Compile Include="Validation\QuestionEditViewModelValidator.cs" />
     <Compile Include="Validation\QuestionLinkViewModelValidator.cs" />
@@ -57,12 +58,11 @@
     <Compile Include="ToViewModel\QuestionTypeExtensions.cs" />
     <Compile Include="ToViewModel\SourceExtensions.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoallesce.cs" />
-    <Compile Include="ViewModels\Entities\ListViewModel.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />
     <Compile Include="ToViewModel\QuestionCategoryExtensions.cs" />
-    <Compile Include="Helpers\ViewModelHelper.cs" />
+    <Compile Include="ToViewModel\ViewModelHelper.cs" />
     <Compile Include="ViewModels\Entities\QuestionCategoryViewModel.cs" />
     <Compile Include="ViewModels\Entities\CurrentUserQuestionFlagViewModel.cs" />
     <Compile Include="ViewModels\Entities\FlagStatusViewModel.cs" />
@@ -76,7 +76,6 @@
     <Compile Include="ViewModels\QuestionNotFoundViewModel.cs" />
     <Compile Include="ViewModels\Entities\QuestionTypeViewModel.cs" />
     <Compile Include="ViewModels\Partials\LoginPartialViewModel.cs" />
-    <Compile Include="Presenters\Partials\SmallLoginPartialPresenter.cs" />
     <Compile Include="Presenters\Partials\LanguageSelectorPartialPresenter.cs" />
     <Compile Include="Presenters\RandomQuestionPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

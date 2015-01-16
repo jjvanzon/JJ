@@ -40,11 +40,11 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _repositories.QuestionRepository.TryGet(id);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter();
+                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _repositories.UserRepository);
                 return presenter2.Show();
             }
 
-            QuestionDetailsViewModel viewModel = question.ToDetailsViewModel();
+            QuestionDetailsViewModel viewModel = question.ToDetailsViewModel(_repositories.UserRepository, _authenticatedUserName);
             return viewModel;
         }
 

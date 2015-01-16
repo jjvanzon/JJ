@@ -16,7 +16,7 @@
     <script>
         $(document).ready(function()
         {
-            // TODO: make smallLoginDiv's smallLoginViewDropDown show and hide when you click on your display name.
+            // TODO: make loginPartialDiv's loginPartialViewDropDown show and hide when you click on your display name.
         });
     </script>
 
@@ -32,11 +32,8 @@
         <div id="languageDiv">
             <% Html.RenderPartial(ViewNames._LanguageSelector, ((MasterController)this.ViewContext.Controller).LanguageSelectorPartialViewModel); %>
         </div>
-
-        <div id="smallLoginDiv">
-            <% Html.RenderPartial(ViewNames._SmallLogin, ((MasterController)this.ViewContext.Controller).LoginPartialViewModel); %>
-        </div>
-
+        
+        <asp:ContentPlaceHolder ID="HeaderContent" runat="server" />
     </header>
 
     <nav>

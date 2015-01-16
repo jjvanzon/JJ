@@ -25,9 +25,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             // In the constructor there is no Session. That is why we need to use OnActionExecuting.
-
-            InitializeLoginPartialController();
-
             SetCurrentCulture();
         }
 
@@ -86,18 +83,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         // Login
 
-        private LoginPartialController _loginPartialController;
-
-        private void InitializeLoginPartialController()
-        {
-            _loginPartialController = new LoginPartialController(this);
-        }
-
-        public LoginPartialViewModel LoginPartialViewModel
-        {
-            get { return _loginPartialController.Model; }
-        }
-
         protected string TryGetAuthenticatedUserName()
         {
             return GetSessionWrapper().AuthenticatedUserName;
@@ -106,20 +91,12 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         public void SetAuthenticatedUserName(string authenticatedUserName)
         {
             GetSessionWrapper().AuthenticatedUserName = authenticatedUserName;
-
-            _loginPartialController.ShowLoggedIn(authenticatedUserName);
-
-            // What an assumption that we would want to go to the Question page. I would like to redirect to the page we were on before we tried to log in.
-            //return RedirectToAction(ActionNames.Random, ControllerNames.Questions);
         }
 
         public ActionResult LogOut()
         {
             GetSessionWrapper().AuthenticatedUserName = null;
 
-            _loginPartialController.ShowLoggedOut();
-
-            // TODO: It feels strange that the presenter does not determine the program flow.
             return RedirectToAction(ActionNames.Index, ControllerNames.Login);
         }
     }

@@ -12,7 +12,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Names
         public const string Index = "Index";
         public const string _AvailableCategory = "_AvailableCategory";
         public const string _SelectedCategory = "_SelectedCategory";
-        public const string _SmallLogin = "_SmallLogin";
+        public const string _Login = "_Login";
         public const string _LanguageSelector = "_LanguageSelector";
         public const string _SmallQuestionFlag = "_SmallQuestionFlag";
         public const string NotAuthenticated = "NotAuthenticated";

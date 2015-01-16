@@ -25,6 +25,7 @@ using JJ.Apps.QuestionAndAnswer.Resources;
 using JJ.Apps.QuestionAndAnswer.SideEffects;
 using JJ.Framework.Presentation;
 using System.Linq.Expressions;
+using JJ.Apps.QuestionAndAnswer.Presenters.Partials;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -53,13 +54,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _repositories.QuestionRepository.TryGet(id);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter();
+                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _repositories.UserRepository);
                 return presenter2.Show();
             }
 
-            QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+            QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
             viewModel.CanDelete = true;
             viewModel.Title = Titles.EditQuestion;
+
             return viewModel;
         }
 
@@ -82,7 +84,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             ISideEffect setDefaults2 = new Question_SetOpenQuestionDefaults_FrontEnd_SideEffect(entity, _repositories.SourceRepository, _repositories.EntityStatusManager);
             setDefaults2.Execute();
 
-            QuestionEditViewModel viewModel = entity.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+            QuestionEditViewModel viewModel = entity.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
             viewModel.IsNew = true;
             viewModel.Title = Titles.CreateQuestion;
 
@@ -102,7 +104,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             questionLink.LinkTo(question);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
 
             // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -134,7 +136,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = viewModel.ToEntity(_repositories);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
 
             // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -157,7 +159,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             questionCategory.LinkTo(question);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
 
             // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -189,7 +191,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = viewModel.ToEntity(_repositories);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
 
             // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -233,7 +235,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
 
             // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -259,7 +261,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _repositories.QuestionRepository.Commit();
 
             // On success: go to Details view model.
-            QuestionDetailsViewModel detailsViewModel = question.ToDetailsViewModel();
+            QuestionDetailsViewModel detailsViewModel = question.ToDetailsViewModel(_repositories.UserRepository, _authenticatedUserName);
             return detailsViewModel;
         }
 
