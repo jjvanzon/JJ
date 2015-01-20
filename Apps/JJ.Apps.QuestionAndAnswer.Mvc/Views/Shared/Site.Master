@@ -29,10 +29,6 @@
 
         <h1>Q&A</h1>
         
-        <div id="languageDiv">
-            <% Html.RenderPartial(ViewNames._LanguageSelector, ((MasterController)this.ViewContext.Controller).LanguageSelectorPartialViewModel); %>
-        </div>
-        
         <asp:ContentPlaceHolder ID="HeaderContent" runat="server" />
     </header>
 

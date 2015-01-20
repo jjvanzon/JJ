@@ -24,7 +24,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
             if (viewModel == null) throw new NullException(() => viewModel);
             if (repositories == null) throw new NullException(() => repositories);
 
-            viewModel.NullCoallesce();
+            viewModel.NullCoalesce();
 
             // Question
             Question question = viewModel.Question.ToEntity(repositories.QuestionRepository, repositories.AnswerRepository, repositories.SourceRepository, repositories.QuestionTypeRepository, repositories.EntityStatusManager);

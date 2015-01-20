@@ -10,7 +10,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels.Entities
     {
         public int ID { get; set; }
         public bool Visible { get; set; }
-        public List<string> NameParts { get; set; }
-        public List<CategoryViewModel> SubCategories { get; set; }
+        public IList<string> NameParts { get; set; }
+        public IList<CategoryViewModel> SubCategories { get; set; }
     }
 }

@@ -46,6 +46,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         
         public object Login(LoginViewModel viewModel)
         {
+            if (viewModel == null) throw new NullException(() => viewModel);
+
             User user = _repositories.UserRepository.TryGetByUserName(viewModel.UserName);
             if (user != null)
             {
@@ -66,6 +68,19 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return new LoginViewModel
             {
                 UserName = viewModel.UserName
+            };
+        }
+
+        public LoginViewModel SetLanguage(LoginViewModel viewModel, string cultureName)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+
+            CultureHelper.SetCulture(cultureName);
+
+            return new LoginViewModel
+            {
+                UserName = viewModel.UserName,
+                SourceAction = viewModel.SourceAction
             };
         }
     }

@@ -60,6 +60,12 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return deletePresenter.Show(id);
         }
 
+        public object SetLanguage(int id, string cultureName)
+        {
+            CultureHelper.SetCulture(cultureName);
+            return Show(id);
+        }
+
         public QuestionListViewModel BackToList()
         {
             var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);

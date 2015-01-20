@@ -14,54 +14,21 @@ using JJ.Framework.Common;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Framework.Reflection;
-using JJ.Apps.QuestionAndAnswer.Presenters.Partials;
 
 namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 {
     internal static class QuestionExtensions
     {
-        /// <summary>
-        /// Converts the entity to a view model, but does not convert the related entities.
-        /// (objects and lists will be created, though: no nulls.)
-        /// </summary>
-        public static QuestionViewModel ToViewModel(this Question entity)
-        {
-            if (entity == null) throw new NullException(() => entity);
-
-            var viewModel = new QuestionViewModel
-            {
-                ID = entity.ID,
-                Text = entity.Text,
-                IsActive = entity.IsActive,
-                LastModifiedBy = entity.LastModifiedByUser != null ? entity.LastModifiedByUser.DisplayName : "",
-                IsManual = entity.IsManual,
-                Source = new SourceViewModel(),
-                Type = new QuestionTypeViewModel(),
-                Categories = new List<QuestionCategoryViewModel>(),
-                Links = new List<QuestionLinkViewModel>(),
-                Flags = new List<QuestionFlagViewModel>()
-            };
-
-            // TODO: Refactor to support multiple answers.
-            if (entity.Answers.Count > 0)
-            {
-                viewModel.Answer = entity.Answers[0].Text; 
-            }
-
-            return viewModel;
-        }
-
         public static QuestionDetailsViewModel ToDetailsViewModel(this Question question, IUserRepository userRepository, string authenticatedUserName)
         {
-            if (question == null) throw new NullException(() => question);
-
             var viewModel = new QuestionDetailsViewModel();
             viewModel.Question = question.ToViewModel();
             viewModel.Question.Source = question.Source.ToViewModel();
             viewModel.Question.Type = question.QuestionType.ToViewModel();
 
-            // Login
+            // Partials
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             // Categories
             foreach (QuestionCategory questionCategory in question.QuestionCategories)
@@ -96,7 +63,6 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             IUserRepository userRepository,
             string authenticatedUserName)
         {
-            if (question == null) throw new NullException(() => question);
             if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
 
             var viewModel = new QuestionEditViewModel
@@ -111,8 +77,9 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             viewModel.Question.Source = question.Source.ToViewModel();
             viewModel.Question.Type = question.QuestionType.ToViewModel();
 
-            // Login
+            // Partials
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             // Links
             foreach (QuestionLink questionLink in question.QuestionLinks)
@@ -142,16 +109,15 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
         public static RandomQuestionViewModel ToRandomQuestionViewModel(this Question entity, IUserRepository userRepository, string authenticatedUserName, QuestionFlag currentUserQuestionFlag = null)
         {
-            if (entity == null) throw new NullException(() => entity);
-
             var viewModel = new RandomQuestionViewModel()
             {
                 SelectedCategories = new List<CategoryViewModel>(),
                 Question = entity.ToViewModel()
             };
 
-            // Login
+            // Partials
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             // Links
             foreach (QuestionLink questionLink in entity.QuestionLinks)
@@ -175,7 +141,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             }
             else
             {
-                viewModel.CurrentUserQuestionFlag = new CurrentUserQuestionFlagViewModel();
+                viewModel.CurrentUserQuestionFlag = new CurrentUserQuestionFlagPartialViewModel();
             }
 
             return viewModel;
@@ -183,8 +149,6 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
         public static QuestionConfirmDeleteViewModel ToConfirmDeleteViewModel(this Question question, IUserRepository userRepository, string authenticatedUserName)
         {
-            if (question == null) throw new NullException(() => question);
-
             var viewModel = new QuestionConfirmDeleteViewModel
             {
                 ID = question.ID,
@@ -192,6 +156,20 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             };
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
+
+            return viewModel;
+        }
+
+        public static QuestionDeleteConfirmedViewModel ToDeleteConfirmedViewModel(this Question question, IUserRepository userRepository, string authenticatedUserName)
+        {
+            var viewModel = new QuestionDeleteConfirmedViewModel
+            {
+                ID = question.ID
+            };
+
+            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             return viewModel;
         }

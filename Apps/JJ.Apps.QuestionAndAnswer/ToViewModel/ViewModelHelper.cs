@@ -13,6 +13,10 @@ using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Framework.Reflection;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
+using System.Globalization;
+using JJ.Framework.PlatformCompatibility;
+using JJ.Apps.QuestionAndAnswer.Helpers;
+using System.Threading;
 
 namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 {
@@ -85,6 +89,46 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             {
                 CanLogIn = true
             };
+        }
+
+        public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel()
+        {
+            return ViewModelHelper.CreateLanguageSelectionViewModel(CultureHelper.GetAvailableCultureNames(), CultureHelper.GetCurrentCultureName());
+        }
+
+        public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel(string cultureName)
+        {
+            return ViewModelHelper.CreateLanguageSelectionViewModel(CultureHelper.GetAvailableCultureNames(), cultureName);
+        }
+
+        public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel(IList<string> availableCultureNames, string selectedCultureName)
+        {
+            var viewModel = new LanguageSelectorPartialViewModel();
+
+            // Fill culture list
+            viewModel.Languages = new List<LanguageViewModel>();
+
+            foreach (string cultureName in availableCultureNames)
+            {
+                CultureInfo cultureInfo = CultureInfo_PlatformSafe.GetCultureInfo(cultureName);
+
+                var language = new LanguageViewModel
+                {
+                    CultureName = cultureName,
+                    Name = cultureInfo.NativeName
+                };
+
+                viewModel.Languages.Add(language);
+            }
+
+            // Set selected culture
+            string currentCultureName = CultureInfo.CurrentUICulture.Name;
+            if (availableCultureNames.Contains(currentCultureName))
+            {
+                viewModel.SelectedLanguageCultureName = currentCultureName;
+            }
+
+            return viewModel;
         }
     }
 }

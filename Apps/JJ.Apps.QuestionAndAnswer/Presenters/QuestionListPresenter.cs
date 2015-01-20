@@ -31,19 +31,20 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionListViewModel Show()
         {
-            var listViewModel = new QuestionListViewModel();
-            listViewModel.List = new List<QuestionViewModel>();
+            var viewModel = new QuestionListViewModel();
+            viewModel.List = new List<QuestionViewModel>();
 
             foreach (Question question in _repositories.QuestionRepository.GetAll())
             {
                 QuestionViewModel itemViewModel = question.ToViewModel();
                 itemViewModel.IsFlagged = question.QuestionFlags.Where(x => x.FlagStatus.ID == (int)FlagStatusEnum.Flagged).Any();
-                listViewModel.List.Add(itemViewModel);
+                viewModel.List.Add(itemViewModel);
             }
 
-            listViewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
+            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
+            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
-            return listViewModel;
+            return viewModel;
         }
 
         public QuestionListViewModel Filter(bool? isFlagged)
@@ -81,6 +82,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
             return deletePresenter.Show(questionID);
+        }
+
+        public object SetLanguage(string cultureName)
+        {
+            CultureHelper.SetCulture(cultureName);
+            // TODO: Filter parameters should be yielded over once they are used.
+            return Show();
         }
     }
 }

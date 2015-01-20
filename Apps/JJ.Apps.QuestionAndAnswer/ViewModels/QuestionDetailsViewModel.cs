@@ -10,7 +10,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
     public sealed class QuestionDetailsViewModel
     {
         public LoginPartialViewModel Login { get; set; }
-
+        public LanguageSelectorPartialViewModel LanguageSelector { get; set; }
         public QuestionViewModel Question { get; set; }
     }
 }

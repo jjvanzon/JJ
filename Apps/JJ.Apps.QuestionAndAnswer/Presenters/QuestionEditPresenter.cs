@@ -25,7 +25,6 @@ using JJ.Apps.QuestionAndAnswer.Resources;
 using JJ.Apps.QuestionAndAnswer.SideEffects;
 using JJ.Framework.Presentation;
 using System.Linq.Expressions;
-using JJ.Apps.QuestionAndAnswer.Presenters.Partials;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -94,7 +93,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         public object AddLink(QuestionEditViewModel viewModel)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoallesce();
+            viewModel.NullCoalesce();
 
             // ToEntity
             Question question = viewModel.ToEntity(_repositories);
@@ -122,7 +121,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
             if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoallesce();
+            viewModel.NullCoalesce();
 
             // 'Business'
             QuestionLinkViewModel questionLinkViewModel = viewModel.Question.Links.Where(x => x.TemporaryID == temporaryID).SingleOrDefault();
@@ -149,7 +148,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         public QuestionEditViewModel AddCategory(QuestionEditViewModel viewModel)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoallesce();
+            viewModel.NullCoalesce();
 
             // ToEntity
             Question question = viewModel.ToEntity(_repositories);
@@ -177,7 +176,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
             if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoallesce();
+            viewModel.NullCoalesce();
 
             // 'Business'
             QuestionCategoryViewModel questionCategoryViewModel = viewModel.Question.Categories.Where(x => x.TemporaryID == temporaryID).FirstOrDefault();
@@ -204,7 +203,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         public object Save(QuestionEditViewModel viewModel)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoallesce();
+            viewModel.NullCoalesce();
 
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
@@ -269,6 +268,28 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
             return deletePresenter.Show(viewModel.Question.ID);
+        }
+
+        public object SetLanguage(QuestionEditViewModel viewModel, string cultureName)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
+
+            // Business
+            CultureHelper.SetCulture(cultureName);
+
+            // ToEntity
+            Question question = viewModel.ToEntity(_repositories);
+
+            // ToViewModel
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
+            
+            // Non-persisted properties
+            viewModel2.IsNew = viewModel.IsNew;
+            viewModel2.CanDelete = viewModel.CanDelete;
+            viewModel2.Title = viewModel.Title;
+
+            return viewModel2;
         }
 
         public QuestionListViewModel BackToList()

@@ -14,6 +14,8 @@ using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Framework.Reflection;
+using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Apps.QuestionAndAnswer.Extensions;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -98,12 +100,24 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return randomQuestionPresenter.Show(categoryIDs.ToArray());
         }
 
+        public CategorySelectorViewModel SetLanguage(CategorySelectorViewModel viewModel, string cultureName)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
+
+            CultureHelper.SetCulture(cultureName);
+
+            // Create view model
+            IList<int> selectedCategoryIDs = viewModel.SelectedCategories.AndRecursive(x => x.SubCategories).Select(x => x.ID).ToArray();
+            return CreateViewModel(selectedCategoryIDs);
+        }
+
         // Private Methods
 
         private CategorySelectorViewModel CreateViewModel()
         {
-            List<CategoryViewModel> availableCategories = CreateCategoriesViewModelRecursive();
-            List<CategoryViewModel> selectedCategories = CreateCategoriesViewModelRecursive();
+            IList<CategoryViewModel> availableCategories = CreateCategoriesViewModelRecursive();
+            IList<CategoryViewModel> selectedCategories = CreateCategoriesViewModelRecursive();
 
             HideAllNodesRecursive(selectedCategories);
 
@@ -116,6 +130,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.NoCategoriesAvailable = viewModel.AvailableCategories.Count == 0;
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _userRepository);
+            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             return viewModel;
         }
@@ -128,7 +143,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        private List<CategoryViewModel> CreateCategoriesViewModelRecursive()
+        private IList<CategoryViewModel> CreateCategoriesViewModelRecursive()
         {
             IEnumerable<Category> categories = _categoryManager.GetCategoryTree();
 
@@ -143,7 +158,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModels;
         }
 
-        private void HideAllNodesRecursive(List<CategoryViewModel> categoryViewModels)
+        private void HideAllNodesRecursive(IList<CategoryViewModel> categoryViewModels)
         {
             foreach (CategoryViewModel categoryViewModel in categoryViewModels)
             {
@@ -153,7 +168,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
         }
 
-        private void AddSelectedCategoryIDsRecursive(List<int> outputList, List<CategoryViewModel> categoryViewModels)
+        private void AddSelectedCategoryIDsRecursive(IList<int> outputList, IList<CategoryViewModel> categoryViewModels)
         {
             if (categoryViewModels == null)
             {
@@ -171,7 +186,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
         }
 
-        private void ShowSelectedNodesRecursive(List<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
+        private void ShowSelectedNodesRecursive(IList<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
         {
             foreach (CategoryViewModel categoryViewModel in categoryViewModels)
             {
@@ -185,7 +200,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
         }
 
-        private void HideSelectedLeafNodesRecursive(List<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
+        private void HideSelectedLeafNodesRecursive(IList<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
         {
             foreach (CategoryViewModel categoryViewModel in categoryViewModels)
             {

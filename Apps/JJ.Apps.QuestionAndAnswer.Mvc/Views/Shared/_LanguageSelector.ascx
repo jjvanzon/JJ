@@ -4,7 +4,15 @@
     $(document).ready(function () {
         $("#selectedLanguageDropDownListBox").change(function () {
             var cultureName = $(this).val();
-            window.location.href = "<%:Url.Action(ActionNames.SetLanguage)%>?<%:ActionParameterNames.cultureName%>=" + cultureName;
+            var url = window.location.pathname + '?<%:ActionParameterNames.lang%>=' + cultureName;
+
+            if (window.document.forms.length == 0) {
+                window.location.href = url;
+            }
+            else {
+                window.document.forms[0].action = url;
+                window.document.forms[0].submit();
+            }
         });
     });
 </script>

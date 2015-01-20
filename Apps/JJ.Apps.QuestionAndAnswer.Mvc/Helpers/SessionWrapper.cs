@@ -21,12 +21,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Helpers
             _session = session;
         }
 
-        public string CultureName
-        {
-            get { return (string)_session[SessionKeys.CultureName]; }
-            set { _session[SessionKeys.CultureName] = value; }
-        }
-
         public string AuthenticatedUserName
         {
             get { return (string)_session[SessionKeys.AuthenticatedUserName]; }

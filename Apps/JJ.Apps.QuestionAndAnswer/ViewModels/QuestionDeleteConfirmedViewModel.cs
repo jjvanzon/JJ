@@ -9,5 +9,7 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
     public sealed class QuestionDeleteConfirmedViewModel
     {
         public LoginPartialViewModel Login { get; set; }
+        public LanguageSelectorPartialViewModel LanguageSelector { get; set; }
+        public int ID { get; set; }
     }
 }

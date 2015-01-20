@@ -13,5 +13,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Names
         public const string questionLinkID = "questionLinkID";
         public const string cultureName = "cultureName";
         public const string temporaryID = "temporaryID";
+        public const string lang = "lang";
     }
 }

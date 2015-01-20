@@ -49,14 +49,22 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             question.DeleteRelatedEntities(_repositories.AnswerRepository, _repositories.QuestionCategoryRepository, _repositories.QuestionLinkRepository, _repositories.QuestionFlagRepository);
             question.UnlinkRelatedEntities();
 
+            QuestionDeleteConfirmedViewModel viewModel = question.ToDeleteConfirmedViewModel(_repositories.UserRepository, _authenticatedUserName);
+
             _repositories.QuestionRepository.Delete(question);
             _repositories.QuestionRepository.Commit();
 
-            var viewModel = new QuestionDeleteConfirmedViewModel();
-
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
+            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             return viewModel;
+        }
+
+        public object SetLanguage(QuestionDeleteConfirmedViewModel viewModel, string cultureName)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
+            return Show(viewModel.ID);
         }
 
         public QuestionListViewModel BackToList()

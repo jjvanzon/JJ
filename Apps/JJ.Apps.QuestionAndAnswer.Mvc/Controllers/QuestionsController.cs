@@ -46,7 +46,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         // GET: /Questions/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, string lang = null)
         {
             object viewModel;
             if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
@@ -55,7 +55,15 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     QuestionDetailsPresenter presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName());
-                    viewModel = presenter.Show(id);
+
+                    if (!String.IsNullOrEmpty(lang))
+                    {
+                        viewModel = presenter.SetLanguage(id, lang);
+                    }
+                    else
+                    {
+                        viewModel = presenter.Show(id);
+                    }
                 }
             }
 
@@ -113,15 +121,26 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         }
 
         // POST: /Questions/Edit/5
+        // POST: /Questions/Edit/5?lang=en-US
 
         [HttpPost]
-        public ActionResult Edit(QuestionEditViewModel viewModel)
+        public ActionResult Edit(QuestionEditViewModel viewModel, string lang)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                object viewModel2 = presenter.Save(viewModel);
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+
+                object viewModel2;
+                if (!String.IsNullOrEmpty(lang))
+                {
+                    viewModel2 = presenter.SetLanguage(viewModel, lang);
+                }
+                else
+                {
+                    viewModel2 = presenter.Save(viewModel);
+                }
+
                 return GetActionResult(ActionNames.Edit, viewModel2);
             }
         }
@@ -287,6 +306,13 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 object viewModel2 = presenter.Unflag(viewModel);
                 return GetActionResult(ActionNames.Unflag, viewModel2);
             }
+        }
+
+        [HttpPost]
+        public ActionResult SetLanguage(string cultureName)
+        {
+
+            throw new NotImplementedException();
         }
 
         // Helpers

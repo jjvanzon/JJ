@@ -9,5 +9,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
     public sealed class QuestionNotFoundViewModel
     {
         public LoginPartialViewModel Login { get; set; }
+        public LanguageSelectorPartialViewModel LanguageSelector { get; set; }
     }
 }

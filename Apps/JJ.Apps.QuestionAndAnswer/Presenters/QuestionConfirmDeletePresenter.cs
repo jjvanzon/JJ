@@ -61,6 +61,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return new PreviousViewModel();
         }
 
+        public object SetLanguage(QuestionConfirmDeleteViewModel viewModel, string cultureName)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
+            return Show(viewModel.ID);
+        }
+
         private ActionDescriptor CreateSourceAction(Expression<Func<object>> methodCallExpression)
         {
             return ActionDescriptorHelper.CreateActionDescriptor(GetType(), methodCallExpression);

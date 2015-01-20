@@ -13,6 +13,7 @@ using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
 using JJ.Models.QuestionAndAnswer.Repositories;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Framework.Reflection;
+using JJ.Apps.QuestionAndAnswer.Helpers;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -214,6 +215,41 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
             viewModel2.CurrentUserQuestionFlag.CanFlag = viewModel.AnswerIsVisible;
+
+            return viewModel2;
+        }
+
+        public object SetLanguage(RandomQuestionViewModel viewModel, string cultureName)
+        {
+            // Check conditions
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
+
+            // Business logic
+            CultureHelper.SetCulture(cultureName);
+
+            // Get entities
+            Question question = _questionRepository.TryGet(viewModel.Question.ID);
+            if (question == null)
+            {
+                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
+                return presenter2.Show();
+            }
+            User user = _userRepository.TryGetByUserName(_authenticatedUserName);
+            QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
+
+            // Create new view model
+            RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
+
+            // Set non-persisted properties
+            viewModel2.UserAnswer = viewModel.UserAnswer;
+            if (viewModel.SelectedCategories != null)
+            {
+                viewModel2.SelectedCategories = viewModel.SelectedCategories;
+            }
+
+            // Links reveal answer.
+            viewModel2.Question.Links.Clear();
 
             return viewModel2;
         }
