@@ -61,10 +61,18 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return new PreviousViewModel();
         }
 
+        public object SetLanguage(int id, string cultureName)
+        {
+            CultureHelper.SetCulture(cultureName);
+            return Show(id);
+        }
+
         public object SetLanguage(QuestionConfirmDeleteViewModel viewModel, string cultureName)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
             viewModel.NullCoalesce();
+
+            CultureHelper.SetCulture(cultureName);
             return Show(viewModel.ID);
         }
 

@@ -1,4 +1,5 @@
 ﻿using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Framework.Presentation;
@@ -38,10 +39,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public LoginViewModel Show(ActionDescriptor sourceAction)
         {
-            return new LoginViewModel
-            {
-                SourceAction = sourceAction
-            };
+            LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
+            viewModel.SourceAction = sourceAction;
+            return viewModel;
         }
         
         public object Login(LoginViewModel viewModel)
@@ -65,10 +65,10 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 }
             }
 
-            return new LoginViewModel
-            {
-                UserName = viewModel.UserName
-            };
+            LoginViewModel loginViewModel = ViewModelHelper.CreateLoginViewModel();
+            loginViewModel.SourceAction = viewModel.SourceAction;
+            loginViewModel.UserName = viewModel.UserName;
+            return loginViewModel;
         }
 
         public LoginViewModel SetLanguage(LoginViewModel viewModel, string cultureName)
@@ -77,11 +77,10 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             CultureHelper.SetCulture(cultureName);
 
-            return new LoginViewModel
-            {
-                UserName = viewModel.UserName,
-                SourceAction = viewModel.SourceAction
-            };
+            LoginViewModel viewModel2 = ViewModelHelper.CreateLoginViewModel();
+            viewModel2.UserName = viewModel.UserName;
+            viewModel2.SourceAction = viewModel.SourceAction;
+            return viewModel2;
         }
     }
 }

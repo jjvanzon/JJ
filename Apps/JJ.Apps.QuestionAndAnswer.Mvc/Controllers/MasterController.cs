@@ -17,6 +17,7 @@ using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
+using System.Threading;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -25,7 +26,20 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
     /// </summary>
     public abstract class MasterController : Controller
     {
-        private SessionWrapper GetSessionWrapper()
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            string cultureName = GetSessionWrapper().CultureName;
+            if (!String.IsNullOrEmpty(cultureName))
+            {
+                CultureInfo cultureInfo = new CultureInfo(GetSessionWrapper().CultureName);
+                Thread.CurrentThread.CurrentCulture = cultureInfo;
+                Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
+        protected SessionWrapper GetSessionWrapper()
         {
             return new SessionWrapper(Session);
         }
@@ -144,6 +158,22 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                         TempData[TempDataKeys.ViewModel] = viewModel;
                         return RedirectToAction(ActionNames.Edit, ControllerNames.Questions, new { id = questionEditViewModel.Question.ID });
                     }
+                }
+            }
+
+            var questionConfirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
+            if (questionConfirmDeleteViewModel != null)
+            {
+                bool isSameControllerAndAction = String.Equals(sourceControllerName, ControllerNames.Questions) &&
+                                                 String.Equals(sourceActionName, ActionNames.Delete);
+                if (isSameControllerAndAction)
+                {
+                    return View(viewModel);
+                }
+                else
+                {
+                    TempData[TempDataKeys.ViewModel] = viewModel;
+                    return RedirectToAction(ActionNames.Delete, ControllerNames.Questions, new { id = questionConfirmDeleteViewModel.ID });
                 }
             }
 

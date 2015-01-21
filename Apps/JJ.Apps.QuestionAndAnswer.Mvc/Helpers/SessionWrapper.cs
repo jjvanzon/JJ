@@ -27,10 +27,10 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Helpers
             set { _session[SessionKeys.AuthenticatedUserName] = value; }
         }
 
-        public LoginPartialViewModel LoginPartialViewModel
+        public string CultureName
         {
-            get { return (LoginPartialViewModel)_session[SessionKeys.LoginPartialViewModel]; }
-            set { _session[SessionKeys.LoginPartialViewModel] = value; }
+            get { return (string)_session[SessionKeys.CultureName]; }
+            set { _session[SessionKeys.CultureName] = value; }
         }
     }
 }

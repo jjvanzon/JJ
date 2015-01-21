@@ -27,7 +27,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     CategorySelectorRepositories repositories = CreateRepositories(context);
-                    CategorySelectorPresenter presenter = CreatePresenter(repositories);
+                    var presenter = CreatePresenter(repositories);
                     viewModel = presenter.Show();
                 }
             }
@@ -35,10 +35,25 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return GetActionResult(ActionNames.Index, viewModel);
         }
 
+        // POST: /CategorySelector?lang=en-US
+
+        [HttpPost]
+        public ActionResult Index(CategorySelectorViewModel viewModel, string lang)
+        {
+            using (IContext context = PersistenceHelper.CreateContext())
+            {
+                CategorySelectorRepositories repositories = CreateRepositories(context);
+                var presenter = CreatePresenter(repositories);
+                object viewModel2 = presenter.SetLanguage(viewModel, lang);
+                GetSessionWrapper().CultureName = lang;
+                return GetActionResult(ActionNames.Index, viewModel2);
+            }
+        }
+
         // POST: /CategorySelector/Add/5
 
         [HttpPost]
-        public ActionResult Add(int categoryID, CategorySelectorViewModel viewModel)
+        public ActionResult Add(CategorySelectorViewModel viewModel, int categoryID)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
@@ -57,7 +72,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 CategorySelectorRepositories repositories = CreateRepositories(context);
-                CategorySelectorPresenter presenter = CreatePresenter(repositories);
+                var presenter = CreatePresenter(repositories);
                 object viewModel2 = presenter.Remove(viewModel, categoryID);
                 return GetActionResult(ActionNames.Remove, viewModel2);
             }

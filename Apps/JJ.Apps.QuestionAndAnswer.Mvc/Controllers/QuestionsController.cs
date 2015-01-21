@@ -28,7 +28,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         // GET: /Questions
         // GET: /Questions/Index
 
-        public ActionResult Index()
+        public ActionResult Index(string lang = null)
         {
             object viewModel;
             if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
@@ -36,8 +36,17 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    QuestionListPresenter presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
-                    viewModel = presenter.Show();
+                    var presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
+
+                    if (!String.IsNullOrEmpty(lang))
+                    {
+                        viewModel = presenter.SetLanguage(lang);
+                        GetSessionWrapper().CultureName = lang;
+                    }
+                    else
+                    {
+                        viewModel = presenter.Show();
+                    }
                 }
             }
 
@@ -54,11 +63,12 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    QuestionDetailsPresenter presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName());
+                    var presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName());
 
                     if (!String.IsNullOrEmpty(lang))
                     {
                         viewModel = presenter.SetLanguage(id, lang);
+                        GetSessionWrapper().CultureName = lang;
                     }
                     else
                     {
@@ -80,7 +90,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+                    var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Create();
                 }
             }
@@ -91,13 +101,22 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         // POST: /Questions/Create
 
         [HttpPost]
-        public ActionResult Create(QuestionEditViewModel viewModel)
+        public ActionResult Create(QuestionEditViewModel viewModel, string lang = null)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                object viewModel2 = presenter.Save(viewModel);
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+                object viewModel2;
+                if (!String.IsNullOrEmpty(lang))
+                {
+                    viewModel2 = presenter.SetLanguage(viewModel, lang);
+                    GetSessionWrapper().CultureName = lang;
+                }
+                else
+                {
+                    viewModel2 = presenter.Save(viewModel);
+                }
                 return GetActionResult(ActionNames.Create, viewModel2);
             }
         }
@@ -112,7 +131,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+                    var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Edit(id);
                 }
             }
@@ -135,6 +154,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 if (!String.IsNullOrEmpty(lang))
                 {
                     viewModel2 = presenter.SetLanguage(viewModel, lang);
+                    GetSessionWrapper().CultureName = lang;
                 }
                 else
                 {
@@ -147,7 +167,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
         // GET: /Questions/Delete/5
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, string lang = null)
         {
             object viewModel;
             if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
@@ -155,8 +175,16 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    QuestionConfirmDeletePresenter presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
-                    viewModel = presenter.Show(id);
+                    var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
+
+                    if (!String.IsNullOrEmpty(lang))
+                    {
+                        viewModel = presenter.SetLanguage(id, lang);
+                    }
+                    else
+                    {
+                        viewModel = presenter.Show(id);
+                    }
                 }
             }
 
@@ -166,13 +194,28 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         // POST: /Questions/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(QuestionConfirmDeleteViewModel viewModel, int id)
+        public ActionResult Delete(QuestionConfirmDeleteViewModel viewModel, int id, string lang = null)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                QuestionDeleteConfirmedPresenter presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName());
-                object viewModel2 = presenter.Show(id);
+
+                // Redirection goes wrong when you set language and do not do a custom handling.
+                object viewModel2;
+                if (!String.IsNullOrEmpty(lang))
+                {
+                    var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
+                    viewModel2 = presenter.SetLanguage(viewModel, lang);
+                    GetSessionWrapper().CultureName = lang;
+                    TempData[TempDataKeys.ViewModel] = viewModel2;
+                    return RedirectToAction(ActionNames.Delete, new { id });
+                }
+                else
+                {
+                    var presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName());
+                    viewModel2 = presenter.Show(id);
+                }
+
                 return GetActionResult(ActionNames.Delete, viewModel2);
             }
         }
@@ -185,7 +228,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.AddLink(viewModel);
                 return GetActionResult(ActionNames.AddLink, viewModel2);
             }
@@ -199,7 +242,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
                 return GetActionResult(ActionNames.RemoveLink, viewModel2);
             }
@@ -213,7 +256,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.AddCategory(viewModel);
                 return GetActionResult(ActionNames.AddCategory, viewModel2);
             }
@@ -227,7 +270,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                QuestionEditPresenter presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
                 return GetActionResult(ActionNames.RemoveCategory, viewModel2);
             }
@@ -244,12 +287,27 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                    var presenter = CreateRandomQuestionPresenter(repositories);
                     viewModel = presenter.Show(c);
                 }
             }
 
             return GetActionResult(ActionNames.Random, viewModel);
+        }
+
+        // POST: /Questions/Random?lang=en-US
+
+        [HttpPost]
+        public ActionResult Random(RandomQuestionViewModel viewModel, string lang)
+        {
+            using (IContext context = PersistenceHelper.CreateContext())
+            {
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
+                var presenter = CreateRandomQuestionPresenter(repositories);
+                object viewModel2 = presenter.SetLanguage(viewModel, lang);
+                GetSessionWrapper().CultureName = lang;
+                return GetActionResult(ActionNames.Random, viewModel2);
+            }
         }
 
         // POST: /Questions/ShowAnswer/5
@@ -260,7 +318,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                var presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.ShowAnswer(viewModel);
                 return GetActionResult(ActionNames.ShowAnswer, viewModel2);
             }
@@ -274,7 +332,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                var presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.HideAnswer(viewModel);
                 return GetActionResult(ActionNames.HideAnswer, viewModel2);
             }
@@ -288,7 +346,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                var presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Flag(viewModel);
                 return GetActionResult(ActionNames.Flag, viewModel2);
             }
@@ -302,17 +360,10 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
+                var presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Unflag(viewModel);
                 return GetActionResult(ActionNames.Unflag, viewModel2);
             }
-        }
-
-        [HttpPost]
-        public ActionResult SetLanguage(string cultureName)
-        {
-
-            throw new NotImplementedException();
         }
 
         // Helpers
@@ -320,10 +371,10 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         private RandomQuestionPresenter CreateRandomQuestionPresenter(Repositories repositories)
         {
             return new RandomQuestionPresenter(
-                repositories.QuestionRepository, 
-                repositories.CategoryRepository, 
-                repositories.QuestionFlagRepository, 
-                repositories.FlagStatusRepository, 
+                repositories.QuestionRepository,
+                repositories.CategoryRepository,
+                repositories.QuestionFlagRepository,
+                repositories.FlagStatusRepository,
                 repositories.UserRepository,
                 TryGetAuthenticatedUserName());
         }

@@ -35,13 +35,22 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(LoginViewModel viewModel)
+        public ActionResult Index(LoginViewModel viewModel, string lang = null)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 LoginPresenter presenter = new LoginPresenter(repositories);
-                object viewModel2 = presenter.Login(viewModel);
+                object viewModel2;
+                if (!String.IsNullOrEmpty(lang))
+                {
+                    viewModel2 = presenter.SetLanguage(viewModel, lang);
+                    GetSessionWrapper().CultureName = lang;
+                }
+                else
+                {
+                    viewModel2 = presenter.Login(viewModel);
+                }
 
                 // TODO: This is dirty.
                 if (!(viewModel2 is LoginViewModel))

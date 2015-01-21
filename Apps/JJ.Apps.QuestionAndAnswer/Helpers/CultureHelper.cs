@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.PlatformCompatibility;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
 
         public static void SetCulture(string cultureName)
         {
-            CultureInfo culture = CultureInfo.GetCultureInfo(cultureName);
+            CultureInfo culture = CultureInfo_PlatformSafe.GetCultureInfo(cultureName);
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
         }

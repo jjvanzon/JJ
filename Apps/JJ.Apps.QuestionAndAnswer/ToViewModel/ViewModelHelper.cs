@@ -17,6 +17,7 @@ using System.Globalization;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using System.Threading;
+using JJ.Framework.Presentation;
 
 namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 {
@@ -127,6 +128,16 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             {
                 viewModel.SelectedLanguageCultureName = currentCultureName;
             }
+
+            return viewModel;
+        }
+
+        public static LoginViewModel CreateLoginViewModel()
+        {
+            var viewModel = new LoginViewModel
+            {
+                LanguageSelector = CreateLanguageSelectionViewModel()
+            };
 
             return viewModel;
         }

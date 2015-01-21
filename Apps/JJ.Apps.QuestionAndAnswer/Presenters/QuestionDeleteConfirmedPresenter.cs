@@ -60,7 +60,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        public object SetLanguage(QuestionDeleteConfirmedViewModel viewModel, string cultureName)
+        public object SetLanguage(QuestionConfirmDeleteViewModel viewModel, string cultureName)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
             viewModel.NullCoalesce();

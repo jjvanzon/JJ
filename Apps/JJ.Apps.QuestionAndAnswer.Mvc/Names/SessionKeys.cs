@@ -7,7 +7,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Names
 {
     internal static class SessionKeys
     {
-        public const string LoginPartialViewModel = "LoginPartialViewModel";
+        public const string CultureName = "CultureName";
         public const string AuthenticatedUserName = "AuthenticatedUserName";
     }
 }
