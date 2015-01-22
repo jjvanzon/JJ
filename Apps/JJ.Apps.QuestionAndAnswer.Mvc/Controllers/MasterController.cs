@@ -18,47 +18,41 @@ using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
 using System.Threading;
+using System.Collections.Specialized;
+using JJ.Framework.Web;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
-    /// <summary>
-    /// Provides basic view data and basic actions, such as setting the language and a small login widget.
-    /// </summary>
     public abstract class MasterController : Controller
     {
+        private const string DEFAULT_CULTURE_NAME = "en-US";
+
+        protected SessionWrapper SessionWrapper { get; private set; }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            string cultureName = GetSessionWrapper().CultureName;
-            if (!String.IsNullOrEmpty(cultureName))
-            {
-                CultureInfo cultureInfo = new CultureInfo(GetSessionWrapper().CultureName);
-                Thread.CurrentThread.CurrentCulture = cultureInfo;
-                Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            }
+            SessionWrapper = new SessionWrapper(Session);
+
+            CultureWebHelper.SetThreadCultureByHttpHeaderOrCookie(ControllerContext.HttpContext, DEFAULT_CULTURE_NAME);
 
             base.OnActionExecuting(filterContext);
-        }
-
-        protected SessionWrapper GetSessionWrapper()
-        {
-            return new SessionWrapper(Session);
         }
 
         // Login
 
         protected string TryGetAuthenticatedUserName()
         {
-            return GetSessionWrapper().AuthenticatedUserName;
+            return SessionWrapper.AuthenticatedUserName;
         }
 
         public void SetAuthenticatedUserName(string authenticatedUserName)
         {
-            GetSessionWrapper().AuthenticatedUserName = authenticatedUserName;
+            SessionWrapper.AuthenticatedUserName = authenticatedUserName;
         }
 
         public ActionResult LogOut()
         {
-            GetSessionWrapper().AuthenticatedUserName = null;
+            SessionWrapper.AuthenticatedUserName = null;
 
             return RedirectToAction(ActionNames.Index, ControllerNames.Login);
         }

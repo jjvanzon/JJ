@@ -15,6 +15,7 @@ using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Models.QuestionAndAnswer.Repositories;
+using JJ.Framework.Web;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -213,7 +214,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.SetLanguage(viewModel, lang);
-                GetSessionWrapper().CultureName = lang;
+                CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
                 return GetActionResult(ActionNames.Random, viewModel2);
             }
         }

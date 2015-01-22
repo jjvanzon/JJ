@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JJ.Framework.Web;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
@@ -45,7 +46,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 if (!String.IsNullOrEmpty(lang))
                 {
                     viewModel2 = presenter.SetLanguage(viewModel, lang);
-                    GetSessionWrapper().CultureName = lang;
+                    CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
                 }
                 else
                 {

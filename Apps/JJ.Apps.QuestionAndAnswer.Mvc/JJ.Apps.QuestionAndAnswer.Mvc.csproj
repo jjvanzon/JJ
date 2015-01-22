@@ -161,6 +161,8 @@
     <Compile Include="Names\ActionParameterNames.cs" />
     <Compile Include="Helpers\CategorySelectorRepositories.cs" />
     <Compile Include="Names\ControllerNames.cs" />
+    <Compile Include="Names\CookieNames.cs" />
+    <Compile Include="Names\HttpHeaderNames.cs" />
     <Compile Include="Names\SessionKeys.cs" />
     <Compile Include="Names\TempDataKeys.cs" />
     <Compile Include="Names\ViewDataKeys.cs" />
@@ -337,6 +339,10 @@
     <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.csproj">
       <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
       <Name>JJ.Framework.Presentation.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Web\JJ.Framework.Web.csproj">
+      <Project>{164520aa-2db7-4405-9ae5-eb515527a33b}</Project>
+      <Name>JJ.Framework.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.Canonical\JJ.Models.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>

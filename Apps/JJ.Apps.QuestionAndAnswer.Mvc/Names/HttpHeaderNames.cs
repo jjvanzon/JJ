@@ -5,8 +5,8 @@ using System.Web;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Names
 {
-    internal static class SessionKeys
+    internal static class HttpHeaderNames
     {
-        public const string AuthenticatedUserName = "AuthenticatedUserName";
+        public const string AcceptLanguage = "Accept-Language";
     }
 }
