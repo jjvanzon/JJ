@@ -17,8 +17,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
     public class CategorySelectorController : MasterController
     {
-        // GET: /CategorySelector/
-
         public ActionResult Index()
         {
             object viewModel;
@@ -35,8 +33,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return GetActionResult(ActionNames.Index, viewModel);
         }
 
-        // POST: /CategorySelector?lang=en-US
-
         [HttpPost]
         public ActionResult Index(CategorySelectorViewModel viewModel, string lang)
         {
@@ -50,8 +46,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
         }
 
-        // POST: /CategorySelector/Add/5
-
         [HttpPost]
         public ActionResult Add(CategorySelectorViewModel viewModel, int categoryID)
         {
@@ -63,8 +57,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 return GetActionResult(ActionNames.Add, viewModel2);
             }
         }
-
-        // POST: /CategorySelector/AddCategory/5
 
         [HttpPost]
         public ActionResult Remove(int categoryID, CategorySelectorViewModel viewModel)

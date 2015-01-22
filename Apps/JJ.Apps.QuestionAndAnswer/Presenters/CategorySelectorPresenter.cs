@@ -108,7 +108,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             CultureHelper.SetCulture(cultureName);
 
             // Create view model
-            IList<int> selectedCategoryIDs = viewModel.SelectedCategories.AndRecursive(x => x.SubCategories).Select(x => x.ID).ToArray();
+            IList<int> selectedCategoryIDs = viewModel.SelectedCategories.UnionRecursive(x => x.SubCategories).Select(x => x.ID).ToArray();
             return CreateViewModel(selectedCategoryIDs);
         }
 

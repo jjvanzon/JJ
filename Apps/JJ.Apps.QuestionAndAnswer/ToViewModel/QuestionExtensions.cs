@@ -79,7 +79,6 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
             // Partials
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
-            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             // Links
             foreach (QuestionLink questionLink in question.QuestionLinks)
@@ -156,7 +155,6 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             };
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
-            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             return viewModel;
         }
@@ -169,7 +167,6 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             };
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
-            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             return viewModel;
         }

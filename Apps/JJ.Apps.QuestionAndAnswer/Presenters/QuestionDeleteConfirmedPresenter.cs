@@ -55,16 +55,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             _repositories.QuestionRepository.Commit();
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
-            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             return viewModel;
-        }
-
-        public object SetLanguage(QuestionConfirmDeleteViewModel viewModel, string cultureName)
-        {
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
-            return Show(viewModel.ID);
         }
 
         public QuestionListViewModel BackToList()

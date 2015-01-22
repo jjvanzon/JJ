@@ -25,9 +25,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             ValidateRequest = false;
         }
 
-        // GET: /Questions
-        // GET: /Questions/Index
-
         public ActionResult Index(string lang = null)
         {
             object viewModel;
@@ -52,8 +49,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
             return GetActionResult(ActionNames.Index, viewModel);
         }
-
-        // GET: /Questions/Details/5
 
         public ActionResult Details(int id, string lang = null)
         {
@@ -80,8 +75,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return GetActionResult(ActionNames.Details, viewModel);
         }
 
-        // GET: /Questions/Create
-
         public ActionResult Create()
         {
             object viewModel;
@@ -98,30 +91,17 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return GetActionResult(ActionNames.Create, viewModel);
         }
 
-        // POST: /Questions/Create
-
         [HttpPost]
-        public ActionResult Create(QuestionEditViewModel viewModel, string lang = null)
+        public ActionResult Create(QuestionEditViewModel viewModel)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                object viewModel2;
-                if (!String.IsNullOrEmpty(lang))
-                {
-                    viewModel2 = presenter.SetLanguage(viewModel, lang);
-                    GetSessionWrapper().CultureName = lang;
-                }
-                else
-                {
-                    viewModel2 = presenter.Save(viewModel);
-                }
+                object viewModel2 = presenter.Save(viewModel);
                 return GetActionResult(ActionNames.Create, viewModel2);
             }
         }
-
-        // GET: /Questions/Edit/5
 
         public ActionResult Edit(int id)
         {
@@ -139,35 +119,19 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return GetActionResult(ActionNames.Edit, viewModel);
         }
 
-        // POST: /Questions/Edit/5
-        // POST: /Questions/Edit/5?lang=en-US
-
         [HttpPost]
-        public ActionResult Edit(QuestionEditViewModel viewModel, string lang)
+        public ActionResult Edit(QuestionEditViewModel viewModel)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-
-                object viewModel2;
-                if (!String.IsNullOrEmpty(lang))
-                {
-                    viewModel2 = presenter.SetLanguage(viewModel, lang);
-                    GetSessionWrapper().CultureName = lang;
-                }
-                else
-                {
-                    viewModel2 = presenter.Save(viewModel);
-                }
-
+                object viewModel2 = presenter.Save(viewModel);
                 return GetActionResult(ActionNames.Edit, viewModel2);
             }
         }
 
-        // GET: /Questions/Delete/5
-
-        public ActionResult Delete(int id, string lang = null)
+        public ActionResult Delete(int id)
         {
             object viewModel;
             if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
@@ -176,51 +140,24 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
-
-                    if (!String.IsNullOrEmpty(lang))
-                    {
-                        viewModel = presenter.SetLanguage(id, lang);
-                    }
-                    else
-                    {
-                        viewModel = presenter.Show(id);
-                    }
+                    viewModel = presenter.Show(id);
                 }
             }
 
             return GetActionResult(ActionNames.Delete, viewModel);
         }
 
-        // POST: /Questions/Delete/5
-
         [HttpPost]
-        public ActionResult Delete(QuestionConfirmDeleteViewModel viewModel, int id, string lang = null)
+        public ActionResult Delete(QuestionConfirmDeleteViewModel viewModel, int id)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-
-                // Redirection goes wrong when you set language and do not do a custom handling.
-                object viewModel2;
-                if (!String.IsNullOrEmpty(lang))
-                {
-                    var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
-                    viewModel2 = presenter.SetLanguage(viewModel, lang);
-                    GetSessionWrapper().CultureName = lang;
-                    TempData[TempDataKeys.ViewModel] = viewModel2;
-                    return RedirectToAction(ActionNames.Delete, new { id });
-                }
-                else
-                {
-                    var presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName());
-                    viewModel2 = presenter.Show(id);
-                }
-
+                var presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName());
+                object viewModel2 = presenter.Show(id);
                 return GetActionResult(ActionNames.Delete, viewModel2);
             }
         }
-
-        // POST: /Questions/AddLink
 
         [HttpPost]
         public ActionResult AddLink(QuestionEditViewModel viewModel)
@@ -234,8 +171,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
         }
 
-        // POST: /Questions/RemoveLink?temporaryID=12345678-90AB-CDEF
-
         [HttpPost]
         public ActionResult RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
         {
@@ -247,8 +182,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 return GetActionResult(ActionNames.RemoveLink, viewModel2);
             }
         }
-
-        // POST: /Questions/AddCategory
 
         [HttpPost]
         public ActionResult AddCategory(QuestionEditViewModel viewModel)
@@ -262,8 +195,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
         }
 
-        // POST: /Questions/RemoveCategory?temporaryID=12345678-90AB-CDEF
-
         [HttpPost]
         public ActionResult RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
         {
@@ -275,9 +206,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 return GetActionResult(ActionNames.RemoveCategory, viewModel2);
             }
         }
-
-        // GET: /Questions/Random
-        // GET: /Questions/Random?c=1&c=2
 
         public ActionResult Random(int[] c)
         {
@@ -295,8 +223,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             return GetActionResult(ActionNames.Random, viewModel);
         }
 
-        // POST: /Questions/Random?lang=en-US
-
         [HttpPost]
         public ActionResult Random(RandomQuestionViewModel viewModel, string lang)
         {
@@ -310,8 +236,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
         }
 
-        // POST: /Questions/ShowAnswer/5
-
         [HttpPost]
         public ActionResult ShowAnswer(RandomQuestionViewModel viewModel)
         {
@@ -323,8 +247,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 return GetActionResult(ActionNames.ShowAnswer, viewModel2);
             }
         }
-
-        // POST: /Questions/HideAnswer/5
 
         [HttpPost]
         public ActionResult HideAnswer(RandomQuestionViewModel viewModel)
@@ -338,8 +260,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             }
         }
 
-        // POST: /Question/Flag/5
-
         [HttpPost]
         public ActionResult Flag(RandomQuestionViewModel viewModel)
         {
@@ -351,8 +271,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 return GetActionResult(ActionNames.Flag, viewModel2);
             }
         }
-
-        // POST: /Question/Unflag/5
 
         [HttpPost]
         public ActionResult Unflag(RandomQuestionViewModel viewModel)

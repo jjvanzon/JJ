@@ -11,7 +11,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
     public sealed class QuestionEditViewModel
     {
         public LoginPartialViewModel Login { get; set; }
-        public LanguageSelectorPartialViewModel LanguageSelector { get; set; }
 
         public QuestionViewModel Question { get; set; }
 

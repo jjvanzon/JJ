@@ -4,6 +4,76 @@
     <%: Titles.SelectCategories %>
 </asp:Content>
 
+<asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderContent" runat="server">
+    <div id="loginDiv"> <% Html.RenderPartial(ViewNames._Login, Model.Login); %> </div>
+    <div id="languageDiv"> <% Html.RenderPartial(ViewNames._LanguageSelector, Model.LanguageSelector); %> </div>
+</asp:Content>
+
+<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
+
+<% using (Html.BeginForm()) {%>
+
+    <h2><%: Titles.SelectCategories %></h2>
+
+    <% if (Model.NoCategoriesAvailable) { %>
+
+        <div id="divNoCategoriesAvailable">
+            <%: Messages.NoCategoriesAvailable %>
+        </div>
+
+    <% } else { %>
+   
+        <table class="pane">
+            <tr>
+                <td class="col1of2">
+                    <div id="divAvailableCategories"
+                            ondragover="divAvailableCategories_onDragOver(event)"
+                            ondrop="divAvailableCategories_onDrop(event)">
+
+                        <h3><%: Titles.AvailableCategories %></h3>
+
+                        <ul class="category available">
+                            <% foreach (var availableCategory in Model.AvailableCategories) { %>
+
+                                <% Html.RenderPartial(ViewNames._AvailableCategory, availableCategory); %>
+
+                            <% } %>
+                        </ul>
+                    </div>
+                </td>
+
+                <td class="col2of2">
+                    <div id="divSelectedCategories" 
+                            ondragover="divSelectedCategories_onDragOver(event)"
+                            ondrop="divSelectedCategories_onDrop(event)">
+
+                        <h3><%: Titles.Selection %></h3>
+
+                        <ul class="category selected">
+
+                            <% using (Html.BeginCollection(() => Model.SelectedCategories)) {
+            
+                                foreach (var selectedCategory in Model.SelectedCategories) { %>
+
+                                    <% Html.RenderPartial(ViewNames._SelectedCategory, selectedCategory); %>
+
+                                <% } %>
+
+                            <% } %>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Random, ControllerNames.Questions, ActionParameterNames.c, Model.SelectedCategories.SelectRecursive(x => x.SubCategories).Where(x => x.Visible).Select(x => x.ID).ToArray()) %>
+
+    <% } %>
+    
+<% } %>
+
+</asp:Content>
+
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
     <script>
 
@@ -74,74 +144,4 @@
         };
 
     </script>
-</asp:Content>
-
-<asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderContent" runat="server">
-    <div id="loginDiv"> <% Html.RenderPartial(ViewNames._Login, Model.Login); %> </div>
-    <div id="languageDiv"> <% Html.RenderPartial(ViewNames._LanguageSelector, Model.LanguageSelector); %> </div>
-</asp:Content>
-
-<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
-
-<% using (Html.BeginForm()) {%>
-
-    <h2><%: Titles.SelectCategories %></h2>
-
-    <% if (Model.NoCategoriesAvailable) { %>
-
-        <div id="divNoCategoriesAvailable">
-            <%: Messages.NoCategoriesAvailable %>
-        </div>
-
-    <% } else { %>
-   
-        <table class="pane">
-            <tr>
-                <td class="col1of2">
-                    <div id="divAvailableCategories"
-                            ondragover="divAvailableCategories_onDragOver(event)"
-                            ondrop="divAvailableCategories_onDrop(event)">
-
-                        <h3><%: Titles.AvailableCategories %></h3>
-
-                        <ul class="category available">
-                            <% foreach (var availableCategory in Model.AvailableCategories) { %>
-
-                                <% Html.RenderPartial(ViewNames._AvailableCategory, availableCategory); %>
-
-                            <% } %>
-                        </ul>
-                    </div>
-                </td>
-
-                <td class="col2of2">
-                    <div id="divSelectedCategories" 
-                            ondragover="divSelectedCategories_onDragOver(event)"
-                            ondrop="divSelectedCategories_onDrop(event)">
-
-                        <h3><%: Titles.Selection %></h3>
-
-                        <ul class="category selected">
-
-                            <% using (Html.BeginCollection(() => Model.SelectedCategories)) {
-            
-                                foreach (var selectedCategory in Model.SelectedCategories) { %>
-
-                                    <% Html.RenderPartial(ViewNames._SelectedCategory, selectedCategory); %>
-
-                                <% } %>
-
-                            <% } %>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
-        <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Random, ControllerNames.Questions, ActionParameterNames.c, Model.SelectedCategories.SelectRecursive(x => x.SubCategories).Where(x => x.Visible).Select(x => x.ID).ToArray()) %>
-
-    <% } %>
-    
-<% } %>
-
 </asp:Content>

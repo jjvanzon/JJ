@@ -15,8 +15,6 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         public static void NullCoalesce(this QuestionEditViewModel viewModel)
         {
             viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
-            viewModel.LanguageSelector = viewModel.LanguageSelector ?? new LanguageSelectorPartialViewModel();
-            viewModel.LanguageSelector.NullCoalesce();
 
             viewModel.FlagStatuses = viewModel.FlagStatuses ?? new List<FlagStatusViewModel>();
             viewModel.Categories = viewModel.Categories ?? new List<CategoryViewModel>();
@@ -96,17 +94,11 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         public static void NullCoalesce(this QuestionConfirmDeleteViewModel viewModel)
         {
             viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
-            viewModel.LanguageSelector = viewModel.LanguageSelector ?? new LanguageSelectorPartialViewModel();
-
-            viewModel.LanguageSelector.NullCoalesce();
         }
 
         public static void NullCoalesce(this QuestionDeleteConfirmedViewModel viewModel)
         {
             viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
-            viewModel.LanguageSelector = viewModel.LanguageSelector ?? new LanguageSelectorPartialViewModel();
-
-            viewModel.LanguageSelector.NullCoalesce();
         }
 
         public static void NullCoalesce(this RandomQuestionViewModel viewModel)

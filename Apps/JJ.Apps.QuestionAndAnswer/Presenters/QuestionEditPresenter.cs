@@ -270,28 +270,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return deletePresenter.Show(viewModel.Question.ID);
         }
 
-        public object SetLanguage(QuestionEditViewModel viewModel, string cultureName)
-        {
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
-
-            // Business
-            CultureHelper.SetCulture(cultureName);
-
-            // ToEntity
-            Question question = viewModel.ToEntity(_repositories);
-
-            // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
-            
-            // Non-persisted properties
-            viewModel2.IsNew = viewModel.IsNew;
-            viewModel2.CanDelete = viewModel.CanDelete;
-            viewModel2.Title = viewModel.Title;
-
-            return viewModel2;
-        }
-
         public QuestionListViewModel BackToList()
         {
             var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
