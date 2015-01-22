@@ -28,7 +28,6 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
             // Partials
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
-            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             // Categories
             foreach (QuestionCategory questionCategory in question.QuestionCategories)

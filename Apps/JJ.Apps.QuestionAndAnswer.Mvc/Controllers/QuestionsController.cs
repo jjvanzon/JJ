@@ -25,7 +25,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             ValidateRequest = false;
         }
 
-        public ActionResult Index(string lang = null)
+        public ActionResult Index()
         {
             object viewModel;
             if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
@@ -34,23 +34,14 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     var presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
-
-                    if (!String.IsNullOrEmpty(lang))
-                    {
-                        viewModel = presenter.SetLanguage(lang);
-                        GetSessionWrapper().CultureName = lang;
-                    }
-                    else
-                    {
-                        viewModel = presenter.Show();
-                    }
+                    viewModel = presenter.Show();
                 }
             }
 
             return GetActionResult(ActionNames.Index, viewModel);
         }
 
-        public ActionResult Details(int id, string lang = null)
+        public ActionResult Details(int id)
         {
             object viewModel;
             if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
@@ -59,16 +50,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     var presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName());
-
-                    if (!String.IsNullOrEmpty(lang))
-                    {
-                        viewModel = presenter.SetLanguage(id, lang);
-                        GetSessionWrapper().CultureName = lang;
-                    }
-                    else
-                    {
-                        viewModel = presenter.Show(id);
-                    }
+                    viewModel = presenter.Show(id);
                 }
             }
 

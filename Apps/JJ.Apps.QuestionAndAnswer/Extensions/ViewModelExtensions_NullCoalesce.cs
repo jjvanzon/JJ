@@ -58,8 +58,6 @@ namespace JJ.Apps.QuestionAndAnswer.Extensions
         public static void NullCoalesce(this CategorySelectorViewModel viewModel)
         {
             viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
-            viewModel.LanguageSelector = viewModel.LanguageSelector ?? new LanguageSelectorPartialViewModel();
-            viewModel.LanguageSelector.NullCoalesce();
 
             viewModel.AvailableCategories = viewModel.AvailableCategories ?? new List<CategoryViewModel>();
             viewModel.SelectedCategories = viewModel.SelectedCategories ?? new List<CategoryViewModel>();

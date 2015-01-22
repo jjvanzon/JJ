@@ -10,7 +10,6 @@ namespace JJ.Apps.QuestionAndAnswer.ViewModels
     public sealed class CategorySelectorViewModel
     {
         public LoginPartialViewModel Login { get; set; }
-        public LanguageSelectorPartialViewModel LanguageSelector { get; set; }
         public bool NoCategoriesAvailable { get; set; }
         public IList<CategoryViewModel> AvailableCategories { get; set; }
         public IList<CategoryViewModel> SelectedCategories { get; set; }

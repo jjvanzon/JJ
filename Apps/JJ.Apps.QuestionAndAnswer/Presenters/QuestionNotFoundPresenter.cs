@@ -29,7 +29,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         {
             var viewModel = new QuestionNotFoundViewModel();
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _userRepository);
-            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
             return viewModel;
         }
 

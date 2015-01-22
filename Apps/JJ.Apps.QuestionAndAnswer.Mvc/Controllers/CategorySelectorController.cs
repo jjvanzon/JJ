@@ -34,19 +34,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(CategorySelectorViewModel viewModel, string lang)
-        {
-            using (IContext context = PersistenceHelper.CreateContext())
-            {
-                CategorySelectorRepositories repositories = CreateRepositories(context);
-                var presenter = CreatePresenter(repositories);
-                object viewModel2 = presenter.SetLanguage(viewModel, lang);
-                GetSessionWrapper().CultureName = lang;
-                return GetActionResult(ActionNames.Index, viewModel2);
-            }
-        }
-
-        [HttpPost]
         public ActionResult Add(CategorySelectorViewModel viewModel, int categoryID)
         {
             using (IContext context = PersistenceHelper.CreateContext())

@@ -15,7 +15,6 @@ using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Framework.Reflection;
 using JJ.Apps.QuestionAndAnswer.Helpers;
-using JJ.Apps.QuestionAndAnswer.Extensions;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -130,7 +129,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.NoCategoriesAvailable = viewModel.AvailableCategories.Count == 0;
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _userRepository);
-            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             return viewModel;
         }

@@ -42,7 +42,6 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             }
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
-            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
             return viewModel;
         }

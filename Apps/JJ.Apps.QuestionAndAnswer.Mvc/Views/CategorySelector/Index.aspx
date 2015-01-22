@@ -6,7 +6,6 @@
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderContent" runat="server">
     <div id="loginDiv"> <% Html.RenderPartial(ViewNames._Login, Model.Login); %> </div>
-    <div id="languageDiv"> <% Html.RenderPartial(ViewNames._LanguageSelector, Model.LanguageSelector); %> </div>
 </asp:Content>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
