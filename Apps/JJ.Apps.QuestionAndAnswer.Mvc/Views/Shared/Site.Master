@@ -12,7 +12,7 @@
     <script src="/Scripts/JJ.Framework.Assert.js"></script>
     <script src="/Scripts/JJ.Framework.Cookie.js"></script>
     <script src="/Scripts/JJ.Framework.RememberScrollPosition.js"></script>
-
+    <script src="/Scripts/JJ.Framework.Url.js"></script>
     <script>
         $(document).ready(function()
         {

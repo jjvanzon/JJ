@@ -77,9 +77,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             { typeof(CategorySelectorViewModel),        new Names(ControllerNames.CategorySelector, ActionNames.Index,      ViewNames.Index) },
             { typeof(LoginViewModel),                   new Names(ControllerNames.Login,            ActionNames.Index,      ViewNames.Index) },
-            { typeof(QuestionConfirmDeleteViewModel),   new Names(ControllerNames.Questions,        ActionNames.Delete,     ViewNames.Delete) },
             { typeof(QuestionDeleteConfirmedViewModel), new Names(ControllerNames.Questions,        null,                   ViewNames.Deleted) },
-            { typeof(QuestionDetailsViewModel),         new Names(ControllerNames.Questions,        ActionNames.Details,    ViewNames.Details) },
             { typeof(QuestionListViewModel),            new Names(ControllerNames.Questions,        ActionNames.Index,      ViewNames.Index) },
             { typeof(QuestionNotFoundViewModel),        new Names(ControllerNames.Questions,        null,                   ViewNames.NotFound) },
             { typeof(RandomQuestionViewModel),          new Names(ControllerNames.Questions,        ActionNames.Random,     ViewNames.Random) }
@@ -89,33 +87,70 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
         {
             if (viewModel == null) throw new NullException(() => viewModel);
 
-            string sourceControllerName = GetControllerName();
+            ActionResult actionResult;
 
-            // TODO: Low prio: do the generalized case first?
-            // TODO: Low prio: method too long? split up into multiple methods?
-
-            var questionDetailsViewModel = viewModel as QuestionDetailsViewModel;
-            if (questionDetailsViewModel != null)
+            actionResult = TryGetActionResultFromDictionary(sourceActionName, viewModel);
+            if (actionResult != null)
             {
-                bool isSameControllerAndAction = String.Equals(sourceControllerName, ControllerNames.Questions) &&
-                                                 String.Equals(sourceActionName, ActionNames.Details);
+                return actionResult;
+            }
+
+            actionResult = TryGetQuestionDetailsActionResult(sourceActionName, viewModel);
+            if (actionResult != null)
+            {
+                return actionResult;
+            }
+
+            actionResult = TryGetQuestionEditActionResult(sourceActionName, viewModel);
+            if (actionResult != null)
+            {
+                return actionResult;
+            }
+
+            actionResult = TryGetQuestionConfirmDeleteActionResult(sourceActionName, viewModel);
+            if (actionResult != null)
+            {
+                return actionResult;
+            }
+
+            throw new UnexpectedViewModelTypeException(viewModel);
+        }
+
+        private ActionResult TryGetActionResultFromDictionary(string sourceActionName, object viewModel)
+        {
+            Names names;
+            if (_dictionary.TryGetValue(viewModel.GetType(), out names))
+            {
+                bool hasActionName = !String.IsNullOrEmpty(names.ActionName);
+                if (!hasActionName)
+                {
+                    return View(names.ViewName, viewModel);
+                }
+
+                bool isSameControllerAndAction = String.Equals(names.ControllerName, GetControllerName()) &&
+                                                 String.Equals(names.ActionName, sourceActionName);
                 if (isSameControllerAndAction)
                 {
-                    return View(viewModel);
+                    return View(names.ViewName, viewModel);
                 }
                 else
                 {
                     TempData[TempDataKeys.ViewModel] = viewModel;
-                    return RedirectToAction(ActionNames.Details, new { id = questionDetailsViewModel.Question.ID });
+                    return RedirectToAction(names.ActionName, names.ControllerName);
                 }
             }
 
+            return null;
+        }
+
+        private ActionResult TryGetQuestionEditActionResult(string sourceActionName, object viewModel)
+        {
             var questionEditViewModel = viewModel as QuestionEditViewModel;
             if (questionEditViewModel != null)
             {
                 if (questionEditViewModel.IsNew)
                 {
-                    bool isSameControllerAndAction = String.Equals(sourceControllerName, ControllerNames.Questions) &&
+                    bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
                                                      String.Equals(sourceActionName, ActionNames.Create);
                     if (isSameControllerAndAction)
                     {
@@ -135,7 +170,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 }
                 else
                 {
-                    bool isSameControllerAndAction = String.Equals(sourceControllerName, ControllerNames.Questions) &&
+                    bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
                                                      String.Equals(sourceActionName, ActionNames.Edit);
                     if (isSameControllerAndAction)
                     {
@@ -155,10 +190,36 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
+            return null;
+        }
+
+        private ActionResult TryGetQuestionDetailsActionResult(string sourceActionName, object viewModel)
+        {
+            var questionDetailsViewModel = viewModel as QuestionDetailsViewModel;
+            if (questionDetailsViewModel != null)
+            {
+                bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
+                                                 String.Equals(sourceActionName, ActionNames.Details);
+                if (isSameControllerAndAction)
+                {
+                    return View(viewModel);
+                }
+                else
+                {
+                    TempData[TempDataKeys.ViewModel] = viewModel;
+                    return RedirectToAction(ActionNames.Details, new { id = questionDetailsViewModel.Question.ID });
+                }
+            }
+
+            return null;
+        }
+
+        private ActionResult TryGetQuestionConfirmDeleteActionResult(string sourceActionName, object viewModel)
+        {
             var questionConfirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
             if (questionConfirmDeleteViewModel != null)
             {
-                bool isSameControllerAndAction = String.Equals(sourceControllerName, ControllerNames.Questions) &&
+                bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
                                                  String.Equals(sourceActionName, ActionNames.Delete);
                 if (isSameControllerAndAction)
                 {
@@ -171,29 +232,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            Names names;
-            if (_dictionary.TryGetValue(viewModel.GetType(), out names))
-            {
-                bool hasActionName = !String.IsNullOrEmpty(names.ActionName);
-                if (!hasActionName)
-                {
-                    return View(names.ViewName, viewModel);
-                }
-
-                bool isSameControllerAndAction = String.Equals(names.ControllerName, sourceControllerName) &&
-                                                 String.Equals(names.ActionName, sourceActionName);
-                if (isSameControllerAndAction)
-                {
-                    return View(names.ViewName, viewModel);
-                }
-                else
-                {
-                    TempData[TempDataKeys.ViewModel] = viewModel;
-                    return RedirectToAction(names.ActionName, names.ControllerName);
-                }
-            }
-
-            throw new UnexpectedViewModelTypeException(viewModel);
+            return null;
         }
 
         private string GetControllerName()

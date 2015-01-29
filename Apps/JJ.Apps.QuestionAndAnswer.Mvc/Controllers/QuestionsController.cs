@@ -198,7 +198,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    var presenter = CreateRandomQuestionPresenter(repositories);
+                    RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                     viewModel = presenter.Show(c);
                 }
             }
@@ -212,7 +212,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = CreateRandomQuestionPresenter(repositories);
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.SetLanguage(viewModel, lang);
                 CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
                 return GetActionResult(ActionNames.Random, viewModel2);
@@ -225,7 +225,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = CreateRandomQuestionPresenter(repositories);
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.ShowAnswer(viewModel);
                 return GetActionResult(ActionNames.ShowAnswer, viewModel2);
             }
@@ -237,7 +237,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = CreateRandomQuestionPresenter(repositories);
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.HideAnswer(viewModel);
                 return GetActionResult(ActionNames.HideAnswer, viewModel2);
             }
@@ -249,7 +249,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = CreateRandomQuestionPresenter(repositories);
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Flag(viewModel);
                 return GetActionResult(ActionNames.Flag, viewModel2);
             }
@@ -261,7 +261,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = CreateRandomQuestionPresenter(repositories);
+                RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Unflag(viewModel);
                 return GetActionResult(ActionNames.Unflag, viewModel2);
             }

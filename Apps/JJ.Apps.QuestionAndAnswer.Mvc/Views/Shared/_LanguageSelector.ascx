@@ -4,7 +4,9 @@
     $(document).ready(function () {
         $("#selectedLanguageDropDownListBox").change(function () {
             var cultureName = $(this).val();
-            var url = window.location.pathname + '?<%:ActionParameterNames.lang%>=' + cultureName;
+
+            //var url = window.location.pathname + '?<%:ActionParameterNames.lang%>=' + cultureName;
+            var url = JJ.Framework.Url.setParameter(window.location.href, "<%:ActionParameterNames.lang%>", cultureName);
 
             if (window.document.forms.length == 0) {
                 window.location.href = url;
