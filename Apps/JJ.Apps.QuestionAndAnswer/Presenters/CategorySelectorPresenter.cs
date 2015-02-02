@@ -66,6 +66,8 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// </summary>
         public CategorySelectorViewModel Add(CategorySelectorViewModel viewModel, int categoryID)
         {
+            if (viewModel == null) throw new NullException(() => viewModel);
+
             var selectedCategoryIDs = new List<int>();
             AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
             selectedCategoryIDs.Add(categoryID);
@@ -79,6 +81,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         /// </summary>
         public CategorySelectorViewModel Remove(CategorySelectorViewModel viewModel, int categoryID)
         {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
+
             var selectedCategoryIDs = new List<int>();
             AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
 
@@ -92,6 +97,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public object StartTraining(CategorySelectorViewModel viewModel)
         {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
+
             var categoryIDs = new List<int>();
             AddSelectedCategoryIDsRecursive(categoryIDs, viewModel.SelectedCategories);
 

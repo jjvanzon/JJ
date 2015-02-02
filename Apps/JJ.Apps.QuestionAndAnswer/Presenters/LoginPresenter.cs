@@ -37,6 +37,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             return Show(_defaultSourceAction);
         }
 
+        /// <param name="sourceAction">nullable</param>
         public LoginViewModel Show(ActionDescriptor sourceAction)
         {
             LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();

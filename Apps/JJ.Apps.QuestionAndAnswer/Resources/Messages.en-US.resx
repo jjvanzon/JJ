@@ -135,4 +135,7 @@
   <data name="YouHaveJavaScriptDisabled" xml:space="preserve">
     <value>You have JavaScript disabled. Here is the alternative content:</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>You are not authorized to view this content.</value>
+  </data>
 </root>

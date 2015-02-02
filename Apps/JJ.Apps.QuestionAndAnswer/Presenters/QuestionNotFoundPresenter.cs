@@ -17,7 +17,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
         private IUserRepository _userRepository;
 
         /// <param name="authenticatedUserName">nullable</param>
-        public QuestionNotFoundPresenter(string authenticatedUserName, IUserRepository userRepository)
+        public QuestionNotFoundPresenter(IUserRepository userRepository, string authenticatedUserName)
         {
             if (userRepository == null) throw new NullException(() => userRepository);
 

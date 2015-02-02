@@ -25,6 +25,20 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
     public abstract class MasterController : Controller
     {
+        private class Names
+        {
+            public Names(string controllerName, string actionName, string viewName)
+            {
+                ControllerName = controllerName;
+                ActionName = actionName;
+                ViewName = viewName;
+            }
+
+            public string ControllerName { get; private set; }
+            public string ActionName { get; private set; }
+            public string ViewName { get; private set; }
+        }
+
         private const string DEFAULT_CULTURE_NAME = "en-US";
 
         protected SessionWrapper SessionWrapper { get; private set; }
@@ -50,38 +64,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             SessionWrapper.AuthenticatedUserName = authenticatedUserName;
         }
 
-        public ActionResult LogOut()
-        {
-            SessionWrapper.AuthenticatedUserName = null;
-
-            return RedirectToAction(ActionNames.Index, ControllerNames.Login);
-        }
-
         // GetActionResult
-
-        private class Names
-        {
-            public Names(string controllerName, string actionName, string viewName)
-            {
-                ControllerName = controllerName;
-                ActionName = actionName;
-                ViewName = viewName;
-            }
-
-            public string ControllerName { get; private set; }
-            public string ActionName { get; private set; }
-            public string ViewName { get; private set; }
-        }
-
-        private static IDictionary<Type, Names> _dictionary = new Dictionary<Type, Names>()
-        {
-            { typeof(CategorySelectorViewModel),        new Names(ControllerNames.CategorySelector, ActionNames.Index,      ViewNames.Index) },
-            { typeof(LoginViewModel),                   new Names(ControllerNames.Login,            ActionNames.Index,      ViewNames.Index) },
-            { typeof(QuestionDeleteConfirmedViewModel), new Names(ControllerNames.Questions,        null,                   ViewNames.Deleted) },
-            { typeof(QuestionListViewModel),            new Names(ControllerNames.Questions,        ActionNames.Index,      ViewNames.Index) },
-            { typeof(QuestionNotFoundViewModel),        new Names(ControllerNames.Questions,        null,                   ViewNames.NotFound) },
-            { typeof(RandomQuestionViewModel),          new Names(ControllerNames.Questions,        ActionNames.Random,     ViewNames.Random) }
-        };
 
         protected ActionResult GetActionResult(string sourceActionName, object viewModel)
         {
@@ -115,6 +98,17 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 
             throw new UnexpectedViewModelTypeException(viewModel);
         }
+
+        private static IDictionary<Type, Names> _dictionary = new Dictionary<Type, Names>()
+        {
+            { typeof(CategorySelectorViewModel), new Names(ControllerNames.CategorySelector, ActionNames.Index, ViewNames.Index) },
+            { typeof(LoginViewModel), new Names(ControllerNames.Login, ActionNames.Index, ViewNames.Index) },
+            { typeof(QuestionDeleteConfirmedViewModel), new Names(ControllerNames.Questions, null, ViewNames.Deleted) },
+            { typeof(QuestionListViewModel), new Names(ControllerNames.Questions, ActionNames.Index, ViewNames.Index) },
+            { typeof(QuestionNotFoundViewModel), new Names(ControllerNames.Questions, null, ViewNames.NotFound) },
+            { typeof(RandomQuestionViewModel), new Names(ControllerNames.Questions, ActionNames.Random, ViewNames.Random) },
+            { typeof(NotAuthorizedViewModel), new Names(null, null, ViewNames.NotAuthorized) }
+        };
 
         private ActionResult TryGetActionResultFromDictionary(string sourceActionName, object viewModel)
         {

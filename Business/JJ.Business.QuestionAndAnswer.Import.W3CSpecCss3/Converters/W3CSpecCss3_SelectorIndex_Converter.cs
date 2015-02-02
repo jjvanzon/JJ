@@ -180,10 +180,10 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
             name = name.Trim();
 
-            if (name == "E F" ||
-                name == "E > F" ||
-                name == "E + F" ||
-                name == "E ~ F")
+            if (String.Equals(name, "E F") ||
+                String.Equals(name, "E > F") ||
+                String.Equals(name, "E + F") ||
+                String.Equals(name, "E ~ F"))
             {
                 return false;
             }

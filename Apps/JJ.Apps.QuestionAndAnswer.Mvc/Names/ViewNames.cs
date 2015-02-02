@@ -15,7 +15,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Names
         public const string _Login = "_Login";
         public const string _LanguageSelector = "_LanguageSelector";
         public const string _SmallQuestionFlag = "_SmallQuestionFlag";
-        public const string NotAuthenticated = "NotAuthenticated";
+        public const string NotAuthorized = "NotAuthorized";
         public const string Edit = "Edit";
         public const string Delete = "Delete";
         public const string Deleted = "Deleted";

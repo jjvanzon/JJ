@@ -40,7 +40,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _repositories.QuestionRepository.TryGet(id);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _repositories.UserRepository);
+                var presenter2 = new QuestionNotFoundPresenter(_repositories.UserRepository, _authenticatedUserName);
                 return presenter2.Show();
             }
 

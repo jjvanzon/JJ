@@ -19,7 +19,7 @@ namespace JJ.Business.QuestionAndAnswer
         private IQuestionFlagRepository _questionFlagRepository;
         private IFlagStatusRepository _flagStatusRepository;
 
-        public QuestionFlagger(IQuestionFlagRepository questionFlagRepository, IFlagStatusRepository flagStatusRepository, User user)
+        public QuestionFlagger(User user, IQuestionFlagRepository questionFlagRepository, IFlagStatusRepository flagStatusRepository)
         {
             if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
             if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);

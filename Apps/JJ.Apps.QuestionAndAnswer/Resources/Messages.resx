@@ -129,6 +129,9 @@
   <data name="NoQuestionsFound" xml:space="preserve">
     <value>NoQuestionsFound</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>You are not authorized to view this content.</value>
+  </data>
   <data name="QuestionIsDeleted" xml:space="preserve">
     <value>QuestionIsDeleted</value>
   </data>

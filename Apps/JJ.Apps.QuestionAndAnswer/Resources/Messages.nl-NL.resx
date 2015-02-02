@@ -135,4 +135,7 @@
   <data name="YouHaveJavaScriptDisabled" xml:space="preserve">
     <value>U heeft JavaScript uit staan. Hier is de alternatieve inhoud:</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>U bent niet gemachtigd om deze inhoud te zien.</value>
+  </data>
 </root>

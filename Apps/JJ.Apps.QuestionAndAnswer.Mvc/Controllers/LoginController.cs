@@ -62,5 +62,12 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 return GetActionResult(ActionNames.Index, viewModel2);
             }
         }
+
+        public ActionResult LogOut()
+        {
+            SessionWrapper.AuthenticatedUserName = null;
+
+            return RedirectToAction(ActionNames.Index, ControllerNames.Login);
+        }
     }
 }

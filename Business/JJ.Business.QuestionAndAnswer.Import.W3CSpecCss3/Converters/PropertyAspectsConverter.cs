@@ -99,7 +99,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutPossibleValues(string answer)
         {
-            if (answer == "see individual properties")
+            if (String.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -167,7 +167,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutInitialValue(string answer)
         {
-            if (answer == "see individual properties")
+            if (String.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -235,7 +235,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutAppliesToElements(string answer)
         {
-            if (answer == "see individual properties")
+            if (String.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -295,7 +295,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutIsInherited(string answer)
         {
-            if (answer == "see individual properties")
+            if (String.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -360,12 +360,12 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 return false;
             }
 
-            if (answer == "see individual properties")
+            if (String.Equals(answer, "see individual properties"))
             {
                 return false;
             }
 
-            if (answer == "N/A")
+            if (String.Equals(answer, "N/A"))
             {
                 return false;
             }
@@ -425,7 +425,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutMedia(string answer)
         {
-            if (answer == "see individual properties")
+            if (String.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -490,7 +490,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
                 return false;
             }
 
-            if (answer == "see individual properties")
+            if (String.Equals(answer, "see individual properties"))
             {
                 return false;
             }

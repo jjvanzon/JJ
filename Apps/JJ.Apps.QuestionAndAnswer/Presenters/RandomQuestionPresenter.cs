@@ -76,7 +76,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // Not Found
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
+                var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
                 QuestionNotFoundViewModel viewModel2 = presenter2.Show();
                 return viewModel2;
             }
@@ -94,12 +94,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // Check conditions
             if (viewModel == null) throw new NullException(() => viewModel);
             if (viewModel.Question == null) throw new NullException(() => viewModel.Question);
+            viewModel.NullCoalesce();
 
             // Get entities
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
+                var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
                 return presenter2.Show();
             }
             User user = _userRepository.TryGetByUserName(_authenticatedUserName);
@@ -128,12 +129,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             // Check conditions
             if (viewModel == null) throw new NullException(() => viewModel);
             if (viewModel.Question == null) throw new NullException(() => viewModel.Question);
+            viewModel.NullCoalesce();
 
             // Get entities
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
+                var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
                 return presenter2.Show();
             }
             User user = _userRepository.TryGetByUserName(_authenticatedUserName);
@@ -161,18 +163,19 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             if (viewModel == null) throw new NullException(() => viewModel);
             if (viewModel.Question == null) throw new NullException(() => viewModel.Question);
             if (viewModel.CurrentUserQuestionFlag == null) throw new NullException(() => viewModel.CurrentUserQuestionFlag);
+            viewModel.NullCoalesce();
 
             // Get entities
             User user = _userRepository.GetByUserName(_authenticatedUserName);
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
+                var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
                 return presenter2.Show();
             }
 
             // Call business logic
-            var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
+            var questionFlagger = new QuestionFlagger(user, _questionFlagRepository, _flagStatusRepository);
             QuestionFlag questionFlag = questionFlagger.FlagQuestion(question, viewModel.CurrentUserQuestionFlag.Comment);
             _questionFlagRepository.Commit();
 
@@ -193,18 +196,19 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             if (viewModel == null) throw new NullException(() => viewModel);
             if (viewModel.Question == null) throw new NullException(() => viewModel.Question);
             if (viewModel.CurrentUserQuestionFlag == null) throw new NullException(() => viewModel.CurrentUserQuestionFlag);
+            viewModel.NullCoalesce();
 
             // Get entities
             User user = _userRepository.GetByUserName(_authenticatedUserName);
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
+                var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
                 return presenter2.Show();
             }
 
             // Call business logic
-            var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
+            var questionFlagger = new QuestionFlagger(user, _questionFlagRepository, _flagStatusRepository);
             questionFlagger.UnflagQuestion(question);
             _questionFlagRepository.Commit();
 
@@ -232,7 +236,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question question = _questionRepository.TryGet(viewModel.Question.ID);
             if (question == null)
             {
-                var presenter2 = new QuestionNotFoundPresenter(_authenticatedUserName, _userRepository);
+                var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
                 return presenter2.Show();
             }
             User user = _userRepository.TryGetByUserName(_authenticatedUserName);
@@ -262,7 +266,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 return null;
             }
 
-            var questionFlagger = new QuestionFlagger(_questionFlagRepository, _flagStatusRepository, user);
+            var questionFlagger = new QuestionFlagger(user, _questionFlagRepository, _flagStatusRepository);
             QuestionFlag questionFlag = questionFlagger.TryGetFlag(question);
 
             return questionFlag;
