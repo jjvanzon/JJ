@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JJ.Framework.Persistence;
 using JJ.Framework.Presentation.WinForms;
-using JJ.Models.QuestionAndAnswer.Repositories;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories;
 using JJ.Framework.Configuration;
 
 namespace JJ.Apps.QuestionAndAnswer.Import.WinForms

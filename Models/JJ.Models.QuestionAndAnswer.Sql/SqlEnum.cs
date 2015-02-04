@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JJ.Models.QuestionAndAnswer.Sql
+{
+    internal enum SqlEnum
+    {
+        Question_GetPageOfIDs,
+        Question_TryGetRandomID
+    }
+}

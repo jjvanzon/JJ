@@ -115,9 +115,9 @@
       <Project>{b38fec53-b020-449f-aa97-e67d31b6d701}</Project>
       <Name>JJ.Models.QuestionAndAnswer.NPersist</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Models.QuestionAndAnswer.Repositories\JJ.Models.QuestionAndAnswer.Repositories.csproj">
+    <ProjectReference Include="..\JJ.Models.QuestionAndAnswer.DefaultRepositories\JJ.Models.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.Repositories</Name>
+      <Name>JJ.Models.QuestionAndAnswer.DefaultRepositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj">
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>

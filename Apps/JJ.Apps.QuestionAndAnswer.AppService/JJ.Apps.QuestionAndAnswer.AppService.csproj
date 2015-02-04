@@ -139,13 +139,13 @@
       <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>
       <Name>JJ.Models.QuestionAndAnswer.NHibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Repositories\JJ.Models.QuestionAndAnswer.Repositories.csproj">
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.DefaultRepositories\JJ.Models.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.Repositories</Name>
+      <Name>JJ.Models.QuestionAndAnswer.DefaultRepositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.SqlClient\JJ.Models.QuestionAndAnswer.SqlClient.csproj">
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Sql\JJ.Models.QuestionAndAnswer.Sql.csproj">
       <Project>{9cf32856-6431-4366-8dea-a6ca2f27b5c6}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.SqlClient</Name>
+      <Name>JJ.Models.QuestionAndAnswer.Sql</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj">
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>

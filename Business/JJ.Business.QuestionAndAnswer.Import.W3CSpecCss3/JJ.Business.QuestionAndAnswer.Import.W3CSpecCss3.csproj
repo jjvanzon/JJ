@@ -83,9 +83,9 @@
       <Project>{f6ea0941-40ff-4679-a1a6-eacd5c9ba42b}</Project>
       <Name>JJ.Framework.Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.Repositories\JJ.Models.QuestionAndAnswer.Repositories.csproj">
+    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.DefaultRepositories\JJ.Models.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.Repositories</Name>
+      <Name>JJ.Models.QuestionAndAnswer.DefaultRepositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj">
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Models.Canonical;
 using JJ.Business.QuestionAndAnswer;

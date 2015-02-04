@@ -8,7 +8,7 @@ using JJ.Framework.Validation;
 using JJ.Framework.Reflection;
 using JJ.Framework.Business;
 using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Business.QuestionAndAnswer.Validation;

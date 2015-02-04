@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using JJ.Framework.Persistence;
 using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
-using JJ.Models.QuestionAndAnswer.Repositories;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Validation;
@@ -158,7 +158,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
             }
         }
 
-        private IEnumerable<Question> GetExistingQuestions()
+        private IList<Question> GetExistingQuestions()
         {
             // _source.ID could be 0 for a new repository, but in that case there are no existing questions anyway and this method will return an empty collection.
             return _questionRepository.GetBySourceID(_source.ID);

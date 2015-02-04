@@ -10,7 +10,7 @@ using JJ.Framework.Presentation;
 using JJ.Framework.Presentation.Mvc;
 using JJ.Models.Canonical;
 using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using JJ.Framework.Business;
 using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
 
 namespace JJ.Apps.QuestionAndAnswer.SideEffects
 {

@@ -69,19 +69,28 @@
     <Compile Include="Names\TableNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AnswerRepository.cs" />
+    <Compile Include="Repositories\QuestionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj">
       <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
       <Name>JJ.Framework.Persistence.NHibernate</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.csproj">
+      <Project>{ceb85f8e-d429-4510-95a5-47cc3069d412}</Project>
+      <Name>JJ.Framework.Persistence.SqlClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Persistence</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Models.QuestionAndAnswer.Repositories\JJ.Models.QuestionAndAnswer.Repositories.csproj">
+    <ProjectReference Include="..\JJ.Models.QuestionAndAnswer.DefaultRepositories\JJ.Models.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.Repositories</Name>
+      <Name>JJ.Models.QuestionAndAnswer.DefaultRepositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Models.QuestionAndAnswer.Sql\JJ.Models.QuestionAndAnswer.Sql.csproj">
+      <Project>{9cf32856-6431-4366-8dea-a6ca2f27b5c6}</Project>
+      <Name>JJ.Models.QuestionAndAnswer.Sql</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj">
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>

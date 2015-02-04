@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Models.QuestionAndAnswer.NHibernate.Repositories
 {
-    public class AnswerRepository : JJ.Models.QuestionAndAnswer.Repositories.AnswerRepository
+    public class AnswerRepository : JJ.Models.QuestionAndAnswer.DefaultRepositories.AnswerRepository
     {
         private new NHibernateContext _context;
 

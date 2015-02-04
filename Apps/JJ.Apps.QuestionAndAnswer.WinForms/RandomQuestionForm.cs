@@ -11,9 +11,9 @@ using JJ.Framework.Persistence;
 using JJ.Apps.QuestionAndAnswer.Resources;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.Presenters;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Presentation;
-using JJ.Models.QuestionAndAnswer.Repositories;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories;
 using JJ.Business.QuestionAndAnswer.Resources;
 
 namespace JJ.Apps.QuestionAndAnswer.WinForms

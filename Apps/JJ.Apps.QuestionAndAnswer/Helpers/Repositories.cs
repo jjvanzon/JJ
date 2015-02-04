@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Business;
 using JJ.Framework.Reflection;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

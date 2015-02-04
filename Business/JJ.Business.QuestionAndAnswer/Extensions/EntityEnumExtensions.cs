@@ -5,7 +5,7 @@ using System.Text;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Reflection;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions

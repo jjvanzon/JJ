@@ -2,7 +2,7 @@
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Reflection;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,8 +5,8 @@ using JJ.Framework.Persistence;
 using System.Collections.Generic;
 using JJ.Models.QuestionAndAnswer.Tests.Helpers;
 using JJ.Framework.Configuration;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
-using JJ.Models.QuestionAndAnswer.Repositories;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories;
 using JJ.Business.QuestionAndAnswer.Enums;
 
 namespace JJ.Models.QuestionAndAnswer.Tests

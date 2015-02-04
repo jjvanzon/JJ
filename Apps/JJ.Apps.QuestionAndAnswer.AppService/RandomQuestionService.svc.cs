@@ -8,8 +8,8 @@ using System.Text;
 using JJ.Apps.QuestionAndAnswer.Presenters;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Persistence;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
-using JJ.Models.QuestionAndAnswer.Repositories;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories;
 using JJ.Apps.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Apps.QuestionAndAnswer.AppService

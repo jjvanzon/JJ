@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using JJ.Framework.Persistence;
 using JJ.Apps.QuestionAndAnswer.ViewModels;
 using JJ.Apps.QuestionAndAnswer.Presenters;
-using JJ.Models.QuestionAndAnswer.Repositories.Interfaces;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Apps.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Framework.Common;
 using JJ.Framework.Presentation;
@@ -14,19 +14,28 @@ using JJ.Models.Canonical;
 using JJ.Apps.QuestionAndAnswer.Mvc.Names;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
-using JJ.Models.QuestionAndAnswer.Repositories;
+using JJ.Models.QuestionAndAnswer.DefaultRepositories;
 using JJ.Framework.Web;
+using JJ.Framework.Configuration;
+using JJ.Apps.QuestionAndAnswer.Mvc.Configuration;
 
 namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
 {
     public class QuestionsController : MasterController
     {
+        private static readonly int _defaultPageSize;
+
+        static QuestionsController()
+        {
+            _defaultPageSize = CustomConfigurationManager.GetSection<ConfigurationSection>().DefaultPageSize;
+        }
+
         public QuestionsController()
         {
             ValidateRequest = false;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int pageIndex = 0)
         {
             object viewModel;
             if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
@@ -35,7 +44,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     var presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
-                    viewModel = presenter.Show();
+                    viewModel = presenter.Show(pageIndex, _defaultPageSize);
                 }
             }
 
