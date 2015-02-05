@@ -19,6 +19,8 @@
         <%: Html.ActionLink(Titles.CreateQuestion, ActionNames.Create) %>
     </p>
 
+    <% Html.RenderPartial(ViewNames._Paging, Model.Paging); %>
+
     <table>
 
         <tr>
@@ -41,6 +43,8 @@
         <% } %>
 
     </table>
+
+    <% Html.RenderPartial(ViewNames._Paging, Model.Paging); %>
 
 </asp:Content>
 

@@ -48,5 +48,10 @@ namespace JJ.Models.QuestionAndAnswer.NHibernate.Repositories
                 return null;
             }
         }
+
+        public override int CountAll()
+        {
+            return _sqlExecutor.Question_CountAll();
+        }
     }
 }

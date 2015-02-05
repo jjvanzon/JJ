@@ -26,5 +26,10 @@ namespace JJ.Models.QuestionAndAnswer.Sql
         {
             return (int?)_sqlExecutor.ExecuteScalar(SqlEnum.Question_TryGetRandomID);
         }
+
+        public int Question_CountAll()
+        {
+            return (int)_sqlExecutor.ExecuteScalar(SqlEnum.Question_CountAll);
+        }
     }
 }

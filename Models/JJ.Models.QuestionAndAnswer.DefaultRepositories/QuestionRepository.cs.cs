@@ -77,5 +77,10 @@ namespace JJ.Models.QuestionAndAnswer.DefaultRepositories
         {
             return _context.Query<Question>().Skip(firstIndex).Take(count).ToArray();
         }
+
+        public virtual int CountAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

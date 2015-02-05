@@ -22,5 +22,6 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Names
         public const string Details = "Details";
         public const string _ActionDescriptor = "_ActionDescriptor";
         public const string _ParameterDescriptor = "_ParameterDescriptor";
+        public const string _Paging = "_Paging";
     }
 }

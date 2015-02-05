@@ -9,6 +9,7 @@ namespace JJ.Models.QuestionAndAnswer.Sql
     internal enum SqlEnum
     {
         Question_GetPageOfIDs,
-        Question_TryGetRandomID
+        Question_TryGetRandomID,
+        Question_CountAll
     }
 }

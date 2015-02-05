@@ -57,6 +57,7 @@
     <Compile Include="Validation\QuestionLinkViewModelValidator.cs" />
     <Compile Include="Validation\QuestionViewModelValidator.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoalesce.cs" />
+    <Compile Include="ViewModels\Partials\PagingViewModel.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />

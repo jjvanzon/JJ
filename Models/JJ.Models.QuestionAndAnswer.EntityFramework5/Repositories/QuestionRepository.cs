@@ -39,5 +39,10 @@ namespace JJ.Models.QuestionAndAnswer.EntityFramework5.Repositories
                 return null;
             }
         }
+
+        public override int CountAll()
+        {
+            return _sqlExecutor.Question_CountAll();
+        }
     }
 }

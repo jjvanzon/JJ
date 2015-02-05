@@ -13,6 +13,7 @@ using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Framework.Reflection;
+using JJ.Apps.QuestionAndAnswer.ViewModels.Partials;
 
 namespace JJ.Apps.QuestionAndAnswer.Presenters
 {
@@ -49,7 +50,20 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
 
+            int count = _repositories.QuestionRepository.CountAll();
+            viewModel.Paging = ViewModelHelper.CreatePagingViewModel(count, pageSize, pageIndex);
+
             return viewModel;
+        }
+
+        public QuestionListViewModel NextPage(QuestionListViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public QuestionListViewModel PreviousPage(QuestionListViewModel viewModel)
+        {
+            throw new NotImplementedException();
         }
 
         public QuestionListViewModel Filter(bool? isFlagged)

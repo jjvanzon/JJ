@@ -141,5 +141,35 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
             return viewModel;
         }
+
+        public static PagingViewModel CreatePagingViewModel(int count, int pageSize, int pageIndex)
+        {
+            if (pageSize < 1)
+            {
+                throw new Exception("pageSize cannot be less than 1.");
+            }
+            int pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
+            if (pageIndex > pageCount)
+            {
+                throw new Exception(String.Format("pageIndex {0} is larger than pageCount {1}.", pageIndex, pageCount));
+            }
+
+            bool hasPages = pageCount != 0;
+            bool isFirstPage = pageIndex == 0;
+            bool isLastPage = pageIndex == pageCount - 1;
+
+            var viewModel = new PagingViewModel
+            {
+                PageCount = pageCount,
+                PageIndex = pageIndex + 1,
+                CanGoToPreviousPage = hasPages && !isFirstPage,
+                CanGoToNextPage = hasPages && !isLastPage,
+            };
+
+            viewModel.CanGoToFirstPage = viewModel.CanGoToPreviousPage;
+            viewModel.CanGoToLastPage = viewModel.CanGoToNextPage;
+
+            return viewModel;
+        }
     }
 }

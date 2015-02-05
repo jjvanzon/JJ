@@ -14,5 +14,7 @@ namespace JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces
         IList<int> GetQuestionIDsByCategory(Category category);
         IList<Question> GetByCriteria(bool mustFilterByFlagStatusID, int? flagStatusID);
         IList<Question> GetPage(int firstIndex, int count);
+
+        int CountAll();
     }
 }
