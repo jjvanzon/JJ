@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Apps.QuestionAndAnswer.Mvc.Names;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,10 +15,24 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Index",
+                url: "{controller}/" + ActionNames.Index + "/{page}",
+                defaults: new
+                {
+                    controller = ControllerNames.Questions,
+                    action = ActionNames.Index,
+                    page = 1
+                });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new 
+                { 
+                    controller =  ControllerNames.Questions, 
+                    action = ActionNames.Random, 
+                    id = UrlParameter.Optional
+                });
         }
     }
 }

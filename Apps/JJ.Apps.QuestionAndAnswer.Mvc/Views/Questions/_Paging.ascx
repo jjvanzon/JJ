@@ -1,33 +1,43 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<PagingViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="ViewUserControl<PagingViewModel>" %>
 
 <table>
     <tr>
-
         <% if (Model.CanGoToFirstPage) { %>
-            <td>&lt;&lt;</td>
+            <td><%: Html.ActionLinkWithParams("<<", ActionNames.Index, ActionParameterNames.page, 1) %></td>
         <% } %>
 
         <% if (Model.CanGoToPreviousPage) { %>
-            <td>&lt;</td>
+            <td><%: Html.ActionLinkWithParams("<", ActionNames.Index, ActionParameterNames.page, Model.PageNumber - 1)%></td>
         <% } %>
 
-        <% for (int i = 0; i < Model.PageIndex - 1; i++) { %>
-           <td><%=i%></td>    
+        <% if (Model.MustShowLeftEllipsis) { %>
+            <td>...</td>
         <% } %>
+        
+        <% foreach (var pageNumber in Model.VisiblePageNumbers) { %>
 
-        <td><strong><%=Model.PageIndex%></strong> </td>
+            <% if (pageNumber == Model.PageNumber) { %>
 
-        <% for (int i = Model.PageIndex + 1; i <= Model.PageCount; i++) { %>
-           <td><%=i%></td>
+                <td><strong><%: pageNumber %></strong></td>
+
+            <% } else { %>
+
+                <td><%: Html.ActionLinkWithParams(pageNumber.ToString(), ActionNames.Index, ActionParameterNames.page, pageNumber)%></td>    
+
+            <% } %>
+
+        <% } %>
+        
+        <% if (Model.MustShowRightEllipsis) { %>
+            <td>...</td>
         <% } %>
 
         <% if (Model.CanGoToNextPage) { %>
-            <td>&gt;</td>
+            <td><%: Html.ActionLinkWithParams(">", ActionNames.Index, ActionParameterNames.page, Model.PageNumber + 1) %></td>
         <% } %>
 
         <% if (Model.CanGoToLastPage) { %>
-            <td>&gt;&gt;</td>
+            <td><%: Html.ActionLinkWithParams(">>", ActionNames.Index, ActionParameterNames.page, Model.PageCount)%></td>
         <% } %>
-
     </tr>
 </table>

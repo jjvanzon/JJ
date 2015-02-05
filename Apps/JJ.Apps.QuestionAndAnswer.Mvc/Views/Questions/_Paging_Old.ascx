@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<PagingViewModel>" %>
-<%--
-<table>
+
+<%--<table>
     <tr>
 
         <% if (Model.CanGoToFirstPage) { %>
@@ -10,18 +10,15 @@
         <% if (Model.CanGoToPreviousPage) { %>
             <td>&lt;</td>
         <% } %>
-        
-        <% foreach (var pageNumber in Model.PageNumbers) { %>
-            <% if (pageNumber.IsSelected) { %>
 
-                <td><strong><%=pageNumber.Number%></strong></td>
+        <% for (int i = 0; i < Model.PageIndex - 1; i++) { %>
+           <td><%=i%></td>    
+        <% } %>
 
-            <% } else { %>
+        <td><strong><%=Model.PageIndex%></strong> </td>
 
-                <td><%=pageNumber.Number%></td>    
-
-            <% } %>
-
+        <% for (int i = Model.PageIndex + 1; i <= Model.PageCount; i++) { %>
+           <td><%=i%></td>
         <% } %>
 
         <% if (Model.CanGoToNextPage) { %>

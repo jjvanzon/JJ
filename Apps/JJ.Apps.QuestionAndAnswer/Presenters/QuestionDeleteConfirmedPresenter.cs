@@ -21,14 +21,22 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
     {
         private Repositories _repositories;
         private string _authenticatedUserName;
+        private int _pageSize;
+        private int _maxVisiblePageNumbers;
 
         /// <param name="authenticatedUserName">nullable</param>
-        public QuestionDeleteConfirmedPresenter(Repositories repositories, string authenticatedUserName)
+        public QuestionDeleteConfirmedPresenter(
+            Repositories repositories, 
+            string authenticatedUserName,
+            int pageSize,
+            int maxVisiblePageNumbers)
         {
             if (repositories == null) throw new NullException(() => repositories);
 
             _repositories = repositories;
             _authenticatedUserName = authenticatedUserName;
+            _pageSize = pageSize;
+            _maxVisiblePageNumbers = maxVisiblePageNumbers;
         }
         
         public object Show(int id)
@@ -61,7 +69,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public QuestionListViewModel BackToList()
         {
-            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
+            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName, _pageSize, _maxVisiblePageNumbers);
             return listPresenter.Show();
         }
 

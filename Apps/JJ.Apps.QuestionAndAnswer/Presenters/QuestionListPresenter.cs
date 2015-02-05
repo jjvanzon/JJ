@@ -21,27 +21,31 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
     {
         private Repositories _repositories;
         private string _authenticatedUserName;
+        private int _pageSize;
+        private int _maxVisiblePageNumbers;
 
-        /// <summary>
-        /// TODO: It sucks that I either have to revert to a default, or pass the page size to everywhere,
-        /// or make myself dependent on a config.
-        /// </summary>
-        private const int DEFAULT_PAGE_SIZE = 20;
-
-        public QuestionListPresenter(Repositories repositories, string authenticatedUserName)
+        public QuestionListPresenter(
+            Repositories repositories, 
+            string authenticatedUserName, 
+            int pageSize,
+            int maxVisiblePageNumbers)
         {
             if (repositories == null) throw new NullException(() => repositories);
 
             _repositories = repositories;
             _authenticatedUserName = authenticatedUserName;
+            _pageSize = pageSize;
+            _maxVisiblePageNumbers = maxVisiblePageNumbers;
         }
 
-        public QuestionListViewModel Show(int pageIndex = 0, int pageSize = DEFAULT_PAGE_SIZE)
+        public QuestionListViewModel Show(int pageNumber = 1)
         {
             var viewModel = new QuestionListViewModel();
             viewModel.List = new List<QuestionViewModel>();
 
-            foreach (Question question in _repositories.QuestionRepository.GetPage(pageIndex * pageSize, pageSize))
+            int pageIndex = pageNumber - 1;
+
+            foreach (Question question in _repositories.QuestionRepository.GetPage(pageIndex * _pageSize, _pageSize))
             {
                 QuestionViewModel itemViewModel = question.ToViewModel();
                 itemViewModel.IsFlagged = question.QuestionFlags.Where(x => x.FlagStatus.ID == (int)FlagStatusEnum.Flagged).Any();
@@ -51,19 +55,9 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
 
             int count = _repositories.QuestionRepository.CountAll();
-            viewModel.Paging = ViewModelHelper.CreatePagingViewModel(count, pageSize, pageIndex);
+            viewModel.Paging = ViewModelHelper.CreatePagingViewModel(pageIndex, _pageSize, count, _maxVisiblePageNumbers);
 
             return viewModel;
-        }
-
-        public QuestionListViewModel NextPage(QuestionListViewModel viewModel)
-        {
-            throw new NotImplementedException();
-        }
-
-        public QuestionListViewModel PreviousPage(QuestionListViewModel viewModel)
-        {
-            throw new NotImplementedException();
         }
 
         public QuestionListViewModel Filter(bool? isFlagged)
@@ -87,19 +81,19 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public object Details(int questionID)
         {
-            var detailPresenter = new QuestionDetailsPresenter(_repositories, _authenticatedUserName);
+            var detailPresenter = new QuestionDetailsPresenter(_repositories, _authenticatedUserName, _pageSize, _maxVisiblePageNumbers);
             return detailPresenter.Show(questionID);
         }
 
         public object Edit(int questionID)
         {
-            var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName);
+            var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName, _pageSize, _maxVisiblePageNumbers);
             return editPresenter.Edit(questionID);
         }
 
         public object Delete(int questionID)
         {
-            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
+            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName, _pageSize, _maxVisiblePageNumbers);
             return deletePresenter.Show(questionID);
         }
 

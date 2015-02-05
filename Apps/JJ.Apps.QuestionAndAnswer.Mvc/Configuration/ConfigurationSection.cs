@@ -9,6 +9,9 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Configuration
     internal class ConfigurationSection
     {
         [XmlAttribute]
-        public int DefaultPageSize { get; set; }
+        public int PageSize { get; set; }
+
+        [XmlAttribute]
+        public int MaxVisiblePageNumbers { get; set; }
     }
 }

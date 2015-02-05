@@ -142,32 +142,54 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             return viewModel;
         }
 
-        public static PagingViewModel CreatePagingViewModel(int count, int pageSize, int pageIndex)
+        public static PagingViewModel CreatePagingViewModel(int selectedPageIndex, int pageSize, int count, int maxVisiblePageNumbers)
         {
-            if (pageSize < 1)
-            {
-                throw new Exception("pageSize cannot be less than 1.");
-            }
+            if (pageSize < 1) throw new Exception("pageSize cannot be less than 1.");
+            if (selectedPageIndex < 0) throw new Exception("selectedPageIndex cannot be less than 0");
+            if (count < 0) throw new Exception("selectedPageIndex cannot be less than 0");
+            if (maxVisiblePageNumbers < 1) throw new Exception("maxVisiblePageNumbers cannot be less than 1");
+
             int pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
-            if (pageIndex > pageCount)
+            if (selectedPageIndex > pageCount)
             {
-                throw new Exception(String.Format("pageIndex {0} is larger than pageCount {1}.", pageIndex, pageCount));
+                throw new Exception(String.Format("pageIndex {0} is larger than pageCount {1}.", selectedPageIndex, pageCount));
             }
 
             bool hasPages = pageCount != 0;
-            bool isFirstPage = pageIndex == 0;
-            bool isLastPage = pageIndex == pageCount - 1;
+            bool isFirstPage = selectedPageIndex == 0;
+            bool isLastPage = selectedPageIndex == pageCount - 1;
 
             var viewModel = new PagingViewModel
             {
                 PageCount = pageCount,
-                PageIndex = pageIndex + 1,
                 CanGoToPreviousPage = hasPages && !isFirstPage,
                 CanGoToNextPage = hasPages && !isLastPage,
             };
 
             viewModel.CanGoToFirstPage = viewModel.CanGoToPreviousPage;
             viewModel.CanGoToLastPage = viewModel.CanGoToNextPage;
+
+            // Get a max set of heading or trailing page numbers around the selected page number.
+            int headingPageNumberCount = (maxVisiblePageNumbers - 1) / 2;
+
+            int firstpageIndex = selectedPageIndex - headingPageNumberCount;
+            if (firstpageIndex < 0) firstpageIndex = 0;
+
+            int lastPageIndex = firstpageIndex + maxVisiblePageNumbers - 1;
+            if (lastPageIndex > pageCount - 1) lastPageIndex = pageCount - 1;
+
+            // Create page number view models
+            viewModel.VisiblePageNumbers = new List<int>(maxVisiblePageNumbers);
+            for (int i = firstpageIndex; i <= lastPageIndex; i++)
+			{
+                int pageNumber = i + 1;
+                viewModel.VisiblePageNumbers.Add(pageNumber);
+			}
+
+            viewModel.PageNumber = selectedPageIndex + 1;
+
+            viewModel.MustShowLeftEllipsis = firstpageIndex != 0;
+            viewModel.MustShowRightEllipsis = lastPageIndex != pageCount;
 
             return viewModel;
         }
