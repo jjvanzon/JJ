@@ -170,17 +170,59 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             viewModel.CanGoToLastPage = viewModel.CanGoToNextPage;
 
             // Get a max set of heading or trailing page numbers around the selected page number.
-            int headingPageNumberCount = (maxVisiblePageNumbers - 1) / 2;
 
-            int firstpageIndex = selectedPageIndex - headingPageNumberCount;
-            if (firstpageIndex < 0) firstpageIndex = 0;
+            // This did not work when we were at the end and not all page numbers fit. 
+            // Then we would end up with half of the maxVisiblePageNumbers.
+            //int numberOfPagesOnLeftSide = (maxVisiblePageNumbers - 1) / 2;
 
-            int lastPageIndex = firstpageIndex + maxVisiblePageNumbers - 1;
-            if (lastPageIndex > pageCount - 1) lastPageIndex = pageCount - 1;
+            //int firstVisiblePageIndex = selectedPageIndex - numberOfPagesOnLeftSide;
+            //if (firstVisiblePageIndex < 0) firstVisiblePageIndex = 0;
+
+            //int lastVisiblePageIndex = firstVisiblePageIndex + maxVisiblePageNumbers - 1;
+            //if (lastVisiblePageIndex > pageCount - 1) lastVisiblePageIndex = pageCount - 1;
+
+            // There must be a simpler way than this, but I cannot figure it out.
+            int firstVisiblePageIndex;
+            int lastVisiblePageIndex;
+
+            bool allPageNumbersAreVisible = pageCount <= maxVisiblePageNumbers;
+            if (allPageNumbersAreVisible)
+            {
+                firstVisiblePageIndex = 0;
+                lastVisiblePageIndex = pageCount - 1;
+            }
+            else
+            {
+                // Numbers do not fit.
+
+                // The -1 is the selected page.
+                int numberOfPagesOnLeftSide = (maxVisiblePageNumbers - 1) / 2; // Sneekily make use of integer division to get less on the left side in case of an even number of visible pages.
+                int numberOfPagesOnRightSide = maxVisiblePageNumbers - numberOfPagesOnLeftSide - 1;
+
+                bool isLeftBound = selectedPageIndex - numberOfPagesOnLeftSide <= 0;
+                bool isRightBound = selectedPageIndex + numberOfPagesOnRightSide > pageCount - 1;
+
+                if (isLeftBound)
+                {
+                    firstVisiblePageIndex = 0;
+                    lastVisiblePageIndex = maxVisiblePageNumbers - 1;
+                }
+                else if (isRightBound)
+                {
+                    lastVisiblePageIndex = pageCount - 1;
+                    firstVisiblePageIndex = pageCount - maxVisiblePageNumbers;
+                }
+                else
+                {
+                    // Is is somewhere in the middle.
+                    firstVisiblePageIndex = selectedPageIndex - numberOfPagesOnLeftSide;
+                    lastVisiblePageIndex = selectedPageIndex + numberOfPagesOnRightSide;
+                }
+            }
 
             // Create page number view models
             viewModel.VisiblePageNumbers = new List<int>(maxVisiblePageNumbers);
-            for (int i = firstpageIndex; i <= lastPageIndex; i++)
+            for (int i = firstVisiblePageIndex; i <= lastVisiblePageIndex; i++)
 			{
                 int pageNumber = i + 1;
                 viewModel.VisiblePageNumbers.Add(pageNumber);
@@ -188,8 +230,8 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
 
             viewModel.PageNumber = selectedPageIndex + 1;
 
-            viewModel.MustShowLeftEllipsis = firstpageIndex != 0;
-            viewModel.MustShowRightEllipsis = lastPageIndex != pageCount;
+            viewModel.MustShowLeftEllipsis = firstVisiblePageIndex != 0;
+            viewModel.MustShowRightEllipsis = lastVisiblePageIndex != pageCount - 1;
 
             return viewModel;
         }

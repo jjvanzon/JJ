@@ -265,7 +265,6 @@
     <Content Include="Views\CategorySelector\Index.aspx" />
     <Content Include="Views\CategorySelector\_SelectedCategory.ascx" />
     <Content Include="Views\Login\Index.aspx" />
-    <Content Include="Views\Questions\_Paging_Old.ascx" />
     <Content Include="Views\Questions\Delete.aspx" />
     <Content Include="Views\Questions\Deleted.aspx" />
     <Content Include="Views\Questions\Details.aspx" />
