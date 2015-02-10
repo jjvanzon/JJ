@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +20,7 @@ using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Apps.QuestionAndAnswer.ToEntity;
 using JJ.Apps.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
+using JJ.Apps.QuestionAndAnswer.Validation;
 using JJ.Apps.QuestionAndAnswer.Resources;
 using JJ.Apps.QuestionAndAnswer.SideEffects;
 using JJ.Framework.Presentation;
@@ -206,64 +207,63 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             if (viewModel == null) throw new NullException(() => viewModel);
             viewModel.NullCoalesce();
 
-            User user;
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 return new NotAuthorizedViewModel();
             }
-            else
-            {
-                user = _repositories.UserRepository.TryGetByUserName(_authenticatedUserName);
-                if (user == null)
-                {
-                    return new NotAuthorizedViewModel();
-                }
-            }
+
+            // GetEntities
+            User user = _repositories.UserRepository.GetByUserName(_authenticatedUserName);
+            Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
+            
+            // Set Entity Status
+            ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(_repositories.EntityStatusManager, question, viewModel.Question);
 
             // ToEntity
-            Question question = viewModel.ToEntity(_repositories);
+            question = viewModel.ToEntity(_repositories);
+
+            // Side-effects
+            ISideEffect setIsManual = new Question_SetIsManual_SideEffect(question, _repositories.EntityStatusManager);
+            setIsManual.Execute();
+
+            ISideEffect setLastModifiedByUser = new Question_SetLastModifiedByUser_SideEffect(question, user, _repositories.EntityStatusManager);
+            setLastModifiedByUser.Execute();
+
+            foreach (QuestionFlag questionFlag in question.QuestionFlags)
+            {
+                ISideEffect questionFlag_SetLastModifiedByUser = new QuestionFlag_SetLastModifiedByUser_SideEffect(questionFlag, user, _repositories.EntityStatusManager);
+                questionFlag_SetLastModifiedByUser.Execute();
+            }
+
+            // ToViewModel
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
+
+            // Non-persisted properties
+            viewModel2.IsNew = viewModel.IsNew;
+            viewModel2.CanDelete = viewModel.CanDelete;
+            viewModel2.Title = viewModel.Title;
 
             // Validate
-            IValidator validator = new VersatileQuestionValidator(question);
-            if (!validator.IsValid)
+            IValidator validator1 = new QuestionEditViewModelValidator(viewModel2);
+            if (!validator1.IsValid)
             {
-                // ToViewModel
-                QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
-
-                // Non-persisted properties
-                viewModel2.IsNew = viewModel.IsNew;
-                viewModel2.CanDelete = viewModel.CanDelete;
-                viewModel2.Title = viewModel.Title;
-
-                viewModel2.ValidationMessages = validator.ValidationMessages.ToCanonical();
-
+                viewModel2.ValidationMessages = validator1.ValidationMessages.ToCanonical();
                 return viewModel2;
             }
-            else
+
+            IValidator validator2 = new VersatileQuestionValidator(question);
+            if (!validator2.IsValid)
             {
-                // Set Entity Status
-                ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(_repositories.EntityStatusManager, question, viewModel.Question);
-
-                // Side-effects
-                ISideEffect setIsManual = new Question_SetIsManual_SideEffect(question, _repositories.EntityStatusManager);
-                setIsManual.Execute();
-
-                ISideEffect setLastModifiedByUser = new Question_SetLastModifiedByUser_SideEffect(question, user, _repositories.EntityStatusManager);
-                setLastModifiedByUser.Execute();
-
-                foreach (QuestionFlag questionFlag in question.QuestionFlags)
-                {
-                    ISideEffect questionFlag_SetLastModifiedByUser = new QuestionFlag_SetLastModifiedByUser_SideEffect(questionFlag, user, _repositories.EntityStatusManager);
-                    questionFlag_SetLastModifiedByUser.Execute();
-                }
-
-                // Commit
-                _repositories.QuestionRepository.Commit();
-
-                // On success: go to Details view model.
-                QuestionDetailsViewModel detailsViewModel = question.ToDetailsViewModel(_repositories.UserRepository, _authenticatedUserName);
-                return detailsViewModel;
+                viewModel2.ValidationMessages = validator2.ValidationMessages.ToCanonical();
+                return viewModel2;
             }
+
+            // Commit
+            _repositories.QuestionRepository.Commit();
+
+            // On success: go to Details view model.
+            QuestionDetailsViewModel detailsViewModel = question.ToDetailsViewModel(_repositories.UserRepository, _authenticatedUserName);
+            return detailsViewModel;
         }
 
         public object Delete(QuestionEditViewModel viewModel)

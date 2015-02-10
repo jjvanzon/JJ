@@ -52,10 +52,6 @@
     <Compile Include="Presenters\QuestionNotFoundPresenter.cs" />
     <Compile Include="ToEntity\QuestionViewModelExtensions.cs" />
     <Compile Include="ToViewModel\ToEntityViewModelExtensions.cs" />
-    <Compile Include="Validation\QuestionCategoryViewModelValidator.cs" />
-    <Compile Include="Validation\QuestionEditViewModelValidator.cs" />
-    <Compile Include="Validation\QuestionLinkViewModelValidator.cs" />
-    <Compile Include="Validation\QuestionViewModelValidator.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoalesce.cs" />
     <Compile Include="ViewModels\Partials\PagingViewModel.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />

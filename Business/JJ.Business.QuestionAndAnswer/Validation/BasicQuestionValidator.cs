@@ -28,24 +28,29 @@ namespace JJ.Business.QuestionAndAnswer.Validation
             For(() => question.Text, PropertyDisplayNames.Text)
                 .NotNullOrWhiteSpace();
 
-            for (int i = 0; i < question.Answers.Count ; i++)
-            {
-                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.Answer, i + 1);
+            int i;
 
-                Execute(new AnswerValidator(question.Answers[i]), messagePrefix);
+            i = 1;
+            foreach (Answer answer in question.Answers)
+            {
+                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.Answer, i++);
+
+                Execute(new AnswerValidator(answer), messagePrefix);
+            }
+            
+            i = 1;
+            foreach (QuestionCategory questionCategory in question.QuestionCategories)
+            {
+                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionCategory, i++);
+                Execute(new QuestionCategoryValidator(questionCategory), messagePrefix);
             }
 
-            for (int i = 0; i < question.QuestionCategories.Count; i++)
+            i = 1;
+            foreach (QuestionLink questionLink in question.QuestionLinks)
             {
-                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionCategory, i + 1);
-                Execute(new QuestionCategoryValidator(question.QuestionCategories[i]), messagePrefix);
-            }
+                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionLink, i++);
 
-            for (int i = 0; i < question.QuestionLinks.Count; i++)
-            {
-                string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionLink, i + 1);
-
-                Execute(new QuestionLinkValidator(question.QuestionLinks[i]), messagePrefix);
+                Execute(new QuestionLinkValidator(questionLink), messagePrefix);
             }
         }
     }
