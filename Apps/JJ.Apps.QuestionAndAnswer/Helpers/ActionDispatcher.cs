@@ -12,6 +12,9 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
 {
     public static class ActionDispatcher
     {
+        private const int DEFAULT_PAGE_SIZE = 20;
+        private const int DEFAULT_MAX_VISIBLE_PAGE_NUMBERS = 7;
+
         /// <summary>
         /// Gets a view model dynamically from the described presenter and action.
         /// Overloaded action methods are not supported.
@@ -79,6 +82,17 @@ namespace JJ.Apps.QuestionAndAnswer.Helpers
                     repositories.FlagStatusRepository,
                     repositories.UserRepository,
                     authenticatedUserName);
+            }
+            else if (presenterType == typeof(QuestionListPresenter))
+            {
+                // TODO: I do not know what the paging parameters must be here, 
+                // because I cannot make the business dependent on config.
+                // So now I revert to defaults.
+                presenter = new QuestionListPresenter(
+                    repositories, 
+                    authenticatedUserName, 
+                    DEFAULT_PAGE_SIZE, 
+                    DEFAULT_MAX_VISIBLE_PAGE_NUMBERS);
             }
             else
             {

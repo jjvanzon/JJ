@@ -81,19 +81,19 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public object Details(int questionID)
         {
-            var detailPresenter = new QuestionDetailsPresenter(_repositories, _authenticatedUserName, _pageSize, _maxVisiblePageNumbers);
+            var detailPresenter = new QuestionDetailsPresenter(_repositories, _authenticatedUserName);
             return detailPresenter.Show(questionID);
         }
 
         public object Edit(int questionID)
         {
-            var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName, _pageSize, _maxVisiblePageNumbers);
+            var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName);
             return editPresenter.Edit(questionID);
         }
 
         public object Delete(int questionID)
         {
-            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName, _pageSize, _maxVisiblePageNumbers);
+            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
             return deletePresenter.Show(questionID);
         }
 

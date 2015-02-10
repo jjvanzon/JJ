@@ -62,7 +62,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    var presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                    var presenter = new QuestionDetailsPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Show(id);
                 }
             }
@@ -78,7 +78,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                    var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Create();
                 }
             }
@@ -92,7 +92,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
                 return GetActionResult(ActionNames.Create, viewModel2);
             }
@@ -106,7 +106,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                    var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Edit(id);
                 }
             }
@@ -120,7 +120,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
                 return GetActionResult(ActionNames.Edit, viewModel2);
             }
@@ -134,7 +134,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                    var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Show(id);
                 }
             }
@@ -148,7 +148,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                var presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Show(id);
                 return GetActionResult(ActionNames.Delete, viewModel2);
             }
@@ -160,7 +160,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.AddLink(viewModel);
                 return GetActionResult(ActionNames.AddLink, viewModel2);
             }
@@ -172,7 +172,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
                 return GetActionResult(ActionNames.RemoveLink, viewModel2);
             }
@@ -184,7 +184,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.AddCategory(viewModel);
                 return GetActionResult(ActionNames.AddCategory, viewModel2);
             }
@@ -196,7 +196,7 @@ namespace JJ.Apps.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
                 return GetActionResult(ActionNames.RemoveCategory, viewModel2);
             }

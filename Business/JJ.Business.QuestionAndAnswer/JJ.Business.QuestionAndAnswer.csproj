@@ -71,7 +71,7 @@
     <Compile Include="Validation\MultipleChoiceQuestionValidator.cs" />
     <Compile Include="Validation\QuestionCategoryValidator.cs" />
     <Compile Include="Validation\QuestionLinkValidator.cs" />
-    <Compile Include="Validation\QuestionValidator.cs" />
+    <Compile Include="Validation\VersatileQuestionValidator.cs" />
     <Compile Include="Validation\SeveralMayApplyQuestionValidator.cs" />
     <Compile Include="Validation\OpenQuestionValidator.cs" />
   </ItemGroup>

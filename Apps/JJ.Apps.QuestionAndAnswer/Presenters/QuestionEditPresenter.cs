@@ -32,22 +32,16 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
     {
         private Repositories _repositories;
         private string _authenticatedUserName;
-        private int _pageSize;
-        private int _maxVisiblePageNumbers;
 
         /// <param name="authenticatedUserName">nullable</param>
         public QuestionEditPresenter(
             Repositories repositories, 
-            string authenticatedUserName,
-            int pageSize,
-            int maxVisiblePageNumbers)
+            string authenticatedUserName)
         {
             if (repositories == null) throw new NullException(() => repositories);
 
             _repositories = repositories;
             _authenticatedUserName = authenticatedUserName;
-            _pageSize = pageSize;
-            _maxVisiblePageNumbers = maxVisiblePageNumbers;
         }
 
         public object Edit(int id)
@@ -257,7 +251,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 return viewModel2;
             }
 
-            IValidator validator2 = new QuestionValidator(question);
+            IValidator validator2 = new VersatileQuestionValidator(question);
             if (!validator2.IsValid)
             {
                 viewModel2.ValidationMessages = validator2.ValidationMessages.ToCanonical();
@@ -274,13 +268,13 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
 
         public object Delete(QuestionEditViewModel viewModel)
         {
-            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName, _pageSize, _maxVisiblePageNumbers);
+            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
             return deletePresenter.Show(viewModel.Question.ID);
         }
 
-        public QuestionListViewModel BackToList()
+        public QuestionListViewModel BackToList(int pageSize, int maxVisiblePageNumbers)
         {
-            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName, _pageSize, _maxVisiblePageNumbers);
+            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName, pageSize, maxVisiblePageNumbers);
             return listPresenter.Show();
         }
 
