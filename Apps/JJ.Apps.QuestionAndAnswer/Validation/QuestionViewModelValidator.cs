@@ -15,7 +15,7 @@ namespace JJ.Apps.QuestionAndAnswer.Validation
         public QuestionViewModelValidator(QuestionViewModel obj)
             : base(obj)
         { }
-
+         
         protected override void Execute()
         {
             QuestionViewModel questionViewModel = Object;
