@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Modernizr</id>
     <version>2.6.2</version>
     <title>Modernizr</title>
-    <authors>Faruk Ateş,  Paul Irish,  Alex Sexton</authors>
-    <owners>Faruk Ateş,  Paul Irish,  Alex Sexton</owners>
+    <authors>Faruk Ateş,Paul Irish,Alex Sexton</authors>
+    <owners>Faruk Ateş,Paul Irish,Alex Sexton</owners>
     <licenseUrl>http://www.modernizr.com/license/</licenseUrl>
     <projectUrl>http://www.modernizr.com/</projectUrl>
     <iconUrl>http://www.modernizr.com/i/logo.png</iconUrl>
@@ -16,5 +16,6 @@
     <summary>Modernizr is a small and simple JavaScript library that helps you take advantage of emerging web technologies (CSS3, HTML 5) while still maintaining a fine level of control over older browsers that may not yet support these new technologies.</summary>
     <language>en-US</language>
     <tags>JavaScript HTML HTML5 CSS CSS3 SVG</tags>
+    <references />
   </metadata>
 </package>

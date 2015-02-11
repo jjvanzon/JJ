@@ -68,13 +68,13 @@
       <Project>{59ddc853-62af-4f86-a803-3d4dd491e978}</Project>
       <Name>JJ.Framework.Validation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.DefaultRepositories\JJ.Models.QuestionAndAnswer.DefaultRepositories.csproj">
+    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer.DefaultRepositories\JJ.Persistence.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.DefaultRepositories</Name>
+      <Name>JJ.Persistence.QuestionAndAnswer.DefaultRepositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj">
+    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer\JJ.Persistence.QuestionAndAnswer.csproj">
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>
-      <Name>JJ.Models.QuestionAndAnswer</Name>
+      <Name>JJ.Persistence.QuestionAndAnswer</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>

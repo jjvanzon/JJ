@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.Mvc", "Apps\JJ.Apps.QuestionAndAnswer.Mvc\JJ.Apps.QuestionAndAnswer.Mvc.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.Mvc", "Presentation\JJ.Presentation.QuestionAndAnswer.Mvc\JJ.Presentation.QuestionAndAnswer.Mvc.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer", "Apps\JJ.Apps.QuestionAndAnswer\JJ.Apps.QuestionAndAnswer.csproj", "{680C0600-E384-4F3D-9C2A-38ECC1FDB1CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer", "Presentation\JJ.Presentation.QuestionAndAnswer\JJ.Presentation.QuestionAndAnswer.csproj", "{680C0600-E384-4F3D-9C2A-38ECC1FDB1CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.QuestionAndAnswer", "Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj", "{B473BE3E-3DCA-4418-BFA0-9EBF0E024350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer", "Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj", "{64E812DC-4B3E-4A20-A6CA-7EA319383C49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Persistence.QuestionAndAnswer", "Persistence\JJ.Persistence.QuestionAndAnswer\JJ.Persistence.QuestionAndAnswer.csproj", "{64E812DC-4B3E-4A20-A6CA-7EA319383C49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence", "Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj", "{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.NHibernate", "Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj", "{DB783ED9-FDE6-458F-A094-457B7F4283A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.DefaultRepositories", "Models\JJ.Models.QuestionAndAnswer.DefaultRepositories\JJ.Models.QuestionAndAnswer.DefaultRepositories.csproj", "{B1408E4F-4A1C-4CD6-B818-0FF37A40E2FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Persistence.QuestionAndAnswer.DefaultRepositories", "Persistence\JJ.Persistence.QuestionAndAnswer.DefaultRepositories\JJ.Persistence.QuestionAndAnswer.DefaultRepositories.csproj", "{B1408E4F-4A1C-4CD6-B818-0FF37A40E2FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration", "Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj", "{805A8237-05ED-40AE-8D1A-9288373EA5E0}"
 EndProject
@@ -21,15 +21,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common", "Framework\JJ.Framework.Common\JJ.Framework.Common.csproj", "{44FD9133-5FE7-4824-BD35-27273706D127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Tests", "Models\JJ.Models.QuestionAndAnswer.Tests\JJ.Models.QuestionAndAnswer.Tests.csproj", "{7E76AD3A-2418-46EF-A48E-056C9EEF6738}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Persistence.QuestionAndAnswer.Tests", "Persistence\JJ.Persistence.QuestionAndAnswer.Tests\JJ.Persistence.QuestionAndAnswer.Tests.csproj", "{7E76AD3A-2418-46EF-A48E-056C9EEF6738}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.NHibernate", "Models\JJ.Models.QuestionAndAnswer.NHibernate\JJ.Models.QuestionAndAnswer.NHibernate.csproj", "{4507BFDD-1C21-4BA8-9486-4819D3B6AFCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Persistence.QuestionAndAnswer.NHibernate", "Persistence\JJ.Persistence.QuestionAndAnswer.NHibernate\JJ.Persistence.QuestionAndAnswer.NHibernate.csproj", "{4507BFDD-1C21-4BA8-9486-4819D3B6AFCA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Tests", "Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Tests.csproj", "{2E520035-5328-4518-BC08-B57D7D3A70C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.NPersist", "Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.NPersist.csproj", "{35FC288E-5A6F-4DB9-AE54-1B721735ED7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.NPersist", "Models\JJ.Models.QuestionAndAnswer.NPersist\JJ.Models.QuestionAndAnswer.NPersist.csproj", "{B38FEC53-B020-449F-AA97-E67D31B6D701}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Persistence.QuestionAndAnswer.NPersist", "Persistence\JJ.Persistence.QuestionAndAnswer.NPersist\JJ.Persistence.QuestionAndAnswer.NPersist.csproj", "{B38FEC53-B020-449F-AA97-E67D31B6D701}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
 EndProject
@@ -43,13 +43,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPath.Framework.NET 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.NET 3.5", "External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj", "{E6C03D2A-D150-4473-9439-D300746A1390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.EntityFramework5", "Models\JJ.Models.QuestionAndAnswer.EntityFramework5\JJ.Models.QuestionAndAnswer.EntityFramework5.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Persistence.QuestionAndAnswer.EntityFramework5", "Persistence\JJ.Persistence.QuestionAndAnswer.EntityFramework5\JJ.Persistence.QuestionAndAnswer.EntityFramework5.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Tests", "Framework\JJ.Framework.Persistence.Tests\JJ.Framework.Persistence.Tests.csproj", "{30F1DFB1-BB06-42EA-AE91-56144B56DF45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.AppService", "Apps\JJ.Apps.QuestionAndAnswer.AppService\JJ.Apps.QuestionAndAnswer.AppService.csproj", "{CE9782A1-2486-4217-BEA2-CC5C7499937A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.AppService", "Presentation\JJ.Presentation.QuestionAndAnswer.AppService\JJ.Presentation.QuestionAndAnswer.AppService.csproj", "{CE9782A1-2486-4217-BEA2-CC5C7499937A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.WinForms", "Apps\JJ.Apps.QuestionAndAnswer.WinForms\JJ.Apps.QuestionAndAnswer.WinForms.csproj", "{61FE7964-2503-44FD-95F9-AC9045610C99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.WinForms", "Presentation\JJ.Presentation.QuestionAndAnswer.WinForms\JJ.Presentation.QuestionAndAnswer.WinForms.csproj", "{61FE7964-2503-44FD-95F9-AC9045610C99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc", "Framework\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
 EndProject
@@ -57,7 +57,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing", "Fra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Tests", "Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Tests.csproj", "{EA2EC919-FC52-47B6-9149-B6A7018572CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.AppService.DemoClient", "Apps\JJ.Apps.QuestionAndAnswer.AppService.DemoClient\JJ.Apps.QuestionAndAnswer.AppService.DemoClient.csproj", "{CC1E33CE-08E6-48FD-A303-B28E40A258D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.AppService.DemoClient", "Presentation\JJ.Presentation.QuestionAndAnswer.AppService.DemoClient\JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.csproj", "{CC1E33CE-08E6-48FD-A303-B28E40A258D3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CE9782A1-2486-4217-BEA2-CC5C7499937A} = {CE9782A1-2486-4217-BEA2-CC5C7499937A}
 	EndProjectSection
@@ -78,13 +78,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.QuestionAndAnsw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3", "Business\JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3\JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.csproj", "{D2EBC8CE-4FC5-43C0-9CEF-F060C2E4B439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.Import", "Apps\JJ.Apps.QuestionAndAnswer.Import\JJ.Apps.QuestionAndAnswer.Import.csproj", "{CD05B56A-FCBC-4562-9F84-BE5099D44F34}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.Import", "Presentation\JJ.Presentation.QuestionAndAnswer.Import\JJ.Presentation.QuestionAndAnswer.Import.csproj", "{CD05B56A-FCBC-4562-9F84-BE5099D44F34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.QuestionAndAnswer.Import.WinForms", "Apps\JJ.Apps.QuestionAndAnswer.Import.WinForms\JJ.Apps.QuestionAndAnswer.Import.WinForms.csproj", "{6D0C31F9-C3BC-4BA2-A380-A464F2014801}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.Import.WinForms", "Presentation\JJ.Presentation.QuestionAndAnswer.Import.WinForms\JJ.Presentation.QuestionAndAnswer.Import.WinForms.csproj", "{6D0C31F9-C3BC-4BA2-A380-A464F2014801}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Security", "Framework\JJ.Framework.Security\JJ.Framework.Security.csproj", "{4007568E-B2B4-4FC5-AA38-34EDC272F010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.Canonical", "Models\JJ.Models.Canonical\JJ.Models.Canonical.csproj", "{08EA4A4E-D815-47AE-9277-DA6672D36214}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.CanonicalModel", "Business\JJ.Business.CanonicalModel\JJ.Business.CanonicalModel.csproj", "{08EA4A4E-D815-47AE-9277-DA6672D36214}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation", "Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj", "{79B0EAC3-5159-4FC8-B3D8-53315B205444}"
 EndProject
@@ -100,7 +100,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Resources", "Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.csproj", "{40A53175-8048-4F2D-93CA-383074C0267E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Sql", "Models\JJ.Models.QuestionAndAnswer.Sql\JJ.Models.QuestionAndAnswer.Sql.csproj", "{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Persistence.QuestionAndAnswer.Sql", "Persistence\JJ.Persistence.QuestionAndAnswer.Sql\JJ.Persistence.QuestionAndAnswer.Sql.csproj", "{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business", "Framework\JJ.Framework.Business\JJ.Framework.Business.csproj", "{F44D03E8-FEEC-40D4-B866-A87799185B4C}"
 EndProject

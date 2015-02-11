@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{680C0600-E384-4F3D-9C2A-38ECC1FDB1CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JJ.Presentation.QuestionAndAnswer</RootNamespace>
+    <AssemblyName>JJ.Presentation.QuestionAndAnswer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\ActionDispatcher.cs" />
+    <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\ViewModelEntityStatusHelper.cs" />
+    <Compile Include="Presenters\CategorySelectorPresenter.cs" />
+    <Compile Include="Helpers\Repositories.cs" />
+    <Compile Include="Extensions\ValidationMessageExtensions.cs" />
+    <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="SideEffects\Question_SetDefaults_ForOpenQuestion_FrontEnd_SideEffect.cs" />
+    <Compile Include="ToEntity\ListViewModelConverter.cs" />
+    <Compile Include="ToEntity\EntityViewModelExtensions.cs" />
+    <Compile Include="Presenters\QuestionDeleteConfirmedPresenter.cs" />
+    <Compile Include="Presenters\QuestionConfirmDeletePresenter.cs" />
+    <Compile Include="Presenters\QuestionEditPresenter.cs" />
+    <Compile Include="Presenters\QuestionListPresenter.cs" />
+    <Compile Include="Presenters\QuestionDetailsPresenter.cs" />
+    <Compile Include="Presenters\QuestionNotFoundPresenter.cs" />
+    <Compile Include="ToEntity\QuestionViewModelExtensions.cs" />
+    <Compile Include="ToViewModel\ToEntityViewModelExtensions.cs" />
+    <Compile Include="Extensions\ViewModelExtensions_NullCoalesce.cs" />
+    <Compile Include="ViewModels\Partials\PagingViewModel.cs" />
+    <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
+    <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
+    <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />
+    <Compile Include="ToViewModel\ViewModelHelper.cs" />
+    <Compile Include="ViewModels\Entities\QuestionCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Partials\CurrentUserQuestionFlagViewModel.cs" />
+    <Compile Include="ViewModels\Entities\FlagStatusViewModel.cs" />
+    <Compile Include="ViewModels\QuestionEditViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ToViewModel\ToPartialViewModelExtensions.cs" />
+    <Compile Include="ViewModels\Entities\QuestionFlagViewModel.cs" />
+    <Compile Include="ViewModels\QuestionListViewModel.cs" />
+    <Compile Include="ViewModels\QuestionNotFoundViewModel.cs" />
+    <Compile Include="ViewModels\Entities\QuestionTypeViewModel.cs" />
+    <Compile Include="ViewModels\Partials\LoginPartialViewModel.cs" />
+    <Compile Include="Presenters\RandomQuestionPresenter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\CategorySelectorViewModel.cs" />
+    <Compile Include="ViewModels\Entities\CategoryViewModel.cs" />
+    <Compile Include="ToViewModel\CategoryExtensions.cs" />
+    <Compile Include="ToEntity\QuestionEditViewModelExtensions.cs" />
+    <Compile Include="ToViewModel\QuestionExtensions.cs" />
+    <Compile Include="Resources\Titles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Titles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Entities\LanguageViewModel.cs" />
+    <Compile Include="ViewModels\Partials\LanguageSelectorPartialViewModel.cs" />
+    <Compile Include="ViewModels\RandomQuestionViewModel.cs" />
+    <Compile Include="ViewModels\Entities\QuestionLinkViewModel.cs" />
+    <Compile Include="ViewModels\Entities\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\Entities\SourceViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
+      <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
+      <Name>JJ.Business.QuestionAndAnswer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Business\JJ.Framework.Business.csproj">
+      <Project>{f44d03e8-feec-40d4-b866-a87799185b4c}</Project>
+      <Name>JJ.Framework.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
+      <Name>JJ.Framework.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj">
+      <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
+      <Name>JJ.Framework.Persistence.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
+      <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
+      <Name>JJ.Framework.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
+      <Project>{59622a6e-a9ae-438c-a164-05dea2fcf8cf}</Project>
+      <Name>JJ.Framework.PlatformCompatibility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj">
+      <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>
+      <Name>JJ.Framework.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
+      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
+      <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Security\JJ.Framework.Security.csproj">
+      <Project>{4007568e-b2b4-4fc5-aa38-34edc272f010}</Project>
+      <Name>JJ.Framework.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Validation\JJ.Framework.Validation.csproj">
+      <Project>{59ddc853-62af-4f86-a803-3d4dd491e978}</Project>
+      <Name>JJ.Framework.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\JJ.Business.CanonicalModel\JJ.Business.CanonicalModel.csproj">
+      <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
+      <Name>JJ.Business.CanonicalModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer.NHibernate\JJ.Persistence.QuestionAndAnswer.NHibernate.csproj">
+      <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>
+      <Name>JJ.Persistence.QuestionAndAnswer.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer.DefaultRepositories\JJ.Persistence.QuestionAndAnswer.DefaultRepositories.csproj">
+      <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
+      <Name>JJ.Persistence.QuestionAndAnswer.DefaultRepositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer\JJ.Persistence.QuestionAndAnswer.csproj">
+      <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>
+      <Name>JJ.Persistence.QuestionAndAnswer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Messages.en-US.resx" />
+    <EmbeddedResource Include="Resources\Messages.nl-NL.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Titles.en-US.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Titles.nl-NL.resx" />
+    <EmbeddedResource Include="Resources\Titles.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Titles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

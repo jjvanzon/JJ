@@ -83,13 +83,13 @@
       <Project>{f6ea0941-40ff-4679-a1a6-eacd5c9ba42b}</Project>
       <Name>JJ.Framework.Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer.DefaultRepositories\JJ.Models.QuestionAndAnswer.DefaultRepositories.csproj">
+    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer.DefaultRepositories\JJ.Persistence.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
-      <Name>JJ.Models.QuestionAndAnswer.DefaultRepositories</Name>
+      <Name>JJ.Persistence.QuestionAndAnswer.DefaultRepositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.QuestionAndAnswer\JJ.Models.QuestionAndAnswer.csproj">
+    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer\JJ.Persistence.QuestionAndAnswer.csproj">
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>
-      <Name>JJ.Models.QuestionAndAnswer</Name>
+      <Name>JJ.Persistence.QuestionAndAnswer</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Business.QuestionAndAnswer.Import\JJ.Business.QuestionAndAnswer.Import.csproj">
       <Project>{d91d777a-f46e-48b6-90e9-90931a3ccfff}</Project>

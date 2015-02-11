@@ -1,7 +1,7 @@
 ﻿using JJ.Framework.Mathematics;
 using JJ.Framework.Reflection;
-using JJ.Models.QuestionAndAnswer;
-using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Persistence.QuestionAndAnswer;
+using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;

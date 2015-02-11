@@ -1,6 +1,6 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Framework.Validation;
-using JJ.Models.QuestionAndAnswer;
+using JJ.Persistence.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using System.Linq;

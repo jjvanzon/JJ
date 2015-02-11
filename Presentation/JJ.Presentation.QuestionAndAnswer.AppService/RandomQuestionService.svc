@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="JJ.Presentation.QuestionAndAnswer.AppService.RandomQuestionService" CodeBehind="RandomQuestionService.svc.cs" %>
