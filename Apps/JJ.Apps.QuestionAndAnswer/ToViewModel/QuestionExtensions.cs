@@ -50,7 +50,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
                 viewModel.Question.Flags.Add(flagViewModel);
             }
 
-            viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.FlagStatus.ID == (int)FlagStatusEnum.Flagged).Any();
+            viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged).Any();
 
             return viewModel;
         }
@@ -100,7 +100,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
                 viewModel.Question.Flags.Add(flagViewModel);
             }
 
-            viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.FlagStatus.ID == (int)FlagStatusEnum.Flagged).Any();
+            viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged).Any();
 
             return viewModel;
         }
@@ -135,7 +135,7 @@ namespace JJ.Apps.QuestionAndAnswer.ToViewModel
             if (currentUserQuestionFlag != null)
             {
                 viewModel.CurrentUserQuestionFlag = currentUserQuestionFlag.ToCurrentUserQuestionFlagViewModel();
-                viewModel.Question.IsFlagged = currentUserQuestionFlag.FlagStatus.ID == (int)FlagStatusEnum.Flagged;
+                viewModel.Question.IsFlagged = currentUserQuestionFlag.GetFlagStatusEnum() == FlagStatusEnum.Flagged;
             }
             else
             {

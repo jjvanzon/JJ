@@ -7,30 +7,32 @@ using JJ.Framework.Business;
 using JJ.Framework.Reflection;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Models.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.Enums;
-using JJ.Business.QuestionAndAnswer.Extensions;
 
-namespace JJ.Business.QuestionAndAnswer.SideEffects
+namespace JJ.Apps.QuestionAndAnswer.SideEffects
 {
-    public class Question_SetOpenQuestionDefaults_SideEffect : ISideEffect
+    /// <summary>
+    /// These defaults are specific to the UI, not the business,
+    /// so keep it in the front-end.
+    /// </summary>
+    internal class Question_SetDefaults_ForOpenQuestion_FrontEnd_SideEffect : ISideEffect
     {
-        private const QuestionTypeEnum DEFAULT_QUESTION_TYPE_ENUM = QuestionTypeEnum.OpenQuestion;
+        private const string DEFAULT_SOURCE_IDENTIFIER = "Manual";
 
         private Question _entity;
-        private IQuestionTypeRepository _questionTypeRepository;
+        private ISourceRepository _sourceRepository;
         private EntityStatusManager _statusManager;
 
-        public Question_SetOpenQuestionDefaults_SideEffect(
+        public Question_SetDefaults_ForOpenQuestion_FrontEnd_SideEffect(
             Question entity,
-            IQuestionTypeRepository questionTypeRepository,
+            ISourceRepository sourceRepository,
             EntityStatusManager statusManager)
         {
             if (entity == null) throw new NullException(() => entity);
-            if (questionTypeRepository == null) throw new NullException(() => questionTypeRepository);
+            if (sourceRepository == null) throw new NullException(() => sourceRepository);
             if (statusManager == null) throw new NullException(() => statusManager);
 
             _entity = entity;
-            _questionTypeRepository = questionTypeRepository;
+            _sourceRepository = sourceRepository;
             _statusManager = statusManager;
         }
 
@@ -38,8 +40,8 @@ namespace JJ.Business.QuestionAndAnswer.SideEffects
         {
             if (_statusManager.IsNew(_entity))
             {
-                _entity.IsActive = true;
-                _entity.QuestionType = _questionTypeRepository.Get((int)DEFAULT_QUESTION_TYPE_ENUM);
+                _entity.IsManual = true;
+                _entity.Source = _sourceRepository.GetByIdentifier(DEFAULT_SOURCE_IDENTIFIER);
             }
         }
     }

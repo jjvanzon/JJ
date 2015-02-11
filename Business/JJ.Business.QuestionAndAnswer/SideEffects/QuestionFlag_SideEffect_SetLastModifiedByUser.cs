@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace JJ.Business.QuestionAndAnswer.SideEffects
 {
-    public class QuestionFlag_SetLastModifiedByUser_SideEffect : ISideEffect
+    public class QuestionFlag_SideEffect_SetLastModifiedByUser : ISideEffect
     {
         private QuestionFlag _questionFlag;
         private User _user;
         private EntityStatusManager _statusManager;
 
-        public QuestionFlag_SetLastModifiedByUser_SideEffect(QuestionFlag questionFlag, User user, EntityStatusManager statusManager)
+        public QuestionFlag_SideEffect_SetLastModifiedByUser(QuestionFlag questionFlag, User user, EntityStatusManager statusManager)
         {
             if (questionFlag == null) throw new NullException(() => questionFlag);
             if (user == null) throw new NullException(() => user);

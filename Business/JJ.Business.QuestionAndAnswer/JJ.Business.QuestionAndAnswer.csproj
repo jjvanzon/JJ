@@ -37,10 +37,9 @@
     <Compile Include="CategoryManager.cs" />
     <Compile Include="Enums\FlagStatusEnum.cs" />
     <Compile Include="Enums\QuestionTypeEnum.cs" />
-    <Compile Include="Extensions\AutoCreateRelatedEntitiesExtensions.cs" />
     <Compile Include="Extensions\CategoryExtensions.cs" />
     <Compile Include="Extensions\DeleteRelatedEntitiesExtensions.cs" />
-    <Compile Include="Extensions\EntityEnumExtensions.cs" />
+    <Compile Include="Extensions\EnumEntityExtensions.cs" />
     <Compile Include="Extensions\UnlinkRelatedEntitiesExtensions.cs" />
     <Compile Include="LinkTo\LinkToExtensions.cs" />
     <Compile Include="LinkTo\UnlinkExtensions.cs" />
@@ -62,10 +61,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PropertyDisplayNames.nl-NL.resx</DependentUpon>
     </Compile>
-    <Compile Include="SideEffects\QuestionFlag_SetLastModifiedByUser_SideEffect.cs" />
-    <Compile Include="SideEffects\Question_SetOpenQuestionDefaults_SideEffect.cs" />
-    <Compile Include="SideEffects\Question_SetIsManual_SideEffect.cs" />
-    <Compile Include="SideEffects\Question_SetLastModifiedByUser_SideEffect.cs" />
+    <Compile Include="SideEffects\Answer_SideEffect_SetDefaults_ForOpenQuestion.cs" />
+    <Compile Include="SideEffects\QuestionFlag_SideEffect_SetLastModifiedByUser.cs" />
+    <Compile Include="SideEffects\Question_SideEffect_AutoCreateRelatedEntities.cs" />
+    <Compile Include="SideEffects\Question_SideEffect_SetDefaults_ForOpenQuestion.cs" />
+    <Compile Include="SideEffects\Question_SideEffect_SetIsManual.cs" />
+    <Compile Include="SideEffects\Question_SideEffect_SetLastModifiedByUser.cs" />
     <Compile Include="Validation\AnswerValidator.cs" />
     <Compile Include="Validation\BasicQuestionValidator.cs" />
     <Compile Include="Validation\MultipleChoiceQuestionValidator.cs" />

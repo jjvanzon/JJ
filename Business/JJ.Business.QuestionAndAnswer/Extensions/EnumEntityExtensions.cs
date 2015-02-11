@@ -10,7 +10,7 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {
-    public static class EntityEnumExtensions
+    public static class EnumEntityExtensions
     {
         public static QuestionTypeEnum GetQuestionTypeEnum(this Question entity)
         {

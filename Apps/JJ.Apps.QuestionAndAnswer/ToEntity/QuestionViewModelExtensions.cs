@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Framework.Business;
+using JJ.Business.QuestionAndAnswer.SideEffects;
 
 namespace JJ.Apps.QuestionAndAnswer.ToEntity
 {
@@ -50,7 +51,9 @@ namespace JJ.Apps.QuestionAndAnswer.ToEntity
                 entityStatusManager.SetIsNew(answer);
             }
 
-            answer.IsCorrectAnswer = true;
+            ISideEffect sideEffect = new Answer_SideEffect_SetDefaults_ForOpenQuestion(answer, entityStatusManager);
+            sideEffect.Execute();
+
             answer.Text = viewModel.Answer;
             return answer;
         }

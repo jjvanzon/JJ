@@ -76,13 +76,14 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             Question entity = _repositories.QuestionRepository.Create();
             _repositories.EntityStatusManager.SetIsNew(entity);
 
-            entity.AutoCreateRelatedEntities(_repositories.AnswerRepository);
+            ISideEffect sideEffect1 = new Question_SideEffect_AutoCreateRelatedEntities(entity, _repositories.AnswerRepository, _repositories.EntityStatusManager);
+            sideEffect1.Execute();
 
-            ISideEffect setDefaults1 = new Question_SetOpenQuestionDefaults_SideEffect(entity, _repositories.QuestionTypeRepository, _repositories.EntityStatusManager);
-            setDefaults1.Execute();
+            ISideEffect sideEffect2 = new Question_SideEffect_SetDefaults_ForOpenQuestion(entity, _repositories.QuestionTypeRepository, _repositories.EntityStatusManager);
+            sideEffect2.Execute();
 
-            ISideEffect setDefaults2 = new Question_SetOpenQuestionDefaults_FrontEnd_SideEffect(entity, _repositories.SourceRepository, _repositories.EntityStatusManager);
-            setDefaults2.Execute();
+            ISideEffect sideEffect3 = new Question_SetDefaults_ForOpenQuestion_FrontEnd_SideEffect(entity, _repositories.SourceRepository, _repositories.EntityStatusManager);
+            sideEffect3.Execute();
 
             QuestionEditViewModel viewModel = entity.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
             viewModel.IsNew = true;
@@ -245,16 +246,16 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
                 ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(_repositories.EntityStatusManager, question, viewModel.Question);
 
                 // Side-effects
-                ISideEffect setIsManual = new Question_SetIsManual_SideEffect(question, _repositories.EntityStatusManager);
-                setIsManual.Execute();
+                ISideEffect sideEffect1 = new Question_SideEffect_SetIsManual(question, _repositories.EntityStatusManager);
+                sideEffect1.Execute();
 
-                ISideEffect setLastModifiedByUser = new Question_SetLastModifiedByUser_SideEffect(question, user, _repositories.EntityStatusManager);
-                setLastModifiedByUser.Execute();
+                ISideEffect sideEffect2 = new Question_SideEffect_SetLastModifiedByUser(question, user, _repositories.EntityStatusManager);
+                sideEffect2.Execute();
 
                 foreach (QuestionFlag questionFlag in question.QuestionFlags)
                 {
-                    ISideEffect questionFlag_SetLastModifiedByUser = new QuestionFlag_SetLastModifiedByUser_SideEffect(questionFlag, user, _repositories.EntityStatusManager);
-                    questionFlag_SetLastModifiedByUser.Execute();
+                    ISideEffect sideEffect3 = new QuestionFlag_SideEffect_SetLastModifiedByUser(questionFlag, user, _repositories.EntityStatusManager);
+                    sideEffect3.Execute();
                 }
 
                 // Commit

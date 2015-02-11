@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using JJ.Models.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Apps.QuestionAndAnswer.Helpers;
 using JJ.Apps.QuestionAndAnswer.ToViewModel;
 using JJ.Framework.Reflection;
@@ -48,7 +49,7 @@ namespace JJ.Apps.QuestionAndAnswer.Presenters
             foreach (Question question in _repositories.QuestionRepository.GetPage(pageIndex * _pageSize, _pageSize))
             {
                 QuestionViewModel itemViewModel = question.ToViewModel();
-                itemViewModel.IsFlagged = question.QuestionFlags.Where(x => x.FlagStatus.ID == (int)FlagStatusEnum.Flagged).Any();
+                itemViewModel.IsFlagged = question.QuestionFlags.Where(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged).Any();
                 viewModel.List.Add(itemViewModel);
             }
 

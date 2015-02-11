@@ -22,8 +22,8 @@ namespace JJ.Business.QuestionAndAnswer.Validation
         {
             if (Object.QuestionType != null)
             {
-                For(() => Object.QuestionType.ID, PropertyDisplayNames.QuestionType)
-                    .IsValue((int)QuestionTypeEnum.MultipleChoice);
+                For(() => Object.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
+                    .IsValue(QuestionTypeEnum.MultipleChoice);
             }
 
             For(() => Object.Answers.Count, PropertyDisplayNames.AnswersCount)

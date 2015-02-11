@@ -13,12 +13,16 @@ using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Framework.Reflection;
+using JJ.Framework.Business;
+using JJ.Business.QuestionAndAnswer.SideEffects;
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {
     public abstract class ConverterBase<TModel>
     {
         protected readonly Source _source;
+
+        protected EntityStatusManager _entityStatusManager;
 
         protected IQuestionRepository _questionRepository;
         protected IAnswerRepository _answerRepository;
@@ -61,6 +65,8 @@ namespace JJ.Business.QuestionAndAnswer.Import
             _questionTypeRepository = questionTypeRepository;
             _sourceRepository = sourceRepository;
 
+            _entityStatusManager = new EntityStatusManager();
+
             _categoryManager = new CategoryManager(_categoryRepository);
 
             _categoryIdentifier = categoryIdentifier;
@@ -73,9 +79,16 @@ namespace JJ.Business.QuestionAndAnswer.Import
         protected Question ConvertToQuestion_BaseMethod()
         {
             Question question = _questionRepository.Create();
-            question.AutoCreateRelatedEntities(_answerRepository);
-            question.SetQuestionTypeEnum(QuestionTypeEnum.OpenQuestion, _questionTypeRepository);
-            question.Answers[0].IsCorrectAnswer = true;
+            _entityStatusManager.SetIsNew(question);
+
+            ISideEffect sideEffect1 = new Question_SideEffect_AutoCreateRelatedEntities(question, _answerRepository, _entityStatusManager);
+            sideEffect1.Execute();
+
+            ISideEffect sideEffect2 = new Question_SideEffect_SetDefaults_ForOpenQuestion(question, _questionTypeRepository, _entityStatusManager);
+            sideEffect2.Execute();
+
+            ISideEffect sideEffect3 = new Answer_SideEffect_SetDefaults_ForOpenQuestion(question.Answers[0], _entityStatusManager);
+            sideEffect3.Execute();
 
             question.LinkTo(_source);
 

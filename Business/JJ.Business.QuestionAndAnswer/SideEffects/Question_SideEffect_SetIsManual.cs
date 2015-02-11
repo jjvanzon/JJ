@@ -9,46 +9,42 @@ using System.Threading.Tasks;
 
 namespace JJ.Business.QuestionAndAnswer.SideEffects
 {
-    public class Question_SetLastModifiedByUser_SideEffect : ISideEffect
+    public class Question_SideEffect_SetIsManual : ISideEffect
     {
-        private Question _question;
-        private User _user;
+        private Question _entity;
         private EntityStatusManager _statusManager;
 
-        public Question_SetLastModifiedByUser_SideEffect(Question question, User user, EntityStatusManager statusManager)
+        public Question_SideEffect_SetIsManual(Question entity, EntityStatusManager statusManager)
         {
-            if (question == null) throw new NullException(() => question);
-            if (user == null) throw new NullException(() => user);
+            if (entity == null) throw new NullException(() => entity);
             if (statusManager == null) throw new NullException(() => statusManager);
 
-            _question = question;
-            _user = user;
+            _entity = entity;
             _statusManager = statusManager;
         }
 
         public void Execute()
         {
-            if (MustSetLastModifiedByUser(_question, _statusManager))
+            if (MustSetIsManual(_entity, _statusManager))
             {
-                _question.LastModifiedByUser = _user;
+                _entity.IsManual = true;
             }
         }
 
-        private bool MustSetLastModifiedByUser(Question entity, EntityStatusManager statusManager)
+        private bool MustSetIsManual(Question entity, EntityStatusManager statusManager)
         {
+            // MustSetIsManual is almost determined by 'anything is dirty' except for question flag status changes.
+
             return statusManager.IsDirty(entity) ||
                    statusManager.IsNew(entity) ||
                    statusManager.IsDirty(() => entity.QuestionType) ||
                    statusManager.IsDirty(() => entity.Source) ||
                    statusManager.IsDirty(() => entity.QuestionCategories) ||
                    entity.QuestionCategories.Any(x => statusManager.IsDirty(x)) ||
+                   entity.QuestionCategories.Any(x => statusManager.IsNew(x)) ||
                    statusManager.IsDirty(() => entity.QuestionLinks) ||
                    entity.QuestionLinks.Any(x => statusManager.IsDirty(x)) ||
-                   entity.QuestionLinks.Any(x => statusManager.IsNew(x)) ||
-                   statusManager.IsDirty(() => entity.QuestionFlags) ||
-                   entity.QuestionFlags.Any(x => statusManager.IsDirty(x)) ||
-                   entity.QuestionFlags.Any(x => statusManager.IsNew(x));
-
+                   entity.QuestionLinks.Any(x => statusManager.IsNew(x));
         }
     }
 }
