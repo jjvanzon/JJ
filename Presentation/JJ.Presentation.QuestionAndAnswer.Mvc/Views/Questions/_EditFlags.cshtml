@@ -1,0 +1,58 @@
+﻿@model QuestionEditViewModel
+
+<fieldset>
+    <legend>@Titles.ContentFlags</legend>
+
+    @Titles.HasActiveFlags
+    @(Model.Question.IsFlagged ? CommonTitles.Yes : CommonTitles.No)
+
+    <br />
+    <br />
+
+    @for (int i = 0; i < Model.Question.Flags.Count; i++ )
+    {
+        @Html.HiddenFor(x => x.Question.Flags[i].ID)
+
+        <fieldset>
+            <legend>@Model.Question.Flags[i].FlaggedBy, @Model.Question.Flags[i].DateAndTime.ToShortDateString()</legend>
+            <table>
+                <tr>
+                    <th class="editor-label">@PropertyDisplayNames.FlagStatus</th>
+                    <td class="editor-field">
+                        @Html.DropDownListFor(
+                                x => Model.Question.Flags[i].Status.ID,
+                                Model.FlagStatuses.Select(x => new SelectListItem 
+                                {
+                                    Value = x.ID.ToString(), 
+                                    Text = x.Description, 
+                                    Selected = x.ID == Model.Question.Flags[i].Status.ID 
+                                }))
+
+                        @Html.ValidationMessageFor(x => Model.Question.Flags[i].Status)
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="editor-label">@PropertyDisplayNames.Comment</th>
+                    <td class="editor-field">
+                        @Html.TextAreaFor(x => Model.Question.Flags[i].Comment)
+                        @Html.ValidationMessageFor(x => Model.Question.Flags[i].Comment)
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="editor-label">@PropertyDisplayNames.LastModifiedByUser</th>
+                    <td class="editor-field">
+                        @Model.Question.Flags[i].LastModifiedBy
+                    </td>
+                </tr>
+
+            </table>
+        </fieldset>
+
+        if (i != Model.Question.Flags.Count - 1)
+        {
+            <br />  
+        }
+    }
+</fieldset>

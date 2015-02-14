@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.Mvc", "Presentation\JJ.Presentation.QuestionAndAnswer.Mvc\JJ.Presentation.QuestionAndAnswer.Mvc.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.MvcAspx", "Presentation\JJ.Presentation.QuestionAndAnswer.MvcAspx\JJ.Presentation.QuestionAndAnswer.MvcAspx.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer", "Presentation\JJ.Presentation.QuestionAndAnswer\JJ.Presentation.QuestionAndAnswer.csproj", "{680C0600-E384-4F3D-9C2A-38ECC1FDB1CB}"
 EndProject
@@ -111,6 +111,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.JavaScript", "Demos\JJ.Demos.JavaScript\JJ.Demos.JavaScript.csproj", "{E836A5E1-6D7B-497A-A6F3-D6D6117D2EBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.SqlClient", "Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.csproj", "{CEB85F8E-D429-4510-95A5-47CC3069D412}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.Mvc", "Presentation\JJ.Presentation.QuestionAndAnswer.Mvc\JJ.Presentation.QuestionAndAnswer.Mvc.csproj", "{0DD800E5-1FD2-412E-A15F-C4AF46954E29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -437,6 +439,12 @@ Global
 		{CEB85F8E-D429-4510-95A5-47CC3069D412}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{CEB85F8E-D429-4510-95A5-47CC3069D412}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEB85F8E-D429-4510-95A5-47CC3069D412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DD800E5-1FD2-412E-A15F-C4AF46954E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DD800E5-1FD2-412E-A15F-C4AF46954E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DD800E5-1FD2-412E-A15F-C4AF46954E29}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DD800E5-1FD2-412E-A15F-C4AF46954E29}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{0DD800E5-1FD2-412E-A15F-C4AF46954E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DD800E5-1FD2-412E-A15F-C4AF46954E29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

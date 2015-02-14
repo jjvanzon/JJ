@@ -1,0 +1,13 @@
+﻿@model QuestionNotFoundViewModel
+
+@section Title
+{
+    @Titles.NoQuestionsFound
+}
+
+@section Header
+{
+    @Html.Partial(ViewNames._Login, Model.Login)
+}
+
+<p>@Messages.NoQuestionsFound</p>

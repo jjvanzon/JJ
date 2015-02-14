@@ -1,0 +1,43 @@
+﻿@model QuestionListViewModel
+
+@section Title
+{
+    @PropertyDisplayNames.Questions
+}
+
+@section Header
+{
+    @Html.Partial(ViewNames._Login, Model.Login)
+}
+
+@using (Html.BeginForm())
+{
+    <h2>@PropertyDisplayNames.Questions</h2>
+
+    <p>@Html.ActionLink(Titles.CreateQuestion, ActionNames.Create)</p>
+
+    @Html.Partial(ViewNames._Paging, Model.Paging)
+
+    <table>
+
+        <tr>
+            <th>@PropertyDisplayNames.ID</th>
+            <th>@PropertyDisplayNames.Question</th>
+            <th>@Titles.ContentIsFlagged </th>
+            <th></th>
+        </tr>
+
+        @foreach (var question in Model.List)
+        {
+            <tr>
+                <td>@question.ID</td>
+                <td>@Html.ActionLink(question.Text, ActionNames.Details, new { id = question.ID })</td>
+                <td>@(question.IsFlagged ? CommonTitles.Yes : CommonTitles.No)</td>
+                <td>@Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new { id = question.ID }) </td>
+                <td>@Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = question.ID })</td>
+            </tr>
+        }
+    </table>
+
+    @Html.Partial(ViewNames._Paging, Model.Paging)
+}

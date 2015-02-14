@@ -1,0 +1,65 @@
+﻿@model QuestionEditViewModel
+
+<fieldset>
+    <legend>@Titles.Links</legend>
+
+    @if (Model.Question.Links.Count != 0)
+    {
+        <table style="width:500px">
+
+            @for (int i = 0; i < Model.Question.Links.Count; i++)
+            {
+                <tr style="height:47px">
+                    <td>
+                        @PropertyDisplayNames.Description
+                        <span class="editor-field">
+                            @Html.TextBoxFor(x => x.Question.Links[i].Description, new { style = "width:200px;" })
+                            @Html.ValidationMessageFor(x => x.Question.Links[i].Description)
+                        </span>
+                    </td>
+                    <td style="width:250px">
+                        @if (!String.IsNullOrEmpty(Model.Question.Links[i].Url))
+                        {
+                            <a href="@Model.Question.Links[i].Url" target="_blank">
+                                    @PropertyDisplayNames.Url
+                            </a>
+                        }
+                        else
+                        {
+                            @PropertyDisplayNames.Url
+                        }
+
+                        <span class="editor-field">
+                            @Html.TextBoxFor(x => x.Question.Links[i].Url, new { style = "width:400px;" })
+                            @Html.ValidationMessageFor(x => x.Question.Links[i].Url)
+                        </span>
+                    </td>
+                    <td style="vertical-align:bottom;text-align:center;">
+                        <input type="submit" 
+                                value="@CommonTitles.Remove"
+                                formaction="@Url.ActionWithParams(ActionNames.RemoveLink, 
+                                                                    ControllerNames.Questions, 
+                                                                    ActionParameterNames.temporaryID, 
+                                                                    Model.Question.Links[i].TemporaryID)" />
+
+                        @Html.HiddenFor(x => x.Question.Links[i].ID)
+                        @Html.HiddenFor(x => x.Question.Links[i].TemporaryID)
+                    </td>
+                </tr>
+            }
+
+            <tr style="height:47px">
+                <td />
+                <td />
+                <td style="vertical-align:bottom;text-align:center;">
+                    <input type="submit" value="@CommonTitles.Add" formaction="@Url.Action(ActionNames.AddLink)" />
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <br />
+        <input type="submit" value="@CommonTitles.Add" formaction="@Url.Action(ActionNames.AddLink)" />
+    }
+</fieldset>

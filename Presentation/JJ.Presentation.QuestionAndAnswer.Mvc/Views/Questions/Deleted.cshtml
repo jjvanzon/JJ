@@ -1,0 +1,17 @@
+﻿@model QuestionDeleteConfirmedViewModel
+
+@section Title
+{
+    @Titles.DeleteQuestion
+}
+
+@section Header
+{
+    @Html.Partial(ViewNames._Login, Model.Login)
+}
+
+<h2>@Titles.DeleteQuestion</h2>
+    
+<p>@Messages.QuestionIsDeleted</p>
+
+<p>@Html.ActionLink(Titles.BackToList, ActionNames.Index)</p>

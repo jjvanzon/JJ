@@ -1,0 +1,33 @@
+﻿@model LoginViewModel
+
+@section Title
+{
+    @CommonTitles.LogIn 
+}
+
+@section Header
+{
+    @Html.Partial(ViewNames._LanguageSelector, Model.LanguageSelector)
+}
+
+@using (Html.BeginForm())
+{
+    <h2>@CommonTitles.LogIn</h2>
+
+    <p>
+        @PropertyDisplayNames.UserName
+        @Html.TextBoxFor(x => x.UserName)
+    </p>
+
+    <p>
+        @PropertyDisplayNames.Password
+        @Html.PasswordFor(x => x.Password)
+    </p>
+
+    <input type="submit" value="@CommonTitles.LogIn" />
+
+    using (Html.BeginItem(() => Model.SourceAction))
+    {
+        @Html.Partial(ViewNames._ActionDescriptor, Model.SourceAction);
+    }
+}

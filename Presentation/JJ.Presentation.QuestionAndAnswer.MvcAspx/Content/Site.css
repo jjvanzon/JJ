@@ -1,0 +1,306 @@
+﻿body
+{
+    margin: 10pt;
+    font-size: 14px;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #e8e8e8;
+    background-color: #374B5B;
+    height: 100%
+}
+
+header, 
+footer, 
+nav, 
+section
+{
+    display: block;
+}
+
+h2
+{
+    font-size: 16pt;
+    margin: -1px;
+    padding-left: 0px;
+    padding-right: 4px;
+    padding-top: 6px;
+    padding-bottom: 2px;
+}
+
+h3
+{
+    font-size: 12pt;
+    margin: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 5px;
+    padding-bottom: 2px;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset
+{
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea
+{
+    min-height: 75px;
+    width: 500px;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    font-size: 10pt;
+}
+
+.editor-label
+{
+    margin: 1em 0 0 0;
+    /*width: 136px;*/
+}
+
+.editor-field
+{
+    margin: 0.5em 0 0 0;
+    /*width: 136px;*/
+}
+
+.editor-field
+{
+    margin: 0.5em 0 0 0;
+    /*width: 172px;*/
+}
+
+.editor-field-double-size
+{
+    margin: 0.5em 0 0 0;
+    width: 172px;
+}
+
+.text-field input
+{
+    color: #f8f8f8;
+    background-color: #bbb;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #f00;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+
+/* Custom styles
+-----------------------------------------------------------*/
+
+h1
+{
+    margin: 0px;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 6px;
+}
+
+table.pane
+{
+    /*width: 100%;
+    height: 100%;*/
+    height: 100%;
+    /*overflow:scroll;*/
+
+    /*display: block;*/
+}
+
+table.pane td
+{
+    margin: 0px;
+    margin-right: 4px;
+    padding: 4px;
+
+    border-color: lightgray;
+    border-style: solid;
+    border-width: 1px;
+
+    vertical-align: top;
+    overflow:scroll;
+}
+
+table.pane td.col1of2
+{
+    /*float: left;*/
+    /*position: absolute;*/
+    top: 40px;
+    bottom: 40px;
+    width: 100%;
+    /*width: 50%;*/
+}
+
+table.pane td.col2of2
+{
+    /*float: left;*/
+    /*position: absolute;*/
+    top: 40px;
+    bottom: 40px;
+    min-width: 200px;
+}
+
+/*div.trysomething
+{
+    border-color: lightgray;
+    border-style: solid;
+    border-width: 1px;
+
+    margin: 0px;
+    padding: 4px;
+
+    float: left;
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    width: 50%;
+}*/
+
+
+/* Category selector nuggets */
+
+li.category
+{
+    display: inline-block;
+    list-style-type: none;
+
+    border-style: solid;
+    border-color: #60c0f0;
+    border-width: 2px;
+    border-radius: 4px;
+
+    margin-top: 2px;
+    margin-bottom: 4px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+
+    color: #345;
+    font-weight: bold;
+    font-family: 'Century Gothic';
+}
+
+ul > li.category
+{
+    font-size: 14pt;
+    background-color: #ADE2FF;
+}
+
+ul ul > li.category
+{
+    font-size: 12pt;
+    background-color: #8CDCFF;
+}
+
+ul ul ul > li.category
+{
+    font-size: 10pt;
+    background-color: #ADE2FF;
+}
+
+ul ul ul ul > li.category
+{
+    font-size: 8pt;
+    background-color: #8CDCFF;
+}
+
+a:link, a:hover, a:visited, a:active
+{
+    color: #ADE2FF;
+}
+
+input[type="text"], textarea, select
+{
+    background-color: #B6C9D8;
+}
+
+
+/* nav */
+
+nav
+{
+    margin-top: 20px;
+}
+
+nav a
+{
+    text-decoration: none;
+}
+
+nav a:hover
+{
+    color: #DDF3FF
+}
+
+nav > ul
+{
+    display: inline;
+    padding: 0px;
+}
+
+nav li
+{
+    /*border-width: 1px;
+    border-style: solid;
+    border-color: #777;*/
+    padding: 4px;
+    font-weight: 600;
+}
+
+nav > ul > li
+{
+    display: inline-block;
+    margin: 0px;
+    vertical-align: top;
+}
+
+nav > ul > li > ul
+{
+    padding: 0px;
+    padding-left: 16px;
+    margin-top: 4px;
+}
+
+nav > ul > li > ul > li
+{
+    display: block;
+    margin: 0px;
+    vertical-align: top;
+}

@@ -1,10 +1,10 @@
-﻿using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc
 {
@@ -27,10 +27,10 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new 
-                { 
-                    controller =  ControllerNames.Questions, 
-                    action = ActionNames.Random, 
+                defaults: new
+                {
+                    controller = ControllerNames.Questions,
+                    action = ActionNames.Random,
                     id = UrlParameter.Optional
                 });
         }

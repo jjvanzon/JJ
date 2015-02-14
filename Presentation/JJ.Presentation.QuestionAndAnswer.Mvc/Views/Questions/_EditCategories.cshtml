@@ -1,0 +1,51 @@
+﻿@model QuestionEditViewModel
+
+<fieldset>
+    <legend>@PropertyDisplayNames.Categories</legend>
+
+    @if (Model.Question.Categories.Count != 0)
+    {
+        <table>
+            @for (int i = 0; i < Model.Question.Categories.Count; i++)
+            {
+                <tr style="height:27px">
+                    <td>
+                        @Html.DropDownListFor(
+                            x => x.Question.Categories[i].Category.ID,
+                            Model.Categories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
+                            {
+                                Value = x.ID.ToString(), 
+                                Text = String.Join(@" \ ", x.NameParts), 
+                                Selected = x.ID == Model.Question.Categories[i].Category.ID
+                            }),
+                            "")
+                    </td>
+                    <td style="vertical-align:bottom;text-align:center;">
+                        <input type="submit" value="@CommonTitles.Remove" formaction="@Url.ActionWithParams(ActionNames.RemoveCategory, 
+                                                                                                            ControllerNames.Questions,
+                                                                                                            ActionParameterNames.temporaryID,
+                                                                                                            Model.Question.Categories[i].TemporaryID)" />
+                        @Html.HiddenFor(x => x.Question.Categories[i].QuestionCategoryID)
+                        @Html.HiddenFor(x => x.Question.Categories[i].TemporaryID)
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(x => x.Question.Categories[i].Category.ID)
+                    </td>
+                </tr>
+            }
+            
+            <tr style="height:27px">
+                <td />
+                <td style="vertical-align:bottom;text-align:center;">
+                    <input type="submit" value="@CommonTitles.Add" formaction="@Url.Action(ActionNames.AddCategory)" />
+                </td>
+                <td />
+            </tr>
+        </table>
+    }
+    else
+    {
+        <br />
+        <input type="submit" value="@CommonTitles.Add" formaction="@Url.Action(ActionNames.AddCategory)" />
+    }
+</fieldset>

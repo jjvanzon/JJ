@@ -1,27 +1,4 @@
-﻿
-/*
-{
-    margin: 0px;
-    padding: 0px;
-}
-*/
-
-
-/*html.abs
-{
-    height: 100%;
-    width: 100%;
-    position: absolute;
-}
-
-.abs body
-{
-    bottom: 10px;
-    top: 10px;
-    position: absolute;
-}*/
-
-body
+﻿body 
 {
     margin: 10pt;
     font-size: 14px;
@@ -31,7 +8,10 @@ body
     height: 100%
 }
 
-header, footer, nav, section
+header, 
+footer, 
+nav, 
+section 
 {
     display: block;
 }
@@ -56,87 +36,56 @@ h3
     padding-bottom: 2px;
 }
 
-
 /* Styles for basic forms
 -----------------------------------------------------------*/
-fieldset
-{
+fieldset {
     border: 1px solid #ddd;
     padding: 0 1.4em 1.4em 1.4em;
     margin: 0 0 1.5em 0;
 }
 
-legend
-{
+legend {
     font-size: 1.2em;
     font-weight: bold;
 }
 
-textarea
-{
+textarea {
     min-height: 75px;
     width: 500px;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     font-size: 10pt;
 }
 
-.editor-label
-{
+.editor-label {
     margin: 1em 0 0 0;
-    /*width: 136px;*/
 }
 
-.editor-field
-{
+.editor-field {
     margin: 0.5em 0 0 0;
-    /*width: 136px;*/
-}
-
-.editor-field
-{
-    margin: 0.5em 0 0 0;
-    /*width: 172px;*/
-}
-
-.editor-field-double-size
-{
-    margin: 0.5em 0 0 0;
-    width: 172px;
-}
-
-.text-field input
-{
-    color: #f8f8f8;
-    background-color: #bbb;
 }
 
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
-.field-validation-error
-{
+.field-validation-error {
     color: #f00;
 }
 
-.field-validation-valid
-{
+.field-validation-valid {
     display: none;
 }
 
-.input-validation-error
-{
+.input-validation-error {
     border: 1px solid #f00;
     background-color: #fee;
 }
 
-.validation-summary-errors
-{
+.validation-summary-errors {
     font-weight: bold;
     color: #f00;
 }
 
-.validation-summary-valid
-{
+.validation-summary-valid {
     display: none;
 }
 

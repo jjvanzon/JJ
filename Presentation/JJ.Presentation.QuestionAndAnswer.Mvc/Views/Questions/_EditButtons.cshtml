@@ -1,0 +1,29 @@
+﻿@model QuestionEditViewModel
+
+<p>
+    <input type="submit" value="@CommonTitles.Save" /> |
+
+    @*TODO: The view is not supposed to make these decisions.*@
+
+    @*Cancel*@
+
+    @if (Model.IsNew)
+    {
+        <a href="javascript:history.back()"> @CommonTitles.Cancel</a> <text>|</text>
+        <noscript>
+            @Messages.YouHaveNoJavaScript
+            @Html.ActionLink(CommonTitles.Cancel, ActionNames.Index) ?
+        </noscript>
+    }
+    else
+    {
+        @Html.ActionLink(CommonTitles.Cancel, ActionNames.Details, new { id = Model.Question.ID }) <text>|</text>
+    }
+
+    @if (Model.CanDelete)
+    {
+        @Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) <text>|</text>
+    }
+
+    @Html.ActionLink(Titles.BackToList, ActionNames.Index)
+</p>

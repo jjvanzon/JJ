@@ -1,0 +1,15 @@
+﻿@model JJ.Framework.Presentation.ActionDescriptor
+
+@Html.HiddenFor(x => x.PresenterName)
+@Html.HiddenFor(x => x.ActionName)
+
+@using (Html.BeginCollection(() => Model.Parameters))
+{
+    foreach (var parameter in Model.Parameters)
+    {
+        using (Html.BeginCollectionItem())
+        {
+            @Html.Partial(ViewNames._ParameterDescriptor, parameter);
+        }
+    }
+}

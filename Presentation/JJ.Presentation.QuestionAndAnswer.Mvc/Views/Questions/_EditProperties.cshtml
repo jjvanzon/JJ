@@ -1,0 +1,57 @@
+﻿@model QuestionEditViewModel
+
+<table>
+    <tr>
+        <th style="text-align:right">@PropertyDisplayNames.ID:</th>
+        <td style="text-align:left">
+            @Model.Question.ID
+            @Html.HiddenFor(x => x.Question.ID)
+        </td>
+    </tr>
+    <tr>
+        <th style="text-align:right">@PropertyDisplayNames.IsActive:</th>
+        <td style="text-align:left">
+            @Html.CheckBoxFor(x => x.Question.IsActive)
+            @Html.ValidationMessageFor(x => x.Question.IsActive)
+        </td>
+    </tr>
+    <tr>
+        <th style="text-align:right">@PropertyDisplayNames.Source:</th>
+        <td style="text-align:left">
+            @if (!String.IsNullOrEmpty(Model.Question.Source.Url))
+            {
+                <a href="@Model.Question.Source.Url" target="_blank">
+                    @Model.Question.Source.Description
+                </a>
+            }
+            else
+            {
+                @Model.Question.Source.Description
+            }
+            @Html.HiddenFor(x => x.Question.Source.ID)
+        </td>
+    </tr>
+    <tr>
+        <th style="text-align:right">@PropertyDisplayNames.QuestionType:</th>
+        <td style="text-align:left">
+            @Model.Question.Type.Name
+            @Html.HiddenFor(x => x.Question.Type.ID)
+        </td>
+    </tr>
+    <tr>
+        <th style="text-align:right">@PropertyDisplayNames.LastModifiedByUser:</th>
+        <td style="text-align:left">@Model.Question.LastModifiedBy </td>
+    </tr>
+    <tr>
+        <th style="text-align:right;vertical-align:top">@PropertyDisplayNames.IsManual:</th>
+        <td style="text-align:left">
+            @(Model.Question.IsManual ? CommonTitles.Yes : CommonTitles.No)
+
+            @if (Model.Question.IsManual)
+            {
+                <br />
+                @Messages.ExplanationOfIsManualWithParenthesis
+            }
+        </td>
+    </tr>
+</table>

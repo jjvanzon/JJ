@@ -1,0 +1,31 @@
+﻿@model QuestionEditViewModel
+
+@section Title
+{
+    @Model.Title
+}
+
+@section Header
+{
+    @Html.Partial(ViewNames._Login, Model.Login)
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.IsNew)
+
+    <h2>@Model.Title</h2>
+
+    @Html.Partial(ViewNames._EditProperties);
+    @Html.Partial(ViewNames._EditTexts);
+        
+    <br />
+        
+    @Html.Partial(ViewNames._EditCategories);
+    @Html.Partial(ViewNames._EditLinks);
+    @Html.Partial(ViewNames._EditFlags);
+    
+    @Html.ValidationSummary()
+
+    @Html.Partial(ViewNames._EditButtons);
+}

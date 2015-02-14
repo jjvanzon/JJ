@@ -25,11 +25,5 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
         public const string RemoveCategory = "RemoveCategory";
         public const string Create = "Create";
         public const string Delete = "Delete";
-        // TODO: Remove outcommented code.
-        //public const string FirstPage = "FirstPage";
-        //public const string PreviousPage = "PreviousPage";
-        //public const string GoToPage = "GoToPage";
-        //public const string NextPage = "NextPage";
-        //public const string LastPage = "LastPage";
     }
 }
