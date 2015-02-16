@@ -3,13 +3,13 @@
 <tr style="height:27px">
 
     <td style="display:none;">
-        @Html.HiddenFor(x => Model.QuestionCategoryID)
-        @Html.HiddenFor(x => Model.TemporaryID)
+        @Html.HiddenFor(x => x.QuestionCategoryID)
+        @Html.HiddenFor(x => x.TemporaryID)
     </td>
 
     <td>
         @Html.DropDownListFor(
-            x => Model.Category.ID,
+            x => x.Category.ID,
             Model.AllCategories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
             {
                 Value = x.ID.ToString(), 
@@ -26,7 +26,7 @@
                                                                                             Model.TemporaryID)" />
     </td>
     <td>
-        @Html.ValidationMessageFor(x => Model.Category.ID)
+        @Html.ValidationMessageFor(x => x.Category.ID)
     </td>
 
 </tr>

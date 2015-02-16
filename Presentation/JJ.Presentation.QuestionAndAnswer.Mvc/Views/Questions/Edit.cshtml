@@ -16,12 +16,29 @@
 
     <h2>@Model.Title</h2>
 
+    @Html.Partial(ViewNames._EditButtons, Model);
+
     using (Html.BeginItem(() => Model.Question))
-    {    
-        @Html.Partial(ViewNames._EditQuestion, Model.Question);
-    }    
+    {
+        @Html.Partial(ViewNames._EditProperties, Model.Question)
+        @Html.Partial(ViewNames._EditTexts, Model.Question)
+ 
+        <br />
+
+        using (Html.BeginCollection(() => Model.Question.Categories))
+        {
+            @Html.Partial(ViewNames._EditCategories, Model.Question.Categories)
+        }
+
+        using (Html.BeginCollection(() => Model.Question.Links))
+        {
+            @Html.Partial(ViewNames._EditLinks, Model.Question.Links)
+        }
+
+        @Html.Partial(ViewNames._EditFlags, Model.Question)
+    }
     
     @Html.ValidationSummary()
 
-    @Html.Partial(ViewNames._EditButtons);
+    @Html.Partial(ViewNames._EditButtons, Model);
 }
