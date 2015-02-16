@@ -25,6 +25,8 @@
  
         <br />
 
+        ViewData[ViewDataKeys.AllCategories] = Model.AllCategories;
+            
         using (Html.BeginCollection(() => Model.Question.Categories))
         {
             @Html.Partial(ViewNames._EditCategories, Model.Question.Categories)

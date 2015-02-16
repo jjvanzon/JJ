@@ -113,7 +113,7 @@
 <fieldset>
     <legend>@Titles.ContentFlags</legend>
 
-    <table>
+    <table class="properties">
         <tr>
             <th>@Titles.HasActiveFlags</th>
             <td>@(Model.Question.IsFlagged ? CommonTitles.Yes : CommonTitles.No)</td>
@@ -124,22 +124,24 @@
             <tr>
                 <th>@flag.FlaggedBy</th>
                 <td>
-                    <div>
-                        @PropertyDisplayNames.DateTime
-                        @flag.DateAndTime.ToString()
-                    </div>
-                    <div>
-                        @PropertyDisplayNames.FlagStatus
-                        @flag.Status.Description
-                    </div>
-                    <div>
-                        @PropertyDisplayNames.Comment
-                        @flag.Comment
-                    </div>
-                    <div>
-                        @PropertyDisplayNames.LastModifiedByUser
-                        @flag.LastModifiedBy
-                    </div>
+                    <table class="properties">
+                        <tr>
+                            <th>@PropertyDisplayNames.DateTime:</th>
+                            <td>@flag.DateAndTime.ToString()</td>
+                        </tr>
+                        <tr>
+                            <th>@PropertyDisplayNames.FlagStatus:</th>
+                            <td>@flag.Status.Description</td>
+                        </tr>
+                        <tr>
+                            <th>@PropertyDisplayNames.Comment:</th>
+                            <td>@flag.Comment</td>
+                        </tr>
+                        <tr>
+                            <th>@PropertyDisplayNames.LastModifiedByUser:</th>
+                            <td>@flag.LastModifiedBy</td>
+                        </tr>
+                     </table>
                 </td>
             </tr>
         }

@@ -68,7 +68,8 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             {
                 Question = question.ToViewModel(),
                 ValidationMessages = new List<ValidationMessage>(),
-                CanDelete = true
+                CanDelete = true,
+                AllCategories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository)
             };
 
             viewModel.Question.Source = question.Source.ToViewModel();
@@ -85,12 +86,9 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             }
 
             // Question categories
-            IList<CategoryViewModel> allCategories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository);
-
             foreach (QuestionCategory questionCategory in question.QuestionCategories)
             {
                 QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
-                questionCategoryViewModel.AllCategories = allCategories;
                 viewModel.Question.Categories.Add(questionCategoryViewModel);
             }
 

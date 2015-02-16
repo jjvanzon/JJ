@@ -18,8 +18,14 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
 
             viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<JJ.Business.CanonicalModel.ValidationMessage>();
             viewModel.Question = viewModel.Question ?? new QuestionViewModel();
+            viewModel.AllCategories = viewModel.AllCategories ?? new List<CategoryViewModel>();
 
             viewModel.Question.NullCoalesce();
+
+            foreach (CategoryViewModel viewModel2 in viewModel.AllCategories)
+            {
+                viewModel2.NullCoalesce();
+            }
         }
 
         public static void NullCoalesce(this QuestionViewModel viewModel)
@@ -44,14 +50,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
         public static void NullCoalesce(this QuestionCategoryViewModel viewModel)
         {
             viewModel.Category = viewModel.Category ?? new CategoryViewModel();
-            viewModel.AllCategories = viewModel.AllCategories ?? new List<CategoryViewModel>();
 
             viewModel.Category.NullCoalesce();
-
-            foreach (CategoryViewModel viewModel2 in viewModel.AllCategories)
-            {
-                viewModel2.NullCoalesce();
-            }
         }
 
         public static void NullCoalesce(this QuestionFlagViewModel viewModel)
