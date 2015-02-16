@@ -1,51 +1,18 @@
-﻿@model QuestionEditViewModel
+﻿@model IList<QuestionLinkViewModel>
 
 <fieldset>
     <legend>@Titles.Links</legend>
 
-    @if (Model.Question.Links.Count != 0)
+    @if (Model.Count != 0)
     {
         <table style="width:500px">
 
-            @for (int i = 0; i < Model.Question.Links.Count; i++)
+            @foreach (var questionLink in Model)
             {
-                <tr style="height:47px">
-                    <td>
-                        @PropertyDisplayNames.Description
-                        <span class="editor-field">
-                            @Html.TextBoxFor(x => x.Question.Links[i].Description, new { style = "width:200px;" })
-                            @Html.ValidationMessageFor(x => x.Question.Links[i].Description)
-                        </span>
-                    </td>
-                    <td style="width:250px">
-                        @if (!String.IsNullOrEmpty(Model.Question.Links[i].Url))
-                        {
-                            <a href="@Model.Question.Links[i].Url" target="_blank">
-                                    @PropertyDisplayNames.Url
-                            </a>
-                        }
-                        else
-                        {
-                            @PropertyDisplayNames.Url
-                        }
-
-                        <span class="editor-field">
-                            @Html.TextBoxFor(x => x.Question.Links[i].Url, new { style = "width:400px;" })
-                            @Html.ValidationMessageFor(x => x.Question.Links[i].Url)
-                        </span>
-                    </td>
-                    <td style="vertical-align:bottom;text-align:center;">
-                        <input type="submit" 
-                                value="@CommonTitles.Remove"
-                                formaction="@Url.ActionWithParams(ActionNames.RemoveLink, 
-                                                                    ControllerNames.Questions, 
-                                                                    ActionParameterNames.temporaryID, 
-                                                                    Model.Question.Links[i].TemporaryID)" />
-
-                        @Html.HiddenFor(x => x.Question.Links[i].ID)
-                        @Html.HiddenFor(x => x.Question.Links[i].TemporaryID)
-                    </td>
-                </tr>
+                using (Html.BeginCollectionItem())
+                {
+                    @Html.Partial(ViewNames._EditLink, questionLink)
+                }
             }
 
             <tr style="height:47px">

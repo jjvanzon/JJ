@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="ViewUserControl<PagingViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="ViewUserControl<PagerViewModel>" %>
 
 <table>
     <tr>

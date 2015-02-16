@@ -18,7 +18,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             var questionCategoryViewModel = new QuestionCategoryViewModel
             {
                 QuestionCategoryID = questionCategory.ID,
-                TemporaryID = Guid.NewGuid()
+                TemporaryID = Guid.NewGuid(),
             };
 
             if (questionCategory.Category != null)

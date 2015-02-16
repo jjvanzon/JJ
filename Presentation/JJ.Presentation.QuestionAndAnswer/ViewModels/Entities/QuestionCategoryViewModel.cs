@@ -14,5 +14,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Entities
         public int QuestionCategoryID { get; set; }
 
         public CategoryViewModel Category { get; set; }
+
+        public IList<CategoryViewModel> AllCategories { get; set; }
     }
 }

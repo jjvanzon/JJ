@@ -1,0 +1,32 @@
+﻿@model QuestionCategoryViewModel
+
+<tr style="height:27px">
+
+    <td style="display:none;">
+        @Html.HiddenFor(x => Model.QuestionCategoryID)
+        @Html.HiddenFor(x => Model.TemporaryID)
+    </td>
+
+    <td>
+        @Html.DropDownListFor(
+            x => Model.Category.ID,
+            Model.AllCategories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
+            {
+                Value = x.ID.ToString(), 
+                Text = String.Join(@" \ ", x.NameParts), 
+                Selected = x.ID == Model.Category.ID
+            }),
+            "")
+    </td>
+
+    <td style="vertical-align:bottom;text-align:center;">
+        <input type="submit" value="@CommonTitles.Remove" formaction="@Url.ActionWithParams(ActionNames.RemoveCategory, 
+                                                                                            ControllerNames.Questions,
+                                                                                            ActionParameterNames.temporaryID,
+                                                                                            Model.TemporaryID)" />
+    </td>
+    <td>
+        @Html.ValidationMessageFor(x => Model.Category.ID)
+    </td>
+
+</tr>

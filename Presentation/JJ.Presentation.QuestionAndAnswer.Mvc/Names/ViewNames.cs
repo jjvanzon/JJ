@@ -22,12 +22,16 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
         public const string Details = "Details";
         public const string _ActionDescriptor = "_ActionDescriptor";
         public const string _ParameterDescriptor = "_ParameterDescriptor";
-        public const string _Paging = "_Paging";
+        public const string _Pager = "_Pager";
+        public const string _EditQuestion = "_EditQuestion";
         public const string _EditProperties = "_EditProperties";
         public const string _EditTexts = "_EditTexts";
         public const string _EditCategories = "_EditCategories";
+        public const string _EditCategory = "_EditCategory";
         public const string _EditLinks = "_EditLinks";
+        public const string _EditLink = "_EditLink";
         public const string _EditFlags = "_EditFlags";
         public const string _EditButtons = "_EditButtons";
+        public const string _EditFlag = "_EditFlag";
     }
 }

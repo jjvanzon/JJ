@@ -1,11 +1,11 @@
-﻿@model QuestionEditViewModel
+﻿@model QuestionViewModel
     
-<div class="editor-label">@PropertyDisplayNames.Question @Html.ValidationMessageFor(x => x.Question.Text)</div>
+<div class="editor-label">@PropertyDisplayNames.Question: @Html.ValidationMessageFor(x => x.Text)</div>
 <div>
-    @Html.TextAreaFor(x => x.Question.Text)
+    @Html.TextAreaFor(x => x.Text)
 </div>
         
-<div class="editor-label">@PropertyDisplayNames.Answer @Html.ValidationMessageFor(x => x.Question.Answer)</div>
+<div class="editor-label">@PropertyDisplayNames.Answer: @Html.ValidationMessageFor(x => x.Answer)</div>
 <div>
-    @Html.TextAreaFor(x => x.Question.Answer)
+    @Html.TextAreaFor(x => x.Answer)
 </div>

@@ -236,6 +236,10 @@
     <Content Include="Views\Questions\_EditLinks.cshtml" />
     <Content Include="Views\Questions\_EditFlags.cshtml" />
     <Content Include="Views\Questions\_EditButtons.cshtml" />
+    <Content Include="Views\Questions\_EditQuestion.cshtml" />
+    <Content Include="Views\Questions\_EditCategory.cshtml" />
+    <Content Include="Views\Questions\_EditLink.cshtml" />
+    <Content Include="Views\Questions\_EditFlag.cshtml" />
     <None Include="Views\Shared\_Login.cshtml" />
     <None Include="Views\Login\Index.cshtml" />
     <None Include="Views\Shared\_ActionDescriptor.cshtml" />
@@ -243,7 +247,7 @@
     <None Include="Views\Shared\NotAuthorized.cshtml" />
     <None Include="Views\Questions\NotFound.cshtml" />
     <None Include="Views\Questions\Index.cshtml" />
-    <None Include="Views\Shared\_Paging.cshtml" />
+    <None Include="Views\Shared\_Pager.cshtml" />
     <None Include="Views\Questions\Details.cshtml" />
     <None Include="Views\Questions\Edit.cshtml" />
     <None Include="Views\Questions\Delete.cshtml" />

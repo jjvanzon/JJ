@@ -12,31 +12,34 @@
 
 <h2>@Titles.QuestionDetails</h2>
 
-<table>
-    <colgroup>
-        <col style="padding-right: 50px" />
-        <col />
-    </colgroup>
+<p>
+    @Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new { id = Model.Question.ID }) |
+    @Html.ActionLink(CommonTitles.New, ActionNames.Create) |
+    @Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) |
+    @Html.ActionLink(Titles.BackToList, ActionNames.Index)
+</p>
+
+<table class="properties">
     <tr>
-        <th>@PropertyDisplayNames.ID</th>
+        <th>@PropertyDisplayNames.ID:</th>
         <td>@Model.Question.ID</td>
     </tr>
 
     <tr>
-        <th>@PropertyDisplayNames.Question</th>
+        <th>@PropertyDisplayNames.Question:</th>
         <td>@Model.Question.Text</td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.Answer</th>
+        <th>@PropertyDisplayNames.Answer:</th>
         <td>@Model.Question.Answer</td>
     </tr>
 
     <tr>
-        <th>@PropertyDisplayNames.IsActive</th>
+        <th>@PropertyDisplayNames.IsActive:</th>
         <td>@(Model.Question.IsActive ? CommonTitles.Yes : CommonTitles.No)</td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.Source</th>
+        <th>@PropertyDisplayNames.Source:</th>
         <td>
             @if (!String.IsNullOrEmpty(Model.Question.Source.Url))
             {
@@ -51,12 +54,12 @@
         </td>
     </tr>
     <tr>
-        <th>@Titles.Type</th>
+        <th>@Titles.Type:</th>
         <td>@Model.Question.Type.Name</td>
     </tr>
 
     <tr>
-        <th>@PropertyDisplayNames.Categories</th>
+        <th>@PropertyDisplayNames.Categories:</th>
         <td>
 
             @foreach (var category in Model.Question.Categories.Select(x => x.Category))
@@ -74,7 +77,7 @@
         </td>
     </tr>
     <tr>
-        <th>@Titles.Links</th>
+        <th>@Titles.Links:</th>
         <td>
                 
             @foreach (var link in Model.Question.Links)
@@ -90,11 +93,11 @@
         </td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.LastModifiedByUser</th>
+        <th>@PropertyDisplayNames.LastModifiedByUser:</th>
         <td>@Model.Question.LastModifiedBy</td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.IsManual</th>
+        <th>@PropertyDisplayNames.IsManual:</th>
         <td>
             @(Model.Question.IsManual ? CommonTitles.Yes : CommonTitles.No)
 
@@ -143,11 +146,3 @@
     </table>
 
 </fieldset>
-
-<p>
-    @Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new { id = Model.Question.ID }) |
-    @Html.ActionLink(CommonTitles.New, ActionNames.Create) |
-    @Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) |
-    @Html.ActionLink(Titles.BackToList, ActionNames.Index)
-</p>
-

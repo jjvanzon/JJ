@@ -16,14 +16,10 @@
 
     <h2>@Model.Title</h2>
 
-    @Html.Partial(ViewNames._EditProperties);
-    @Html.Partial(ViewNames._EditTexts);
-        
-    <br />
-        
-    @Html.Partial(ViewNames._EditCategories);
-    @Html.Partial(ViewNames._EditLinks);
-    @Html.Partial(ViewNames._EditFlags);
+    using (Html.BeginItem(() => Model.Question))
+    {    
+        @Html.Partial(ViewNames._EditQuestion, Model.Question);
+    }    
     
     @Html.ValidationSummary()
 

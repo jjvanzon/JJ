@@ -1,0 +1,40 @@
+﻿@model QuestionLinkViewModel
+
+<tr style="height:47px">
+    <td>
+        @PropertyDisplayNames.Description
+        <span class="editor-field">
+            @Html.TextBoxFor(x => x.Description, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(x => x.Description)
+        </span>
+    </td>
+
+    <td style="width:250px">
+        @if (!String.IsNullOrEmpty(Model.Url))
+        {
+            <a href="@Model.Url" target="_blank">
+                @PropertyDisplayNames.Url
+            </a>
+        }
+        else
+        {
+            @PropertyDisplayNames.Url
+        }
+
+        <span class="editor-field">
+            @Html.TextBoxFor(x => x.Url, new { style = "width:400px;" })
+            @Html.ValidationMessageFor(x => x.Url)
+        </span>
+    </td>
+
+    <td style="vertical-align:bottom;text-align:center;">
+        <input type="submit" 
+               value="@CommonTitles.Remove"
+               formaction="@Url.ActionWithParams(ActionNames.RemoveLink, 
+                                                 ControllerNames.Questions, 
+                                                 ActionParameterNames.temporaryID, 
+                                                 Model.TemporaryID)" />
+        @Html.HiddenFor(x => x.ID)
+        @Html.HiddenFor(x => x.TemporaryID)
+    </td>
+</tr>

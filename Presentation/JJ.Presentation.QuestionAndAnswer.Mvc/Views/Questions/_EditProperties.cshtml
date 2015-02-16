@@ -1,53 +1,53 @@
-﻿@model QuestionEditViewModel
+﻿@model QuestionViewModel
 
-<table>
+<table class="properties">
     <tr>
-        <th style="text-align:right">@PropertyDisplayNames.ID:</th>
-        <td style="text-align:left">
-            @Model.Question.ID
-            @Html.HiddenFor(x => x.Question.ID)
+        <th>@PropertyDisplayNames.ID:</th>
+        <td >
+            @Model.ID
+            @Html.HiddenFor(x => x.ID)
         </td>
     </tr>
     <tr>
-        <th style="text-align:right">@PropertyDisplayNames.IsActive:</th>
-        <td style="text-align:left">
-            @Html.CheckBoxFor(x => x.Question.IsActive)
-            @Html.ValidationMessageFor(x => x.Question.IsActive)
+        <th>@PropertyDisplayNames.IsActive:</th>
+        <td>
+            @Html.CheckBoxFor(x => x.IsActive)
+            @Html.ValidationMessageFor(x => x.IsActive)
         </td>
     </tr>
     <tr>
-        <th style="text-align:right">@PropertyDisplayNames.Source:</th>
-        <td style="text-align:left">
-            @if (!String.IsNullOrEmpty(Model.Question.Source.Url))
+        <th>@PropertyDisplayNames.Source:</th>
+        <td>
+            @if (!String.IsNullOrEmpty(Model.Source.Url))
             {
-                <a href="@Model.Question.Source.Url" target="_blank">
-                    @Model.Question.Source.Description
+                <a href="@Model.Source.Url" target="_blank">
+                    @Model.Source.Description
                 </a>
             }
             else
             {
-                @Model.Question.Source.Description
+                @Model.Source.Description
             }
-            @Html.HiddenFor(x => x.Question.Source.ID)
+            @Html.HiddenFor(x => x.Source.ID)
         </td>
     </tr>
     <tr>
-        <th style="text-align:right">@PropertyDisplayNames.QuestionType:</th>
-        <td style="text-align:left">
-            @Model.Question.Type.Name
-            @Html.HiddenFor(x => x.Question.Type.ID)
+        <th>@PropertyDisplayNames.QuestionType:</th>
+        <td>
+            @Model.Type.Name
+            @Html.HiddenFor(x => x.Type.ID)
         </td>
     </tr>
     <tr>
-        <th style="text-align:right">@PropertyDisplayNames.LastModifiedByUser:</th>
-        <td style="text-align:left">@Model.Question.LastModifiedBy </td>
+        <th>@PropertyDisplayNames.LastModifiedByUser:</th>
+        <td>@Model.LastModifiedBy </td>
     </tr>
     <tr>
-        <th style="text-align:right;vertical-align:top">@PropertyDisplayNames.IsManual:</th>
-        <td style="text-align:left">
-            @(Model.Question.IsManual ? CommonTitles.Yes : CommonTitles.No)
+        <th>@PropertyDisplayNames.IsManual:</th>
+        <td>
+            @(Model.IsManual ? CommonTitles.Yes : CommonTitles.No)
 
-            @if (Model.Question.IsManual)
+            @if (Model.IsManual)
             {
                 <br />
                 @Messages.ExplanationOfIsManualWithParenthesis

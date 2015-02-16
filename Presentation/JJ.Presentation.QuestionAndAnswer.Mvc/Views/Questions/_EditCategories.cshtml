@@ -1,39 +1,24 @@
-﻿@model QuestionEditViewModel
+﻿@model IList<QuestionCategoryViewModel>
 
 <fieldset>
     <legend>@PropertyDisplayNames.Categories</legend>
 
-    @if (Model.Question.Categories.Count != 0)
+    @if (Model.Count == 0)
+    {
+        <br />
+        <input type="submit" value="@CommonTitles.Add" formaction="@Url.Action(ActionNames.AddCategory)" />
+    }
+    else
     {
         <table>
-            @for (int i = 0; i < Model.Question.Categories.Count; i++)
+            @foreach (var questionCategory in Model)
             {
-                <tr style="height:27px">
-                    <td>
-                        @Html.DropDownListFor(
-                            x => x.Question.Categories[i].Category.ID,
-                            Model.Categories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
-                            {
-                                Value = x.ID.ToString(), 
-                                Text = String.Join(@" \ ", x.NameParts), 
-                                Selected = x.ID == Model.Question.Categories[i].Category.ID
-                            }),
-                            "")
-                    </td>
-                    <td style="vertical-align:bottom;text-align:center;">
-                        <input type="submit" value="@CommonTitles.Remove" formaction="@Url.ActionWithParams(ActionNames.RemoveCategory, 
-                                                                                                            ControllerNames.Questions,
-                                                                                                            ActionParameterNames.temporaryID,
-                                                                                                            Model.Question.Categories[i].TemporaryID)" />
-                        @Html.HiddenFor(x => x.Question.Categories[i].QuestionCategoryID)
-                        @Html.HiddenFor(x => x.Question.Categories[i].TemporaryID)
-                    </td>
-                    <td>
-                        @Html.ValidationMessageFor(x => x.Question.Categories[i].Category.ID)
-                    </td>
-                </tr>
+                using (Html.BeginCollectionItem())
+                {
+                    @Html.Partial(ViewNames._EditCategory, questionCategory)
+                }
             }
-            
+
             <tr style="height:27px">
                 <td />
                 <td style="vertical-align:bottom;text-align:center;">
@@ -42,10 +27,5 @@
                 <td />
             </tr>
         </table>
-    }
-    else
-    {
-        <br />
-        <input type="submit" value="@CommonTitles.Add" formaction="@Url.Action(ActionNames.AddCategory)" />
     }
 </fieldset>

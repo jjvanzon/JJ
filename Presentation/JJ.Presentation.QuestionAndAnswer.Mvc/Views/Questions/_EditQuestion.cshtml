@@ -1,0 +1,18 @@
+﻿@model QuestionViewModel
+        
+@Html.Partial(ViewNames._EditProperties)
+@Html.Partial(ViewNames._EditTexts)
+ 
+<br />
+
+@using (Html.BeginCollection(() => Model.Categories))
+{
+    @Html.Partial(ViewNames._EditCategories, Model.Categories)
+}
+
+@using (Html.BeginCollection(() => Model.Links))
+{
+    @Html.Partial(ViewNames._EditLinks, Model.Links)
+}
+
+@Html.Partial(ViewNames._EditFlags, Model)

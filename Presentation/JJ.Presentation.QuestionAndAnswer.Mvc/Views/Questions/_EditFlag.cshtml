@@ -1,0 +1,40 @@
+﻿@model QuestionFlagViewModel
+
+@Html.HiddenFor(x => x.ID)
+        
+<fieldset>
+    <legend>@Model.FlaggedBy, @Model.DateAndTime.ToShortDateString()</legend>
+    <table class="properties" >
+        <tr>
+            <th>@PropertyDisplayNames.FlagStatus:</th>
+            <td>
+                @Html.DropDownListFor(
+                        x => x.Status.ID,
+                        Model.AllFlagStatuses.Select(x => new SelectListItem 
+                        {
+                            Value = x.ID.ToString(), 
+                            Text = x.Description, 
+                            Selected = x.ID == Model.Status.ID 
+                        }))
+
+                @Html.ValidationMessageFor(x => x.Status)
+            </td>
+        </tr>
+
+        <tr>
+            <th>@PropertyDisplayNames.Comment:</th>
+            <td>
+                @Html.TextAreaFor(x => x.Comment)
+                @Html.ValidationMessageFor(x => x.Comment)
+            </td>
+        </tr>
+
+        <tr>
+            <th>@PropertyDisplayNames.LastModifiedByUser:</th>
+            <td>
+                @Model.LastModifiedBy
+            </td>
+        </tr>
+
+    </table>
+</fieldset>

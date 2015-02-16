@@ -22,6 +22,6 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Names
         public const string Details = "Details";
         public const string _ActionDescriptor = "_ActionDescriptor";
         public const string _ParameterDescriptor = "_ParameterDescriptor";
-        public const string _Paging = "_Paging";
+        public const string _Pager = "_Pager";
     }
 }

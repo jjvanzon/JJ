@@ -16,6 +16,15 @@ section
     display: block;
 }
 
+h1
+{
+    margin: 0px;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 6px;
+}
+
 h2
 {
     font-size: 16pt;
@@ -36,8 +45,58 @@ h3
     padding-bottom: 2px;
 }
 
-/* Styles for basic forms
------------------------------------------------------------*/
+/* nav */
+
+nav
+{
+    margin-top: 20px;
+}
+
+nav a
+{
+    text-decoration: none;
+}
+
+nav a:hover
+{
+    color: #DDF3FF
+}
+
+nav > ul
+{
+    display: inline;
+    padding: 0px;
+}
+
+nav li
+{
+    padding: 4px;
+    font-weight: 600;
+}
+
+nav > ul > li
+{
+    display: inline-block;
+    margin: 0px;
+    vertical-align: top;
+}
+
+nav > ul > li > ul
+{
+    padding: 0px;
+    padding-left: 16px;
+    margin-top: 4px;
+}
+
+nav > ul > li > ul > li
+{
+    display: block;
+    margin: 0px;
+    vertical-align: top;
+}
+
+/* Basic forms */
+
 fieldset {
     border: 1px solid #ddd;
     padding: 0 1.4em 1.4em 1.4em;
@@ -64,9 +123,8 @@ textarea {
     margin: 0.5em 0 0 0;
 }
 
+/* Validation */
 
-/* Styles for validation helpers
------------------------------------------------------------*/
 .field-validation-error {
     color: #f00;
 }
@@ -89,27 +147,26 @@ textarea {
     display: none;
 }
 
+/* Property table */
 
-/* Custom styles
------------------------------------------------------------*/
-
-h1
+table.properties th
 {
-    margin: 0px;
-    margin-top: 10px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: 6px;
+    text-align: right;
+    vertical-align: top;
+    padding-right: 8px;
 }
+
+table.properties td
+{
+    text-align: left;
+    vertical-align: top;
+}
+
+/* Panes */
 
 table.pane
 {
-    /*width: 100%;
-    height: 100%;*/
     height: 100%;
-    /*overflow:scroll;*/
-
-    /*display: block;*/
 }
 
 table.pane td
@@ -128,39 +185,17 @@ table.pane td
 
 table.pane td.col1of2
 {
-    /*float: left;*/
-    /*position: absolute;*/
     top: 40px;
     bottom: 40px;
     width: 100%;
-    /*width: 50%;*/
 }
 
 table.pane td.col2of2
 {
-    /*float: left;*/
-    /*position: absolute;*/
     top: 40px;
     bottom: 40px;
     min-width: 200px;
 }
-
-/*div.trysomething
-{
-    border-color: lightgray;
-    border-style: solid;
-    border-width: 1px;
-
-    margin: 0px;
-    padding: 4px;
-
-    float: left;
-    position: absolute;
-    top: 40px;
-    bottom: 40px;
-    width: 50%;
-}*/
-
 
 /* Category selector nuggets */
 
@@ -218,58 +253,4 @@ a:link, a:hover, a:visited, a:active
 input[type="text"], textarea, select
 {
     background-color: #B6C9D8;
-}
-
-
-/* nav */
-
-nav
-{
-    margin-top: 20px;
-}
-
-nav a
-{
-    text-decoration: none;
-}
-
-nav a:hover
-{
-    color: #DDF3FF
-}
-
-nav > ul
-{
-    display: inline;
-    padding: 0px;
-}
-
-nav li
-{
-    /*border-width: 1px;
-    border-style: solid;
-    border-color: #777;*/
-    padding: 4px;
-    font-weight: 600;
-}
-
-nav > ul > li
-{
-    display: inline-block;
-    margin: 0px;
-    vertical-align: top;
-}
-
-nav > ul > li > ul
-{
-    padding: 0px;
-    padding-left: 16px;
-    margin-top: 4px;
-}
-
-nav > ul > li > ul > li
-{
-    display: block;
-    margin: 0px;
-    vertical-align: top;
 }

@@ -11,6 +11,6 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels
     {
         public LoginPartialViewModel Login { get; set; }
         public IList<QuestionViewModel> List { get; set; }
-        public PagingViewModel Paging { get; set; }
+        public PagerViewModel Pager { get; set; }
     }
 }

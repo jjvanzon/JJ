@@ -16,8 +16,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
         {
             viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
 
-            viewModel.FlagStatuses = viewModel.FlagStatuses ?? new List<FlagStatusViewModel>();
-            viewModel.Categories = viewModel.Categories ?? new List<CategoryViewModel>();
             viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<JJ.Business.CanonicalModel.ValidationMessage>();
             viewModel.Question = viewModel.Question ?? new QuestionViewModel();
 
@@ -46,13 +44,21 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
         public static void NullCoalesce(this QuestionCategoryViewModel viewModel)
         {
             viewModel.Category = viewModel.Category ?? new CategoryViewModel();
+            viewModel.AllCategories = viewModel.AllCategories ?? new List<CategoryViewModel>();
 
             viewModel.Category.NullCoalesce();
+
+            foreach (CategoryViewModel viewModel2 in viewModel.AllCategories)
+            {
+                viewModel2.NullCoalesce();
+            }
         }
 
         public static void NullCoalesce(this QuestionFlagViewModel viewModel)
         {
             viewModel.Status = viewModel.Status ?? new FlagStatusViewModel();
+
+            viewModel.AllFlagStatuses = viewModel.AllFlagStatuses ?? new List<FlagStatusViewModel>();
         }
 
         public static void NullCoalesce(this CategorySelectorViewModel viewModel)

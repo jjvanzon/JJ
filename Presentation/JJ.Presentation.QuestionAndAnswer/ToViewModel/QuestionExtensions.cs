@@ -67,8 +67,6 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             var viewModel = new QuestionEditViewModel
             {
                 Question = question.ToViewModel(),
-                FlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel(flagStatusRepository),
-                Categories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository),
                 ValidationMessages = new List<ValidationMessage>(),
                 CanDelete = true
             };
@@ -87,16 +85,22 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             }
 
             // Question categories
+            IList<CategoryViewModel> allCategories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository);
+
             foreach (QuestionCategory questionCategory in question.QuestionCategories)
             {
                 QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
+                questionCategoryViewModel.AllCategories = allCategories;
                 viewModel.Question.Categories.Add(questionCategoryViewModel);
             }
 
             // Flags
+            IList<FlagStatusViewModel> allFlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel(flagStatusRepository);
+
             foreach (QuestionFlag flag in question.QuestionFlags)
             {
                 QuestionFlagViewModel flagViewModel = flag.ToViewModel();
+                flagViewModel.AllFlagStatuses = allFlagStatuses;
                 viewModel.Question.Flags.Add(flagViewModel);
             }
 

@@ -16,7 +16,7 @@
 
     <p>@Html.ActionLink(Titles.CreateQuestion, ActionNames.Create)</p>
 
-    @Html.Partial(ViewNames._Paging, Model.Paging)
+    @Html.Partial(ViewNames._Pager, Model.Pager)
 
     <table>
 
@@ -39,5 +39,5 @@
         }
     </table>
 
-    @Html.Partial(ViewNames._Paging, Model.Paging)
+    @Html.Partial(ViewNames._Pager, Model.Pager)
 }

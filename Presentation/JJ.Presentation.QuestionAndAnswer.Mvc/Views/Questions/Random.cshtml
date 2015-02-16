@@ -19,7 +19,7 @@
     
     <br />
 
-    <div class="display-label">@PropertyDisplayNames.Answer</div>
+    <div class="display-label">@PropertyDisplayNames.Answer:</div>
     <div class="text-field">@Html.TextBoxFor(x => x.UserAnswer, new { autocomplete = "off", style="width:80%;" })</div>
 
     <br />
@@ -39,7 +39,7 @@
         @if (Model.AnswerIsVisible)
         {
             <br />
-            <div class="display-label">@Titles.TheCorrectAnswer<text>:</text></div>
+            <div class="display-label">@Titles.TheCorrectAnswer:</div>
             <br />
             <div class="display-field">@Html.DisplayFor(x => x.Question.Answer)</div>
         }

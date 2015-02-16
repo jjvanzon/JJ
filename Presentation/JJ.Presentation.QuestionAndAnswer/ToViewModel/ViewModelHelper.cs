@@ -142,7 +142,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             return viewModel;
         }
 
-        public static PagingViewModel CreatePagingViewModel(int selectedPageIndex, int pageSize, int count, int maxVisiblePageNumbers)
+        public static PagerViewModel CreatePagerViewModel(int selectedPageIndex, int pageSize, int count, int maxVisiblePageNumbers)
         {
             if (pageSize < 1) throw new Exception("pageSize cannot be less than 1.");
             if (selectedPageIndex < 0) throw new Exception("selectedPageIndex cannot be less than 0");
@@ -159,7 +159,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             bool isFirstPage = selectedPageIndex == 0;
             bool isLastPage = selectedPageIndex == pageCount - 1;
 
-            var viewModel = new PagingViewModel
+            var viewModel = new PagerViewModel
             {
                 PageCount = pageCount,
                 CanGoToPreviousPage = hasPages && !isFirstPage,
