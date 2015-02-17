@@ -235,5 +235,17 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 
             return viewModel;
         }
+
+        public static QuestionDeleteConfirmedViewModel CreateDeleteConfirmedViewModel(int questionID, IUserRepository userRepository, string authenticatedUserName)
+        {
+            var viewModel = new QuestionDeleteConfirmedViewModel
+            {
+                ID = questionID
+            };
+
+            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+
+            return viewModel;
+        }
     }
 }

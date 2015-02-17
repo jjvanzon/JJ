@@ -148,8 +148,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                var presenter = new QuestionDeleteConfirmedPresenter(repositories, TryGetAuthenticatedUserName());
-                object viewModel2 = presenter.Show(id);
+                var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
+                object viewModel2 = presenter.Confirm(id);
                 return GetActionResult(ActionNames.Delete, viewModel2);
             }
         }

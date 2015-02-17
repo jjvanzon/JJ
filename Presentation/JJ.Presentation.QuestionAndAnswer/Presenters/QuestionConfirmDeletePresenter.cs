@@ -54,8 +54,27 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public object Confirm(int id)
         {
-            var presenter2 = new QuestionDeleteConfirmedPresenter(_repositories, _authenticatedUserName);
-            return presenter2.Show(id);
+            if (String.IsNullOrEmpty(_authenticatedUserName))
+            {
+                var presenter2 = new LoginPresenter(_repositories);
+                return presenter2.Show(CreateSourceAction(() => Show(id)));
+            }
+
+            Question question = _repositories.QuestionRepository.TryGet(id);
+            if (question == null)
+            {
+                var presenter2 = new QuestionNotFoundPresenter(_repositories.UserRepository, _authenticatedUserName);
+                return presenter2.Show();
+            }
+
+            question.DeleteRelatedEntities(_repositories.AnswerRepository, _repositories.QuestionCategoryRepository, _repositories.QuestionLinkRepository, _repositories.QuestionFlagRepository);
+            question.UnlinkRelatedEntities();
+
+            _repositories.QuestionRepository.Delete(question);
+            _repositories.QuestionRepository.Commit();
+
+            var presenter3 = new QuestionDeleteConfirmedPresenter(_repositories, _authenticatedUserName);
+            return presenter3.Show(id);
         }
         
         public PreviousViewModel Cancel()

@@ -41,23 +41,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
                 return presenter2.Show(CreateSourceAction(() => Show(id)));
             }
 
-            Question question = _repositories.QuestionRepository.TryGet(id);
-            if (question == null)
-            {
-                var presenter2 = new QuestionNotFoundPresenter(_repositories.UserRepository, _authenticatedUserName);
-                return presenter2.Show();
-            }
-
-            question.DeleteRelatedEntities(_repositories.AnswerRepository, _repositories.QuestionCategoryRepository, _repositories.QuestionLinkRepository, _repositories.QuestionFlagRepository);
-            question.UnlinkRelatedEntities();
-
-            QuestionDeleteConfirmedViewModel viewModel = question.ToDeleteConfirmedViewModel(_repositories.UserRepository, _authenticatedUserName);
-
-            _repositories.QuestionRepository.Delete(question);
-            _repositories.QuestionRepository.Commit();
-
-            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
-
+            QuestionDeleteConfirmedViewModel viewModel = ViewModelHelper.CreateDeleteConfirmedViewModel(id, _repositories.UserRepository, _authenticatedUserName);
             return viewModel;
         }
 
