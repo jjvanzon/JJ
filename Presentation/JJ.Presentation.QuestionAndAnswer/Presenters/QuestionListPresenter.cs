@@ -15,6 +15,8 @@ using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Framework.Reflection;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
+using JJ.Presentation.QuestionAndAnswer.Configuration;
+using JJ.Framework.Common;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
@@ -22,21 +24,24 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
     {
         private Repositories _repositories;
         private string _authenticatedUserName;
-        private int _pageSize;
-        private int _maxVisiblePageNumbers;
+        private static int _pageSize;
+        private static int _maxVisiblePageNumbers;
+
+        static QuestionListPresenter()
+        {
+            ConfigurationSection config = ConfigurationHelper.GetSection<ConfigurationSection>();
+            _pageSize = config.PageSize;
+            _maxVisiblePageNumbers = config.MaxVisiblePageNumbers;
+        }
 
         public QuestionListPresenter(
             Repositories repositories, 
-            string authenticatedUserName, 
-            int pageSize,
-            int maxVisiblePageNumbers)
+            string authenticatedUserName)
         {
             if (repositories == null) throw new NullException(() => repositories);
 
             _repositories = repositories;
             _authenticatedUserName = authenticatedUserName;
-            _pageSize = pageSize;
-            _maxVisiblePageNumbers = maxVisiblePageNumbers;
         }
 
         public QuestionListViewModel Show(int pageNumber = 1)
@@ -96,13 +101,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
         {
             var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
             return deletePresenter.Show(questionID);
-        }
-
-        public object SetLanguage(string cultureName)
-        {
-            CultureHelper.SetCulture(cultureName);
-            // TODO: Filter parameters should be yielded over once they are used.
-            return Show();
         }
     }
 }

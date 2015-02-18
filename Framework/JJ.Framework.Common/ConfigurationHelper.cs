@@ -1,19 +1,18 @@
-﻿using JJ.Framework.Reflection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace JJ.Presentation.QuestionAndAnswer.Helpers
+namespace JJ.Framework.Common
 {
     /// <summary>
-    /// For using configuration settings without being dependent on System.Configuration.
+    /// For using configuration settings when you cannot be dependent on System.Configuration.
     /// </summary>
     public static class ConfigurationHelper
     {
         private static object _sectionsLock = new object();
         private static IDictionary<Type, object> _sections = new Dictionary<Type, object>();
 
-        internal static T GetSection<T>()
+        public static T GetSection<T>()
         {
             lock (_sectionsLock)
             {
@@ -21,10 +20,10 @@ namespace JJ.Presentation.QuestionAndAnswer.Helpers
                 if (!_sections.TryGetValue(typeof(T), out section))
                 {
                     throw new Exception(String.Format(
-                        "Configuration section of type '{0}' was not set. Call {1}.SetSection to allow {2} to use the configuration section.", 
+                        "Configuration section of type '{0}' was not set. To allow {1} to use this configuration section, call {2}.SetSection.", 
                         typeof(T).FullName, 
-                        typeof(ConfigurationHelper).FullName, 
-                        typeof(ConfigurationHelper).Assembly.GetName().Name));
+                        typeof(ConfigurationHelper).Assembly.GetName().Name,
+                        typeof(ConfigurationHelper).FullName));
                 }
                 return (T)section;
             }
@@ -32,7 +31,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Helpers
 
         public static void SetSection<T>(T section)
         {
-            if (section == null) throw new NullException(() => section);
+            if (section == null) throw new ArgumentNullException("section");
 
             lock (_sectionsLock)
             {

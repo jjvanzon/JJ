@@ -107,18 +107,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return randomQuestionPresenter.Show(categoryIDs.ToArray());
         }
 
-        public CategorySelectorViewModel SetLanguage(CategorySelectorViewModel viewModel, string cultureName)
-        {
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
-
-            CultureHelper.SetCulture(cultureName);
-
-            // Create view model
-            IList<int> selectedCategoryIDs = viewModel.SelectedCategories.UnionRecursive(x => x.SubCategories).Select(x => x.ID).ToArray();
-            return CreateViewModel(selectedCategoryIDs);
-        }
-
         // Private Methods
 
         private CategorySelectorViewModel CreateViewModel()

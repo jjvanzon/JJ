@@ -16,23 +16,12 @@ using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories;
 using JJ.Framework.Configuration;
-using JJ.Presentation.QuestionAndAnswer.Mvc.Configuration;
 using JJ.Framework.Web;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {
     public class QuestionsController : MasterController
     {
-        private static readonly int _pageSize;
-        private static readonly int _maxVisiblePageNumbers;
-
-        static QuestionsController()
-        {
-            ConfigurationSection config = CustomConfigurationManager.GetSection<ConfigurationSection>();
-            _pageSize = config.PageSize;
-            _maxVisiblePageNumbers = config.MaxVisiblePageNumbers;
-        }
-
         public QuestionsController()
         {
             ValidateRequest = false;
@@ -46,7 +35,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    var presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName(), _pageSize, _maxVisiblePageNumbers);
+                    var presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
                     viewModel = presenter.Show(page);
                 }
             }

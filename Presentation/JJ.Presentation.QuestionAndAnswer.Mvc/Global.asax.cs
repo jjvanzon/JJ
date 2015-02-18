@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JJ.Framework.Common;
+using JJ.Framework.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +24,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var config = CustomConfigurationManager.GetSection<JJ.Presentation.QuestionAndAnswer.Configuration.ConfigurationSection>();
+            ConfigurationHelper.SetSection(config);
         }
     }
 }

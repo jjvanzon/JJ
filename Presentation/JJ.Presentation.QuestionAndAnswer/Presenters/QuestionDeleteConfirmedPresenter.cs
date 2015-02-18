@@ -45,9 +45,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        public QuestionListViewModel BackToList(int pageSize, int maxVisiblePageNumbers)
+        public QuestionListViewModel BackToList()
         {
-            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName, pageSize, maxVisiblePageNumbers);
+            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
             return listPresenter.Show();
         }
 

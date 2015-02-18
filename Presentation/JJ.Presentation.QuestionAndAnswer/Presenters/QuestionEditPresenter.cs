@@ -275,7 +275,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public QuestionListViewModel BackToList(int pageSize, int maxVisiblePageNumbers)
         {
-            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName, pageSize, maxVisiblePageNumbers);
+            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
             return listPresenter.Show();
         }
 

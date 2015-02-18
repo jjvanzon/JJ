@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Xml.Serialization;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.Configuration
+namespace JJ.Presentation.QuestionAndAnswer.Configuration
 {
-    internal class ConfigurationSection
+    public class ConfigurationSection
     {
         [XmlAttribute]
         public int PageSize { get; set; }

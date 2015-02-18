@@ -61,15 +61,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return deletePresenter.Show(id);
         }
 
-        public object SetLanguage(int id, string cultureName)
+        public QuestionListViewModel BackToList()
         {
-            CultureHelper.SetCulture(cultureName);
-            return Show(id);
-        }
-
-        public QuestionListViewModel BackToList(int pageSize, int maxVisiblePageNumbers)
-        {
-            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName, pageSize, maxVisiblePageNumbers);
+            var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
             return listPresenter.Show();
         }
     }

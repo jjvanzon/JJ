@@ -34,12 +34,15 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public LoginViewModel Show()
         {
-            return Show(_defaultSourceAction);
+            LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
+            viewModel.SourceAction = _defaultSourceAction;
+            return viewModel;
         }
 
-        /// <param name="sourceAction">nullable</param>
         public LoginViewModel Show(ActionDescriptor sourceAction)
         {
+            if (sourceAction == null) throw new NullException(() => sourceAction);
+
             LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
             viewModel.SourceAction = sourceAction;
             return viewModel;

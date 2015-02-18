@@ -155,7 +155,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Configuration\ConfigurationSection.cs" />
     <Compile Include="Helpers\PersistenceHelper.cs" />
     <Compile Include="Names\ActionNames.cs" />
     <Compile Include="Controllers\CategorySelectorController.cs" />
