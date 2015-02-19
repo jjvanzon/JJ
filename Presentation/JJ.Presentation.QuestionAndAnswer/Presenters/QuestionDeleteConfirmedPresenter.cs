@@ -38,7 +38,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
-                return presenter2.Show(CreateSourceAction(() => Show(id)));
+                return presenter2.Show(CreateReturnAction(() => Show(id)));
             }
 
             QuestionDeleteConfirmedViewModel viewModel = ViewModelHelper.CreateDeleteConfirmedViewModel(id, _repositories.UserRepository, _authenticatedUserName);
@@ -51,7 +51,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return listPresenter.Show();
         }
 
-        private ActionDescriptor CreateSourceAction(Expression<Func<object>> methodCallExpression)
+        private ActionDescriptor CreateReturnAction(Expression<Func<object>> methodCallExpression)
         {
             return ActionDescriptorHelper.CreateActionDescriptor(GetType(), methodCallExpression);
         }

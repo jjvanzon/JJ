@@ -115,6 +115,18 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult CancelEdit(QuestionEditViewModel viewModel)
+        {
+            using (IContext context = PersistenceHelper.CreateContext())
+            {
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
+                var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+                object viewModel2 = presenter.Cancel(viewModel);
+                return GetActionResult(ActionNames.Edit, viewModel2);
+            }
+        }
+
         public ActionResult Delete(int id)
         {
             object viewModel;

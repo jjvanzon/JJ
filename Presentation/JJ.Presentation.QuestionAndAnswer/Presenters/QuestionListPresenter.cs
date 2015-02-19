@@ -17,6 +17,8 @@ using JJ.Framework.Reflection;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Presentation.QuestionAndAnswer.Configuration;
 using JJ.Framework.Common;
+using JJ.Framework.Presentation;
+using System.Linq.Expressions;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
@@ -91,16 +93,27 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return detailPresenter.Show(questionID);
         }
 
+        public object Create()
+        {
+            var presenter2 = new QuestionEditPresenter(_repositories, _authenticatedUserName);
+            return presenter2.Create();
+        }
+
         public object Edit(int questionID)
         {
             var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName);
-            return editPresenter.Edit(questionID);
+            return editPresenter.Edit(questionID, CreateReturnAction(() => Show(1)));
         }
 
         public object Delete(int questionID)
         {
             var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
             return deletePresenter.Show(questionID);
+        }
+
+        private ActionDescriptor CreateReturnAction(Expression<Func<object>> methodCallExpression)
+        {
+            return ActionDescriptorHelper.CreateActionDescriptor(GetType(), methodCallExpression);
         }
     }
 }

@@ -17,13 +17,13 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
     public class LoginPresenter
     {
-        private static ActionDescriptor _defaultSourceAction;
+        private static ActionDescriptor _defaultReturnAction;
 
         private Repositories _repositories;
 
         static LoginPresenter()
         {
-            _defaultSourceAction = ActionDescriptorHelper.CreateActionDescriptor<RandomQuestionPresenter>(x => x.Show(null));
+            _defaultReturnAction = ActionDescriptorHelper.CreateActionDescriptor<RandomQuestionPresenter>(x => x.Show(null));
         }
 
         public LoginPresenter(Repositories repositories)
@@ -35,7 +35,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
         public LoginViewModel Show()
         {
             LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
-            viewModel.SourceAction = _defaultSourceAction;
+            viewModel.ReturnAction = _defaultReturnAction;
             return viewModel;
         }
 
@@ -44,7 +44,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             if (sourceAction == null) throw new NullException(() => sourceAction);
 
             LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
-            viewModel.SourceAction = sourceAction;
+            viewModel.ReturnAction = sourceAction;
             return viewModel;
         }
         
@@ -64,13 +64,13 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
                 if (isAuthentic)
                 {
-                    object viewModel2 = ActionDispatcher.GetViewModel(viewModel.SourceAction, _repositories, viewModel.UserName);
+                    object viewModel2 = ActionDispatcher.GetViewModel(viewModel.ReturnAction, _repositories, viewModel.UserName);
                     return viewModel2;
                 }
             }
 
             LoginViewModel loginViewModel = ViewModelHelper.CreateLoginViewModel();
-            loginViewModel.SourceAction = viewModel.SourceAction;
+            loginViewModel.ReturnAction = viewModel.ReturnAction;
             loginViewModel.UserName = viewModel.UserName;
             return loginViewModel;
         }
@@ -83,7 +83,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
             LoginViewModel viewModel2 = ViewModelHelper.CreateLoginViewModel();
             viewModel2.UserName = viewModel.UserName;
-            viewModel2.SourceAction = viewModel.SourceAction;
+            viewModel2.ReturnAction = viewModel.ReturnAction;
             return viewModel2;
         }
     }

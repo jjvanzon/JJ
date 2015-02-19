@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Presentation;
 
 namespace JJ.Presentation.QuestionAndAnswer.ViewModels
 {
@@ -21,5 +22,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels
         public string Title { get; set; }
         public bool IsNew { get; set; }
         public bool CanDelete { get; set; }
+
+        public ActionDescriptor ReturnAction { get; set; }
     }
 }

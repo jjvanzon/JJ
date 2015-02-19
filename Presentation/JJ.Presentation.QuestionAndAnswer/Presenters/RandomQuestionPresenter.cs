@@ -258,6 +258,15 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return viewModel2;
         }
 
+        public object NextQuestion(RandomQuestionViewModel viewModel)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+
+            int[] categoryIDs = viewModel.SelectedCategories.Select(x => x.ID).ToArray();
+            object viewModel2 = Show(categoryIDs);
+            return viewModel2;
+        }
+
         private QuestionFlag TryGetQuestionFlag(Question question, User user)
         {
             if (question == null) throw new NullException(() => question);

@@ -7,6 +7,7 @@
 
     @*Cancel*@
 
+    @*
     @if (Model.IsNew)
     {
         <a href="javascript:history.back()"> @CommonTitles.Cancel</a> <text>|</text>
@@ -17,8 +18,9 @@
     }
     else
     {
-        @Html.ActionLink(CommonTitles.Cancel, ActionNames.Details, new { id = Model.Question.ID }) <text>|</text>
-    }
+    *@
+        <input type="submit" value="@CommonTitles.Cancel" formaction="@Url.Action(ActionNames.CancelEdit)" /> <text>|</text>
+    @*}*@
 
     @if (Model.CanDelete)
     {

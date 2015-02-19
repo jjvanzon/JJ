@@ -43,4 +43,9 @@
     @Html.ValidationSummary()
 
     @Html.Partial(ViewNames._EditButtons, Model);
+
+    using (Html.BeginItem(() => Model.ReturnAction))
+    {
+        @Html.Partial(ViewNames._ActionDescriptor, Model.ReturnAction);
+    }
 }

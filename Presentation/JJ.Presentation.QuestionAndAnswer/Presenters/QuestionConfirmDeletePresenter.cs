@@ -38,7 +38,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
-                return presenter2.Show(CreateSourceAction(() => Show(id)));
+                return presenter2.Show(CreateReturnAction(() => Show(id)));
             }
 
             Question question = _repositories.QuestionRepository.TryGet(id);
@@ -57,7 +57,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
-                return presenter2.Show(CreateSourceAction(() => Show(id)));
+                return presenter2.Show(CreateReturnAction(() => Show(id)));
             }
 
             Question question = _repositories.QuestionRepository.TryGet(id);
@@ -82,7 +82,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return new PreviousViewModel();
         }
 
-        private ActionDescriptor CreateSourceAction(Expression<Func<object>> methodCallExpression)
+        private ActionDescriptor CreateReturnAction(Expression<Func<object>> methodCallExpression)
         {
             return ActionDescriptorHelper.CreateActionDescriptor(GetType(), methodCallExpression);
         }

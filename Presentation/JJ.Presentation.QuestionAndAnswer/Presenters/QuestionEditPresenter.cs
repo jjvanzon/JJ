@@ -32,6 +32,12 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
         private Repositories _repositories;
         private string _authenticatedUserName;
 
+        private static ActionDescriptor _defaultReturnAction;
+
+        static QuestionEditPresenter()
+        {
+        }
+
         /// <param name="authenticatedUserName">nullable</param>
         public QuestionEditPresenter(
             Repositories repositories, 
@@ -43,12 +49,12 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             _authenticatedUserName = authenticatedUserName;
         }
 
-        public object Edit(int id)
+        public object Edit(int id, ActionDescriptor returnAction = null)
         {
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
-                return presenter2.Show(CreateSourceAction(() => Edit(id)));
+                return presenter2.Show(CreateReturnAction(() => Edit(id, null)));
             }
 
             Question question = _repositories.QuestionRepository.TryGet(id);
@@ -58,19 +64,25 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
                 return presenter2.Show();
             }
 
+            if (returnAction == null)
+            {
+                returnAction = ActionDescriptorHelper.CreateActionDescriptor<QuestionDetailsPresenter>(x => x.Show(id));
+            }
+
             QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
             viewModel.CanDelete = true;
             viewModel.Title = Titles.EditQuestion;
+            viewModel.ReturnAction = returnAction;
 
             return viewModel;
         }
 
-        public object Create()
+        public object Create(ActionDescriptor returnAction = null)
         {
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
-                return presenter2.Show(CreateSourceAction(() => Create()));
+                return presenter2.Show(CreateReturnAction(() => Create(null)));
             }
 
             Question entity = _repositories.QuestionRepository.Create();
@@ -88,6 +100,12 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             QuestionEditViewModel viewModel = entity.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
             viewModel.IsNew = true;
             viewModel.Title = Titles.CreateQuestion;
+
+            if (returnAction == null)
+            {
+                returnAction = ActionDescriptorHelper.CreateActionDescriptor<QuestionListPresenter>(x => x.Show(1));
+            }
+            viewModel.ReturnAction = returnAction;
 
             return viewModel;
         }
@@ -273,13 +291,19 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return deletePresenter.Show(viewModel.Question.ID);
         }
 
+        public object Cancel(QuestionEditViewModel viewModel)
+        {
+            object viewModel2 = ActionDispatcher.GetViewModel(viewModel.ReturnAction, _repositories, _authenticatedUserName);
+            return viewModel2;
+        }
+
         public QuestionListViewModel BackToList(int pageSize, int maxVisiblePageNumbers)
         {
             var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
             return listPresenter.Show();
         }
 
-        private ActionDescriptor CreateSourceAction(Expression<Func<object>> methodCallExpression)
+        private ActionDescriptor CreateReturnAction(Expression<Func<object>> methodCallExpression)
         {
             return ActionDescriptorHelper.CreateActionDescriptor(GetType(), methodCallExpression);
         }

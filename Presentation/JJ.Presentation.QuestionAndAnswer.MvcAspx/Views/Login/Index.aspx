@@ -29,9 +29,9 @@
 
         <input type="submit" value="<%: CommonTitles.LogIn %>" />
 
-        <% using (Html.BeginItem(() => Model.SourceAction)) { %>
+        <% using (Html.BeginItem(() => Model.ReturnAction)) { %>
 
-            <% Html.RenderPartial(ViewNames._ActionDescriptor, Model.SourceAction); %>
+            <% Html.RenderPartial(ViewNames._ActionDescriptor, Model.ReturnAction); %>
 
         <% } %>
     <% } %>
