@@ -20,8 +20,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
         public const string Delete = "Delete";
         public const string Deleted = "Deleted";
         public const string Details = "Details";
-        public const string _ActionDescriptor = "_ActionDescriptor";
-        public const string _ParameterDescriptor = "_ParameterDescriptor";
+        public const string _ActionInfo = "_ActionInfo";
+        public const string _ActionParameterInfo = "_ActionParameterInfo";
         public const string _Pager = "_Pager";
         public const string _EditQuestion = "_EditQuestion";
         public const string _EditProperties = "_EditProperties";

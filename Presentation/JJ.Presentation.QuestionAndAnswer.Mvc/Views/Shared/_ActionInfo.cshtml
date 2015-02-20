@@ -1,4 +1,4 @@
-﻿@model JJ.Framework.Presentation.ActionDescriptor
+﻿@model ActionInfo
 
 @Html.HiddenFor(x => x.PresenterName)
 @Html.HiddenFor(x => x.ActionName)
@@ -9,7 +9,7 @@
     {
         using (Html.BeginCollectionItem())
         {
-            @Html.Partial(ViewNames._ParameterDescriptor, parameter);
+            @Html.Partial(ViewNames._ActionParameterInfo, parameter);
         }
     }
 }

@@ -23,6 +23,6 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels
         public bool IsNew { get; set; }
         public bool CanDelete { get; set; }
 
-        public ActionDescriptor ReturnAction { get; set; }
+        public ActionInfo ReturnAction { get; set; }
     }
 }

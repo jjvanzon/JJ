@@ -31,7 +31,7 @@
 
         <% using (Html.BeginItem(() => Model.ReturnAction)) { %>
 
-            <% Html.RenderPartial(ViewNames._ActionDescriptor, Model.ReturnAction); %>
+            <% Html.RenderPartial(ViewNames._ActionInfo, Model.ReturnAction); %>
 
         <% } %>
     <% } %>

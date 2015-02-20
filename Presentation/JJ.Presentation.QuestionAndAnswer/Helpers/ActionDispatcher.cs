@@ -18,43 +18,17 @@ namespace JJ.Presentation.QuestionAndAnswer.Helpers
         /// Also: only simple parameter types are supported.
         /// </summary>
         /// <param name="authenticatedUserName">nullable</param>
-        public static object GetViewModel(ActionDescriptor actionDescriptor, Repositories repositories, string authenticatedUserName)
+        public static object GetViewModel(ActionInfo actionInfo, Repositories repositories, string authenticatedUserName)
         {
             if (repositories == null) throw new NullException(() => repositories);
-            if (actionDescriptor == null) throw new NullException(() => actionDescriptor);
+            if (actionInfo == null) throw new NullException(() => actionInfo);
 
-            // Get presenter and action method.
-            object presenter = GetPresenter(actionDescriptor.PresenterName, repositories, authenticatedUserName);
-            Type type = presenter.GetType();
-            MethodInfo method = type.GetMethod(actionDescriptor.ActionName);
-            if (method == null)
-            {
-                throw new Exception(String.Format("Method '{0}' of type '{1}' not found.", actionDescriptor.ActionName, type.Name));
-            }
-
-            // Convert parameter values.
-            IList<ParameterInfo> parameterInfos = method.GetParameters();
-            actionDescriptor.Parameters = actionDescriptor.Parameters ?? new ParameterDescriptor[0];
-            if (parameterInfos.Count != actionDescriptor.Parameters.Count)
-            {
-                throw new Exception("MethodInfo and ActionDescriptor must have the same amount of parameters.");
-            }
-            object[] parameterValues = new object[parameterInfos.Count];
-            for (int i = 0; i < parameterInfos.Count; i++)
-            {
-                ParameterInfo parameterInfo = parameterInfos[i];
-                ParameterDescriptor parameterDescriptor = actionDescriptor.Parameters[i];
-                parameterDescriptor = parameterDescriptor ?? new ParameterDescriptor();
-                object parameterValue = ConvertValue(parameterDescriptor.Value, parameterInfo.ParameterType);
-                parameterValues[i] = parameterValue;
-            }
-
-            // Call action.
-            object viewModel = method.Invoke(presenter, parameterValues);
+            object presenter = CreatePresenter(actionInfo.PresenterName, repositories, authenticatedUserName);
+            object viewModel = ActionHelper.DispatchAction(presenter, actionInfo);
             return viewModel;
         }
 
-        private static object GetPresenter(string presenterName, Repositories repositories, string authenticatedUserName)
+        private static object CreatePresenter(string presenterName, Repositories repositories, string authenticatedUserName)
         {
             Type presenterType = GetPresenterType(presenterName);
             
@@ -98,11 +72,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Helpers
                 throw new Exception(String.Format("Type '{0}' not found.", typeName));
             }
             return type;
-        }
-
-        private static object ConvertValue(string value, Type type)
-        {
-            return Convert.ChangeType(value, type);
         }
     }
 }

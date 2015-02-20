@@ -82,9 +82,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return new PreviousViewModel();
         }
 
-        private ActionDescriptor CreateReturnAction(Expression<Func<object>> methodCallExpression)
+        private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
         {
-            return ActionDescriptorHelper.CreateActionDescriptor(GetType(), methodCallExpression);
+            return ActionHelper.CreateActionInfo(GetType(), methodCallExpression);
         }
     }
 }

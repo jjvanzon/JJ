@@ -75,9 +75,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return listPresenter.Show();
         }
 
-        private ActionDescriptor CreateReturnAction(Expression<Func<object>> methodCallExpression)
+        private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
         {
-            return ActionDescriptorHelper.CreateActionDescriptor(GetType(), methodCallExpression);
+            return ActionHelper.CreateActionInfo(GetType(), methodCallExpression);
         }
     }
 }

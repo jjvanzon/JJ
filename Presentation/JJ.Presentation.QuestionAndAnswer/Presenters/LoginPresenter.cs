@@ -17,13 +17,13 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
     public class LoginPresenter
     {
-        private static ActionDescriptor _defaultReturnAction;
+        private static ActionInfo _defaultReturnAction;
 
         private Repositories _repositories;
 
         static LoginPresenter()
         {
-            _defaultReturnAction = ActionDescriptorHelper.CreateActionDescriptor<RandomQuestionPresenter>(x => x.Show(null));
+            _defaultReturnAction = ActionHelper.CreateActionInfo<RandomQuestionPresenter>(x => x.Show(null));
         }
 
         public LoginPresenter(Repositories repositories)
@@ -39,12 +39,12 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        public LoginViewModel Show(ActionDescriptor sourceAction)
+        public LoginViewModel Show(ActionInfo returnAction)
         {
-            if (sourceAction == null) throw new NullException(() => sourceAction);
+            if (returnAction == null) throw new NullException(() => returnAction);
 
             LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
-            viewModel.ReturnAction = sourceAction;
+            viewModel.ReturnAction = returnAction;
             return viewModel;
         }
         

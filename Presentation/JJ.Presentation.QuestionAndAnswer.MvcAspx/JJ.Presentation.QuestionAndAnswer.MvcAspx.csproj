@@ -273,8 +273,8 @@
     <Content Include="Views\Shared\_Pager.ascx" />
     <Content Include="Views\Questions\_SmallQuestionFlag.ascx" />
     <Content Include="Views\Shared\NotAuthorized.aspx" />
-    <Content Include="Views\Shared\_ParameterDescriptor.ascx" />
-    <Content Include="Views\Shared\_ActionDescriptor.ascx" />
+    <Content Include="Views\Shared\_ActionParameterInfo.ascx" />
+    <Content Include="Views\Shared\_ActionInfo.ascx" />
     <Content Include="Views\Shared\_LanguageSelector.ascx" />
     <Content Include="Views\Shared\_Login.ascx" />
     <Content Include="Web.config">

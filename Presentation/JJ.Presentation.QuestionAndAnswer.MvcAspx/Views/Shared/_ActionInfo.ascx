@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Framework.Presentation.ActionDescriptor>" %>
+﻿<%@ Control Language="C#" Inherits="ViewUserControl<ActionInfo>" %>
 
 <%: Html.HiddenFor(x => x.PresenterName) %>   
 <%: Html.HiddenFor(x => x.ActionName) %>   
@@ -9,7 +9,7 @@
     {
         using (Html.BeginCollectionItem())
         {
-            Html.RenderPartial(ViewNames._ParameterDescriptor, parameter);
+            Html.RenderPartial(ViewNames._ActionParameterInfo, parameter);
         }
     }
 }%>

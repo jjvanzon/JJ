@@ -32,7 +32,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
         private Repositories _repositories;
         private string _authenticatedUserName;
 
-        private static ActionDescriptor _defaultReturnAction;
+        private static ActionInfo _defaultReturnAction;
 
         static QuestionEditPresenter()
         {
@@ -49,7 +49,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             _authenticatedUserName = authenticatedUserName;
         }
 
-        public object Edit(int id, ActionDescriptor returnAction = null)
+        public object Edit(int id, ActionInfo returnAction = null)
         {
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
@@ -66,7 +66,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
             if (returnAction == null)
             {
-                returnAction = ActionDescriptorHelper.CreateActionDescriptor<QuestionDetailsPresenter>(x => x.Show(id));
+                returnAction = ActionHelper.CreateActionInfo<QuestionDetailsPresenter>(x => x.Show(id));
             }
 
             QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
@@ -77,7 +77,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return viewModel;
         }
 
-        public object Create(ActionDescriptor returnAction = null)
+        public object Create(ActionInfo returnAction = null)
         {
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
@@ -103,7 +103,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
             if (returnAction == null)
             {
-                returnAction = ActionDescriptorHelper.CreateActionDescriptor<QuestionListPresenter>(x => x.Show(1));
+                returnAction = ActionHelper.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
             }
             viewModel.ReturnAction = returnAction;
 
@@ -303,9 +303,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return listPresenter.Show();
         }
 
-        private ActionDescriptor CreateReturnAction(Expression<Func<object>> methodCallExpression)
+        private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
         {
-            return ActionDescriptorHelper.CreateActionDescriptor(GetType(), methodCallExpression);
+            return ActionHelper.CreateActionInfo(GetType(), methodCallExpression);
         }
     }
 }
