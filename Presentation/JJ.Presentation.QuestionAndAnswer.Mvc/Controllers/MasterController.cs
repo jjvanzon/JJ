@@ -78,6 +78,12 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 return actionResult;
             }
 
+            actionResult = TryGetQuestionIndexActionResult(sourceActionName, viewModel);
+            if (actionResult != null)
+            {
+                return actionResult;
+            }
+
             actionResult = TryGetQuestionDetailsActionResult(sourceActionName, viewModel);
             if (actionResult != null)
             {
@@ -104,7 +110,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
             { typeof(CategorySelectorViewModel), new Names(ControllerNames.CategorySelector, ActionNames.Index, ViewNames.Index) },
             { typeof(LoginViewModel), new Names(ControllerNames.Login, ActionNames.Index, ViewNames.Index) },
             { typeof(QuestionDeleteConfirmedViewModel), new Names(ControllerNames.Questions, null, ViewNames.Deleted) },
-            { typeof(QuestionListViewModel), new Names(ControllerNames.Questions, ActionNames.Index, ViewNames.Index) },
             { typeof(QuestionNotFoundViewModel), new Names(ControllerNames.Questions, null, ViewNames.NotFound) },
             { typeof(RandomQuestionViewModel), new Names(ControllerNames.Questions, ActionNames.Random, ViewNames.Random) },
             { typeof(NotAuthorizedViewModel), new Names(null, null, ViewNames.NotAuthorized) }
@@ -139,17 +144,17 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 
         private ActionResult TryGetQuestionEditActionResult(string sourceActionName, object viewModel)
         {
-            var questionEditViewModel = viewModel as QuestionEditViewModel;
-            if (questionEditViewModel != null)
+            var viewModel2 = viewModel as QuestionEditViewModel;
+            if (viewModel2 != null)
             {
-                if (questionEditViewModel.IsNew)
+                if (viewModel2.IsNew)
                 {
                     bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
                                                      String.Equals(sourceActionName, ActionNames.Create);
                     if (isSameControllerAndAction)
                     {
                         ModelState.ClearModelErrors();
-                        foreach (ValidationMessage validationMessage in questionEditViewModel.ValidationMessages)
+                        foreach (ValidationMessage validationMessage in viewModel2.ValidationMessages)
                         {
                             ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
                         }
@@ -169,7 +174,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                     if (isSameControllerAndAction)
                     {
                         ModelState.ClearModelErrors();
-                        foreach (ValidationMessage validationMessage in questionEditViewModel.ValidationMessages)
+                        foreach (ValidationMessage validationMessage in viewModel2.ValidationMessages)
                         {
                             ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
                         }
@@ -179,8 +184,29 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                     else
                     {
                         TempData[TempDataKeys.ViewModel] = viewModel;
-                        return RedirectToAction(ActionNames.Edit, ControllerNames.Questions, new { id = questionEditViewModel.Question.ID });
+                        return RedirectToAction(ActionNames.Edit, ControllerNames.Questions, new { id = viewModel2.Question.ID });
                     }
+                }
+            }
+
+            return null;
+        }
+
+        private ActionResult TryGetQuestionIndexActionResult(string sourceActionName, object viewModel)
+        {
+            var viewModel2 = viewModel as QuestionListViewModel;
+            if (viewModel2 != null)
+            {
+                bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
+                                                 String.Equals(sourceActionName, ActionNames.Index);
+                if (isSameControllerAndAction)
+                {
+                    return View(viewModel);
+                }
+                else
+                {
+                    TempData[TempDataKeys.ViewModel] = viewModel;
+                    return RedirectToAction(ActionNames.Index, new { page = viewModel2.Pager.PageNumber });
                 }
             }
 
@@ -189,8 +215,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 
         private ActionResult TryGetQuestionDetailsActionResult(string sourceActionName, object viewModel)
         {
-            var questionDetailsViewModel = viewModel as QuestionDetailsViewModel;
-            if (questionDetailsViewModel != null)
+            var viewModel2 = viewModel as QuestionDetailsViewModel;
+            if (viewModel2 != null)
             {
                 bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
                                                  String.Equals(sourceActionName, ActionNames.Details);
@@ -201,7 +227,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 else
                 {
                     TempData[TempDataKeys.ViewModel] = viewModel;
-                    return RedirectToAction(ActionNames.Details, new { id = questionDetailsViewModel.Question.ID });
+                    return RedirectToAction(ActionNames.Details, new { id = viewModel2.Question.ID });
                 }
             }
 
@@ -210,8 +236,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 
         private ActionResult TryGetQuestionConfirmDeleteActionResult(string sourceActionName, object viewModel)
         {
-            var questionConfirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
-            if (questionConfirmDeleteViewModel != null)
+            var viewModel2 = viewModel as QuestionConfirmDeleteViewModel;
+            if (viewModel2 != null)
             {
                 bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
                                                  String.Equals(sourceActionName, ActionNames.Delete);
@@ -222,7 +248,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 else
                 {
                     TempData[TempDataKeys.ViewModel] = viewModel;
-                    return RedirectToAction(ActionNames.Delete, ControllerNames.Questions, new { id = questionConfirmDeleteViewModel.ID });
+                    return RedirectToAction(ActionNames.Delete, ControllerNames.Questions, new { id = viewModel2.ID });
                 }
             }
 

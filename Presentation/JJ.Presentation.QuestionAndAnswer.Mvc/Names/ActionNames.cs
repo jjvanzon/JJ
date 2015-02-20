@@ -26,5 +26,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
         public const string Create = "Create";
         public const string Delete = "Delete";
         public const string CancelEdit = "CancelEdit";
+        public const string EditFromList = "EditFromList";
     }
 }

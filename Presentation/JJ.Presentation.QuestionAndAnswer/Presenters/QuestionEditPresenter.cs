@@ -54,7 +54,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
-                return presenter2.Show(CreateReturnAction(() => Edit(id, null)));
+                ActionInfo returnAction2 = CreateReturnAction(() => Edit(id, returnAction));
+                return presenter2.Show(returnAction2);
             }
 
             Question question = _repositories.QuestionRepository.TryGet(id);

@@ -99,10 +99,10 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             return presenter2.Create();
         }
 
-        public object Edit(int questionID)
+        public object Edit(int questionID, int pageNumber)
         {
             var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName);
-            return editPresenter.Edit(questionID, CreateReturnAction(() => Show(1)));
+            return editPresenter.Edit(questionID, CreateReturnAction(() => Show(pageNumber)));
         }
 
         public object Delete(int questionID)

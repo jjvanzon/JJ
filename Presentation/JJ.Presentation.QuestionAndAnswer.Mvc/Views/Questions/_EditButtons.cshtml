@@ -3,27 +3,11 @@
 <p>
     <input type="submit" value="@CommonTitles.Save" /> |
 
-    @*TODO: The view is not supposed to make these decisions.*@
-
-    @*Cancel*@
-
-    @*
-    @if (Model.IsNew)
-    {
-        <a href="javascript:history.back()"> @CommonTitles.Cancel</a> <text>|</text>
-        <noscript>
-            @Messages.YouHaveNoJavaScript
-            @Html.ActionLink(CommonTitles.Cancel, ActionNames.Index) ?
-        </noscript>
-    }
-    else
-    {
-    *@
-        <input type="submit" value="@CommonTitles.Cancel" formaction="@Url.Action(ActionNames.CancelEdit)" /> <text>|</text>
-    @*}*@
+    <input type="submit" value="@CommonTitles.Cancel" formaction="@Url.Action(ActionNames.CancelEdit)" />
 
     @if (Model.CanDelete)
     {
+        @:| 
         @Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) <text>|</text>
     }
 

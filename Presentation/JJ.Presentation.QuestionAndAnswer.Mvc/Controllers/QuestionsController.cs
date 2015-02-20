@@ -87,6 +87,23 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
             }
         }
 
+        // TODO: This is temporary (2015-02-20) hack to test the multi-level return actions in the Presenter layer.
+        public ActionResult EditFromList(int id, int page)
+        {
+            object viewModel;
+            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
+            {
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
+                    var presenter = new QuestionListPresenter(repositories, TryGetAuthenticatedUserName());
+                    viewModel = presenter.Edit(id, page);
+                }
+            }
+
+            return GetActionResult(ActionNames.Edit, viewModel);
+        }
+
         public ActionResult Edit(int id)
         {
             object viewModel;

@@ -20,8 +20,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Helpers
         /// <param name="authenticatedUserName">nullable</param>
         public static object GetViewModel(ActionInfo actionInfo, Repositories repositories, string authenticatedUserName)
         {
-            if (repositories == null) throw new NullException(() => repositories);
             if (actionInfo == null) throw new NullException(() => actionInfo);
+            if (repositories == null) throw new NullException(() => repositories);
 
             object presenter = CreatePresenter(actionInfo.PresenterName, repositories, authenticatedUserName);
             object viewModel = ActionHelper.DispatchAction(presenter, actionInfo);
