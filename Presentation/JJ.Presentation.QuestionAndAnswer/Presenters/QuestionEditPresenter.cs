@@ -32,12 +32,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
         private Repositories _repositories;
         private string _authenticatedUserName;
 
-        private static ActionInfo _defaultReturnAction;
-
-        static QuestionEditPresenter()
-        {
-        }
-
         /// <param name="authenticatedUserName">nullable</param>
         public QuestionEditPresenter(
             Repositories repositories, 
