@@ -23,7 +23,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         static LoginPresenter()
         {
-            _defaultReturnAction = ActionHelper.CreateActionInfo<RandomQuestionPresenter>(x => x.Show(null));
+            _defaultReturnAction = ActionDispatcher.CreateActionInfo<RandomQuestionPresenter>(x => x.Show(null));
         }
 
         public LoginPresenter(Repositories repositories)
@@ -64,7 +64,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
                 if (isAuthentic)
                 {
-                    object viewModel2 = ActionDispatcher.GetViewModel(viewModel.ReturnAction, _repositories, viewModel.UserName);
+                    object viewModel2 = MyActionDispatcher.GetViewModel(viewModel.ReturnAction, _repositories, viewModel.UserName);
                     return viewModel2;
                 }
             }

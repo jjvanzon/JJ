@@ -61,7 +61,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
             if (returnAction == null)
             {
-                returnAction = ActionHelper.CreateActionInfo<QuestionDetailsPresenter>(x => x.Show(id));
+                returnAction = ActionDispatcher.CreateActionInfo<QuestionDetailsPresenter>(x => x.Show(id));
             }
 
             QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
@@ -98,7 +98,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
             if (returnAction == null)
             {
-                returnAction = ActionHelper.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
+                returnAction = ActionDispatcher.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
             }
             viewModel.ReturnAction = returnAction;
 
@@ -288,7 +288,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public object Cancel(QuestionEditViewModel viewModel)
         {
-            object viewModel2 = ActionDispatcher.GetViewModel(viewModel.ReturnAction, _repositories, _authenticatedUserName);
+            object viewModel2 = MyActionDispatcher.GetViewModel(viewModel.ReturnAction, _repositories, _authenticatedUserName);
             return viewModel2;
         }
 
@@ -300,7 +300,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
         {
-            return ActionHelper.CreateActionInfo(GetType(), methodCallExpression);
+            return ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
 {
     public static class WebApiConfig
     {

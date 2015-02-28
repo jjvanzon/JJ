@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
 {
     public class RouteConfig
     {

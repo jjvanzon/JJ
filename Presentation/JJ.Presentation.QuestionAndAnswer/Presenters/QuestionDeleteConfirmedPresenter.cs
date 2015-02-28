@@ -53,7 +53,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
         {
-            return ActionHelper.CreateActionInfo(GetType(), methodCallExpression);
+            return ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
         }
     }
 }

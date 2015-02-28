@@ -9,7 +9,6 @@ using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Framework.Common;
-using JJ.Framework.Presentation;
 using JJ.Business.CanonicalModel;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
@@ -17,6 +16,7 @@ using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories;
 using JJ.Framework.Configuration;
 using JJ.Framework.Web;
+using JJ.Framework.Presentation.Mvc;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {
@@ -40,7 +40,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return GetActionResult(ActionNames.Index, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel);
         }
 
         public ActionResult Details(int id)
@@ -56,7 +56,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return GetActionResult(ActionNames.Details, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Details, viewModel);
         }
 
         public ActionResult Create()
@@ -72,7 +72,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return GetActionResult(ActionNames.Create, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Create, viewModel);
         }
 
         [HttpPost]
@@ -83,7 +83,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
-                return GetActionResult(ActionNames.Create, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Create, viewModel2);
             }
         }
 
@@ -101,7 +101,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return GetActionResult(ActionNames.Edit, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel);
         }
 
         public ActionResult Edit(int id)
@@ -117,7 +117,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return GetActionResult(ActionNames.Edit, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel);
         }
 
         [HttpPost]
@@ -128,7 +128,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Save(viewModel);
-                return GetActionResult(ActionNames.Edit, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel2);
             }
         }
 
@@ -140,7 +140,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Cancel(viewModel);
-                return GetActionResult(ActionNames.Edit, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel2);
             }
         }
 
@@ -157,7 +157,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return GetActionResult(ActionNames.Delete, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Delete, viewModel);
         }
 
         [HttpPost]
@@ -168,7 +168,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.Confirm(id);
-                return GetActionResult(ActionNames.Delete, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Delete, viewModel2);
             }
         }
 
@@ -180,7 +180,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.AddLink(viewModel);
-                return GetActionResult(ActionNames.AddLink, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.AddLink, viewModel2);
             }
         }
 
@@ -192,7 +192,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
-                return GetActionResult(ActionNames.RemoveLink, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.RemoveLink, viewModel2);
             }
         }
 
@@ -204,7 +204,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.AddCategory(viewModel);
-                return GetActionResult(ActionNames.AddCategory, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.AddCategory, viewModel2);
             }
         }
 
@@ -216,7 +216,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
                 object viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
-                return GetActionResult(ActionNames.RemoveCategory, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.RemoveCategory, viewModel2);
             }
         }
 
@@ -233,7 +233,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return GetActionResult(ActionNames.Random, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Random, viewModel);
         }
 
         [HttpPost]
@@ -245,7 +245,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.SetLanguage(viewModel, lang);
                 CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
-                return GetActionResult(ActionNames.Random, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Random, viewModel2);
             }
         }
 
@@ -257,7 +257,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.ShowAnswer(viewModel);
-                return GetActionResult(ActionNames.ShowAnswer, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.ShowAnswer, viewModel2);
             }
         }
 
@@ -269,7 +269,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.HideAnswer(viewModel);
-                return GetActionResult(ActionNames.HideAnswer, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.HideAnswer, viewModel2);
             }
         }
 
@@ -281,7 +281,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Flag(viewModel);
-                return GetActionResult(ActionNames.Flag, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Flag, viewModel2);
             }
         }
 
@@ -293,7 +293,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
                 object viewModel2 = presenter.Unflag(viewModel);
-                return GetActionResult(ActionNames.Unflag, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Unflag, viewModel2);
             }
         }
 

@@ -5,7 +5,7 @@ using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Common;
 using JJ.Framework.Persistence;
-using JJ.Framework.Presentation;
+using JJ.Framework.Presentation.Mvc;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
@@ -32,7 +32,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return GetActionResult(ActionNames.Index, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel);
         }
 
         [HttpPost]
@@ -59,7 +59,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                     SetAuthenticatedUserName(viewModel.UserName);
                 }
 
-                return GetActionResult(ActionNames.Index, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel2);
             }
         }
 

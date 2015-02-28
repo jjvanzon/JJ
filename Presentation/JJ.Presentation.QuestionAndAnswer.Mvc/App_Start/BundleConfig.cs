@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
 {
     public class BundleConfig
     {

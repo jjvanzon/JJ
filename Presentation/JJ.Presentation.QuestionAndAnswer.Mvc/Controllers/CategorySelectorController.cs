@@ -30,7 +30,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return GetActionResult(ActionNames.Index, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel);
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 CategorySelectorRepositories repositories = CreateRepositories(context);
                 CategorySelectorPresenter presenter = CreatePresenter(repositories);
                 object viewModel2 = presenter.Add(viewModel, categoryID);
-                return GetActionResult(ActionNames.Add, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Add, viewModel2);
             }
         }
 
@@ -53,7 +53,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 CategorySelectorRepositories repositories = CreateRepositories(context);
                 var presenter = CreatePresenter(repositories);
                 object viewModel2 = presenter.Remove(viewModel, categoryID);
-                return GetActionResult(ActionNames.Remove, viewModel2);
+                return ActionDispatcher.DispatchAction(this, ActionNames.Remove, viewModel2);
             }
         }
 
