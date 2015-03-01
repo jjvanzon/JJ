@@ -64,7 +64,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
                 if (isAuthentic)
                 {
-                    object viewModel2 = MyActionDispatcher.GetViewModel(viewModel.ReturnAction, _repositories, viewModel.UserName);
+                    object viewModel2 = DispatchHelper.DispatchAction(viewModel.ReturnAction, _repositories, viewModel.UserName);
                     return viewModel2;
                 }
             }

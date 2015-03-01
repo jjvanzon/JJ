@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationSection.cs" />
-    <Compile Include="Helpers\MyActionDispatcher.cs" />
+    <Compile Include="Helpers\DispatchHelper.cs" />
     <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Helpers\ViewModelEntityStatusHelper.cs" />
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />

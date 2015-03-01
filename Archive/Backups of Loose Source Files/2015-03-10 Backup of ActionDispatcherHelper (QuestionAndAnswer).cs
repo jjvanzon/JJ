@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Presentation.QuestionAndAnswer.Helpers
 {
-    internal static class MyActionDispatcher
+    internal static class ActionDispatcherHelper
     {
         /// <summary>
         /// Gets a view model dynamically from the described presenter and action.

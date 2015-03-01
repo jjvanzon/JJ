@@ -288,7 +288,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public object Cancel(QuestionEditViewModel viewModel)
         {
-            object viewModel2 = MyActionDispatcher.GetViewModel(viewModel.ReturnAction, _repositories, _authenticatedUserName);
+            object viewModel2 = DispatchHelper.DispatchAction(viewModel.ReturnAction, _repositories, _authenticatedUserName);
             return viewModel2;
         }
 
