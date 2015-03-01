@@ -13,7 +13,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Extensions
             return new KeyValuePair<string, string>(sourceEntity.PropertyKey, sourceEntity.Text);
         }
 
-        public static ICollection<KeyValuePair<string, string>> ToKeyValuePairs(this IEnumerable<JJ.Business.CanonicalModel.ValidationMessage> sourceList)
+        public static IList<KeyValuePair<string, string>> ToKeyValuePairs(this IEnumerable<JJ.Business.CanonicalModel.ValidationMessage> sourceList)
         {
             var destList = new List<KeyValuePair<string, string>>();
 
