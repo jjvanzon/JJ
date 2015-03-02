@@ -32,25 +32,18 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             _repositories = repositories;
         }
 
-        public LoginViewModel Show()
+        public LoginViewModel Show(ActionInfo returnAction = null)
         {
             LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
-            viewModel.ReturnAction = _defaultReturnAction;
-            return viewModel;
-        }
-
-        public LoginViewModel Show(ActionInfo returnAction)
-        {
-            if (returnAction == null) throw new NullException(() => returnAction);
-
-            LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
-            viewModel.ReturnAction = returnAction;
+            viewModel.ReturnAction = returnAction ?? _defaultReturnAction;
             return viewModel;
         }
         
         public object Login(LoginViewModel viewModel)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
+
+            viewModel.ReturnAction = viewModel.ReturnAction ?? _defaultReturnAction;
 
             User user = _repositories.UserRepository.TryGetByUserName(viewModel.UserName);
             if (user != null)

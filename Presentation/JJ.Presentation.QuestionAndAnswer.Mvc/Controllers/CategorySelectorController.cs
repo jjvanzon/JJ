@@ -20,7 +20,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Index()
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
@@ -30,7 +30,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel);
+            return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel);
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 CategorySelectorRepositories repositories = CreateRepositories(context);
                 CategorySelectorPresenter presenter = CreatePresenter(repositories);
                 object viewModel2 = presenter.Add(viewModel, categoryID);
-                return ActionDispatcher.DispatchAction(this, ActionNames.Add, viewModel2);
+                return ActionDispatcher.Dispatch(this, ActionNames.Add, viewModel2);
             }
         }
 
@@ -53,7 +53,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 CategorySelectorRepositories repositories = CreateRepositories(context);
                 var presenter = CreatePresenter(repositories);
                 object viewModel2 = presenter.Remove(viewModel, categoryID);
-                return ActionDispatcher.DispatchAction(this, ActionNames.Remove, viewModel2);
+                return ActionDispatcher.Dispatch(this, ActionNames.Remove, viewModel2);
             }
         }
 

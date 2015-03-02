@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using JJ.Framework.Presentation;
+using JJ.Framework.Presentation.Mvc;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
 {
@@ -14,10 +15,16 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
     {
         public static void AddMappings()
         {
-            ActionDispatcher.Map<LoginViewModel>(ControllerNames.Login, ActionNames.Index, ViewNames.Index);
+            ActionDispatcher.Map<LoginViewModel>(ControllerNames.Login, ActionNames.Index, ViewNames.Index, x => new 
+            { 
+                ret = UrlHelpers.GetReturnUrl(x.ReturnAction) 
+            });
+
             ActionDispatcher.Map<NotAuthorizedViewModel>(null, null, ViewNames.NotAuthorized);
             ActionDispatcher.Map<CategorySelectorViewModel>(ControllerNames.CategorySelector, ActionNames.Index, ViewNames.Index);
+
             ActionDispatcher.Map<RandomQuestionViewModel>(ControllerNames.Questions, ActionNames.Random, ViewNames.Random);
+
             ActionDispatcher.Map<QuestionListViewModel>(ControllerNames.Questions, ActionNames.Index, ViewNames.Index, x => new { page = x.Pager.PageNumber });
             ActionDispatcher.Map<QuestionDetailsViewModel>(ControllerNames.Questions, ActionNames.Details, ViewNames.Details, x => new { id = x.Question.ID });
             ActionDispatcher.Map<QuestionConfirmDeleteViewModel>(ControllerNames.Questions, ActionNames.Delete, ViewNames.Delete, x => new { id = x.ID });
@@ -27,13 +34,21 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
             ActionDispatcher.Map<QuestionEditViewModel>(
                 x => !x.IsNew,
                 ControllerNames.Questions, ActionNames.Edit, ViewNames.Edit,
-                x => new { id = x.Question.ID },
+                x => new 
+                {
+                    id = x.Question.ID,
+                    ret = UrlHelpers.GetReturnUrl(x.ReturnAction)
+                },
                 x => x.ValidationMessages.ToKeyValuePairs());
 
             ActionDispatcher.Map<QuestionEditViewModel>(
                 x => x.IsNew,
                 ControllerNames.Questions, ActionNames.Create, ViewNames.Edit,
-                x => new { id = x.Question.ID },
+                x => new
+                {
+                    id = x.Question.ID,
+                    ret = UrlHelpers.GetReturnUrl(x.ReturnAction)
+                },
                 x => x.ValidationMessages.ToKeyValuePairs());
         }
     }

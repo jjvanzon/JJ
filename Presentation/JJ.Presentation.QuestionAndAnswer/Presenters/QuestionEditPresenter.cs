@@ -29,8 +29,15 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
     public class QuestionEditPresenter
     {
+        private static ActionInfo _defaultReturnAction;
+
         private Repositories _repositories;
         private string _authenticatedUserName;
+
+        static QuestionEditPresenter()
+        {
+            _defaultReturnAction = ActionDispatcher.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
+        }
 
         /// <param name="authenticatedUserName">nullable</param>
         public QuestionEditPresenter(
@@ -45,6 +52,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public object Edit(int id, ActionInfo returnAction = null)
         {
+            returnAction = returnAction ?? _defaultReturnAction;
+
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
@@ -74,6 +83,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public object Create(ActionInfo returnAction = null)
         {
+            returnAction = returnAction ?? _defaultReturnAction;
+
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
@@ -274,9 +285,10 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
                 // Commit
                 _repositories.QuestionRepository.Commit();
 
-                // On success: go to Details view model.
-                QuestionDetailsViewModel detailsViewModel = question.ToDetailsViewModel(_repositories.UserRepository, _authenticatedUserName);
-                return detailsViewModel;
+                // On success: go to return action.
+                ActionInfo returnAction = viewModel.ReturnAction ?? _defaultReturnAction;
+                object viewModel2 = DispatchHelper.DispatchAction(returnAction, _repositories, _authenticatedUserName);
+                return viewModel2;
             }
         }
 
@@ -288,7 +300,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public object Cancel(QuestionEditViewModel viewModel)
         {
-            object viewModel2 = DispatchHelper.DispatchAction(viewModel.ReturnAction, _repositories, _authenticatedUserName);
+            ActionInfo returnAction = viewModel.ReturnAction ?? _defaultReturnAction;
+            object viewModel2 = DispatchHelper.DispatchAction(returnAction, _repositories, _authenticatedUserName);
             return viewModel2;
         }
 

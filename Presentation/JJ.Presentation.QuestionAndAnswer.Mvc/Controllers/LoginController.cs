@@ -14,29 +14,32 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JJ.Framework.Web;
+using JJ.Framework.Presentation;
+using ActionDispatcher = JJ.Framework.Presentation.Mvc.ActionDispatcher;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {
     public class LoginController : MasterController
     {
-        public ActionResult Index()
+        public ActionResult Index(string ret = null)
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     LoginPresenter presenter = new LoginPresenter(repositories);
-                    viewModel = presenter.Show();
+                    ActionInfo returnAction = UrlHelpers.GetReturnAction(ret);
+                    viewModel = presenter.Show(returnAction);
                 }
             }
 
-            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel);
+            return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel);
         }
 
         [HttpPost]
-        public ActionResult Index(LoginViewModel viewModel, string lang = null)
+        public ActionResult Index(LoginViewModel viewModel, string lang = null, string ret = null)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
@@ -50,6 +53,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
                 else
                 {
+                    viewModel.ReturnAction = UrlHelpers.GetReturnAction(ret);
                     viewModel2 = presenter.Login(viewModel);
                 }
 
@@ -59,7 +63,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                     SetAuthenticatedUserName(viewModel.UserName);
                 }
 
-                return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel2);
+                return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel2);
             }
         }
 

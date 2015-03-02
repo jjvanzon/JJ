@@ -28,7 +28,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Helpers
                 userRepository = repositories.UserRepository
             };
 
-            object viewModel = ActionDispatcher.DispatchAction(actionInfo, presenterConstructorArguments);
+            object viewModel = ActionDispatcher.Dispatch(actionInfo, presenterConstructorArguments);
             return viewModel;
         }
     }

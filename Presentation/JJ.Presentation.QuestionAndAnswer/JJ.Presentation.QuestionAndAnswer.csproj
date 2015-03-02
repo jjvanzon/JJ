@@ -39,6 +39,8 @@
     <Compile Include="Helpers\DispatchHelper.cs" />
     <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Helpers\ViewModelEntityStatusHelper.cs" />
+    <Compile Include="Names\PresenterActionNames.cs" />
+    <Compile Include="Names\PresenterNames.cs" />
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
     <Compile Include="Helpers\Repositories.cs" />
     <Compile Include="Extensions\ValidationMessageExtensions.cs" />

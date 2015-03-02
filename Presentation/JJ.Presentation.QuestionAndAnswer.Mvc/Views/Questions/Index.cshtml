@@ -14,7 +14,10 @@
 {
     <h2>@PropertyDisplayNames.Questions</h2>
 
-    <p>@Html.ActionLink(Titles.CreateQuestion, ActionNames.Create)</p>
+    <p>@Html.ActionLink(Titles.CreateQuestion, ActionNames.Create, new
+    {
+        ret = Url.GetReturnUrl(PresenterNames.QuestionListPresenter, PresenterActionNames.Show, new { pageNumber = Model.Pager.PageNumber })
+    })</p>
 
     @Html.Partial(ViewNames._Pager, Model.Pager)
 
@@ -33,8 +36,11 @@
                 <td>@question.ID</td>
                 <td>@Html.ActionLink(question.Text, ActionNames.Details, new { id = question.ID })</td>
                 <td>@(question.IsFlagged ? CommonTitles.Yes : CommonTitles.No)</td>
-                @* EditFromList is a temporary (2015-02-20) hack for testing multi-level return actions. *@
-                <td>@Html.ActionLink(CommonTitles.Edit, ActionNames.EditFromList, new { id = question.ID, page = Model.Pager.PageNumber }) </td>
+                <td>@Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new
+                    {
+                        id = question.ID,
+                        ret = Url.GetReturnUrl(PresenterNames.QuestionListPresenter, PresenterActionNames.Show, new { pageNumber = Model.Pager.PageNumber })
+                    }) </td>
                 <td>@Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = question.ID })</td>
             </tr>
         }
