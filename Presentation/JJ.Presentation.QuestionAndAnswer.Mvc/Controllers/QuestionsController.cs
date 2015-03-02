@@ -30,7 +30,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Index(int page = 1)
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
@@ -46,7 +46,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Details(int id)
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
@@ -62,7 +62,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Create()
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
@@ -91,7 +91,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
         public ActionResult EditFromList(int id, int page)
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
@@ -107,7 +107,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Edit(int id)
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
@@ -147,7 +147,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Delete(int id)
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
@@ -223,7 +223,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
         public ActionResult Random(int[] c)
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
             {
                 using (IContext context = PersistenceHelper.CreateContext())
                 {
