@@ -242,8 +242,6 @@
     <Content Include="Views\Questions\_EditFlag.cshtml" />
     <None Include="Views\Shared\_Login.cshtml" />
     <None Include="Views\Login\Index.cshtml" />
-    <None Include="Views\Shared\_ActionInfo.cshtml" />
-    <None Include="Views\Shared\_ActionParameterInfo.cshtml" />
     <None Include="Views\Shared\NotAuthorized.cshtml" />
     <None Include="Views\Questions\NotFound.cshtml" />
     <None Include="Views\Questions\Index.cshtml" />
