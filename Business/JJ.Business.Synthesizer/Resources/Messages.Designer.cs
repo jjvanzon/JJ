@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JJ.Framework.Validation.Resources {
+namespace JJ.Business.Synthesizer.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace JJ.Framework.Validation.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Framework.Validation.Resources.Messages", typeof(Messages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Business.Synthesizer.Resources.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,20 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is integer..
+        ///   Looks up a localized string similar to {0} operator named &apos;{1}&apos; does not have {2} filled in..
         /// </summary>
-        internal static string IsInteger {
+        internal static string OperandNotSet {
             get {
-                return ResourceManager.GetString("IsInteger", resourceCulture);
+                return ResourceManager.GetString("OperandNotSet", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is null..
+        ///   Looks up a localized string similar to Value of value operator named &apos;{0}&apos; is 0..
         /// </summary>
-        internal static string IsNull {
+        internal static string ValueOperatorValueIs0 {
             get {
-                return ResourceManager.GetString("IsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is null or white space..
-        /// </summary>
-        internal static string IsNullOrWhiteSpace {
-            get {
-                return ResourceManager.GetString("IsNullOrWhiteSpace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is zero..
-        /// </summary>
-        internal static string IsZero {
-            get {
-                return ResourceManager.GetString("IsZero", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not above {1}..
-        /// </summary>
-        internal static string NotAbove {
-            get {
-                return ResourceManager.GetString("NotAbove", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not {1}..
-        /// </summary>
-        internal static string NotIsValue {
-            get {
-                return ResourceManager.GetString("NotIsValue", resourceCulture);
+                return ResourceManager.GetString("ValueOperatorValueIs0", resourceCulture);
             }
         }
     }
