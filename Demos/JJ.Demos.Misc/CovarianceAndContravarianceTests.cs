@@ -13,7 +13,7 @@ namespace JJ.Demos.Misc
         { }
 
         [TestMethod]
-        private void Test_ContraVariance_Func()
+        public void Test_ContraVariance_Func()
         {
             Func<object, object> baseFunc = b => b;
             Func<DerivedClass, object> derivedFunc = d => d;
