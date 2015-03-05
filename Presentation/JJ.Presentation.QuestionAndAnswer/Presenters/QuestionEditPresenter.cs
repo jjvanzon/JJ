@@ -245,8 +245,12 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
                 }
             }
 
+            // Set Entity Status (do this before ToEntity)
+            Question question = _repositories.QuestionRepository.Get(viewModel.Question.ID);
+            ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(_repositories.EntityStatusManager, question, viewModel.Question);
+
             // ToEntity
-            Question question = viewModel.ToEntity(_repositories);
+            question = viewModel.ToEntity(_repositories);
 
             // Validate
             IValidator validator = new VersatileQuestionValidator(question);
@@ -266,9 +270,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             }
             else
             {
-                // Set Entity Status
-                ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(_repositories.EntityStatusManager, question, viewModel.Question);
-
                 // Side-effects
                 ISideEffect sideEffect1 = new Question_SideEffect_SetIsManual(question, _repositories.EntityStatusManager);
                 sideEffect1.Execute();
