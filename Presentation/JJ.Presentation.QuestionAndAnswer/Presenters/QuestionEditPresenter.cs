@@ -196,7 +196,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public QuestionEditViewModel RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
         {
-            // The problem here is that you may want to remove one out of many uncommitted entities do not exist in the database yet,
+            // The problem here is that you may want to remove one out of many uncommitted entities that do not exist in the database yet,
             // and you cannot identify them uniquely with the ID (which is 0),
             // which makes it impossible to perform the delete operation on the entity model when given an ID.
             // So instead you have to perform the operation on the viewmodel which has temporary ID's.
