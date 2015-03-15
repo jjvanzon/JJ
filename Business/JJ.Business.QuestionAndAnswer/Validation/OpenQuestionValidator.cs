@@ -24,16 +24,16 @@ namespace JJ.Business.QuestionAndAnswer.Validation
             if (Object.QuestionType != null)
             {
                 For(() => Object.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
-                    .IsValue(QuestionTypeEnum.OpenQuestion);
+                    .Is(QuestionTypeEnum.OpenQuestion);
             }
 
             For(() => Object.Answers.Count, PropertyDisplayNames.AnswersCount)
-                .IsValue(1);
+                .Is(1);
 
             if (Object.Answers.Count > 0)
             {
                 For(() => Object.Answers[0].IsCorrectAnswer, PropertyDisplayNames.IsCorrectAnswer)
-                    .IsValue(true);
+                    .Is(true);
             }
         }
     }
