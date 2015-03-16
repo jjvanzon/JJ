@@ -25,6 +25,7 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
                 answer.UnlinkQuestion();
                 answerRepository.Delete(answer);
             }
+            // TODO: Are these calls to Clear() not redundant? Unlink should have removed all the items already.
             question.Answers.Clear();
 
             foreach (QuestionCategory questionCategory in question.QuestionCategories.ToArray())
