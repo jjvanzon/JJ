@@ -16,6 +16,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Mapping
         {
             PresenterName = PresenterNames.RandomQuestionPresenter;
             PresenterActionName = PresenterActionNames.Edit;
+
             ControllerName = ControllerNames.Questions;
             ControllerGetActionName = ActionNames.Random;
         }

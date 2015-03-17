@@ -16,6 +16,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Mapping
         {
             PresenterName = PresenterNames.QuestionConfirmDeletePresenter;
             PresenterActionName = PresenterActionNames.Show;
+
             ControllerName = ControllerNames.Questions;
             ControllerGetActionName = ActionNames.Delete;
         }

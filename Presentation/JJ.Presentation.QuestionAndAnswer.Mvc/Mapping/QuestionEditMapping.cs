@@ -17,6 +17,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Mapping
         {
             PresenterName = PresenterNames.QuestionDetailsPresenter;
             PresenterActionName = PresenterActionNames.Edit;
+
             ControllerName = ControllerNames.Questions;
             ControllerGetActionName = ActionNames.Edit;
         }

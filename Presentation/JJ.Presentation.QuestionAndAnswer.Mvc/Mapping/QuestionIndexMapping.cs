@@ -16,6 +16,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Mapping
         {
             PresenterName = PresenterNames.QuestionListPresenter;
             PresenterActionName = PresenterActionNames.Show;
+
             ControllerName = ControllerNames.Questions;
             ControllerGetActionName = ActionNames.Index;
         }
