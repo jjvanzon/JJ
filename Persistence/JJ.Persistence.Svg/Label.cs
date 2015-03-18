@@ -10,7 +10,8 @@ namespace JJ.Persistence.Svg
     {
         public int ID { get; set; }
         public string Text { get; set; }
-        public Point Point { get; set; }
+        public Rectangle Rectangle { get; set; }
         public Alignment Alignment { get; set; }
+        public Font Font { get; set; }
     }
 }

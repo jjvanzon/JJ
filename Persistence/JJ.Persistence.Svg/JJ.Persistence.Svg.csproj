@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alignment.cs" />
+    <Compile Include="Font.cs" />
     <Compile Include="HorizontalAlignment.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Rectangle.cs" />
