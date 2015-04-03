@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Reflection;
+﻿using JJ.Framework.Reflection.Exceptions;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
 using System.Collections.Generic;

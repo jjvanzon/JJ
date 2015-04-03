@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Common;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Persistence.QuestionAndAnswer.DefaultRepositories
 {

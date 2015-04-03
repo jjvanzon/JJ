@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Common;
 using JJ.Framework.Validation;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Business;
 using JJ.Persistence.QuestionAndAnswer;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;

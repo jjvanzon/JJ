@@ -13,7 +13,7 @@ using JJ.Business.QuestionAndAnswer;
 using JJ.Framework.Common;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {

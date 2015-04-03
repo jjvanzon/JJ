@@ -16,7 +16,7 @@ using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.Resources;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using System.Linq.Expressions;
 using JJ.Framework.Presentation;
 

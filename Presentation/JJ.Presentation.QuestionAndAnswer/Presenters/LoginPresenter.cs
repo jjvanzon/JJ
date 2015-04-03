@@ -3,7 +3,7 @@ using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Framework.Presentation;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Security;
 using JJ.Persistence.QuestionAndAnswer;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;

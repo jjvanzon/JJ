@@ -10,7 +10,7 @@ using System.Xml;
 using JJ.Framework.Common;
 using JJ.Framework.Xml;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {

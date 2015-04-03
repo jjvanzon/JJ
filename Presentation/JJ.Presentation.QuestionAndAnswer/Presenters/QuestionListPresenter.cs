@@ -13,7 +13,7 @@ using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Presentation.QuestionAndAnswer.Configuration;
 using JJ.Framework.Common;

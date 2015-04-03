@@ -1,5 +1,5 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Validation;
 using JJ.Persistence.QuestionAndAnswer;
 using System;

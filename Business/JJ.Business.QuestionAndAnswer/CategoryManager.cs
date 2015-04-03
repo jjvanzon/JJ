@@ -7,7 +7,7 @@ using JJ.Persistence.QuestionAndAnswer;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer
 {

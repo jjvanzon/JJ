@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Persistence;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Persistence.QuestionAndAnswer.DefaultRepositories
 {

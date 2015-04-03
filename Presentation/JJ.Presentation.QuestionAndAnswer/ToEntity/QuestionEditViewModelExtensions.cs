@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.Persistence;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Persistence.QuestionAndAnswer;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Enums;

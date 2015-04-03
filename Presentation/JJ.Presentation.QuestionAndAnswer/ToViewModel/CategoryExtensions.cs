@@ -6,7 +6,7 @@ using JJ.Framework.Common;
 using JJ.Persistence.QuestionAndAnswer;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {

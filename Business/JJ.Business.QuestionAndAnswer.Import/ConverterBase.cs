@@ -12,7 +12,7 @@ using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Business;
 using JJ.Business.QuestionAndAnswer.SideEffects;
 

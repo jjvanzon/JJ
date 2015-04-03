@@ -12,7 +12,7 @@ using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories;
 using JJ.Business.QuestionAndAnswer;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters

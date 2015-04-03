@@ -5,7 +5,7 @@ using System.Text;
 using JJ.Persistence.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {
