@@ -37,10 +37,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDAndName.cs" />
+    <Compile Include="IResult.cs" />
     <Compile Include="ResultT.cs" />
-    <Compile Include="Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationMessage.cs" />
+    <Compile Include="VoidResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

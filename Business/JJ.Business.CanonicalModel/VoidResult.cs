@@ -5,9 +5,9 @@ using System.Text;
 
 namespace JJ.Business.CanonicalModel
 {
-    public class Result
+    public class VoidResult : IResult
     {
         public bool Successful { get; set; }
-        public List<ValidationMessage> ValidationMessages { get; set; }
+        public IList<ValidationMessage> ValidationMessages { get; set; }
     }
 }
