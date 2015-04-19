@@ -246,8 +246,11 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             }
 
             // Set Entity Status (do this before ToEntity)
-            Question question = _repositories.QuestionRepository.Get(viewModel.Question.ID);
-            ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(_repositories.EntityStatusManager, question, viewModel.Question);
+            Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
+            if (question != null)
+            {
+                ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(_repositories.EntityStatusManager, question, viewModel.Question);
+            }
 
             // ToEntity
             question = viewModel.ToEntity(_repositories);
