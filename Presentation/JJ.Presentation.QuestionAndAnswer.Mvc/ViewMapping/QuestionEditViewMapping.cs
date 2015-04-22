@@ -8,18 +8,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.Mapping
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
-    public class QuestionEditMapping : ViewMapping<QuestionEditViewModel>
+    public class QuestionEditViewMapping : ViewMapping<QuestionEditViewModel>
     {
-        public QuestionEditMapping()
-            : base(ViewNames.Edit)
+        public QuestionEditViewMapping()
         {
-            PresenterName = PresenterNames.QuestionDetailsPresenter;
-            PresenterActionName = PresenterActionNames.Edit;
-
-            ControllerName = ControllerNames.Questions;
-            ControllerGetActionName = ActionNames.Edit;
+            MapPresenter(PresenterNames.QuestionDetailsPresenter, PresenterActionNames.Edit);
+            MapController(ControllerNames.Questions, ActionNames.Edit, ViewNames.Edit);
         }
 
         protected override bool Predicate(QuestionEditViewModel viewModel)

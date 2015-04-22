@@ -7,18 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.Mapping
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
-    public class QuestionIndexMapping : ViewMapping<QuestionListViewModel>
+    public class QuestionIndexViewMapping : ViewMapping<QuestionListViewModel>
     {
-        public QuestionIndexMapping()
-            : base(ViewNames.Index)
+        public QuestionIndexViewMapping()
         {
-            PresenterName = PresenterNames.QuestionListPresenter;
-            PresenterActionName = PresenterActionNames.Show;
-
-            ControllerName = ControllerNames.Questions;
-            ControllerGetActionName = ActionNames.Index;
+            MapPresenter(PresenterNames.QuestionListPresenter, PresenterActionNames.Show);
+            MapController(ControllerNames.Questions, ActionNames.Index, ViewNames.Index);
+            MapParameter(PresenterActionParameterNames.pageNumber, ActionParameterNames.page);
         }
 
         protected override object GetRouteValues(QuestionListViewModel viewModel)

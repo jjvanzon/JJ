@@ -9,18 +9,15 @@ using System.Linq;
 using System.Web;
 using JJ.Framework.Presentation;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.Mapping
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
-    public class QuestionCreateMapping : ViewMapping<QuestionEditViewModel>
+    public class QuestionCreateViewMapping : ViewMapping<QuestionEditViewModel>
     {
-        public QuestionCreateMapping()
-            : base(ViewNames.Edit)
+        public QuestionCreateViewMapping()
+            : base()
         { 
-            PresenterName = PresenterNames.QuestionDetailsPresenter;
-            PresenterActionName = PresenterActionNames.Edit;
-
-            ControllerName = ControllerNames.Questions;
-            ControllerGetActionName = ActionNames.Create;
+            MapPresenter(PresenterNames.QuestionDetailsPresenter, PresenterActionNames.Edit);
+            MapController(ControllerNames.Questions, ActionNames.Create, ViewNames.Edit);
         }
 
         protected override bool Predicate(QuestionEditViewModel viewModel)

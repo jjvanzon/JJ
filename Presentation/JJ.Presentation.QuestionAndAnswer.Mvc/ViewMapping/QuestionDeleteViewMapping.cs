@@ -7,18 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.Mapping
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
-    public class QuestionDeleteMapping : ViewMapping<QuestionConfirmDeleteViewModel>
+    public class QuestionDeleteViewMapping : ViewMapping<QuestionConfirmDeleteViewModel>
     {
-        public QuestionDeleteMapping()
-            : base(ViewNames.Delete)
+        public QuestionDeleteViewMapping()
         {
-            PresenterName = PresenterNames.QuestionConfirmDeletePresenter;
-            PresenterActionName = PresenterActionNames.Show;
-
-            ControllerName = ControllerNames.Questions;
-            ControllerGetActionName = ActionNames.Delete;
+            MapPresenter(PresenterNames.QuestionConfirmDeletePresenter, PresenterActionNames.Show);
+            MapController(ControllerNames.Questions, ActionNames.Delete, ViewNames.Delete);
         }
 
         protected override object GetRouteValues(QuestionConfirmDeleteViewModel viewModel)

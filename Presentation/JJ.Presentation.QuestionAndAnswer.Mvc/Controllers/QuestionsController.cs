@@ -70,7 +70,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                    ActionInfo returnAction = UrlHelpers.GetReturnAction(ret);
+
+                    // ActionInfo returnAction = UrlHelpers.GetReturnAction(ret);
+                    ActionInfo returnAction = ActionDispatcher.GetReturnAction(ret);
                     viewModel = presenter.Create(returnAction);
                 }
             }

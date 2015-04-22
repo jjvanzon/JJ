@@ -7,18 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.Mapping
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
-    public class LoginIndexMapping : ViewMapping<LoginViewModel>
+    public class LoginIndexViewMapping : ViewMapping<LoginViewModel>
     {
-        public LoginIndexMapping()
-            : base(ViewNames.Index)
+        public LoginIndexViewMapping()
         {
-            PresenterName = PresenterNames.LoginPresenter;
-            PresenterActionName = PresenterActionNames.Show;
-
-            ControllerName = ControllerNames.Login;
-            ControllerGetActionName = ActionNames.Index;
+            MapPresenter(PresenterNames.LoginPresenter, PresenterActionNames.Show);
+            MapController(ControllerNames.Login, ActionNames.Index, ViewNames.Index);
         }
 
         protected override object GetRouteValues(LoginViewModel viewModel)
