@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Business;
 using JJ.Framework.Reflection.Exceptions;
-using JJ.Persistence.QuestionAndAnswer;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Data.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 

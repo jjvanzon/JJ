@@ -101,41 +101,41 @@
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
       <Name>JJ.Business.QuestionAndAnswer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.EntityFramework5.csproj">
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Data.EntityFramework5\JJ.Framework.Data.EntityFramework5.csproj">
       <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
-      <Name>JJ.Framework.Persistence.EntityFramework5</Name>
+      <Name>JJ.Framework.Data.EntityFramework5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj">
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Data.NHibernate\JJ.Framework.Data.NHibernate.csproj">
       <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
-      <Name>JJ.Framework.Persistence.NHibernate</Name>
+      <Name>JJ.Framework.Data.NHibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Data\JJ.Framework.Data.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
-      <Name>JJ.Framework.Persistence</Name>
+      <Name>JJ.Framework.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj">
       <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>
       <Name>JJ.Framework.Presentation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer.EntityFramework5\JJ.Persistence.QuestionAndAnswer.EntityFramework5.csproj">
+    <ProjectReference Include="..\..\Data\JJ.Data.QuestionAndAnswer.EntityFramework5\JJ.Data.QuestionAndAnswer.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>
-      <Name>JJ.Persistence.QuestionAndAnswer.EntityFramework5</Name>
+      <Name>JJ.Data.QuestionAndAnswer.EntityFramework5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer.NHibernate\JJ.Persistence.QuestionAndAnswer.NHibernate.csproj">
+    <ProjectReference Include="..\..\Data\JJ.Data.QuestionAndAnswer.NHibernate\JJ.Data.QuestionAndAnswer.NHibernate.csproj">
       <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>
-      <Name>JJ.Persistence.QuestionAndAnswer.NHibernate</Name>
+      <Name>JJ.Data.QuestionAndAnswer.NHibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer.DefaultRepositories\JJ.Persistence.QuestionAndAnswer.DefaultRepositories.csproj">
+    <ProjectReference Include="..\..\Data\JJ.Data.QuestionAndAnswer.DefaultRepositories\JJ.Data.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
-      <Name>JJ.Persistence.QuestionAndAnswer.DefaultRepositories</Name>
+      <Name>JJ.Data.QuestionAndAnswer.DefaultRepositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer.Sql\JJ.Persistence.QuestionAndAnswer.Sql.csproj">
+    <ProjectReference Include="..\..\Data\JJ.Data.QuestionAndAnswer.Sql\JJ.Data.QuestionAndAnswer.Sql.csproj">
       <Project>{9cf32856-6431-4366-8dea-a6ca2f27b5c6}</Project>
-      <Name>JJ.Persistence.QuestionAndAnswer.Sql</Name>
+      <Name>JJ.Data.QuestionAndAnswer.Sql</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Persistence\JJ.Persistence.QuestionAndAnswer\JJ.Persistence.QuestionAndAnswer.csproj">
+    <ProjectReference Include="..\..\Data\JJ.Data.QuestionAndAnswer\JJ.Data.QuestionAndAnswer.csproj">
       <Project>{64e812dc-4b3e-4a20-a6ca-7ea319383c49}</Project>
-      <Name>JJ.Persistence.QuestionAndAnswer</Name>
+      <Name>JJ.Data.QuestionAndAnswer</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Presentation.QuestionAndAnswer\JJ.Presentation.QuestionAndAnswer.csproj">
       <Project>{680c0600-e384-4f3d-9c2a-38ecc1fdb1cb}</Project>

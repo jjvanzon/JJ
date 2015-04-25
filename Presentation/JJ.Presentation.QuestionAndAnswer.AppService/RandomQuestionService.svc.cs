@@ -7,9 +7,9 @@ using System.ServiceModel.Web;
 using System.Text;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Framework.Persistence;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories;
+using JJ.Framework.Data;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Presentation.QuestionAndAnswer.AppService

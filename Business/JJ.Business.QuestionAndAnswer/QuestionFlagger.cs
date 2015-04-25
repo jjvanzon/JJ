@@ -1,5 +1,5 @@
-﻿using JJ.Persistence.QuestionAndAnswer;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
+﻿using JJ.Data.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿using JJ.Framework.Business;
 using JJ.Framework.Reflection.Exceptions;
-using JJ.Persistence.QuestionAndAnswer;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Data.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using System;
 using System.Collections.Generic;

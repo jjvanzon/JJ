@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Persistence.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions

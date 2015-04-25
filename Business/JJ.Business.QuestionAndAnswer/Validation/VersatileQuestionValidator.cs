@@ -1,5 +1,5 @@
 ﻿using JJ.Framework.Validation;
-using JJ.Persistence.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -2,8 +2,8 @@
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Business.CanonicalModel;
-using JJ.Persistence.QuestionAndAnswer;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Data.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

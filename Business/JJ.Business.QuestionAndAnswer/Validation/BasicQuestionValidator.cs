@@ -1,7 +1,7 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Validation;
-using JJ.Persistence.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using System.Linq;

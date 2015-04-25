@@ -8,10 +8,10 @@ using JJ.Framework.Presentation.Mvc;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Persistence;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Data;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {

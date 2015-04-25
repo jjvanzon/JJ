@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Business;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Persistence.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using System.Linq;

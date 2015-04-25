@@ -1,6 +1,6 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.Helpers;
-using JJ.Framework.Persistence;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Data;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

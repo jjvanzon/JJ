@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Business;
 using JJ.Framework.Reflection.Exceptions;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

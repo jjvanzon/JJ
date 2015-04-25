@@ -1,4 +1,4 @@
-﻿using JJ.Persistence.QuestionAndAnswer;
+﻿using JJ.Data.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using System.Linq;

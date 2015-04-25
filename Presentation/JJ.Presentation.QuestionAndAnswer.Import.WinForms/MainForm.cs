@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using JJ.Framework.Persistence;
+using JJ.Framework.Data;
 using JJ.Framework.Presentation.WinForms;
-using JJ.Persistence.QuestionAndAnswer.DefaultRepositories;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 using JJ.Framework.Configuration;
 
 namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
