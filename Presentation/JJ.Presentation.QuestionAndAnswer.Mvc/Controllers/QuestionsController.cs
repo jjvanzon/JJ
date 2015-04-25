@@ -70,9 +70,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-
-                    ActionInfo returnAction = UrlHelpers.GetReturnAction(ret);
-                    //ActionInfo returnAction = ActionDispatcher.GetReturnAction(ret);
+                    ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
                     viewModel = presenter.Create(returnAction);
                 }
             }
@@ -87,7 +85,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                viewModel.ReturnAction = UrlHelpers.GetReturnAction(ret);
+                viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
                 object viewModel2 = presenter.Save(viewModel);
                 return ActionDispatcher.Dispatch(this, ActionNames.Create, viewModel2);
             }
@@ -103,7 +101,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
 
-                    ActionInfo returnAction = UrlHelpers.GetReturnAction(ret);
+                    ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
                     viewModel = presenter.Edit(id, returnAction);
                 }
             }
@@ -118,7 +116,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                viewModel.ReturnAction = UrlHelpers.GetReturnAction(ret);
+                viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
                 object viewModel2 = presenter.Save(viewModel);
                 return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel2);
             }
@@ -131,7 +129,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-                viewModel.ReturnAction = UrlHelpers.GetReturnAction(ret);
+                viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
                 object viewModel2 = presenter.Cancel(viewModel);
                 return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel2);
             }

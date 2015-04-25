@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace JJ.Presentation.QuestionAndAnswer.Names
 {
-    public static class PresenterActionParameterNames
+    public static class PresenterParameterNames
     {
-        public static const string pageNumber = "pageNumber";
+        public const string pageNumber = "pageNumber";
+        public const string id = "id";
     }
 }

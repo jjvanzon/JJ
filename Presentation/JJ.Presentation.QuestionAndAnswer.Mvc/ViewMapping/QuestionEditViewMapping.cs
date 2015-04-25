@@ -14,8 +14,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
     {
         public QuestionEditViewMapping()
         {
-            MapPresenter(PresenterNames.QuestionDetailsPresenter, PresenterActionNames.Edit);
+            MapPresenter(PresenterNames.QuestionEditPresenter, PresenterActionNames.Edit);
             MapController(ControllerNames.Questions, ActionNames.Edit, ViewNames.Edit);
+            MapParameter(PresenterParameterNames.id, ActionParameterNames.id);
         }
 
         protected override bool Predicate(QuestionEditViewModel viewModel)
@@ -28,7 +29,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
             return new 
             { 
                 id = viewModel.Question.ID, 
-                ret = GetReturnUrl(viewModel.ReturnAction) 
+                ret = TryGetReturnUrl(viewModel.ReturnAction) 
             };
         }
 

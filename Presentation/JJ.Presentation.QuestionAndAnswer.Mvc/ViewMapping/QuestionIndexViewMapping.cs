@@ -15,7 +15,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
         {
             MapPresenter(PresenterNames.QuestionListPresenter, PresenterActionNames.Show);
             MapController(ControllerNames.Questions, ActionNames.Index, ViewNames.Index);
-            MapParameter(PresenterActionParameterNames.pageNumber, ActionParameterNames.page);
+            MapParameter(PresenterParameterNames.pageNumber, ActionParameterNames.page);
         }
 
         protected override object GetRouteValues(QuestionListViewModel viewModel)

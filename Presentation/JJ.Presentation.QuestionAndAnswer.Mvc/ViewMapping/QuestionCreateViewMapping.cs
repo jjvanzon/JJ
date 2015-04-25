@@ -16,7 +16,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
         public QuestionCreateViewMapping()
             : base()
         { 
-            MapPresenter(PresenterNames.QuestionDetailsPresenter, PresenterActionNames.Edit);
+            MapPresenter(PresenterNames.QuestionEditPresenter, PresenterActionNames.Create);
             MapController(ControllerNames.Questions, ActionNames.Create, ViewNames.Edit);
         }
 
@@ -30,7 +30,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
             return new 
             { 
                 id = viewModel.Question.ID, 
-                ret = GetReturnUrl(viewModel.ReturnAction) 
+                ret = TryGetReturnUrl(viewModel.ReturnAction) 
             };
         }
 

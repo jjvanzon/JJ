@@ -23,9 +23,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
         private string _authenticatedUserName;
 
         /// <param name="authenticatedUserName">nullable</param>
-        public QuestionDeleteConfirmedPresenter(
-            Repositories repositories, 
-            string authenticatedUserName)
+        public QuestionDeleteConfirmedPresenter(Repositories repositories, string authenticatedUserName)
         {
             if (repositories == null) throw new NullException(() => repositories);
 

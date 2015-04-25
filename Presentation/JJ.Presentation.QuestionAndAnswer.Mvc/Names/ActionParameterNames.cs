@@ -15,5 +15,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
         public const string temporaryID = "temporaryID";
         public const string lang = "lang";
         public const string page = "page";
+        public const string id = "id";
     }
 }

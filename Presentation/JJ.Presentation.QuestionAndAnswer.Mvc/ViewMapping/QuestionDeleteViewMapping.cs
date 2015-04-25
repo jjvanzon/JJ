@@ -15,6 +15,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
         {
             MapPresenter(PresenterNames.QuestionConfirmDeletePresenter, PresenterActionNames.Show);
             MapController(ControllerNames.Questions, ActionNames.Delete, ViewNames.Delete);
+            MapParameter(PresenterParameterNames.id, ActionParameterNames.id);
         }
 
         protected override object GetRouteValues(QuestionConfirmDeleteViewModel viewModel)

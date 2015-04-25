@@ -40,7 +40,7 @@
     <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Helpers\ViewModelEntityStatusHelper.cs" />
     <Compile Include="Names\PresenterActionNames.cs" />
-    <Compile Include="Names\PresenterActionParameterNames.cs" />
+    <Compile Include="Names\PresenterParameterNames.cs" />
     <Compile Include="Names\PresenterNames.cs" />
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
     <Compile Include="Helpers\Repositories.cs" />

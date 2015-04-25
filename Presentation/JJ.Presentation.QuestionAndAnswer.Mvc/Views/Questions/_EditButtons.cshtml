@@ -3,7 +3,7 @@
 <p>
     <input type="submit" value="@CommonTitles.Save" /> |
 
-    <input type="submit" value="@CommonTitles.Cancel" formaction="@Url.Action(ActionNames.CancelEdit, new { ret = Url.GetReturnUrl(Model.ReturnAction) })" />
+    <input type="submit" value="@CommonTitles.Cancel" formaction="@Url.Action(ActionNames.CancelEdit, new { ret = Url.ReturnAction(Model.ReturnAction) })" />
 
     @if (Model.CanDelete)
     {

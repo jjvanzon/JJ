@@ -144,10 +144,10 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 
         public static PagerViewModel CreatePagerViewModel(int selectedPageIndex, int pageSize, int count, int maxVisiblePageNumbers)
         {
-            if (pageSize < 1) throw new Exception("pageSize cannot be less than 1.");
-            if (selectedPageIndex < 0) throw new Exception("selectedPageIndex cannot be less than 0");
-            if (count < 0) throw new Exception("selectedPageIndex cannot be less than 0");
-            if (maxVisiblePageNumbers < 1) throw new Exception("maxVisiblePageNumbers cannot be less than 1");
+            if (pageSize < 1) throw new LessThanException(() => pageSize, 1);
+            if (selectedPageIndex < 0) throw new LessThanException(() => selectedPageIndex, 0);
+            if (count < 0) throw new LessThanException(() => count, 0);
+            if (maxVisiblePageNumbers < 1) throw new LessThanException(() => maxVisiblePageNumbers, 1);
 
             int pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
             if (selectedPageIndex > pageCount)

@@ -30,7 +30,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     LoginPresenter presenter = new LoginPresenter(repositories);
-                    ActionInfo returnAction = UrlHelpers.GetReturnAction(ret);
+                    ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
                     viewModel = presenter.Show(returnAction);
                 }
             }
@@ -53,7 +53,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
                 else
                 {
-                    viewModel.ReturnAction = UrlHelpers.GetReturnAction(ret);
+                    viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
                     viewModel2 = presenter.Login(viewModel);
                 }
 

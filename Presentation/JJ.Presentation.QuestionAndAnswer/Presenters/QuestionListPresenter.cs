@@ -36,9 +36,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             _maxVisiblePageNumbers = config.MaxVisiblePageNumbers;
         }
 
-        public QuestionListPresenter(
-            Repositories repositories, 
-            string authenticatedUserName)
+        public QuestionListPresenter(Repositories repositories, string authenticatedUserName)
         {
             if (repositories == null) throw new NullException(() => repositories);
 

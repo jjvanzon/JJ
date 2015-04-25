@@ -16,11 +16,11 @@
     @Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new 
     {
         id = Model.Question.ID,
-        ret = Url.GetReturnUrl(PresenterNames.QuestionDetailsPresenter, PresenterActionNames.Show, new  { id = Model.Question.ID })
+        ret = Url.Action(ActionNames.Details, ControllerNames.Questions, new  { id = Model.Question.ID })
     }) |
     @Html.ActionLink(CommonTitles.New, ActionNames.Create, new
     {
-        ret = Url.GetReturnUrl(PresenterNames.QuestionDetailsPresenter, PresenterActionNames.Show, new  { id = Model.Question.ID })
+        ret = Url.Action(ActionNames.Details, ControllerNames.Questions, new  { id = Model.Question.ID })
     }) |
     @Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) |
     @Html.ActionLink(Titles.BackToList, ActionNames.Index)

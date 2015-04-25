@@ -16,7 +16,7 @@
 
     <p>@Html.ActionLink(Titles.CreateQuestion, ActionNames.Create, new
     {
-        ret = Url.GetReturnUrl(PresenterNames.QuestionListPresenter, PresenterActionNames.Show, new { pageNumber = Model.Pager.PageNumber })
+        ret = Url.Action(ActionNames.Index, ControllerNames.Questions, new { page = Model.Pager.PageNumber })
     })</p>
 
     @Html.Partial(ViewNames._Pager, Model.Pager)
@@ -39,7 +39,7 @@
                 <td>@Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new
                     {
                         id = question.ID,
-                        ret = Url.GetReturnUrl(PresenterNames.QuestionListPresenter, PresenterActionNames.Show, new { pageNumber = Model.Pager.PageNumber })
+                        ret = Url.Action(ActionNames.Index, ControllerNames.Questions, new { page = Model.Pager.PageNumber })
                     }) </td>
                 <td>@Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = question.ID })</td>
             </tr>

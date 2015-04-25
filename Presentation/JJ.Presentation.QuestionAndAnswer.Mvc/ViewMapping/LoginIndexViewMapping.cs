@@ -19,7 +19,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 
         protected override object GetRouteValues(LoginViewModel viewModel)
         {
-            return new { ret = GetReturnUrl(viewModel.ReturnAction) };
+            return new { ret = TryGetReturnUrl(viewModel.ReturnAction) };
         }
     }
 }
