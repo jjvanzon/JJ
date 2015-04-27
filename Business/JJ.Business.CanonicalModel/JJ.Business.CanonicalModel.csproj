@@ -36,7 +36,7 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDAndName.cs" />
+    <Compile Include="IDName.cs" />
     <Compile Include="IResult.cs" />
     <Compile Include="ResultT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

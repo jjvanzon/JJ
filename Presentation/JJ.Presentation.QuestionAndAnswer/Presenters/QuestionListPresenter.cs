@@ -46,12 +46,16 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public QuestionListViewModel Show(int pageNumber = 1)
         {
-            var viewModel = new QuestionListViewModel();
-            viewModel.List = new List<QuestionViewModel>();
+            var viewModel = new QuestionListViewModel
+            {
+                List = new List<QuestionViewModel>()
+            };
 
             int pageIndex = pageNumber - 1;
 
-            foreach (Question question in _repositories.QuestionRepository.GetPage(pageIndex * _pageSize, _pageSize))
+            IList<Question> questions = _repositories.QuestionRepository.GetPage(pageIndex * _pageSize, _pageSize);
+
+            foreach (Question question in questions)
             {
                 QuestionViewModel itemViewModel = question.ToViewModel();
                 itemViewModel.IsFlagged = question.QuestionFlags.Where(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged).Any();
@@ -61,7 +65,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
 
             int count = _repositories.QuestionRepository.CountAll();
-            viewModel.Pager = ViewModelHelper.CreatePagerViewModel(pageIndex, _pageSize, count, _maxVisiblePageNumbers);
+            viewModel.Pager = PagerViewModelFactory.Create(pageIndex, _pageSize, count, _maxVisiblePageNumbers);
 
             return viewModel;
         }

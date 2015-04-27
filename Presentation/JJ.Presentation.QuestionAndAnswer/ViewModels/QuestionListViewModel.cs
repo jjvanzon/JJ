@@ -1,4 +1,5 @@
-﻿using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
+﻿using JJ.Framework.Presentation;
+using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using System;
 using System.Collections.Generic;

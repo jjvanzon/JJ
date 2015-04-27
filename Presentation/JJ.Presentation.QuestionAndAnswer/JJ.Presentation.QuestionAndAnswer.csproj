@@ -58,7 +58,6 @@
     <Compile Include="ToEntity\QuestionViewModelExtensions.cs" />
     <Compile Include="ToViewModel\ToEntityViewModelExtensions.cs" />
     <Compile Include="Extensions\ViewModelExtensions_NullCoalesce.cs" />
-    <Compile Include="ViewModels\Partials\PagerViewModel.cs" />
     <Compile Include="ViewModels\QuestionDeleteConfirmedViewModel.cs" />
     <Compile Include="ViewModels\QuestionConfirmDeleteViewModel.cs" />
     <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />

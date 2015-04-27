@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Partials
+namespace JJ.Framework.Presentation
 {
-    public class PagerViewModel
+    public sealed class PagerViewModel
     {
         public int PageCount { get; set; }
         public bool CanGoToFirstPage { get; set; }
