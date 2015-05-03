@@ -7,26 +7,25 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Data.QuestionAndAnswer.NHibernate.Helpers;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
 {
     public class QuestionRepository : JJ.Data.QuestionAndAnswer.DefaultRepositories.QuestionRepository
     {
         private new NHibernateContext _context;
-        private QuestionAndAnswerSqlExecutor _sqlExecutor;
 
         public QuestionRepository(IContext context)
             : base(context)
-        {
-            _context = (NHibernateContext)context;
-            _sqlExecutor = new QuestionAndAnswerSqlExecutor(new NHibernateSqlExecutor(_context.Session));
-        }
+        { }
 
         public override IList<Question> GetPage(int firstIndex, int count)
         {
+            QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
+
             IList<Question> list = new List<Question>(count);
 
-            IList<int> ids = _sqlExecutor.Question_GetPageOfIDs(firstIndex, count).ToArray();
+            IList<int> ids = sqlExecutor.Question_GetPageOfIDs(firstIndex, count).ToArray();
             foreach (int id in ids)
             {
                 Question entity = Get(id);
@@ -38,7 +37,9 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
 
         public override Question TryGetRandomQuestion()
         {
-            int? randomID = _sqlExecutor.Question_TryGetRandomID();
+            QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
+
+            int? randomID = sqlExecutor.Question_TryGetRandomID();
             if (randomID.HasValue)
             {
                 return Get(randomID.Value);
@@ -51,7 +52,8 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
 
         public override int CountAll()
         {
-            return _sqlExecutor.Question_CountAll();
+            QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
+            return sqlExecutor.Question_CountAll();
         }
     }
 }

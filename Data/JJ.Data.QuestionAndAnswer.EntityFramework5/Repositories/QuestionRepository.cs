@@ -8,28 +8,21 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers;
 
 namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Repositories
 {
     public class QuestionRepository : JJ.Data.QuestionAndAnswer.DefaultRepositories.QuestionRepository
     {
-        private QuestionAndAnswerSqlExecutor _sqlExecutor;
-
         public QuestionRepository(IContext context)
             : base(context)
         {
-            EntityFramework5Context castedContext = (EntityFramework5Context)context;
-            SqlConnection sqlConnection = castedContext.Context.Database.Connection as SqlConnection;
-            if (sqlConnection == null)
-            {
-                throw new Exception("EntityFramework5Context.Context.Database.Connection must be an SqlConnection.");
-            }
-            _sqlExecutor = new QuestionAndAnswerSqlExecutor(new SqlExecutor(sqlConnection));
         }
 
         public override Question TryGetRandomQuestion()
         {
-            int? randomID = _sqlExecutor.Question_TryGetRandomID();
+            QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
+            int? randomID = sqlExecutor.Question_TryGetRandomID();
             if (randomID.HasValue)
             {
                 return Get(randomID.Value);
@@ -42,7 +35,8 @@ namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Repositories
 
         public override int CountAll()
         {
-            return _sqlExecutor.Question_CountAll();
+            QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
+            return sqlExecutor.Question_CountAll();
         }
     }
 }
