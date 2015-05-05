@@ -14,6 +14,7 @@ using JJ.Framework.Common;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Presentation;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {
@@ -67,7 +68,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             var viewModel = new QuestionEditViewModel
             {
                 Question = question.ToViewModel(),
-                ValidationMessages = new List<ValidationMessage>(),
+                ValidationMessages = new List<Message>(),
                 CanDelete = true,
                 AllCategories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository)
             };

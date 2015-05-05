@@ -76,7 +76,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             var presenter3 = new QuestionDeleteConfirmedPresenter(_repositories, _authenticatedUserName);
             return presenter3.Show(id);
         }
-        
+
         public PreviousViewModel Cancel()
         {
             return new PreviousViewModel();

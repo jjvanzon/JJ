@@ -7,7 +7,7 @@ using System.Text;
 namespace JJ.Business.CanonicalModel
 {
     [DataContract]
-    public class ValidationMessage
+    public class Message
     {
         [DataMember]
         public string PropertyKey { get; set; }

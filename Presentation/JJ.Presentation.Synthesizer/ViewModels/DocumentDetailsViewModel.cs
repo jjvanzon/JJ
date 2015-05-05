@@ -10,6 +10,6 @@ namespace JJ.Presentation.Synthesizer.ViewModels
     public class DocumentDetailsViewModel
     {
         public IDName Document { get; set; }
-        public IList<ValidationMessage> Messages { get; set; }
+        public IList<Message> Messages { get; set; }
     }
 }

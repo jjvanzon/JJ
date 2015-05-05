@@ -155,6 +155,9 @@
   <data name="LogOut" xml:space="preserve">
     <value>Uitloggen</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Meldingen</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Naam</value>
   </data>
@@ -173,6 +176,9 @@
   <data name="ObjectDetails" xml:space="preserve">
     <value>{0} details</value>
     <comment>{0} = type of object, singular</comment>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Verwijderen</value>

@@ -8,6 +8,6 @@ namespace JJ.Business.CanonicalModel
     public class VoidResult : IResult
     {
         public bool Successful { get; set; }
-        public IList<ValidationMessage> ValidationMessages { get; set; }
+        public IList<Message> Messages { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels
 
         public QuestionViewModel Question { get; set; }
 
-        public IList<ValidationMessage> ValidationMessages { get; set; }
+        public IList<Message> ValidationMessages { get; set; }
 
         public IList<CategoryViewModel> AllCategories { get; set; }
 

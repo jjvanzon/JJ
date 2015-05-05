@@ -5,6 +5,9 @@ using System.Text;
 
 namespace JJ.Business.CanonicalModel
 {
+    /// <summary>
+    /// TODO: Rename to IDAndName.
+    /// </summary>
     public class IDName
     {
         public int ID { get; set; }

@@ -8,6 +8,6 @@ namespace JJ.Business.CanonicalModel
     public interface IResult
     {
         bool Successful { get; set; }
-        IList<ValidationMessage> ValidationMessages { get; set; }
+        IList<Message> Messages { get; set; }
     }
 }
