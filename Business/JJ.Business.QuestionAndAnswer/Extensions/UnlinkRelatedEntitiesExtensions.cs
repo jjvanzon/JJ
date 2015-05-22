@@ -9,6 +9,9 @@ using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions
 {
+    /// <summary>
+    /// Unlinks related entities that are not intrinsically part of the entity.
+    /// </summary>
     public static class UnlinkRelatedEntitiesExtensions
     {
         public static void UnlinkRelatedEntities(this QuestionCategory questionCategory)
