@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
-    public class QuestionLinkValidator : FluentValidator<QuestionLink>
+    public class QuestionLinkValidator : FluentValidator_WithoutConstructorArgumentNullCheck<QuestionLink>
     {
         public QuestionLinkValidator(QuestionLink obj)
             : base(obj)

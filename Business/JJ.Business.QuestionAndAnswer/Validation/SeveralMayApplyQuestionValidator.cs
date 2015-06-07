@@ -11,7 +11,7 @@ using System.Text;
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
     /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-    public class SeveralMayApplyQuestionValidator : FluentValidator<Question>
+    public class SeveralMayApplyQuestionValidator : FluentValidator_WithoutConstructorArgumentNullCheck<Question>
     {
         /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
         public SeveralMayApplyQuestionValidator(Question question)
