@@ -42,16 +42,10 @@
     <Reference Include="Castle.Core">
       <HintPath>..\..\External Components\NHibernate\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\..\External Components\NHibernate\FluentNHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\External Components\NHibernate\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NHibernate">
-      <HintPath>..\..\External Components\NHibernate\NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\External Components\NHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
@@ -293,6 +287,10 @@
     <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
       <Name>JJ.Business.QuestionAndAnswer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\NHibernate.csproj">
+      <Project>{5909bfe7-93cf-4e5f-be22-6293368af01d}</Project>
+      <Name>NHibernate</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Business\JJ.Framework.Business.csproj">
       <Project>{f44d03e8-feec-40d4-b866-a87799185b4c}</Project>
