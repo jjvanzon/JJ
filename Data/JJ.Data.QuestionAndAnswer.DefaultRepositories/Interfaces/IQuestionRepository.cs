@@ -13,7 +13,7 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces
         IList<Question> GetBySourceID(int sourceID);
         IList<int> GetQuestionIDsByCategory(Category category);
         IList<Question> GetByCriteria(bool mustFilterByFlagStatusID, int? flagStatusID);
-        IList<Question> GetPage(int firstIndex, int count);
+        IList<Question> GetPage(int firstIndex, int pageSize);
 
         int CountAll();
     }
