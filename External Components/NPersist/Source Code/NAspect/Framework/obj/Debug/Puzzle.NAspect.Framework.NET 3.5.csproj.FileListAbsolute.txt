@@ -1,0 +1,7 @@
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NAspect\Framework\bin\Debug\Puzzle.NAspect.Framework.NET3.5.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NAspect\Framework\bin\Debug\Puzzle.NAspect.Framework.NET3.5.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NAspect\Framework\bin\Debug\Puzzle.NCore.Framework.NET3.5.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NAspect\Framework\bin\Debug\Puzzle.NCore.Framework.NET3.5.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NAspect\Framework\obj\Debug\Puzzle.NAspect.Framework.NET 3.5.csprojResolveAssemblyReference.cache
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NAspect\Framework\obj\Debug\Puzzle.NAspect.Framework.NET3.5.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NAspect\Framework\obj\Debug\Puzzle.NAspect.Framework.NET3.5.pdb
