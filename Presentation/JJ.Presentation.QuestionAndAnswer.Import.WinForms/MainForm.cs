@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using JJ.Framework.Data;
-using JJ.Framework.Presentation.WinForms;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
-using JJ.Framework.Configuration;
+using JJ.Framework.Presentation.WinForms.Forms;
 
 namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 {
