@@ -9,21 +9,6 @@
             Summary description for ObjectFactory.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.BaseClasses.ContextChild">
-            <summary>
-            Summary description for ContextChild.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Interfaces.IContextChild">
-            <summary>
-            Summary description for IContextChild.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Persistence.IObjectFactory">
-            <summary>
-            Summary description for IObjectFactory.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Aop.AopProxyFactory">
             <summary>
             Summary description for AopProxyFactory.
@@ -39,11 +24,6 @@
             Summary description for NPersistCtorInterceptor.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Interfaces.ICloneHelper">
-            <summary>
-            Summary description for IInterceptable.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Aop.EntityAspect">
             <summary>
             Summary description for NPersistAspect.
@@ -52,16 +32,6 @@
         <member name="T:Puzzle.NPersist.Framework.Aop.NPersistProxyMixin">
             <summary>
             Summary description for NPersistProxyMixin.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Interfaces.IProxy">
-            <summary>
-            Interface implemented by the POCO runtime proxies
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Interfaces.IInterceptable">
-            <summary>
-            Summary description for IInterceptable.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Aop.NPersistEntityCtorPointcut">
@@ -116,6 +86,21 @@
             </summary>
             <param name="value">The new interceptor</param>
         </member>
+        <member name="T:Puzzle.NPersist.Framework.BaseClasses.ContextChild">
+            <summary>
+            Summary description for ContextChild.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.BaseClasses.ContextFactory">
+            <summary>
+            Summary description for ContextFactory.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.BaseClasses.Interceptor">
+            <summary>
+            Summary description for Interceptor.
+            </summary>
+        </member>
         <member name="T:Puzzle.NPersist.Framework.Context">
             <summary>
             Summary description for Context.
@@ -126,195 +111,160 @@
             Summary description for IContext.
             </summary>	
         </member>
-        <member name="T:Puzzle.NPersist.Framework.IPersistenceService">
+        <member name="P:Puzzle.NPersist.Framework.IContext.Interceptor">
             <summary>
-            The main runtime interface for NPersist users.
+            Gets or sets the interceptor.
             </summary>
+            <value>The interceptor.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectById(System.Object,System.Type)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.PersistenceManager">
             <summary>
-            Tries to retrieve an object by its identity. Returns null if the object was not found.
+            Gets or sets the persistence manager.
             </summary>
-            <param name="identity">The identity of the object you want to retrieve.</param>
-            <param name="type">The type of the object you want to retrieve.</param>
-            <returns>An object with the specified type and identity or null if no such object exists.</returns>
+            <value>The persistence manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectById(System.Object,System.Type)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectManager">
             <summary>
-            Retrieves an object by its identity. Throws an exception if the object was not found.
+            Gets or sets the object manager.
             </summary>
-            <param name="identity">The identity of the object you want to retrieve.</param>
-            <param name="type">The type of the object you want to retrieve.</param>
-            <returns>An object with the specified type and identity.</returns>
-            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object with the specified identity and type could be found</exception>
+            <value>The object manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectByKey(System.String,System.Object,System.Type)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.ListManager">
             <summary>
-            Retrieves an object by a secondary, unique key. Returns null if the object was not found.
+            Gets or sets the list manager.
             </summary>
-            <param name="keyPropertyName">The name of the key property.</param>
-            <param name="keyValue">The unique key value</param>
-            <param name="type">The type of the object you want to retrieve.</param>
-            <returns>An object with the specified type and unique key value or null if no such object exists.</returns>
+            <value>The list manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectByKey(System.String,System.Object,System.Type)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.DomainMap">
             <summary>
-            Retrieves an object by a secondary, unique key. Throws an exception if the object was not found.
+            Gets or sets the domain map.
             </summary>
-            <param name="keyPropertyName">The name of the key property.</param>
-            <param name="keyValue">The unique key value</param>
-            <param name="type">The type of the object you want to retrieve.</param>
-            <returns>An object with the specified type and unique key value.</returns>
-            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object with the specified unique key value and type could be found</exception>
+            <value>The domain map.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectByNPath(Puzzle.NPersist.Framework.Querying.NPathQuery)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.IdentityMap">
             <summary>
-            Tries to retrieve an object by an <c>NPathQuery</c> query. Rreturns null if the object was not found or if more than one object matched the query.
+            Gets or sets the identity map.
             </summary>
-            <param name="npathQuery">An <c>NPathQuery</c> object specifying which object you want to retrieve.</param>
-            <returns>An object matching the NPath query or null if no such object or multiple such objects were found.</returns>
+            <value>The identity map.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectByNPath(System.String,System.Type)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectCacheManager">
             <summary>
-            Tries to retrieve an object by an NPath query. Returns null if the object was not found or if more than one object matched the query.
+            Gets or sets the object cache manager.
             </summary>
-            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
-            <param name="type">The type of the object you want to retrieve.</param>
-            <returns>An object matching the NPath query or null if no such object or multiple such objects were found.</returns>
+            <value>The object cache manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectByNPath(System.String,System.Type,System.Collections.IList)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.ReadOnlyObjectCacheManager">
             <summary>
-            Tries to retrieve an object by an <c>NPathQuery</c> query. Returns null if the object was not found or if more than one object matched the query.
+            Gets or sets the read only object cache manager.
             </summary>
-            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
-            <param name="type">The type of the object you want to retrieve.</param>
-            <param name="parameters">A list of <c>QueryParameter</c> objects for the NPath query</param>
-            <returns></returns>
+            <value>The read only object cache manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectByNPath(Puzzle.NPersist.Framework.Querying.NPathQuery)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.UnitOfWork">
             <summary>
-            Retrieves an object by an <c>NPathQuery</c> query.
+            Gets or sets the unit of work.
             </summary>
-            <param name="npathQuery">An <c>NPathQuery</c> object specifying which object you want to retrieve.</param>
-            <returns>An object matching the NPath query.</returns>
-            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object matching the NPath query could be found</exception>
-            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.MultipleObjectsFoundException">Thrown when more than one object matched the NPath query</exception>
+            <value>The unit of work.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectByNPath(System.String,System.Type)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.InverseManager">
             <summary>
-            Retrieves an object by an <c>NPathQuery</c> query.
+            Gets or sets the inverse manager.
             </summary>
-            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
-            <param name="type">The type of the object you want to retrieve.</param>
-            <returns>An object matching the NPath query.</returns>
-            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object matching the NPath query could be found</exception>
-            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.MultipleObjectsFoundException">Thrown when more than one object matched the NPath query</exception>
+            <value>The inverse manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectByNPath(System.String,System.Type,System.Collections.IList)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.EventManager">
             <summary>
-            Retrieves an object by an <c>NPathQuery</c> query.
+            Gets or sets the event manager.
             </summary>
-            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
-            <param name="type">The type of the object you want to retrieve.</param>
-            <param name="parameters">A list of <c>QueryParameter</c> objects for the NPath query</param>
-            <returns>An object matching the NPath query.</returns>
-            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object matching the NPath query could be found</exception>
-            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.MultipleObjectsFoundException">Thrown when more than one object matched the NPath query</exception>
+            <value>The event manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(Puzzle.NPersist.Framework.Querying.NPathQuery)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.DataSourceManager">
             <summary>
-            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            Gets or sets the data source manager.
             </summary>
-            <param name="npathQuery">An <c>NPathQuery</c> object specifying which objects you want to retrieve.</param>
-            <returns>A list of objects matching the query</returns>
+            <value>The data source manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(Puzzle.NPersist.Framework.Querying.NPathQuery,System.Collections.IList)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.SqlExecutor">
             <summary>
-            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            Gets or sets the SQL executor.
             </summary>
-            <param name="npathQuery">An <c>NPathQuery</c> object specifying which objects you want to retrieve.</param>
-            <param name="listToFill">An <c>IList</c> that you want to fill with the results of the query.</param>
-            <returns>A list of objects matching the query</returns>
+            <value>The SQL executor.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(System.String,System.Type)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.LogManager">
             <summary>
-            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            Gets or sets the log manager.
             </summary>
-            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
-            <param name="type">The type of the objects you want to retrieve.</param>
-            <returns>A list of objects matching the query</returns>
+            <value>The log manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(System.String,System.Type,System.Collections.IList)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.PersistenceEngine">
             <summary>
-            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            Gets or sets the persistence engine.
             </summary>
-            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
-            <param name="type">The type of the objects you want to retrieve.</param>
-            <param name="parameters">A list of <c>QueryParameter</c> objects for the NPath query</param>
-            <returns>A list of objects matching the query</returns>
+            <value>The persistence engine.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(System.String,System.Type,System.Collections.IList,Puzzle.NPersist.Framework.Enumerations.RefreshBehaviorType)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.PersistenceEngineManager">
             <summary>
-            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            Gets or sets the persistence engine manager.
             </summary>
-            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
-            <param name="type">The type of the objects you want to retrieve.</param>
-            <param name="parameters">A list of <c>QueryParameter</c> objects for the NPath query</param>
-            <param name="refreshBehavior">Specifies how cached objects become refreshed with fresh values from the data source.</param>
-            <returns>A list of objects matching the query</returns>
+            <value>The persistence engine manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.CreateObject(System.Object,System.Type,System.Object[])">
+        <member name="P:Puzzle.NPersist.Framework.IContext.ProxyFactory">
             <summary>
-            Creates a new object with the specified identity and type, registering it as up for creation. It will be inserted into the data source on the next call to <c>Commit</c>().
+            Gets or sets the proxy factory.
             </summary>
-            <param name="identity">The identity for the new object</param>
-            <param name="type">The type of the new object</param>
-            <param name="ctorParams">Contructor parameters for the new object</param>
-            <returns>A new object with the specified identity and type</returns>
+            <value>The proxy factory.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.CreateObject(System.Type,System.Object[])">
+        <member name="P:Puzzle.NPersist.Framework.IContext.NPathEngine">
             <summary>
-            Creates a new object with the specified type, registering it as up for creation. It will be inserted into the data source in the next call to <c>Commit</c>(). 
+            Gets or sets the N path engine.
             </summary>
-            <remarks>
-            Note that you must set the values of all the identity properties that are not assigned by the data source on the object before calling the Commit() method.
-            </remarks>
-            <param name="type">The type of the new object</param>
-            <param name="ctorParams">Contructor parameters for the new object</param>
-            <returns>A new object with the specified type.</returns>
+            <value>The N path engine.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.DeleteObject(System.Object)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectQueryEngine">
             <summary>
-            Registers an object as up for deletion. The object will be removed from the data source on the next call to <c>Commit</c>().
+            Gets or sets the object query engine.
             </summary>
-            <param name="obj">The object to be deleted.</param>
+            <value>The object query engine.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.Commit">
+        <member name="P:Puzzle.NPersist.Framework.IContext.AssemblyManager">
             <summary>
-            Commits all changes to the data source, inserting all new objects, removing all deleted object and saving all modified objects.
+            Gets or sets the assembly manager.
             </summary>
+            <value>The assembly manager.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetNullValueStatus(System.Object,System.String)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectFactory">
             <summary>
-            Gets the null value status for the specified property of an object
+            Gets or sets the object factory.
             </summary>
-            <param name="obj">The object with the property to get the null value status for</param>
-            <param name="propertyName">The name of the property to get the null value status for</param>
-            <returns>True if the property value is null, otherwise False</returns>
+            <value>The object factory.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.SetNullValueStatus(System.Object,System.String,System.Boolean)">
+        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectCloner">
             <summary>
-            Sets the null value status for the specified property of an object
+            Gets or sets the object cloner.
             </summary>
-            <param name="obj">The object with the property to set the null value status for</param>
-            <param name="propertyName">The name of the property to set the null value status for</param>
-            <param name="value">The new null value status</param>
+            <value>The object cloner.</value>
         </member>
-        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.BeginTransaction">
+        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectValidator">
             <summary>
-            Begins a transaction.
+            Gets or sets the object validator.
             </summary>
-            <returns>An <c>ITransaction</c> object representing the local transaction</returns>
+            <value>The object validator.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.Notification">
+            <summary>
+            Gets or sets the notification mode.
+            </summary>
+            <value>The notification mode.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.AutoTransactions">
+            <summary>
+            Gets or sets a value indicating whether auto transactions are used.
+            </summary>
+            <value><c>true</c> if auto transactions should be used; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.DeadlockStrategy">
+            <summary>
+            Gets or sets the deadlock strategy to be used when committing a unit of work.
+            </summary>
         </member>
         <member name="M:Puzzle.NPersist.Framework.IContext.GetDeadlockStrategy">
             <summary>
@@ -329,6 +279,18 @@
             </summary>
             <param name="tables">A list of table names or ITableMap instances.</param>
             <param name="deadlockStrategy">The deadlock strategy you want to use. Default will mean you use the strategy from the domain/context.</param>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.DomainKey">
+            <summary>
+            Gets or sets the domain key.
+            </summary>
+            <value>The domain key.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.ParamCounter">
+            <summary>
+            Gets or sets the parameter counter.
+            </summary>
+            <value>The parameter counter.</value>
         </member>
         <member name="M:Puzzle.NPersist.Framework.IContext.GetNextParamNr">
             <summary>
@@ -907,6 +869,40 @@
             <param name="name">The name of the identity generator.</param>
             <returns></returns>
         </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.OptimisticConcurrencyMode">
+            <summary>
+            Gets or sets the default optimistic concurrency mode.
+            </summary>
+            <value>The optimistic concurrency mode.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.IdentityGenerators">
+            <summary>
+            Gets the identity generators.
+            </summary>
+            <value>The identity generators.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance is disposed.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is disposed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.IsDirty">
+            <summary>
+            Gets a value indicating whether this context is dirty (contains unsaved changes).
+            </summary>
+            <value><c>true</c> if this context is dirty; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.IsEditing">
+            <summary>
+            Gets a value indicating whether this context is in editing mode.
+            </summary>
+            <value>
+            	<c>true</c> if this context is in editing mode; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="M:Puzzle.NPersist.Framework.IContext.BeginEdit">
             <summary>
             Begins the editing mode. Changes made during editing mode can be cancled or accepted wholesale when the editing session is done.
@@ -921,6 +917,20 @@
             <summary>
             Ends the editing mode, accepting all changes that were made during the editing session.
             </summary>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.ValidationMode">
+            <summary>
+            Gets or sets the default validation mode.
+            </summary>
+            <value>The validation mode.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.ValidateBeforeCommit">
+            <summary>
+            Gets or sets a value indicating whether validation should occur before a commit operation is carried out.
+            </summary>
+            <value>
+            	<c>true</c> if validation should be carried out before commit; otherwise, <c>false</c>.
+            </value>
         </member>
         <member name="M:Puzzle.NPersist.Framework.IContext.IsValidCache">
             <summary>
@@ -1053,11 +1063,39 @@
             <param name="span">The load span indicating related objects that should be loaded together with the main object.</param>
             <param name="refreshBehavior">The refresh behavior determining what happens if a fresh value from the database conflicts with a value in the cache.</param>
         </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.Timeout">
+            <summary>
+            The timeout value in milliseconds that specifies how long this context will wait for a lock on the data source
+            </summary>
+        </member>
         <member name="M:Puzzle.NPersist.Framework.IContext.GetObjectCache">
             <summary>
             Gets the object cache.
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.TimeToLive">
+            <summary>
+            Gets or sets the time to live for objects in the cache. Note: Not implemented yet!
+            </summary>
+            <value>The time to live.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.TimeToLiveBehavior">
+            <summary>
+            Gets or sets the time to live behavior for objects in the cache. Note: Not implemented yet!
+            </summary>
+            <value>The time to live behavior.</value>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.LoadBehavior">
+            <summary>
+            Gets or sets the default load behavior.
+            </summary>
+            <remarks>The load behavior specifies if objects that are requested by identity (the GetObjectById() method) 
+            will be loaded lazily or eagerly. With lazy loading (the default) the object (unless it is already in the cache) will
+            be instantiated and its identity properties will be filled but no call to the database to load the rest of the
+            values or verify that the identity exists will be made. Only as any of the (non-identity) properties of the object
+            is accessed will the call be made to the database and the rest of the object will become loaded.</remarks>
+            <value>The load behavior.</value>
         </member>
         <member name="M:Puzzle.NPersist.Framework.IContext.TryGetObject(System.Object,System.Type)">
             <summary>
@@ -1564,6 +1602,54 @@
             <param name="parameters">The query parameters.</param>
             <returns>A DataTable holding the values specified in the select clause of the NPath query.</returns>
         </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.Conflicts">
+            <summary>
+            Returns a clone of the list with any unresolved conflict that have resulted from a merge between cached values and fresh values from the data source.
+            </summary>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.UnclonedConflicts">
+            <summary>
+            Returns a list with any unresolved conflict that have resulted from a merge between cached values and fresh values from the data source. This list can't be iterated over resolving the conflicts since resolving a conflict tries to remove it from the list. For this please use the Conflicts property instead.
+            </summary>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.LoadedInLatestQuery">
+            <summary>
+            Contains all objects (as both keys and values) that were loaded during the latest query fetch operation (for both npath and sql queries)
+            </summary>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.Exceptions">
+            <summary>
+            Contains all the exceptions that were thrown during the latest commit operation
+            </summary>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.ReadConsistency">
+            <summary>
+            Specifies the read consistency mode. Default means Optimistic.
+            </summary>
+            <remarks>
+            Pessimistic read consistency means a ReadConsistencyException will be thrown if: <br />
+            1) An object is created or loaded outside of a transaction. <br />
+            2) A property is loaded outside of the transaction that the object that the property belongs to was loaded in. <br />
+            3) A property is loaded with a reference to an object that was loaded in another transaction than the transaction that 
+            the object that the property belongs to was loaded in. <br />
+            </remarks>
+        </member>
+        <member name="P:Puzzle.NPersist.Framework.IContext.WriteConsistency">
+            <summary>
+            Specifies the write consistency mode. Default means Optimistic.
+            </summary>
+            <remarks>
+            With Optimistic write consistency, optimistic concurrency is used to enforce write consistency.
+            With Pessimistic write concurrency, dirty objects may only be saved back to their data source within the same transaction that they were loaded. 
+            Pessimistic write consistency means a WriteConsistencyException will be thrown if: <br />
+            1) An object is created or loaded outside of a transaction. <br />
+            2) A property is written to outside of the transaction that the object that the property belongs to was loaded or created in. <br />
+            3) A property is written to with a reference to an object that was loaded or created in another transaction than the transaction that 
+            the object that the property belongs to was loaded or created in. <br />
+            4) An object is inserted, updated or removed from the data source in another transaction than
+            the object that the property belongs to was loaded or created in. <br />
+            </remarks>
+        </member>
         <member name="M:Puzzle.NPersist.Framework.IContext.TryGetObjectById``1(System.Object)">
             <summary>
             Tries to retrieve an object by its identity. Returns null if the object was not found.
@@ -1682,305 +1768,39 @@
             <param name="parameters">The query parameters.</param>
             <returns>A list of objects matching the query</returns>
         </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.Interceptor">
+        <member name="T:Puzzle.NPersist.Framework.Interfaces.IContextChild">
             <summary>
-            Gets or sets the interceptor.
-            </summary>
-            <value>The interceptor.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.PersistenceManager">
-            <summary>
-            Gets or sets the persistence manager.
-            </summary>
-            <value>The persistence manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectManager">
-            <summary>
-            Gets or sets the object manager.
-            </summary>
-            <value>The object manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ListManager">
-            <summary>
-            Gets or sets the list manager.
-            </summary>
-            <value>The list manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.DomainMap">
-            <summary>
-            Gets or sets the domain map.
-            </summary>
-            <value>The domain map.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.IdentityMap">
-            <summary>
-            Gets or sets the identity map.
-            </summary>
-            <value>The identity map.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectCacheManager">
-            <summary>
-            Gets or sets the object cache manager.
-            </summary>
-            <value>The object cache manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ReadOnlyObjectCacheManager">
-            <summary>
-            Gets or sets the read only object cache manager.
-            </summary>
-            <value>The read only object cache manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.UnitOfWork">
-            <summary>
-            Gets or sets the unit of work.
-            </summary>
-            <value>The unit of work.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.InverseManager">
-            <summary>
-            Gets or sets the inverse manager.
-            </summary>
-            <value>The inverse manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.EventManager">
-            <summary>
-            Gets or sets the event manager.
-            </summary>
-            <value>The event manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.DataSourceManager">
-            <summary>
-            Gets or sets the data source manager.
-            </summary>
-            <value>The data source manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.SqlExecutor">
-            <summary>
-            Gets or sets the SQL executor.
-            </summary>
-            <value>The SQL executor.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.LogManager">
-            <summary>
-            Gets or sets the log manager.
-            </summary>
-            <value>The log manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.PersistenceEngine">
-            <summary>
-            Gets or sets the persistence engine.
-            </summary>
-            <value>The persistence engine.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.PersistenceEngineManager">
-            <summary>
-            Gets or sets the persistence engine manager.
-            </summary>
-            <value>The persistence engine manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ProxyFactory">
-            <summary>
-            Gets or sets the proxy factory.
-            </summary>
-            <value>The proxy factory.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.NPathEngine">
-            <summary>
-            Gets or sets the N path engine.
-            </summary>
-            <value>The N path engine.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectQueryEngine">
-            <summary>
-            Gets or sets the object query engine.
-            </summary>
-            <value>The object query engine.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.AssemblyManager">
-            <summary>
-            Gets or sets the assembly manager.
-            </summary>
-            <value>The assembly manager.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectFactory">
-            <summary>
-            Gets or sets the object factory.
-            </summary>
-            <value>The object factory.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectCloner">
-            <summary>
-            Gets or sets the object cloner.
-            </summary>
-            <value>The object cloner.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ObjectValidator">
-            <summary>
-            Gets or sets the object validator.
-            </summary>
-            <value>The object validator.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.Notification">
-            <summary>
-            Gets or sets the notification mode.
-            </summary>
-            <value>The notification mode.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.AutoTransactions">
-            <summary>
-            Gets or sets a value indicating whether auto transactions are used.
-            </summary>
-            <value><c>true</c> if auto transactions should be used; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.DeadlockStrategy">
-            <summary>
-            Gets or sets the deadlock strategy to be used when committing a unit of work.
-            </summary>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.DomainKey">
-            <summary>
-            Gets or sets the domain key.
-            </summary>
-            <value>The domain key.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ParamCounter">
-            <summary>
-            Gets or sets the parameter counter.
-            </summary>
-            <value>The parameter counter.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.OptimisticConcurrencyMode">
-            <summary>
-            Gets or sets the default optimistic concurrency mode.
-            </summary>
-            <value>The optimistic concurrency mode.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.IdentityGenerators">
-            <summary>
-            Gets the identity generators.
-            </summary>
-            <value>The identity generators.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.IsDisposed">
-            <summary>
-            Gets a value indicating whether this instance is disposed.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is disposed; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.IsDirty">
-            <summary>
-            Gets a value indicating whether this context is dirty (contains unsaved changes).
-            </summary>
-            <value><c>true</c> if this context is dirty; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.IsEditing">
-            <summary>
-            Gets a value indicating whether this context is in editing mode.
-            </summary>
-            <value>
-            	<c>true</c> if this context is in editing mode; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ValidationMode">
-            <summary>
-            Gets or sets the default validation mode.
-            </summary>
-            <value>The validation mode.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ValidateBeforeCommit">
-            <summary>
-            Gets or sets a value indicating whether validation should occur before a commit operation is carried out.
-            </summary>
-            <value>
-            	<c>true</c> if validation should be carried out before commit; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.Timeout">
-            <summary>
-            The timeout value in milliseconds that specifies how long this context will wait for a lock on the data source
-            </summary>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.TimeToLive">
-            <summary>
-            Gets or sets the time to live for objects in the cache. Note: Not implemented yet!
-            </summary>
-            <value>The time to live.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.TimeToLiveBehavior">
-            <summary>
-            Gets or sets the time to live behavior for objects in the cache. Note: Not implemented yet!
-            </summary>
-            <value>The time to live behavior.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.LoadBehavior">
-            <summary>
-            Gets or sets the default load behavior.
-            </summary>
-            <remarks>The load behavior specifies if objects that are requested by identity (the GetObjectById() method) 
-            will be loaded lazily or eagerly. With lazy loading (the default) the object (unless it is already in the cache) will
-            be instantiated and its identity properties will be filled but no call to the database to load the rest of the
-            values or verify that the identity exists will be made. Only as any of the (non-identity) properties of the object
-            is accessed will the call be made to the database and the rest of the object will become loaded.</remarks>
-            <value>The load behavior.</value>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.Conflicts">
-            <summary>
-            Returns a clone of the list with any unresolved conflict that have resulted from a merge between cached values and fresh values from the data source.
-            </summary>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.UnclonedConflicts">
-            <summary>
-            Returns a list with any unresolved conflict that have resulted from a merge between cached values and fresh values from the data source. This list can't be iterated over resolving the conflicts since resolving a conflict tries to remove it from the list. For this please use the Conflicts property instead.
-            </summary>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.LoadedInLatestQuery">
-            <summary>
-            Contains all objects (as both keys and values) that were loaded during the latest query fetch operation (for both npath and sql queries)
-            </summary>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.Exceptions">
-            <summary>
-            Contains all the exceptions that were thrown during the latest commit operation
-            </summary>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.ReadConsistency">
-            <summary>
-            Specifies the read consistency mode. Default means Optimistic.
-            </summary>
-            <remarks>
-            Pessimistic read consistency means a ReadConsistencyException will be thrown if: <br />
-            1) An object is created or loaded outside of a transaction. <br />
-            2) A property is loaded outside of the transaction that the object that the property belongs to was loaded in. <br />
-            3) A property is loaded with a reference to an object that was loaded in another transaction than the transaction that 
-            the object that the property belongs to was loaded in. <br />
-            </remarks>
-        </member>
-        <member name="P:Puzzle.NPersist.Framework.IContext.WriteConsistency">
-            <summary>
-            Specifies the write consistency mode. Default means Optimistic.
-            </summary>
-            <remarks>
-            With Optimistic write consistency, optimistic concurrency is used to enforce write consistency.
-            With Pessimistic write concurrency, dirty objects may only be saved back to their data source within the same transaction that they were loaded. 
-            Pessimistic write consistency means a WriteConsistencyException will be thrown if: <br />
-            1) An object is created or loaded outside of a transaction. <br />
-            2) A property is written to outside of the transaction that the object that the property belongs to was loaded or created in. <br />
-            3) A property is written to with a reference to an object that was loaded or created in another transaction than the transaction that 
-            the object that the property belongs to was loaded or created in. <br />
-            4) An object is inserted, updated or removed from the data source in another transaction than
-            the object that the property belongs to was loaded or created in. <br />
-            </remarks>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.BaseClasses.ContextFactory">
-            <summary>
-            Summary description for ContextFactory.
+            Summary description for IContextChild.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Interfaces.IContextFactory">
             <summary>
             Summary description for IContextFactory.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Interfaces.IInterceptor">
+            <summary>
+            Summary description for IInterceptor.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Interfaces.IListInterceptor">
+            <summary>
+            Summary description for IListInterceptor.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Interfaces.ICloneHelper">
+            <summary>
+            Summary description for IInterceptable.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Interfaces.IInterceptable">
+            <summary>
+            Summary description for IInterceptable.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Interfaces.IProxy">
+            <summary>
+            Interface implemented by the POCO runtime proxies
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Delegates.BegunTransactionEventHandler">
@@ -2629,19 +2449,204 @@
             Summary description for UnresolvedConflictsException.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Interfaces.IInterceptor">
+        <member name="T:Puzzle.NPersist.Framework.IPersistenceService">
             <summary>
-            Summary description for IInterceptor.
+            The main runtime interface for NPersist users.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Interfaces.IListInterceptor">
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectById(System.Object,System.Type)">
             <summary>
-            Summary description for IListInterceptor.
+            Tries to retrieve an object by its identity. Returns null if the object was not found.
+            </summary>
+            <param name="identity">The identity of the object you want to retrieve.</param>
+            <param name="type">The type of the object you want to retrieve.</param>
+            <returns>An object with the specified type and identity or null if no such object exists.</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectById(System.Object,System.Type)">
+            <summary>
+            Retrieves an object by its identity. Throws an exception if the object was not found.
+            </summary>
+            <param name="identity">The identity of the object you want to retrieve.</param>
+            <param name="type">The type of the object you want to retrieve.</param>
+            <returns>An object with the specified type and identity.</returns>
+            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object with the specified identity and type could be found</exception>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectByKey(System.String,System.Object,System.Type)">
+            <summary>
+            Retrieves an object by a secondary, unique key. Returns null if the object was not found.
+            </summary>
+            <param name="keyPropertyName">The name of the key property.</param>
+            <param name="keyValue">The unique key value</param>
+            <param name="type">The type of the object you want to retrieve.</param>
+            <returns>An object with the specified type and unique key value or null if no such object exists.</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectByKey(System.String,System.Object,System.Type)">
+            <summary>
+            Retrieves an object by a secondary, unique key. Throws an exception if the object was not found.
+            </summary>
+            <param name="keyPropertyName">The name of the key property.</param>
+            <param name="keyValue">The unique key value</param>
+            <param name="type">The type of the object you want to retrieve.</param>
+            <returns>An object with the specified type and unique key value.</returns>
+            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object with the specified unique key value and type could be found</exception>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectByNPath(Puzzle.NPersist.Framework.Querying.NPathQuery)">
+            <summary>
+            Tries to retrieve an object by an <c>NPathQuery</c> query. Rreturns null if the object was not found or if more than one object matched the query.
+            </summary>
+            <param name="npathQuery">An <c>NPathQuery</c> object specifying which object you want to retrieve.</param>
+            <returns>An object matching the NPath query or null if no such object or multiple such objects were found.</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectByNPath(System.String,System.Type)">
+            <summary>
+            Tries to retrieve an object by an NPath query. Returns null if the object was not found or if more than one object matched the query.
+            </summary>
+            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
+            <param name="type">The type of the object you want to retrieve.</param>
+            <returns>An object matching the NPath query or null if no such object or multiple such objects were found.</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.TryGetObjectByNPath(System.String,System.Type,System.Collections.IList)">
+            <summary>
+            Tries to retrieve an object by an <c>NPathQuery</c> query. Returns null if the object was not found or if more than one object matched the query.
+            </summary>
+            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
+            <param name="type">The type of the object you want to retrieve.</param>
+            <param name="parameters">A list of <c>QueryParameter</c> objects for the NPath query</param>
+            <returns></returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectByNPath(Puzzle.NPersist.Framework.Querying.NPathQuery)">
+            <summary>
+            Retrieves an object by an <c>NPathQuery</c> query.
+            </summary>
+            <param name="npathQuery">An <c>NPathQuery</c> object specifying which object you want to retrieve.</param>
+            <returns>An object matching the NPath query.</returns>
+            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object matching the NPath query could be found</exception>
+            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.MultipleObjectsFoundException">Thrown when more than one object matched the NPath query</exception>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectByNPath(System.String,System.Type)">
+            <summary>
+            Retrieves an object by an <c>NPathQuery</c> query.
+            </summary>
+            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
+            <param name="type">The type of the object you want to retrieve.</param>
+            <returns>An object matching the NPath query.</returns>
+            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object matching the NPath query could be found</exception>
+            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.MultipleObjectsFoundException">Thrown when more than one object matched the NPath query</exception>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectByNPath(System.String,System.Type,System.Collections.IList)">
+            <summary>
+            Retrieves an object by an <c>NPathQuery</c> query.
+            </summary>
+            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
+            <param name="type">The type of the object you want to retrieve.</param>
+            <param name="parameters">A list of <c>QueryParameter</c> objects for the NPath query</param>
+            <returns>An object matching the NPath query.</returns>
+            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.ObjectNotFoundException">Thrown when no object matching the NPath query could be found</exception>
+            <exception cref="T:Puzzle.NPersist.Framework.Exceptions.MultipleObjectsFoundException">Thrown when more than one object matched the NPath query</exception>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(Puzzle.NPersist.Framework.Querying.NPathQuery)">
+            <summary>
+            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            </summary>
+            <param name="npathQuery">An <c>NPathQuery</c> object specifying which objects you want to retrieve.</param>
+            <returns>A list of objects matching the query</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(Puzzle.NPersist.Framework.Querying.NPathQuery,System.Collections.IList)">
+            <summary>
+            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            </summary>
+            <param name="npathQuery">An <c>NPathQuery</c> object specifying which objects you want to retrieve.</param>
+            <param name="listToFill">An <c>IList</c> that you want to fill with the results of the query.</param>
+            <returns>A list of objects matching the query</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(System.String,System.Type)">
+            <summary>
+            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            </summary>
+            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
+            <param name="type">The type of the objects you want to retrieve.</param>
+            <returns>A list of objects matching the query</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(System.String,System.Type,System.Collections.IList)">
+            <summary>
+            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            </summary>
+            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
+            <param name="type">The type of the objects you want to retrieve.</param>
+            <param name="parameters">A list of <c>QueryParameter</c> objects for the NPath query</param>
+            <returns>A list of objects matching the query</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetObjectsByNPath(System.String,System.Type,System.Collections.IList,Puzzle.NPersist.Framework.Enumerations.RefreshBehaviorType)">
+            <summary>
+            Retrieves a list of objects matching an <c>NPathQuery</c> query
+            </summary>
+            <param name="npathQuery">The NPath query string specifying which object you want to retrieve.</param>
+            <param name="type">The type of the objects you want to retrieve.</param>
+            <param name="parameters">A list of <c>QueryParameter</c> objects for the NPath query</param>
+            <param name="refreshBehavior">Specifies how cached objects become refreshed with fresh values from the data source.</param>
+            <returns>A list of objects matching the query</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.CreateObject(System.Object,System.Type,System.Object[])">
+            <summary>
+            Creates a new object with the specified identity and type, registering it as up for creation. It will be inserted into the data source on the next call to <c>Commit</c>().
+            </summary>
+            <param name="identity">The identity for the new object</param>
+            <param name="type">The type of the new object</param>
+            <param name="ctorParams">Contructor parameters for the new object</param>
+            <returns>A new object with the specified identity and type</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.CreateObject(System.Type,System.Object[])">
+            <summary>
+            Creates a new object with the specified type, registering it as up for creation. It will be inserted into the data source in the next call to <c>Commit</c>(). 
+            </summary>
+            <remarks>
+            Note that you must set the values of all the identity properties that are not assigned by the data source on the object before calling the Commit() method.
+            </remarks>
+            <param name="type">The type of the new object</param>
+            <param name="ctorParams">Contructor parameters for the new object</param>
+            <returns>A new object with the specified type.</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.DeleteObject(System.Object)">
+            <summary>
+            Registers an object as up for deletion. The object will be removed from the data source on the next call to <c>Commit</c>().
+            </summary>
+            <param name="obj">The object to be deleted.</param>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.Commit">
+            <summary>
+            Commits all changes to the data source, inserting all new objects, removing all deleted object and saving all modified objects.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.BaseClasses.Interceptor">
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.GetNullValueStatus(System.Object,System.String)">
             <summary>
-            Summary description for Interceptor.
+            Gets the null value status for the specified property of an object
+            </summary>
+            <param name="obj">The object with the property to get the null value status for</param>
+            <param name="propertyName">The name of the property to get the null value status for</param>
+            <returns>True if the property value is null, otherwise False</returns>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.SetNullValueStatus(System.Object,System.String,System.Boolean)">
+            <summary>
+            Sets the null value status for the specified property of an object
+            </summary>
+            <param name="obj">The object with the property to set the null value status for</param>
+            <param name="propertyName">The name of the property to set the null value status for</param>
+            <param name="value">The new null value status</param>
+        </member>
+        <member name="M:Puzzle.NPersist.Framework.IPersistenceService.BeginTransaction">
+            <summary>
+            Begins a transaction.
+            </summary>
+            <returns>An <c>ITransaction</c> object representing the local transaction</returns>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Mapping.CodeMap">
+            <summary>
+            Summary description for CodeMap.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Mapping.EnumValueMap">
+            <summary>
+            Summary description for EnumValueMap.
             </summary>
         </member>
         <member name="M:Puzzle.NPersist.Framework.Mapping.IClassMap.GetSortedIdentityPropertyMaps(System.Boolean@,System.Boolean)">
@@ -2652,19 +2657,9 @@
             <param name="getInherited">Indicates if inherited identityproperties should be included in the result</param>
             <returns>A list of the identity properties for the class, sorted by identity index</returns>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Mapping.CodeMap">
-            <summary>
-            Summary description for CodeMap.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Mapping.ICodeMap">
             <summary>
             Summary description for ICodeMap.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Mapping.EnumValueMap">
-            <summary>
-            Summary description for EnumValueMap.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Mapping.IEnumValueMap">
@@ -2747,11 +2742,6 @@
             Summary description for ObjectPersistenceEngine.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Persistence.IPersistenceEngine">
-            <summary>
-            Summary description for IPersistenceEngine.
-            </summary>
-        </member>
         <member name="M:Puzzle.NPersist.Framework.Persistence.IdentityMap.UpdateIdentity(System.Object,System.String)">
             <summary>
             This method assumes that the previous identity was a temporary, 
@@ -2790,14 +2780,14 @@
             Summary description for ObjectCacheManager.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Persistence.IObjectCacheManager">
-            <summary>
-            Summary description for IObjectCacheManger.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Persistence.IObjectCache">
             <summary>
             Summary description for IObjectCache.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Persistence.IObjectCacheManager">
+            <summary>
+            Summary description for IObjectCacheManger.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Persistence.IReadOnlyObjectCacheManager">
@@ -2828,6 +2818,11 @@
         <member name="T:Puzzle.NPersist.Framework.Persistence.SerializedReference">
             <summary>
             Summary description for SerializedReference.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Persistence.IObjectFactory">
+            <summary>
+            Summary description for IObjectFactory.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Persistence.ObjectFactory">
@@ -2864,6 +2859,11 @@
         <member name="T:Puzzle.NPersist.Framework.Persistence.PersistenceEngineManager">
             <summary>
             Summary description for PersistenceEngineManager.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Persistence.IPersistenceEngine">
+            <summary>
+            Summary description for IPersistenceEngine.
             </summary>
         </member>
         <member name="P:Puzzle.NPersist.Framework.Persistence.IPersistenceManager.ListCountLoadBehavior">
@@ -2909,6 +2909,11 @@
             Summary description for IQueryParameter.
             </summary>
         </member>
+        <member name="T:Puzzle.NPersist.Framework.Querying.QueryParameter">
+            <summary>
+            Summary description for DbParameter.
+            </summary>
+        </member>
         <member name="T:Puzzle.NPersist.Framework.NPath.Sql.FromTable">
             <summary>
             Summary description for FromTable.
@@ -2922,11 +2927,6 @@
         <member name="T:Puzzle.NPersist.Framework.NPath.Sql.TableJoin">
             <summary>
             Summary description for TableJoin.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Querying.QueryParameter">
-            <summary>
-            Summary description for DbParameter.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.ISqlAliasGenerator">
@@ -2944,34 +2944,14 @@
             Summary description for ISqlNode.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Visitor.ISqlVisitable">
-            <summary>
-            Summary description for ISqlVisitable.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlAliasSelectListItem">
             <summary>
             Summary description for SqlAliasSelectListItem.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlSelectListItem">
-            <summary>
-            Summary description for SqlSelectListItem.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlNodeBase">
-            <summary>
-            Summary description for SqlNodeBase.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlAliasTableSource">
             <summary>
             Summary description for SqlAliasTableSource.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlTableSource">
-            <summary>
-            Summary description for SqlTableSource.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlAllColumnsInTableSelectListItem">
@@ -2989,19 +2969,9 @@
             Summary description for SqlAllFullTextColumnsInTable.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlExpression">
-            <summary>
-            Summary description for SqlExpression.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlAllPredicate">
             <summary>
             Summary description for SqlAllPredicate.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlPredicate">
-            <summary>
-            Summary description for SqlPredicate.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlAllPredicateType">
@@ -3014,11 +2984,6 @@
             Summary description for SqlAvgFunction.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlFunction">
-            <summary>
-            Summary description for SqlFunction.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlBetweenPredicate">
             <summary>
             Summary description for SqlBetweenPredicate.
@@ -3027,11 +2992,6 @@
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlBooleanLiteral">
             <summary>
             Summary description for SqlBooleanLiteral.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlLiteral">
-            <summary>
-            Summary description for SqlLiteral.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlClause">
@@ -3109,11 +3069,6 @@
             Summary description for SqlDeleteStatement.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlStatement">
-            <summary>
-            Summary description for SqlStatement.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlDistinctFunction">
             <summary>
             Summary description for SqlCountFunction.
@@ -3122,6 +3077,11 @@
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlExistsPredicate">
             <summary>
             Summary description for SqlExistsPredicate.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlExpression">
+            <summary>
+            Summary description for SqlExpression.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlExpressionAlias">
@@ -3147,6 +3107,11 @@
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlFromClause">
             <summary>
             Summary description for SqlFromClause.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlFunction">
+            <summary>
+            Summary description for SqlFunction.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlGroupByClause">
@@ -3204,6 +3169,11 @@
             Summary description for SqlLikePredicate.
             </summary>
         </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlLiteral">
+            <summary>
+            Summary description for SqlLiteral.
+            </summary>
+        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlMathOperatorType">
             <summary>
             Summary description for SqlCompareOperatorType.
@@ -3219,6 +3189,11 @@
             Summary description for SqlMinFunction.
             </summary>
         </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlNodeBase">
+            <summary>
+            Summary description for SqlNodeBase.
+            </summary>
+        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlNullValue">
             <summary>
             Summary description for SqlNullValue.
@@ -3232,11 +3207,6 @@
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlOldOuterJoin">
             <summary>
             Summary description for SqlOldOuterJoin.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlWhereClauseItem">
-            <summary>
-            Summary description for SqlWhereClauseItem.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlOrderByClause">
@@ -3259,6 +3229,11 @@
             Summary description for SqlHavingClause.
             </summary>
         </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlPredicate">
+            <summary>
+            Summary description for SqlPredicate.
+            </summary>
+        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlSearchCondition">
             <summary>
             Summary description for SqlSearchCondition.
@@ -3269,6 +3244,11 @@
             Summary description for SqlSelectClause.
             </summary>
         </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlSelectListItem">
+            <summary>
+            Summary description for SqlSelectListItem.
+            </summary>
+        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlSelectStatement">
             <summary>
             Summary description for SqlSelectStatement.
@@ -3277,6 +3257,11 @@
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlSoundexFunction">
             <summary>
             Summary description for SqlMaxFunction.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlStatement">
+            <summary>
+            Summary description for SqlStatement.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlStringLiteral">
@@ -3304,6 +3289,11 @@
             Summary description for SqlTableAliasReference.
             </summary>
         </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlTableSource">
+            <summary>
+            Summary description for SqlTableSource.
+            </summary>
+        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlUpdateClause">
             <summary>
             Summary description for SqlUpdateClause.
@@ -3319,6 +3309,16 @@
             Summary description for SqlWhereClause.
             </summary>
         </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Dom.SqlWhereClauseItem">
+            <summary>
+            Summary description for SqlWhereClauseItem.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Visitor.ISqlVisitable">
+            <summary>
+            Summary description for ISqlVisitable.
+            </summary>
+        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Visitor.ISqlVisitor">
             <summary>
             Summary description for ISqlVisitor.
@@ -3329,11 +3329,6 @@
             Summary description for SqlAccessVisitor.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Sql.Visitor.SqlVisitorBase">
-            <summary>
-            Summary description for SqlVisitorBase.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Sql.Visitor.SqlOracleVisitor">
             <summary>
             Summary description for SqlOracleVisitor.
@@ -3342,6 +3337,11 @@
         <member name="T:Puzzle.NPersist.Framework.Sql.Visitor.SqlSqlServerVisitor">
             <summary>
             Summary description for SqlSqlServerVisitor.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Sql.Visitor.SqlVisitorBase">
+            <summary>
+            Summary description for SqlVisitorBase.
             </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Remoting.Formatting.IFormatter">
@@ -3459,16 +3459,6 @@
             Summary description for WebServiceRemotingEngine.
             </summary>
         </member>
-        <member name="T:Puzzle.NPersist.Framework.Remoting.IRemotingServer">
-            <summary>
-            Summary description for IRemotingServer.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NPersist.Framework.Remoting.RemotingServer">
-            <summary>
-            Summary description for RemotingServer.
-            </summary>
-        </member>
         <member name="T:Puzzle.NPersist.Framework.Remoting.WebService.Client.RemotingWebServiceProxy.RemotingService">
             <remarks/>
         </member>
@@ -3528,6 +3518,16 @@
         </member>
         <member name="M:Puzzle.NPersist.Framework.Remoting.WebService.Client.RemotingWebServiceProxy.RemotingService.EndLoadObjects(System.IAsyncResult)">
             <remarks/>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Remoting.IRemotingServer">
+            <summary>
+            Summary description for IRemotingServer.
+            </summary>
+        </member>
+        <member name="T:Puzzle.NPersist.Framework.Remoting.RemotingServer">
+            <summary>
+            Summary description for RemotingServer.
+            </summary>
         </member>
         <member name="T:Puzzle.NPersist.Framework.Utility.Util">
             <summary>

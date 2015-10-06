@@ -14,11 +14,6 @@
             <seealso cref="T:Puzzle.NAspect.Framework.Aop.AspectTargetAttribute"/>
             <seealso cref="T:Puzzle.NAspect.Framework.Aop.MixinAttribute"/>
         </member>
-        <member name="M:Puzzle.NAspect.Framework.Aop.InterceptorAttribute.#ctor">
-            <summary>
-            InterceptorAttribute ctor.
-            </summary>
-        </member>
         <member name="P:Puzzle.NAspect.Framework.Aop.InterceptorAttribute.Index">
             <summary>
             Call chain index of the interceptor, mark your first interceptor with index=1 , then next with index=2 etc.
@@ -72,6 +67,11 @@
             </code>
             </example>
         </member>
+        <member name="M:Puzzle.NAspect.Framework.Aop.InterceptorAttribute.#ctor">
+            <summary>
+            InterceptorAttribute ctor.
+            </summary>
+        </member>
         <member name="T:Puzzle.NAspect.Framework.Aop.MixinAttribute">
             <summary>
             Attribute that can be applied to typed aspects.
@@ -93,11 +93,10 @@
             <seealso cref="T:Puzzle.NAspect.Framework.Aop.AspectTargetAttribute"/>
             <seealso cref="T:Puzzle.NAspect.Framework.Aop.MixinAttribute"/>
         </member>
-        <member name="M:Puzzle.NAspect.Framework.Aop.MixinAttribute.#ctor(System.Type)">
+        <member name="P:Puzzle.NAspect.Framework.Aop.MixinAttribute.MixinType">
             <summary>
-            Mixin attribute Ctor.
+            Type of the mixin to be applied to this aspect.
             </summary>
-            <param name="mixinType">A type that should be mixed into every target of this aspect</param>
             <example>
             <para>Example of typed aspect:</para>
             <code lang="CS">
@@ -107,10 +106,11 @@
             </code>
             </example>
         </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.MixinAttribute.MixinType">
+        <member name="M:Puzzle.NAspect.Framework.Aop.MixinAttribute.#ctor(System.Type)">
             <summary>
-            Type of the mixin to be applied to this aspect.
+            Mixin attribute Ctor.
             </summary>
+            <param name="mixinType">A type that should be mixed into every target of this aspect</param>
             <example>
             <para>Example of typed aspect:</para>
             <code lang="CS">
@@ -187,113 +187,6 @@
             The standard aspect representation
             </summary>
         </member>
-        <member name="T:Puzzle.NAspect.Framework.Aop.GenericAspectBase">
-            <summary>
-            Base class for aspects.
-            Contains lists of mixins and pointcuts for the aspect.
-            You generally do not need to use this class by your self.
-            Use the AttributeAspect , SignatureAspect or Typed aspects.
-            </summary>
-            <example>
-            <para>When inheriting this class you must override the <c>IsMatch</c> method.</para>
-            <code lang="CS">
-            //aspect that matches all types whose name start with MyClass
-            public override bool IsMatch(Type type)
-            {
-                if (type.Name.StartsWith("MyClass"))
-                    return true;
-                else
-                    return false;
-            }
-            </code>
-            </example>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Aop.IGenericAspect">
-            <summary>
-            Interface for generic aspects.
-            Current generic aspects are <c>SignatureAspect</c> and <c>AttributeAspect</c>
-            </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Aop.IAspect">
-            <summary>
-            Marker interface for all aspects.
-            If you need to create your own aspect types you have to create your own <c>AspectMatcher</c> and assign to your <c>AopEngine</c>
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Aop.IGenericAspect.IsMatch(System.Type)">
-            <summary>
-            Implement this method in a class to match specific types.
-            </summary>
-            <param name="type">Target that might get this aspect applied to it</param>
-            <returns>return true if the given type should get this aspect applied, otherwise false</returns>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.IGenericAspect.Name">
-            <summary>
-            Just a name of the aspect, has no real purpose today.
-            Features to fetch named aspects might be added later.
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.IGenericAspect.Mixins">
-            <summary>
-            List of mixin types.
-            Since this is .NET 1.x compatible and we are lazy farts, you get this in an untyped manner.
-            The element type of this list should be <c>System.Type</c>
-            </summary>
-            <example>
-            <code lang="CS">
-            myAspect.Mixins.Add(typeof(MyMixin));
-            myAspect.Mixins.Add(typeof(ISomeMarkerInterfaceWOImplementation));
-            </code>
-            </example>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.IGenericAspect.Pointcuts">
-            <summary>
-            List of pointcuts.
-            Since this is .NET 1.x compatible and we are lazy farts, you get this in an untyped manner.
-            The element type of this list should be <c>IPointcut</c>.
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.IGenericAspect.Targets">
-            <summary>
-            List of targets
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Aop.GenericAspectBase.IsMatch(System.Type)">
-            <summary>
-            Implementation of AspectBase.IsMatch
-            <seealso cref="M:Puzzle.NAspect.Framework.Aop.IGenericAspect.IsMatch(System.Type)"/>
-            </summary>
-            <param name="type">Type to match</param>
-            <returns>true if the aspect should be applied to the type, otherwise false.</returns>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.Name">
-            <summary>
-            Just a name of the aspect, has no real purpose today.
-            Features to fetch named aspects might be added later.
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.Mixins">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.TypeExtenders">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.Pointcuts">
-            <summary>
-            List of pointcuts.
-            Since this is .NET 1.x compatible and we are lazy farts, you get this in an untyped manner.
-            The element type of this list should be <c>IPointcut</c>.
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.Targets">
-            <summary>
-            List of targets
-            </summary>
-        </member>
         <member name="M:Puzzle.NAspect.Framework.Aop.GenericAspect.#ctor(System.String,System.Collections.IList,System.Collections.IList)">
             <summary>
             Attribute aspect Ctor.
@@ -327,6 +220,12 @@
             <param name="targets">Type[] array of aspect targets</param>
             <param name="mixins">Type[] array of mixin types</param>
             <param name="pointcuts">IPointcut[] array of pointcut instances</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Aop.IAspect">
+            <summary>
+            Marker interface for all aspects.
+            If you need to create your own aspect types you have to create your own <c>AspectMatcher</c> and assign to your <c>AopEngine</c>
+            </summary>
         </member>
         <member name="T:Puzzle.NAspect.Framework.Aop.InterfaceAspect">
             <summary>
@@ -391,7 +290,7 @@
             <summary>
             Marker interface for typed aspects.    
             </summary>
-            <example>
+            <example >
             <code lang="CS">
             [AspectTarget(TargetSignature = "*")]
             [Mixin(typeof(MyMixin))]
@@ -442,154 +341,62 @@
             <param name="y"></param>
             <returns></returns>
         </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.MayBreakFlowAttribute">
+        <member name="T:Puzzle.NAspect.Framework.Aop.GenericAspectBase">
             <summary>
-            This attribute can be applied to IInterceptors.
-            It tells the debug visualizer that the interceptor may break the call flow.
+            Base class for aspects.
+            Contains lists of mixins and pointcuts for the aspect.
+            You generally do not need to use this class by your self.
+            Use the AttributeAspect , SignatureAspect or Typed aspects.
+            </summary>
+            <example>
+            <para>When inheriting this class you must override the <c>IsMatch</c> method.</para>
+            <code lang="CS">
+            //aspect that matches all types whose name start with MyClass
+            public override bool IsMatch(Type type)
+            {
+                if (type.Name.StartsWith("MyClass"))
+                    return true;
+                else
+                    return false;
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.Name">
+            <summary>
+            Just a name of the aspect, has no real purpose today.
+            Features to fetch named aspects might be added later.
             </summary>
         </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.MayBreakFlowAttribute.#ctor">
+        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.Mixins">
             <summary>
-            MayBreakFlowAttribute ctor.
+            
             </summary>
         </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.MayBreakFlowAttribute.#ctor(System.String)">
+        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.TypeExtenders">
             <summary>
-            MayBreakFlowAttribute ctor.
-            </summary>
-            <param name="reason">Reason why the interceptor may break the flow.</param>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Interception.MayBreakFlowAttribute.Reason">
-            <summary>
-            Reason why the interceptor may break the flow.
+            
             </summary>
         </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.IsRequiredAttribute">
+        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.Pointcuts">
             <summary>
-            This attribute can be applied to IInterceptors.
-            It tells the engine that the interceptor may not be used after an interceptor that may break flow.
+            List of pointcuts.
+            Since this is .NET 1.x compatible and we are lazy farts, you get this in an untyped manner.
+            The element type of this list should be <c>IPointcut</c>.
             </summary>
         </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.IsRequiredAttribute.#ctor">
+        <member name="P:Puzzle.NAspect.Framework.Aop.GenericAspectBase.Targets">
             <summary>
-            IsRequiredAttribute ctor.
+            List of targets
             </summary>
         </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.IsRequiredAttribute.#ctor(System.Boolean)">
+        <member name="M:Puzzle.NAspect.Framework.Aop.GenericAspectBase.IsMatch(System.Type)">
             <summary>
-            IsRequiredAttribute ctor.
+            Implementation of AspectBase.IsMatch
+            <seealso cref="M:Puzzle.NAspect.Framework.Aop.IGenericAspect.IsMatch(System.Type)"/>
             </summary>
-            <param name="required">Set to true if the interceptor is required</param>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Interception.IsRequiredAttribute.Required">
-            <summary>
-            Gets or sets the required property.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.ThrowsAttribute">
-            <summary>
-            This attribute can be applied to IInterceptors.
-            It tells the debug visualizer that the interceptor may throw an exception.
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.ThrowsAttribute.#ctor(System.Type)">
-            <summary>
-            ThrowsAttribute ctor.
-            </summary>
-            <param name="exceptionType">Type of the exception the interceptor may throw</param>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Interception.ThrowsAttribute.ExceptionType">
-            <summary>
-            Type of exception the interceptor may throw.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.CatchesAttribute">
-            <summary>
-            This attribute can be applied to IInterceptors.
-            It tells the debug visualizer that the interceptor may catch and consume an exception.
-            Thus preventing the exception to bouble up in the call chain.
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.CatchesAttribute.#ctor(System.Type)">
-            <summary>
-            CatchesAttribute ctor.
-            </summary>
-            <param name="exceptionType">The type of the exception that may be chaught</param>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Interception.CatchesAttribute.ExceptionType">
-            <summary>
-            The type of the exception that may be chaught
-            </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.ReplaceException">
-            <summary>
-            This attribute can be applied to IInterceptors.
-            It tells the debug visualizer that the interceptor may catch and replace an excepton of one type with another
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.ReplaceException.#ctor(System.Type,System.Type)">
-            <summary>
-            ReplaceException ctor.
-            </summary>
-            <param name="catchType">Exception type to catch</param>
-            <param name="throwType">Exception type to replace with</param>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Interception.ReplaceException.CatchType">
-            <summary>
-            Exception type to catch
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Interception.ReplaceException.ThrowType">
-            <summary>
-            Exception type to replace with
-            </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.AfterDelegate">
-            <summary>
-            Delegate that represents an "after" interceptor in a typed aspect.
-            </summary>
-            <param name="call">The method call</param>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.AroundDelegate">
-            <summary>
-            Delegate that represents an "around" interceptor in a typed aspect.
-            </summary>
-            <param name="call">The method call</param>
-            <returns>The result of the interceptor</returns>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.BeforeDelegate">
-            <summary>
-            Delegate that represents an "before" interceptor in a typed aspect.
-            </summary>
-            <param name="call">The method call</param>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.IAfterInterceptor">
-            <summary>
-            Represents an "after" interceptor that is triggered after the base implementation of a method call is invoked.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.IInterceptor">
-            <summary>
-            Marker interface for all interceptor types
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.IAfterInterceptor.AfterCall(Puzzle.NAspect.Framework.AfterMethodInvocation)">
-            <summary>
-            Method that is triggered after the base implementation of a method call is invoked.
-            </summary>
-            <param name="call">The method call</param>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.IAroundInterceptor">
-            <summary>
-            Represents an "around" interceptor that may proceed or break a call.
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.IAroundInterceptor.HandleCall(Puzzle.NAspect.Framework.MethodInvocation)">
-            <summary>
-            Intercepts a call.
-            </summary>
-            <param name="call"></param>
-            <returns></returns>
+            <param name="type">Type to match</param>
+            <returns>true if the aspect should be applied to the type, otherwise false.</returns>
         </member>
         <member name="T:Puzzle.NAspect.Framework.Aop.AspectMatcher">
             <summary>
@@ -669,6 +476,50 @@
             <param name="TargetMethodsignature">string Signature of methods to match.</param>
             <param name="Interceptor">Instance of an IInterceptor</param>
         </member>
+        <member name="T:Puzzle.NAspect.Framework.Aop.IGenericAspect">
+            <summary>
+            Interface for generic aspects.
+            Current generic aspects are <c>SignatureAspect</c> and <c>AttributeAspect</c>
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Aop.IGenericAspect.Name">
+            <summary>
+            Just a name of the aspect, has no real purpose today.
+            Features to fetch named aspects might be added later.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Aop.IGenericAspect.IsMatch(System.Type)">
+            <summary>
+            Implement this method in a class to match specific types.
+            </summary>
+            <param name="type">Target that might get this aspect applied to it</param>
+            <returns>return true if the given type should get this aspect applied, otherwise false</returns>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Aop.IGenericAspect.Mixins">
+            <summary>
+            List of mixin types.
+            Since this is .NET 1.x compatible and we are lazy farts, you get this in an untyped manner.
+            The element type of this list should be <c>System.Type</c>
+            </summary>
+            <example>
+            <code lang="CS">
+            myAspect.Mixins.Add(typeof(MyMixin));
+            myAspect.Mixins.Add(typeof(ISomeMarkerInterfaceWOImplementation));
+            </code>
+            </example>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Aop.IGenericAspect.Pointcuts">
+            <summary>
+            List of pointcuts.
+            Since this is .NET 1.x compatible and we are lazy farts, you get this in an untyped manner.
+            The element type of this list should be <c>IPointcut</c>.
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Aop.IGenericAspect.Targets">
+            <summary>
+            List of targets
+            </summary>
+        </member>
         <member name="T:Puzzle.NAspect.Framework.Aop.SignatureAspect">
             <summary>
             Aspect that matches target types based on wildcard signatures.
@@ -730,17 +581,6 @@
             <param name="targetMethodsignature">Signature of the target methods.</param>
             <param name="interceptor">Single <c>IInterceptor</c> that should intercept the matched methods.</param>
         </member>
-        <member name="T:Puzzle.NAspect.Framework.Interception.IBeforeInterceptor">
-            <summary>
-            Represents an "before" interceptor that is triggered before the base implementation of a method call is invoked.
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Interception.IBeforeInterceptor.BeforeCall(Puzzle.NAspect.Framework.BeforeMethodInvocation)">
-            <summary>
-            Method that is triggered before the base implementation of a method call is invoked.
-            </summary>
-            <param name="call">The method call</param>
-        </member>
         <member name="T:Puzzle.NAspect.Framework.Aop.IProxyAware">
             <summary>
             Interface used to make mixins aware of their owning proxy.
@@ -755,40 +595,6 @@
         <member name="T:Puzzle.NAspect.Framework.Aop.AttributePointcut">
             <summary>
             Pointcut that matches attributes on target methods.
-            </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Aop.PointcutBase">
-            <summary>
-            Base class for pointcuts
-            </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Aop.IPointcut">
-            <summary>
-            Interface implemented by all pointcuts.
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Aop.IPointcut.IsMatch(System.Reflection.MethodBase,System.Type)">
-            <summary>
-            Matches a method with the pointuct
-            </summary>
-            <param name="method">The method to match</param>
-            <returns>True if the pointcut matched the method, otherwise false</returns>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.IPointcut.Interceptors">
-            <summary>
-            Untyped list of <c>IInterceptor</c>s and <c>BeforeDelegate</c>, <c>AroundDelegate</c> and <c>AfterDelegate</c>
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Aop.PointcutBase.IsMatch(System.Reflection.MethodBase,System.Type)">
-            <summary>
-            Matches a method with the pointuct
-            </summary>
-            <param name="method">The method to match</param>
-            <returns>True if the pointcut matched the method, otherwise false</returns>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.Aop.PointcutBase.Interceptors">
-            <summary>
-            Untyped list of <c>IInterceptor</c>s and <c>BeforeDelegate</c>, <c>AroundDelegate</c> and <c>AfterDelegate</c>
             </summary>
         </member>
         <member name="M:Puzzle.NAspect.Framework.Aop.AttributePointcut.#ctor(System.Type,System.Collections.IList)">
@@ -847,6 +653,23 @@
             <param name="attributeTypeName">Name of the attribute type to match</param>
             <param name="interceptor">Interceptor delegate to apply on matched methods, valid delegates are <c>BeforeDelegate</c>, <c>AroundDelegate</c> and <c>AfterDelegate</c></param>
         </member>
+        <member name="T:Puzzle.NAspect.Framework.Aop.IPointcut">
+            <summary>
+            Interface implemented by all pointcuts.
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Aop.IPointcut.Interceptors">
+            <summary>
+            Untyped list of <c>IInterceptor</c>s and <c>BeforeDelegate</c>, <c>AroundDelegate</c> and <c>AfterDelegate</c>
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Aop.IPointcut.IsMatch(System.Reflection.MethodBase,System.Type)">
+            <summary>
+            Matches a method with the pointuct
+            </summary>
+            <param name="method">The method to match</param>
+            <returns>True if the pointcut matched the method, otherwise false</returns>
+        </member>
         <member name="M:Puzzle.NAspect.Framework.Aop.Pointcut.#ctor(System.Collections.IList)">
             <summary>
             SignaturePointcut ctor. 
@@ -898,6 +721,23 @@
             </summary>
             <param name="targets">Untyped list of <c>PointcutTarget</c>s to be used by this pointcut</param>
             <param name="interceptor">Interceptor delegate to apply on matched methods, valid delegates are <c>BeforeDelegate</c>, <c>AroundDelegate</c> and <c>AfterDelegate</c></param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Aop.PointcutBase">
+            <summary>
+            Base class for pointcuts
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Aop.PointcutBase.Interceptors">
+            <summary>
+            Untyped list of <c>IInterceptor</c>s and <c>BeforeDelegate</c>, <c>AroundDelegate</c> and <c>AfterDelegate</c>
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Aop.PointcutBase.IsMatch(System.Reflection.MethodBase,System.Type)">
+            <summary>
+            Matches a method with the pointuct
+            </summary>
+            <param name="method">The method to match</param>
+            <returns>True if the pointcut matched the method, otherwise false</returns>
         </member>
         <member name="T:Puzzle.NAspect.Framework.Aop.PointcutMatcher">
             <summary>
@@ -977,6 +817,171 @@
             </summary>
             <param name="targetMethodSignature">Wildcard pattern of the method signatures to match</param>
             <param name="interceptor">Interceptor delegate to apply on matched methods, valid delegates are <c>BeforeDelegate</c>, <c>AroundDelegate</c> and <c>AfterDelegate</c></param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Aop.PointcutTargetType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.MayBreakFlowAttribute">
+            <summary>
+            This attribute can be applied to IInterceptors.
+            It tells the debug visualizer that the interceptor may break the call flow.
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Interception.MayBreakFlowAttribute.Reason">
+            <summary>
+            Reason why the interceptor may break the flow.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.MayBreakFlowAttribute.#ctor">
+            <summary>
+            MayBreakFlowAttribute ctor.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.MayBreakFlowAttribute.#ctor(System.String)">
+            <summary>
+            MayBreakFlowAttribute ctor.
+            </summary>
+            <param name="reason">Reason why the interceptor may break the flow.</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.IsRequiredAttribute">
+            <summary>
+            This attribute can be applied to IInterceptors.
+            It tells the engine that the interceptor may not be used after an interceptor that may break flow.
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Interception.IsRequiredAttribute.Required">
+            <summary>
+            Gets or sets the required property.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.IsRequiredAttribute.#ctor">
+            <summary>
+            IsRequiredAttribute ctor.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.IsRequiredAttribute.#ctor(System.Boolean)">
+            <summary>
+            IsRequiredAttribute ctor.
+            </summary>
+            <param name="required">Set to true if the interceptor is required</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.ThrowsAttribute">
+            <summary>
+            This attribute can be applied to IInterceptors.
+            It tells the debug visualizer that the interceptor may throw an exception.
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Interception.ThrowsAttribute.ExceptionType">
+            <summary>
+            Type of exception the interceptor may throw.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.ThrowsAttribute.#ctor(System.Type)">
+            <summary>
+            ThrowsAttribute ctor.
+            </summary>
+            <param name="exceptionType">Type of the exception the interceptor may throw</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.CatchesAttribute">
+            <summary>
+            This attribute can be applied to IInterceptors.
+            It tells the debug visualizer that the interceptor may catch and consume an exception.
+            Thus preventing the exception to bouble up in the call chain.
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Interception.CatchesAttribute.ExceptionType">
+            <summary>
+            The type of the exception that may be chaught
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.CatchesAttribute.#ctor(System.Type)">
+            <summary>
+            CatchesAttribute ctor.
+            </summary>
+            <param name="exceptionType">The type of the exception that may be chaught</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.ReplaceException">
+            <summary>
+            This attribute can be applied to IInterceptors.
+            It tells the debug visualizer that the interceptor may catch and replace an excepton of one type with another
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Interception.ReplaceException.CatchType">
+            <summary>
+            Exception type to catch
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Interception.ReplaceException.ThrowType">
+            <summary>
+            Exception type to replace with
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.ReplaceException.#ctor(System.Type,System.Type)">
+            <summary>
+            ReplaceException ctor.
+            </summary>
+            <param name="catchType">Exception type to catch</param>
+            <param name="throwType">Exception type to replace with</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.AfterDelegate">
+            <summary>
+            Delegate that represents an "after" interceptor in a typed aspect.
+            </summary>
+            <param name="call">The method call</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.AroundDelegate">
+            <summary>
+            Delegate that represents an "around" interceptor in a typed aspect.
+            </summary>
+            <param name="call">The method call</param>
+            <returns>The result of the interceptor</returns>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.BeforeDelegate">
+            <summary>
+            Delegate that represents an "before" interceptor in a typed aspect.
+            </summary>
+            <param name="call">The method call</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.IAfterInterceptor">
+            <summary>
+            Represents an "after" interceptor that is triggered after the base implementation of a method call is invoked.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.IAfterInterceptor.AfterCall(Puzzle.NAspect.Framework.AfterMethodInvocation)">
+            <summary>
+            Method that is triggered after the base implementation of a method call is invoked.
+            </summary>
+            <param name="call">The method call</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.IAroundInterceptor">
+            <summary>
+            Represents an "around" interceptor that may proceed or break a call.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.IAroundInterceptor.HandleCall(Puzzle.NAspect.Framework.MethodInvocation)">
+            <summary>
+            Intercepts a call.
+            </summary>
+            <param name="call"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.IBeforeInterceptor">
+            <summary>
+            Represents an "before" interceptor that is triggered before the base implementation of a method call is invoked.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Interception.IBeforeInterceptor.BeforeCall(Puzzle.NAspect.Framework.BeforeMethodInvocation)">
+            <summary>
+            Method that is triggered before the base implementation of a method call is invoked.
+            </summary>
+            <param name="call">The method call</param>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.Interception.IInterceptor">
+            <summary>
+            Marker interface for all interceptor types
+            </summary>
         </member>
         <member name="T:Puzzle.NAspect.Framework.FixedInterceptorAttribute">
             <summary>
@@ -1120,101 +1125,6 @@
             </code>
             </example>
         </member>
-        <member name="T:Puzzle.NAspect.Framework.IEngine">
-            <summary>
-            Interface for Aop engines.
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.IEngine.AddStateToCtorParams(System.Object,System.Object[])">
-            <summary>
-            Util. method that inserts an object in the beginning of a parameter list
-            </summary>
-            <param name="state">State object to insert in parameter list. this object can be intercepted by ctor interceptors later on.</param>
-            <param name="args">object array of boxed parameter values</param>
-            <returns>A new array of parameters, including the state object</returns>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxy(System.Type,System.Object[])">
-            <summary>
-            Creates a subclass proxy.
-            This is primary used by .NET 1.x users or where you need to create proxies of dynamic types in .NET 2.0.        
-            </summary>
-            <param name="type">Type to proxify</param>
-            <param name="args">Object array of boxed parameter values</param>
-            <returns>The proxy instance</returns>
-            <example>
-            <code lang="CS">
-            Foo myFoo = (Foo)engine.CreateProxy(typeof(Foo));
-            </code>
-            </example>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxyType(System.Type)">
-            <summary>
-            Creates a subclass proxy type
-            </summary>
-            <param name="type">Type to proxify</param>
-            <returns>The proxy type</returns>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxy``1(System.Object[])">
-            <summary>
-            Creates a subclass proxy of type <c>T</c>.
-            </summary>
-            <typeparam name="T">Type to proxify</typeparam>
-            <param name="args">Object array of boxed parameter values</param>
-            <returns>The proxy instance</returns>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxyWithState``1(System.Object,System.Object[])">
-            <summary>
-            Creates a subclass proxy of type <c>T</c>.
-            </summary>
-            <typeparam name="T">Type to proxify</typeparam>
-            <param name="state">State object that should be used by ctor interceptors</param>
-            <param name="args">Object array of boxed parameter values</param>
-            <returns>The proxy instance</returns>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxyWithState(System.Object,System.Type,System.Object[])">
-            <summary>
-            Creates a subclass proxy.
-            This is primary used by .NET 1.x users or where you need to create proxies of dynamic types in .NET 2.0.        
-            </summary>
-            <param name="state"></param>
-            <param name="type">Type to proxify</param>
-            <param name="args">Object array of boxed parameter values</param>
-            <returns>The proxy instance</returns>
-            <example>
-            <code lang="CS">
-            Foo myFoo = (Foo)engine.CreateProxyWithState(typeof(Foo),"I can be used in an ctor interceptor");
-            </code>
-            </example>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateWrapper(System.Object)">
-            <summary>
-            Creates a interface wrapper proxy
-            </summary>
-            <param name="instance">The instance to wrap</param>
-            <returns>Proxy object which redirect calls to the real instance</returns>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateWrapperType(System.Type)">
-            <summary>
-            Creates an interface wrapper proxy type
-            </summary>
-            <param name="type">Type to proxify</param>
-            <returns>The proxy type</returns>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.IEngine.Configuration">
-            <summary>
-            The active engine configuration.
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Framework.IEngine.LogManager">
-            <summary>
-            Log manager.
-            </summary>
-            <example>
-            <code lang="CS">
-            aopEngine.LogManager.Loggers.Add(new ConsoleLogger());
-            </code>
-            </example>
-        </member>
         <member name="F:Puzzle.NAspect.Framework.Engine.Default">
             <summary>
             Singleton engine instance configured from app.config.
@@ -1245,6 +1155,21 @@
             Engine engine = new Engine("MyUniqueConfig");
             engine.Configuration.Aspects.Add(someAspect);
             
+            </code>
+            </example>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Engine.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.Engine.LogManager">
+            <summary>
+            Log manager.
+            </summary>
+            <example>
+            <code lang="CS">
+            aopEngine.LogManager.Loggers.Add(new ConsoleLogger());
             </code>
             </example>
         </member>
@@ -1338,12 +1263,92 @@
             <param name="args">Object array of boxed parameter values</param>
             <returns>The proxy instance</returns>
         </member>
-        <member name="P:Puzzle.NAspect.Framework.Engine.Configuration">
+        <member name="T:Puzzle.NAspect.Framework.IEngine">
             <summary>
-            
+            Interface for Aop engines.
             </summary>
         </member>
-        <member name="P:Puzzle.NAspect.Framework.Engine.LogManager">
+        <member name="M:Puzzle.NAspect.Framework.IEngine.AddStateToCtorParams(System.Object,System.Object[])">
+            <summary>
+            Util. method that inserts an object in the beginning of a parameter list
+            </summary>
+            <param name="state">State object to insert in parameter list. this object can be intercepted by ctor interceptors later on.</param>
+            <param name="args">object array of boxed parameter values</param>
+            <returns>A new array of parameters, including the state object</returns>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.IEngine.Configuration">
+            <summary>
+            The active engine configuration.
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxy(System.Type,System.Object[])">
+            <summary>
+            Creates a subclass proxy.
+            This is primary used by .NET 1.x users or where you need to create proxies of dynamic types in .NET 2.0.        
+            </summary>
+            <param name="type">Type to proxify</param>
+            <param name="args">Object array of boxed parameter values</param>
+            <returns>The proxy instance</returns>
+            <example>
+            <code lang="CS">
+            Foo myFoo = (Foo)engine.CreateProxy(typeof(Foo));
+            </code>
+            </example>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxyType(System.Type)">
+            <summary>
+            Creates a subclass proxy type
+            </summary>
+            <param name="type">Type to proxify</param>
+            <returns>The proxy type</returns>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxy``1(System.Object[])">
+            <summary>
+            Creates a subclass proxy of type <c>T</c>.
+            </summary>
+            <typeparam name="T">Type to proxify</typeparam>
+            <param name="args">Object array of boxed parameter values</param>
+            <returns>The proxy instance</returns>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxyWithState``1(System.Object,System.Object[])">
+            <summary>
+            Creates a subclass proxy of type <c>T</c>.
+            </summary>
+            <typeparam name="T">Type to proxify</typeparam>
+            <param name="state">State object that should be used by ctor interceptors</param>
+            <param name="args">Object array of boxed parameter values</param>
+            <returns>The proxy instance</returns>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateProxyWithState(System.Object,System.Type,System.Object[])">
+            <summary>
+            Creates a subclass proxy.
+            This is primary used by .NET 1.x users or where you need to create proxies of dynamic types in .NET 2.0.        
+            </summary>
+            <param name="state"></param>
+            <param name="type">Type to proxify</param>
+            <param name="args">Object array of boxed parameter values</param>
+            <returns>The proxy instance</returns>
+            <example>
+            <code lang="CS">
+            Foo myFoo = (Foo)engine.CreateProxyWithState(typeof(Foo),"I can be used in an ctor interceptor");
+            </code>
+            </example>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateWrapper(System.Object)">
+            <summary>
+            Creates a interface wrapper proxy
+            </summary>
+            <param name="instance">The instance to wrap</param>
+            <returns>Proxy object which redirect calls to the real instance</returns>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.IEngine.CreateWrapperType(System.Type)">
+            <summary>
+            Creates an interface wrapper proxy type
+            </summary>
+            <param name="type">Type to proxify</param>
+            <returns>The proxy type</returns>
+        </member>
+        <member name="P:Puzzle.NAspect.Framework.IEngine.LogManager">
             <summary>
             Log manager.
             </summary>
@@ -1378,11 +1383,6 @@
             Configutration class that holds a set of aspects
             </summary>
         </member>
-        <member name="M:Puzzle.NAspect.Framework.ConfigurationElements.EngineConfiguration.#ctor">
-            <summary>
-            EngineConfiguration ctor.
-            </summary>
-        </member>
         <member name="P:Puzzle.NAspect.Framework.ConfigurationElements.EngineConfiguration.TypeExtenders">
             <summary>
             Untyped list of <c>ITypeExtender</c>s
@@ -1398,9 +1398,9 @@
             Name of this configuration.
             </summary>
         </member>
-        <member name="T:Puzzle.NAspect.Framework.Aop.PointcutTargetType">
+        <member name="M:Puzzle.NAspect.Framework.ConfigurationElements.EngineConfiguration.#ctor">
             <summary>
-            
+            EngineConfiguration ctor.
             </summary>
         </member>
         <member name="P:Puzzle.NAspect.Framework.ExtendedMember.Name">
@@ -1466,22 +1466,6 @@
             <summary>
             Implementation of IAopProxy that is mixed into every subclass and interface proxy.    
             </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.IAopProxy">
-            <summary>
-            Interface implemented by all subclass and interface proxies.
-            <seealso cref="T:Puzzle.NAspect.Framework.AopProxyMixin"/>
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.IAopProxy.HandleFastCall(Puzzle.NAspect.Framework.IAopProxy,System.Object,System.Int32,System.Object[],System.Type)">
-            <summary>
-            This is one of the key methods of the entire interception process.
-            This method handles calls from the proxy and redirects them to the interceptors.
-            </summary>
-            <param name="target">The proxy instance on which the call was invoked</param>
-            <param name="methodId">Unique identifier of the method</param>
-            <param name="returnType">The return type of the invoked method</param>
-            <returns>The result of the call chain</returns>
         </member>
         <member name="M:Puzzle.NAspect.Framework.AopProxyMixin.#ctor">
             <summary>
@@ -1555,6 +1539,22 @@
             Returns the value signature of the call.
             parameter values are represented with ".ToString()"
             </summary>
+        </member>
+        <member name="T:Puzzle.NAspect.Framework.IAopProxy">
+            <summary>
+            Interface implemented by all subclass and interface proxies.
+            <seealso cref="T:Puzzle.NAspect.Framework.AopProxyMixin"/>
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.IAopProxy.HandleFastCall(Puzzle.NAspect.Framework.IAopProxy,System.Object,System.Int32,System.Object[],System.Type)">
+            <summary>
+            This is one of the key methods of the entire interception process.
+            This method handles calls from the proxy and redirects them to the interceptors.
+            </summary>
+            <param name="target">The proxy instance on which the call was invoked</param>
+            <param name="methodId">Unique identifier of the method</param>
+            <param name="returnType">The return type of the invoked method</param>
+            <returns>The result of the call chain</returns>
         </member>
         <member name="T:Puzzle.NAspect.Framework.InterfaceProxyBase">
             <summary>
@@ -1793,6 +1793,19 @@
             <param name="method">a method,property or ctor</param>
             <returns>string based representation of the method signature</returns>
         </member>
+        <member name="T:Puzzle.NAspect.Framework.Tools.Text">
+            <summary>
+            Util class for strings
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Framework.Tools.Text.IsMatch(System.String,System.String)">
+            <summary>
+            Matches wildcard patterns in strings.
+            </summary>
+            <param name="text">string to match.</param>
+            <param name="pattern">matching pattern.</param>
+            <returns>true if match, otherwise false.</returns>
+        </member>
         <member name="T:Puzzle.NAspect.Debug.Serialization.Elements.VizAspect">
             <summary>
             DTO for the VS.NET 2005 debugger visualiser
@@ -1816,61 +1829,6 @@
         <member name="T:Puzzle.NAspect.Debug.Serialization.Elements.VizConstructor">
             <summary>
             DTO for the VS.NET 2005 debugger visualiser
-            </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase">
-            <summary>
-            DTO for the VS.NET 2005 debugger visualiser
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.GetProxyText">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.GetRealText">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.GetCallSample">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.GetParamTypes">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.Name">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.Parameters">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.Interceptors">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.OwnerType">
-            <summary>
-            
             </summary>
         </member>
         <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizConstructor.ToString">
@@ -1922,12 +1880,6 @@
             DTO for the VS.NET 2005 debugger visualiser
             </summary>
         </member>
-        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizInterceptor.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
         <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizInterceptor.Name">
             <summary>
             
@@ -1958,9 +1910,80 @@
             
             </summary>
         </member>
+        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizInterceptor.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase">
+            <summary>
+            DTO for the VS.NET 2005 debugger visualiser
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.Parameters">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.Interceptors">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.OwnerType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.GetProxyText">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.GetRealText">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.GetCallSample">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.GetParamTypes">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethodBase.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Puzzle.NAspect.Debug.Serialization.Elements.VizMethod">
             <summary>
             DTO for the VS.NET 2005 debugger visualiser
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethod.ReturnType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethod.Mixin">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Puzzle.NAspect.Debug.Serialization.Elements.VizMethod.GetProxyText">
@@ -1986,16 +2009,6 @@
             
             </summary>
             <returns></returns>
-        </member>
-        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethod.ReturnType">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Puzzle.NAspect.Debug.Serialization.Elements.VizMethod.Mixin">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:Puzzle.NAspect.Debug.Serialization.Elements.VizMixin">
             <summary>
@@ -2117,19 +2130,6 @@
             <summary>
             
             </summary>
-        </member>
-        <member name="T:Puzzle.NAspect.Framework.Tools.Text">
-            <summary>
-            Util class for strings
-            </summary>
-        </member>
-        <member name="M:Puzzle.NAspect.Framework.Tools.Text.IsMatch(System.String,System.String)">
-            <summary>
-            Matches wildcard patterns in strings.
-            </summary>
-            <param name="text">string to match.</param>
-            <param name="pattern">matching pattern.</param>
-            <returns>true if match, otherwise false.</returns>
         </member>
     </members>
 </doc>
