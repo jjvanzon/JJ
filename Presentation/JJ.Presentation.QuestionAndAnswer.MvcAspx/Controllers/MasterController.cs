@@ -5,20 +5,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JJ.Framework.Reflection.Exceptions;
-using JJ.Framework.Data;
 using JJ.Framework.Presentation;
 using JJ.Framework.Presentation.Mvc;
 using JJ.Business.CanonicalModel;
-using JJ.Data.QuestionAndAnswer;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
-using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.MvcAspx.Names;
 using JJ.Presentation.QuestionAndAnswer.MvcAspx.Helpers;
-using System.Threading;
-using System.Collections.Specialized;
 using JJ.Framework.Web;
 
 namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
@@ -99,7 +91,7 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
             throw new UnexpectedViewModelTypeException(viewModel);
         }
 
-        private static IDictionary<Type, Names> _dictionary = new Dictionary<Type, Names>()
+        private static Dictionary<Type, Names> _dictionary = new Dictionary<Type, Names>()
         {
             { typeof(CategorySelectorViewModel), new Names(ControllerNames.CategorySelector, ActionNames.Index, ViewNames.Index) },
             { typeof(LoginViewModel), new Names(ControllerNames.Login, ActionNames.Index, ViewNames.Index) },
