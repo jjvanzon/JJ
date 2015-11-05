@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5590E634-9059-4594-89FF-FAF51C041869}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BackupsOfLooseSourceFiles</RootNamespace>
+    <AssemblyName>BackupsOfLooseSourceFiles</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="0214-06-14 Backup of XmlToObjectConverter.cs" />
+    <Compile Include="2011-03-01 Backup of OldAdapter.cs" />
+    <Compile Include="2011-07-03 Backup of Delegates.cs" />
+    <Compile Include="2011-07-04 Backup of Response %28with logging%29.cs" />
+    <Compile Include="2011-07-11 Backup of ButtonStyle %28before making ButtonStateStyle non-events%29.cs" />
+    <Compile Include="2011-07-11 Backup of ButtonStyle %28multi-state management with interception%29.cs" />
+    <Compile Include="2011-08-08 Backup of Scale %28with its own index implementation%29.cs" />
+    <Compile Include="2011-08-09 Backup of GraphicsHelper.cs" />
+    <Compile Include="2011-08-09 IIndex.cs" />
+    <Compile Include="2011-08-10 Backup of Picture %28with non-graphics operator%29.cs" />
+    <Compile Include="2011-08-10 Backup of PictureStyle %28with non-graphics operator%29.cs" />
+    <Compile Include="2011-08-10 Backup of WinFormsScreen %28before removing some code%29.cs" />
+    <Compile Include="2011-09-16 Backup of ValueBinder.cs" />
+    <Compile Include="2011-10-03 Backup of Response %28before reverting bad attempt to prevent auto-creation%29.cs" />
+    <Compile Include="2011-10-03 Backup of Response %28before trying if old type to follow function worked%29.cs" />
+    <Compile Include="2011-12-23 Circle.Data.Validation.UnitTest.IsUniqueTestsBase %28non-working or non-workable tests%29.cs" />
+    <Compile Include="2012-01-23 Backup of FileSaver %28before removing more publics%29.cs" />
+    <Compile Include="2012-02-06 FileFunctionsTests %28before removing preventive cleaning%29.cs" />
+    <Compile Include="2012-04-14 Backup of DocumentReferenceXml.cs" />
+    <Compile Include="2012-10-11 Backup of Conditions.cs" />
+    <Compile Include="2012-11-13 Backup of Union.cs" />
+    <Compile Include="2012-11-13 Backup of UnionAccessor.cs" />
+    <Compile Include="2012-11-17 Backup of DocumentInstance.cs" />
+    <Compile Include="2012-11-17 Backup of DocumentOperator.cs" />
+    <Compile Include="2012-11-19 Backup of Adder.cs" />
+    <Compile Include="2012-11-25 Backup of DocumentOperatorXml_Original.cs" />
+    <Compile Include="2012-11-25 Backup of DocumentXml_Original.cs" />
+    <Compile Include="2012-11-25 Backup of PatchOperatorInletNamedReferenceXml.cs" />
+    <Compile Include="2012-11-25 Backup of PatchOperatorInletReferenceXml.cs" />
+    <Compile Include="2012-11-25 Backup of PatchOperatorOutletNamedReferenceXml.cs" />
+    <Compile Include="2012-12-11 Backup of DocumentParameters.cs" />
+    <Compile Include="2012-12-13 Backup of PatchOutletReferenceXml.cs" />
+    <Compile Include="2012-12-13 Backup of PatchTypedOperatorNamedReferenceXml.cs" />
+    <Compile Include="2012-12-13 Backup of PatchTypedOperatorReferenceXml.cs" />
+    <Compile Include="2012-12-15 Backup of PatchInletNamedReferenceXml.cs" />
+    <Compile Include="2013-0-29 Backup of CategoryEnum.cs" />
+    <Compile Include="2013-0-29 Backup of QuestionCategoryExtensions.Enums.cs" />
+    <Compile Include="2013-01-07 Backup of QuestionDetailPresenter.cs" />
+    <Compile Include="2013-02-11 Backup of ExpressionHelper %28before split up%29.cs" />
+    <Compile Include="2013-02-12 Backup of ExpressionToValueTranslator2 %282%29.cs" />
+    <Compile Include="2013-02-12 Backup of ExpressionToValueTranslator2.cs" />
+    <Compile Include="2013-02-13 Backup of ExpressionHelper_UsingCustomExpressionVisitors_UsingStack.cs" />
+    <Compile Include="2013-02-13 Backup of ExpressionToValueTranslator2_UsingStack.cs" />
+    <Compile Include="2013-02-14 Backup of ExpressionToValueTranslator.cs" />
+    <Compile Include="2013-02-20 Backup of Assert %28before normalized methods%29.cs" />
+    <Compile Include="2013-06-18 Backup of DinnersController.cs" />
+    <Compile Include="2013-06-19 Backup of ViewDataKeys.cs" />
+    <Compile Include="2013-09-09 Backup of AnswerBase.cs" />
+    <Compile Include="2013-09-09 Backup of QuestionBase.cs" />
+    <Compile Include="2013-09-13 Backup of Configuration.cs" />
+    <Compile Include="2013-09-13 Backup of ConfigurationSection.cs" />
+    <Compile Include="2013-09-13 Backup of IPersistenceSettings.cs" />
+    <Compile Include="2013-09-13 Backup of IPersistenceSettings_Old.cs" />
+    <Compile Include="2013-09-13 Backup of XmlExpressionTranslator.cs" />
+    <Compile Include="2013-09-13 Backup of XmlToObjectConverter.cs" />
+    <Compile Include="2013-09-17 EntityWrapper.cs" />
+    <Compile Include="2013-09-17 IEntityWrapper.cs" />
+    <Compile Include="2013-09-29 Backup of QuestionSelector.cs" />
+    <Compile Include="2013-10-28 Backup of HtmlHelperExtensions.Collections.cs" />
+    <Compile Include="2013-11-03 Backup o CategoryNodeViewModel.cs" />
+    <Compile Include="2013-11-06 Backup of HtmlHelperExtensions.Collections %282%29.cs" />
+    <Compile Include="2013-11-06 Backup of HtmlHelperExtensions.Collections.cs" />
+    <Compile Include="2013-11-21 Backup of DefinitionSelector %282%29.cs" />
+    <Compile Include="2013-11-21 Backup of DefinitionSelector.cs" />
+    <Compile Include="2013-12-24 Backup of QuestionFlagPresenter.cs" />
+    <Compile Include="2014-01-10 Backup QuestionsController %282%29.cs" />
+    <Compile Include="2014-01-10 QuestionsController.cs" />
+    <Compile Include="2014-02-03 Backup of XmlContext %282%29.cs" />
+    <Compile Include="2014-02-03 Backup of XmlContext.cs" />
+    <Compile Include="2014-02-04 Backup of XmlContext.cs" />
+    <Compile Include="2014-02-04 Backup of XmlDocumentWrapper.cs" />
+    <Compile Include="2014-02-05 Backup of EntityRepository_Original.cs" />
+    <Compile Include="2014-02-05 Backup of XmlContext_Original.cs" />
+    <Compile Include="2014-02-06 Backup of RandomQuestionRepositories.cs" />
+    <Compile Include="2014-02-07 Backup of IEntityAssociation.cs" />
+    <Compile Include="2014-02-07 Backup of XmlDocumentAccessorFactory.cs" />
+    <Compile Include="2014-02-07 Backup of XmlDocumentAcessor.cs" />
+    <Compile Include="2014-04-01 Backup of SetTextWithSyncPresenter.cs" />
+    <Compile Include="2014-05-13 Backup of SetTextViewCode.cs" />
+    <Compile Include="2014-06-01 Backup of XmlHelper %28JJ.Framework.Persistence.Xml%29.cs" />
+    <Compile Include="2014-06-01 Backup of XmlHelper %28JJ.Framework.Persistence.Xml.Linq%29.cs" />
+    <Compile Include="2014-06-05 Backup of XmlToObjectConverter.cs" />
+    <Compile Include="2014-06-10 Backup of XmlToObjectConverter.cs" />
+    <Compile Include="2014-06-11 Backup of ComplicatedElement.cs" />
+    <Compile Include="2014-06-11 Backup of ElementWithSimpleTypes.cs" />
+    <Compile Include="2014-06-12 Backup of ElementWithNullableTypes.cs" />
+    <Compile Include="2014-06-12 Backup of XmlToObjectConverterTests_Other.cs" />
+    <Compile Include="2014-06-14 Backup of XmlToObjectConverter.cs" />
+    <Compile Include="2014-06-25 Backup of ObjectToXmlConverter_UsingXmlWriter.cs" />
+    <Compile Include="2014-07-14 Backup of NumberBase.cs" />
+    <Compile Include="2014-08-07 Backup of WcfSoapClientOfTTests.cs" />
+    <Compile Include="2014-08-18 Backup of XmlToObjectConverter.cs" />
+    <Compile Include="2014-12-31 Backup of ObjectStatusManager.cs" />
+    <Compile Include="2015-01-01 Backup of EntityStatusManager_Old.cs" />
+    <Compile Include="2015-01-01 Backup of EntityStatusManager_Old2.cs" />
+    <Compile Include="2015-01-03 Backup of ViewModelExtensions_IsDirty.cs" />
+    <Compile Include="2015-01-03 Backup of ViewModelExtensions_IsNew.cs" />
+    <Compile Include="2015-01-14 Backup of AuthenticatedViewModel.cs" />
+    <Compile Include="2015-01-16 Backup of ListViewModel.cs" />
+    <Compile Include="2015-01-16 Backup of LoginPartialController.cs" />
+    <Compile Include="2015-01-16 Backup of LoginPartialPresenter.cs" />
+    <Compile Include="2015-01-20 Backup of LanguageSelectorPartialPresenter.cs" />
+    <Compile Include="2015-01-22 Backup of CookieWrapper.cs" />
+    <Compile Include="2015-01-22 Backup of HttpHeaderWrapper.cs" />
+    <Compile Include="2015-02-03 Backup of QuestionRepository %28SqlClient%29.cs" />
+    <Compile Include="2015-02-03 Backup of SqlExecutor %28QuestionAndAnswer SqlClient%29.cs" />
+    <Compile Include="2015-02-10 Validation code with property key prefixes\FluentValidator.cs" />
+    <Compile Include="2015-02-10 Validation code with property key prefixes\QuestionCategoryViewModelValidator.cs" />
+    <Compile Include="2015-02-10 Validation code with property key prefixes\QuestionEditPresenter.cs" />
+    <Compile Include="2015-02-10 Validation code with property key prefixes\QuestionEditViewModelValidator.cs" />
+    <Compile Include="2015-02-10 Validation code with property key prefixes\QuestionLinkViewModelValidator.cs" />
+    <Compile Include="2015-02-10 Validation code with property key prefixes\QuestionViewModelValidator.cs" />
+    <Compile Include="2015-02-10 Validation code with property key prefixes\ValidatorBase.cs" />
+    <Compile Include="2015-02-11 Backup of AutoCreateRelatedEntitiesExtensions %28QuestionAndAnswer%29.cs" />
+    <Compile Include="2015-02-11 Backup of EnumEntityHelper.cs" />
+    <Compile Include="2015-02-28 Backup of IMvcActionDispatcherMapping.cs" />
+    <Compile Include="2015-02-28 Backup of MasterController %28QuestionAndAnswer%29 %28before removing GetActionResult%29.cs" />
+    <Compile Include="2015-02-28 Backup of MvcActionDispatcherMapping.cs" />
+    <Compile Include="2015-02-29 Backup of MasterController %28ReturnActions demo%29 %28before removing GetActionResult%29.cs" />
+    <Compile Include="2015-03-01 Backup of AccessorTests_UsingExpressions.cs" />
+    <Compile Include="2015-03-01 Backup of ActionDispatcherHelper %28QuestionAndAnswer%29.cs" />
+    <Compile Include="2015-03-01 Backup of ActionDispatcherHelper %28return actions demo%29.cs" />
+    <Compile Include="2015-03-03 Backup of AddOperatorValidator_Org.cs" />
+    <Compile Include="2015-03-03 Backup of GenericOperatorValidator.cs" />
+    <Compile Include="2015-03-05 Backup of ExpressionToValuesTranslator.cs" />
+    <Compile Include="2015-03-05 Backup of IRepository %28Synthesizer%29.cs" />
+    <Compile Include="2015-03-05 Backup of RepositoryBase %28Synthesizer%29.cs" />
+    <Compile Include="2015-03-07 Backup of ExpressionToValueTranslator rev138.cs" />
+    <Compile Include="2015-03-07 Backup of SampleValidator2.cs" />
+    <Compile Include="2015-03-08 Backup of ISampleChannelRepository.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\ISampleLoader.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\MonoSampleLoader.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\Properties\AssemblyInfo.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\SampleLoaderBase.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\SampleLoaderFactory.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\SampleLoadHelper.cs" />
+    <Compile Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\StereoSampleLoader.cs" />
+    <Compile Include="2015-03-08 Backup of SampleChannel.cs" />
+    <Compile Include="2015-03-08 Backup of SampleChannelMapping.cs" />
+    <Compile Include="2015-03-08 Backup of SampleChannelRepository.cs" />
+    <Compile Include="2015-03-08 Backup of SampleChannelValidator.cs" />
+    <Compile Include="2015-03-08 Backup of SampleChannelWarningValidator.cs" />
+    <Compile Include="2015-03-08 Backup of UnlinkExtensions %28Synthesizer%29.cs" />
+    <Compile Include="2015-03-08 Backup of UnlinkRelatedEntitiesExtensions %28Synthesizer%29.cs" />
+    <Compile Include="2015-03-12 Backup of PatchInletCalculator.cs" />
+    <Compile Include="2015-03-12 Backup of PatchOutletCalculator.cs" />
+    <Compile Include="2015-03-12 Backup of SignalPassthroughCalculator.cs" />
+    <Compile Include="2015-03-13 Backup of SampleOperatorCalculator.cs" />
+    <Compile Include="2015-03-13 Backup of TimeDivideCalculator.cs" />
+    <Compile Include="2015-03-16 Backup of ActionMapping.cs" />
+    <Compile Include="2015-03-17 Backup of DivideWithOriginCalculator.cs" />
+    <Compile Include="2015-03-17 Backup of DivideWithoutOriginCalculator.cs" />
+    <Compile Include="2015-03-17 Backup of TimeMultiplyWithOriginCalculator.cs" />
+    <Compile Include="2015-03-17 Backup of TimeMultiplyWithoutOriginCalculator.cs" />
+    <Compile Include="2015-03-19 Backup of Alignment.cs" />
+    <Compile Include="2015-03-21 Backup of Container %28Svg%29.cs" />
+    <Compile Include="2015-03-21 Backup of TextHelper.cs" />
+    <Compile Include="2015-03-23 Backup of SvgDrawer2.cs" />
+    <Compile Include="2015-03-23 Backup of ToAbsoluteVisitor2.cs" />
+    <Compile Include="2015-03-24 Backup of Svg Explicit Inverse Property Management\ElementBase.cs" />
+    <Compile Include="2015-03-24 Backup of Svg Explicit Inverse Property Management\LinkToExtensions.cs" />
+    <Compile Include="2015-03-24 Backup of Svg Explicit Inverse Property Management\SpecializedList.cs" />
+    <Compile Include="2015-03-24 Backup of Svg Explicit Inverse Property Management\SvgChildren.cs" />
+    <Compile Include="2015-03-24 Backup of ToAbsoluteVisitor.cs" />
+    <Compile Include="2015-03-29 Backup of HitTester.cs" />
+    <Compile Include="2015-03-29 Backup of LinkToExtensions %28Svg%29.cs" />
+    <Compile Include="2015-03-29 Backup of UnlinkExtensions %28Svg%29.cs" />
+    <Compile Include="2015-03-30 Backup of OneToManyHandler2.cs" />
+    <Compile Include="2015-03-30 Backup of ParentToChildrenHandler2.cs" />
+    <Compile Include="2015-04-01 Backup of GestureEventArgs.cs" />
+    <Compile Include="2015-04-04 Backup of ToViewModelExtensions %28Svg%29.cs" />
+    <Compile Include="2015-04-05 Backup of DragDropEventArgs.cs" />
+    <Compile Include="2015-04-05 Backup of DragDropGesture.cs" />
+    <Compile Include="2015-04-05 Backup of MoveOperatorGesture.cs" />
+    <Compile Include="2015-04-06 Backup of ToEntityExtensions.cs" />
+    <Compile Include="2015-04-07 Backup of ElementGesture.cs" />
+    <Compile Include="2015-04-07 Backup of ElementGestures.cs" />
+    <Compile Include="2015-04-10 Backup of OperatorElementsPositioner.cs" />
+    <Compile Include="2015-04-12 Backup of CurveIn.cs" />
+    <Compile Include="2015-04-12 Backup of CurveInMapping %28Memory%29.cs" />
+    <Compile Include="2015-04-12 Backup of CurveInMapping %28NHibernate%29.cs" />
+    <Compile Include="2015-04-12 Backup of CurveInRepository.cs" />
+    <Compile Include="2015-04-12 Backup of CurveInValidator_Org.cs" />
+    <Compile Include="2015-04-12 Backup of CurveInWarningValidator_Org.cs" />
+    <Compile Include="2015-04-12 Backup of CurveInWrapper_Org.cs" />
+    <Compile Include="2015-04-12 Backup of IAppSettings.cs" />
+    <Compile Include="2015-04-12 Backup of ICurveInRepository.cs" />
+    <Compile Include="2015-04-12 Backup of ISampleOperatorRepository.cs" />
+    <Compile Include="2015-04-12 Backup of IValueOperatorRepository.cs" />
+    <Compile Include="2015-04-12 Backup of SampleOperator.cs" />
+    <Compile Include="2015-04-12 Backup of SampleOperatorMapping %28Memory%29.cs" />
+    <Compile Include="2015-04-12 Backup of SampleOperatorMapping %28NHibernate%29.cs" />
+    <Compile Include="2015-04-12 Backup of SampleOperatorRepository.cs" />
+    <Compile Include="2015-04-12 Backup of SampleOperatorValidator_Org.cs" />
+    <Compile Include="2015-04-12 Backup of SampleOperatorWarningValidator_Org.cs" />
+    <Compile Include="2015-04-12 Backup of SampleOperatorWrapper_Org.cs" />
+    <Compile Include="2015-04-12 Backup of ValueOperator.cs" />
+    <Compile Include="2015-04-12 Backup of ValueOperatorMapping %28Memory%29.cs" />
+    <Compile Include="2015-04-12 Backup of ValueOperatorMapping %28NHibernate%29.cs" />
+    <Compile Include="2015-04-12 Backup of ValueOperatorRepository.cs" />
+    <Compile Include="2015-04-12 Backup of ValueOperatorValidator_Org.cs" />
+    <Compile Include="2015-04-12 Backup of ValueOperatorWarningValidator_Org.cs" />
+    <Compile Include="2015-04-12 Backup of ValueOperatorWrapper_Org.cs" />
+    <Compile Include="2015-04-15 Backup of InletToolTipRectangleConverter.cs" />
+    <Compile Include="2015-04-19 Backup of WebHelper.cs" />
+    <Compile Include="2015-04-21 Backup of ActionDispatcherMapping.cs" />
+    <Compile Include="2015-04-23 ActionDispatcher.cs" />
+    <Compile Include="2015-04-25 Backup of Document.cs" />
+    <Compile Include="2015-04-25 Backup of LibraryReference.cs" />
+    <Compile Include="2015-04-25 Backup of Transport.cs" />
+    <Compile Include="2015-04-25 Backup of Workspace.cs" />
+    <Compile Include="2015-04-26 Backup of CurveListItemViewModel.cs" />
+    <Compile Include="2015-04-26 Backup of DocumentListItemViewModel.cs" />
+    <Compile Include="2015-04-27 Backup of PatchDetailsForm.cs" />
+    <Compile Include="2015-04-27 Backup of PatchDetailsForm.Designer.cs">
+      <DependentUpon>2015-04-27 Backup of PatchDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-04-27 Backup of PatchDetailsForm_Old.cs" />
+    <Compile Include="2015-04-27 Backup of PatchDetailsForm_Old.Designer.cs">
+      <DependentUpon>2015-04-27 Backup of PatchDetailsForm_Old.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-04-29 Backup of MenuControl.cs" />
+    <Compile Include="2015-04-29 Backup of MenuItemViewModel.cs" />
+    <Compile Include="2015-04-29 Backup of MenuViewModel.cs" />
+    <Compile Include="2015-04-29 Backup of ViewMenuViewModel %28Synthesizer%29.cs" />
+    <Compile Include="2015-04-30 Backup of DocumentListUserControl.cs" />
+    <Compile Include="2015-04-30 Backup of DocumentListUserControl.Designer.cs">
+      <DependentUpon>2015-04-30 Backup of DocumentListUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-05-05 Backup of CannotDeletePresenter.cs" />
+    <Compile Include="2015-05-05 Backup of CannotDeleteViewModel.cs" />
+    <Compile Include="2015-05-05 Backup of DocumentConfirmDeleteEventArgs.cs" />
+    <Compile Include="2015-05-05 Backup of DocumentDetailsEventArgs.cs" />
+    <Compile Include="2015-05-05 Backup of DocumentListForm.cs" />
+    <Compile Include="2015-05-05 Backup of DocumentListForm.Designer.cs">
+      <DependentUpon>2015-05-05 Backup of DocumentListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-05-05 Backup of DocumentListUserControl.cs" />
+    <Compile Include="2015-05-18 Backup of EffectListViewModel.cs" />
+    <Compile Include="2015-05-18 Backup of SamplePropertiesViewModel.cs" />
+    <Compile Include="2015-05-18 Backup of TagHelper %28Synthesizer.WinForms%29.cs" />
+    <Compile Include="2015-05-18 Backup of TestListUserControl.cs" />
+    <Compile Include="2015-05-18 Backup of TestListUserControl.Designer.cs">
+      <DependentUpon>2015-05-18 Backup of TestListUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-05-19 Backup of ToDeleteViewModelExtensions.cs" />
+    <Compile Include="2015-05-19 Backup of ToDetailsOrPropertiesViewModelExtensions.cs" />
+    <Compile Include="2015-05-19 Backup of ToDocumentTreeViewModelExtensions.cs" />
+    <Compile Include="2015-05-25 Backup of DefaultConstants %28Business.Synthesizer%29.cs" />
+    <Compile Include="2015-05-25 Backup of DocumentIDEventArgs %28Synthesizer.WinForms%29.cs" />
+    <Compile Include="2015-05-25 Backup of IDEventArgs %28Synthesizer.WinForms%29.cs" />
+    <Compile Include="2015-05-25 Backup of PageEventArgs %28Synthesizer.WinForms%29.cs" />
+    <Compile Include="2015-06-01 Backup of IDNameAndListIndexViewModel.cs" />
+    <Compile Include="2015-06-02 Backup of ViewModelHelper.KeyViewModels %28Synthesizer%29.cs" />
+    <Compile Include="2015-06-04 Backup of EffectListPresenter.cs" />
+    <Compile Include="2015-06-04 Backup of InstrumentListPresenter.cs" />
+    <Compile Include="2015-06-05 Backup of AudioFileOutputListForm.cs" />
+    <Compile Include="2015-06-05 Backup of AudioFileOutputListForm.Designer.cs">
+      <DependentUpon>2015-06-05 Backup of AudioFileOutputListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-06-05 Backup of CurveListForm.cs" />
+    <Compile Include="2015-06-05 Backup of CurveListForm.Designer.cs">
+      <DependentUpon>2015-06-05 Backup of CurveListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-06-05 Backup of PatchListForm.cs" />
+    <Compile Include="2015-06-05 Backup of PatchListForm.Designer.cs">
+      <DependentUpon>2015-06-05 Backup of PatchListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-06-05 Backup of SampleListForm.cs" />
+    <Compile Include="2015-06-05 Backup of SampleListForm.Designer.cs">
+      <DependentUpon>2015-06-05 Backup of SampleListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-06-20 Backup of AudioFileOutputPropertiesForm.cs" />
+    <Compile Include="2015-06-20 Backup of AudioFileOutputPropertiesForm.Designer.cs">
+      <DependentUpon>2015-06-20 Backup of AudioFileOutputPropertiesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-06-25 Backup of OperatorCalculatorBase_Accessor.cs" />
+    <Compile Include="2015-06-25 Backup of OperatorCalculatorNew_Accessor.cs" />
+    <Compile Include="2015-06-25 Backup of WhiteNoise_OperatorCalculator.cs" />
+    <Compile Include="2015-07-08 Backup of EntityFactory %28Synthesizer%29.cs" />
+    <Compile Include="2015-07-08 Backup of PersistenceWrapper %28Synthesizer%29.cs" />
+    <Compile Include="2015-07-12 Backup of AudioFileOutputChannelKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of AudioFileOutputKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of AudioFileOutputListKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of ChildDocumentEventArgs.cs" />
+    <Compile Include="2015-07-12 Backup of ChildDocumentHelper.cs" />
+    <Compile Include="2015-07-12 Backup of ChildDocumentKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of ChildDocumentSubListItemEventArgs.cs" />
+    <Compile Include="2015-07-12 Backup of CurveKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of CurveListKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of DocumentKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of InletKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of InletOrOutletKey.cs" />
+    <Compile Include="2015-07-12 Backup of NodeKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of OperatorKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of OutletKey.cs" />
+    <Compile Include="2015-07-12 Backup of OutletKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of PatchKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of PatchListKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of PlayHelper %28Synthesizer%29.cs" />
+    <Compile Include="2015-07-12 Backup of ReferencedDocumentKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of SampleKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of SampleListKeysViewModel.cs" />
+    <Compile Include="2015-07-12 Backup of ViewModelEventArgs.cs" />
+    <Compile Include="2015-07-29 Backup of ChildDocumentGridKeysViewModel.cs" />
+    <Compile Include="2015-07-29 Backup of ChildDocumentTreeNodeKeysViewModel.cs" />
+    <Compile Include="2015-08-11 Backup of EffectGridUserControl.cs" />
+    <Compile Include="2015-08-11 Backup of EffectGridUserControl.Designer.cs">
+      <DependentUpon>2015-08-11 Backup of EffectGridUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2015-08-16 Backup of OperatorHelper.cs" />
+    <Compile Include="2015-08-23 Backup of CalculationVisitor_WithFlatClone.cs" />
+    <Compile Include="2015-08-23 Backup of DocumentRepository.cs" />
+    <Compile Include="2015-08-23 Backup of GuidEventArgs.cs" />
+    <Compile Include="2015-08-23 Backup of NullableInt32EventArgs.cs" />
+    <Compile Include="2015-08-23 Backup of SelectOperatorEventArgs.cs" />
+    <Compile Include="2015-08-23 Backup of SetValueEventArgs.cs" />
+    <Compile Include="2015-08-30 Backup of SynthesizerContext %28before introducing check if read bytes equals bytes to save%29.cs" />
+    <Compile Include="2015-08-30 Backup of SynthesizerContext %28before removing useless check if read bytes equals bytes to save%29.cs" />
+    <Compile Include="2015-09-03 Backup of MainPresenter %28Synthesizer%29.cs" />
+    <Compile Include="2015-09-05 Backup of Operator_SideEffect_UpdateDependentCustomOperators.cs" />
+    <Compile Include="2015-09-09 Backup of MoveEventArgs.cs" />
+    <Compile Include="2015-09-11 Backup of AddLineGesture.cs" />
+    <Compile Include="2015-09-11 Backup of LineGesture.cs" />
+    <Compile Include="2015-09-15 Backup of ViewModelToDiagramConverter.cs" />
+    <Compile Include="2015-09-21 Backup of CurveFactory.cs" />
+    <Compile Include="2015-09-21 Backup of OperatorFactory.cs" />
+    <Compile Include="2015-09-22 Backup of AudioFileOutputRepository.cs" />
+    <Compile Include="2015-09-22 Backup of CurveRepository.cs" />
+    <Compile Include="2015-09-22 Backup of PatchRepository.cs" />
+    <Compile Include="2015-09-23 Backup of ChildDocumentListItemViewModel.cs" />
+    <Compile Include="2015-09-23 Backup of CurveListItemViewModel.cs" />
+    <Compile Include="2015-09-23 Backup of PatchListItemViewModel.cs" />
+    <Compile Include="2015-10-15 Backup of VectorGraphics Classes\Diagram.cs" />
+    <Compile Include="2015-10-15 Backup of VectorGraphics Classes\Element.cs" />
+    <Compile Include="2015-10-15 Backup of VectorGraphics Classes\GestureBase.cs" />
+    <Compile Include="2015-10-15 Backup of VectorGraphics Classes\GestureHandler.cs" />
+    <Compile Include="2015-10-15 Backup of VectorGraphics Classes\IDiagramGestureHandling.cs" />
+    <Compile Include="2015-10-15 Backup of VectorGraphics Classes\IGesture.cs" />
+    <Compile Include="2015-10-15 Backup of VectorGraphics Classes\MouseEventArgs.cs" />
+    <Compile Include="2015-10-15 Backup of VectorGraphics Classes\MouseEventArgsInPixels.cs" />
+    <Compile Include="2015-10-15 Backup of VectorGraphics Classes\MoveGesture.cs" />
+    <Compile Include="2015-10-17 Backup of CurveDetailsViewModelToDiagramConverter_Old.cs" />
+    <Compile Include="2015-10-17 Backup of MouseEventArgsRelative.cs" />
+    <Compile Include="2015-10-19 Backup of ClickClosestGesture.cs" />
+    <Compile Include="2015-10-19 Backup of ITransformer.cs" />
+    <Compile Include="2015-10-19 Backup of RotateTransformer.cs" />
+    <Compile Include="2015-10-19 Backup of ScaleTransformer.cs" />
+    <Compile Include="2015-10-20 Backup of Sine_OperatorCalculator_Old.cs" />
+    <Compile Include="2015-10-21 Backup of Element.Scaling.cs" />
+    <Compile Include="2015-10-24 Backup of CurveCalculator.cs" />
+    <Compile Include="2015-10-24 Backup of SawTooth_WithConstPitch_WithoutPhaseShift_OperatorCalculator.cs" />
+    <Compile Include="2015-10-24 Backup of SawTooth_WithVarPitch_WithoutPhaseShift_OperatorCalculator.cs" />
+    <Compile Include="2015-10-24 Backup of SquareWave_WithConstPitch_WithoutPhaseShift_OperatorCalculator.cs" />
+    <Compile Include="2015-10-24 Backup of SquareWave_WithVarPitch_WithoutPhaseShift_OperatorCalculator.cs" />
+    <Compile Include="2015-10-24 Backup of TriangleWave_WithVarPitch_WithoutPhaseShift_OperatorCalculator.cs" />
+    <Compile Include="2015-10-24 Backup of TriangleWave_WithVarPitch_WithoutPhaseShift_OperatorCalculator_Old.cs" />
+    <Compile Include="2015-10-26 Backup of OperatorWrapperBase.cs" />
+    <Compile Include="2015-10-31 Backup of MainForm.Actions.cs" />
+    <Compile Include="2015-11-04 Backup of Add_WithConstOperandA_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Add_WithConstOperandB_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Delay_WithConstTimeDifference_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithConstOrigin_AndDenominator_OperatorCalculator .cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithConstOrigin_AndNumerator_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithConstOrigin_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithOrigin_AndConstDenominator_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithOrigin_AndConstNumerator_AndDenominator_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithOrigin_AndConstNumerator_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithOrigin_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithoutOrigin_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithoutOrigin_WithConstDenominator_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Divide_WithoutOrigin_WithConstNumerator_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Multiply_WithConstOrigin_AndOperandA_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Multiply_WithConstOrigin_AndOperandB_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Multiply_WithConstOrigin_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Multiply_WithOrigin_AndConstOperandA_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Multiply_WithOrigin_AndConstOperandB_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Multiply_WithOrigin_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Multiply_WithoutOrigin_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Multiply_WithoutOrigin_WithConstOperandA_OperatorCalculator.cs" />
+    <Compile Include="2015-11-04 Backup of Multiply_WithoutOrigin_WithConstOperandB_OperatorCalculator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_Button.cs" />
+    <Compile Include="_ControlList.cs" />
+    <Compile Include="~AdapterNew.cs" />
+    <Compile Include="~AdapterOriginal1.cs" />
+    <Compile Include="~AdapterOriginal2.cs" />
+    <Compile Include="~AdapterOriginal3.cs" />
+    <Compile Include="~AddImaginaryShapesOriginal.cs" />
+    <Compile Include="~AddOutwardConnectionsAndLines.cs" />
+    <Compile Include="~AddOutwardConnectionsAndLinesFast.cs" />
+    <Compile Include="~AddOutwardConnectionsOriginal.cs" />
+    <Compile Include="~AnonymousMethodAdapter.cs" />
+    <Compile Include="~AssemblyTypeRepository.cs" />
+    <Compile Include="~BorderScalingOptions.cs" />
+    <Compile Include="~BoxPositioner_Org.cs" />
+    <Compile Include="~BoxPositioning.cs" />
+    <Compile Include="~ButtonForItem.cs" />
+    <Compile Include="~ButtonListForList.cs" />
+    <Compile Include="~ButtonList_EventOlder.cs" />
+    <Compile Include="~ButtonList_Interceptables.cs" />
+    <Compile Include="~ButtonList_New.cs" />
+    <Compile Include="~ButtonList_Old.cs" />
+    <Compile Include="~ButtonList_Org2011-06-19.cs" />
+    <Compile Include="~ButtonList_PrivateObjects.cs" />
+    <Compile Include="~ButtonList_UnclearBehavior.cs" />
+    <Compile Include="~CancelChangeEvent.cs.cs" />
+    <Compile Include="~CancelEvent.cs" />
+    <Compile Include="~ChangeEvent.cs" />
+    <Compile Include="~Children.cs" />
+    <Compile Include="~Class1.cs" />
+    <Compile Include="~ControlList.cs" />
+    <Compile Include="~DotNetAdapter.cs" />
+    <Compile Include="~Draw.cs" />
+    <Compile Include="~DrawResponse.cs" />
+    <Compile Include="~DrawResponse_Old.cs" />
+    <Compile Include="~DrawResponse_Older.cs" />
+    <Compile Include="~ErrorMessage_Old.cs" />
+    <Compile Include="~EvenOlderAdapter.cs" />
+    <Compile Include="~Event.cs" />
+    <Compile Include="~EventsT_Old.cs" />
+    <Compile Include="~Events_Org.cs" />
+    <Compile Include="~FormShapes.cs" />
+    <Compile Include="~FourSides.cs" />
+    <Compile Include="~HearNotNullable.cs" />
+    <Compile Include="~HearNotNullableT.cs" />
+    <Compile Include="~HearNotNullable_Org.cs" />
+    <Compile Include="~HearNotNullable_Org2.cs" />
+    <Compile Include="~Hear_Org.cs" />
+    <Compile Include="~IHear.cs" />
+    <Compile Include="~ImaginaryShape.cs" />
+    <Compile Include="~InputParameter.cs" />
+    <Compile Include="~InputParameterParser_Old.cs" />
+    <Compile Include="~InstanceAdapterOriginal1.cs" />
+    <Compile Include="~InstanceAdapterOriginal2.cs" />
+    <Compile Include="~Interaction.cs" />
+    <Compile Include="~InterfaceAdapter.cs" />
+    <Compile Include="~IScaleTextHoldersOriginal.cs" />
+    <Compile Include="~Label.cs" />
+    <Compile Include="~LabelDataT.cs" />
+    <Compile Include="~LabelData_Org.cs" />
+    <Compile Include="~LabelForItem.cs" />
+    <Compile Include="~LabelList.cs" />
+    <Compile Include="~LabelListData.cs" />
+    <Compile Include="~LabelListForList.cs" />
+    <Compile Include="~Label_Interceptables.cs" />
+    <Compile Include="~Label_Old.cs" />
+    <Compile Include="~Label_Org.cs" />
+    <Compile Include="~Label_UnclearBehavior.cs" />
+    <Compile Include="~Line_Org.cs" />
+    <Compile Include="~ListWithEvents_OldCode.cs" />
+    <Compile Include="~ListWithEvents_Org.cs" />
+    <Compile Include="~ManyToOne_Try1.cs" />
+    <Compile Include="~MethodWithEvents.cs" />
+    <Compile Include="~MethodWithEvents_Old.cs" />
+    <Compile Include="~NestedTypeAdapter.cs" />
+    <Compile Include="~NewAdapterOriginal1.cs" />
+    <Compile Include="~ObjectDictionary.cs" />
+    <Compile Include="~ObjectMemberAdapter.cs" />
+    <Compile Include="~ObjectRepositoryOlder.cs" />
+    <Compile Include="~OfT.cs" />
+    <Compile Include="~OldAdapter.cs" />
+    <Compile Include="~OneToMany_Try1.cs" />
+    <Compile Include="~ParameterlessEvent.cs" />
+    <Compile Include="~PointD.cs" />
+    <Compile Include="~PositionErrorMessages.cs" />
+    <Compile Include="~RealShape.cs" />
+    <Compile Include="~RectangleD_Org.cs" />
+    <Compile Include="~RepositoryTypeRepository.cs" />
+    <Compile Include="~Response_Org.cs" />
+    <Compile Include="~Response_WithMaxLevels.cs" />
+    <Compile Include="~ScreenControls.cs" />
+    <Compile Include="~ShapeEnumerable.cs" />
+    <Compile Include="~StepWithSteps_Old.cs" />
+    <Compile Include="~Sync_Old.cs" />
+    <Compile Include="~TestMethodWithEvents.cs" />
+    <Compile Include="~TextScalingOptions.cs" />
+    <Compile Include="~ToolsWindow.cs" />
+    <Compile Include="~ToolsWindow.Designer.cs">
+      <DependentUpon>~ToolsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="~TypeFieldAdapter_Org.cs" />
+    <Compile Include="~TypeMemberAdapter_Org.cs" />
+    <Compile Include="~TypePropertyAdapter_Org.cs" />
+    <Compile Include="~WaveFileOutputControl.cs" />
+    <Compile Include="~WaveFileOutputControl.Designer.cs">
+      <DependentUpon>~WaveFileOutputControl.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="2015-04-06 Backup of CommonTitles.en-US.resx" />
+    <EmbeddedResource Include="2015-04-27 Backup of PatchDetailsForm.resx">
+      <DependentUpon>2015-04-27 Backup of PatchDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2015-04-30 Backup of DocumentListUserControl.resx">
+      <DependentUpon>2015-04-30 Backup of DocumentListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2015-05-05 Backup of DocumentListForm.resx">
+      <DependentUpon>2015-05-05 Backup of DocumentListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2015-05-18 Backup of TestListUserControl.resx">
+      <DependentUpon>2015-05-18 Backup of TestListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2015-06-05 Backup of AudioFileOutputListForm.resx">
+      <DependentUpon>2015-06-05 Backup of AudioFileOutputListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2015-06-05 Backup of CurveListForm.resx">
+      <DependentUpon>2015-06-05 Backup of CurveListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2015-06-05 Backup of PatchListForm.resx">
+      <DependentUpon>2015-06-05 Backup of PatchListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2015-06-05 Backup of SampleListForm.resx">
+      <DependentUpon>2015-06-05 Backup of SampleListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2015-06-20 Backup of AudioFileOutputPropertiesForm.resx">
+      <DependentUpon>2015-06-20 Backup of AudioFileOutputPropertiesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2015-07-08 Backup of JJ.Presentation.Synthesizer.WinForms.Forms.~PatchDetailsForm.resources" />
+    <EmbeddedResource Include="2015-08-11 Backup of EffectGridUserControl.resx">
+      <DependentUpon>2015-08-11 Backup of EffectGridUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="~ToolsWindow.resx">
+      <DependentUpon>~ToolsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="~WaveFileOutputControl.resx">
+      <DependentUpon>~WaveFileOutputControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="2011-07-08 Backup of BoxPositioning.CalculateBorderLines %28using same LineEndPositioning for all corners%29.txt" />
+    <Content Include="2011-07-11 Backup of ButtonStyle All property changed event responses before normalization.txt" />
+    <Content Include="2011-07-21 GraphicsHelper.DrawImage_Org.txt" />
+    <Content Include="2011-10-01 Response org, see line 240.txt" />
+    <Content Include="2011-11-25 Backup of Unique.txt" />
+    <Content Include="2011-12-23 Circle.Code.Conditions.UnitTest.IsUniqueTestsBase %28old test for var amount of args%29.txt" />
+    <Content Include="2011-12-23 Circle.Data.Concepts.UnitTest.UniqueByKeyTests %28old Test_Validate_IsUnique_VariableAmountOfArguments%29.txt" />
+    <Content Include="2013-01-02 Backup of QuestionLinkExtensions.txt" />
+    <Content Include="2013-01-06 Backup of JJ.Framework.JavaScript.Cookies.js" />
+    <Content Include="2013-10-06 Backup of QuestionAboutCategories.aspx" />
+    <Content Include="2013-10-06 Backup of _Question.ascx" />
+    <Content Include="2013-10-28 Backup of _AvailableCategory.ascx" />
+    <Content Include="2013-10-28 Backup of _SelectedCategory.ascx" />
+    <Content Include="2013-10-29 Backup of _EditItem.ascx" />
+    <Content Include="2013-10-29 Backup of _Form.ascx" />
+    <Content Include="2013-11-06 Backup of QualifierWithFieldPrefixAssignment.txt" />
+    <Content Include="2014-01-01 Edit %28JJ.Apps.QuestionAndAnswer.AspNetMvc4, Views, Questions%29.aspx" />
+    <Content Include="2014-02-05 Backup of Entity_Generic.xml" />
+    <Content Include="2014-02-05 Backup of Entity_Original.xml" />
+    <Content Include="2015-02-09 Backup of _Paging_Old.ascx" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\en-US\JJ.Framework.Presentation.Resources.resources.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\en-US\JJ.Framework.Validation.resources.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Business.CanonicalModel.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Business.CanonicalModel.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Business.Synthesizer.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Business.Synthesizer.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Business.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Business.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Common.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Common.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.IO.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.IO.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Persistence.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Persistence.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.PlatformCompatibility.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.PlatformCompatibility.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Presentation.Resources.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Presentation.Resources.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Reflection.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Reflection.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Validation.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Framework.Validation.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Infrastructure.Synthesizer.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Infrastructure.Synthesizer.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Persistence.Synthesizer.DefaultRepositories.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Persistence.Synthesizer.DefaultRepositories.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Persistence.Synthesizer.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\JJ.Persistence.Synthesizer.pdb" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\nl-NL\JJ.Business.Synthesizer.resources.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\nl-NL\JJ.Framework.Presentation.Resources.resources.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\nl-NL\JJ.Framework.Validation.resources.dll" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\JJ.Infrastructure.Synthesizer.csproj" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\obj\Debug\JJ.Infrastructure.Synthesizer.csproj.FileListAbsolute.txt" />
+    <Content Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\obj\Debug\JJ.Infrastructure.Synthesizer.dll" />
+    <Content Include="2015-03-14 Check SpeakerSetupChannel data.sql" />
+    <Content Include="2015-04-13 Copy ValueOperator.Value to Operator.Data.sql" />
+    <Content Include="2015-05-14 Backup of AudioFileOutput_Count.sql" />
+    <Content Include="2015-05-14 Backup of AudioFileOutput_GetPageOfIDs.sql" />
+    <Content Include="2015-05-14 Backup of Curve_Count.sql" />
+    <Content Include="2015-05-14 Backup of Curve_GetPageOfIDs.sql" />
+    <Content Include="2015-05-14 Backup of Document_CountRootDocuments.sql" />
+    <Content Include="2015-05-14 Backup of Document_GetPageOfInstrumentIDs.sql" />
+    <Content Include="2015-05-14 Backup of Patch_Count.sql" />
+    <Content Include="2015-05-14 Backup of Patch_GetPageOfIDs.sql" />
+    <Content Include="2015-05-14 Backup of Sample_Count.sql" />
+    <Content Include="2015-05-14 Backup of Sample_GetPageOfIDs.sql" />
+    <Content Include="2015-06-23 SynthesizerDB migrate Operator.OperatorTypeName to Operator.OperatorTypeID.sql" />
+    <Content Include="2015-07-08 Synthesizer Get Max ID.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="2012-03-06 Circle.AppsAndMedia.Sound %28original%29.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="2012-07-18 Backup of multiple outlets classes.zip" />
+    <None Include="2012-08-18 Backup of New Computer 2012-07.doc" />
+    <None Include="2013-12-09 Backup of Absolute.Master" />
+    <None Include="2015-02-16 Backup of _EditQuestion.cshtml" />
+    <None Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Debug\jj.framework.persistence example.config" />
+    <None Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\obj\Debug\JJ.Infrastructure.Synthesizer.csprojResolveAssemblyReference.cache" />
+    <None Include="2015-04-13 23.10 DEV_SynthesizerDB %28before removing CurveIn, SampleOperator and ValueOperator tables.bak.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\bin\Release\" />
+    <Folder Include="2015-03-08 Backup of JJ.Infrastructure.Synthesizer\obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
