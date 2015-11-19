@@ -27,10 +27,10 @@ namespace JJ.Business.QuestionAndAnswer.Validation
             }
 
             For(() => Object.Answers.Count, PropertyDisplayNames.AnswersCount)
-                .Above(1);
+                .GreaterThan(1);
 
             For(() => Object.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
-                .Above(1);
+                .GreaterThan(1);
         }
     }
 }
