@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio", "NAudio\NAudio.csproj", "{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MidiFileConverter", "MidiFileConverter\MidiFileConverter.csproj", "{5B5897BD-A423-4AF8-8A59-1C1372ED77DB}"
@@ -165,5 +167,35 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = NAudio\\NAudio.csproj
+		SccProjectName0 = NAudio
+		SccLocalPath0 = NAudio
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = MidiFileConverter\\MidiFileConverter.csproj
+		SccProjectName2 = MidiFileConverter
+		SccLocalPath2 = MidiFileConverter
+		SccProjectUniqueName3 = MixDiff\\MixDiff.csproj
+		SccProjectName3 = MixDiff
+		SccLocalPath3 = MixDiff
+		SccProjectUniqueName4 = NAudioTests\\NAudioTests.csproj
+		SccProjectName4 = NAudioTests
+		SccLocalPath4 = NAudioTests
+		SccProjectUniqueName5 = NAudioDemo\\NAudioDemo.csproj
+		SccProjectName5 = NAudioDemo
+		SccLocalPath5 = NAudioDemo
+		SccProjectUniqueName6 = AudioFileInspector\\AudioFileInspector.csproj
+		SccProjectName6 = AudioFileInspector
+		SccLocalPath6 = AudioFileInspector
+		SccProjectUniqueName7 = NAudio.WindowsMediaFormat\\NAudio.WindowsMediaFormat.csproj
+		SccProjectName7 = NAudio.WindowsMediaFormat
+		SccLocalPath7 = NAudio.WindowsMediaFormat
+		SccProjectUniqueName8 = NAudioWpfDemo\\NAudioWpfDemo.csproj
+		SccProjectName8 = NAudioWpfDemo
+		SccLocalPath8 = NAudioWpfDemo
 	EndGlobalSection
 EndGlobal
