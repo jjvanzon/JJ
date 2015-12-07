@@ -1,0 +1,20 @@
+﻿NAudioWpfDemo
+
+
+winexe
+C#
+.cs
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NAudio\Source Code\1.7.2\NAudioWpfDemo\obj\Debug\
+NAudioWpfDemo
+none
+false
+DEBUG;TRACE
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NAudio\Source Code\1.7.2\NAudioWpfDemo\App.xaml
+151382652384
+524792757
+61-1059070876
+18501695886
+AudioPlaybackDemo\AudioPlaybackDemoView.xaml;DrumMachineDemo\DrumMachineDemoView.xaml;DrumMachineDemo\DrumPatternEditor.xaml;EnumMediaFoundationTransforms\EnumMftView.xaml;EqualizationDemo\EqualizationDemoView.xaml;MediaFoundationEncode\MediaFoundationEncodeView.xaml;MediaFoundationPlayback\MediaFoundationPlaybackView.xaml;MediaFoundationResample\MediaFoundationResampleView.xaml;PolygonWaveFormControl.xaml;PolylineWaveFormControl.xaml;SpectrumAnalyser.xaml;WasapiCaptureDemo\RecordingsView.xaml;WasapiCaptureDemo\WasapiCaptureDemoView.xaml;WaveFormControl.xaml;MainWindow.xaml;
+
+False
+
