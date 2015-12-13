@@ -16,5 +16,5 @@ D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NAu
 18501695886
 AudioPlaybackDemo\AudioPlaybackDemoView.xaml;DrumMachineDemo\DrumMachineDemoView.xaml;DrumMachineDemo\DrumPatternEditor.xaml;EnumMediaFoundationTransforms\EnumMftView.xaml;EqualizationDemo\EqualizationDemoView.xaml;MediaFoundationEncode\MediaFoundationEncodeView.xaml;MediaFoundationPlayback\MediaFoundationPlaybackView.xaml;MediaFoundationResample\MediaFoundationResampleView.xaml;PolygonWaveFormControl.xaml;PolylineWaveFormControl.xaml;SpectrumAnalyser.xaml;WasapiCaptureDemo\RecordingsView.xaml;WasapiCaptureDemo\WasapiCaptureDemoView.xaml;WaveFormControl.xaml;MainWindow.xaml;
 
-False
+True
 
