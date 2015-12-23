@@ -198,6 +198,9 @@ namespace NAudioDemo.AudioPlaybackDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            comboBoxLatency.Items.Add(2);
+            comboBoxLatency.Items.Add(5);
+            comboBoxLatency.Items.Add(10);
             comboBoxLatency.Items.Add(25);
             comboBoxLatency.Items.Add(50);
             comboBoxLatency.Items.Add(100);
