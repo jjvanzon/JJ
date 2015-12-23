@@ -17,7 +17,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
         [TestMethod]
         public void Test_QuestionAndAnswerOrmMappings_EntityFramework5_Directly()
         {
-            string specialConnectionString = @"metadata=res://*/Mapping.QuestionAndAnswer.csdl|res://*/Mapping.QuestionAndAnswer.ssdl|res://*/Mapping.QuestionAndAnswer.msl;provider=System.Data.SqlClient;provider connection string=""data source=.\SQLEXPRESS;initial catalog=DEV_QuestionAndAnswerDB_UnitTests;persist security info=True;user id=dev;password=dev;MultipleActiveResultSets=True;App=EntityFramework"";";
+            string specialConnectionString = @"metadata=res://*/Mapping.QuestionAndAnswer.csdl|res://*/Mapping.QuestionAndAnswer.ssdl|res://*/Mapping.QuestionAndAnswer.msl;provider=System.Data.SqlClient;provider connection string=""data source=.\SQLEXPRESS;initial catalog=DEV_QuestionAndAnswerDB_UnitTests;persist security info=True;user id=dev;password=enteentest0!;MultipleActiveResultSets=True;App=EntityFramework"";";
             using (DbContext context = new JJ.Data.QuestionAndAnswer.EntityFramework5.Mapping.QuestionAndAnswerContext(specialConnectionString))
             {
                 foreach (var entity in context.Set<Question>())
