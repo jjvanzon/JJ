@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers
 {
@@ -15,14 +16,15 @@ namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers
     {
         public static QuestionAndAnswerSqlExecutor CreateQuestionAndAnswerSqlExecutor(IContext context)
         {
-            EntityFramework5Context castedContext = (EntityFramework5Context)context;
-            SqlConnection sqlConnection = castedContext.Context.Database.Connection as SqlConnection;
+            EntityFramework5Context entityFramework5Context = (EntityFramework5Context)context;
+            SqlConnection sqlConnection = entityFramework5Context.Context.Database.Connection as SqlConnection;
             if (sqlConnection == null)
             {
-                throw new Exception("EntityFramework5Context.Context.Database.Connection must be an SqlConnection.");
+                throw new IsNotTypeException<SqlConnection>(() => entityFramework5Context.Context.Database.Connection);
             }
-            var sqlExecutor = new QuestionAndAnswerSqlExecutor(new SqlExecutor(sqlConnection));
-            return sqlExecutor;
+            ISqlExecutor sqlExecutor = SqlExecutorFactory.CreateSqlExecutor(sqlConnection);
+            var sqlExecutor2 = new QuestionAndAnswerSqlExecutor(sqlExecutor);
+            return sqlExecutor2;
         }
     }
 }
