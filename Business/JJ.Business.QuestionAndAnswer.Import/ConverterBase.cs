@@ -184,8 +184,8 @@ namespace JJ.Business.QuestionAndAnswer.Import
         {
             IValidator validator1 = new BasicQuestionValidator(question);
             IValidator validator2 = new OpenQuestionValidator(question);
-            validator1.Verify();
-            validator2.Verify();
+            validator1.Assert();
+            validator2.Assert();
         }
     }
 }
