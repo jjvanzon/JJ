@@ -291,9 +291,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Business\JJ.Business.CanonicalModel\JJ.Business.CanonicalModel.csproj">
+    <ProjectReference Include="..\..\Data\JJ.Data.Canonical\JJ.Data.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
-      <Name>JJ.Business.CanonicalModel</Name>
+      <Name>JJ.Data.Canonical</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>

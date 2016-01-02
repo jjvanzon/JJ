@@ -360,9 +360,9 @@
       <Project>{164520aa-2db7-4405-9ae5-eb515527a33b}</Project>
       <Name>JJ.Framework.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Business\JJ.Business.CanonicalModel\JJ.Business.CanonicalModel.csproj">
+    <ProjectReference Include="..\..\Data\JJ.Data.Canonical\JJ.Data.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
-      <Name>JJ.Business.CanonicalModel</Name>
+      <Name>JJ.Data.Canonical</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\JJ.Data.QuestionAndAnswer.EntityFramework5\JJ.Data.QuestionAndAnswer.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>

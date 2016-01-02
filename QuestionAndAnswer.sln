@@ -86,7 +86,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAnd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Security", "Framework\JJ.Framework.Security\JJ.Framework.Security.csproj", "{4007568E-B2B4-4FC5-AA38-34EDC272F010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.CanonicalModel", "Business\JJ.Business.CanonicalModel\JJ.Business.CanonicalModel.csproj", "{08EA4A4E-D815-47AE-9277-DA6672D36214}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.Canonical", "Data\JJ.Data.Canonical\JJ.Data.Canonical.csproj", "{08EA4A4E-D815-47AE-9277-DA6672D36214}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation", "Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj", "{79B0EAC3-5159-4FC8-B3D8-53315B205444}"
 EndProject
@@ -699,10 +699,10 @@ Global
 		SccProjectTopLevelParentUniqueName39 = QuestionAndAnswer.sln
 		SccProjectName39 = Framework/JJ.Framework.Security
 		SccLocalPath39 = Framework\\JJ.Framework.Security
-		SccProjectUniqueName40 = Business\\JJ.Business.CanonicalModel\\JJ.Business.CanonicalModel.csproj
+		SccProjectUniqueName40 = Data\\JJ.Data.Canonical\\JJ.Data.Canonical.csproj
 		SccProjectTopLevelParentUniqueName40 = QuestionAndAnswer.sln
-		SccProjectName40 = Business/JJ.Business.CanonicalModel
-		SccLocalPath40 = Business\\JJ.Business.CanonicalModel
+		SccProjectName40 = Data/JJ.Data.Canonical
+		SccLocalPath40 = Data\\JJ.Data.Canonical
 		SccProjectUniqueName41 = Framework\\JJ.Framework.Presentation\\JJ.Framework.Presentation.csproj
 		SccProjectTopLevelParentUniqueName41 = QuestionAndAnswer.sln
 		SccProjectName41 = Framework/JJ.Framework.Presentation
