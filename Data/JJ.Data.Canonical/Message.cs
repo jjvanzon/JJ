@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace JJ.Business.CanonicalModel
+namespace JJ.Data.Canonical
 {
     [DataContract]
     public class Message

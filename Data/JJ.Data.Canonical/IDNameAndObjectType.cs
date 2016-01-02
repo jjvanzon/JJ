@@ -1,4 +1,4 @@
-﻿namespace JJ.Business.CanonicalModel
+﻿namespace JJ.Data.Canonical
 {
     /// <summary>
     /// TODO: Remove class if no longer used.

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JJ.Business.CanonicalModel
+namespace JJ.Data.Canonical
 {
     public interface IResult
     {

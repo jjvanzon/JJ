@@ -9,7 +9,7 @@ using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Framework.Common;
-using JJ.Business.CanonicalModel;
+using JJ.Data.Canonical;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;

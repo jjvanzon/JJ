@@ -8,7 +8,7 @@ using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Enums;
-using JJ.Business.CanonicalModel;
+using JJ.Data.Canonical;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Framework.Common;
 using JJ.Presentation.QuestionAndAnswer.Helpers;

@@ -6,17 +6,10 @@ using System.Web.Mvc;
 using JJ.Framework.Data;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Presentation.QuestionAndAnswer.MvcAspx.Helpers;
-using JJ.Framework.Common;
-using JJ.Framework.Presentation;
-using JJ.Business.CanonicalModel;
 using JJ.Presentation.QuestionAndAnswer.MvcAspx.Names;
-using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 using JJ.Framework.Web;
-using JJ.Framework.Configuration;
 
 namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
 {

@@ -1,4 +1,4 @@
-﻿namespace JJ.Business.CanonicalModel
+﻿namespace JJ.Data.Canonical
 {
     public class IDAndName
     {

@@ -8,7 +8,7 @@ using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Data;
 using JJ.Framework.Presentation;
 using JJ.Framework.Presentation.Mvc;
-using JJ.Business.CanonicalModel;
+using JJ.Data.Canonical;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;

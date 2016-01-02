@@ -1,6 +1,6 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
-using JJ.Business.CanonicalModel;
+using JJ.Data.Canonical;
 using System;
 using System.Collections.Generic;
 using System.Linq;

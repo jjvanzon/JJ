@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JJ.Business.CanonicalModel
+namespace JJ.Data.Canonical
 {
     public class VoidResult : IResult
     {

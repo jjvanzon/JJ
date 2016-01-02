@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Presentation;
 using JJ.Framework.Presentation.Mvc;
-using JJ.Business.CanonicalModel;
+using JJ.Data.Canonical;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.MvcAspx.Names;
 using JJ.Presentation.QuestionAndAnswer.MvcAspx.Helpers;
