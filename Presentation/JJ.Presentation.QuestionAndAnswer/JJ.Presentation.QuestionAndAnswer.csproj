@@ -48,7 +48,6 @@
     <Compile Include="Names\PresenterNames.cs" />
     <Compile Include="Presenters\CategorySelectorPresenter.cs" />
     <Compile Include="Helpers\Repositories.cs" />
-    <Compile Include="Extensions\ValidationMessageExtensions.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="SideEffects\Question_SetDefaults_ForOpenQuestion_FrontEnd_SideEffect.cs" />
     <Compile Include="ToEntity\ListViewModelConverter.cs" />
@@ -102,6 +101,10 @@
     <Compile Include="ViewModels\Entities\SourceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\JJ.Business.Canonical\JJ.Business.Canonical.csproj">
+      <Project>{4dbe5e36-4b54-4e5f-9b4f-5bbf33a3cef1}</Project>
+      <Name>JJ.Business.Canonical</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Business\JJ.Business.QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
       <Name>JJ.Business.QuestionAndAnswer</Name>

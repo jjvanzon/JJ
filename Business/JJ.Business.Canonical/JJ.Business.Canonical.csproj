@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}</ProjectGuid>
+    <ProjectGuid>{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Infrastructure.Synthesizer</RootNamespace>
-    <AssemblyName>JJ.Infrastructure.Synthesizer</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>JJ.Business.Canonical</RootNamespace>
+    <AssemblyName>JJ.Business.Canonical</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -39,42 +39,27 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioOutputProcessor.cs" />
-    <Compile Include="MidiInputProcessor.cs" />
+    <Compile Include="MessageHelper.cs" />
+    <Compile Include="ResultHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationMessageExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Business\JJ.Business.Canonical\JJ.Business.Canonical.csproj">
-      <Project>{4dbe5e36-4b54-4e5f-9b4f-5bbf33a3cef1}</Project>
-      <Name>JJ.Business.Canonical</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\JJ.Data.Canonical\JJ.Data.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
       <Name>JJ.Data.Canonical</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Business\JJ.Business.Synthesizer.Api\JJ.Business.Synthesizer.Api.csproj">
-      <Project>{9451509b-96e7-43a7-87a2-74e5e582c0cd}</Project>
-      <Name>JJ.Business.Synthesizer.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Business\JJ.Business.Synthesizer\JJ.Business.Synthesizer.csproj">
-      <Project>{a2a8e75d-1fda-43fb-99f3-aff9958f654a}</Project>
-      <Name>JJ.Business.Synthesizer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\JJ.Data.Synthesizer\JJ.Data.Synthesizer.csproj">
-      <Project>{bfe8068f-e441-44d2-896d-30fbb67946bf}</Project>
-      <Name>JJ.Data.Synthesizer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\External Components\NAudio\Source Code\1.7.2\NAudio\NAudio.csproj">
-      <Project>{da4f02e3-0b5e-42cd-b8d9-5583fa51d66e}</Project>
-      <Name>NAudio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.csproj">
-      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
-      <Name>JJ.Framework.Common</Name>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
+      <Project>{59622a6e-a9ae-438c-a164-05dea2fcf8cf}</Project>
+      <Name>JJ.Framework.PlatformCompatibility</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Validation\JJ.Framework.Validation.csproj">
+      <Project>{59ddc853-62af-4f86-a803-3d4dd491e978}</Project>
+      <Name>JJ.Framework.Validation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
