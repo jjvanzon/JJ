@@ -27,5 +27,27 @@ namespace JJ.Business.Canonical
             string formattedMessages = MessageHelper.FormatMessages(result.Messages);
             return formattedMessages;
         }
+
+        public static IResult Combine(params IResult[] results)
+        {
+            if (results == null) throw new NullException(() => results);
+
+            IResult result = new VoidResult
+            {
+                Successful = true
+            };
+
+            foreach (IResult result2 in results)
+            {
+                result.Successful &= result2.Successful;
+
+                foreach (Message message in result.Messages)
+                {
+                    result.Messages.Add(message);
+                }
+            }
+
+            return result;
+        }
     }
 }
