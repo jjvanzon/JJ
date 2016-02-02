@@ -32,5 +32,55 @@ namespace JJ.Demos.Misc
             string dutchListSeparator = dutchCulture.TextInfo.ListSeparator;
             string enUSListSeparator = enUSCulture.TextInfo.ListSeparator;
         }
+
+        [TestMethod]
+        public void Test_Max_Simple()
+        {
+            int[] values = { 10, 13, -10, 0, 1, -1, 40, 20 };
+
+            int count = values.Length;
+
+            int max = Int32.MinValue;
+            for (int i = 0; i < count; i++)
+            {
+                int value = values[i];
+
+                if (max < value)
+                {
+                    max = value;
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Test_Max_With_Disappearing_Beginning()
+        {
+            int[] values = { 10, 13, -10, 0, 1, -1, 40, 20 };
+
+            int count = values.Length;
+
+            // Array index is the value index at which we start counting
+            int[] maxArray = new int[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                int max = Int32.MinValue;
+
+                for (int j = i; j < count; j++)
+                {
+                    int value = values[j];
+
+                    if (max < value)
+                    {
+                        max = value;
+                    }
+                }
+
+                maxArray[i] = max;
+            }
+
+            // If a value is added, you have to compare the max value in the arrays
+            // with the new value.
+        }
     }
 }
