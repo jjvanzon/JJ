@@ -188,7 +188,7 @@ namespace JJ.Business.Synthesizer.Helpers
             ReplaceNode(node, child);
         }
 
-        public TValue Maximum()
+        public TValue GetMaximum()
         {
             if (_root == null)
             {
@@ -203,7 +203,7 @@ namespace JJ.Business.Synthesizer.Helpers
             }
         }
 
-        public TValue Minimum()
+        public TValue GetMinimum()
         {
             if (_root == null)
             {
