@@ -1,4 +1,7 @@
-﻿/* The authors of this work have released all rights to it and placed it
+﻿/* Jan-Joost van Zon, 2016-02-03:
+This C# implementation was derived from the Java implementation retrieved from the internet. See next comment block. */
+
+/* The authors of this work have released all rights to it and placed it
 in the public domain under the Creative Commons CC0 1.0 waiver
 (http://creativecommons.org/publicdomain/zero/1.0/).
 
@@ -84,6 +87,12 @@ namespace JJ.Business.Synthesizer.Helpers
         }
     }
 
+    /// <summary>
+    /// Provides insert, delete and lookup operators that all have complexity O(log n).
+    /// It can also at any time return the maximum and minimum with the same performance.
+    /// It will prevent duplicates from being added (duplicates are ignored).
+    /// You can use key-value pairs, instead of just single values.
+    /// </summary>
     internal class RedBlackTree<TKey, TValue>
         where TKey : IComparable
     {
