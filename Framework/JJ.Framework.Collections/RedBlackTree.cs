@@ -21,7 +21,7 @@ using System.Linq;
 using System.Collections.Generic;
 using JJ.Framework.Reflection.Exceptions;
 
-namespace JJ.Business.Synthesizer.Helpers
+namespace JJ.Framework.Collections
 {
     internal enum RedBlackTreeColorEnum
     {
@@ -93,7 +93,7 @@ namespace JJ.Business.Synthesizer.Helpers
     /// It will prevent duplicates from being added (duplicates are ignored).
     /// You can use key-value pairs, instead of just single values.
     /// </summary>
-    internal class RedBlackTree<TKey, TValue>
+    public class RedBlackTree<TKey, TValue>
         where TKey : IComparable
     {
         private RedBlackTreeNode<TKey, TValue> _root;
