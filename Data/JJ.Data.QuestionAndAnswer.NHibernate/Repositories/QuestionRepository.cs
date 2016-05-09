@@ -11,13 +11,15 @@ using JJ.Data.QuestionAndAnswer.NHibernate.Helpers;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
 {
-    public class QuestionRepository : JJ.Data.QuestionAndAnswer.DefaultRepositories.QuestionRepository
+    public class QuestionRepository : DefaultRepositories.QuestionRepository
     {
         private new NHibernateContext _context;
 
         public QuestionRepository(IContext context)
             : base(context)
-        { }
+        {
+            _context = (NHibernateContext)context;
+        }
 
         public override IList<Question> GetPage(int firstIndex, int count)
         {
