@@ -15,7 +15,6 @@ namespace JJ.Framework.Data.NHibernate
     {
         public override SqlString OnPrepareStatement(global::NHibernate.SqlCommand.SqlString sql)
         {
-            // TODO: Remove code.
             Debug.WriteLine("");
             Debug.WriteLine(sql.ToString());
 
