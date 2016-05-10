@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
+using JJ.Framework.Data.SqlClient;
+using JJ.Framework.Reflection.Exceptions;
 using NHibernate;
 using NHibernate.SqlCommand;
 
@@ -10,8 +15,24 @@ namespace JJ.Framework.Data.NHibernate
     {
         public override SqlString OnPrepareStatement(global::NHibernate.SqlCommand.SqlString sql)
         {
-            //System.Diagnostics.Debug.WriteLine(sql.ToString());
-            return base.OnPrepareStatement(sql);
+            // TODO: Remove code.
+            Debug.WriteLine("");
+            Debug.WriteLine(sql.ToString());
+
+            return sql;
+        }
+
+        public override void OnGenerateCommand(IDbCommand dbCommand)
+        {
+            SqlCommand sqlCommand = dbCommand as SqlCommand;
+            if (sqlCommand == null)
+            {
+                throw new IsNotTypeException<SqlCommand>(() => dbCommand);
+            }
+
+            string sql = SqlCommandToSqlConverter.Convert(sqlCommand, includeUseStatements: true);
+            SqlLogger.WriteLine("");
+            SqlLogger.WriteLine(sql);
         }
 
         public override void AfterTransactionBegin(ITransaction tx)
