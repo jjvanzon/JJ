@@ -56,6 +56,12 @@ namespace JJ.Framework.Data.SqlClient
             {
                 string formattedParameterValue = FormatParameter(sqlParameter);
 
+                if (String.IsNullOrEmpty(formattedParameterValue))
+                {
+                    throw new Exception(
+                        "Formatting parameter value failed. Parameter value is null or empty, while it should at least be two quotes (\"''\") or \"null\".");
+                }
+
                 if (formattedParameterValue.Contains('@'))
                 {
                     throw new Exception("Parameter values with '@' in it are not supported.");
