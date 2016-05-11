@@ -21,15 +21,18 @@ namespace JJ.Framework.Data.NHibernate
             return sql;
         }
 
-        public override void OnGenerateCommand(IDbCommand dbCommand)
+        public override void OnExecutingCommand(IDbCommand dbCommand, IDbConnection dbConnection)
         {
+            if (dbCommand == null) throw new NullException(() => dbCommand);
+            if (dbConnection == null) throw new NullException(() => dbConnection);
+
             SqlCommand sqlCommand = dbCommand as SqlCommand;
             if (sqlCommand == null)
             {
                 throw new IsNotTypeException<SqlCommand>(() => dbCommand);
             }
 
-            string sql = SqlCommandToSqlConverter.Convert(sqlCommand, includeUseStatements: true);
+            string sql = SqlCommandFormatter.Convert(sqlCommand, dbConnection, includeUseStatements: true);
             SqlLogger.WriteLine("");
             SqlLogger.WriteLine(sql);
         }

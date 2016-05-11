@@ -10,26 +10,39 @@ using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Data.SqlClient
 {
-    public static class SqlCommandToSqlConverter
+    public static class SqlCommandFormatter
     {
         private static IFormatProvider _formatProvider = new CultureInfo("en-US");
 
-        public static string Convert(SqlCommand sqlCommand, bool includeUseStatements)
+        public static string Convert(SqlCommand sqlCommand)
+        {
+            return Convert(sqlCommand, null, includeUseStatements: false);
+        }
+
+        /// <summary>
+        /// Note that an sqlCommand.Connection might be null.
+        /// That is why we pass a connection as a separate parameter.
+        /// </summary>
+        public static string Convert(SqlCommand sqlCommand, IDbConnection dbConnection, bool includeUseStatements)
         {
             if (sqlCommand == null) throw new NullException(() => sqlCommand);
-            // TODO: Enable this check again.
-            //if (String.IsNullOrWhiteSpace(sqlCommand.CommandText)) throw new NullOrWhiteSpaceException(() => sqlCommand.CommandText);
+            if (String.IsNullOrWhiteSpace(sqlCommand.CommandText)) throw new NullOrWhiteSpaceException(() => sqlCommand.CommandText);
 
             if (includeUseStatements)
             {
-                if (sqlCommand.Connection == null || String.IsNullOrEmpty(sqlCommand.Connection.Database))
+                if (dbConnection == null)
                 {
-                    throw new Exception("If includeUseStatements is true, then sqlCommand.Connection.Database cannot be null or empty.");
+                    throw new Exception("If includeUseStatements is true, then dbConnection cannot be null.");
+                }
+
+                if (String.IsNullOrEmpty(dbConnection.Database))
+                {
+                    throw new Exception("If includeUseStatements is true, then dbConnection.Database cannot be null or empty.");
                 }
             }
 
             var sb = new StringBuilder();
-            sb.AppendLine(String.Format("use [{0}]", sqlCommand.Connection.Database));
+            sb.AppendLine(String.Format("use [{0}]", dbConnection.Database));
 
             sb.AppendLine(sqlCommand.CommandText);
 
@@ -181,8 +194,9 @@ namespace JJ.Framework.Data.SqlClient
             for (int i = 0; i < bytes.Length; i++)
             {
                 uint byteValue = bytes[i];
-                string byteString = byteValue.ToString("X");
-
+                string byteString = byteValue.ToString("X"); // "X" stands for hexadecimal.
+                byteString = byteString.PadLeft(2, '0');
+                
                 sb.Append(byteString);
             }
 
