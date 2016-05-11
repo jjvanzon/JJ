@@ -49,8 +49,9 @@ namespace JJ.Framework.Data.SqlClient
             sb.AppendLine(sqlCommand.CommandText);
 
             // Sort parameters in descending order, to prevent clashes when replacing them.
-            IList<SqlParameter> sortedSqlParameters = sqlCommand.Parameters.Cast<SqlParameter>().OrderByDescending(x => x.ParameterName.Length).ToArray();
-
+            IList<SqlParameter> sortedSqlParameters = sqlCommand.Parameters.Cast<SqlParameter>()
+                                                                           .OrderByDescending(x => x.ParameterName.Length)
+                                                                           .ToArray();
             foreach (SqlParameter sqlParameter in sortedSqlParameters)
             {
                 string formattedParameterValue = FormatParameter(sqlParameter);
@@ -74,7 +75,8 @@ namespace JJ.Framework.Data.SqlClient
 
         private static string FormatParameter(SqlParameter sqlParameter)
         {
-            if (sqlParameter.Value == null)
+            if (sqlParameter.Value == null ||
+                sqlParameter.Value == DBNull.Value)
             {
                 return "null";
             }
