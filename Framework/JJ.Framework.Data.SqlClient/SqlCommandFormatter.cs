@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using JJ.Framework.Common;
 using JJ.Framework.Common.Exceptions;
 using JJ.Framework.Reflection.Exceptions;
 
@@ -47,9 +48,10 @@ namespace JJ.Framework.Data.SqlClient
             sb.AppendLine(Environment.NewLine);
             sb.AppendLine(sqlCommand.CommandText);
 
-            string sql = sb.ToString();
+            // Sort parameters in descending order, to prevent clashes when replacing them.
+            IList<SqlParameter> sortedSqlParameters = sqlCommand.Parameters.Cast<SqlParameter>().OrderByDescending(x => x.ParameterName.Length).ToArray();
 
-            foreach (SqlParameter sqlParameter in sqlCommand.Parameters)
+            foreach (SqlParameter sqlParameter in sortedSqlParameters)
             {
                 string formattedParameterValue = FormatParameter(sqlParameter);
 
@@ -64,13 +66,10 @@ namespace JJ.Framework.Data.SqlClient
                     formattedParameterName = "@" + formattedParameterName;
                 }
 
-                string escapedParameterName = Regex.Escape(formattedParameterName);
-
-                string regexString = String.Format("(\\b{0}\\b)", escapedParameterName);
-                sql = Regex.Replace(sql, regexString, formattedParameterValue);
+                sb.Replace(formattedParameterName, formattedParameterValue);
             }
 
-            return sql;
+            return sb.ToString();
         }
 
         private static string FormatParameter(SqlParameter sqlParameter)
@@ -208,13 +207,5 @@ namespace JJ.Framework.Data.SqlClient
 
             return sb.ToString();
         }
-
-        //private static Regex _parameterReplacingRegex = CreateParameterReplacingRegex();
-
-        //private static Regex CreateParameterReplacingRegex()
-        //{
-        //    var regex = new Regex("");
-        //    throw new NotImplementedException();
-        //}
     }
 }
