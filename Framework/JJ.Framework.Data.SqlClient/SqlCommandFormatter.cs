@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using JJ.Framework.Common.Exceptions;
 using JJ.Framework.Reflection.Exceptions;
 
@@ -13,7 +14,7 @@ namespace JJ.Framework.Data.SqlClient
     public static class SqlCommandFormatter
     {
         private static IFormatProvider _formatProvider = new CultureInfo("en-US");
-
+        
         public static string Convert(SqlCommand sqlCommand)
         {
             return Convert(sqlCommand, null, includeUseStatements: false);
@@ -42,9 +43,11 @@ namespace JJ.Framework.Data.SqlClient
             }
 
             var sb = new StringBuilder();
-            sb.AppendLine(String.Format("use [{0}]", dbConnection.Database));
-
+            sb.Append(String.Format("use [{0}]", dbConnection.Database));
+            sb.AppendLine(Environment.NewLine);
             sb.AppendLine(sqlCommand.CommandText);
+
+            string sql = sb.ToString();
 
             foreach (SqlParameter sqlParameter in sqlCommand.Parameters)
             {
@@ -61,10 +64,13 @@ namespace JJ.Framework.Data.SqlClient
                     formattedParameterName = "@" + formattedParameterName;
                 }
 
-                sb.Replace(formattedParameterName, formattedParameterValue);
+                string escapedParameterName = Regex.Escape(formattedParameterName);
+
+                string regexString = String.Format("(\\b{0}\\b)", escapedParameterName);
+                sql = Regex.Replace(sql, regexString, formattedParameterValue);
             }
 
-            return sb.ToString();
+            return sql;
         }
 
         private static string FormatParameter(SqlParameter sqlParameter)
@@ -202,5 +208,13 @@ namespace JJ.Framework.Data.SqlClient
 
             return sb.ToString();
         }
+
+        //private static Regex _parameterReplacingRegex = CreateParameterReplacingRegex();
+
+        //private static Regex CreateParameterReplacingRegex()
+        //{
+        //    var regex = new Regex("");
+        //    throw new NotImplementedException();
+        //}
     }
 }
