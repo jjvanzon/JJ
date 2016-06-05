@@ -20,7 +20,7 @@ namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers
             SqlConnection sqlConnection = entityFramework5Context.Context.Database.Connection as SqlConnection;
             if (sqlConnection == null)
             {
-                throw new IsNotTypeException<SqlConnection>(() => entityFramework5Context.Context.Database.Connection);
+                throw new InvalidTypeException<SqlConnection>(() => entityFramework5Context.Context.Database.Connection);
             }
             ISqlExecutor sqlExecutor = SqlExecutorFactory.CreateSqlExecutor(sqlConnection);
             var sqlExecutor2 = new QuestionAndAnswerSqlExecutor(sqlExecutor);

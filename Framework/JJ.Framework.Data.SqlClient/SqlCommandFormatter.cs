@@ -156,7 +156,7 @@ namespace JJ.Framework.Data.SqlClient
         {
             if (!(sqlParameter.Value is DateTime))
             {
-                throw new InvalidTypeException<DateTime>(() => sqlParameter.Value);
+                throw new NotDateTimeException(() => sqlParameter.Value);
             }
 
             DateTime dateTime = (DateTime)sqlParameter.Value;
