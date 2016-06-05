@@ -29,7 +29,7 @@ namespace JJ.Framework.Data.NHibernate
             SqlCommand sqlCommand = dbCommand as SqlCommand;
             if (sqlCommand == null)
             {
-                throw new IsNotTypeException<SqlCommand>(() => dbCommand);
+                throw new InvalidTypeException<SqlCommand>(() => dbCommand);
             }
 
             string sql = SqlCommandFormatter.Convert(sqlCommand, dbConnection, includeUseStatements: true);

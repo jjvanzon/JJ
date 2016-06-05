@@ -156,7 +156,7 @@ namespace JJ.Framework.Data.SqlClient
         {
             if (!(sqlParameter.Value is DateTime))
             {
-                throw new IsNotTypeException<DateTime>(() => sqlParameter.Value);
+                throw new InvalidTypeException<DateTime>(() => sqlParameter.Value);
             }
 
             DateTime dateTime = (DateTime)sqlParameter.Value;
@@ -197,7 +197,7 @@ namespace JJ.Framework.Data.SqlClient
             byte[] bytes = value as byte[];
             if (bytes == null)
             {
-                throw new IsNotTypeException<byte[]>(() => value);
+                throw new InvalidTypeException<byte[]>(() => value);
             }
 
             var sb = new StringBuilder();
