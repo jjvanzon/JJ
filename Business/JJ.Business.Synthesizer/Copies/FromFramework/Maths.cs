@@ -1,9 +1,13 @@
-﻿using System;
+﻿// 2016-06-25
+// Copied from JJ.Framework.Mathematics
+// to promote inlining and made class internal.
+
+using System;
 using System.Runtime.CompilerServices;
 
-namespace JJ.Framework.Mathematics
+namespace JJ.Business.Synthesizer.Copies.FromFramework
 {
-    public static class Maths
+    internal static class Maths
     {
         public const double SQRT_2 = 1.4142135623730950;
         public const float FLOAT_SQRT_2 = 1.4142136f;
