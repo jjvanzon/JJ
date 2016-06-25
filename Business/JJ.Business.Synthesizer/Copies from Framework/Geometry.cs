@@ -1,8 +1,10 @@
-﻿using System.Runtime.CompilerServices;
+﻿// Copied from JJ.Framework.Mathematics (2016-06-25).
 
-namespace JJ.Framework.Mathematics
+using System.Runtime.CompilerServices;
+
+namespace JJ.Business.Synthesizer.CopiesFromFramework
 {
-    public static class Geometry
+    internal static class Geometry
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsInRectangle(float x, float y, float x1, float y1, float x2, float y2)
