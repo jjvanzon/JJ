@@ -82,5 +82,22 @@ namespace JJ.Demos.Misc
             // If a value is added, you have to compare the max value in the arrays
             // with the new value.
         }
+
+        [TestMethod]
+        public void Test_Misc_NaNCheck_AfterNumberCheck()
+        {
+            double value = Double.NaN;
+
+            if (value < 0.0)
+            {
+                int bla = 0;
+            }
+
+            if (Double.IsNaN(value))
+            {
+                int bla = 0;
+            }
+        }
+
     }
 }
