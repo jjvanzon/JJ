@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JJ.Data.Canonical;
+using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection.Exceptions;
 
@@ -40,11 +41,7 @@ namespace JJ.Business.Canonical
             foreach (IResult result2 in results)
             {
                 result.Successful &= result2.Successful;
-
-                foreach (Message message in result.Messages)
-                {
-                    result.Messages.Add(message);
-                }
+                result.Messages.AddRange(result2.Messages);
             }
 
             return result;

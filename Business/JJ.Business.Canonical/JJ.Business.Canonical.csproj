@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IResultExtensions.cs" />
     <Compile Include="MessageHelper.cs" />
     <Compile Include="ResultHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -50,6 +51,10 @@
     <ProjectReference Include="..\..\Data\JJ.Data.Canonical\JJ.Data.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
       <Name>JJ.Data.Canonical</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.csproj">
+      <Project>{44FD9133-5FE7-4824-BD35-27273706D127}</Project>
+      <Name>JJ.Framework.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
       <Project>{59622a6e-a9ae-438c-a164-05dea2fcf8cf}</Project>
