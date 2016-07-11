@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IResultExtensions.cs" />
+    <Compile Include="IValidatorExtensions.cs" />
     <Compile Include="MessageHelper.cs" />
     <Compile Include="ResultHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
