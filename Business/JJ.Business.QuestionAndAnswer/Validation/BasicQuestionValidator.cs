@@ -35,14 +35,14 @@ namespace JJ.Business.QuestionAndAnswer.Validation
             {
                 string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.Answer, i++);
 
-                Execute(new AnswerValidator(answer), messagePrefix);
+                ExecuteValidator(new AnswerValidator(answer), messagePrefix);
             }
             
             i = 1;
             foreach (QuestionCategory questionCategory in question.QuestionCategories)
             {
                 string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionCategory, i++);
-                Execute(new QuestionCategoryValidator(questionCategory), messagePrefix);
+                ExecuteValidator(new QuestionCategoryValidator(questionCategory), messagePrefix);
             }
 
             i = 1;
@@ -50,7 +50,7 @@ namespace JJ.Business.QuestionAndAnswer.Validation
             {
                 string messagePrefix = String.Format("{0} {1}: ", PropertyDisplayNames.QuestionLink, i++);
 
-                Execute(new QuestionLinkValidator(questionLink), messagePrefix);
+                ExecuteValidator(new QuestionLinkValidator(questionLink), messagePrefix);
             }
         }
     }

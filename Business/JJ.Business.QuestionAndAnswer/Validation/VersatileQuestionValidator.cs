@@ -30,22 +30,22 @@ namespace JJ.Business.QuestionAndAnswer.Validation
         {
             Question question = Object;
 
-            Execute(new BasicQuestionValidator(question));
+            ExecuteValidator(new BasicQuestionValidator(question));
 
             if (question.QuestionType != null)
             {
                 switch (question.GetQuestionTypeEnum())
                 {
                     case QuestionTypeEnum.OpenQuestion:
-                        Execute(new OpenQuestionValidator(question));
+                        ExecuteValidator(new OpenQuestionValidator(question));
                         break;
 
                     case QuestionTypeEnum.MultipleChoice:
-                        Execute(new MultipleChoiceQuestionValidator(question));
+                        ExecuteValidator(new MultipleChoiceQuestionValidator(question));
                         break;
 
                     case QuestionTypeEnum.SeveralMayApply:
-                        Execute(new SeveralMayApplyQuestionValidator(question));
+                        ExecuteValidator(new SeveralMayApplyQuestionValidator(question));
                         break;
                 }
             }

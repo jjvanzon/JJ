@@ -15,7 +15,7 @@ namespace JJ.Business.Canonical
 
             var result = new VoidResult
             {
-                Successful = false,
+                Successful = validator.IsValid,
                 Messages = validator.ValidationMessages.ToCanonical()
             };
 
