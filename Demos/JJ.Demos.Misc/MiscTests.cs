@@ -98,6 +98,5 @@ namespace JJ.Demos.Misc
                 int bla = 0;
             }
         }
-
     }
 }
