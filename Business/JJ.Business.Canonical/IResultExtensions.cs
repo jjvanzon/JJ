@@ -17,5 +17,12 @@ namespace JJ.Business.Canonical
             destResult.Successful &= sourceResult.Successful;
             destResult.Messages.AddRange(sourceResult.Messages);
         }
+
+        public static void Assert(this IResult result)
+        {
+            if (result == null) throw new NullException(() => result);
+
+            ResultHelper.Assert(result);
+        }
     }
 }
