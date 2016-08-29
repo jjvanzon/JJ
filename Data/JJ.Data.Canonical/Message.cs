@@ -1,7 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics;
+using System.Runtime.Serialization;
+using JJ.Business.CanonicalModel.Helpers;
 
 namespace JJ.Data.Canonical
 {
+    [DebuggerDisplay("{DebuggerDisplay}")]
     [DataContract]
     public class Message
     {
@@ -10,5 +13,7 @@ namespace JJ.Data.Canonical
 
         [DataMember]
         public string Text { get; set; }
+
+        private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
     }
 }

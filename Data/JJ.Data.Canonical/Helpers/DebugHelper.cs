@@ -14,5 +14,13 @@ namespace JJ.Business.CanonicalModel.Helpers
             string debuggerDisplay = String.Format("{{{0}}} {1} {2}", nameof(IDAndName), idAndName.ID, idAndName.Name);
             return debuggerDisplay;
         }
+
+        internal static string GetDebuggerDisplay(Message message)
+        {
+            if (message == null) throw new ArgumentNullException(nameof(message));
+
+            string debuggerDisplay = String.Format("{{{0}}} {1} - '{2}'", nameof(Message), message.PropertyKey, message.Text);
+            return debuggerDisplay;
+        }
     }
 }
