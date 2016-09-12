@@ -59,6 +59,7 @@
     <Compile Include="CovarianceAndContravarianceTests.cs" />
     <Compile Include="MiscTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StructTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
