@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}</ProjectGuid>
+    <ProjectGuid>{58794EC8-775B-4EA6-A12C-F330AB03B0F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Demos.Misc</RootNamespace>
-    <AssemblyName>JJ.Demos.Misc</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>JJ.Demos.Synthesizer.Inlining</RootNamespace>
+    <AssemblyName>JJ.Demos.Synthesizer.Inlining</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -20,7 +20,6 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,17 +54,56 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="PrimaryConstructors.cs" />
-    <Compile Include="CovarianceAndContravarianceTests.cs" />
-    <Compile Include="MiscTests.cs" />
+    <Compile Include="Helpers\OperatorCalculatorFactory_WithInheritance.cs" />
+    <Compile Include="Helpers\OperatorCalculatorFactory_WithGenericMutableStructsAndHelpers.cs" />
+    <Compile Include="Shared\DimensionStack.cs" />
+    <Compile Include="Shared\SineCalculator.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Number_OperatorCalculator.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\OperatorCalculatorHelper.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Multiply_OperatorCalculator_VarA_ConstB.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Add_OperatorCalculator_VarA_ConstB.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Multiply_OperatorCalculator_VarA_VarB.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Add_OperatorCalculator_VarA_VarB.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\IOperatorCalculator.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Shift_OperatorCalculator_VarSignal_ConstDifference.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Shift_OperatorCalculator_VarSignal_VarDifference.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Sine_OperatorCalculator_ConstFrequency_NoOriginShifting.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Sine_OperatorCalculator_VarFrequency_NoPhaseTracking.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\Sine_OperatorCalculator_VarFrequency_WithPhaseTracking.cs" />
+    <Compile Include="WithGenericMutableStructsAndHelpers\VariableInput_OperatorCalculator.cs" />
+    <Compile Include="WithInheritance\Add_OperatorCalculator_VarA_ConstB.cs" />
+    <Compile Include="WithInheritance\Add_OperatorCalculator_VarA_VarB.cs" />
+    <Compile Include="WithInheritance\Multiply_OperatorCalculator_VarA_ConstB.cs" />
+    <Compile Include="WithInheritance\Multiply_OperatorCalculator_VarA_VarB.cs" />
+    <Compile Include="2016-10-09 Backup of StructTests.cs" />
+    <Compile Include="SynthesizerInliningTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WithInheritance\Number_OperatorCalculator.cs" />
+    <Compile Include="WithInheritance\OperatorCalculatorBase.cs" />
+    <Compile Include="WithInheritance\OperatorCalculatorBase_WithChildCalculators.cs" />
+    <Compile Include="WithInheritance\Shift_OperatorCalculator_VarSignal_ConstDifference.cs" />
+    <Compile Include="WithInheritance\Shift_OperatorCalculator_VarSignal_VarDifference.cs" />
+    <Compile Include="WithInheritance\Sine_OperatorCalculator_ConstFrequency_NoOriginShifting.cs" />
+    <Compile Include="WithInheritance\2016-10-09 Backup of Sine_OperatorCalculator_ConstFrequency_WithOriginShifting %28Inlining Demo%29.cs" />
+    <Compile Include="WithInheritance\Sine_OperatorCalculator_VarFrequency_NoPhaseTracking.cs" />
+    <Compile Include="WithInheritance\Sine_OperatorCalculator_VarFrequency_WithPhaseTracking.cs" />
+    <Compile Include="WithInheritance\VariableInput_OperatorCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj">
+      <Project>{810b90b9-f501-4b91-b019-2ad5aad63304}</Project>
+      <Name>JJ.Framework.Mathematics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
+      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
+      <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
       <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
       <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
