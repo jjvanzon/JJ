@@ -1,4 +1,0 @@
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPath\Framework\bin\Release\Puzzle.NPath.Framework.NET3.5.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPath\Framework\bin\Release\Puzzle.NCore.Framework.NET3.5.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPath\Framework\obj\Release\Puzzle.NPath.Framework.NET 3.5.csprojResolveAssemblyReference.cache
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPath\Framework\obj\Release\Puzzle.NPath.Framework.NET3.5.dll

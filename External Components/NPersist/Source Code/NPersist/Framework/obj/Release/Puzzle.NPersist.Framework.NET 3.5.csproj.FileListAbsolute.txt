@@ -1,8 +1,0 @@
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Framework\bin\Release\Puzzle.NPersist.Framework.xml
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Framework\bin\Release\Puzzle.NPersist.Framework.NET3.5.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Framework\bin\Release\Puzzle.NAspect.Framework.NET3.5.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Framework\bin\Release\Puzzle.NCore.Framework.NET3.5.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Framework\bin\Release\Puzzle.NPath.Framework.NET3.5.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Framework\bin\Release\Puzzle.NAspect.Framework.NET3.5.xml
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Framework\obj\Release\Puzzle.NPersist.Framework.NET 3.5.csprojResolveAssemblyReference.cache
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Framework\obj\Release\Puzzle.NPersist.Framework.NET3.5.dll
