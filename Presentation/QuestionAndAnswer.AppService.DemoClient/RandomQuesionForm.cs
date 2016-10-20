@@ -22,7 +22,7 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient
 
             _controller = new QuestionController();
 
-            SetTexts();
+            SaveTexts();
             ShowQuestion();
         }
 
@@ -44,7 +44,7 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient
             ApplyViewModel();
         }
 
-        private void SetTexts()
+        private void SaveTexts()
         {
             Text = ResourceHelper.PropertyDisplayNames.Question + " [Service Client]";
             labelAnswerTitle.Text = ResourceHelper.PropertyDisplayNames.Answer;
