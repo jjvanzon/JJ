@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B1E7DE6-17DD-4140-AD96-21DCF5F0CB25}</ProjectGuid>
+    <ProjectGuid>{80473C02-D43B-483F-9D00-21C64FCCC342}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Soap.Tests</RootNamespace>
-    <AssemblyName>JJ.Framework.Soap.Tests</AssemblyName>
+    <RootNamespace>JJ.Presentation.SaveText.AppService.Tests</RootNamespace>
+    <AssemblyName>JJ.Presentation.SaveText.AppService.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -40,7 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -55,53 +57,53 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Helpers\IAppSettings.cs" />
-    <Compile Include="Helpers\TestHelper.cs" />
-    <Compile Include="Helpers\NativeWcfClient.cs" />
-    <Compile Include="Helpers\NativeWcfClientMessageInspector.cs" />
-    <Compile Include="NativeWcfClientTests.cs" />
-    <Compile Include="WcfSoapClientTests_Old.cs" />
-    <Compile Include="SoapClientTests_Old.cs" />
-    <Compile Include="WcfSoapClientTests.cs" />
-    <Compile Include="SoapClientTests.cs" />
+    <Compile Include="SaveTextWithSyncAppService_CustomClient_Tests.cs" />
+    <Compile Include="ResourceService_CustomClient_Tests.cs" />
+    <Compile Include="IAppSettings.cs" />
+    <Compile Include="SaveTextAppService_OverHttp_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveTextAppService_CustomClient_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Presentation\SaveText.AppService.Interface\JJ.Presentation.SaveText.AppService.Interface.csproj">
-      <Project>{4a052265-9896-4d0b-a9b0-14d052bc95d0}</Project>
-      <Name>JJ.Presentation.SaveText.AppService.Interface</Name>
+    <ProjectReference Include="..\..\Framework\Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Presentation\SaveText.Interface\JJ.Presentation.SaveText.Interface.csproj">
-      <Project>{f074226b-734d-4308-b1c5-30350a228d8b}</Project>
-      <Name>JJ.Presentation.SaveText.Interface</Name>
+    <ProjectReference Include="..\..\Framework\Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
+      <Name>JJ.Framework.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Soap\JJ.Framework.Soap.csproj">
+      <Project>{2b86213c-a758-4db9-bd37-5e7d2f4d7c4d}</Project>
+      <Name>JJ.Framework.Soap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Xml.Linq\JJ.Framework.Xml.Linq.csproj">
+      <Project>{8dcbf3f3-b30f-4c11-8957-bea7f43ee173}</Project>
+      <Name>JJ.Framework.Xml.Linq</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Canonical\JJ.Data.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
       <Name>JJ.Data.Canonical</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Configuration\JJ.Framework.Configuration.csproj">
-      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
-      <Name>JJ.Framework.Configuration</Name>
+    <ProjectReference Include="..\SaveText.AppService.Client\JJ.Presentation.SaveText.AppService.Client.csproj">
+      <Project>{f35c6131-d793-49d3-8044-e8b06f9cb107}</Project>
+      <Name>JJ.Presentation.SaveText.AppService.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Soap.Tests.ServiceInterface\JJ.Framework.Soap.Tests.ServiceInterface.csproj">
-      <Project>{9f0128b1-b662-474d-9b73-3fd8e9783b40}</Project>
-      <Name>JJ.Framework.Soap.Tests.ServiceInterface</Name>
+    <ProjectReference Include="..\SaveText.AppService.Interface\JJ.Presentation.SaveText.AppService.Interface.csproj">
+      <Project>{4a052265-9896-4d0b-a9b0-14d052bc95d0}</Project>
+      <Name>JJ.Presentation.SaveText.AppService.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Soap\JJ.Framework.Soap.csproj">
-      <Project>{2b86213c-a758-4db9-bd37-5e7d2f4d7c4d}</Project>
-      <Name>JJ.Framework.Soap</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Testing\JJ.Framework.Testing.csproj">
-      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
-      <Name>JJ.Framework.Testing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xml.Linq\JJ.Framework.Xml.Linq.csproj">
-      <Project>{8dcbf3f3-b30f-4c11-8957-bea7f43ee173}</Project>
-      <Name>JJ.Framework.Xml.Linq</Name>
+    <ProjectReference Include="..\SaveText.Interface\JJ.Presentation.SaveText.Interface.csproj">
+      <Project>{f074226b-734d-4308-b1c5-30350a228d8b}</Project>
+      <Name>JJ.Presentation.SaveText.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestResources\Save_WithValidationMessages.xml" />
+    <EmbeddedResource Include="TestResources\Save.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
