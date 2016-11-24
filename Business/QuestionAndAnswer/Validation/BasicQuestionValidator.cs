@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
     /// <summary> Performs basic validations for questions in general </summary>
-    public class BasicQuestionValidator : FluentValidator_WithoutConstructorArgumentNullCheck<Question>
+    public class BasicQuestionValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<Question>
     {
         /// <summary> Performs basic validations for questions in general </summary>
         public BasicQuestionValidator(Question question)

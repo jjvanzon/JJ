@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
-    public class AnswerValidator : FluentValidator_WithoutConstructorArgumentNullCheck<Answer>
+    public class AnswerValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<Answer>
     {
         public AnswerValidator(Answer obj)
             : base(obj)

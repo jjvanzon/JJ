@@ -12,7 +12,7 @@ using JJ.Business.QuestionAndAnswer.Resources;
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
     /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-    public class OpenQuestionValidator : FluentValidator_WithoutConstructorArgumentNullCheck<Question>
+    public class OpenQuestionValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<Question>
     {
         /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
         public OpenQuestionValidator(Question question)

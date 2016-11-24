@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
-    public class QuestionCategoryValidator : FluentValidator_WithoutConstructorArgumentNullCheck<QuestionCategory>
+    public class QuestionCategoryValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<QuestionCategory>
     {
         public QuestionCategoryValidator(QuestionCategory obj)
             : base(obj)

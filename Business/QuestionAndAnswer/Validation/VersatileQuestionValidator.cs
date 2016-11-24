@@ -16,7 +16,7 @@ namespace JJ.Business.QuestionAndAnswer.Validation
     /// Performs basic validations for questions in general
     /// and executes different validations depending on the question type (open question, multiple choice, several may apply).
     /// </summary>
-    public class VersatileQuestionValidator : FluentValidator_WithoutConstructorArgumentNullCheck<Question>
+    public class VersatileQuestionValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<Question>
     {
         /// <summary>
         /// Performs basic validations for questions in general

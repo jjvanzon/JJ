@@ -11,7 +11,7 @@ using JJ.Business.QuestionAndAnswer.Resources;
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
     /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-    public class MultipleChoiceQuestionValidator : FluentValidator_WithoutConstructorArgumentNullCheck<Question>
+    public class MultipleChoiceQuestionValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<Question>
     {
         /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
         public MultipleChoiceQuestionValidator(Question question)
