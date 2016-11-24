@@ -37,13 +37,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.EntityFramework5", "Framework\Data.EntityFramework5\JJ.Framework.Data.EntityFramework5.csproj", "{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NCore.Framework NET 3.5", "External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj", "{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NCore.Framework NET 3.5", "Third Party\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj", "{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NAspect.Framework.NET 3.5", "External Components\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj", "{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NAspect.Framework.NET 3.5", "Third Party\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj", "{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPath.Framework.NET 3.5", "External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj", "{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPath.Framework.NET 3.5", "Third Party\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj", "{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.NET 3.5", "External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj", "{E6C03D2A-D150-4473-9439-D300746A1390}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.NET 3.5", "Third Party\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj", "{E6C03D2A-D150-4473-9439-D300746A1390}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.QuestionAndAnswer.EntityFramework5", "Data\QuestionAndAnswer.EntityFramework5\JJ.Data.QuestionAndAnswer.EntityFramework5.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
 EndProject
@@ -96,7 +96,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging", "Framework\Logging\JJ.Framework.Logging.csproj", "{CEEB755D-DE12-4E70-816E-546C429B44B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "Third Party\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility", "Framework\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj", "{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}"
 EndProject
@@ -128,9 +128,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Tests", "Framework\Web.Tests\JJ.Framework.Web.Tests.csproj", "{9362B86B-0351-4E76-BFFE-A9739B5F0522}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "Third Party\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate", "External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\NHibernate.csproj", "{5909BFE7-93CF-4E5F-BE22-6293368AF01D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate", "Third Party\NHibernate\Source Code\3.3.1.GA\src\NHibernate\NHibernate.csproj", "{5909BFE7-93CF-4E5F-BE22-6293368AF01D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -595,18 +595,18 @@ Global
 		SccProjectUniqueName9 = Business\\QuestionAndAnswer\\JJ.Business.QuestionAndAnswer.csproj
 		SccProjectName9 = Business/QuestionAndAnswer
 		SccLocalPath9 = Business\\QuestionAndAnswer
-		SccProjectUniqueName10 = External\u0020Components\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate\\NHibernate.csproj
+		SccProjectUniqueName10 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate\\NHibernate.csproj
 		SccProjectTopLevelParentUniqueName10 = QuestionAndAnswer.sln
-		SccProjectName10 = External\u0020Components/NHibernate/Source\u0020Code/3.3.1.GA/src/NHibernate
-		SccLocalPath10 = External\u0020Components\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate
-		SccProjectUniqueName11 = External\u0020Components\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate\\FluentNHibernate.csproj
+		SccProjectName10 = Third\u0020Party/NHibernate/Source\u0020Code/3.3.1.GA/src/NHibernate
+		SccLocalPath10 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate
+		SccProjectUniqueName11 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate\\FluentNHibernate.csproj
 		SccProjectTopLevelParentUniqueName11 = QuestionAndAnswer.sln
-		SccProjectName11 = External\u0020Components/FluentNHibernate/Source\u0020Code/1.3/src/FluentNHibernate
-		SccLocalPath11 = External\u0020Components\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate
-		SccProjectUniqueName12 = External\u0020Components\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll\\SgmlReaderDll.csproj
+		SccProjectName11 = Third\u0020Party/FluentNHibernate/Source\u0020Code/1.3/src/FluentNHibernate
+		SccLocalPath11 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate
+		SccProjectUniqueName12 = Third\u0020Party\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll\\SgmlReaderDll.csproj
 		SccProjectTopLevelParentUniqueName12 = QuestionAndAnswer.sln
-		SccProjectName12 = External\u0020Components/SgmlReader/Source\u0020Code\u0020Adapted/sgmlreaderdll
-		SccLocalPath12 = External\u0020Components\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll
+		SccProjectName12 = Third\u0020Party/SgmlReader/Source\u0020Code\u0020Adapted/sgmlreaderdll
+		SccLocalPath12 = Third\u0020Party\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll
 		SccProjectUniqueName13 = Framework\\Xml\\JJ.Framework.Xml.csproj
 		SccProjectTopLevelParentUniqueName13 = QuestionAndAnswer.sln
 		SccProjectName13 = Framework/Xml
@@ -671,22 +671,22 @@ Global
 		SccProjectUniqueName30 = Presentation\\QuestionAndAnswer.MvcAspx\\JJ.Presentation.QuestionAndAnswer.MvcAspx.csproj
 		SccProjectName30 = Presentation/QuestionAndAnswer.MvcAspx
 		SccLocalPath30 = Presentation\\QuestionAndAnswer.MvcAspx
-		SccProjectUniqueName31 = External\u0020Components\\NPersist\\Source\u0020Code\\NCore\\Framework\\Puzzle.NCore.Framework\u0020NET\u00203.5.csproj
+		SccProjectUniqueName31 = Third\u0020Party\\NPersist\\Source\u0020Code\\NCore\\Framework\\Puzzle.NCore.Framework\u0020NET\u00203.5.csproj
 		SccProjectTopLevelParentUniqueName31 = QuestionAndAnswer.sln
-		SccProjectName31 = External\u0020Components/NPersist/Source\u0020Code/NCore/Framework
-		SccLocalPath31 = External\u0020Components\\NPersist\\Source\u0020Code\\NCore\\Framework
-		SccProjectUniqueName32 = External\u0020Components\\NPersist\\Source\u0020Code\\NAspect\\Framework\\Puzzle.NAspect.Framework.NET\u00203.5.csproj
+		SccProjectName31 = Third\u0020Party/NPersist/Source\u0020Code/NCore/Framework
+		SccLocalPath31 = Third\u0020Party\\NPersist\\Source\u0020Code\\NCore\\Framework
+		SccProjectUniqueName32 = Third\u0020Party\\NPersist\\Source\u0020Code\\NAspect\\Framework\\Puzzle.NAspect.Framework.NET\u00203.5.csproj
 		SccProjectTopLevelParentUniqueName32 = QuestionAndAnswer.sln
-		SccProjectName32 = External\u0020Components/NPersist/Source\u0020Code/NAspect/Framework
-		SccLocalPath32 = External\u0020Components\\NPersist\\Source\u0020Code\\NAspect\\Framework
-		SccProjectUniqueName33 = External\u0020Components\\NPersist\\Source\u0020Code\\NPath\\Framework\\Puzzle.NPath.Framework.NET\u00203.5.csproj
+		SccProjectName32 = Third\u0020Party/NPersist/Source\u0020Code/NAspect/Framework
+		SccLocalPath32 = Third\u0020Party\\NPersist\\Source\u0020Code\\NAspect\\Framework
+		SccProjectUniqueName33 = Third\u0020Party\\NPersist\\Source\u0020Code\\NPath\\Framework\\Puzzle.NPath.Framework.NET\u00203.5.csproj
 		SccProjectTopLevelParentUniqueName33 = QuestionAndAnswer.sln
-		SccProjectName33 = External\u0020Components/NPersist/Source\u0020Code/NPath/Framework
-		SccLocalPath33 = External\u0020Components\\NPersist\\Source\u0020Code\\NPath\\Framework
-		SccProjectUniqueName34 = External\u0020Components\\NPersist\\Source\u0020Code\\NPersist\\Framework\\Puzzle.NPersist.Framework.NET\u00203.5.csproj
+		SccProjectName33 = Third\u0020Party/NPersist/Source\u0020Code/NPath/Framework
+		SccLocalPath33 = Third\u0020Party\\NPersist\\Source\u0020Code\\NPath\\Framework
+		SccProjectUniqueName34 = Third\u0020Party\\NPersist\\Source\u0020Code\\NPersist\\Framework\\Puzzle.NPersist.Framework.NET\u00203.5.csproj
 		SccProjectTopLevelParentUniqueName34 = QuestionAndAnswer.sln
-		SccProjectName34 = External\u0020Components/NPersist/Source\u0020Code/NPersist/Framework
-		SccLocalPath34 = External\u0020Components\\NPersist\\Source\u0020Code\\NPersist\\Framework
+		SccProjectName34 = Third\u0020Party/NPersist/Source\u0020Code/NPersist/Framework
+		SccLocalPath34 = Third\u0020Party\\NPersist\\Source\u0020Code\\NPersist\\Framework
 		SccProjectUniqueName35 = Framework\\Data.NPersist\\JJ.Framework.Data.NPersist.csproj
 		SccProjectTopLevelParentUniqueName35 = QuestionAndAnswer.sln
 		SccProjectName35 = Framework/Data.NPersist
