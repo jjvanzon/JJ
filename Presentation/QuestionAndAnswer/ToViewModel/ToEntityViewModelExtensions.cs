@@ -1,5 +1,5 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using JJ.Data.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;

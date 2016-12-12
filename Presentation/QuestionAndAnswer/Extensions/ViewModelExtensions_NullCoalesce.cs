@@ -1,7 +1,7 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

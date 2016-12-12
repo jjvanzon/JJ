@@ -12,7 +12,7 @@ using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Validation;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {

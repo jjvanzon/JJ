@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Common;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 {

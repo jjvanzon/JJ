@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using System.Globalization;
 using JJ.Framework.PlatformCompatibility;

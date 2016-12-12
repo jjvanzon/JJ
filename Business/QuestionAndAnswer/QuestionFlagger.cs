@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer
 {

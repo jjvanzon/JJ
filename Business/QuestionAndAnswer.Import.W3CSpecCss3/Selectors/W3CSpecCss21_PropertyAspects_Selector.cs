@@ -12,7 +12,7 @@ using JJ.Framework.Xml;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Business.QuestionAndAnswer.Import;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {

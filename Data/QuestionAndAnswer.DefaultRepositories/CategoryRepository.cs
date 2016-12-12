@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 {

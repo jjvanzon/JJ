@@ -12,7 +12,7 @@ using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Framework.Presentation;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using System.Linq.Expressions;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
