@@ -53,6 +53,10 @@
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
       <Name>JJ.Data.Canonical</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Collections\JJ.Framework.Collections.csproj">
+      <Project>{5d06a212-5459-47f3-8109-e012c5fc9e3a}</Project>
+      <Name>JJ.Framework.Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Common\JJ.Framework.Common.csproj">
       <Project>{44FD9133-5FE7-4824-BD35-27273706D127}</Project>
       <Name>JJ.Framework.Common</Name>
