@@ -22,7 +22,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
                 using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
                 {
                     int id = GetExistingQuestionID();
-                    IQuestionRepository repository = new QuestionRepository(context);
+                    IQuestionRepository repository = RepositoryFactory.CreateRepositoryFromConfiguration<IQuestionRepository>(context, persistenceConfiguration);
                     Question item = repository.Get(id);
                 }
             }
@@ -35,7 +35,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
             {
                 using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
                 {
-                    IQuestionRepository repository = new QuestionRepository(context);
+                    IQuestionRepository repository = RepositoryFactory.CreateRepositoryFromConfiguration<IQuestionRepository>(context, persistenceConfiguration);
                     List<Question> list = repository.GetAll().ToList();
                 }
             }
@@ -50,7 +50,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
             {
                 using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
                 {
-                    IQuestionRepository repository = new QuestionRepository(context);
+                    IQuestionRepository repository = RepositoryFactory.CreateRepositoryFromConfiguration<IQuestionRepository>(context, persistenceConfiguration);
                     Question[] list = repository.GetBySourceID(TEST_SOURCE_ID).ToArray();
                 }
             }

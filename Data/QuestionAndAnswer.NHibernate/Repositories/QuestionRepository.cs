@@ -57,5 +57,12 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
             QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
             return sqlExecutor.Question_CountAll();
         }
+
+        public override IList<Question> GetBySourceID(int sourceID)
+        {
+            return _context.Session.QueryOver<Question>()
+                                   .Where(x => x.Source.ID == sourceID)
+                                   .List();
+        }
     }
 }

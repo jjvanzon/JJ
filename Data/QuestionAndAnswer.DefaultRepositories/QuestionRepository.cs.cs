@@ -21,7 +21,7 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
             throw new NotImplementedException();
         }
 
-        public IList<Question> GetBySourceID(int sourceID)
+        public virtual IList<Question> GetBySourceID(int sourceID)
         {
             return _context.Query<Question>().Where(x => x.Source.ID == sourceID).ToArray();
         }
