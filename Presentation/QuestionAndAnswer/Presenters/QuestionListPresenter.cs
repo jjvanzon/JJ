@@ -64,7 +64,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
 
-            int count = _repositories.QuestionRepository.CountAll();
+            int count = _repositories.QuestionRepository.Count();
             viewModel.Pager = PagerViewModelFactory.Create(pageIndex, _pageSize, count, _maxVisiblePageNumbers);
 
             return viewModel;

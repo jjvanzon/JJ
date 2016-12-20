@@ -1,10 +1,7 @@
 ﻿using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 {
@@ -14,7 +11,7 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
             : base(context)
         { }
 
-        public User TryGetByUserName(string userName)
+        public virtual User TryGetByUserName(string userName)
         {
             return _context.Query<User>().Where(x => x.UserName == userName).SingleOrDefault();
         }
@@ -25,7 +22,7 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 
             if (user == null)
             {
-                throw new Exception(String.Format("User with UserName '{0}' not found.", userName));
+                throw new NotFoundException<User>(new { userName });
             }
 
             return user;

@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Common;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
@@ -23,9 +20,12 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 
         public virtual IList<Question> GetBySourceID(int sourceID)
         {
-            return _context.Query<Question>().Where(x => x.Source.ID == sourceID).ToArray();
+            return _context.Query<Question>()
+                           .Where(x => x.Source.ID == sourceID)
+                           .ToArray();
         }
 
+        // TODO: GetQuestionIDsByCategory and GetQuestionIDsByCategoryRecursive belong in the business layer.
         // TODO: Handle circularities.
 
         public IList<int> GetQuestionIDsByCategory(Category category)
@@ -49,12 +49,7 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
             return ids;
         }
 
-        /// <summary>
-        /// mustFilterByFlagStatusID = false and flagStatusID = null are two 
-        /// different things. mustFilterByFlagStatusID = false means all Questions are returned.
-        /// flagStatusID = null means only questions without a flagging are returned.
-        /// </summary>
-        public IList<Question> GetByCriteria(bool mustFilterByFlagStatusID, int? flagStatusID)
+        public virtual IList<Question> GetByCriteria(bool mustFilterByFlagStatusID, int? flagStatusID)
         {
             if (!mustFilterByFlagStatusID)
             {
@@ -78,7 +73,7 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
             return _context.Query<Question>().Skip(firstIndex).Take(count).ToArray();
         }
 
-        public virtual int CountAll()
+        public virtual int Count()
         {
             throw new NotImplementedException();
         }

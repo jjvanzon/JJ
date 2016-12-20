@@ -1,13 +1,5 @@
 ﻿using JJ.Framework.Data;
-using JJ.Framework.Data.EntityFramework5;
-using JJ.Framework.Data.SqlClient;
 using JJ.Data.QuestionAndAnswer.Sql;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers;
 
 namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Repositories
@@ -33,7 +25,7 @@ namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Repositories
             }
         }
 
-        public override int CountAll()
+        public override int Count()
         {
             QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
             return sqlExecutor.Question_CountAll();

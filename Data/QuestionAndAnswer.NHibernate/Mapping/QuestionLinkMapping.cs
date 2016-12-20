@@ -10,6 +10,7 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
         public QuestionLinkMapping()
         {
             Id(x => x.ID);
+
             Map(x => x.Url);
             Map(x => x.Description);
 

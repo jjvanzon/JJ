@@ -10,6 +10,7 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
         public QuestionFlagMapping()
         {
             Id(x => x.ID);
+
             Map(x => x.Comment);
             Map(x => x.DateTime);
 

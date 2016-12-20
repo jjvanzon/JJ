@@ -9,7 +9,7 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces
 {
     public interface ISourceRepository : IRepository<Source, int>
     {
-        Source TryGetByIdentifier(string identifier);
         Source GetByIdentifier(string identifier);
+        Source TryGetByIdentifier(string identifier);
     }
 }

@@ -10,9 +10,10 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
         public QuestionTypeMapping()
         {
             Id(x => x.ID);
+
             Map(x => x.Name);
 
-            HasMany(x => x.Questions).KeyColumn(ColumnNames.QuestionID).Inverse();
+            HasMany(x => x.Questions).KeyColumn(ColumnNames.QuestionTypeID).Inverse();
         }
     }
 }

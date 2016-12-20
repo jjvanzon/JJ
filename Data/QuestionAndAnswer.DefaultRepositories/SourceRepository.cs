@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Data;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 {
@@ -14,19 +12,21 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
             : base(context)
         { }
 
-        public Source TryGetByIdentifier(string identifier)
-        {
-            return _context.Query<Source>().Where(x => x.Identifier == identifier).SingleOrDefault();
-        }
-
         public Source GetByIdentifier(string identifier)
         {
             Source source = TryGetByIdentifier(identifier);
             if (source == null)
             {
-                throw new Exception(String.Format("Source with identifier '{0}' not found.", identifier));
+                throw new NotFoundException<Source>(new { identifier });
             }
             return source;
+        }
+
+        public virtual Source TryGetByIdentifier(string identifier)
+        {
+            return _context.Query<Source>()
+                           .Where(x => x.Identifier == identifier)
+                           .SingleOrDefault();
         }
     }
 }

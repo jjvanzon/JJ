@@ -10,6 +10,7 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
         public AnswerMapping()
         {
             Id(x => x.ID);
+
             Map(x => x.Text);
             Map(x => x.IsCorrectAnswer);
 

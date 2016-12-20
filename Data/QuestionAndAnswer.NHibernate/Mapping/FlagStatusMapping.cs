@@ -10,6 +10,7 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
         public FlagStatusMapping()
         {
             Id(x => x.ID);
+
             Map(x => x.Description);
 
             HasMany(x => x.QuestionFlags).KeyColumn(ColumnNames.FlagStatusID).Inverse();

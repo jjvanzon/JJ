@@ -1,9 +1,6 @@
 ﻿using JJ.Data.QuestionAndAnswer.Sql;
 using JJ.Framework.Data;
 using JJ.Framework.Data.NHibernate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Helpers

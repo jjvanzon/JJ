@@ -10,6 +10,7 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
         public RunMapping()
         {
             Id(x => x.ID);
+
             Map(x => x.Description);
             Map(x => x.IsActive);
 

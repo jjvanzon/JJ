@@ -16,7 +16,7 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
             Map(x => x.Url);
             Map(x => x.IsActive);
 
-            HasMany(x => x.Questions).KeyColumn(ColumnNames.QuestionID).Inverse();
+            HasMany(x => x.Questions).KeyColumn(ColumnNames.SourceID).Inverse();
         }
     }
 }

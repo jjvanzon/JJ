@@ -10,6 +10,7 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
         public UserAnswerMapping()
         {
             Id(x => x.ID);
+
             Map(x => x.DateTime);
 
             References(x => x.Question, ColumnNames.QuestionID);

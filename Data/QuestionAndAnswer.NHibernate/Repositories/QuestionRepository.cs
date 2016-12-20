@@ -1,13 +1,10 @@
 ﻿using JJ.Framework.Data;
 using JJ.Framework.Data.NHibernate;
 using JJ.Data.QuestionAndAnswer.Sql;
-using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using JJ.Data.QuestionAndAnswer.NHibernate.Helpers;
+using NHibernate.Transform;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
 {
@@ -19,6 +16,64 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
             : base(context)
         {
             _context = (NHibernateContext)context;
+        }
+
+        public override Question TryGetRandomQuestion()
+        {
+            QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
+
+            int? randomID = sqlExecutor.Question_TryGetRandomID();
+            if (randomID.HasValue)
+            {
+                return Get(randomID.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public override IList<Question> GetBySourceID(int sourceID)
+        {
+            return _context.Session.QueryOver<Question>()
+                                   .Where(x => x.Source.ID == sourceID)
+                                   .List();
+        }
+
+        public override IList<Question> GetByCriteria(bool mustFilterByFlagStatusID, int? flagStatusID)
+        {
+            if (!mustFilterByFlagStatusID)
+            {
+                return _context.Session.QueryOver<Question>().List();
+            }
+            else
+            {
+                if (!flagStatusID.HasValue)
+                {
+                    QuestionFlag qf = null;
+
+                    return _context.Session.QueryOver<Question>()
+                                           .Left.JoinAlias(x => x.QuestionFlags, () => qf)
+                                           // TODO: Test if this works. It means 'has no question flags'
+                                           .Where(x => qf == null)
+                                           .TransformUsing(Transformers.DistinctRootEntity)
+                                           .List();
+                }
+                else
+                {
+                    Question q = null;
+                    QuestionFlag fs = null;
+                    QuestionFlag qf = null;
+
+                    // TODO: Test this query.
+                    return _context.Session.QueryOver(() => q)
+                                           .JoinAlias(() => q.QuestionFlags, () => qf)
+                                           .JoinAlias(() => qf.FlagStatus, () => fs)
+                                           .Where(() => fs.ID == flagStatusID)
+                                           .TransformUsing(Transformers.DistinctRootEntity)
+                                           .List();
+                }
+            }
         }
 
         public override IList<Question> GetPage(int firstIndex, int count)
@@ -37,32 +92,9 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
             return list;
         }
 
-        public override Question TryGetRandomQuestion()
+        public override int Count()
         {
-            QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
-
-            int? randomID = sqlExecutor.Question_TryGetRandomID();
-            if (randomID.HasValue)
-            {
-                return Get(randomID.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public override int CountAll()
-        {
-            QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);
-            return sqlExecutor.Question_CountAll();
-        }
-
-        public override IList<Question> GetBySourceID(int sourceID)
-        {
-            return _context.Session.QueryOver<Question>()
-                                   .Where(x => x.Source.ID == sourceID)
-                                   .List();
+            return _context.Session.QueryOver<Question>().RowCount();
         }
     }
 }
