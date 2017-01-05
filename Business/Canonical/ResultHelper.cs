@@ -5,6 +5,7 @@ using JJ.Data.Canonical;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Collections;
 
 namespace JJ.Business.Canonical
 {
