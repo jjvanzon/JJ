@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using JJ.Business.QuestionAndAnswer;
-using JJ.Business.QuestionAndAnswer.Enums;
-using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Validation;
 using JJ.Framework.Common;
-using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 

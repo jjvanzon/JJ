@@ -1,12 +1,5 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.MvcAspx.Names;
-using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Framework.Exceptions;
-using JJ.Data.QuestionAndAnswer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Helpers

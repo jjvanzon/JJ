@@ -2,12 +2,8 @@
 using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer.Tests.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Data.QuestionAndAnswer.Tests
 {

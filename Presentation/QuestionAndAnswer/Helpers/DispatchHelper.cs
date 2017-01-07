@@ -1,12 +1,5 @@
-﻿using JJ.Presentation.QuestionAndAnswer.Presenters;
-using JJ.Framework.Presentation;
+﻿using JJ.Framework.Presentation;
 using JJ.Framework.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Presentation.QuestionAndAnswer.Helpers
 {

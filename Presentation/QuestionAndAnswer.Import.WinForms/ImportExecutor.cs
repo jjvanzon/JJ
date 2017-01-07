@@ -1,21 +1,11 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.Import.Configuration;
-using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Import;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3;
-using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters;
-using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors;
 using JJ.Framework.Configuration;
 using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 {

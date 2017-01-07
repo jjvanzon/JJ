@@ -1,13 +1,6 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JJ.Business.QuestionAndAnswer.Extensions;
-using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Framework.Business;
 using JJ.Business.QuestionAndAnswer.SideEffects;
 

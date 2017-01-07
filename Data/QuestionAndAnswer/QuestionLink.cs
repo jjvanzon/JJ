@@ -1,5 +1,3 @@
-using System;
-
 namespace JJ.Data.QuestionAndAnswer
 {
     public class QuestionLink

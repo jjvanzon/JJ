@@ -2,12 +2,7 @@
 using JJ.Framework.Data;
 using JJ.Framework.Data.EntityFramework5;
 using JJ.Framework.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers

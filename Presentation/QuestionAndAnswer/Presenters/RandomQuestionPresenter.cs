@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Framework.Exceptions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;

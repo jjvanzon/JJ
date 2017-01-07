@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentNHibernate.Mapping;
-
-namespace JJ.Data.QuestionAndAnswer.NHibernate.Names
+﻿namespace JJ.Data.QuestionAndAnswer.NHibernate.Names
 {
     internal static class ColumnNames
     {

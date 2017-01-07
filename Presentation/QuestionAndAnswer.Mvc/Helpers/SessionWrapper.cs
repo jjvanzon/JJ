@@ -1,8 +1,5 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 using JJ.Framework.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Helpers

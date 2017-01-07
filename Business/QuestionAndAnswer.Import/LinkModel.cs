@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace JJ.Business.QuestionAndAnswer.Import
+﻿namespace JJ.Business.QuestionAndAnswer.Import
 {
     public class LinkModel
     {

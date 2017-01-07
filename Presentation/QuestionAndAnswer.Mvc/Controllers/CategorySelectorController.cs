@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using JJ.Framework.Common;
+﻿using System.Web.Mvc;
 using JJ.Framework.Presentation.Mvc;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
@@ -11,7 +6,6 @@ using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Data;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {

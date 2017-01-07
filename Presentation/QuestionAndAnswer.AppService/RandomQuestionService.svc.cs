@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
-using JJ.Presentation.QuestionAndAnswer.Presenters;
+﻿using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Presentation.QuestionAndAnswer.AppService

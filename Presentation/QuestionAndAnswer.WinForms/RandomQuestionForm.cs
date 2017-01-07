@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using JJ.Framework.Data;
 using JJ.Presentation.QuestionAndAnswer.Resources;
@@ -13,7 +6,6 @@ using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Presentation;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
 using JJ.Business.QuestionAndAnswer.Resources;
 
 namespace JJ.Presentation.QuestionAndAnswer.WinForms

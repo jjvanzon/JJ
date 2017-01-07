@@ -1,22 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using JJ.Framework.Data;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
-using JJ.Framework.Common;
-using JJ.Data.Canonical;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
-using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
-using JJ.Framework.Configuration;
 using JJ.Framework.Web;
-using JJ.Framework.Presentation.Mvc;
 using JJ.Framework.Presentation;
 using ActionDispatcher = JJ.Framework.Presentation.Mvc.ActionDispatcher;
 

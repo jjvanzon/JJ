@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
 {

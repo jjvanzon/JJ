@@ -2,10 +2,6 @@
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Data.QuestionAndAnswer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Presentation.QuestionAndAnswer.Helpers

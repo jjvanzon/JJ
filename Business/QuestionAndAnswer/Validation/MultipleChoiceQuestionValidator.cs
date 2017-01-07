@@ -2,10 +2,7 @@
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Framework.Validation;
 using JJ.Data.QuestionAndAnswer;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using JJ.Business.QuestionAndAnswer.Resources;
 
 namespace JJ.Business.QuestionAndAnswer.Validation

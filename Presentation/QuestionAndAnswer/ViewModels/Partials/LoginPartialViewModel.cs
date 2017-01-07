@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Partials
+﻿namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Partials
 {
     public sealed class LoginPartialViewModel
     {

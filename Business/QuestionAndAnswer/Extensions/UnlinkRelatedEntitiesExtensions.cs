@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Data.QuestionAndAnswer;
+﻿using JJ.Data.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions

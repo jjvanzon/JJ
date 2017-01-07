@@ -3,15 +3,8 @@ using JJ.Presentation.QuestionAndAnswer.MvcAspx.Helpers;
 using JJ.Presentation.QuestionAndAnswer.MvcAspx.Names;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Framework.Common;
 using JJ.Framework.Data;
-using JJ.Framework.Presentation;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using JJ.Framework.Web;
 

@@ -1,12 +1,7 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Validation;
 using JJ.Data.QuestionAndAnswer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {

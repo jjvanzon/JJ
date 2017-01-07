@@ -1,10 +1,6 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Helpers
 {

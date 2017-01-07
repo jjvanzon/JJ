@@ -1,23 +1,15 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer;
-using JJ.Data.Canonical;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Framework.Exceptions;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using System.Globalization;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
-using System.Threading;
-using JJ.Framework.Presentation;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {

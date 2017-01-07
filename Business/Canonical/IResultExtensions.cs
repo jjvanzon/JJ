@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using JJ.Data.Canonical;
+﻿using JJ.Data.Canonical;
 using JJ.Framework.Collections;
-using JJ.Framework.Common;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Business.Canonical

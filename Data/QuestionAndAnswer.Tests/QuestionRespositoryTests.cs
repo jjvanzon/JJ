@@ -1,13 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Data;
 using System.Collections.Generic;
 using JJ.Data.QuestionAndAnswer.Tests.Helpers;
 using JJ.Framework.Configuration;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories;
-using JJ.Business.QuestionAndAnswer.Enums;
 
 namespace JJ.Data.QuestionAndAnswer.Tests
 {

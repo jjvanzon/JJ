@@ -2,7 +2,6 @@
 using System.Linq;
 using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
 using JJ.Data.QuestionAndAnswer.NHibernate.Names;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping

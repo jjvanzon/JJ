@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Common;
-using JJ.Framework.Data;
+﻿using System.Collections.Generic;
 using JJ.Framework.Exceptions;
 using JJ.Data.QuestionAndAnswer;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.Extensions;

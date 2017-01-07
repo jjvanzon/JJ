@@ -1,10 +1,6 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Framework.Validation;
 using JJ.Data.QuestionAndAnswer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
