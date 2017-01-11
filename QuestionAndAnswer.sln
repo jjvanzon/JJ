@@ -561,6 +561,7 @@ Global
 		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{E6C03D2A-D150-4473-9439-D300746A1390} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{30F1DFB1-BB06-42EA-AE91-56144B56DF45} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{FED3C829-D92A-4800-9462-A175CCAC4C70} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{EA2EC919-FC52-47B6-9149-B6A7018572CE} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{C600657B-7E29-44B5-83A1-747FAB30D5D0} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
@@ -571,6 +572,8 @@ Global
 		{F6EA0941-40FF-4679-A1A6-EACD5C9BA42B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{4007568E-B2B4-4FC5-AA38-34EDC272F010} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{08EA4A4E-D815-47AE-9277-DA6672D36214} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{79B0EAC3-5159-4FC8-B3D8-53315B205444} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{BD4CF454-BE0B-490F-997D-665DA7EBEC96} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{E150EBF6-16F7-4299-B4BD-791757D6CC9E} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{CEEB755D-DE12-4E70-816E-546C429B44B7} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{499527FF-AE52-450F-B3E3-4AD53E1712AD} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
@@ -581,7 +584,11 @@ Global
 		{164520AA-2DB7-4405-9AE5-EB515527A33B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{E836A5E1-6D7B-497A-A6F3-D6D6117D2EBC} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{CEB85F8E-D429-4510-95A5-47CC3069D412} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{2D46AA63-78C8-4905-BF83-D08A058CCBED} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{757F8B06-8527-4DAA-A206-E26EB167CA13} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{44A76522-BD9E-47D9-B424-57B9B0C1C9B8} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{9362B86B-0351-4E76-BFFE-A9739B5F0522} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{529145D5-6CC3-4016-89B5-826563024AF1} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{5909BFE7-93CF-4E5F-BE22-6293368AF01D} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
@@ -669,9 +676,11 @@ Global
 		SccProjectName19 = Framework/Data.NHibernate
 		SccLocalPath19 = Framework\\Data.NHibernate
 		SccProjectUniqueName20 = Framework\\Presentation.JavaScript\\JJ.Framework.Presentation.JavaScript.csproj
+		SccProjectTopLevelParentUniqueName20 = QuestionAndAnswer.sln
 		SccProjectName20 = Framework/Presentation.JavaScript
 		SccLocalPath20 = Framework\\Presentation.JavaScript
 		SccProjectUniqueName21 = Framework\\Presentation\\JJ.Framework.Presentation.csproj
+		SccProjectTopLevelParentUniqueName21 = QuestionAndAnswer.sln
 		SccProjectName21 = Framework/Presentation
 		SccLocalPath21 = Framework\\Presentation
 		SccProjectUniqueName22 = Framework\\Web\\JJ.Framework.Web.csproj
@@ -679,6 +688,7 @@ Global
 		SccProjectName22 = Framework/Web
 		SccLocalPath22 = Framework\\Web
 		SccProjectUniqueName23 = Framework\\Presentation.Mvc\\JJ.Framework.Presentation.Mvc.csproj
+		SccProjectTopLevelParentUniqueName23 = QuestionAndAnswer.sln
 		SccProjectName23 = Framework/Presentation.Mvc
 		SccLocalPath23 = Framework\\Presentation.Mvc
 		SccProjectUniqueName24 = Framework\\Presentation.Resources\\JJ.Framework.Presentation.Resources.csproj
@@ -799,12 +809,15 @@ Global
 		SccProjectName56 = Presentation/QuestionAndAnswer.Mvc
 		SccLocalPath56 = Presentation\\QuestionAndAnswer.Mvc
 		SccProjectUniqueName57 = Framework\\Presentation.Mvc.Tests\\JJ.Framework.Presentation.Mvc.Tests.csproj
+		SccProjectTopLevelParentUniqueName57 = QuestionAndAnswer.sln
 		SccProjectName57 = Framework/Presentation.Mvc.Tests
 		SccLocalPath57 = Framework\\Presentation.Mvc.Tests
 		SccProjectUniqueName58 = Demos\\ReturnActions\\JJ.Demos.ReturnActions.csproj
+		SccProjectTopLevelParentUniqueName58 = QuestionAndAnswer.sln
 		SccProjectName58 = Demos/ReturnActions
 		SccLocalPath58 = Demos\\ReturnActions
 		SccProjectUniqueName59 = Demos\\ReturnActions.MvcPostData\\JJ.Demos.ReturnActions.MvcPostData.csproj
+		SccProjectTopLevelParentUniqueName59 = QuestionAndAnswer.sln
 		SccProjectName59 = Demos/ReturnActions.MvcPostData
 		SccLocalPath59 = Demos\\ReturnActions.MvcPostData
 		SccProjectUniqueName60 = Demos\\Misc\\JJ.Demos.Misc.csproj
@@ -812,6 +825,7 @@ Global
 		SccProjectName60 = Demos/Misc
 		SccLocalPath60 = Demos\\Misc
 		SccProjectUniqueName61 = Demos\\ReturnActions.MvcUrlParameter\\JJ.Demos.ReturnActions.MvcUrlParameter.csproj
+		SccProjectTopLevelParentUniqueName61 = QuestionAndAnswer.sln
 		SccProjectName61 = Demos/ReturnActions.MvcUrlParameter
 		SccLocalPath61 = Demos\\ReturnActions.MvcUrlParameter
 		SccProjectUniqueName62 = Framework\\Web.Tests\\JJ.Framework.Web.Tests.csproj
