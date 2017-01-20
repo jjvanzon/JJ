@@ -12,7 +12,7 @@
 
         @Html.DropDownListFor(
             x => x.Category.ID,
-            allCategories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
+            allCategories.UnionRecursive(x => x.SubCategories).Select(x => new SelectListItem 
             {
                 Value = x.ID.ToString(), 
                 Text = String.Join(@" \ ", x.NameParts), 

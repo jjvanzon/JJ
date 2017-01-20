@@ -105,7 +105,7 @@
 
                                 <%: Html.DropDownListFor(
                                         x => x.Question.Categories[i].Category.ID,
-                                        Model.Categories.SelectRecursive(x => x.SubCategories).Select(x => new SelectListItem 
+                                        Model.Categories.UnionRecursive(x => x.SubCategories).Select(x => new SelectListItem 
                                         {
                                             Value = x.ID.ToString(), 
                                             Text = String.Join(@" \ ", x.NameParts), 

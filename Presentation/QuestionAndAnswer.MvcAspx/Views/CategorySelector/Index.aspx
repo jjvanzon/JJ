@@ -65,7 +65,7 @@
             </tr>
         </table>
 
-        <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Random, ControllerNames.Questions, ActionParameterNames.c, Model.SelectedCategories.SelectRecursive(x => x.SubCategories).Where(x => x.Visible).Select(x => x.ID).ToArray()) %>
+        <%: Html.ActionLinkWithCollection(Titles.StartTraining, ActionNames.Random, ControllerNames.Questions, ActionParameterNames.c, Model.SelectedCategories.UnionRecursive(x => x.SubCategories).Where(x => x.Visible).Select(x => x.ID).ToArray()) %>
 
     <% } %>
     
