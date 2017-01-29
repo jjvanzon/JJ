@@ -11,6 +11,7 @@ namespace JJ.Business.Canonical
         {
             if (result == null) throw new NullException(() => result);
 
+            // ReSharper disable once InvertIf
             if (!result.Successful)
             {
                 string formattedMessages = FormatMessages(result);
