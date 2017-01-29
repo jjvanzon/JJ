@@ -3,6 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using JJ.Framework.Testing;
 using System.Globalization;
+// ReSharper disable UnusedVariable
+#pragma warning disable 162
+#pragma warning disable 219
 
 namespace JJ.Demos.Misc
 {
@@ -87,8 +90,10 @@ namespace JJ.Demos.Misc
         {
             const double value = double.NaN;
 
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (value < 0.0)
             {
+                // ReSharper disable once HeuristicUnreachableCode
                 int bla = 0;
             }
 
