@@ -150,7 +150,7 @@ namespace NAudio.Wave
         /// <param name="outputMediaType">Desired output media type</param>
         public MediaFoundationEncoder(MediaType outputMediaType)
         {
-            if (outputMediaType == null) throw new ArgumentNullException("outputMediaType");
+            if (outputMediaType == null) throw new ArgumentNullException(nameof(outputMediaType));
             this.outputMediaType = outputMediaType;
         }
 

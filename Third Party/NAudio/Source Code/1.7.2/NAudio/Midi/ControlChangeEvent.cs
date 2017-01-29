@@ -91,7 +91,7 @@ namespace NAudio.Midi
             {
                 if ((int) value < 0 || (int) value > 127)
                 {
-                    throw new ArgumentOutOfRangeException("value", "Controller number must be in the range 0-127");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Controller number must be in the range 0-127");
                 }
                 controller = value;
             }
@@ -110,7 +110,7 @@ namespace NAudio.Midi
             {
                 if (value < 0 || value > 127)
                 {
-                    throw new ArgumentOutOfRangeException("value", "Controller Value must be in the range 0-127");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Controller Value must be in the range 0-127");
                 }
                 controllerValue = (byte) value;
             }

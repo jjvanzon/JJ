@@ -150,7 +150,7 @@ namespace NAudio.Wave
                     outputBuffer.StatusFlags = DmoOutputDataBufferFlags.None;
 
                     // 4. Now ask the DMO for some output data
-                    dmoResampler.MediaObject.ProcessOutput(DmoProcessOutputFlags.None, 1, new DmoOutputDataBuffer[] { outputBuffer });
+                    dmoResampler.MediaObject.ProcessOutput(DmoProcessOutputFlags.None, 1, new[] { outputBuffer });
 
                     if (outputBuffer.Length == 0)
                     {

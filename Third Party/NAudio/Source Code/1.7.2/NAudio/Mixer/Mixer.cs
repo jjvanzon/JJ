@@ -81,7 +81,7 @@ namespace NAudio.Mixer
 		{
 			if(destinationIndex < 0 || destinationIndex >= DestinationCount) 
 			{
-                throw new ArgumentOutOfRangeException("destinationIndex");
+                throw new ArgumentOutOfRangeException(nameof(destinationIndex));
 			}
 			return new MixerLine(mixerHandle, destinationIndex, mixerHandleType);
 		}

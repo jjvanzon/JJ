@@ -215,7 +215,7 @@ namespace NAudio.Wave
         public override void Write(byte[] data, int offset, int count)
         {
             if (outStream.Length + count > uint.MaxValue)
-                throw new ArgumentException("WAV file too large", "count");
+                throw new ArgumentException("WAV file too large", nameof(count));
             outStream.Write(data, offset, count);
             dataChunkSize += count;
         }

@@ -20,9 +20,9 @@ namespace NAudio.Wave
         public WaveFloatTo16Provider(IWaveProvider sourceProvider)
         {
             if (sourceProvider.WaveFormat.Encoding != WaveFormatEncoding.IeeeFloat)
-                throw new ArgumentException("Input wave provider must be IEEE float", "sourceProvider");
+                throw new ArgumentException("Input wave provider must be IEEE float", nameof(sourceProvider));
             if (sourceProvider.WaveFormat.BitsPerSample != 32)
-                throw new ArgumentException("Input wave provider must be 32 bit", "sourceProvider");
+                throw new ArgumentException("Input wave provider must be 32 bit", nameof(sourceProvider));
 
             waveFormat = new WaveFormat(sourceProvider.WaveFormat.SampleRate, 16, sourceProvider.WaveFormat.Channels);
 

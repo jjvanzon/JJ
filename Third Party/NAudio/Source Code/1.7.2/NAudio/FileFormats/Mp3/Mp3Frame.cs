@@ -9,7 +9,7 @@ namespace NAudio.Wave
     /// </summary>
     public class Mp3Frame
     {
-        private static readonly int[,,] bitRates = new int[,,] {
+        private static readonly int[,,] bitRates = new[,,] {
             {
                 // MPEG Version 1
                 { 0, 32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448 }, // Layer 1
@@ -23,7 +23,7 @@ namespace NAudio.Wave
                 { 0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160 }, // Layer 3 (same as layer 2)
             }
         };
-        private static readonly int[,] samplesPerFrame = new int[,] {
+        private static readonly int[,] samplesPerFrame = new[,] {
             {   // MPEG Version 1
                 384,    // Layer1
                 1152,   // Layer2
@@ -36,9 +36,9 @@ namespace NAudio.Wave
             }
         };
 
-        private static readonly int[] sampleRatesVersion1 = new int[] {44100, 48000, 32000};
-        private static readonly int[] sampleRatesVersion2 = new int[] {22050, 24000, 16000};
-        private static readonly int[] sampleRatesVersion25 = new int[] {11025, 12000, 8000};
+        private static readonly int[] sampleRatesVersion1 = new[] {44100, 48000, 32000};
+        private static readonly int[] sampleRatesVersion2 = new[] {22050, 24000, 16000};
+        private static readonly int[] sampleRatesVersion25 = new[] {11025, 12000, 8000};
 
         //private short crc;
         private const int MaxFrameLength = 16*1024;

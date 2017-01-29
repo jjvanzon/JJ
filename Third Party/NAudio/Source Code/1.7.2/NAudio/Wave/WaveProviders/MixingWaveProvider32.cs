@@ -100,7 +100,7 @@ namespace NAudio.Wave
         public int Read(byte[] buffer, int offset, int count)
         {
             if (count % bytesPerSample != 0)
-                throw new ArgumentException("Must read an whole number of samples", "count");
+                throw new ArgumentException("Must read an whole number of samples", nameof(count));
 
             // blank the buffer
             Array.Clear(buffer, offset, count);

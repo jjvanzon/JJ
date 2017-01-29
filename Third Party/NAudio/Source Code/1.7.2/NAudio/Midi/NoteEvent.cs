@@ -42,7 +42,7 @@ namespace NAudio.Midi
             this.Velocity = velocity;
         }
 
-        private static readonly string[] NoteNames = new string[] { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
+        private static readonly string[] NoteNames = new[] { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
 
         /// <summary>
         /// <see cref="MidiEvent.GetAsShortMessage" />
@@ -65,7 +65,7 @@ namespace NAudio.Midi
             {
                 if (value < 0 || value > 127)
                 {
-                    throw new ArgumentOutOfRangeException("value", "Note number must be in the range 0-127");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Note number must be in the range 0-127");
                 }
                 noteNumber = value;
             }
@@ -84,7 +84,7 @@ namespace NAudio.Midi
             {
                 if (value < 0 || value > 127)
                 {
-                    throw new ArgumentOutOfRangeException("value", "Velocity must be in the range 0-127");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Velocity must be in the range 0-127");
                 }
                 velocity = value;
             }

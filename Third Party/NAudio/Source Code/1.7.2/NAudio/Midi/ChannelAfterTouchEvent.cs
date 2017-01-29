@@ -57,7 +57,7 @@ namespace NAudio.Midi
             {
                 if (value < 0 || value > 127)
                 {
-                    throw new ArgumentOutOfRangeException("value", "After touch pressure must be in the range 0-127");
+                    throw new ArgumentOutOfRangeException(nameof(value), "After touch pressure must be in the range 0-127");
                 }
                 afterTouchPressure = (byte) value;
             }

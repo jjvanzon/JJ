@@ -68,7 +68,7 @@ namespace NAudio.Midi
             {
                 if (value < 0 || value > 0x4000)
                 {
-                    throw new ArgumentOutOfRangeException("value", "Pitch value must be in the range 0 - 0x4000");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Pitch value must be in the range 0 - 0x4000");
                 }
                 pitch = value;
             }

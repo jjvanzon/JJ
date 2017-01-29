@@ -47,7 +47,7 @@ namespace NAudio.Wave
         {
             if (frame == null)
             {
-                throw new ArgumentNullException("frame", "You must provide a non-null Mp3Frame to decompress");
+                throw new ArgumentNullException(nameof(frame), "You must provide a non-null Mp3Frame to decompress");
             }
             Array.Copy(frame.RawData, conversionStream.SourceBuffer, frame.FrameLength);
             int sourceBytesConverted = 0;

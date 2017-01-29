@@ -22,7 +22,7 @@ namespace NAudio.Dmo
         public static readonly Guid MEDIATYPE_Timecode = new Guid("0482DEE3-7817-11cf-8a03-00aa006ecb65"); // Timecode data. Note: DirectShow does not provide any filters that support this media type. 
         public static readonly Guid MEDIATYPE_Video = new Guid("73646976-0000-0010-8000-00AA00389B71"); // Video. 
 
-        public static readonly Guid[] MajorTypes = new Guid[]
+        public static readonly Guid[] MajorTypes = new[]
         {
             MEDIATYPE_AnalogAudio,
             MEDIATYPE_AnalogVideo,
@@ -38,7 +38,7 @@ namespace NAudio.Dmo
             MEDIATYPE_Video,
         };
 
-        public static readonly string[] MajorTypeNames = new string[]
+        public static readonly string[] MajorTypeNames = new[]
         {
             "Analog Audio",
             "Analog Video",

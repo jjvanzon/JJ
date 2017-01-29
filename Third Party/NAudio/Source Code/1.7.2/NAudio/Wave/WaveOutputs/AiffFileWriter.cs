@@ -86,12 +86,12 @@ namespace NAudio.Wave
 
         private byte[] SwapEndian(short n)
         {
-            return new byte[] { (byte)(n >> 8), (byte)(n & 0xff) };
+            return new[] { (byte)(n >> 8), (byte)(n & 0xff) };
         }
 
         private byte[] SwapEndian(int n)
         {
-            return new byte[] { (byte)((n >> 24) & 0xff), (byte)((n >> 16) & 0xff), (byte)((n >> 8) & 0xff), (byte)(n & 0xff), };
+            return new[] { (byte)((n >> 24) & 0xff), (byte)((n >> 16) & 0xff), (byte)((n >> 8) & 0xff), (byte)(n & 0xff), };
         }
 
         private void CreateCommChunk()

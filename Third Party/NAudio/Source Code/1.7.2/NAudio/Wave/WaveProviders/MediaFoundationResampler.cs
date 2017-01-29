@@ -30,9 +30,9 @@ namespace NAudio.Wave
             : base(sourceProvider, outputFormat)
         {
             if (!IsPcmOrIeeeFloat(sourceProvider.WaveFormat))
-                throw new ArgumentException("Input must be PCM or IEEE float", "sourceProvider");
+                throw new ArgumentException("Input must be PCM or IEEE float", nameof(sourceProvider));
             if (!IsPcmOrIeeeFloat(outputFormat))
-                throw new ArgumentException("Output must be PCM or IEEE float", "outputFormat");
+                throw new ArgumentException("Output must be PCM or IEEE float", nameof(outputFormat));
             MediaFoundationApi.Startup();
             ResamplerQuality = 60; // maximum quality
 

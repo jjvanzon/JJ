@@ -270,7 +270,7 @@ namespace NAudio.Wave
             set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException("value", "Position cannot be less than 0");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Position cannot be less than 0");
                 if (settings.RepositionInRead)
                 {
                     repositionTo = value;

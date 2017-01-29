@@ -64,17 +64,17 @@ namespace NAudio.Wave
         {
             if (string.IsNullOrEmpty(key))
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
 
             if (string.IsNullOrEmpty(value))
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (key.Length != 4)
             {
-                throw new ArgumentOutOfRangeException("key", "key " + key + " must be 4 characters long");
+                throw new ArgumentOutOfRangeException(nameof(key), "key " + key + " must be 4 characters long");
             }
 
             const byte UnicodeEncoding = 01; // encode text in Unicode
@@ -86,7 +86,7 @@ namespace NAudio.Wave
             if (key == "COMM") // comment
             {
                 body = ByteArrayExtensions.Concat(
-                    new byte[] { UnicodeEncoding },
+                    new[] { UnicodeEncoding },
                     language,
                     shortDescription,
                     UnicodeOrder,
@@ -95,7 +95,7 @@ namespace NAudio.Wave
             else
             {
                 body = ByteArrayExtensions.Concat(
-                    new byte[] { UnicodeEncoding },
+                    new[] { UnicodeEncoding },
                     UnicodeOrder,
                     Encoding.Unicode.GetBytes(value));
             }

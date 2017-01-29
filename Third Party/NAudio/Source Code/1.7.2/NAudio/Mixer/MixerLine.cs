@@ -233,7 +233,7 @@ namespace NAudio.Mixer
         {
             if(sourceIndex < 0 || sourceIndex >= SourceCount) 
             {
-                throw new ArgumentOutOfRangeException("sourceIndex");
+                throw new ArgumentOutOfRangeException(nameof(sourceIndex));
             }
             return new MixerLine(mixerHandle, mixerLine.dwDestination, sourceIndex, this.mixerHandleType);			
         }

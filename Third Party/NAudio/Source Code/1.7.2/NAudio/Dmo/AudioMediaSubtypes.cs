@@ -23,7 +23,7 @@ namespace NAudio.Dmo
         public static readonly Guid MEDIASUBTYPE_AU = new Guid("e436eb8c-524f-11ce-9f53-0020af0ba770");
         public static readonly Guid MEDIASUBTYPE_AIFF = new Guid("e436eb8d-524f-11ce-9f53-0020af0ba770");
 
-        public static readonly Guid[] AudioSubTypes = new Guid[]
+        public static readonly Guid[] AudioSubTypes = new[]
         {
             MEDIASUBTYPE_PCM,
             MEDIASUBTYPE_PCMAudioObsolete,
@@ -40,7 +40,7 @@ namespace NAudio.Dmo
             WMMEDIASUBTYPE_MP3,
         };
 
-        public static readonly string[] AudioSubTypeNames = new string[]
+        public static readonly string[] AudioSubTypeNames = new[]
         {
             "PCM",
             "PCM Obsolete",

@@ -19,7 +19,7 @@ namespace NAudio.Midi
         }
 
         // TODO: localize
-        private static readonly string[] patchNames = new string[] 
+        private static readonly string[] patchNames = new[] 
         {
             "Acoustic Grand","Bright Acoustic","Electric Grand","Honky-Tonk","Electric Piano 1","Electric Piano 2","Harpsichord","Clav",
             "Celesta","Glockenspiel","Music Box","Vibraphone","Marimba","Xylophone","Tubular Bells","Dulcimer",
@@ -78,7 +78,7 @@ namespace NAudio.Midi
             {
                 if (value < 0 || value > 127)
                 {
-                    throw new ArgumentOutOfRangeException("value", "Patch number must be in the range 0-127");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Patch number must be in the range 0-127");
                 }
                 patch = (byte)value;
             }

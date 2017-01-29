@@ -44,7 +44,7 @@ namespace NAudio.Wave.SampleProviders
             {
                 if (value < -1.0f || value > 1.0f)
                 {
-                    throw new ArgumentOutOfRangeException("value", "Pan must be in the range -1 to 1");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Pan must be in the range -1 to 1");
                 }
                 this.pan = value;
                 UpdateMultipliers();

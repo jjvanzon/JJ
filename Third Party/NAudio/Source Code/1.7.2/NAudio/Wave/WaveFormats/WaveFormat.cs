@@ -113,7 +113,7 @@ namespace NAudio.Wave
         {
             if (channels < 1)
             {
-                throw new ArgumentOutOfRangeException("channels", "Channels must be 1 or greater");
+                throw new ArgumentOutOfRangeException(nameof(channels), "Channels must be 1 or greater");
             }
             // minimum 16 bytes, sometimes 18 for PCM
             this.waveFormatTag = WaveFormatEncoding.Pcm;
