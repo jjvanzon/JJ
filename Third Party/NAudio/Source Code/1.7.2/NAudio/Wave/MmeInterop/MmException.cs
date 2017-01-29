@@ -7,7 +7,7 @@ namespace NAudio
     /// </summary>
     public class MmException : Exception
     {
-        private MmResult result;
+        private readonly MmResult result;
         private string function;
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace NAudio
 
         private static string ErrorMessage(MmResult result, string function)
         {
-            return String.Format("{0} calling {1}", result, function);
+            return string.Format("{0} calling {1}", result, function);
         }
 
         /// <summary>

@@ -58,7 +58,7 @@ namespace NAudio.Mixer
                     }
                     for (int i = 0; i < mlc.cControls; i++)
                     {
-                        Int64 address = pmc.ToInt64() + mixerControlSize * i;
+                        long address = pmc.ToInt64() + mixerControlSize * i;
 
                         var mc = (MixerInterop.MIXERCONTROL)
                             Marshal.PtrToStructure((IntPtr)address, typeof(MixerInterop.MIXERCONTROL));
@@ -135,7 +135,7 @@ namespace NAudio.Mixer
             }
             else
             {
-                throw new InvalidOperationException(String.Format("Unknown mixer control type {0}", mc.dwControlType));
+                throw new InvalidOperationException(string.Format("Unknown mixer control type {0}", mc.dwControlType));
             }
         }
 
@@ -227,7 +227,7 @@ namespace NAudio.Mixer
         /// <summary>
         /// Mixer control name
         /// </summary>
-        public String Name
+        public string Name
         {
             get { return mixerControl.szName; }
         }
@@ -371,7 +371,7 @@ namespace NAudio.Mixer
         /// </summary>
         public override string ToString()
         {
-            return String.Format("{0} {1}", Name, ControlType);
+            return string.Format("{0} {1}", Name, ControlType);
         }
     }
 }

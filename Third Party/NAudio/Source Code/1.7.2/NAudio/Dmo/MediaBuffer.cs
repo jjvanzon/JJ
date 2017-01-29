@@ -14,7 +14,7 @@ namespace NAudio.Dmo
     {
         IntPtr buffer;
         int length;
-        int maxLength;
+        readonly int maxLength;
         
         /// <summary>
         /// Creates a new Media Buffer

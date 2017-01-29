@@ -67,7 +67,7 @@ namespace NAudio.Wave
                     {
                         for (int ch = 0; ch < channels; ch++)
                         {
-                            samples[index++] = *((int*)InputBuffers[ch] + n) / (float)Int32.MaxValue;
+                            samples[index++] = *((int*)InputBuffers[ch] + n) / (float)int.MaxValue;
                         }
                     }
                 }
@@ -77,7 +77,7 @@ namespace NAudio.Wave
                     {
                         for (int ch = 0; ch < channels; ch++)
                         {
-                            samples[index++] = *((short*)InputBuffers[ch] + n) / (float)Int16.MaxValue;
+                            samples[index++] = *((short*)InputBuffers[ch] + n) / (float)short.MaxValue;
                         }
                     }
                 }
@@ -107,7 +107,7 @@ namespace NAudio.Wave
                 }
                 else
                 {
-                    throw new NotImplementedException(String.Format("ASIO Sample Type {0} not supported", AsioSampleType));
+                    throw new NotImplementedException(string.Format("ASIO Sample Type {0} not supported", AsioSampleType));
                 }
             }
             return SamplesPerBuffer*channels;

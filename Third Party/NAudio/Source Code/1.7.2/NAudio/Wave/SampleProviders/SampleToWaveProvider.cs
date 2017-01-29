@@ -10,7 +10,7 @@ namespace NAudio.Wave.SampleProviders
     /// </summary>
     public class SampleToWaveProvider : IWaveProvider
     {
-        private ISampleProvider source;
+        private readonly ISampleProvider source;
 
         /// <summary>
         /// Initializes a new instance of the WaveProviderFloatToWaveProvider class

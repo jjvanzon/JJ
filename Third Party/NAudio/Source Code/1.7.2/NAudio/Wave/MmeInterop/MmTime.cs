@@ -14,32 +14,32 @@ namespace NAudio.Wave
         public const int TIME_BYTES = 0x0004;
 
         [FieldOffset(0)]
-        public UInt32 wType;
+        public uint wType;
         [FieldOffset(4)]
-        public UInt32 ms;
+        public uint ms;
         [FieldOffset(4)]
-        public UInt32 sample;
+        public uint sample;
         [FieldOffset(4)]
-        public UInt32 cb;
+        public uint cb;
         [FieldOffset(4)]
-        public UInt32 ticks;
+        public uint ticks;
         [FieldOffset(4)]
-        public Byte smpteHour;
+        public byte smpteHour;
         [FieldOffset(5)]
-        public Byte smpteMin;
+        public byte smpteMin;
         [FieldOffset(6)]
-        public Byte smpteSec;
+        public byte smpteSec;
         [FieldOffset(7)]
-        public Byte smpteFrame;
+        public byte smpteFrame;
         [FieldOffset(8)]
-        public Byte smpteFps;
+        public byte smpteFps;
         [FieldOffset(9)]
-        public Byte smpteDummy;
+        public byte smpteDummy;
         [FieldOffset(10)]
-        public Byte smptePad0;
+        public byte smptePad0;
         [FieldOffset(11)]
-        public Byte smptePad1;
+        public byte smptePad1;
         [FieldOffset(4)]
-        public UInt32 midiSongPtrPos;
+        public uint midiSongPtrPos;
     }
 }

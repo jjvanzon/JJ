@@ -104,7 +104,7 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public override string ToString()
 		{
-			return String.Format("Modulator {0} {1} {2} {3} {4}",
+			return string.Format("Modulator {0} {1} {2} {3} {4}",
 				sourceModulationData,destinationGenerator,
 				amount,sourceModulationAmount,sourceTransform);
 

@@ -14,8 +14,8 @@ namespace NAudio.Dmo
     public class MediaObject : IDisposable
     {
         IMediaObject mediaObject;
-        int inputStreams;
-        int outputStreams;
+        readonly int inputStreams;
+        readonly int outputStreams;
 
         #region Construction
 

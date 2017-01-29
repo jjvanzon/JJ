@@ -59,7 +59,7 @@ namespace NAudio.Wave.Asio
         /// </summary>
         /// <param name="error">The error.</param>
         /// <returns>the name of the error</returns>
-        static public String getErrorName(ASIOError error)
+        static public string getErrorName(ASIOError error)
         {
             return Enum.GetName(typeof(ASIOError), error);            
         }
@@ -81,7 +81,7 @@ namespace NAudio.Wave.Asio
         [MarshalAs(UnmanagedType.U4)]
         public AsioSampleType type; // dto
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public String name; // dto
+        public string name; // dto
     };
 
     [StructLayout(LayoutKind.Sequential, Pack = 4)]

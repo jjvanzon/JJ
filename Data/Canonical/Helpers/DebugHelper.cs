@@ -1,7 +1,6 @@
 ﻿using System;
-using JJ.Data.Canonical;
 
-namespace JJ.Business.CanonicalModel.Helpers
+namespace JJ.Data.Canonical.Helpers
 {
     internal static class DebugHelper
     {
@@ -9,7 +8,7 @@ namespace JJ.Business.CanonicalModel.Helpers
         {
             if (idAndName == null) throw new ArgumentNullException(nameof(idAndName));
 
-            string debuggerDisplay = String.Format("{{{0}}} {1} {2}", nameof(IDAndName), idAndName.ID, idAndName.Name);
+            string debuggerDisplay = $"{{{nameof(IDAndName)}}} {idAndName.ID} {idAndName.Name}";
             return debuggerDisplay;
         }
 
@@ -17,7 +16,7 @@ namespace JJ.Business.CanonicalModel.Helpers
         {
             if (message == null) throw new ArgumentNullException(nameof(message));
 
-            string debuggerDisplay = String.Format("{{{0}}} {1} - '{2}'", nameof(Message), message.PropertyKey, message.Text);
+            string debuggerDisplay = $"{{{nameof(Message)}}} {message.PropertyKey} - '{message.Text}'";
             return debuggerDisplay;
         }
     }

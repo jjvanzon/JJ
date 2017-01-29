@@ -8,9 +8,9 @@ namespace NAudio.Midi
     /// </summary>
     public class MidiIn : IDisposable 
     {
-        private IntPtr hMidiIn = IntPtr.Zero;
+        private readonly IntPtr hMidiIn = IntPtr.Zero;
         private bool disposed = false;
-        private MidiInterop.MidiInCallback callback;
+        private readonly MidiInterop.MidiInCallback callback;
 
         /// <summary>
         /// Called when a MIDI message is received

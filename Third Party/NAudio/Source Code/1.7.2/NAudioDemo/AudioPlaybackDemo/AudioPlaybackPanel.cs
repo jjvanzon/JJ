@@ -79,11 +79,11 @@ namespace NAudioDemo.AudioPlaybackDemo
             // we are in a stopped state
             // TODO: only re-initialise if necessary
 
-            if (String.IsNullOrEmpty(fileName))
+            if (string.IsNullOrEmpty(fileName))
             {
                 OnOpenFileClick(sender, e);
             }
-            if (String.IsNullOrEmpty(fileName))
+            if (string.IsNullOrEmpty(fileName))
             {
                 return;
             }
@@ -94,7 +94,7 @@ namespace NAudioDemo.AudioPlaybackDemo
             }
             catch (Exception driverCreateException)
             {
-                MessageBox.Show(String.Format("{0}", driverCreateException.Message));
+                MessageBox.Show(string.Format("{0}", driverCreateException.Message));
                 return;
             }
 
@@ -105,12 +105,12 @@ namespace NAudioDemo.AudioPlaybackDemo
             }
             catch (Exception createException)
             {
-                MessageBox.Show(String.Format("{0}", createException.Message), "Error Loading File");
+                MessageBox.Show(string.Format("{0}", createException.Message), "Error Loading File");
                 return;
             }
 
 
-            labelTotalTime.Text = String.Format("{0:00}:{1:00}", (int)audioFileReader.TotalTime.TotalMinutes,
+            labelTotalTime.Text = string.Format("{0:00}:{1:00}", (int)audioFileReader.TotalTime.TotalMinutes,
                 audioFileReader.TotalTime.Seconds);
 
             try
@@ -119,7 +119,7 @@ namespace NAudioDemo.AudioPlaybackDemo
             }
             catch (Exception initException)
             {
-                MessageBox.Show(String.Format("{0}", initException.Message), "Error Initializing Output");
+                MessageBox.Show(string.Format("{0}", initException.Message), "Error Initializing Output");
                 return;
             }
 
@@ -245,7 +245,7 @@ namespace NAudioDemo.AudioPlaybackDemo
             {
                 TimeSpan currentTime = (waveOut.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : audioFileReader.CurrentTime;
                 trackBarPosition.Value = Math.Min(trackBarPosition.Maximum, (int)(100 * currentTime.TotalSeconds / audioFileReader.TotalTime.TotalSeconds));
-                labelCurrentTime.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes,
+                labelCurrentTime.Text = string.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes,
                     currentTime.Seconds);
             }
             else
@@ -266,7 +266,7 @@ namespace NAudioDemo.AudioPlaybackDemo
         {
             var openFileDialog = new OpenFileDialog();
             string allExtensions = "*.wav;*.aiff;*.mp3;*.aac";
-            openFileDialog.Filter = String.Format("All Supported Files|{0}|All Files (*.*)|*.*", allExtensions);
+            openFileDialog.Filter = string.Format("All Supported Files|{0}|All Files (*.*)|*.*", allExtensions);
             openFileDialog.FilterIndex = 1;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

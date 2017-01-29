@@ -96,7 +96,7 @@ namespace NAudioDemo
 
         void midiIn_ErrorReceived(object sender, MidiInMessageEventArgs e)
         {
-            progressLog1.LogMessage(Color.Red, String.Format("Time {0} Message 0x{1:X8} Event {2}",
+            progressLog1.LogMessage(Color.Red, string.Format("Time {0} Message 0x{1:X8} Event {2}",
                 e.Timestamp, e.RawMessage, e.MidiEvent));
         }
 
@@ -117,7 +117,7 @@ namespace NAudioDemo
             {
                 return;
             }
-            progressLog1.LogMessage(Color.Blue, String.Format("Time {0} Message 0x{1:X8} Event {2}",
+            progressLog1.LogMessage(Color.Blue, string.Format("Time {0} Message 0x{1:X8} Event {2}",
                 e.Timestamp, e.RawMessage, e.MidiEvent));
         }
 
@@ -158,7 +158,7 @@ namespace NAudioDemo
             }
             MidiEvent eventToSend = events[midiOutIndex++];
             midiOut.Send(eventToSend.GetAsShortMessage());
-            progressLog1.LogMessage(Color.Green, String.Format("Sent {0}", eventToSend));
+            progressLog1.LogMessage(Color.Green, string.Format("Sent {0}", eventToSend));
             if (midiOutIndex >= events.Count)
             {
                 midiOutIndex = 0;

@@ -176,7 +176,7 @@ namespace NAudioDemo
                 null,out selectedFormat,
                 out selectedFormatDescription, out selectedFormatTagDescription))
             {
-                MessageBox.Show(String.Format("{0}\r\n{1}\r\n{2}",
+                MessageBox.Show(string.Format("{0}\r\n{1}\r\n{2}",
                     selectedFormatDescription,
                     selectedFormatTagDescription,
                     selectedFormat));

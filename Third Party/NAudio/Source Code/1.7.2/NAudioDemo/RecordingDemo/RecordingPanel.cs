@@ -64,7 +64,7 @@ namespace NAudioDemo
                 CreateWaveInDevice();
             }
 
-            outputFilename = String.Format("NAudioDemo {0:yyy-MM-dd HH-mm-ss}.wav", DateTime.Now);
+            outputFilename = string.Format("NAudioDemo {0:yyy-MM-dd HH-mm-ss}.wav", DateTime.Now);
             writer = new WaveFileWriter(Path.Combine(outputFolder, outputFilename), waveIn.WaveFormat);
             waveIn.StartRecording();
             SetControlStates(true);
@@ -109,7 +109,7 @@ namespace NAudioDemo
                 progressBar1.Value = 0;
                 if (e.Exception != null)
                 {
-                    MessageBox.Show(String.Format("A problem was encountered during recording {0}",
+                    MessageBox.Show(string.Format("A problem was encountered during recording {0}",
                                                   e.Exception.Message));
                 }
                 int newItemIndex = listBoxRecordings.Items.Add(outputFilename);

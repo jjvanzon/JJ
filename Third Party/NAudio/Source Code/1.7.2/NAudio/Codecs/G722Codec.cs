@@ -37,9 +37,9 @@ namespace NAudio.Codecs
             amp16 = (short)amp;
             if (amp == amp16)
                 return amp16;
-            if (amp > Int16.MaxValue)
-                return Int16.MaxValue;
-            return Int16.MinValue;
+            if (amp > short.MaxValue)
+                return short.MaxValue;
+            return short.MinValue;
         }
 
         static void Block4(G722CodecState s, int band, int d)

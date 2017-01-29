@@ -13,7 +13,7 @@ namespace NAudio.Wave.Compression
     {
         private static List<AcmDriver> drivers;
         private AcmDriverDetails details;
-        private IntPtr driverId;
+        private readonly IntPtr driverId;
         private IntPtr driverHandle;
         private List<AcmFormatTag> formatTags;
         private List<AcmFormat> tempFormatsList; // used by enumerator

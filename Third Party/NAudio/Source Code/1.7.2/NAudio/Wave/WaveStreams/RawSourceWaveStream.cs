@@ -11,8 +11,8 @@ namespace NAudio.Wave
     /// </summary>
     public class RawSourceWaveStream : WaveStream
     {
-        private Stream sourceStream;
-        private WaveFormat waveFormat;
+        private readonly Stream sourceStream;
+        private readonly WaveFormat waveFormat;
 
         /// <summary>
         /// Initialises a new instance of RawSourceWaveStream

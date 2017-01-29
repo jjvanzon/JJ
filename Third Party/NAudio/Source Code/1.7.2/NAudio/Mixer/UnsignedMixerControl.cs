@@ -63,7 +63,7 @@ namespace NAudio.Mixer
 		/// <summary>
 		/// The control's minimum value
 		/// </summary>
-		public UInt32 MinValue 
+		public uint MinValue 
 		{
 			get 
 			{
@@ -74,7 +74,7 @@ namespace NAudio.Mixer
 		/// <summary>
 		/// The control's maximum value
 		/// </summary>
-		public UInt32 MaxValue 
+		public uint MaxValue 
 		{
 			get 
 			{
@@ -102,7 +102,7 @@ namespace NAudio.Mixer
         /// </summary>
         public override string ToString()
         {
-            return String.Format("{0} {1}%", base.ToString(), Percent);
+            return string.Format("{0} {1}%", base.ToString(), Percent);
         }
 	}
 }

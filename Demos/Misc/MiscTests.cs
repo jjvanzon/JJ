@@ -13,7 +13,7 @@ namespace JJ.Demos.Misc
         [TestMethod]
         public void Test_Linq_Take_MoreThanCollectionSize()
         {
-            IList<int> source = new int[] { 1, 2, 3 };
+            IList<int> source = new[] { 1, 2, 3 };
             IList<int> dest = source.Take(5).ToArray();
             AssertHelper.AreEqual(3, () => dest.Count);
         }
@@ -40,7 +40,7 @@ namespace JJ.Demos.Misc
 
             int count = values.Length;
 
-            int max = Int32.MinValue;
+            int max = int.MinValue;
             for (int i = 0; i < count; i++)
             {
                 int value = values[i];
@@ -64,7 +64,7 @@ namespace JJ.Demos.Misc
 
             for (int i = 0; i < count; i++)
             {
-                int max = Int32.MinValue;
+                int max = int.MinValue;
 
                 for (int j = i; j < count; j++)
                 {
@@ -86,14 +86,14 @@ namespace JJ.Demos.Misc
         [TestMethod]
         public void Test_Misc_NaNCheck_AfterNumberCheck()
         {
-            double value = Double.NaN;
+            const double value = double.NaN;
 
             if (value < 0.0)
             {
                 int bla = 0;
             }
 
-            if (Double.IsNaN(value))
+            if (double.IsNaN(value))
             {
                 int bla = 0;
             }

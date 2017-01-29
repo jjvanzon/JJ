@@ -9,6 +9,7 @@ namespace JJ.Demos.Misc
         private class Base
         { }
 
+        // ReSharper disable once ClassNeverInstantiated.Local
         private class DerivedClass : Base
         { }
 
@@ -16,9 +17,11 @@ namespace JJ.Demos.Misc
         public void Test_ContraVariance_Func()
         {
             Func<object, object> baseFunc = b => b;
+            // ReSharper disable once NotAccessedVariable
             Func<DerivedClass, object> derivedFunc = d => d;
 
             //baseFunc = derivedFunc; // Does not compile.
+            // ReSharper disable once RedundantAssignment
             derivedFunc = baseFunc;
         }
     }

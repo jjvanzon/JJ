@@ -7,8 +7,8 @@
     <ProjectGuid>{08EA4A4E-D815-47AE-9277-DA6672D36214}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Business.CanonicalModel</RootNamespace>
-    <AssemblyName>JJ.Business.CanonicalModel</AssemblyName>
+    <RootNamespace>JJ.Data.Canonical</RootNamespace>
+    <AssemblyName>JJ.Data.Canonical</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

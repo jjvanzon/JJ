@@ -194,7 +194,7 @@ namespace NAudioDemo
 
         private void ShowBufferState(double totalSeconds)
         {
-            labelBuffered.Text = String.Format("{0:0.0}s", totalSeconds);
+            labelBuffered.Text = string.Format("{0:0.0}s", totalSeconds);
             progressBarBuffer.Value = (int)(totalSeconds * 1000);
         }
 
@@ -238,7 +238,7 @@ namespace NAudioDemo
         private void Play()
         {
             waveOut.Play();
-            Debug.WriteLine(String.Format("Started playing, waveOut.PlaybackState={0}", waveOut.PlaybackState));
+            Debug.WriteLine(string.Format("Started playing, waveOut.PlaybackState={0}", waveOut.PlaybackState));
             playbackState = StreamingPlaybackState.Playing;
         }
 
@@ -246,7 +246,7 @@ namespace NAudioDemo
         {
             playbackState = StreamingPlaybackState.Buffering;
             waveOut.Pause();
-            Debug.WriteLine(String.Format("Paused to buffer, waveOut.PlaybackState={0}", waveOut.PlaybackState));
+            Debug.WriteLine(string.Format("Paused to buffer, waveOut.PlaybackState={0}", waveOut.PlaybackState));
         }
 
         private IWavePlayer CreateWaveOut()
@@ -264,7 +264,7 @@ namespace NAudioDemo
             if (playbackState == StreamingPlaybackState.Playing || playbackState == StreamingPlaybackState.Buffering)
             {
                 waveOut.Pause();
-                Debug.WriteLine(String.Format("User requested Pause, waveOut.PlaybackState={0}", waveOut.PlaybackState));
+                Debug.WriteLine(string.Format("User requested Pause, waveOut.PlaybackState={0}", waveOut.PlaybackState));
                 playbackState = StreamingPlaybackState.Paused;
             }
         }
@@ -279,7 +279,7 @@ namespace NAudioDemo
             Debug.WriteLine("Playback Stopped");
             if (e.Exception != null)
             {
-                MessageBox.Show(String.Format("Playback Error {0}", e.Exception.Message));
+                MessageBox.Show(string.Format("Playback Error {0}", e.Exception.Message));
             }
         }
     }

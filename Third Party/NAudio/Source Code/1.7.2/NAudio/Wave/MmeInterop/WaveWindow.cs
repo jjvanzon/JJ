@@ -8,7 +8,7 @@ namespace NAudio.Wave
 {
     class WaveWindowNative : System.Windows.Forms.NativeWindow
     {
-        private WaveInterop.WaveCallback waveCallback;
+        private readonly WaveInterop.WaveCallback waveCallback;
 
         public WaveWindowNative(WaveInterop.WaveCallback waveCallback)
         {
@@ -43,7 +43,7 @@ namespace NAudio.Wave
 
     class WaveWindow : Form
     {
-        private WaveInterop.WaveCallback waveCallback;
+        private readonly WaveInterop.WaveCallback waveCallback;
 
         public WaveWindow(WaveInterop.WaveCallback waveCallback)
         {

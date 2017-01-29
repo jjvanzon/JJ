@@ -4,6 +4,7 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Business.Canonical
 {
+    // ReSharper disable once InconsistentNaming
     public static class IResultExtensions
     {
         public static void Combine(this IResult destResult, IResult sourceResult)

@@ -8,9 +8,9 @@ namespace NAudio.SoundFont
 	/// </summary>
 	public class SoundFont 
 	{
-		private InfoChunk info;
-		private PresetsChunk presetsChunk;
-		private SampleDataChunk sampleData;
+		private readonly InfoChunk info;
+		private readonly PresetsChunk presetsChunk;
+		private readonly SampleDataChunk sampleData;
 
 #if !NETFX_CORE
 	    /// <summary>
@@ -37,7 +37,7 @@ namespace NAudio.SoundFont
 					string formHeader = riff.ReadChunkID();
 					if(formHeader != "sfbk") 
 					{
-						throw new InvalidDataException(String.Format("Not a SoundFont ({0})",formHeader));
+						throw new InvalidDataException(string.Format("Not a SoundFont ({0})",formHeader));
 					}
 					RiffChunk list = riff.GetNextSubChunk();
 					if(list.ChunkID == "LIST") 
@@ -53,7 +53,7 @@ namespace NAudio.SoundFont
 					}
 					else 
 					{
-                        throw new InvalidDataException(String.Format("Not info list found ({0})", list.ChunkID));
+                        throw new InvalidDataException(string.Format("Not info list found ({0})", list.ChunkID));
 					}
 				}
 				else
@@ -123,7 +123,7 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public override string ToString() 
 		{
-			return String.Format("Info Chunk:\r\n{0}\r\nPresets Chunk:\r\n{1}",
+			return string.Format("Info Chunk:\r\n{0}\r\nPresets Chunk:\r\n{1}",
 									info,presetsChunk);
 		}
 

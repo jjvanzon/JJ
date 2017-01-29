@@ -273,7 +273,7 @@ namespace NAudio.Wave
         public event EventHandler<SampleEventArgs> Sample;
 
         // reuse the same object every time to avoid making lots of work for the garbage collector
-        private SampleEventArgs sampleEventArgs = new SampleEventArgs(0,0);
+        private readonly SampleEventArgs sampleEventArgs = new SampleEventArgs(0,0);
 
         /// <summary>
         /// Raise the sample event (no check for null because it has already been done)

@@ -14,24 +14,23 @@ namespace NAudio.Midi
         /// <summary>
         /// wMid
         /// </summary>
-        UInt16 manufacturerId;
+        readonly ushort manufacturerId;
         /// <summary>
         /// wPid
         /// </summary>
-        UInt16 productId;
+        readonly ushort productId;
         /// <summary>
         /// vDriverVersion
         /// </summary>
-        UInt32 driverVersion;
+        readonly uint driverVersion;
         /// <summary>
         /// Product Name
         /// </summary>
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MaxProductNameLength)]
-        string productName;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MaxProductNameLength)] readonly string productName;
         /// <summary>
         /// Support - Reserved
         /// </summary>
-        Int32 support;
+        readonly int support;
 
         private const int MaxProductNameLength = 32;
 

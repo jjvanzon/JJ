@@ -54,7 +54,7 @@ namespace NAudio.Wave
             int converted = conversionStream.Convert(frame.FrameLength, out sourceBytesConverted);
             if (sourceBytesConverted != frame.FrameLength)
             {
-                throw new InvalidOperationException(String.Format("Couldn't convert the whole MP3 frame (converted {0}/{1})",
+                throw new InvalidOperationException(string.Format("Couldn't convert the whole MP3 frame (converted {0}/{1})",
                     sourceBytesConverted, frame.FrameLength));
             }
             Array.Copy(conversionStream.DestBuffer, 0, dest, destOffset, converted);

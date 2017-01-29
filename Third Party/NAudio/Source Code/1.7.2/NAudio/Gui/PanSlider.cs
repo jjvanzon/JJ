@@ -15,7 +15,7 @@ namespace NAudio.Gui
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private readonly System.ComponentModel.Container components = null;
 		private float pan;
 
         /// <summary>
@@ -80,12 +80,12 @@ namespace NAudio.Gui
 			else if(pan > 0)
 			{
 				pe.Graphics.FillRectangle(Brushes.Orange,(this.Width/2),1,(int) ((this.Width/2) * pan),this.Height-2);
-				panValue = String.Format("{0:F0}%R",pan*100);
+				panValue = string.Format("{0:F0}%R",pan*100);
 			}
 			else
 			{
 				pe.Graphics.FillRectangle(Brushes.Orange,(int)((this.Width/2) * (pan+1)),1,(int) ((this.Width/2) * (0-pan)),this.Height-2);
-				panValue = String.Format("{0:F0}%L",pan*-100);
+				panValue = string.Format("{0:F0}%L",pan*-100);
 			}
 			pe.Graphics.DrawRectangle(Pens.Black,0,0,this.Width-1,this.Height-1);
 

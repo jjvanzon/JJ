@@ -12,8 +12,8 @@ namespace NAudio.Midi
     public class MidiEventCollection : IEnumerable<IList<MidiEvent>>
     {
         int midiFileType;
-        List<IList<MidiEvent>> trackEvents;
-        int deltaTicksPerQuarterNote;
+        readonly List<IList<MidiEvent>> trackEvents;
+        readonly int deltaTicksPerQuarterNote;
         long startAbsoluteTime;
 
         /// <summary>

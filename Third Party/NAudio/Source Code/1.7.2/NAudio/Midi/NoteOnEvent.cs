@@ -134,10 +134,10 @@ namespace NAudio.Midi
         {
             if ((this.Velocity == 0) && (OffEvent == null))
             {
-                return String.Format("{0} (Note Off)",
+                return string.Format("{0} (Note Off)",
                     base.ToString());
             }
-            return String.Format("{0} Len: {1}",
+            return string.Format("{0} Len: {1}",
                 base.ToString(),
                 (this.OffEvent == null) ? "?" : this.NoteLength.ToString());
         }

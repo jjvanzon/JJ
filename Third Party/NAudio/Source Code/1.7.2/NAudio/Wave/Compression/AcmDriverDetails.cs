@@ -17,27 +17,27 @@ namespace NAudio.Wave.Compression
         /// <summary>
         /// FOURCC fccType
         /// </summary>
-        public UInt32 fccType;
+        public uint fccType;
         /// <summary>
         /// FOURCC fccComp
         /// </summary>
-        public UInt32 fccComp;
+        public uint fccComp;
         /// <summary>
         /// WORD   wMid; 
         /// </summary>
-        public UInt16 manufacturerId;
+        public ushort manufacturerId;
         /// <summary>
         /// WORD wPid
         /// </summary>
-        public UInt16 productId;
+        public ushort productId;
         /// <summary>
         /// DWORD vdwACM
         /// </summary>
-        public UInt32 acmVersion;
+        public uint acmVersion;
         /// <summary>
         /// DWORD vdwDriver
         /// </summary>
-        public UInt32 driverVersion;
+        public uint driverVersion;
         /// <summary>
         /// DWORD  fdwSupport;
         /// </summary>

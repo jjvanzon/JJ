@@ -12,7 +12,7 @@ namespace NAudio.Wave
     [StructLayout(LayoutKind.Sequential, Pack = 2)]
     public class Gsm610WaveFormat : WaveFormat
     {
-        private short samplesPerBlock;
+        private readonly short samplesPerBlock;
 
         /// <summary>
         /// Creates a GSM 610 WaveFormat

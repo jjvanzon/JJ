@@ -10,16 +10,15 @@ namespace NAudio.Midi
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     public struct MidiOutCapabilities
     {
-        Int16 manufacturerId;
-        Int16 productId;
-        int driverVersion;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MaxProductNameLength)]
-        string productName;
-        Int16 wTechnology;
-        Int16 wVoices;
-        Int16 wNotes;
-        UInt16 wChannelMask;
-        MidiOutCapabilityFlags dwSupport;
+        readonly short manufacturerId;
+        readonly short productId;
+        readonly int driverVersion;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MaxProductNameLength)] readonly string productName;
+        readonly short wTechnology;
+        readonly short wVoices;
+        readonly short wNotes;
+        readonly ushort wChannelMask;
+        readonly MidiOutCapabilityFlags dwSupport;
 
         const int MaxProductNameLength = 32; // max product name length (including NULL)
 
@@ -71,7 +70,7 @@ namespace NAudio.Midi
         /// <summary>
         /// Gets the product name
         /// </summary>
-        public String ProductName
+        public string ProductName
         {
             get
             {

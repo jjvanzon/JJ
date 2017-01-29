@@ -7,7 +7,7 @@ namespace NAudioDemo
 {
     class LoopStream : WaveStream
     {
-        WaveStream sourceStream;
+        readonly WaveStream sourceStream;
 
         public LoopStream(WaveStream source)
         {

@@ -5,13 +5,13 @@ namespace NAudio.SoundFont
 {
 	class SampleDataChunk 
 	{
-		private byte[] sampleData;
+		private readonly byte[] sampleData;
 		public SampleDataChunk(RiffChunk chunk) 
 		{
 			string header = chunk.ReadChunkID();
 			if(header != "sdta") 
 			{
-				throw new InvalidDataException(String.Format("Not a sample data chunk ({0})",header));
+				throw new InvalidDataException(string.Format("Not a sample data chunk ({0})",header));
 			}
 			sampleData = chunk.GetData();
 		}

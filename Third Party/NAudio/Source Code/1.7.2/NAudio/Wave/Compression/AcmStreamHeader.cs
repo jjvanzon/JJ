@@ -5,12 +5,12 @@ namespace NAudio.Wave.Compression
 {
     class AcmStreamHeader : IDisposable
     {
-        private AcmStreamHeaderStruct streamHeader;
+        private readonly AcmStreamHeaderStruct streamHeader;
         private byte[] sourceBuffer;
         private GCHandle hSourceBuffer;
         private byte[] destBuffer;
         private GCHandle hDestBuffer;
-        private IntPtr streamHandle;
+        private readonly IntPtr streamHandle;
         private bool firstTime;
 
         public AcmStreamHeader(IntPtr streamHandle, int sourceBufferLength, int destBufferLength)

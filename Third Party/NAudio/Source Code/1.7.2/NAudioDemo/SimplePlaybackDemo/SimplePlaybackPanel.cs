@@ -122,7 +122,7 @@ namespace NAudioDemo.SimplePlaybackDemo
             labelNowTime.Text = "00:00";
             if (e.Exception != null)
             {
-                MessageBox.Show(String.Format("Playback Stopped due to an error {0}", e.Exception.Message));
+                MessageBox.Show(string.Format("Playback Stopped due to an error {0}", e.Exception.Message));
             }
         }
 

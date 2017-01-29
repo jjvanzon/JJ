@@ -41,7 +41,7 @@ namespace NAudio.CoreAudioApi.Interfaces
         int SetChannelVolumeLevelScalar(uint nChannel, float fLevel, Guid pguidEventContext);
         int GetChannelVolumeLevel(uint nChannel, out float pfLevelDB);
         int GetChannelVolumeLevelScalar(uint nChannel, out float pfLevel);
-        int SetMute([MarshalAs(UnmanagedType.Bool)] Boolean bMute, Guid pguidEventContext);
+        int SetMute([MarshalAs(UnmanagedType.Bool)] bool bMute, Guid pguidEventContext);
         int GetMute(out bool pbMute);
         int GetVolumeStepInfo(out uint pnStep, out uint pnStepCount);
         int VolumeStepUp(Guid pguidEventContext);

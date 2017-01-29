@@ -248,7 +248,7 @@ namespace NAudio.Wave
                 case WaveFormatEncoding.Pcm:
                 case WaveFormatEncoding.Extensible:
                     // extensible just has some extra bits after the PCM header
-                    return String.Format("{0} bit PCM: {1}kHz {2} channels",
+                    return string.Format("{0} bit PCM: {1}kHz {2} channels",
                         bitsPerSample, sampleRate / 1000, channels);
                 default:
                     return this.waveFormatTag.ToString();

@@ -12,7 +12,7 @@ namespace NAudioDemo.AudioPlaybackDemo
     class DirectSoundOutPlugin : IOutputDevicePlugin
     {
         private DirectSoundOutSettingsPanel settingsPanel;
-        private bool isAvailable;
+        private readonly bool isAvailable;
 
         public DirectSoundOutPlugin()
         {

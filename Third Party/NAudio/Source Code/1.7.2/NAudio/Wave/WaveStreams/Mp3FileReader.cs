@@ -200,7 +200,7 @@ namespace NAudio.Wave
             if (frame.SampleRate != Mp3WaveFormat.SampleRate)
             {
                 string message =
-                    String.Format(
+                    string.Format(
                         "Got a frame at sample rate {0}, in an MP3 with sample rate {1}. Mp3FileReader does not support sample rate changes.",
                         frame.SampleRate, Mp3WaveFormat.SampleRate);
                 throw new InvalidOperationException(message);
@@ -209,7 +209,7 @@ namespace NAudio.Wave
             if (channels != Mp3WaveFormat.Channels)
             {
                 string message =
-                    String.Format(
+                    string.Format(
                         "Got a frame with channel mode {0}, in an MP3 with {1} channels. Mp3FileReader does not support changes to channel count.",
                         frame.ChannelMode, Mp3WaveFormat.Channels);
                 throw new InvalidOperationException(message);

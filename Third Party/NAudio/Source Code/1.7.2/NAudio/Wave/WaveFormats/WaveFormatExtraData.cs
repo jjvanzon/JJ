@@ -14,7 +14,7 @@ namespace NAudio.Wave
     {
         // try with 100 bytes for now, increase if necessary
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 100)]
-        private byte[] extraData = new byte[100];
+        private readonly byte[] extraData = new byte[100];
 
         /// <summary>
         /// Allows the extra data to be read

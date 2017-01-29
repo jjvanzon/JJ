@@ -204,7 +204,7 @@ namespace NAudio.Wave
                 }
                 else if (dwFlags != 0)
                 {
-                    throw new InvalidOperationException(String.Format("MediaFoundationReadError {0}", dwFlags));
+                    throw new InvalidOperationException(string.Format("MediaFoundationReadError {0}", dwFlags));
                 }
 
                 IMFMediaBuffer pBuffer;

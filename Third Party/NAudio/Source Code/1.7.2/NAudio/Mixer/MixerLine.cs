@@ -12,8 +12,8 @@ namespace NAudio.Mixer
     public class MixerLine 
     {
         private MixerInterop.MIXERLINE mixerLine;
-        private IntPtr mixerHandle;
-        private MixerFlags mixerHandleType;
+        private readonly IntPtr mixerHandle;
+        private readonly MixerFlags mixerHandleType;
 
         /// <summary>
         /// Creates a new mixer destination
@@ -63,7 +63,7 @@ namespace NAudio.Mixer
         /// <summary>
         /// Mixer Line Name
         /// </summary>
-        public String Name 
+        public string Name 
         {
             get 
             {
@@ -74,7 +74,7 @@ namespace NAudio.Mixer
         /// <summary>
         /// Mixer Line short name
         /// </summary>
-        public String ShortName 
+        public string ShortName 
         {
             get 
             {
@@ -107,7 +107,7 @@ namespace NAudio.Mixer
         /// <summary>
         /// Mixer destination type description
         /// </summary>
-        public String TypeDescription 
+        public string TypeDescription 
         {
             get 
             {
@@ -280,7 +280,7 @@ namespace NAudio.Mixer
         /// </summary>
         public override string ToString()
         {
-            return String.Format("{0} {1} ({2} controls, ID={3})", 
+            return string.Format("{0} {1} ({2} controls, ID={3})", 
                 Name, TypeDescription, ControlsCount, mixerLine.dwLineID);
         }
     }

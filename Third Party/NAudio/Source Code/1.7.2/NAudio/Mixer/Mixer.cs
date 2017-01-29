@@ -9,8 +9,8 @@ namespace NAudio.Mixer
 	public class Mixer 
 	{
 		private MixerInterop.MIXERCAPS caps;
-        private IntPtr mixerHandle;
-        private MixerFlags mixerHandleType;
+        private readonly IntPtr mixerHandle;
+        private readonly MixerFlags mixerHandleType;
 		
 		/// <summary>The number of mixer devices available</summary>	
 		public static int NumberOfDevices 
@@ -49,7 +49,7 @@ namespace NAudio.Mixer
 		}
 		
 		/// <summary>The name of this mixer device</summary>
-		public String Name 
+		public string Name 
 		{
 			get 
 			{

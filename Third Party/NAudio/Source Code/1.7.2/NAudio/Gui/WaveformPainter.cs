@@ -14,7 +14,7 @@ namespace NAudio.Gui
     public partial class WaveformPainter : Control
     {
         Pen foregroundPen;
-        List<float> samples = new List<float>(1000);
+        readonly List<float> samples = new List<float>(1000);
         int maxSamples;
         int insertPos;
 

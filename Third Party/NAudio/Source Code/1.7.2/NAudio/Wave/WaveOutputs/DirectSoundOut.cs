@@ -24,7 +24,7 @@ namespace NAudio.Wave
         private int samplesTotalSize;
         private int samplesFrameSize;
         private int nextSamplesWriteIndex;
-        private int desiredLatency;
+        private readonly int desiredLatency;
         private Guid device;
         private byte[] samples;
         private IWaveProvider waveStream = null;
@@ -35,11 +35,11 @@ namespace NAudio.Wave
         private EventWaitHandle frameEventWaitHandle2;
         private EventWaitHandle endEventWaitHandle;
         private Thread notifyThread;
-        private SynchronizationContext syncContext;
+        private readonly SynchronizationContext syncContext;
         private long bytesPlayed;
 
         // Used purely for locking
-        private Object m_LockObject = new Object();
+        private readonly object m_LockObject = new object();
 
         /// <summary>
         /// Gets the DirectSound output devices in the system
@@ -707,7 +707,7 @@ namespace NAudio.Wave
         [StructLayout(LayoutKind.Sequential)]
         internal struct DirectSoundBufferPositionNotify
         {
-            public UInt32 dwOffset;
+            public uint dwOffset;
             public IntPtr hEventNotify;
         }
 
@@ -798,7 +798,7 @@ namespace NAudio.Wave
          SuppressUnmanagedCodeSecurity]
         internal interface IDirectSoundNotify
         {
-            void SetNotificationPositions(UInt32 dwPositionNotifies, [In, MarshalAs(UnmanagedType.LPArray)] DirectSoundBufferPositionNotify[] pcPositionNotifies);
+            void SetNotificationPositions(uint dwPositionNotifies, [In, MarshalAs(UnmanagedType.LPArray)] DirectSoundBufferPositionNotify[] pcPositionNotifies);
         }
 
         /// <summary>

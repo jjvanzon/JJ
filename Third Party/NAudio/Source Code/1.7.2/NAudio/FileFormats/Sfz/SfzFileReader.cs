@@ -50,7 +50,7 @@ namespace NAudio.Sfz
                     {   
                         
                         char c = line[n];
-                        if(Char.IsWhiteSpace(c))
+                        if(char.IsWhiteSpace(c))
                         {
                             if (currentOpcode.Length == 0)
                             {
@@ -58,7 +58,7 @@ namespace NAudio.Sfz
                             }
                             else if (currentValue.Length == 0)
                             {
-                                throw new FormatException(String.Format("Invalid Whitespace Line {0}, Char {1}", lineNumber, n));
+                                throw new FormatException(string.Format("Invalid Whitespace Line {0}, Char {1}", lineNumber, n));
                             }
                             else
                             {
@@ -92,7 +92,7 @@ namespace NAudio.Sfz
                             }
                             else
                             {
-                                throw new FormatException(String.Format("Unrecognised section Line {0}, Char {1}", lineNumber, n));
+                                throw new FormatException(string.Format("Unrecognised section Line {0}, Char {1}", lineNumber, n));
                             }
                         }
                         else

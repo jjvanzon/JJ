@@ -50,7 +50,7 @@ namespace NAudio.Midi
         /// <returns>String describing this pitch wheel change event</returns>
         public override string ToString() 
         {
-            return String.Format("{0} Pitch {1} ({2})",
+            return string.Format("{0} Pitch {1} ({2})",
                 base.ToString(),
                 this.pitch,
                 this.pitch - 0x2000);

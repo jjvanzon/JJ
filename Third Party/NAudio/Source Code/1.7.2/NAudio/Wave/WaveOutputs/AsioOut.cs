@@ -51,7 +51,7 @@ namespace NAudio.Wave
         /// Initializes a new instance of the <see cref="AsioOut"/> class with the driver name.
         /// </summary>
         /// <param name="driverName">Name of the device.</param>
-        public AsioOut(String driverName)
+        public AsioOut(string driverName)
         {
             this.syncContext = SynchronizationContext.Current;
             InitFromName(driverName);
@@ -64,14 +64,14 @@ namespace NAudio.Wave
         public AsioOut(int driverIndex)
         {
             this.syncContext = SynchronizationContext.Current; 
-            String[] names = GetDriverNames();
+            string[] names = GetDriverNames();
             if (names.Length == 0)
             {
                 throw new ArgumentException("There is no ASIO Driver installed on your system");
             }
             if (driverIndex < 0 || driverIndex > names.Length)
             {
-                throw new ArgumentException(String.Format("Invalid device number. Must be in the range [0,{0}]", names.Length));
+                throw new ArgumentException(string.Format("Invalid device number. Must be in the range [0,{0}]", names.Length));
             }
             this.driverName = names[driverIndex];
             InitFromName(this.driverName);
@@ -106,7 +106,7 @@ namespace NAudio.Wave
         /// Gets the names of the installed ASIO Driver.
         /// </summary>
         /// <returns>an array of driver names</returns>
-        public static String[] GetDriverNames()
+        public static string[] GetDriverNames()
         {
             return ASIODriver.GetASIODriverNames();
         }
@@ -126,7 +126,7 @@ namespace NAudio.Wave
         /// Inits the driver from the asio driver name.
         /// </summary>
         /// <param name="driverName">Name of the driver.</param>
-        private void InitFromName(String driverName)
+        private void InitFromName(string driverName)
         {
             // Get the basic driver
             ASIODriver basicDriver = ASIODriver.GetASIODriverByName(driverName);

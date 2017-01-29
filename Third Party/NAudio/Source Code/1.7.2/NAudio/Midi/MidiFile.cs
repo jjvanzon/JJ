@@ -11,11 +11,11 @@ namespace NAudio.Midi
     /// </summary>
     public class MidiFile 
     {
-        private MidiEventCollection events;
-        private ushort fileFormat;
+        private readonly MidiEventCollection events;
+        private readonly ushort fileFormat;
         //private ushort tracks;
-        private ushort deltaTicksPerQuarterNote;
-        private bool strictChecking;
+        private readonly ushort deltaTicksPerQuarterNote;
+        private readonly bool strictChecking;
 
         /// <summary>
         /// Opens a MIDI file for reading
@@ -122,7 +122,7 @@ namespace NAudio.Midi
                                 {
                                     if (br.BaseStream.Position < startPos + chunkSize)
                                     {
-                                        throw new FormatException(String.Format("End Track event was not the last MIDI event on track {0}", track));
+                                        throw new FormatException(string.Format("End Track event was not the last MIDI event on track {0}", track));
                                     }
                                 }
                             }
@@ -132,12 +132,12 @@ namespace NAudio.Midi
                     {
                         if (strictChecking)
                         {
-                            throw new FormatException(String.Format("Note ons without note offs {0} (file format {1})", outstandingNoteOns.Count, fileFormat));
+                            throw new FormatException(string.Format("Note ons without note offs {0} (file format {1})", outstandingNoteOns.Count, fileFormat));
                         }
                     }
                     if(br.BaseStream.Position != startPos + chunkSize) 
                     {
-                        throw new FormatException(String.Format("Read too far {0}+{1}!={2}", chunkSize, startPos, br.BaseStream.Position));
+                        throw new FormatException(string.Format("Read too far {0}+{1}!={2}", chunkSize, startPos, br.BaseStream.Position));
                     }
                 }
             }
@@ -184,7 +184,7 @@ namespace NAudio.Midi
             {
                 if (strictChecking)
                 {
-                    throw new FormatException(String.Format("Got an off without an on {0}", offEvent));
+                    throw new FormatException(string.Format("Got an off without an on {0}", offEvent));
                 }
             }
         }

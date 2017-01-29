@@ -10,7 +10,7 @@ namespace NAudio.Wave.SampleProviders
     /// </summary>
     public class SampleToWaveProvider16 : IWaveProvider
     {
-        private ISampleProvider sourceProvider;
+        private readonly ISampleProvider sourceProvider;
         private readonly WaveFormat waveFormat;
         private volatile float volume;
         private float[] sourceBuffer;

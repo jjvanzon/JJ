@@ -67,10 +67,10 @@ namespace NAudio.SoundFont
 	{
 		bool polarity;
 		bool direction;
-		bool midiContinuousController;
-		ControllerSourceEnum controllerSource;
-		SourceTypeEnum sourceType;
-		ushort midiContinuousControllerNumber;
+	    readonly bool midiContinuousController;
+	    readonly ControllerSourceEnum controllerSource;
+	    readonly SourceTypeEnum sourceType;
+	    readonly ushort midiContinuousControllerNumber;
 			
 		internal ModulatorType(ushort raw) 
 		{
@@ -92,9 +92,9 @@ namespace NAudio.SoundFont
 		public override string ToString()
 		{
 			if(midiContinuousController)
-				return String.Format("{0} CC{1}",sourceType,midiContinuousControllerNumber);
+				return string.Format("{0} CC{1}",sourceType,midiContinuousControllerNumber);
 			else
-				return String.Format("{0} {1}",sourceType,controllerSource);
+				return string.Format("{0} {1}",sourceType,controllerSource);
 		}
 
 	}

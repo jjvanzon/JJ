@@ -12,9 +12,9 @@ namespace NAudio.Wave
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 2)]	
     public class WaveFormatExtensible : WaveFormat
-    {        
-        short wValidBitsPerSample; // bits of precision, or is wSamplesPerBlock if wBitsPerSample==0
-        int dwChannelMask; // which channels are present in stream
+    {
+        readonly short wValidBitsPerSample; // bits of precision, or is wSamplesPerBlock if wBitsPerSample==0
+        readonly int dwChannelMask; // which channels are present in stream
         Guid subFormat;
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace NAudio.Wave
         /// </summary>
         public override string ToString()
         {
-            return String.Format("{0} wBitsPerSample:{1} dwChannelMask:{2} subFormat:{3} extraSize:{4}",
+            return string.Format("{0} wBitsPerSample:{1} dwChannelMask:{2} subFormat:{3} extraSize:{4}",
                 base.ToString(),
                 wValidBitsPerSample,
                 dwChannelMask,

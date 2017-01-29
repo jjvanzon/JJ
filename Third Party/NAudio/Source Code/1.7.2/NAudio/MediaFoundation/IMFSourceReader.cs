@@ -39,7 +39,7 @@ namespace NAudio.MediaFoundation
         /// Reads the next sample from the media source.
         /// </summary>
         void ReadSample([In] int dwStreamIndex, [In] int dwControlFlags, [Out] out int pdwActualStreamIndex, [Out] out MF_SOURCE_READER_FLAG pdwStreamFlags,
-                        [Out] out UInt64 pllTimestamp, [Out] out IMFSample ppSample);
+                        [Out] out ulong pllTimestamp, [Out] out IMFSample ppSample);
         /// <summary>
         /// Flushes one or more streams.
         /// </summary>

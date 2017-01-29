@@ -11,9 +11,9 @@ namespace NAudio.Wave
     /// </summary>
     public class Id3v2Tag
     {
-        private long tagStartPosition;
-        private long tagEndPosition;
-        private byte[] rawData;
+        private readonly long tagStartPosition;
+        private readonly long tagEndPosition;
+        private readonly byte[] rawData;
 
         /// <summary>
         /// Reads an ID3v2 tag from a stream

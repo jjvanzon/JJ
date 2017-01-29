@@ -4,6 +4,7 @@ using JJ.Framework.Validation;
 
 namespace JJ.Business.Canonical
 {
+    // ReSharper disable once InconsistentNaming
     public static class IValidatorExtensions
     {
         public static VoidResult ToResult(this IValidator validator)

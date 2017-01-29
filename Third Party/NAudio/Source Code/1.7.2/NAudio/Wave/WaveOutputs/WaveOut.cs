@@ -15,12 +15,12 @@ namespace NAudio.Wave
         private WaveOutBuffer[] buffers;
         private IWaveProvider waveStream;
         private volatile PlaybackState playbackState;
-        private WaveInterop.WaveCallback callback;
+        private readonly WaveInterop.WaveCallback callback;
         private float volume = 1;
-        private WaveCallbackInfo callbackInfo;
-        private object waveOutLock;
+        private readonly WaveCallbackInfo callbackInfo;
+        private readonly object waveOutLock;
         private int queuedBuffers;
-        private SynchronizationContext syncContext;
+        private readonly SynchronizationContext syncContext;
 
         /// <summary>
         /// Indicates playback has stopped automatically
@@ -43,7 +43,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Returns the number of Wave Out devices available in the system
         /// </summary>
-        public static Int32 DeviceCount
+        public static int DeviceCount
         {
             get
             {

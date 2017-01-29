@@ -13,7 +13,7 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// The size of the buffer for the audio stream.
         /// </summary>
-        public UInt32 cbSize;
+        public uint cbSize;
         /// <summary>
         /// Boolean value to indicate whether or not the audio stream is hardware-offloaded
         /// </summary>

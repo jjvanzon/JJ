@@ -10,8 +10,8 @@ namespace NAudio.Wave
     /// </summary>
     public class StereoToMonoProvider16 : IWaveProvider
     {
-        private IWaveProvider sourceProvider;
-        private WaveFormat outputFormat;
+        private readonly IWaveProvider sourceProvider;
+        private readonly WaveFormat outputFormat;
         private byte[] sourceBuffer;
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace NAudio.Wave
                 short right = sourceWaveBuffer.ShortBuffer[sample+1];
                 float outSample = (left * LeftVolume) + (right * RightVolume);
                 // hard limiting
-                if (outSample > Int16.MaxValue) outSample = Int16.MaxValue;
-                if (outSample < Int16.MinValue) outSample = Int16.MinValue;
+                if (outSample > short.MaxValue) outSample = short.MaxValue;
+                if (outSample < short.MinValue) outSample = short.MinValue;
 
                 destWaveBuffer.ShortBuffer[destOffset++] = (short)outSample;
             }

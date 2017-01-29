@@ -9,8 +9,8 @@ namespace NAudio.Wave
     /// </summary>
     public class WaveInEventArgs : EventArgs
     {
-        private byte[] buffer;
-        private int bytes;
+        private readonly byte[] buffer;
+        private readonly int bytes;
 
         /// <summary>
         /// Creates new WaveInEventArgs

@@ -10,7 +10,7 @@ namespace NAudio.Wave
     class WaveInBuffer : IDisposable
     {
         private readonly WaveHeader header;
-        private readonly Int32 bufferSize; // allocated bytes, may not be the same as bytes read
+        private readonly int bufferSize; // allocated bytes, may not be the same as bytes read
         private readonly byte[] buffer;
         private GCHandle hBuffer;
         private IntPtr waveInHandle;
@@ -22,7 +22,7 @@ namespace NAudio.Wave
         /// </summary>
         /// <param name="waveInHandle">WaveIn device to write to</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public WaveInBuffer(IntPtr waveInHandle, Int32 bufferSize)
+        public WaveInBuffer(IntPtr waveInHandle, int bufferSize)
         {
             this.bufferSize = bufferSize;
             this.buffer = new byte[bufferSize];
@@ -147,7 +147,7 @@ namespace NAudio.Wave
         /// <summary>
         /// The buffer size in bytes
         /// </summary>
-        public Int32 BufferSize
+        public int BufferSize
         {
             get
             {

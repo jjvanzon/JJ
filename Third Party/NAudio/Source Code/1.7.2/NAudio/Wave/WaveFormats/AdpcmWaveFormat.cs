@@ -12,11 +12,10 @@ namespace NAudio.Wave
     [StructLayout(LayoutKind.Sequential, Pack=2)]
     public class AdpcmWaveFormat : WaveFormat
     {
-        short samplesPerBlock;
-        short numCoeff;
+        readonly short samplesPerBlock;
+        readonly short numCoeff;
         // 7 pairs of coefficients
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 14)]
-        short[] coefficients;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 14)] readonly short[] coefficients;
 
         /// <summary>
         /// Empty constructor needed for marshalling from a pointer
@@ -110,7 +109,7 @@ namespace NAudio.Wave
         /// </summary>
         public override string ToString()
         {
-            return String.Format("Microsoft ADPCM {0} Hz {1} channels {2} bits per sample {3} samples per block",
+            return string.Format("Microsoft ADPCM {0} Hz {1} channels {2} bits per sample {3} samples per block",
                 this.SampleRate, this.channels, this.bitsPerSample, this.samplesPerBlock);
         }
     }

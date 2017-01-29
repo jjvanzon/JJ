@@ -10,7 +10,7 @@ namespace NAudio.Wave.Asio
     /// </summary>
     internal class AsioDriverCapability
     {
-        public String DriverName;
+        public string DriverName;
 
         public int NbInputChannels;
         public int NbOutputChannels;

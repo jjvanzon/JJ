@@ -8,8 +8,8 @@ namespace NAudio.Midi
     /// </summary>
     public class KeySignatureEvent : MetaEvent
     {
-        private byte sharpsFlats;
-        private byte majorMinor;
+        private readonly byte sharpsFlats;
+        private readonly byte majorMinor;
 
         /// <summary>
         /// Reads a new track sequence number event from a MIDI stream
@@ -64,7 +64,7 @@ namespace NAudio.Midi
         /// <returns>String describing the event</returns>
         public override string ToString()
         {
-            return String.Format("{0} {1} {2}", base.ToString(), sharpsFlats, majorMinor);
+            return string.Format("{0} {1} {2}", base.ToString(), sharpsFlats, majorMinor);
         }
 
         /// <summary>

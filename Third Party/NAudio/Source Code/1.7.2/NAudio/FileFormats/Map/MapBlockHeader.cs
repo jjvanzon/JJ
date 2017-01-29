@@ -22,7 +22,7 @@ namespace NAudio.FileFormats.Map
 
         public override string ToString()
         {
-            return String.Format("{0} {1:X8} {2:X4} {3:X4}",
+            return string.Format("{0} {1:X8} {2:X4} {3:X4}",
                 length, value2, value3, value4);
         }
 

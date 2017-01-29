@@ -72,8 +72,8 @@ namespace NAudio.Wave
                     // clip if necessary
                     if (this.Volume > 1.0f)
                     {
-                        if (newSample > Int16.MaxValue) sample = Int16.MaxValue;
-                        else if (newSample < Int16.MinValue) sample = Int16.MinValue;
+                        if (newSample > short.MaxValue) sample = short.MaxValue;
+                        else if (newSample < short.MinValue) sample = short.MinValue;
                     }
 
                     buffer[offset++] = (byte)(sample & 0xFF);

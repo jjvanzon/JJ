@@ -11,9 +11,9 @@ namespace NAudio.Wave
     /// </summary>
     public class MixingWaveProvider32 : IWaveProvider
     {
-        private List<IWaveProvider> inputs;
+        private readonly List<IWaveProvider> inputs;
         private WaveFormat waveFormat;
-        private int bytesPerSample;
+        private readonly int bytesPerSample;
 
         /// <summary>
         /// Creates a new MixingWaveProvider32

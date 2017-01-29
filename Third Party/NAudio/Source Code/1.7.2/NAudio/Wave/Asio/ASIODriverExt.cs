@@ -18,7 +18,7 @@ namespace NAudio.Wave.Asio
     /// </summary>
     internal class ASIODriverExt
     {
-        private ASIODriver driver;
+        private readonly ASIODriver driver;
         private ASIOCallbacks callbacks;
         private AsioDriverCapability capability;
         private ASIOBufferInfo[] bufferInfos;
@@ -181,14 +181,14 @@ namespace NAudio.Wave.Asio
         {
             if (numberOfOutputChannels < 0 || numberOfOutputChannels > capability.NbOutputChannels)
             {
-                throw new ArgumentException(String.Format(
+                throw new ArgumentException(string.Format(
                                                 "Invalid number of channels {0}, must be in the range [0,{1}]",
                                                 numberOfOutputChannels, capability.NbOutputChannels));
             }
             if (numberOfInputChannels < 0 || numberOfInputChannels > capability.NbInputChannels)
             {
                 throw new ArgumentException("numberOfInputChannels", 
-                    String.Format("Invalid number of input channels {0}, must be in the range [0,{1}]",
+                    string.Format("Invalid number of input channels {0}, must be in the range [0,{1}]",
                         numberOfInputChannels, capability.NbInputChannels));
             }
 

@@ -10,7 +10,7 @@ namespace NAudio.Wave.SampleProviders
     /// </summary>
     public class MixingSampleProvider : ISampleProvider
     {
-        private List<ISampleProvider> sources;
+        private readonly List<ISampleProvider> sources;
         private WaveFormat waveFormat;
         private float[] sourceBuffer;
         private const int maxInputs = 1024; // protect ourselves against doing something silly

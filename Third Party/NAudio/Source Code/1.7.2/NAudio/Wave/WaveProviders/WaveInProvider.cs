@@ -10,8 +10,8 @@ namespace NAudio.Wave
     /// </summary>
     public class WaveInProvider : IWaveProvider
     {
-        IWaveIn waveIn;
-        BufferedWaveProvider bufferedWaveProvider;
+        readonly IWaveIn waveIn;
+        readonly BufferedWaveProvider bufferedWaveProvider;
 
         /// <summary>
         /// Creates a new WaveInProvider

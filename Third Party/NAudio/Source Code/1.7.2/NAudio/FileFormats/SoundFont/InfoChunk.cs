@@ -9,7 +9,7 @@ namespace NAudio.SoundFont
 	public class InfoChunk 
 	{
 		//private RiffChunk chunk;	
-		private SFVersion verSoundFont;
+		private readonly SFVersion verSoundFont;
 		private string waveTableSoundEngine;
 		private string bankName;
 		private string dataROM;
@@ -73,7 +73,7 @@ namespace NAudio.SoundFont
 					tools = c.GetDataAsString();
 					break;
 				default:
-					throw new InvalidDataException(String.Format("Unknown chunk type {0}",c.ChunkID));
+					throw new InvalidDataException(string.Format("Unknown chunk type {0}",c.ChunkID));
 				}
 			}
 			if(!ifilPresent) 
@@ -264,7 +264,7 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public override string ToString() 
 		{
-			return String.Format("Bank Name: {0}\r\nAuthor: {1}\r\nCopyright: {2}\r\nCreation Date: {3}\r\nTools: {4}\r\nComments: {5}\r\nSound Engine: {6}\r\nSoundFont Version: {7}\r\nTarget Product: {8}\r\nData ROM: {9}\r\nROM Version: {10}",
+			return string.Format("Bank Name: {0}\r\nAuthor: {1}\r\nCopyright: {2}\r\nCreation Date: {3}\r\nTools: {4}\r\nComments: {5}\r\nSound Engine: {6}\r\nSoundFont Version: {7}\r\nTarget Product: {8}\r\nData ROM: {9}\r\nROM Version: {10}",
 				BankName,
 				Author,
 				Copyright,

@@ -10,7 +10,7 @@ namespace NAudio.Wave
     class WaveOutBuffer : IDisposable
     {
         private readonly WaveHeader header;
-        private readonly Int32 bufferSize; // allocated bytes, may not be the same as bytes read
+        private readonly int bufferSize; // allocated bytes, may not be the same as bytes read
         private readonly byte[] buffer;
         private readonly IWaveProvider waveStream;
         private readonly object waveOutLock;
@@ -26,7 +26,7 @@ namespace NAudio.Wave
         /// <param name="bufferSize">Buffer size in bytes</param>
         /// <param name="bufferFillStream">Stream to provide more data</param>
         /// <param name="waveOutLock">Lock to protect WaveOut API's from being called on >1 thread</param>
-        public WaveOutBuffer(IntPtr hWaveOut, Int32 bufferSize, IWaveProvider bufferFillStream, object waveOutLock)
+        public WaveOutBuffer(IntPtr hWaveOut, int bufferSize, IWaveProvider bufferFillStream, object waveOutLock)
         {
             this.bufferSize = bufferSize;
             this.buffer = new byte[bufferSize];
@@ -133,7 +133,7 @@ namespace NAudio.Wave
         /// <summary>
         /// The buffer size in bytes
         /// </summary>
-        public Int32 BufferSize
+        public int BufferSize
         {
             get
             {

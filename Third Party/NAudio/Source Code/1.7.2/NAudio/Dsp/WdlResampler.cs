@@ -84,7 +84,7 @@ namespace NAudio.Dsp
 
             if (m_sincsize == 0)
             {
-                m_filter_coeffs = new WDL_SincFilterSample[0]; //.Resize(0);
+                m_filter_coeffs = new float[0]; //.Resize(0);
                 m_filter_coeffs_size = 0;
             }
             if (m_filtercnt == 0)
@@ -155,7 +155,7 @@ namespace NAudio.Dsp
         /// <param name="inbuffer"></param>
         /// <param name="inbufferOffset"></param>
         /// <returns>returns number of samples desired (put these into *inbuffer)</returns>
-        public int ResamplePrepare(int out_samples, int nch, out WDL_ResampleSample[] inbuffer, out int inbufferOffset)
+        public int ResamplePrepare(int out_samples, int nch, out float[] inbuffer, out int inbufferOffset)
         {
             if (nch > WDL_RESAMPLE_MAX_NCH || nch < 1)
             {
@@ -179,7 +179,7 @@ namespace NAudio.Dsp
 
                 if (m_samples_in_rsinbuf > 0)
                 {
-                    m_rsinbuf = new WDL_SincFilterSample[m_samples_in_rsinbuf * nch];
+                    m_rsinbuf = new float[m_samples_in_rsinbuf * nch];
                 }
             }
 
@@ -215,7 +215,7 @@ namespace NAudio.Dsp
         // if numsamples_in < the value return by ResamplePrepare(), then it will be flushed to produce all remaining valid samples
         // do NOT call with nsamples_in greater than the value returned from resamplerprpare()! the extra samples will be ignored.
         // returns number of samples successfully outputted to out
-        public int ResampleOut(WDL_ResampleSample[] outBuffer, int outBufferIndex, int nsamples_in, int nsamples_out, int nch)
+        public int ResampleOut(float[] outBuffer, int outBufferIndex, int nsamples_in, int nsamples_out, int nch)
         {
             if (nch > WDL_RESAMPLE_MAX_NCH || nch < 1)
             {
@@ -380,7 +380,7 @@ namespace NAudio.Dsp
 
                         double ifracpos = 1.0 - fracpos;
                         int inptr = localin + ipos;
-                        outBuffer[outptr++] = (WDL_ResampleSample)(m_rsinbuf[inptr] * (ifracpos) + m_rsinbuf[inptr + 1] * (fracpos));
+                        outBuffer[outptr++] = (float)(m_rsinbuf[inptr] * (ifracpos) + m_rsinbuf[inptr + 1] * (fracpos));
                         srcpos += drspos;
                         ret++;
                     }
@@ -399,8 +399,8 @@ namespace NAudio.Dsp
 
                         double ifracpos = 1.0 - fracpos;
                         int inptr = localin + ipos * 2;
-                        outBuffer[outptr + 0] = (WDL_ResampleSample)(m_rsinbuf[inptr] * (ifracpos) + m_rsinbuf[inptr + 2] * (fracpos));
-                        outBuffer[outptr + 1] = (WDL_ResampleSample)(m_rsinbuf[inptr + 1] * (ifracpos) + m_rsinbuf[inptr + 3] * (fracpos));
+                        outBuffer[outptr + 0] = (float)(m_rsinbuf[inptr] * (ifracpos) + m_rsinbuf[inptr + 2] * (fracpos));
+                        outBuffer[outptr + 1] = (float)(m_rsinbuf[inptr + 1] * (ifracpos) + m_rsinbuf[inptr + 3] * (fracpos));
                         outptr += 2;
                         srcpos += drspos;
                         ret++;
@@ -423,7 +423,7 @@ namespace NAudio.Dsp
                         int inptr = localin + ipos * nch;
                         while (ch-- != 0)
                         {
-                            outBuffer[outptr++] = (WDL_ResampleSample)(m_rsinbuf[inptr] * (ifracpos) + m_rsinbuf[inptr + nch] * (fracpos));
+                            outBuffer[outptr++] = (float)(m_rsinbuf[inptr] * (ifracpos) + m_rsinbuf[inptr + nch] * (fracpos));
                             inptr++;
                         }
                         srcpos += drspos;
@@ -515,13 +515,13 @@ namespace NAudio.Dsp
                         windowpos += dwindowpos;
                         sincpos += dsincpos;
 
-                        m_filter_coeffs[hsz + x] = (WDL_SincFilterSample)val;
+                        m_filter_coeffs[hsz + x] = (float)val;
                         if (x < hsz) filtpower += val;
                     }
                     filtpower = m_lp_oversize / filtpower;
                     for (x = 0; x < sz + m_lp_oversize; x++)
                     {
-                        m_filter_coeffs[x] = (WDL_SincFilterSample)(m_filter_coeffs[x] * filtpower);
+                        m_filter_coeffs[x] = (float)(m_filter_coeffs[x] * filtpower);
                     }
                 }
                 else m_filter_coeffs_size = 0;
@@ -530,7 +530,7 @@ namespace NAudio.Dsp
         }
 
         // SincSample(WDL_ResampleSample *outptr, WDL_ResampleSample *inptr, double fracpos, int nch, WDL_SincFilterSample *filter, int filtsz)
-        private void SincSample(WDL_ResampleSample[] outBuffer, int outBufferIndex, WDL_ResampleSample[] inBuffer, int inBufferIndex, double fracpos, int nch, WDL_SincFilterSample[] filter, int filterIndex, int filtsz)
+        private void SincSample(float[] outBuffer, int outBufferIndex, float[] inBuffer, int inBufferIndex, double fracpos, int nch, float[] filter, int filterIndex, int filtsz)
         {
             int oversize = m_lp_oversize;
             fracpos *= oversize;
@@ -551,12 +551,12 @@ namespace NAudio.Dsp
                     iptr += nch;
                     fptr += oversize;
                 }
-                outBuffer[outBufferIndex + x] = (WDL_ResampleSample)(sum * fracpos + sum2 * (1.0 - fracpos));
+                outBuffer[outBufferIndex + x] = (float)(sum * fracpos + sum2 * (1.0 - fracpos));
             }
         }
 
         // SincSample1(WDL_ResampleSample* outptr, WDL_ResampleSample* inptr, double fracpos, WDL_SincFilterSample* filter, int filtsz)
-        private void SincSample1(WDL_ResampleSample[] outBuffer, int outBufferIndex, WDL_ResampleSample[] inBuffer, int inBufferIndex, double fracpos, WDL_SincFilterSample[] filter, int filterIndex, int filtsz)
+        private void SincSample1(float[] outBuffer, int outBufferIndex, float[] inBuffer, int inBufferIndex, double fracpos, float[] filter, int filterIndex, int filtsz)
         {
             int oversize = m_lp_oversize;
             fracpos *= oversize;
@@ -575,11 +575,11 @@ namespace NAudio.Dsp
                 iptr++;
                 fptr += oversize;
             }
-            outBuffer[outBufferIndex] = (WDL_ResampleSample)(sum * fracpos + sum2 * (1.0 - fracpos));
+            outBuffer[outBufferIndex] = (float)(sum * fracpos + sum2 * (1.0 - fracpos));
         }
 
         // SincSample2(WDL_ResampleSample* outptr, WDL_ResampleSample* inptr, double fracpos, WDL_SincFilterSample* filter, int filtsz)
-        private void SincSample2(WDL_ResampleSample[] outptr, int outBufferIndex, WDL_ResampleSample[] inBuffer, int inBufferIndex, double fracpos, WDL_SincFilterSample[] filter, int filterIndex, int filtsz)
+        private void SincSample2(float[] outptr, int outBufferIndex, float[] inBuffer, int inBufferIndex, double fracpos, float[] filter, int filterIndex, int filtsz)
         {
             int oversize = m_lp_oversize;
             fracpos *= oversize;
@@ -607,8 +607,8 @@ namespace NAudio.Dsp
                 iptr += 4;
                 fptr += oversize * 2;
             }
-            outptr[outBufferIndex + 0] = (WDL_ResampleSample)(sum * fracpos + sumb * (1.0 - fracpos));
-            outptr[outBufferIndex + 1] = (WDL_ResampleSample)(sum2 * fracpos + sum2b * (1.0 - fracpos));
+            outptr[outBufferIndex + 0] = (float)(sum * fracpos + sumb * (1.0 - fracpos));
+            outptr[outBufferIndex + 1] = (float)(sum2 * fracpos + sum2b * (1.0 - fracpos));
         }
 
         private double m_sratein; // WDL_FIXALIGN
@@ -617,8 +617,8 @@ namespace NAudio.Dsp
         private double m_ratio;
         private double m_filter_ratio;
         private float m_filterq, m_filterpos;
-        private WDL_ResampleSample[] m_rsinbuf; // WDL_TypedBuf<WDL_ResampleSample>
-        private WDL_SincFilterSample[] m_filter_coeffs; // WDL_TypedBuf<WDL_SincFilterSample>
+        private float[] m_rsinbuf; // WDL_TypedBuf<WDL_ResampleSample>
+        private float[] m_filter_coeffs; // WDL_TypedBuf<WDL_SincFilterSample>
 
         private WDL_Resampler_IIRFilter m_iirfilter; // WDL_Resampler_IIRFilter *
 
@@ -668,7 +668,7 @@ namespace NAudio.Dsp
 
             }
 
-            public void Apply(WDL_ResampleSample[] inBuffer, int inIndex, WDL_ResampleSample[] outBuffer, int outIndex, int ns, int span, int w)
+            public void Apply(float[] inBuffer, int inIndex, float[] outBuffer, int outIndex, int ns, int span, int w)
             {
                 double b0 = m_b0, b1 = m_b1, b2 = m_b2, a1 = m_a1, a2 = m_a2;
 
@@ -681,7 +681,7 @@ namespace NAudio.Dsp
                     m_hist[w, 0] = inx;
                     m_hist[w, 3] = m_hist[w, 2];
                     m_hist[w, 2] = denormal_filter(outx);
-                    outBuffer[outIndex] = (WDL_ResampleSample)m_hist[w, 2];
+                    outBuffer[outIndex] = (float)m_hist[w, 2];
 
                     outIndex += span;
                 }

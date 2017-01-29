@@ -220,7 +220,7 @@ namespace NAudio.Wave
             }
             else
             {
-                throw new InvalidOperationException(String.Format("Unsupported bytes per sample: {0}", bytesPerSample));
+                throw new InvalidOperationException(string.Format("Unsupported bytes per sample: {0}", bytesPerSample));
             }
         }
 

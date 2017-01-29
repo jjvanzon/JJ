@@ -114,14 +114,14 @@ namespace NAudio.Midi
         {
             if (data == null)
             {
-                return String.Format("{0} {1}", this.AbsoluteTime, metaEvent);
+                return string.Format("{0} {1}", this.AbsoluteTime, metaEvent);
             }
             StringBuilder sb = new StringBuilder();
             foreach (byte b in data)
             {
                 sb.AppendFormat("{0:X2} ", b);
             }
-            return String.Format("{0} {1}\r\n{2}", this.AbsoluteTime, metaEvent,sb.ToString());
+            return string.Format("{0} {1}\r\n{2}", this.AbsoluteTime, metaEvent,sb.ToString());
         }
 
         /// <summary>

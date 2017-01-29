@@ -82,7 +82,7 @@ namespace NAudioDemo.NetworkChatDemo
             var encoded = new byte[bytesWritten];
             Array.Copy(outputBufferTemp, 0, encoded, 0, bytesWritten);
             ShiftLeftoverSamplesDown(samplesToEncode);
-            Debug.WriteLine(String.Format("NSpeex: In {0} bytes, encoded {1} bytes [enc frame size = {2}]",length,bytesWritten, encoder.FrameSize));
+            Debug.WriteLine(string.Format("NSpeex: In {0} bytes, encoded {1} bytes [enc frame size = {2}]",length,bytesWritten, encoder.FrameSize));
             return encoded;
         }
 
@@ -107,7 +107,7 @@ namespace NAudioDemo.NetworkChatDemo
             int bytesDecoded = samplesDecoded * 2;
             var decoded = new byte[bytesDecoded];
             Array.Copy(outputBufferTemp, 0, decoded, 0, bytesDecoded);
-            Debug.WriteLine(String.Format("NSpeex: In {0} bytes, decoded {1} bytes [dec frame size = {2}]", length, bytesDecoded, decoder.FrameSize));
+            Debug.WriteLine(string.Format("NSpeex: In {0} bytes, decoded {1} bytes [dec frame size = {2}]", length, bytesDecoded, decoder.FrameSize));
             return decoded;
         }
 

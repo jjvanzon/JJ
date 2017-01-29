@@ -32,7 +32,7 @@ namespace NAudio.CoreAudioApi
     /// </summary>
     public class MMDeviceCollection : IEnumerable<MMDevice>
     {
-        private IMMDeviceCollection _MMDeviceCollection;
+        private readonly IMMDeviceCollection _MMDeviceCollection;
 
         /// <summary>
         /// Device count

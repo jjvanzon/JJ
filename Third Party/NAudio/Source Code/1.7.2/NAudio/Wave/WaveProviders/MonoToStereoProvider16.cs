@@ -10,8 +10,8 @@ namespace NAudio.Wave
     /// </summary>
     public class MonoToStereoProvider16 : IWaveProvider
     {
-        private IWaveProvider sourceProvider;
-        private WaveFormat outputFormat;
+        private readonly IWaveProvider sourceProvider;
+        private readonly WaveFormat outputFormat;
         private byte[] sourceBuffer;
 
         /// <summary>

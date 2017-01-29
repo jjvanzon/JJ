@@ -26,7 +26,7 @@ namespace JJ.Data.Canonical
             }
             set
             {
-                if (value == null) throw new ArgumentNullException("value");
+                if (value == null) throw new ArgumentNullException(nameof(value));
                 _messages = value;
             }
         }

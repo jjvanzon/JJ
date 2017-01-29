@@ -42,7 +42,7 @@ namespace NAudio.Midi
         /// <returns>String describing the tempo event</returns>
         public override string ToString() 
         {
-            return String.Format("{0} {2}bpm ({1})",
+            return string.Format("{0} {2}bpm ({1})",
                 base.ToString(),
                 microsecondsPerQuarterNote,
                 (60000000 / microsecondsPerQuarterNote));

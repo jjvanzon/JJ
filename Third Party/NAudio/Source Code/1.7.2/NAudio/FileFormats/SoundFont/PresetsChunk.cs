@@ -9,22 +9,22 @@ namespace NAudio.SoundFont
 	/// </summary>
 	public class PresetsChunk 
 	{
-		private PresetBuilder presetHeaders = new PresetBuilder();
-		private ZoneBuilder presetZones = new ZoneBuilder();
-		private ModulatorBuilder presetZoneModulators = new ModulatorBuilder();
-		private GeneratorBuilder presetZoneGenerators = new GeneratorBuilder();
-		private InstrumentBuilder instruments = new InstrumentBuilder();
-		private ZoneBuilder instrumentZones = new ZoneBuilder();
-		private ModulatorBuilder instrumentZoneModulators = new ModulatorBuilder();
-		private GeneratorBuilder instrumentZoneGenerators = new GeneratorBuilder();
-		private SampleHeaderBuilder sampleHeaders = new SampleHeaderBuilder();
+		private readonly PresetBuilder presetHeaders = new PresetBuilder();
+		private readonly ZoneBuilder presetZones = new ZoneBuilder();
+		private readonly ModulatorBuilder presetZoneModulators = new ModulatorBuilder();
+		private readonly GeneratorBuilder presetZoneGenerators = new GeneratorBuilder();
+		private readonly InstrumentBuilder instruments = new InstrumentBuilder();
+		private readonly ZoneBuilder instrumentZones = new ZoneBuilder();
+		private readonly ModulatorBuilder instrumentZoneModulators = new ModulatorBuilder();
+		private readonly GeneratorBuilder instrumentZoneGenerators = new GeneratorBuilder();
+		private readonly SampleHeaderBuilder sampleHeaders = new SampleHeaderBuilder();
 		
 		internal PresetsChunk(RiffChunk chunk) 
 		{
 			string header = chunk.ReadChunkID();
 			if(header != "pdta") 
 			{
-				throw new InvalidDataException(String.Format("Not a presets data chunk ({0})",header));
+				throw new InvalidDataException(string.Format("Not a presets data chunk ({0})",header));
 			}
 
 			RiffChunk c;
@@ -68,7 +68,7 @@ namespace NAudio.SoundFont
 					c.GetDataAsStructureArray(sampleHeaders);
 					break;
 				default:
-                    throw new InvalidDataException(String.Format("Unknown chunk type {0}", c.ChunkID));
+                    throw new InvalidDataException(string.Format("Unknown chunk type {0}", c.ChunkID));
 				}
 			}
 

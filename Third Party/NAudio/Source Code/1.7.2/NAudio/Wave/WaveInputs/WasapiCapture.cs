@@ -179,7 +179,7 @@ namespace NAudio.CoreAudioApi
 
         private void DoRecording(AudioClient client)
         {
-            Debug.WriteLine(String.Format("Client buffer frame count: {0}", client.BufferSize));
+            Debug.WriteLine(string.Format("Client buffer frame count: {0}", client.BufferSize));
             int bufferFrameCount = client.BufferSize;
 
             // Calculate the actual duration of the allocated buffer.

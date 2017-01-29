@@ -9,7 +9,7 @@ namespace NAudioDemo.Generator
     public partial class GeneratorPanel : UserControl
     {
 
-        private WaveOut driverOut;
+        private readonly WaveOut driverOut;
 
         private SignalGenerator wg;
 
@@ -20,7 +20,7 @@ namespace NAudioDemo.Generator
         private const double FMin = 20;
 
         // constante  Math.Log10(FMax / FMin)
-        private double Log10FmaxFMin;
+        private readonly double Log10FmaxFMin;
 
 
         public GeneratorPanel()

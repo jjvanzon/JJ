@@ -10,7 +10,7 @@ namespace NAudio.Midi
     /// </summary>
     public class TrackSequenceNumberEvent : MetaEvent
     {
-        private ushort sequenceNumber;
+        private readonly ushort sequenceNumber;
 
         /// <summary>
         /// Reads a new track sequence number event from a MIDI stream
@@ -34,7 +34,7 @@ namespace NAudio.Midi
         /// <returns>String describing the event</returns>
         public override string ToString()
         {
-            return String.Format("{0} {1}", base.ToString(), sequenceNumber);
+            return string.Format("{0} {1}", base.ToString(), sequenceNumber);
         }
 
         /// <summary>

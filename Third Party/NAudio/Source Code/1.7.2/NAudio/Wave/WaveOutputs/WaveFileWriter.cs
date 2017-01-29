@@ -214,7 +214,7 @@ namespace NAudio.Wave
         /// <param name="count">the number of bytes to write</param>
         public override void Write(byte[] data, int offset, int count)
         {
-            if (outStream.Length + count > UInt32.MaxValue)
+            if (outStream.Length + count > uint.MaxValue)
                 throw new ArgumentException("WAV file too large", "count");
             outStream.Write(data, offset, count);
             dataChunkSize += count;
@@ -230,12 +230,12 @@ namespace NAudio.Wave
         {
             if (WaveFormat.BitsPerSample == 16)
             {
-                writer.Write((Int16)(Int16.MaxValue * sample));
+                writer.Write((short)(short.MaxValue * sample));
                 dataChunkSize += 2;
             }
             else if (WaveFormat.BitsPerSample == 24)
             {
-                var value = BitConverter.GetBytes((Int32)(Int32.MaxValue * sample));
+                var value = BitConverter.GetBytes((int)(int.MaxValue * sample));
                 value24[0] = value[1];
                 value24[1] = value[2];
                 value24[2] = value[3];
@@ -244,7 +244,7 @@ namespace NAudio.Wave
             }
             else if (WaveFormat.BitsPerSample == 32 && WaveFormat.Encoding == WaveFormatEncoding.Extensible)
             {
-                writer.Write(UInt16.MaxValue * (Int32)sample);
+                writer.Write(ushort.MaxValue * (int)sample);
                 dataChunkSize += 4;
             }
             else if (WaveFormat.Encoding == WaveFormatEncoding.IeeeFloat)
@@ -309,7 +309,7 @@ namespace NAudio.Wave
                 byte[] value;
                 for (int sample = 0; sample < count; sample++)
                 {
-                    value = BitConverter.GetBytes(UInt16.MaxValue * (Int32)samples[sample + offset]);
+                    value = BitConverter.GetBytes(ushort.MaxValue * (int)samples[sample + offset]);
                     value24[0] = value[1];
                     value24[1] = value[2];
                     value24[2] = value[3];
@@ -322,7 +322,7 @@ namespace NAudio.Wave
             {
                 for (int sample = 0; sample < count; sample++)
                 {
-                    writer.Write(UInt16.MaxValue * (Int32)samples[sample + offset]);
+                    writer.Write(ushort.MaxValue * (int)samples[sample + offset]);
                 }
                 dataChunkSize += (count * 4);
             }
@@ -331,7 +331,7 @@ namespace NAudio.Wave
             {
                 for (int sample = 0; sample < count; sample++)
                 {
-                    writer.Write((float)samples[sample + offset] / (float)(Int16.MaxValue + 1));
+                    writer.Write((float)samples[sample + offset] / (float)(short.MaxValue + 1));
                 }
                 dataChunkSize += (count * 4);
             }
@@ -390,13 +390,13 @@ namespace NAudio.Wave
         private void UpdateDataChunk(BinaryWriter writer)
         {
             writer.Seek((int)dataSizePos, SeekOrigin.Begin);
-            writer.Write((UInt32)dataChunkSize);
+            writer.Write((uint)dataChunkSize);
         }
 
         private void UpdateRiffChunk(BinaryWriter writer)
         {
             writer.Seek(4, SeekOrigin.Begin);
-            writer.Write((UInt32)(outStream.Length - 8));
+            writer.Write((uint)(outStream.Length - 8));
         }
 
         private void UpdateFactChunk(BinaryWriter writer)

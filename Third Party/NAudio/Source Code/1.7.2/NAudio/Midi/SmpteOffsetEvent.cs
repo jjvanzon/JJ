@@ -7,11 +7,11 @@ namespace NAudio.Midi
 {
     class SmpteOffsetEvent : MetaEvent
     {
-        private byte hours;
-        private byte minutes;
-        private byte seconds;
-        private byte frames;
-        private byte subFrames; // 100ths of a frame
+        private readonly byte hours;
+        private readonly byte minutes;
+        private readonly byte seconds;
+        private readonly byte frames;
+        private readonly byte subFrames; // 100ths of a frame
         
         /// <summary>
         /// Reads a new time signature event from a MIDI stream
@@ -22,7 +22,7 @@ namespace NAudio.Midi
         {
             if(length != 5) 
             {
-                throw new FormatException(String.Format("Invalid SMPTE Offset length: Got {0}, expected 5",length));
+                throw new FormatException(string.Format("Invalid SMPTE Offset length: Got {0}, expected 5",length));
             }
             hours = br.ReadByte();
             minutes = br.ReadByte();
@@ -78,7 +78,7 @@ namespace NAudio.Midi
         /// <returns>A string describing this event</returns>
         public override string ToString() 
         {
-            return String.Format("{0} {1}:{2}:{3}:{4}:{5}",
+            return string.Format("{0} {1}:{2}:{3}:{4}:{5}",
                 base.ToString(),hours,minutes,seconds,frames,subFrames);
         }
 

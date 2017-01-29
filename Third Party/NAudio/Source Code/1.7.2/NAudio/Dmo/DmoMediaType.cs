@@ -154,7 +154,7 @@ namespace NAudio.Dmo
                         subtype = AudioMediaSubtypes.WMMEDIASUBTYPE_MP3;
                         break;
                     default:
-                        throw new ArgumentException(String.Format("Not a supported encoding {0}", waveFormat.Encoding));
+                        throw new ArgumentException(string.Format("Not a supported encoding {0}", waveFormat.Encoding));
                 }
             }
             this.bFixedSizeSamples = (this.SubType == AudioMediaSubtypes.MEDIASUBTYPE_PCM || this.SubType == AudioMediaSubtypes.MEDIASUBTYPE_IEEE_FLOAT);

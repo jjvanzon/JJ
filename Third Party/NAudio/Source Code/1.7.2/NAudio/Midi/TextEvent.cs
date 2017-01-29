@@ -57,7 +57,7 @@ namespace NAudio.Midi
         /// <returns>A string describing this event</returns>
         public override string ToString() 
         {
-            return String.Format("{0} {1}",base.ToString(),text);
+            return string.Format("{0} {1}",base.ToString(),text);
         }
 
         /// <summary>

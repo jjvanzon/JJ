@@ -55,7 +55,7 @@ namespace NAudio.Midi
             {
                 sb.AppendFormat("{0:X2} ", b);
             }
-            return String.Format("{0} Sysex: {1} bytes\r\n{2}",this.AbsoluteTime,data.Length,sb.ToString());
+            return string.Format("{0} Sysex: {1} bytes\r\n{2}",this.AbsoluteTime,data.Length,sb.ToString());
         }
         
         /// <summary>

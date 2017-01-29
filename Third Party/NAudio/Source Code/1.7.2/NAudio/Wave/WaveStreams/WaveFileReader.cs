@@ -29,7 +29,7 @@ namespace NAudio.Wave
         /// this class, email it to the NAudio project and we will probably
         /// fix this reader to support it
         /// </remarks>
-        public WaveFileReader(String waveFile) :
+        public WaveFileReader(string waveFile) :
             this(File.OpenRead(waveFile))
         {
             ownInput = true;
@@ -178,7 +178,7 @@ namespace NAudio.Wave
         {
             if (count % waveFormat.BlockAlign != 0)
             {
-                throw new ArgumentException(String.Format("Must read complete blocks: requested {0}, block align is {1}",count,this.WaveFormat.BlockAlign));
+                throw new ArgumentException(string.Format("Must read complete blocks: requested {0}, block align is {1}",count,this.WaveFormat.BlockAlign));
             }
             lock (lockObject)
             {
@@ -233,7 +233,7 @@ namespace NAudio.Wave
                 }
                 else if (waveFormat.BitsPerSample == 32)
                 {
-                    sampleFrame[channel] = BitConverter.ToInt32(raw, offset) / (Int32.MaxValue + 1f);
+                    sampleFrame[channel] = BitConverter.ToInt32(raw, offset) / (int.MaxValue + 1f);
                     offset += 4;
                 }
                 else

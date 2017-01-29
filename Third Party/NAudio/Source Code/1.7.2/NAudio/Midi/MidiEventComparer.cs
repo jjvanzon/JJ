@@ -30,16 +30,16 @@ namespace NAudio.Midi
                 if (xMeta != null)
                 {
                     if (xMeta.MetaEventType == MetaEventType.EndTrack)
-                        xTime = Int64.MaxValue;
+                        xTime = long.MaxValue;
                     else
-                        xTime = Int64.MinValue;
+                        xTime = long.MinValue;
                 }
                 if (yMeta != null)
                 {
                     if (yMeta.MetaEventType == MetaEventType.EndTrack)
-                        yTime = Int64.MaxValue;
+                        yTime = long.MaxValue;
                     else
-                        yTime = Int64.MinValue;
+                        yTime = long.MinValue;
                 }
             }
             return xTime.CompareTo(yTime);

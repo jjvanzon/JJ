@@ -9,9 +9,9 @@ namespace NAudio.Midi
     /// </summary>
     public class MidiOut : IDisposable 
     {
-        private IntPtr hMidiOut = IntPtr.Zero;
+        private readonly IntPtr hMidiOut = IntPtr.Zero;
         private bool disposed = false;
-        MidiInterop.MidiOutCallback callback;
+        readonly MidiInterop.MidiOutCallback callback;
 
         /// <summary>
         /// Gets the number of MIDI devices available in the system

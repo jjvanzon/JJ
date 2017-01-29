@@ -11,10 +11,10 @@ namespace NAudio.Wave
     {
         private AcmStream conversionStream;
         private WaveStream sourceStream;
-        private WaveFormat targetFormat;
-        private long length;
+        private readonly WaveFormat targetFormat;
+        private readonly long length;
         private long position;
-        private int preferredSourceReadSize;
+        private readonly int preferredSourceReadSize;
 
         /// <summary>
         /// Creates a stream that can convert to PCM
@@ -151,7 +151,7 @@ namespace NAudio.Wave
 
         private int leftoverDestBytes = 0;
         private int leftoverDestOffset = 0;
-        private int leftoverSourceBytes = 0;
+        private readonly int leftoverSourceBytes = 0;
         //private int leftoverSourceOffset = 0; 
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace NAudio.Wave
                 int destBytesConverted = conversionStream.Convert(sourceBytesRead, out sourceBytesConverted);
                 if (sourceBytesConverted == 0)
                 {
-                    Debug.WriteLine(String.Format("Warning: couldn't convert anything from {0}", sourceBytesRead));
+                    Debug.WriteLine(string.Format("Warning: couldn't convert anything from {0}", sourceBytesRead));
                     // no point backing up in this case as we're not going to manage to finish playing this
                     break;
                 }

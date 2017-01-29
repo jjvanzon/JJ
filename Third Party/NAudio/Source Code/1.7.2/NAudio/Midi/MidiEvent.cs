@@ -78,7 +78,7 @@ namespace NAudio.Midi
                 case MidiCommandCode.MetaEvent:
                 case MidiCommandCode.Sysex:
                 default:
-                    throw new FormatException(String.Format("Unsupported MIDI Command Code for Raw Message {0}", commandCode));
+                    throw new FormatException(string.Format("Unsupported MIDI Command Code for Raw Message {0}", commandCode));
             }
             return me;
 
@@ -152,7 +152,7 @@ namespace NAudio.Midi
                 me = MetaEvent.ReadMetaEvent(br);
                 break;
             default:
-                throw new FormatException(String.Format("Unsupported MIDI Command Code {0:X2}",(byte) commandCode));
+                throw new FormatException(string.Format("Unsupported MIDI Command Code {0:X2}",(byte) commandCode));
             }
             me.channel = channel;
             me.deltaTime = deltaTime;
@@ -205,7 +205,7 @@ namespace NAudio.Midi
                 if ((value < 1) || (value > 16))
                 {
                     throw new ArgumentOutOfRangeException("value", value,
-                        String.Format("Channel must be 1-16 (Got {0})",value));
+                        string.Format("Channel must be 1-16 (Got {0})",value));
                 }
                 channel = value;
             }
@@ -305,9 +305,9 @@ namespace NAudio.Midi
         public override string ToString() 
         {
             if(commandCode >= MidiCommandCode.Sysex)
-                return String.Format("{0} {1}",absoluteTime,commandCode);
+                return string.Format("{0} {1}",absoluteTime,commandCode);
             else
-                return String.Format("{0} {1} Ch: {2}", absoluteTime, commandCode, channel);
+                return string.Format("{0} {1} Ch: {2}", absoluteTime, commandCode, channel);
         }
         
         /// <summary>

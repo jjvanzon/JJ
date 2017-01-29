@@ -15,9 +15,9 @@ namespace NAudio.Gui
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.Container components = null;
+        private readonly System.ComponentModel.Container components = null;
         private float volume = 1.0f;
-        private float MinDb = -48;
+        private readonly float MinDb = -48;
         /// <summary>
         /// Volume changed event
         /// </summary>
@@ -77,7 +77,7 @@ namespace NAudio.Gui
             float percent = 1 - (db / MinDb);
 
             pe.Graphics.FillRectangle(Brushes.LightGreen, 1, 1, (int)((this.Width - 2) * percent), this.Height - 2);
-            string dbValue = String.Format("{0:F2} dB", db);
+            string dbValue = string.Format("{0:F2} dB", db);
             /*if(Double.IsNegativeInfinity(db))
             {
                 dbValue = "-\x221e db"; // -8 dB

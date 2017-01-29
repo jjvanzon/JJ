@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Runtime.Serialization;
-using JJ.Business.CanonicalModel.Helpers;
+using JJ.Data.Canonical.Helpers;
 
 namespace JJ.Data.Canonical
 {
     [DataContract]
-    [DebuggerDisplay("{DebuggerDisplay}")]
+    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     public class IDAndName
     {
         [DataMember]

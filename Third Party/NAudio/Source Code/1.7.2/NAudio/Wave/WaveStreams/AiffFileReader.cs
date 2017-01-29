@@ -25,7 +25,7 @@ namespace NAudio.Wave
         /// This supports basic reading of uncompressed PCM AIF files,
         /// with 8, 16, 24 and 32 bit PCM data.
         /// </remarks>
-        public AiffFileReader(String aiffFile) :
+        public AiffFileReader(string aiffFile) :
             this(File.OpenRead(aiffFile))
         {
             ownInput = true;
@@ -222,7 +222,7 @@ namespace NAudio.Wave
         {
             if (count % waveFormat.BlockAlign != 0)
             {
-                throw new ArgumentException(String.Format("Must read complete blocks: requested {0}, block align is {1}", count, this.WaveFormat.BlockAlign));
+                throw new ArgumentException(string.Format("Must read complete blocks: requested {0}, block align is {1}", count, this.WaveFormat.BlockAlign));
             }
             lock (lockObject)
             {

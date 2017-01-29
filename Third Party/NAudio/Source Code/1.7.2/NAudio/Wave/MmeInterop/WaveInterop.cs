@@ -81,10 +81,10 @@ namespace NAudio.Wave
         public delegate void WaveCallback(IntPtr hWaveOut, WaveMessage message, IntPtr dwInstance, WaveHeader wavhdr, IntPtr dwReserved);
 
         [DllImport("winmm.dll")]
-        public static extern Int32 mmioStringToFOURCC([MarshalAs(UnmanagedType.LPStr)] String s, int flags);
+        public static extern int mmioStringToFOURCC([MarshalAs(UnmanagedType.LPStr)] string s, int flags);
 
         [DllImport("winmm.dll")]
-        public static extern Int32 waveOutGetNumDevs();
+        public static extern int waveOutGetNumDevs();
         [DllImport("winmm.dll")]
         public static extern MmResult waveOutPrepareHeader(IntPtr hWaveOut, WaveHeader lpWaveOutHdr, int uSize);
         [DllImport("winmm.dll")]
@@ -123,7 +123,7 @@ namespace NAudio.Wave
         public static extern MmResult waveOutGetDevCaps(IntPtr deviceID, out WaveOutCapabilities waveOutCaps, int waveOutCapsSize);
 
         [DllImport("winmm.dll")]
-        public static extern Int32 waveInGetNumDevs();
+        public static extern int waveInGetNumDevs();
 
         // http://msdn.microsoft.com/en-us/library/dd743841%28VS.85%29.aspx
         [DllImport("winmm.dll", CharSet = CharSet.Auto)]

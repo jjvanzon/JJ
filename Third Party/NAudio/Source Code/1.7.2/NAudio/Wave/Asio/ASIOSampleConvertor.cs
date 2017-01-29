@@ -69,7 +69,7 @@ namespace NAudio.Wave.Asio
 
                 default:
                     throw new ArgumentException(
-                        String.Format("ASIO Buffer Type {0} is not yet supported.",
+                        string.Format("ASIO Buffer Type {0} is not yet supported.",
                                       Enum.GetName(typeof(AsioSampleType), asioType)));
             }
             return convertor;
