@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NAudio.Dmo
+﻿namespace NAudio.Dmo
 {
     /// <summary>
     /// Media Object Size Info

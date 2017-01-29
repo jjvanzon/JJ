@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using NAudio.Wave;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
 
 namespace NAudio.Dmo
 {

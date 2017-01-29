@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-using NAudio.Wave;
 
 namespace NAudio.Midi 
 {

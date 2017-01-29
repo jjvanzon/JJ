@@ -1,7 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
-using NAudio.Wave;
 
 namespace NAudio.Mixer
 {

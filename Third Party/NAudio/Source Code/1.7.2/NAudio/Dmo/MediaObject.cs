@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using NAudio.Utils;
 using System.Runtime.InteropServices;
 using NAudio.Wave;

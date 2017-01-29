@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using NAudio.Wave;
 using NSpeex;
 using System.ComponentModel.Composition;

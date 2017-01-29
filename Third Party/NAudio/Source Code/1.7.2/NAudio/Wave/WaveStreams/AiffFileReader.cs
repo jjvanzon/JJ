@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Diagnostics;
 using NAudio.Utils;
 
 namespace NAudio.Wave

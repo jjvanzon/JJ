@@ -1,7 +1,6 @@
 // created on 10/12/2002 at 20:37
 using System;
 using System.Runtime.InteropServices;
-using NAudio.Wave;
 using System.Collections.Generic;
 
 namespace NAudio.Mixer 

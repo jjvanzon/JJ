@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using NAudio.Wave;
 using System.Threading;
 using System.Diagnostics;
