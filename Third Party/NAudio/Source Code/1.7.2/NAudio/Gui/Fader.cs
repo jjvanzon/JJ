@@ -46,21 +46,21 @@ namespace NAudio.Gui
             base.Dispose( disposing );
         }
 
-        private readonly int SliderHeight = 30;
-        private readonly int SliderWidth = 15;
-        private Rectangle sliderRectangle = new Rectangle();
+        private const int SLIDER_HEIGHT = 30;
+        private const int SLIDER_WIDTH = 15;
+        private Rectangle _sliderRectangle = new Rectangle();
 
         private void DrawSlider(Graphics g)
         {
             Brush block = new SolidBrush(Color.White);
             Pen centreLine = new Pen(Color.Black);
-            sliderRectangle.X = (this.Width - SliderWidth) / 2;
-            sliderRectangle.Width = SliderWidth;
-            sliderRectangle.Y = (int) ((this.Height - SliderHeight) * percent);
-            sliderRectangle.Height = SliderHeight;
+            _sliderRectangle.X = (this.Width - SLIDER_WIDTH) / 2;
+            _sliderRectangle.Width = SLIDER_WIDTH;
+            _sliderRectangle.Y = (int) ((this.Height - SLIDER_HEIGHT) * percent);
+            _sliderRectangle.Height = SLIDER_HEIGHT;
 
-            g.FillRectangle(block,sliderRectangle);
-            g.DrawLine(centreLine,sliderRectangle.Left,sliderRectangle.Top + sliderRectangle.Height/2,sliderRectangle.Right,sliderRectangle.Top + sliderRectangle.Height/2);
+            g.FillRectangle(block,_sliderRectangle);
+            g.DrawLine(centreLine,_sliderRectangle.Left,_sliderRectangle.Top + _sliderRectangle.Height/2,_sliderRectangle.Right,_sliderRectangle.Top + _sliderRectangle.Height/2);
             block.Dispose();
             centreLine.Dispose();
 
@@ -83,7 +83,7 @@ namespace NAudio.Gui
             if(this.Orientation == Orientation.Vertical)
             {
                 Brush groove = new SolidBrush(Color.Black);
-                g.FillRectangle(groove, this.Width / 2, SliderHeight / 2, 2, this.Height - SliderHeight);
+                g.FillRectangle(groove, this.Width / 2, SLIDER_HEIGHT / 2, 2, this.Height - SLIDER_HEIGHT);
                 groove.Dispose();
                 DrawSlider(g);
             }
@@ -99,10 +99,10 @@ namespace NAudio.Gui
         /// </summary>
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            if(sliderRectangle.Contains(e.X,e.Y))
+            if(_sliderRectangle.Contains(e.X,e.Y))
             {
                 dragging = true;
-                dragY = e.Y - sliderRectangle.Y;
+                dragY = e.Y - _sliderRectangle.Y;
             }
             // TODO: are we over the fader
             base.OnMouseDown (e);
@@ -120,13 +120,13 @@ namespace NAudio.Gui
                 {
                     this.percent = 0;
                 }
-                else if(sliderTop > this.Height - SliderHeight)
+                else if(sliderTop > this.Height - SLIDER_HEIGHT)
                 {
                     this.percent = 1;
                 }
                 else
                 {
-                    percent = (float) sliderTop / (float) (this.Height - SliderHeight);					
+                    percent = (float) sliderTop / (float) (this.Height - SLIDER_HEIGHT);					
                 }
                 this.Invalidate();
             }

@@ -265,7 +265,7 @@ namespace NAudioDemo.AudioPlaybackDemo
         private void OnOpenFileClick(object sender, EventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
-            string allExtensions = "*.wav;*.aiff;*.mp3;*.aac";
+            const string allExtensions = "*.wav;*.aiff;*.mp3;*.aac";
             openFileDialog.Filter = string.Format("All Supported Files|{0}|All Files (*.*)|*.*", allExtensions);
             openFileDialog.FilterIndex = 1;
             if (openFileDialog.ShowDialog() == DialogResult.OK)

@@ -111,7 +111,7 @@ namespace NAudio.Wave.Compression
             formatChoose.structureSize = Marshal.SizeOf(formatChoose);
             formatChoose.styleFlags = AcmFormatChooseStyleFlags.None;
             formatChoose.ownerWindowHandle = ownerWindowHandle;
-            int maxFormatSize = 200; // guess
+            const int maxFormatSize = 200; // guess
             formatChoose.selectedWaveFormatPointer = Marshal.AllocHGlobal(maxFormatSize);
             formatChoose.selectedWaveFormatByteSize = maxFormatSize;
             formatChoose.title = windowTitle;

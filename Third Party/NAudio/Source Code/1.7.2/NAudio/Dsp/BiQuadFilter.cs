@@ -171,7 +171,7 @@ namespace NAudio.Dsp
             var alpha = sinw0 / (2 * q);
 
             var b0 = sinw0 / 2; // =   Q*alpha
-            var b1 = 0;
+            const int b1 = 0;
             var b2 = -sinw0 / 2; // =  -Q*alpha
             var a0 = 1 + alpha;
             var a1 = -2 * cosw0;
@@ -191,7 +191,7 @@ namespace NAudio.Dsp
             var alpha = sinw0 / (2 * q);
 
             var b0 = alpha;
-            var b1 = 0;
+            const int b1 = 0;
             var b2 = -alpha;
             var a0 = 1 + alpha;
             var a1 = -2 * cosw0;
@@ -210,9 +210,9 @@ namespace NAudio.Dsp
             var sinw0 = Math.Sin(w0);
             var alpha = sinw0 / (2 * q);
 
-            var b0 = 1;
+            const int b0 = 1;
             var b1 = -2 * cosw0;
-            var b2 = 1;
+            const int b2 = 1;
             var a0 = 1 + alpha;
             var a1 = -2 * cosw0;
             var a2 = 1 - alpha;

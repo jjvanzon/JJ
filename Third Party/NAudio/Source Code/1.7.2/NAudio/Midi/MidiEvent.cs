@@ -22,7 +22,7 @@ namespace NAudio.Midi
         /// <returns>A new MIDI Event</returns>
         public static MidiEvent FromRawMessage(int rawMessage)
         {
-            long absoluteTime = 0;
+            const long absoluteTime = 0;
             int b = rawMessage & 0xFF;
             int data1 = (rawMessage >> 8) & 0xFF;
             int data2 = (rawMessage >> 16) & 0xFF;

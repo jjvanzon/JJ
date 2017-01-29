@@ -151,7 +151,7 @@ namespace NAudio.Wave
 
         private int leftoverDestBytes = 0;
         private int leftoverDestOffset = 0;
-        private readonly int leftoverSourceBytes = 0;
+        private const int LEFTOVER_SOURCE_BYTES = 0;
         //private int leftoverSourceOffset = 0; 
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace NAudio.Wave
                 }
 
                 // now we'll convert one full source buffer
-                if (leftoverSourceBytes > 0)
+                if (LEFTOVER_SOURCE_BYTES > 0)
                 {
                     // TODO: still to be implemented: see moving the source position back below:
                 }

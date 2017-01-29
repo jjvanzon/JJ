@@ -259,7 +259,7 @@ namespace NAudio.Dsp
             int ret = 0;
             double srcpos = m_fracpos;
             double drspos = m_ratio;
-            int localin = 0; // localin is an index into m_rsinbuf
+            var localin = 0; // localin is an index into m_rsinbuf
 
             int outptr = outBufferIndex;  // outptr is an index into  outBuffer;
 
@@ -275,7 +275,7 @@ namespace NAudio.Dsp
                 int filtsz = m_filter_coeffs_size;
                 int filtlen = rsinbuf_availtemp - filtsz;
                 outlatadj = filtsz / 2 - 1;
-                int filter = 0; // filter is an index into m_filter_coeffs m_filter_coeffs.Get();
+                var filter = 0; // filter is an index into m_filter_coeffs m_filter_coeffs.Get();
 
                 if (nch == 1)
                 {

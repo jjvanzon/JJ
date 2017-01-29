@@ -96,7 +96,7 @@ namespace NAudio.CoreAudioApi
             if (initialized)
                 return;
 
-            long requestedDuration = REFTIMES_PER_MILLISEC * 100;
+            const long requestedDuration = REFTIMES_PER_MILLISEC * 100;
 
             if (!audioClient.IsFormatSupported(ShareMode, WaveFormat))
             {

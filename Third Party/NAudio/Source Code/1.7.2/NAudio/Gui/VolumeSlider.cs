@@ -15,7 +15,8 @@ namespace NAudio.Gui
         /// </summary>
         private readonly System.ComponentModel.Container components = null;
         private float volume = 1.0f;
-        private readonly float MinDb = -48;
+        private const float MIN_DB = -48;
+
         /// <summary>
         /// Volume changed event
         /// </summary>
@@ -72,7 +73,7 @@ namespace NAudio.Gui
 
             pe.Graphics.DrawRectangle(Pens.Black, 0, 0, this.Width - 1, this.Height - 1);
             float db = 20 * (float)Math.Log10(Volume);
-            float percent = 1 - (db / MinDb);
+            float percent = 1 - (db / MIN_DB);
 
             pe.Graphics.FillRectangle(Brushes.LightGreen, 1, 1, (int)((this.Width - 2) * percent), this.Height - 2);
             string dbValue = string.Format("{0:F2} dB", db);
@@ -112,7 +113,7 @@ namespace NAudio.Gui
         {
 
             // linear Volume = (float) x / this.Width;
-            float dbVolume = (1 - (float)x / this.Width) * MinDb;
+            float dbVolume = (1 - (float)x / this.Width) * MIN_DB;
             if (x <= 0)
                 Volume = 0;
             else

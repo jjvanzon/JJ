@@ -47,7 +47,7 @@ namespace NAudioDemo
 
         private void AddNoteEvent(int noteNumber)
         {
-            int channel = 2;
+            const int channel = 2;
             NoteOnEvent noteOnEvent = new NoteOnEvent(0, channel, noteNumber, 100, 50);
             events.Add(noteOnEvent);
             events.Add(noteOnEvent.OffEvent);
