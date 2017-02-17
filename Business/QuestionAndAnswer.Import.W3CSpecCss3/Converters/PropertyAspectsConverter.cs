@@ -577,7 +577,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             QuestionLink link = _questionLinkRepository.Create();
             link.Description = propertyName;
 
-            string baseUrl = _source.Url.CutRight("/");
+            string baseUrl = _source.Url.TrimEnd("/");
             link.Url = baseUrl + "#" + hashTag;
 
             return link;

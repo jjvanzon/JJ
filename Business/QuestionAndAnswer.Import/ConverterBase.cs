@@ -117,8 +117,8 @@ namespace JJ.Business.QuestionAndAnswer.Import
                              .Replace("'>", "")
                              .Replace(">", "")
                              .Replace("<", "")
-                             .CutLeft("'")
-                             .CutRight("'");
+                             .TrimStart("'")
+                             .TrimEnd("'");
             }
 
             // Older (?) version.
@@ -158,7 +158,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
                 // - "http://www.w3.org/TR/CSS21/tables.bla/"
 
                 // It is assumed that it either ends with a slash, or you have to cut off everything until the slash.
-                return _source.Url.CutRightUntil("/") + url;
+                return _source.Url.TrimEndUntil("/") + url;
             }
         }
 

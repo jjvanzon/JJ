@@ -105,7 +105,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             QuestionLink link = _questionLinkRepository.Create();
             link.Description = propertyName;
 
-            string baseUrl = _source.Url.CutRight("/");
+            string baseUrl = _source.Url.TrimEnd("/");
             link.Url = baseUrl + "#" + hashTag;
 
             return link;
@@ -134,7 +134,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             // Cut away period from the end, so that it can be followed by a question mark (?).
-            meaning = meaning.CutRight(".");
+            meaning = meaning.TrimEnd(".");
 
             return meaning;
         }
@@ -148,7 +148,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             // Decapitalize
-            context = context.Left(1).ToLower() + context.CutLeft(1);
+            context = context.Left(1).ToLower() + context.TrimStart(1);
 
             return context;
         }

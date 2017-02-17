@@ -145,13 +145,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
             }
 
             value = value.Trim()
-                         .CutLeft("<")
-                         .CutRight(">")
-                         .CutLeft("'")
-                         .CutRight("'")
-                         .CutLeft("‘")
-                         .CutRight("’")
-                         .CutLeft("*");
+                         .TrimStart("<")
+                         .TrimEnd(">")
+                         .TrimStart("'")
+                         .TrimEnd("'")
+                         .TrimStart("‘")
+                         .TrimEnd("’")
+                         .TrimStart("*");
 
             return value;
         }
