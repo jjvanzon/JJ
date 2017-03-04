@@ -2,7 +2,7 @@
 
 <% if (Model.CanLogIn) { %>
 
-    <%: Html.ActionLink(CommonTitles.LogIn, ActionNames.Index, ControllerNames.Login) %>
+    <%: Html.ActionLink(CommonTitlesFormatter.LogIn, ActionNames.Index, ControllerNames.Login) %>
 
 <% } %>
 
@@ -11,7 +11,7 @@
 <% if (Model.CanLogOut) { %>
 
     <div id="loginPartialViewDropDown">
-        <%: Html.ActionLink(CommonTitles.LogOut, ActionNames.LogOut, ControllerNames.Login) %>
+        <%: Html.ActionLink(CommonTitlesFormatter.LogOut, ActionNames.LogOut, ControllerNames.Login) %>
     </div>
 
 <% } %>

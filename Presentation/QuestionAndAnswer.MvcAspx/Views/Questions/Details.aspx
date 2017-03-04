@@ -36,7 +36,7 @@
 
         <tr>
             <th><%: PropertyDisplayNames.IsActive %></th>
-            <td><%: Model.Question.IsActive ? CommonTitles.Yes : CommonTitles.No %></td>
+            <td><%: Model.Question.IsActive ? CommonTitlesFormatter.Yes : CommonTitlesFormatter.No %></td>
         </tr>
         <tr>
             <th><%: PropertyDisplayNames.Source %></th>
@@ -77,7 +77,7 @@
                 
                 <% if (Model.Question.Categories.Count == 0) { %>
 
-                    <%: CommonTitles.None %>
+                    <%: CommonTitlesFormatter.None %>
 
                 <% } %>
 
@@ -96,7 +96,7 @@
 
                 <% if (Model.Question.Links.Count == 0) { %>
 
-                    <%: CommonTitles.None %>
+                    <%: CommonTitlesFormatter.None %>
 
                 <% } %>
 
@@ -109,7 +109,7 @@
         <tr>
             <th><%: PropertyDisplayNames.IsManual %></th>
             <td>
-                <%: Model.Question.IsManual ? CommonTitles.Yes : CommonTitles.No %>
+                <%: Model.Question.IsManual ? CommonTitlesFormatter.Yes : CommonTitlesFormatter.No %>
 
                 <% if (Model.Question.IsManual) { %>
 
@@ -127,7 +127,7 @@
         <table>
             <tr>
                 <th><%: Titles.HasActiveFlags %></th>
-                <td><%: Model.Question.IsFlagged ? CommonTitles.Yes : CommonTitles.No %></td>
+                <td><%: Model.Question.IsFlagged ? CommonTitlesFormatter.Yes : CommonTitlesFormatter.No %></td>
             </tr>
 
             <% foreach (var flag in Model.Question.Flags) { %>
@@ -160,9 +160,9 @@
     </fieldset>
 
     <p>
-        <%: Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new { id = Model.Question.ID }) %> |
-        <%: Html.ActionLink(CommonTitles.New, ActionNames.Create) %> |
-        <%: Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
+        <%: Html.ActionLink(CommonTitlesFormatter.Edit, ActionNames.Edit, new { id = Model.Question.ID }) %> |
+        <%: Html.ActionLink(CommonTitlesFormatter.New, ActionNames.Create) %> |
+        <%: Html.ActionLink(CommonTitlesFormatter.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
         <%: Html.ActionLink(Titles.BackToList, ActionNames.Index) %>
     </p>
 

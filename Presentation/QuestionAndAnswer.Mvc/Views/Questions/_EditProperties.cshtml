@@ -45,7 +45,7 @@
     <tr>
         <th>@PropertyDisplayNames.IsManual:</th>
         <td>
-            @(Model.IsManual ? CommonTitles.Yes : CommonTitles.No)
+            @(Model.IsManual ? CommonTitlesFormatter.Yes : CommonTitlesFormatter.No)
 
             @if (Model.IsManual)
             {

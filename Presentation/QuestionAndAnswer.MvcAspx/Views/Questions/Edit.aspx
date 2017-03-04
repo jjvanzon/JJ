@@ -68,7 +68,7 @@
             <tr>
                 <th><%: PropertyDisplayNames.IsManual %></th>
                 <td style="text-align:right">
-                    <%: Model.Question.IsManual ? CommonTitles.Yes : CommonTitles.No %>
+                    <%: Model.Question.IsManual ? CommonTitlesFormatter.Yes : CommonTitlesFormatter.No %>
 
                     <% if (Model.Question.IsManual) { %>
 
@@ -105,7 +105,7 @@
 
                                 <%: Html.DropDownListFor(
                                         x => x.Question.Categories[i].Category.ID,
-                                        Model.Categories.UnionRecursive(x => x.SubCategories).Select(x => new SelectListItem 
+                                        Model.AllCategories.UnionRecursive(x => x.SubCategories).Select(x => new SelectListItem 
                                         {
                                             Value = x.ID.ToString(), 
                                             Text = String.Join(@" \ ", x.NameParts), 
@@ -114,7 +114,7 @@
                                         "")%>
                             </td>
                             <td style="vertical-align:bottom;text-align:center;">
-                                <input type="submit" value="<%: CommonTitles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 
+                                <input type="submit" value="<%: CommonTitlesFormatter.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 
                                                                                                                              ControllerNames.Questions,
                                                                                                                              ActionParameterNames.temporaryID,
                                                                                                                              Model.Question.Categories[i].TemporaryID) %>" />
@@ -132,7 +132,7 @@
                     <tr style="height:27px">
                         <td />
                         <td style="vertical-align:bottom;text-align:center;">
-                            <input type="submit" value="<%: CommonTitles.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
+                            <input type="submit" value="<%: CommonTitlesFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
                         </td>
                         <td />
                     </tr>
@@ -141,7 +141,7 @@
             <% } else { %>
 
                 <br />
-                <input type="submit" value="<%: CommonTitles.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
+                <input type="submit" value="<%: CommonTitlesFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
 
             <% } %>
 
@@ -185,7 +185,7 @@
                                 </span>
                             </td>
                             <td style="vertical-align:bottom;text-align:center;">
-                                <input type="submit" value="<%: CommonTitles.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveLink, 
+                                <input type="submit" value="<%: CommonTitlesFormatter.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveLink, 
                                                                                                                              ControllerNames.Questions, 
                                                                                                                              ActionParameterNames.temporaryID, 
                                                                                                                              Model.Question.Links[i].TemporaryID) %>" />
@@ -201,7 +201,7 @@
                         <td />
                         <td />
                         <td style="vertical-align:bottom;text-align:center;">
-                            <input type="submit" value="<%: CommonTitles.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
+                            <input type="submit" value="<%: CommonTitlesFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
                         </td>
                     </tr>
                 </table>
@@ -209,7 +209,7 @@
             <% } else { %>
 
                 <br />
-                <input type="submit" value="<%: CommonTitles.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
+                <input type="submit" value="<%: CommonTitlesFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
 
             <% } %>
 
@@ -218,7 +218,7 @@
         <fieldset>
             <legend><%: Titles.ContentFlags %></legend>
 
-            <%: Titles.HasActiveFlags %> <%: Model.Question.IsFlagged ? CommonTitles.Yes : CommonTitles.No %>
+            <%: Titles.HasActiveFlags %> <%: Model.Question.IsFlagged ? CommonTitlesFormatter.Yes : CommonTitlesFormatter.No %>
 
             <br />
 
@@ -236,7 +236,7 @@
                             <td class="editor-field">
                                 <%: Html.DropDownListFor(
                                         x => Model.Question.Flags[i].Status.ID,
-                                        Model.FlagStatuses.Select(x => new SelectListItem 
+                                        Model.Question.Flags[i].AllFlagStatuses.Select(x => new SelectListItem 
                                         {
                                             Value = x.ID.ToString(), 
                                             Text = x.Description, 
@@ -279,29 +279,29 @@
 
         <p>
             <%-- Save --%>
-            <input type="submit" value="<%: CommonTitles.Save %>" /> |
+            <input type="submit" value="<%: CommonTitlesFormatter.Save %>" /> |
 
             <%-- TODO: The view is not supposed to make these decisions. --%>
 
             <%-- Cancel --%>
             <% if (Model.IsNew) { %>
 
-                <a href="javascript:history.back()"> <%: CommonTitles.Cancel %></a> |
+                <a href="javascript:history.back()"> <%: CommonTitlesFormatter.Cancel %></a> |
                 <noscript>
                     <%: Messages.YouHaveNoJavaScript %>
-                    <%: Html.ActionLink(CommonTitles.Cancel, ActionNames.Index) %> ?
+                    <%: Html.ActionLink(CommonTitlesFormatter.Cancel, ActionNames.Index) %> ?
                 </noscript>
 
             <% } else { %>
 
-                <%: Html.ActionLink(CommonTitles.Cancel, ActionNames.Details, new { id = Model.Question.ID }) %> |
+                <%: Html.ActionLink(CommonTitlesFormatter.Cancel, ActionNames.Details, new { id = Model.Question.ID }) %> |
 
             <% } %>
 
             <%-- Delete --%>
             <% if (Model.CanDelete) { %>
 
-                <%: Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
+                <%: Html.ActionLink(CommonTitlesFormatter.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
 
             <% } %>
 

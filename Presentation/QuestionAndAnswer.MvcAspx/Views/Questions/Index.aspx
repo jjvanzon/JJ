@@ -37,9 +37,9 @@
                 <tr>
                     <td><%: question.ID %></td>
                     <td><%: Html.ActionLink(question.Text, ActionNames.Details, new { id = question.ID }) %></td>
-                    <td><%: question.IsFlagged ? CommonTitles.Yes : CommonTitles.No %></td>
-                    <td><%: Html.ActionLink(CommonTitles.Edit, ActionNames.Edit, new { id = question.ID }) %> </td>
-                    <td><%: Html.ActionLink(CommonTitles.Delete, ActionNames.Delete, new { id = question.ID })%> </td>
+                    <td><%: question.IsFlagged ? CommonTitlesFormatter.Yes : CommonTitlesFormatter.No %></td>
+                    <td><%: Html.ActionLink(CommonTitlesFormatter.Edit, ActionNames.Edit, new { id = question.ID }) %> </td>
+                    <td><%: Html.ActionLink(CommonTitlesFormatter.Delete, ActionNames.Delete, new { id = question.ID })%> </td>
                 </tr>
 
             <% } %>

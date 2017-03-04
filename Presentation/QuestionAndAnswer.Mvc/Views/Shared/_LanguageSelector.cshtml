@@ -1,7 +1,7 @@
 ﻿@model LanguageSelectorPartialViewModel
 
 <div id="langDiv">
-    @CommonTitles.Language
+    @CommonTitlesFormatter.Language
 
     @Html.DropDownListFor(
         x => x.SelectedLanguageCultureName,

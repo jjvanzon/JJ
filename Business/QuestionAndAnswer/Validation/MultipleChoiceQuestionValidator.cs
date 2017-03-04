@@ -17,16 +17,16 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            if (Object.QuestionType != null)
+            if (Obj.QuestionType != null)
             {
-                For(() => Object.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
+                For(() => Obj.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
                     .Is(QuestionTypeEnum.MultipleChoice);
             }
 
-            For(() => Object.Answers.Count, PropertyDisplayNames.AnswersCount)
+            For(() => Obj.Answers.Count, PropertyDisplayNames.AnswersCount)
                 .GreaterThan(1);
 
-            For(() => Object.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
+            For(() => Obj.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
                 .Is(1);
         }
     }

@@ -32,7 +32,7 @@
 
         <p>
             <input type="submit" value="<%: Titles.Confirm %>" /> |
-            <a href="javascript:history.back()"> <%: CommonTitles.Cancel %> </a>
+            <a href="javascript:history.back()"> <%: CommonTitlesFormatter.Cancel %> </a>
         </p>
 
     <% } %>

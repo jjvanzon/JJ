@@ -15,7 +15,7 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            Question question = Object;
+            Question question = Obj;
 
             For(() => question.QuestionType, PropertyDisplayNames.QuestionType)
                 .NotNull();

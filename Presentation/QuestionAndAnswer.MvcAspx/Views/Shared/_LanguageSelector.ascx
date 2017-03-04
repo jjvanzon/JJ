@@ -19,7 +19,7 @@
     });
 </script>
 
-<%: CommonTitles.Language %>
+<%: CommonTitlesFormatter.Language %>
 
 <%: 
     Html.DropDownListFor(

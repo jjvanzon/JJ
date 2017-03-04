@@ -12,10 +12,10 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            For(() => Object.Question, PropertyDisplayNames.Question)
+            For(() => Obj.Question, PropertyDisplayNames.Question)
                 .NotNull();
 
-            For(() => Object.Category, PropertyDisplayNames.Category)
+            For(() => Obj.Category, PropertyDisplayNames.Category)
                 .NotNull();
         }
     }

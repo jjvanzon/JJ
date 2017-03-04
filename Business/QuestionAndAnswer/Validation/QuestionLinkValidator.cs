@@ -12,10 +12,10 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            For(() => Object.Description, PropertyDisplayNames.Description)
+            For(() => Obj.Description, PropertyDisplayNames.Description)
                 .NotNullOrWhiteSpace();
 
-            For(() => Object.Url, PropertyDisplayNames.Url)
+            For(() => Obj.Url, PropertyDisplayNames.Url)
                 .NotNullOrWhiteSpace();
         }
     }

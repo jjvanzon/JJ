@@ -24,19 +24,27 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService
 
         public CommonTitles GetCommonTitles(string cultureName)
         {
-            return ConvertResources<JJ.Framework.Presentation.Resources.CommonTitles, CommonTitles>(cultureName);
+            return (CommonTitles)ConvertResources(typeof(JJ.Framework.Presentation.Resources.CommonTitlesFormatter), typeof(CommonTitles), cultureName);
         }
 
         private TDest ConvertResources<TSource, TDest>(string cultureName)
             where TDest : new()
         {
+            Type sourceType = typeof(TSource);
+            Type destType = typeof(TDest);
+
+            return (TDest)ConvertResources(sourceType, destType, cultureName);
+        }
+
+        private object ConvertResources(Type sourceType, Type destType, string cultureName) 
+        {
             SetCulture(cultureName);
 
-            var dest = new TDest();
+            var dest = Activator.CreateInstance(destType);
 
-            foreach (PropertyInfo property in typeof(TSource).GetProperties(BindingFlags.Public | BindingFlags.Static))
+            foreach (PropertyInfo property in sourceType.GetProperties(BindingFlags.Public | BindingFlags.Static))
             {
-                PropertyInfo property2 = typeof(TDest).GetProperty(property.Name, BindingFlags.Instance | BindingFlags.Public);
+                PropertyInfo property2 = destType.GetProperty(property.Name, BindingFlags.Instance | BindingFlags.Public);
 
                 if (property2 != null)
                 {

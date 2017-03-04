@@ -21,7 +21,7 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
         protected override void Execute()
         {
-            Question question = Object;
+            Question question = Obj;
 
             ExecuteValidator(new BasicQuestionValidator(question));
 

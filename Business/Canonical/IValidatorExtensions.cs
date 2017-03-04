@@ -1,4 +1,8 @@
-﻿using JJ.Data.Canonical;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
+using JJ.Data.Canonical;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Validation;
 
@@ -18,6 +22,20 @@ namespace JJ.Business.Canonical
             };
 
             return result;
+        }
+
+        public static VoidResult ToResult([NotNull] this IEnumerable<IValidator> validators)
+        {
+            if (validators == null) throw new NullException(() => validators);
+
+            // Prevent multiple enumeration.
+            validators = validators.ToArray();
+
+            return new VoidResult
+            {
+                Successful = validators.All(x => x.IsValid),
+                Messages = validators.SelectMany(x => x.ValidationMessages).ToCanonical()
+            };
         }
     }
 }
