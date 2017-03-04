@@ -1,14 +1,14 @@
 ﻿@model QuestionEditViewModel
 
 <p>
-    <input type="submit" value="@CommonTitlesFormatter.Save" /> |
+    <input type="submit" value="@CommonResourceFormatter.Save" /> |
 
-    <input type="submit" value="@CommonTitlesFormatter.Cancel" formaction="@Url.Action(ActionNames.CancelEdit, new { ret = Url.ReturnAction(Model.ReturnAction) })" />
+    <input type="submit" value="@CommonResourceFormatter.Cancel" formaction="@Url.Action(ActionNames.CancelEdit, new { ret = Url.ReturnAction(Model.ReturnAction) })" />
 
     @if (Model.CanDelete)
     {
         @:| 
-        @Html.ActionLink(CommonTitlesFormatter.Delete, ActionNames.Delete, new { id = Model.Question.ID }) <text>|</text>
+        @Html.ActionLink(CommonResourceFormatter.Delete, ActionNames.Delete, new { id = Model.Question.ID }) <text>|</text>
     }
 
     @Html.ActionLink(Titles.BackToList, ActionNames.Index)

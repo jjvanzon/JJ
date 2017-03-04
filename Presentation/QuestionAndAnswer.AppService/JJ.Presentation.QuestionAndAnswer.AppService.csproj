@@ -80,7 +80,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonTitles.cs" />
+    <Compile Include="CommonResources.cs" />
     <Compile Include="IResourceService.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="PersistenceHelper.cs" />

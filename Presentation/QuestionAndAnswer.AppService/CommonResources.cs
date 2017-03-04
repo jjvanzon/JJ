@@ -1,6 +1,6 @@
 ﻿namespace JJ.Presentation.QuestionAndAnswer.AppService
 {
-    public class CommonTitles
+    public class CommonResources
     {
         public string Add { get; set; }
         public string Cancel { get; set; }

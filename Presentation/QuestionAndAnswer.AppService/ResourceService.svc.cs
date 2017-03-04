@@ -22,9 +22,9 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService
             return ConvertResources<Resources.Titles, Titles>(cultureName);
         }
 
-        public CommonTitles GetCommonTitles(string cultureName)
+        public CommonResources GetCommonResources(string cultureName)
         {
-            return (CommonTitles)ConvertResources(typeof(JJ.Framework.Presentation.Resources.CommonTitlesFormatter), typeof(CommonTitles), cultureName);
+            return (CommonResources)ConvertResources(typeof(JJ.Framework.Presentation.Resources.CommonResourceFormatter), typeof(CommonResources), cultureName);
         }
 
         private TDest ConvertResources<TSource, TDest>(string cultureName)

@@ -25,11 +25,11 @@
   <wsdl:message name="IResourceService_GetPropertyDisplayNames_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPropertyDisplayNamesResponse" />
   </wsdl:message>
-  <wsdl:message name="IResourceService_GetCommonTitles_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetCommonTitles" />
+  <wsdl:message name="IResourceService_GetCommonResources_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommonResources" />
   </wsdl:message>
-  <wsdl:message name="IResourceService_GetCommonTitles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetCommonTitlesResponse" />
+  <wsdl:message name="IResourceService_GetCommonResources_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommonResourcesResponse" />
   </wsdl:message>
   <wsdl:portType name="IResourceService">
     <wsdl:operation name="GetMessages">
@@ -44,9 +44,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetPropertyDisplayNames" message="tns:IResourceService_GetPropertyDisplayNames_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetPropertyDisplayNamesResponse" message="tns:IResourceService_GetPropertyDisplayNames_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetCommonTitles">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetCommonTitles" message="tns:IResourceService_GetCommonTitles_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetCommonTitlesResponse" message="tns:IResourceService_GetCommonTitles_OutputMessage" />
+    <wsdl:operation name="GetCommonResources">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResourceService/GetCommonResources" message="tns:IResourceService_GetCommonResources_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResourceService/GetCommonResourcesResponse" message="tns:IResourceService_GetCommonResources_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IResourceService" type="tns:IResourceService">
@@ -78,8 +78,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetCommonTitles">
-      <soap:operation soapAction="http://tempuri.org/IResourceService/GetCommonTitles" style="document" />
+    <wsdl:operation name="GetCommonResources">
+      <soap:operation soapAction="http://tempuri.org/IResourceService/GetCommonResources" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

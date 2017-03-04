@@ -15,6 +15,6 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService
         PropertyDisplayNames GetPropertyDisplayNames(string cultureName);
 
         [OperationContract]
-        CommonTitles GetCommonTitles(string cultureName);
+        CommonResources GetCommonResources(string cultureName);
     }
 }

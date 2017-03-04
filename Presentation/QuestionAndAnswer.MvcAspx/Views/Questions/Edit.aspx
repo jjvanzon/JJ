@@ -68,7 +68,7 @@
             <tr>
                 <th><%: PropertyDisplayNames.IsManual %></th>
                 <td style="text-align:right">
-                    <%: Model.Question.IsManual ? CommonTitlesFormatter.Yes : CommonTitlesFormatter.No %>
+                    <%: Model.Question.IsManual ? CommonResourceFormatter.Yes : CommonResourceFormatter.No %>
 
                     <% if (Model.Question.IsManual) { %>
 
@@ -114,7 +114,7 @@
                                         "")%>
                             </td>
                             <td style="vertical-align:bottom;text-align:center;">
-                                <input type="submit" value="<%: CommonTitlesFormatter.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 
+                                <input type="submit" value="<%: CommonResourceFormatter.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveCategory, 
                                                                                                                              ControllerNames.Questions,
                                                                                                                              ActionParameterNames.temporaryID,
                                                                                                                              Model.Question.Categories[i].TemporaryID) %>" />
@@ -132,7 +132,7 @@
                     <tr style="height:27px">
                         <td />
                         <td style="vertical-align:bottom;text-align:center;">
-                            <input type="submit" value="<%: CommonTitlesFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
+                            <input type="submit" value="<%: CommonResourceFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
                         </td>
                         <td />
                     </tr>
@@ -141,7 +141,7 @@
             <% } else { %>
 
                 <br />
-                <input type="submit" value="<%: CommonTitlesFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
+                <input type="submit" value="<%: CommonResourceFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddCategory) %>" />
 
             <% } %>
 
@@ -185,7 +185,7 @@
                                 </span>
                             </td>
                             <td style="vertical-align:bottom;text-align:center;">
-                                <input type="submit" value="<%: CommonTitlesFormatter.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveLink, 
+                                <input type="submit" value="<%: CommonResourceFormatter.Remove %>" formaction="<%: Url.ActionWithParams(ActionNames.RemoveLink, 
                                                                                                                              ControllerNames.Questions, 
                                                                                                                              ActionParameterNames.temporaryID, 
                                                                                                                              Model.Question.Links[i].TemporaryID) %>" />
@@ -201,7 +201,7 @@
                         <td />
                         <td />
                         <td style="vertical-align:bottom;text-align:center;">
-                            <input type="submit" value="<%: CommonTitlesFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
+                            <input type="submit" value="<%: CommonResourceFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
                         </td>
                     </tr>
                 </table>
@@ -209,7 +209,7 @@
             <% } else { %>
 
                 <br />
-                <input type="submit" value="<%: CommonTitlesFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
+                <input type="submit" value="<%: CommonResourceFormatter.Add %>" formaction="<%: Url.Action(ActionNames.AddLink) %>" />
 
             <% } %>
 
@@ -218,7 +218,7 @@
         <fieldset>
             <legend><%: Titles.ContentFlags %></legend>
 
-            <%: Titles.HasActiveFlags %> <%: Model.Question.IsFlagged ? CommonTitlesFormatter.Yes : CommonTitlesFormatter.No %>
+            <%: Titles.HasActiveFlags %> <%: Model.Question.IsFlagged ? CommonResourceFormatter.Yes : CommonResourceFormatter.No %>
 
             <br />
 
@@ -279,29 +279,29 @@
 
         <p>
             <%-- Save --%>
-            <input type="submit" value="<%: CommonTitlesFormatter.Save %>" /> |
+            <input type="submit" value="<%: CommonResourceFormatter.Save %>" /> |
 
             <%-- TODO: The view is not supposed to make these decisions. --%>
 
             <%-- Cancel --%>
             <% if (Model.IsNew) { %>
 
-                <a href="javascript:history.back()"> <%: CommonTitlesFormatter.Cancel %></a> |
+                <a href="javascript:history.back()"> <%: CommonResourceFormatter.Cancel %></a> |
                 <noscript>
                     <%: Messages.YouHaveNoJavaScript %>
-                    <%: Html.ActionLink(CommonTitlesFormatter.Cancel, ActionNames.Index) %> ?
+                    <%: Html.ActionLink(CommonResourceFormatter.Cancel, ActionNames.Index) %> ?
                 </noscript>
 
             <% } else { %>
 
-                <%: Html.ActionLink(CommonTitlesFormatter.Cancel, ActionNames.Details, new { id = Model.Question.ID }) %> |
+                <%: Html.ActionLink(CommonResourceFormatter.Cancel, ActionNames.Details, new { id = Model.Question.ID }) %> |
 
             <% } %>
 
             <%-- Delete --%>
             <% if (Model.CanDelete) { %>
 
-                <%: Html.ActionLink(CommonTitlesFormatter.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
+                <%: Html.ActionLink(CommonResourceFormatter.Delete, ActionNames.Delete, new { id = Model.Question.ID }) %> |
 
             <% } %>
 

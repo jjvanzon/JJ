@@ -76,7 +76,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PropertyDisplayNames" nillable="true" type="tns:PropertyDisplayNames" />
-  <xs:complexType name="CommonTitles">
+  <xs:complexType name="CommonResources">
     <xs:sequence>
       <xs:element minOccurs="0" name="Add" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Cancel" nillable="true" type="xs:string" />
@@ -94,5 +94,5 @@
       <xs:element minOccurs="0" name="Yes" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="CommonTitles" nillable="true" type="tns:CommonTitles" />
+  <xs:element name="CommonResources" nillable="true" type="tns:CommonResources" />
 </xs:schema>

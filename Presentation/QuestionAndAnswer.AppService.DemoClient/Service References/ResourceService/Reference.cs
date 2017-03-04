@@ -1078,9 +1078,9 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceServic
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CommonTitles", Namespace="http://schemas.datacontract.org/2004/07/JJ.Presentation.QuestionAndAnswer.AppService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CommonResources", Namespace="http://schemas.datacontract.org/2004/07/JJ.Presentation.QuestionAndAnswer.AppService")]
     [System.SerializableAttribute()]
-    public partial class CommonTitles : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CommonResources : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1351,11 +1351,11 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceServic
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceService/GetPropertyDisplayNames", ReplyAction="http://tempuri.org/IResourceService/GetPropertyDisplayNamesResponse")]
         System.Threading.Tasks.Task<JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService.PropertyDisplayNames> GetPropertyDisplayNamesAsync(string cultureName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceService/GetCommonTitles", ReplyAction="http://tempuri.org/IResourceService/GetCommonTitlesResponse")]
-        JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService.CommonTitles GetCommonTitles(string cultureName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceService/GetCommonResources", ReplyAction="http://tempuri.org/IResourceService/GetCommonResourcesResponse")]
+        JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService.CommonResources GetCommonResources(string cultureName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceService/GetCommonTitles", ReplyAction="http://tempuri.org/IResourceService/GetCommonTitlesResponse")]
-        System.Threading.Tasks.Task<JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService.CommonTitles> GetCommonTitlesAsync(string cultureName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceService/GetCommonResources", ReplyAction="http://tempuri.org/IResourceService/GetCommonResourcesResponse")]
+        System.Threading.Tasks.Task<JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService.CommonResources> GetCommonResourcesAsync(string cultureName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1409,12 +1409,12 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceServic
             return base.Channel.GetPropertyDisplayNamesAsync(cultureName);
         }
         
-        public JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService.CommonTitles GetCommonTitles(string cultureName) {
-            return base.Channel.GetCommonTitles(cultureName);
+        public JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService.CommonResources GetCommonResources(string cultureName) {
+            return base.Channel.GetCommonResources(cultureName);
         }
         
-        public System.Threading.Tasks.Task<JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService.CommonTitles> GetCommonTitlesAsync(string cultureName) {
-            return base.Channel.GetCommonTitlesAsync(cultureName);
+        public System.Threading.Tasks.Task<JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService.CommonResources> GetCommonResourcesAsync(string cultureName) {
+            return base.Channel.GetCommonResourcesAsync(cultureName);
         }
     }
 }
