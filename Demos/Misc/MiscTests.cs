@@ -102,5 +102,14 @@ namespace JJ.Demos.Misc
                 int bla = 0;
             }
         }
+
+        [TestMethod]
+        public void Test_Misc_PlusOperatorOnStringsWithNull_NoException()
+        {
+            string str1 = null;
+            string str2 = "bla";
+            string str3 = "bla2";
+            string str4 = str1 + str2 + str3;
+        }
     }
 }
