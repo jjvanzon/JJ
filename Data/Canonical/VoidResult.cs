@@ -20,15 +20,8 @@ namespace JJ.Data.Canonical
         /// <summary> not nullable, auto-instantiated </summary>
         public IList<Message> Messages
         {
-            get
-            {
-                return _messages;
-            }
-            set
-            {
-                if (value == null) throw new ArgumentNullException(nameof(value));
-                _messages = value;
-            }
+            get => _messages;
+            set => _messages = value ?? throw new ArgumentNullException(nameof(value));
         }
     }
 }
