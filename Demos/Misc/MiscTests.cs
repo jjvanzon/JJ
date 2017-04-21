@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using JJ.Framework.Testing;
@@ -110,6 +111,51 @@ namespace JJ.Demos.Misc
             string str2 = "bla";
             string str3 = "bla2";
             string str4 = str1 + str2 + str3;
+        }
+
+        [TestMethod]
+        public void Test_Misc_CollectionInitializers()
+        {
+            var myCollection = new MyCollectionType
+            {
+                { 10, 10 }
+            };
+
+            foreach (int x in myCollection)
+            { }
+        }
+
+        private class MyCollectionType : IEnumerable
+        {
+            private readonly int[] _underlyingArray = new int[2];
+
+            //public IEnumerator<int> GetEnumerator()
+            //{
+            //    return ((IEnumerable<int>)_underlyingArray).GetEnumerator();
+            //}
+
+            IEnumerator IEnumerable.GetEnumerator() => _underlyingArray.GetEnumerator();
+
+            //public void Add(int bla)
+            //{ }
+
+            public void Add(int bla, int bla2)
+            { }
+        }
+
+        [TestMethod]
+        public void Test_Misc_ForEach()
+        {
+            var myCollection = new MyCollectionType2();
+            foreach (int x in myCollection)
+            { }
+        }
+
+        private class MyCollectionType2
+        {
+            public bool MoveNext() => false;
+            public int Current { get; set; }
+            public IEnumerator GetEnumerator() => new int[0].GetEnumerator();
         }
     }
 }
