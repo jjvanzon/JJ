@@ -23,9 +23,9 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
                 ViewName = viewName;
             }
 
-            public string ControllerName { get; private set; }
-            public string ActionName { get; private set; }
-            public string ViewName { get; private set; }
+            public string ControllerName { get; }
+            public string ActionName { get; }
+            public string ViewName { get; }
         }
 
         private const string DEFAULT_CULTURE_NAME = "en-US";
@@ -140,7 +140,7 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
                         ModelState.ClearModelErrors();
                         foreach (Message validationMessage in questionEditViewModel.ValidationMessages)
                         {
-                            ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
+                            ModelState.AddModelError(validationMessage.Key, validationMessage.Text);
                         }
 
                         return View(ViewNames.Edit, viewModel);
@@ -160,7 +160,7 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
                         ModelState.ClearModelErrors();
                         foreach (Message validationMessage in questionEditViewModel.ValidationMessages)
                         {
-                            ModelState.AddModelError(validationMessage.PropertyKey, validationMessage.Text);
+                            ModelState.AddModelError(validationMessage.Key, validationMessage.Text);
                         }
 
                         return View(ViewNames.Edit, viewModel);

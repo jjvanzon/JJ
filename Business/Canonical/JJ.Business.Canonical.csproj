@@ -44,7 +44,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IResultExtensions.cs" />
+    <Compile Include="ResultExtensions.cs" />
     <Compile Include="IValidatorExtensions.cs" />
     <Compile Include="MessageHelper.cs" />
     <Compile Include="ResultHelper.cs" />
@@ -55,6 +55,10 @@
     <ProjectReference Include="..\..\Data\Canonical\JJ.Data.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
       <Name>JJ.Data.Canonical</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Business\JJ.Framework.Business.csproj">
+      <Project>{f44d03e8-feec-40d4-b866-a87799185b4c}</Project>
+      <Name>JJ.Framework.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Collections\JJ.Framework.Collections.csproj">
       <Project>{5d06a212-5459-47f3-8109-e012c5fc9e3a}</Project>

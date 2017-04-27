@@ -9,7 +9,7 @@ namespace JJ.Data.Canonical
     public class Message
     {
         [DataMember]
-        public string PropertyKey { get; set; }
+        public string Key { get; set; }
 
         [DataMember]
         public string Text { get; set; }

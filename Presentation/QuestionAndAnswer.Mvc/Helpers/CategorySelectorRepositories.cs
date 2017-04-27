@@ -5,11 +5,11 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Helpers
 {
     internal class CategorySelectorRepositories
     {
-        public ICategoryRepository CategoryRepository { get; private set; }
-        public IQuestionRepository QuestionRepository { get; private set; }
-        public IQuestionFlagRepository QuestionFlagRepository { get; private set; }
-        public IFlagStatusRepository FlagStatusRepository { get; private set; }
-        public IUserRepository UserRepository { get; private set; }
+        public ICategoryRepository CategoryRepository { get; }
+        public IQuestionRepository QuestionRepository { get; }
+        public IQuestionFlagRepository QuestionFlagRepository { get; }
+        public IFlagStatusRepository FlagStatusRepository { get; }
+        public IUserRepository UserRepository { get; }
 
         public CategorySelectorRepositories(
             ICategoryRepository categoryRepository,
@@ -18,17 +18,11 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Helpers
             IFlagStatusRepository flagStatusRepository,
             IUserRepository userRepository)
         {
-            if (categoryRepository == null) throw new NullException(() => categoryRepository);
-            if (questionRepository == null) throw new NullException(() => questionRepository);
-            if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
-            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
-            if (userRepository == null) throw new NullException(() => userRepository);
-
-            CategoryRepository = categoryRepository;
-            QuestionRepository = questionRepository;
-            QuestionFlagRepository = questionFlagRepository;
-            FlagStatusRepository = flagStatusRepository;
-            UserRepository = userRepository;
+            CategoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
+            QuestionRepository = questionRepository ?? throw new NullException(() => questionRepository);
+            QuestionFlagRepository = questionFlagRepository ?? throw new NullException(() => questionFlagRepository);
+            FlagStatusRepository = flagStatusRepository ?? throw new NullException(() => flagStatusRepository);
+            UserRepository = userRepository ?? throw new NullException(() => userRepository);
         }
     }
 }

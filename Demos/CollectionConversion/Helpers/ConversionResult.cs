@@ -5,10 +5,10 @@ namespace JJ.Demos.CollectionConversion.Helpers
 {
     internal class ConversionResult
     {
-        public IList<Entity> InsertedEntities { get; private set; }
-        public IList<Entity> UpdatedEntities { get; private set; }
-        public IList<Entity> DeletedEntities { get; private set; }
-        public IList<Entity> UnmodifiedEntities { get; private set; }
+        public IList<Entity> InsertedEntities { get; }
+        public IList<Entity> UpdatedEntities { get; }
+        public IList<Entity> DeletedEntities { get; }
+        public IList<Entity> UnmodifiedEntities { get; }
 
         public ConversionResult(
             IList<Entity> insertedEntities,

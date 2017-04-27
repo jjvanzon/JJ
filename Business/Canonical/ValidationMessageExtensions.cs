@@ -8,7 +8,7 @@ namespace JJ.Business.Canonical
         {
             return new JJ.Data.Canonical.Message
             {
-                PropertyKey = sourceEntity.PropertyKey,
+                Key = sourceEntity.Key,
                 Text = sourceEntity.Text
             };
         }
@@ -28,7 +28,7 @@ namespace JJ.Business.Canonical
 
         public static KeyValuePair<string, string> ToKeyValuePair(this JJ.Data.Canonical.Message sourceEntity)
         {
-            return new KeyValuePair<string, string>(sourceEntity.PropertyKey, sourceEntity.Text);
+            return new KeyValuePair<string, string>(sourceEntity.Key, sourceEntity.Text);
         }
 
         public static IList<KeyValuePair<string, string>> ToKeyValuePairs(this IEnumerable<JJ.Data.Canonical.Message> sourceList)
