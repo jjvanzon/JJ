@@ -6,7 +6,7 @@ namespace JJ.Data.Canonical
 {
     [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     [DataContract]
-    public class Message
+    public class MessageDto
     {
         [DataMember]
         public string Key { get; set; }

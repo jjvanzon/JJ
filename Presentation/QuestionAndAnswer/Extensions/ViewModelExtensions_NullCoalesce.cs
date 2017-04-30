@@ -11,7 +11,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
         {
             viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
 
-            viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<JJ.Data.Canonical.Message>();
+            viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<JJ.Data.Canonical.MessageDto>();
             viewModel.Question = viewModel.Question ?? new QuestionViewModel();
             viewModel.AllCategories = viewModel.AllCategories ?? new List<CategoryViewModel>();
 

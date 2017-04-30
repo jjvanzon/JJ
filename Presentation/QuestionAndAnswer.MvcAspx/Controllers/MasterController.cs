@@ -138,7 +138,7 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
                     if (isSameControllerAndAction)
                     {
                         ModelState.ClearModelErrors();
-                        foreach (Message validationMessage in questionEditViewModel.ValidationMessages)
+                        foreach (MessageDto validationMessage in questionEditViewModel.ValidationMessages)
                         {
                             ModelState.AddModelError(validationMessage.Key, validationMessage.Text);
                         }
@@ -158,7 +158,7 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
                     if (isSameControllerAndAction)
                     {
                         ModelState.ClearModelErrors();
-                        foreach (Message validationMessage in questionEditViewModel.ValidationMessages)
+                        foreach (MessageDto validationMessage in questionEditViewModel.ValidationMessages)
                         {
                             ModelState.AddModelError(validationMessage.Key, validationMessage.Text);
                         }

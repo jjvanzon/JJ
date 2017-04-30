@@ -44,12 +44,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessToCanonicalExtensions.cs" />
+    <Compile Include="CanonicalToBusinessExtensions.cs" />
     <Compile Include="ResultExtensions.cs" />
-    <Compile Include="IValidatorExtensions.cs" />
+    <Compile Include="ValidationToBusinessExtensions.cs" />
     <Compile Include="MessageHelper.cs" />
     <Compile Include="ResultHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidationMessageExtensions.cs" />
+    <Compile Include="CanonicalToKeyValuePairExtensions.cs" />
+    <Compile Include="ValidationToCanonicalExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Canonical\JJ.Data.Canonical.csproj">

@@ -61,7 +61,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             var viewModel = new QuestionEditViewModel
             {
                 Question = question.ToViewModel(),
-                ValidationMessages = new List<Message>(),
+                ValidationMessages = new List<MessageDto>(),
                 CanDelete = true,
                 AllCategories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository)
             };

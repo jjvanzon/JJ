@@ -49,11 +49,11 @@
     <Compile Include="Helpers\DebugHelper.cs" />
     <Compile Include="IDAndName.cs" />
     <Compile Include="IDNameAndObjectType.cs" />
-    <Compile Include="IResult.cs" />
-    <Compile Include="ResultT.cs" />
+    <Compile Include="IResultDto.cs" />
+    <Compile Include="ResultDtoT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="VoidResult.cs" />
+    <Compile Include="MessageDto.cs" />
+    <Compile Include="VoidResultDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

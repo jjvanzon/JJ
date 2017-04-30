@@ -2,9 +2,9 @@
 
 namespace JJ.Data.Canonical
 {
-    public interface IResult
+    public interface IResultDto
     {
         bool Successful { get; set; }
-        IList<Message> Messages { get; set; }
+        IList<MessageDto> Messages { get; set; }
     }
 }
