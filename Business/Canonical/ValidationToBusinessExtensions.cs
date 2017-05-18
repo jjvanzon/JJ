@@ -32,5 +32,7 @@ namespace JJ.Business.Canonical
         }
 
         public static VoidResult ToResult([NotNull] this IEnumerable<IValidator> validators) => validators.ToCanonical().ToBusiness();
+
+        public static Messages ToBusiness(this ValidationMessages validationMessages) => validationMessages.ToCanonical().ToBusiness();
     }
 }

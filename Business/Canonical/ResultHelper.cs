@@ -50,6 +50,7 @@ namespace JJ.Business.Canonical
 
         // Business
 
+        [Obsolete("Use IResult.Assert() instead.")]
         public static void Assert(IResult result)
         {
             if (result == null) throw new NullException(() => result);
