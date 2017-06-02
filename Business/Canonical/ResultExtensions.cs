@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JJ.Framework.Collections;
 using JJ.Framework.Exceptions;
 using JJ.Data.Canonical;
@@ -17,6 +18,7 @@ namespace JJ.Business.Canonical
             if (sourceResult == null) throw new NullException(() => sourceResult);
 
             destResult.Successful &= sourceResult.Successful;
+            destResult.Messages = destResult.Messages ?? new List<MessageDto>();
             destResult.Messages.AddRange(sourceResult.Messages);
         }
 
