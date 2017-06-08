@@ -14,8 +14,7 @@ namespace JJ.Business.QuestionAndAnswer
 
         public CategoryManager(ICategoryRepository categoryRepository)
         {
-            if (categoryRepository == null) throw new NullException(() => categoryRepository);
-            _categoryRepository = categoryRepository;
+            _categoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
         }
 
         /// <summary>
@@ -23,7 +22,7 @@ namespace JJ.Business.QuestionAndAnswer
         /// </summary>
         public Category[] GetCategoryTree()
         {
-            IEnumerable<Category> allCategories = _categoryRepository.GetAll().ToArray(); // For performance, make sure all POCO's are loaded.
+            IEnumerable<Category> allCategories = _categoryRepository.GetAll().ToArray(); // For performance, make sure all entities are loaded.
             IEnumerable<Category> rootCategories = allCategories.Where(x => x.ParentCategory == null);
             return rootCategories.ToArray();
         }

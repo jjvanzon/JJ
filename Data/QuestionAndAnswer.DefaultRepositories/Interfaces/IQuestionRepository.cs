@@ -1,10 +1,13 @@
-﻿using JJ.Framework.Data;
+﻿using System;
+using JJ.Framework.Data;
 using System.Collections.Generic;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces
 {
     public interface IQuestionRepository : IRepository<Question, int>
     {
+        [Obsolete("Consider using more efficient queries instead.")]
+        IList<Question> GetAll();
         Question TryGetRandomQuestion();
         IList<Question> GetBySourceID(int sourceID);
         /// <summary>

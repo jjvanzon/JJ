@@ -48,7 +48,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
         {
             returnAction = returnAction ?? _defaultReturnAction;
 
-            if (String.IsNullOrEmpty(_authenticatedUserName))
+            if (string.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
                 ActionInfo returnAction2 = CreateReturnAction(() => Edit(id, returnAction));
@@ -67,7 +67,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
                 returnAction = ActionDispatcher.CreateActionInfo<QuestionDetailsPresenter>(x => x.Show(id));
             }
 
-            QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
+            QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
             viewModel.CanDelete = true;
             viewModel.Title = Titles.EditQuestion;
             viewModel.ReturnAction = returnAction;
@@ -79,7 +79,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
         {
             returnAction = returnAction ?? _defaultReturnAction;
 
-            if (String.IsNullOrEmpty(_authenticatedUserName))
+            if (string.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
                 return presenter2.Show(CreateReturnAction(() => Create(null)));
@@ -97,7 +97,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             ISideEffect sideEffect3 = new Question_SetDefaults_ForOpenQuestion_FrontEnd_SideEffect(entity, _repositories.SourceRepository, _repositories.EntityStatusManager);
             sideEffect3.Execute();
 
-            QuestionEditViewModel viewModel = entity.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
+            QuestionEditViewModel viewModel = entity.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
             viewModel.IsNew = true;
             viewModel.Title = Titles.CreateQuestion;
 
@@ -123,7 +123,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             questionLink.LinkTo(question);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
 
             // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -147,7 +147,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             QuestionLinkViewModel questionLinkViewModel = viewModel.Question.Links.Where(x => x.TemporaryID == temporaryID).SingleOrDefault();
             if (questionLinkViewModel == null)
             {
-                throw new Exception(String.Format("QuestionLinkViewModel with TemporaryID '{0}' not found.", temporaryID));
+                throw new Exception(string.Format("QuestionLinkViewModel with TemporaryID '{0}' not found.", temporaryID));
             }
             viewModel.Question.Links.Remove(questionLinkViewModel);
 
@@ -155,7 +155,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             Question question = viewModel.ToEntity(_repositories);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
 
             // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -178,7 +178,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             questionCategory.LinkTo(question);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
 
             // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -202,7 +202,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             QuestionCategoryViewModel questionCategoryViewModel = viewModel.Question.Categories.Where(x => x.TemporaryID == temporaryID).FirstOrDefault();
             if (questionCategoryViewModel == null)
             {
-                throw new Exception(String.Format("questionCategoryViewModel with TemporaryID '{0}' not found.", temporaryID));
+                throw new Exception(string.Format("questionCategoryViewModel with TemporaryID '{0}' not found.", temporaryID));
             }
             viewModel.Question.Categories.Remove(questionCategoryViewModel);
 
@@ -210,7 +210,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             Question question = viewModel.ToEntity(_repositories);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
 
             // Non-persisted properties
             viewModel2.IsNew = viewModel.IsNew;
@@ -226,7 +226,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             viewModel.NullCoalesce();
 
             User user;
-            if (String.IsNullOrEmpty(_authenticatedUserName))
+            if (string.IsNullOrEmpty(_authenticatedUserName))
             {
                 return new NotAuthorizedViewModel();
             }
@@ -254,7 +254,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             if (!validator.IsValid)
             {
                 // ToViewModel
-                QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.FlagStatusRepository, _repositories.UserRepository, _authenticatedUserName);
+                QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
 
                 // Non-persisted properties
                 viewModel2.IsNew = viewModel.IsNew;

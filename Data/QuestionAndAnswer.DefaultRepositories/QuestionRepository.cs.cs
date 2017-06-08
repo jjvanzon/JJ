@@ -13,6 +13,9 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
             : base(context)
         { }
 
+        [Obsolete("Consider using more efficient queries instead.")]
+        public virtual IList<Question> GetAll() => _context.Query<Question>().ToArray();
+
         public virtual Question TryGetRandomQuestion()
         {
             throw new NotImplementedException();

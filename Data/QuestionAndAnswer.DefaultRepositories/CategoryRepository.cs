@@ -11,6 +11,8 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
             : base(context)
         { }
 
+        public virtual IList<Category> GetAll() => _context.Query<Category>().ToArray();
+
         public virtual Category TryGetByIdentifier(string identifier)
         {
             return _context.Query<Category>()

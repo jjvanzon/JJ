@@ -8,26 +8,20 @@ using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Framework.Exceptions;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using System.Globalization;
+using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Data.Canonical;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Presentation;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
+using JJ.Presentation.QuestionAndAnswer.Resources;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {
     internal static class ViewModelHelper
     {
-        public static IList<FlagStatusViewModel> CreateFlagStatusListViewModel(IFlagStatusRepository flagStatusRepository)
+        public static IList<IDAndName> CreateFlagStatusListViewModel()
         {
-            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
-
-            var list = new List<FlagStatusViewModel>();
-
-            foreach (FlagStatus flagStatus in flagStatusRepository.GetAll().ToArray())
-            {
-                FlagStatusViewModel flagStatusViewModel = flagStatus.ToViewModel();
-                list.Add(flagStatusViewModel);
-            }
-
-            return list;
+            return EnumToIDAndNameConverter.Convert<FlagStatusEnum>(Titles.ResourceManager, mustIncludeUndefined: false);
         }
 
         /// <summary> Gets a tree of category view models. </summary>

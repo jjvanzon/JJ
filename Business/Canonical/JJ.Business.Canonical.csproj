@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BusinessToCanonicalExtensions.cs" />
     <Compile Include="CanonicalToBusinessExtensions.cs" />
+    <Compile Include="EnumToIDAndNameConverter.cs" />
     <Compile Include="ResultExtensions.cs" />
     <Compile Include="ValidationToBusinessExtensions.cs" />
     <Compile Include="MessageHelper.cs" />

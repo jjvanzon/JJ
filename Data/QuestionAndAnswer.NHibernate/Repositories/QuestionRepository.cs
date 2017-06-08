@@ -18,6 +18,8 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
             _context = (NHibernateContext)context;
         }
 
+        public override IList<Question> GetAll() => _context.Session.QueryOver<Question>().List();
+
         public override Question TryGetRandomQuestion()
         {
             QuestionAndAnswerSqlExecutor sqlExecutor = SqlExecutorHelper.CreateQuestionAndAnswerSqlExecutor(_context);

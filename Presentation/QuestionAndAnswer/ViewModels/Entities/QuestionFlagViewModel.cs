@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JJ.Data.Canonical;
 
 namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Entities
 {
@@ -10,8 +11,8 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Entities
         public DateTime DateAndTime { get; set; }
         public string FlaggedBy { get; set; }
         public string LastModifiedBy { get; set; }
-        public FlagStatusViewModel Status { get; set; }
-        public IList<FlagStatusViewModel> AllFlagStatuses { get; set; }
+        public IDAndName Status { get; set; }
+        public IList<IDAndName> AllFlagStatuses { get; set; }
     }
 }
 

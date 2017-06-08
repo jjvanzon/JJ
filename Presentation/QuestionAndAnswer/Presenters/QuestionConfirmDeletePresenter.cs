@@ -28,7 +28,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public object Show(int id)
         {
-            if (String.IsNullOrEmpty(_authenticatedUserName))
+            if (string.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter(_repositories);
                 return presenter2.Show(CreateReturnAction(() => Show(id)));

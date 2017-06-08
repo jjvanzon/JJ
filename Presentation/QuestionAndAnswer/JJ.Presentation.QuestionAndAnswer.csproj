@@ -70,7 +70,6 @@
     <Compile Include="ToViewModel\ViewModelHelper.cs" />
     <Compile Include="ViewModels\Entities\QuestionCategoryViewModel.cs" />
     <Compile Include="ViewModels\Partials\CurrentUserQuestionFlagViewModel.cs" />
-    <Compile Include="ViewModels\Entities\FlagStatusViewModel.cs" />
     <Compile Include="ViewModels\QuestionEditViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ToViewModel\ToPartialViewModelExtensions.cs" />

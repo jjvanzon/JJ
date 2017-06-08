@@ -15,6 +15,8 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
             _context = (NHibernateContext)context;
         }
 
+        public override IList<Category> GetAll() => _context.Session.QueryOver<Category>().List();
+
         public override Category TryGetByIdentifier(string identifier)
         {
             return _context.Session.QueryOver<Category>()

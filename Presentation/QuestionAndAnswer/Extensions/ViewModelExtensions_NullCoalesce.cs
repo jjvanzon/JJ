@@ -2,6 +2,7 @@
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using System.Collections.Generic;
+using JJ.Data.Canonical;
 
 namespace JJ.Presentation.QuestionAndAnswer.Extensions
 {
@@ -51,9 +52,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
 
         public static void NullCoalesce(this QuestionFlagViewModel viewModel)
         {
-            viewModel.Status = viewModel.Status ?? new FlagStatusViewModel();
+            viewModel.Status = viewModel.Status ?? new IDAndName();
 
-            viewModel.AllFlagStatuses = viewModel.AllFlagStatuses ?? new List<FlagStatusViewModel>();
+            viewModel.AllFlagStatuses = viewModel.AllFlagStatuses ?? new List<IDAndName>();
         }
 
         public static void NullCoalesce(this CategorySelectorViewModel viewModel)

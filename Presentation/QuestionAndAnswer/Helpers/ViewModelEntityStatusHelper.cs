@@ -53,7 +53,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Helpers
                 statusManager.SetIsDirty(() => entity.IsActive);
             }
 
-            if (!String.Equals(viewModel.Text, entity.Text))
+            if (!string.Equals(viewModel.Text, entity.Text))
             {
                 statusManager.SetIsDirty(() => entity.Text);
             }
@@ -73,7 +73,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Helpers
         {
             if (entity == null) return;
 
-            if (!String.Equals(viewModel.Answer, entity.Text))
+            if (!string.Equals(viewModel.Answer, entity.Text))
             {
                 statusManager.SetIsDirty(() => entity.Text);
             }
@@ -93,12 +93,12 @@ namespace JJ.Presentation.QuestionAndAnswer.Helpers
         {
             if (entity == null) return;
 
-            if (!String.Equals(viewModel.Url, entity.Url))
+            if (!string.Equals(viewModel.Url, entity.Url))
             {
                 statusManager.SetIsDirty(() => entity.Url);
             }
 
-            if (!String.Equals(viewModel.Description, entity.Description))
+            if (!string.Equals(viewModel.Description, entity.Description))
             {
                 statusManager.SetIsDirty(() => entity.Description);
             }

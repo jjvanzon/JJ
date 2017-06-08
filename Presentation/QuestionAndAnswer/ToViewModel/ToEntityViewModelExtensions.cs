@@ -3,6 +3,8 @@ using JJ.Framework.Exceptions;
 using JJ.Data.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
+using JJ.Data.Canonical;
+using JJ.Presentation.QuestionAndAnswer.Resources;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {
@@ -28,17 +30,6 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             }
 
             return questionCategoryViewModel;
-        }
-
-        public static FlagStatusViewModel ToViewModel(this FlagStatus entity)
-        {
-            if (entity == null) throw new NullException(() => entity);
-
-            return new FlagStatusViewModel
-            {
-                ID = entity.ID,
-                Description = entity.Description
-            };
         }
 
         /// <summary>
@@ -83,7 +74,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
                 DateAndTime = entity.DateTime,
                 FlaggedBy = entity.FlaggedByUser.DisplayName,
                 LastModifiedBy = entity.LastModifiedByUser.DisplayName,
-                Status = entity.FlagStatus.ToViewModel()
+                Status = entity.FlagStatus.ToIDAndName()
             };
         }
 
@@ -121,6 +112,20 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
                 Description = entity.Description,
                 Url = entity.Url
             };
+        }
+
+        public static IDAndName ToIDAndName(this FlagStatus entity)
+        {
+            if (entity == null) throw new NullException(() => entity);
+
+            var viewModel = new IDAndName
+            {
+                ID = entity.ID,
+                // TODO: entity.Description should be entity.Name and correspond exactly to the FlagStatusEnum member name.
+                Name = Titles.ResourceManager.GetString(entity.Description)
+            };
+
+            return viewModel;
         }
     }
 }

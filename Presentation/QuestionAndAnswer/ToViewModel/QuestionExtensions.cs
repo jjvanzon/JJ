@@ -52,11 +52,9 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
         public static QuestionEditViewModel ToEditViewModel(
             this Question question, 
             ICategoryRepository categoryRepository, 
-            IFlagStatusRepository flagStatusRepository, 
             IUserRepository userRepository,
             string authenticatedUserName)
         {
-            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
 
             var viewModel = new QuestionEditViewModel
             {
@@ -87,7 +85,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             }
 
             // Flags
-            IList<FlagStatusViewModel> allFlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel(flagStatusRepository);
+            IList<IDAndName> allFlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel();
 
             foreach (QuestionFlag flag in question.QuestionFlags)
             {
