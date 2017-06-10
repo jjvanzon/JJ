@@ -8,25 +8,22 @@ using System.Linq;
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
     /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-    public class SeveralMayApplyQuestionValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<Question>
+    public class SeveralMayApplyQuestionValidator : VersatileValidator<Question>
     {
         /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-        public SeveralMayApplyQuestionValidator(Question question)
-            : base(question)
-        { }
-
-        protected override void Execute()
-        {
-            if (Obj.QuestionType != null)
+        public SeveralMayApplyQuestionValidator(Question entity)
+            : base(entity)
+        { 
+            if (entity.QuestionType != null)
             {
-                For(() => Obj.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
+                For(() => entity.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
                     .Is(QuestionTypeEnum.SeveralMayApply);
             }
 
-            For(() => Obj.Answers.Count, PropertyDisplayNames.AnswersCount)
+            For(() => entity.Answers.Count, PropertyDisplayNames.AnswersCount)
                 .GreaterThan(1);
 
-            For(() => Obj.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
+            For(() => entity.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
                 .GreaterThan(1);
         }
     }

@@ -9,20 +9,15 @@ namespace JJ.Business.QuestionAndAnswer.Validation
     /// Performs basic validations for questions in general
     /// and executes different validations depending on the question type (open question, multiple choice, several may apply).
     /// </summary>
-    public class VersatileQuestionValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<Question>
+    public class VersatileQuestionValidator : VersatileValidator<Question>
     {
         /// <summary>
         /// Performs basic validations for questions in general
         /// and executes different validations depending on the question type (open question, multiple choice, several may apply).
         /// </summary>
-        public VersatileQuestionValidator(Question obj)
-            : base(obj)
-        { }
-
-        protected override void Execute()
-        {
-            Question question = Obj;
-
+        public VersatileQuestionValidator(Question question)
+            : base(question)
+        { 
             ExecuteValidator(new BasicQuestionValidator(question));
 
             if (question.QuestionType != null)

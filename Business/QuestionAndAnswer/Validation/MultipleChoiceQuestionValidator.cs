@@ -8,26 +8,19 @@ using JJ.Business.QuestionAndAnswer.Resources;
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
     /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-    public class MultipleChoiceQuestionValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<Question>
+    public class MultipleChoiceQuestionValidator : VersatileValidator<Question>
     {
         /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-        public MultipleChoiceQuestionValidator(Question question)
-            : base(question)
-        { }
-
-        protected override void Execute()
-        {
-            if (Obj.QuestionType != null)
+        public MultipleChoiceQuestionValidator(Question entity)
+            : base(entity)
+        { 
+            if (entity.QuestionType != null)
             {
-                For(() => Obj.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
-                    .Is(QuestionTypeEnum.MultipleChoice);
+                For(() => entity.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType).Is(QuestionTypeEnum.MultipleChoice);
             }
 
-            For(() => Obj.Answers.Count, PropertyDisplayNames.AnswersCount)
-                .GreaterThan(1);
-
-            For(() => Obj.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
-                .Is(1);
+            For(() => entity.Answers.Count, PropertyDisplayNames.AnswersCount).GreaterThan(1);
+            For(() => entity.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount).Is(1);
         }
     }
 }

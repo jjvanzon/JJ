@@ -4,19 +4,13 @@ using JJ.Data.QuestionAndAnswer;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
-    public class QuestionCategoryValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<QuestionCategory>
+    public class QuestionCategoryValidator : VersatileValidator<QuestionCategory>
     {
-        public QuestionCategoryValidator(QuestionCategory obj)
-            : base(obj)
-        { }
-
-        protected override void Execute()
-        {
-            For(() => Obj.Question, PropertyDisplayNames.Question)
-                .NotNull();
-
-            For(() => Obj.Category, PropertyDisplayNames.Category)
-                .NotNull();
+        public QuestionCategoryValidator(QuestionCategory entity)
+            : base(entity)
+        { 
+            For(() => entity.Question, PropertyDisplayNames.Question).NotNull();
+            For(() => entity.Category, PropertyDisplayNames.Category).NotNull();
         }
     }
 }

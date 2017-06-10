@@ -7,28 +7,22 @@ using JJ.Business.QuestionAndAnswer.Resources;
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
     /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-    public class OpenQuestionValidator : VersatileValidator_WithoutConstructorArgumentNullCheck<Question>
+    public class OpenQuestionValidator : VersatileValidator<Question>
     {
         /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-        public OpenQuestionValidator(Question question)
-            : base(question)
-        { }
-
-        protected override void Execute()
-        {
-            if (Obj.QuestionType != null)
+        public OpenQuestionValidator(Question entity)
+            : base(entity)
+        { 
+            if (entity.QuestionType != null)
             {
-                For(() => Obj.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
-                    .Is(QuestionTypeEnum.OpenQuestion);
+                For(() => entity.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType).Is(QuestionTypeEnum.OpenQuestion);
             }
 
-            For(() => Obj.Answers.Count, PropertyDisplayNames.AnswersCount)
-                .Is(1);
+            For(() => entity.Answers.Count, PropertyDisplayNames.AnswersCount).Is(1);
 
-            if (Obj.Answers.Count > 0)
+            if (entity.Answers.Count > 0)
             {
-                For(() => Obj.Answers[0].IsCorrectAnswer, PropertyDisplayNames.IsCorrectAnswer)
-                    .Is(true);
+                For(() => entity.Answers[0].IsCorrectAnswer, PropertyDisplayNames.IsCorrectAnswer).Is(true);
             }
         }
     }
