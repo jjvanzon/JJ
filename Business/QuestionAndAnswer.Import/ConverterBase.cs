@@ -132,9 +132,9 @@ namespace JJ.Business.QuestionAndAnswer.Import
         /// <summary> Turns relative url's to absolute urls. </summary>
         private string ResolveLinkUrl(string url)
         {
-            if (String.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(url))
             {
-                throw new Exception("url cannot be null or empty.");
+                throw new NullOrEmptyException(() => url);
             }
 
             // Absolute URL e.g. "http://www.bla.com/something/page.html"
@@ -165,7 +165,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
         /// <summary> Trims, but does not throw exception when value is null. </summary>
         private string TrimValue(string value)
         {
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
                 return value;
             }

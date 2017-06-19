@@ -4,16 +4,18 @@ using JJ.Framework.Validation;
 using JJ.Data.QuestionAndAnswer;
 using System.Linq;
 using JJ.Business.QuestionAndAnswer.Resources;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
     /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
-    public class MultipleChoiceQuestionValidator : VersatileValidator<Question>
+    public class MultipleChoiceQuestionValidator : VersatileValidator
     {
         /// <summary> For full validation, also execute BasicQuestionValidator. </summary>
         public MultipleChoiceQuestionValidator(Question entity)
-            : base(entity)
-        { 
+        {
+            if (entity == null) throw new NullException(() => entity);
+
             if (entity.QuestionType != null)
             {
                 For(() => entity.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType).Is(QuestionTypeEnum.MultipleChoice);
