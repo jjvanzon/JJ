@@ -58,13 +58,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ActionHandler.cs" />
     <Compile Include="CSharp7Tests.cs" />
     <Compile Include="PrimaryConstructors.cs" />
     <Compile Include="CovarianceAndContravarianceTests.cs" />
     <Compile Include="MiscTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Business\JJ.Framework.Business.csproj">
+      <Project>{F44D03E8-FEEC-40D4-B866-A87799185B4C}</Project>
+      <Name>JJ.Framework.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Testing\JJ.Framework.Testing.csproj">
       <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
       <Name>JJ.Framework.Testing</Name>
