@@ -32,7 +32,7 @@ namespace JJ.Business.Canonical
 
         // Business
 
-        public static void Combine(this IResult destResult, IResult sourceResult, string messagePrefix)
+        public static void Combine(this IResult destResult, IResult sourceResult, string messagePrefix = null)
         {
             if (destResult == null) throw new NullException(() => destResult);
             if (sourceResult == null) throw new NullException(() => sourceResult);
