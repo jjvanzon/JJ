@@ -41,7 +41,7 @@
         <tr>
             <th><%: PropertyDisplayNames.Source %></th>
             <td>
-                <% if (!String.IsNullOrEmpty(Model.Question.Source.Url)) { %>
+                <% if (!string.IsNullOrEmpty(Model.Question.Source.Url)) { %>
 
                     <a href="<%: Model.Question.Source.Url %>" target="_blank">
 
@@ -49,7 +49,7 @@
 
                 <%: Model.Question.Source.Description %>
 
-                <% if (!String.IsNullOrEmpty(Model.Question.Source.Url)) { %>
+                <% if (!string.IsNullOrEmpty(Model.Question.Source.Url)) { %>
 
                     </a>
 
@@ -69,7 +69,7 @@
 
                     <div>
                         <%: category.ID %> - 
-                        <%: String.Join(@" \ ", category.NameParts) %>
+                        <%: string.Join(@" \ ", category.NameParts) %>
                     </div>
 
                 <% } %>

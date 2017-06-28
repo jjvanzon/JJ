@@ -37,7 +37,7 @@
             <tr>
                 <th><%: PropertyDisplayNames.Source %></th>
                 <td style="text-align:right">
-                    <% if (!String.IsNullOrEmpty(Model.Question.Source.Url)) { %>
+                    <% if (!string.IsNullOrEmpty(Model.Question.Source.Url)) { %>
 
                         <a href="<%: Model.Question.Source.Url %>" target="_blank">
 
@@ -45,7 +45,7 @@
 
                     <%: Model.Question.Source.Description %>
 
-                    <% if (!String.IsNullOrEmpty(Model.Question.Source.Url)) { %>
+                    <% if (!string.IsNullOrEmpty(Model.Question.Source.Url)) { %>
 
                         </a>
 
@@ -108,7 +108,7 @@
                                         Model.AllCategories.UnionRecursive(x => x.SubCategories).Select(x => new SelectListItem 
                                         {
                                             Value = x.ID.ToString(), 
-                                            Text = String.Join(@" \ ", x.NameParts), 
+                                            Text = string.Join(@" \ ", x.NameParts), 
                                             Selected = x.ID == Model.Question.Categories[i].Category.ID
                                         }),
                                         "")%>
@@ -165,7 +165,7 @@
                                 </span>
                             </td>
                             <td style="width:250px">
-                                <% if (!String.IsNullOrEmpty(Model.Question.Links[i].Url)) { %>
+                                <% if (!string.IsNullOrEmpty(Model.Question.Links[i].Url)) { %>
 
                                     <a href="<%: Model.Question.Links[i].Url %>" target="_blank">
 
@@ -173,7 +173,7 @@
 
                                 <%: PropertyDisplayNames.Url %>
 
-                                <% if (!String.IsNullOrEmpty(Model.Question.Links[i].Url)) { %>
+                                <% if (!string.IsNullOrEmpty(Model.Question.Links[i].Url)) { %>
 
                                     </a>
 

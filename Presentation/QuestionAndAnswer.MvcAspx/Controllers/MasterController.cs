@@ -104,14 +104,14 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
             Names names;
             if (_dictionary.TryGetValue(viewModel.GetType(), out names))
             {
-                bool hasActionName = !String.IsNullOrEmpty(names.ActionName);
+                bool hasActionName = !string.IsNullOrEmpty(names.ActionName);
                 if (!hasActionName)
                 {
                     return View(names.ViewName, viewModel);
                 }
 
-                bool isSameControllerAndAction = String.Equals(names.ControllerName, GetControllerName()) &&
-                                                 String.Equals(names.ActionName, sourceActionName);
+                bool isSameControllerAndAction = string.Equals(names.ControllerName, GetControllerName()) &&
+                                                 string.Equals(names.ActionName, sourceActionName);
                 if (isSameControllerAndAction)
                 {
                     return View(names.ViewName, viewModel);
@@ -133,8 +133,8 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
             {
                 if (questionEditViewModel.IsNew)
                 {
-                    bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
-                                                     String.Equals(sourceActionName, ActionNames.Create);
+                    bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
+                                                     string.Equals(sourceActionName, ActionNames.Create);
                     if (isSameControllerAndAction)
                     {
                         ModelState.ClearModelErrors();
@@ -153,8 +153,8 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
                 }
                 else
                 {
-                    bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
-                                                     String.Equals(sourceActionName, ActionNames.Edit);
+                    bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
+                                                     string.Equals(sourceActionName, ActionNames.Edit);
                     if (isSameControllerAndAction)
                     {
                         ModelState.ClearModelErrors();
@@ -181,8 +181,8 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
             var questionDetailsViewModel = viewModel as QuestionDetailsViewModel;
             if (questionDetailsViewModel != null)
             {
-                bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
-                                                 String.Equals(sourceActionName, ActionNames.Details);
+                bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
+                                                 string.Equals(sourceActionName, ActionNames.Details);
                 if (isSameControllerAndAction)
                 {
                     return View(viewModel);
@@ -202,8 +202,8 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
             var questionConfirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
             if (questionConfirmDeleteViewModel != null)
             {
-                bool isSameControllerAndAction = String.Equals(GetControllerName(), ControllerNames.Questions) &&
-                                                 String.Equals(sourceActionName, ActionNames.Delete);
+                bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
+                                                 string.Equals(sourceActionName, ActionNames.Delete);
                 if (isSameControllerAndAction)
                 {
                     return View(viewModel);

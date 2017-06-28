@@ -101,7 +101,7 @@
 
                 <%: PropertyDisplayNames.Categories %>
 
-                <%: String.Join(" | ", Model.Question.Categories.SelectMany(x => x.Category.NameParts).Distinct()) %>
+                <%: string.Join(" | ", Model.Question.Categories.SelectMany(x => x.Category.NameParts).Distinct()) %>
         
             <% } %>
 

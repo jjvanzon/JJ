@@ -36,7 +36,7 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 LoginPresenter presenter = new LoginPresenter(repositories);
                 object viewModel2;
-                if (!String.IsNullOrEmpty(lang))
+                if (!string.IsNullOrEmpty(lang))
                 {
                     viewModel2 = presenter.SetLanguage(viewModel, lang);
                     CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
