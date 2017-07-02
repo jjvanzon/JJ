@@ -2,7 +2,7 @@
 
 namespace JJ.Data.Canonical.Helpers
 {
-    internal static class DebugHelper
+    internal static class DebuggerDisplayFormatter
     {
         public static string GetDebuggerDisplay(IDAndName idAndName)
         {
