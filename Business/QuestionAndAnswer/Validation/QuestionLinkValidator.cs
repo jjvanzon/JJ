@@ -11,8 +11,8 @@ namespace JJ.Business.QuestionAndAnswer.Validation
         {
             if (entity == null) throw new NullException(() => entity);
 
-            For(() => entity.Description, PropertyDisplayNames.Description).NotNullOrWhiteSpace();
-            For(() => entity.Url, PropertyDisplayNames.Url).NotNullOrWhiteSpace();
+            For(entity.Description, PropertyDisplayNames.Description).NotNullOrWhiteSpace();
+            For(entity.Url, PropertyDisplayNames.Url).NotNullOrWhiteSpace();
         }
     }
 }

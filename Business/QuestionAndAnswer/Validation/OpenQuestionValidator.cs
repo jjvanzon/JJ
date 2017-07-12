@@ -17,14 +17,14 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
             if (entity.QuestionType != null)
             {
-                For(() => entity.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType).Is(QuestionTypeEnum.OpenQuestion);
+                For(entity.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType).Is(QuestionTypeEnum.OpenQuestion);
             }
 
-            For(() => entity.Answers.Count, PropertyDisplayNames.AnswersCount).Is(1);
+            For(entity.Answers.Count, PropertyDisplayNames.AnswersCount).Is(1);
 
             if (entity.Answers.Count > 0)
             {
-                For(() => entity.Answers[0].IsCorrectAnswer, PropertyDisplayNames.IsCorrectAnswer).Is(true);
+                For(entity.Answers[0].IsCorrectAnswer, PropertyDisplayNames.IsCorrectAnswer).Is(true);
             }
         }
     }

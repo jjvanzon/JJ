@@ -30,9 +30,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
             };
         }
 
-        protected override ICollection<KeyValuePair<string, string>> GetValidationMesssages(QuestionEditViewModel viewModel)
+        protected override ICollection<string> GetValidationMesssages(QuestionEditViewModel viewModel)
         {
-            return viewModel.ValidationMessages.ToKeyValuePairs();
+            return viewModel.ValidationMessages;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels
 
         public QuestionViewModel Question { get; set; }
 
-        public IList<MessageDto> ValidationMessages { get; set; }
+        public IList<string> ValidationMessages { get; set; }
 
         public IList<CategoryViewModel> AllCategories { get; set; }
 

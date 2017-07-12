@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Presentation;
 using JJ.Framework.Presentation.Mvc;
-using JJ.Data.Canonical;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.MvcAspx.Names;
 using JJ.Presentation.QuestionAndAnswer.MvcAspx.Helpers;
@@ -88,7 +87,7 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
             throw new UnexpectedViewModelTypeException(viewModel);
         }
 
-        private static Dictionary<Type, Names> _dictionary = new Dictionary<Type, Names>()
+        private static readonly Dictionary<Type, Names> _dictionary = new Dictionary<Type, Names>
         {
             { typeof(CategorySelectorViewModel), new Names(ControllerNames.CategorySelector, ActionNames.Index, ViewNames.Index) },
             { typeof(LoginViewModel), new Names(ControllerNames.Login, ActionNames.Index, ViewNames.Index) },
@@ -101,8 +100,7 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
 
         private ActionResult TryGetActionResultFromDictionary(string sourceActionName, object viewModel)
         {
-            Names names;
-            if (_dictionary.TryGetValue(viewModel.GetType(), out names))
+            if (_dictionary.TryGetValue(viewModel.GetType(), out Names names))
             {
                 bool hasActionName = !string.IsNullOrEmpty(names.ActionName);
                 if (!hasActionName)
@@ -128,58 +126,56 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
 
         private ActionResult TryGetQuestionEditActionResult(string sourceActionName, object viewModel)
         {
-            var questionEditViewModel = viewModel as QuestionEditViewModel;
-            if (questionEditViewModel != null)
+            if (!(viewModel is QuestionEditViewModel questionEditViewModel))
             {
-                if (questionEditViewModel.IsNew)
-                {
-                    bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
-                                                     string.Equals(sourceActionName, ActionNames.Create);
-                    if (isSameControllerAndAction)
-                    {
-                        ModelState.ClearModelErrors();
-                        foreach (MessageDto validationMessage in questionEditViewModel.ValidationMessages)
-                        {
-                            ModelState.AddModelError(validationMessage.Key, validationMessage.Text);
-                        }
+                return null;
+            }
 
-                        return View(ViewNames.Edit, viewModel);
-                    }
-                    else
+            if (questionEditViewModel.IsNew)
+            {
+                bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
+                                                 string.Equals(sourceActionName, ActionNames.Create);
+                if (isSameControllerAndAction)
+                {
+                    ModelState.ClearModelErrors();
+                    foreach (string message in questionEditViewModel.ValidationMessages)
                     {
-                        TempData[TempDataKeys.ViewModel] = viewModel;
-                        return RedirectToAction(ActionNames.Create, ControllerNames.Questions);
+                        ModelState.AddModelError(nameof(message), message);
                     }
+
+                    return View(ViewNames.Edit, viewModel);
                 }
                 else
                 {
-                    bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
-                                                     string.Equals(sourceActionName, ActionNames.Edit);
-                    if (isSameControllerAndAction)
-                    {
-                        ModelState.ClearModelErrors();
-                        foreach (MessageDto validationMessage in questionEditViewModel.ValidationMessages)
-                        {
-                            ModelState.AddModelError(validationMessage.Key, validationMessage.Text);
-                        }
-
-                        return View(ViewNames.Edit, viewModel);
-                    }
-                    else
-                    {
-                        TempData[TempDataKeys.ViewModel] = viewModel;
-                        return RedirectToAction(ActionNames.Edit, ControllerNames.Questions, new { id = questionEditViewModel.Question.ID });
-                    }
+                    TempData[TempDataKeys.ViewModel] = viewModel;
+                    return RedirectToAction(ActionNames.Create, ControllerNames.Questions);
                 }
             }
+            else
+            {
+                bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
+                                                 string.Equals(sourceActionName, ActionNames.Edit);
+                if (isSameControllerAndAction)
+                {
+                    ModelState.ClearModelErrors();
+                    foreach (string message in questionEditViewModel.ValidationMessages)
+                    {
+                        ModelState.AddModelError(nameof(message), message);
+                    }
 
-            return null;
+                    return View(ViewNames.Edit, viewModel);
+                }
+                else
+                {
+                    TempData[TempDataKeys.ViewModel] = viewModel;
+                    return RedirectToAction(ActionNames.Edit, ControllerNames.Questions, new { id = questionEditViewModel.Question.ID });
+                }
+            }
         }
 
         private ActionResult TryGetQuestionDetailsActionResult(string sourceActionName, object viewModel)
         {
-            var questionDetailsViewModel = viewModel as QuestionDetailsViewModel;
-            if (questionDetailsViewModel != null)
+            if (viewModel is QuestionDetailsViewModel questionDetailsViewModel)
             {
                 bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
                                                  string.Equals(sourceActionName, ActionNames.Details);
@@ -199,8 +195,7 @@ namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
 
         private ActionResult TryGetQuestionConfirmDeleteActionResult(string sourceActionName, object viewModel)
         {
-            var questionConfirmDeleteViewModel = viewModel as QuestionConfirmDeleteViewModel;
-            if (questionConfirmDeleteViewModel != null)
+            if (viewModel is QuestionConfirmDeleteViewModel questionConfirmDeleteViewModel)
             {
                 bool isSameControllerAndAction = string.Equals(GetControllerName(), ControllerNames.Questions) &&
                                                  string.Equals(sourceActionName, ActionNames.Delete);

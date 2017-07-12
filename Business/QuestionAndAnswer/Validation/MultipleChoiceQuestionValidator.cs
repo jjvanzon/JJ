@@ -18,11 +18,11 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
             if (entity.QuestionType != null)
             {
-                For(() => entity.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType).Is(QuestionTypeEnum.MultipleChoice);
+                For(entity.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType).Is(QuestionTypeEnum.MultipleChoice);
             }
 
-            For(() => entity.Answers.Count, PropertyDisplayNames.AnswersCount).GreaterThan(1);
-            For(() => entity.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount).Is(1);
+            For(entity.Answers.Count, PropertyDisplayNames.AnswersCount).GreaterThan(1);
+            For(entity.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount).Is(1);
         }
     }
 }

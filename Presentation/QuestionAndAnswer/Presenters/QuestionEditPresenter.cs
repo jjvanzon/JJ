@@ -261,7 +261,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
                 viewModel2.CanDelete = viewModel.CanDelete;
                 viewModel2.Title = viewModel.Title;
 
-                viewModel2.ValidationMessages = validator.ValidationMessages.ToCanonical();
+                viewModel2.ValidationMessages = validator.Messages;
 
                 return viewModel2;
             }
