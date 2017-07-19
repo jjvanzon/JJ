@@ -18,7 +18,7 @@ namespace JJ.Business.Canonical
             var result = new VoidResultDto
             {
                 Successful = validator.IsValid,
-                Messages = validator.Messages.ToArray()
+                Messages = validator.Messages.ToList()
             };
 
             return result;
