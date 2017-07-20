@@ -168,15 +168,18 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
                 return presenter2.Show();
             }
 
-            // Call business logic
+            // Business
             var questionFlagger = new QuestionFlagger(user, _questionFlagRepository, _flagStatusRepository);
             QuestionFlag questionFlag = questionFlagger.FlagQuestion(question, viewModel.CurrentUserQuestionFlag.Comment);
             _questionFlagRepository.Commit();
 
-            // Create new view model
+            // New Transaction: Get Entity
+            question = _questionRepository.Get(viewModel.Question.ID);
+
+            // ToViewModel
             RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
             
-            // Set non-persisted properties
+            // NonPersisted
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
             viewModel2.CurrentUserQuestionFlag.CanFlag = viewModel.AnswerIsVisible;
@@ -205,6 +208,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             var questionFlagger = new QuestionFlagger(user, _questionFlagRepository, _flagStatusRepository);
             questionFlagger.UnflagQuestion(question);
             _questionFlagRepository.Commit();
+
+            // New Transaction: Get Entity
+            question = _questionRepository.Get(viewModel.Question.ID);
 
             // Create new view model
             RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName);

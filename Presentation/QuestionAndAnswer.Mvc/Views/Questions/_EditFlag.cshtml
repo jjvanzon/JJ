@@ -13,7 +13,7 @@
                         Model.AllFlagStatuses.Select(x => new SelectListItem 
                         {
                             Value = x.ID.ToString(), 
-                            Text = x.Description, 
+                            Text = x.Name, 
                             Selected = x.ID == Model.Status.ID 
                         }))
 
