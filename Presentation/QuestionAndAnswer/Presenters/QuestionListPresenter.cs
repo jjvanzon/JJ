@@ -32,9 +32,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public QuestionListPresenter(Repositories repositories, string authenticatedUserName)
         {
-            if (repositories == null) throw new NullException(() => repositories);
-
-            _repositories = repositories;
+            _repositories = repositories ?? throw new NullException(() => repositories);
             _authenticatedUserName = authenticatedUserName;
         }
 
