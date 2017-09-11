@@ -1,10 +1,11 @@
 -- Kentico questions
-select q.*, c.Description as Category
+select qc.ID as QuestionCategory_ID, q.*, c.Description as Category
 from Question q
 inner join QuestionCategory qc on qc.QuestionID = q.ID
 inner join Category c on c.ID = qc.CategoryID
 left join Category parentCategory on parentCategory.ID = c.ParentCategoryID
-where c.Identifier = 'Kentico' or parentCategory.Identifier = 'Kentico'
+left join Category grandParentCategory on grandParentCategory.ID = parentCategory.ParentCategoryID
+where c.Identifier = 'Kentico' or parentCategory.Identifier = 'Kentico' or grandParentCategory.Identifier = 'Kentico' 
 
 -- Kentico Categories
 select c.*
@@ -30,16 +31,17 @@ select *
 from Question q
 where not exists (select * from QuestionCategory qc where qc.QuestionID = q.ID)
 
--- For Updating QuestionCategories
-select *
-from QuestionCategory 
-where ID in (
-101309,
-101307,
-101313,
-101306,
-101311,
-101310,
-101305,
-101304
-)
+-- For inserting categories
+select ID, ParentCategoryID, Identifier, Description, IsActive
+from Category
+where ParentCategoryID = 6622 /*Kentico*/
+
+-- For Inserting QuestionCategories
+/*
+declare @categoryID int = 6628;
+insert into QuestionCategory (QuestionID, CategoryID) values 
+(78009, @categoryID),
+(78010, @categoryID),
+(78011, @categoryID),
+(78012, @categoryID)
+*/

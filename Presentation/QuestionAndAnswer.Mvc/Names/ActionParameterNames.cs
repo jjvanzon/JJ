@@ -1,4 +1,5 @@
-﻿namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
+﻿// ReSharper disable InconsistentNaming
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
 {
     public static class ActionParameterNames
     {

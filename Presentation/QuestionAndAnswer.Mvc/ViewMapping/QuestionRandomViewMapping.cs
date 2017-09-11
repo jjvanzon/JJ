@@ -11,6 +11,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
         {
             MapPresenter(PresenterNames.RandomQuestionPresenter, PresenterActionNames.Edit);
             MapController(ControllerNames.Questions, ActionNames.Random, ViewNames.Random);
+            MapParameter(PresenterParameterNames.categoryIDs, ActionParameterNames.c);
         }
     }
 }

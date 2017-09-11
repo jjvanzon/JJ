@@ -1,8 +1,10 @@
-﻿namespace JJ.Presentation.QuestionAndAnswer.Names
+﻿// ReSharper disable InconsistentNaming
+namespace JJ.Presentation.QuestionAndAnswer.Names
 {
     public static class PresenterParameterNames
     {
-        public const string pageNumber = "pageNumber";
-        public const string id = "id";
+        public const string categoryIDs = nameof(categoryIDs);
+        public const string pageNumber = nameof(pageNumber);
+        public const string id = nameof(id);
     }
 }

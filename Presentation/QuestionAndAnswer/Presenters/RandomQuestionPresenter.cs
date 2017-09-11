@@ -112,7 +112,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             }
             if (viewModel.SelectedCategories != null)
             {
-                viewModel2.SelectedCategories = viewModel.SelectedCategories;
+                viewModel2.SelectedCategories = viewModel?.SelectedCategories;
             }
 
             return viewModel2;
@@ -183,9 +183,13 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             viewModel2.UserAnswer = viewModel.UserAnswer;
             viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
             viewModel2.CurrentUserQuestionFlag.CanFlag = viewModel.AnswerIsVisible;
+            viewModel2.SelectedCategories = viewModel.SelectedCategories;
 
             return viewModel2;
         }
+
+        // TODO: Program this and delegate to it everywhere.
+        //private void CopyNonPersistedProperties(RandomQuestionViewModel source, RandomQuestionViewModel dest)
 
         public object Unflag(RandomQuestionViewModel viewModel)
         {
