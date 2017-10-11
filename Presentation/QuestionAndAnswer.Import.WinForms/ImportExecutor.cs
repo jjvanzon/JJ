@@ -29,19 +29,19 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
                     Type modelType = Type.GetType(importerConfig.ModelType);
                     if (modelType == null)
                     {
-                        throw new Exception( String.Format("modelType '{0}' not found.", importerConfig.ModelType));
+                        throw new Exception($"modelType '{importerConfig.ModelType}' not found.");
                     }
 
                     Type converterType = Type.GetType(importerConfig.ConverterType);
                     if (converterType == null)
                     {
-                        throw new Exception(String.Format("converterType '{0}' not found.", importerConfig.ConverterType));
+                        throw new Exception($"converterType '{importerConfig.ConverterType}' not found.");
                     }
 
                     Type selectorType = Type.GetType(importerConfig.SelectorType);
                     if (selectorType == null)
                     {
-                        throw new Exception(String.Format("selectorType '{0}' not found.", importerConfig.SelectorType));
+                        throw new Exception($"selectorType '{importerConfig.SelectorType}' not found.");
                     }
 
                     IQuestionRepository questionRepository = PersistenceHelper.CreateRepository<IQuestionRepository>(context);

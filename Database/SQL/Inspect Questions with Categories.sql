@@ -23,18 +23,22 @@ from QuestionCategory qc
 inner join Question q on q.ID = qc.QuestionID
 inner join Category c on c.ID = qc.CategoryID
 left join Category parentCategory on parentCategory.ID = c.ParentCategoryID
---where c.Identifier = 'Kentico' or parentCategory.Identifier = 'Kentico'
+where c.Identifier = 'Kentico' or parentCategory.Identifier = 'Kentico'
 order by q.ID desc
 
 -- No category
-select *
+select ID
 from Question q
 where not exists (select * from QuestionCategory qc where qc.QuestionID = q.ID)
 
 -- For inserting categories
-select ID, ParentCategoryID, Identifier, Description, IsActive
+select ParentCategoryID, Identifier, Description, IsActive
 from Category
 where ParentCategoryID = 6622 /*Kentico*/
+/*
+insert into Category(ParentCategoryID, Identifier, Description, IsActive)
+values (6622, 'Troubleshooting', 'Troubleshooting', 1)
+*/
 
 -- For Inserting QuestionCategories
 /*
@@ -44,4 +48,10 @@ insert into QuestionCategory (QuestionID, CategoryID) values
 (78010, @categoryID),
 (78011, @categoryID),
 (78012, @categoryID)
+*/
+
+-- For Deleting QuestionCategories
+/*delete from QuestionCategory 
+where QuestionID in (
+)
 */
