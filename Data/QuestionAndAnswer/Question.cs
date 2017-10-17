@@ -4,95 +4,24 @@ namespace JJ.Data.QuestionAndAnswer
 {
     public class Question
     {
-        private int _iD;
+        public virtual int ID { get; set; }
 
-        private string _text;
-        private bool _isManual;
-        private bool _isActive;
+        public virtual string Text { get; set; }
+        public virtual bool IsManual { get; set; }
+        public virtual bool IsActive { get; set; }
 
-        private QuestionType _questionType;
-        private Source _source;
-        private User _lastModifiedByUser;
-
-        private IList<Answer> _answers = new List<Answer>();
-        private IList<QuestionCategory> _questionCategories = new List<QuestionCategory>();
-        private IList<QuestionLink> _questionLinks = new List<QuestionLink>();
-        private IList<UserAnswer> _userAnswers = new List<UserAnswer>();
-        private IList<QuestionFlag> _questionFlags = new List<QuestionFlag>();
-
-        public virtual int ID
-        {
-            get { return _iD; }
-            set { _iD = value; }
-        }
-
-        public virtual string Text
-        {
-            get { return _text; }
-            set { _text = value; }
-        }
-
-        public virtual bool IsManual
-        {
-            get { return _isManual; }
-            set { _isManual = value; }
-        }
-        
-        public virtual bool IsActive 
-        {
-            get { return _isActive; }
-            set { _isActive = value; }
-        }
-
-        public virtual QuestionType QuestionType
-        {
-            get { return _questionType; }
-            set { _questionType = value; }
-        }
-
-        public virtual Source Source
-        {
-            get { return _source; }
-            set { _source = value; }
-        }
+        public virtual QuestionType QuestionType { get; set; }
+        public virtual Source Source { get; set; }
 
         /// <summary>
         /// nullable
         /// </summary>
-        public virtual User LastModifiedByUser
-        {
-            get { return _lastModifiedByUser; }
-            set { _lastModifiedByUser = value; }
-        }
+        public virtual User LastModifiedByUser { get; set; }
 
-        public virtual IList<Answer> Answers
-        {
-            get { return _answers; }
-            set { _answers = value; }
-        }
-
-        public virtual IList<QuestionCategory> QuestionCategories
-        {
-            get { return _questionCategories; }
-            set { _questionCategories = value; }
-        }
-
-        public virtual IList<QuestionLink> QuestionLinks
-        {
-            get { return _questionLinks; }
-            set { _questionLinks = value; }
-        }
-
-        public virtual IList<UserAnswer> UserAnswers
-        {
-            get { return _userAnswers; }
-            set { _userAnswers = value; }
-        }
-
-        public virtual IList<QuestionFlag> QuestionFlags
-        {
-            get { return _questionFlags; }
-            set { _questionFlags = value; }
-        }
+        public virtual IList<Answer> Answers { get; set; } = new List<Answer>();
+        public virtual IList<QuestionCategory> QuestionCategories { get; set; } = new List<QuestionCategory>();
+        public virtual IList<QuestionLink> QuestionLinks { get; set; } = new List<QuestionLink>();
+        public virtual IList<UserAnswer> UserAnswers { get; set; } = new List<UserAnswer>();
+        public virtual IList<QuestionFlag> QuestionFlags { get; set; } = new List<QuestionFlag>();
     }
 }
