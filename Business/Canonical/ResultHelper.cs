@@ -49,10 +49,10 @@ namespace JJ.Business.Canonical
         }
 
         // Business
+
         public static IResult Successful { get; } = CreateSuccessfulVoidResult();
 
         private static IResult CreateSuccessfulVoidResult() => new VoidResult { Successful = true };
-
 
         [Obsolete("Use IResult.Assert() instead.")]
         public static void Assert(IResult result)
