@@ -38,11 +38,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(pattern))
             {
-                question.Text = String.Format("What does the selector {0} mean?", pattern);
+                question.Text = string.Format("What does the selector {0} mean?", pattern);
             }
             else
             {
-                question.Text = String.Format("What do the selectors {0} mean?", pattern);
+                question.Text = string.Format("What do the selectors {0} mean?", pattern);
             }
 
             question.Answers[0].Text = ImportHelper.TrimValue(model.Meaning);
@@ -84,11 +84,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(pattern))
             {
-                question.Text = String.Format("What is the selector for {0}?", meaning);
+                question.Text = string.Format("What is the selector for {0}?", meaning);
             }
             else
             {
-                question.Text = String.Format("What are the selectors for {0}?", meaning);
+                question.Text = string.Format("What are the selectors for {0}?", meaning);
             }
             question.Answers[0].Text = pattern;
 
@@ -128,11 +128,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(pattern))
             {
-                question.Text = String.Format("What type of selector is {0} ?", pattern);
+                question.Text = string.Format("What type of selector is {0} ?", pattern);
             }
             else
             {
-                question.Text = String.Format("What type of selector are {0} ?", pattern);
+                question.Text = string.Format("What type of selector are {0} ?", pattern);
             }
             question.Answers[0].Text = ImportHelper.TrimValue(model.DescribedInSection);
 
@@ -170,10 +170,10 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
             name = name.Trim();
 
-            if (String.Equals(name, "E F") ||
-                String.Equals(name, "E > F") ||
-                String.Equals(name, "E + F") ||
-                String.Equals(name, "E ~ F"))
+            if (string.Equals(name, "E F") ||
+                string.Equals(name, "E > F") ||
+                string.Equals(name, "E + F") ||
+                string.Equals(name, "E ~ F"))
             {
                 return false;
             }

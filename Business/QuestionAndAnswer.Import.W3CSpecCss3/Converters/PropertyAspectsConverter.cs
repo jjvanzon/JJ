@@ -54,11 +54,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What are the possible values for the {0} property?", propertyName);
+                question.Text = string.Format("What are the possible values for the {0} property?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What are the possible values for the {0} properties?", FormatPluralPropertyName(propertyName));
+                question.Text = string.Format("What are the possible values for the {0} properties?", FormatPluralPropertyName(propertyName));
             }
 
             if (IsComplexShorthandProperty(model))
@@ -69,7 +69,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.PossibleValues);
 
             // Create links
-            if (!String.IsNullOrEmpty(model.HashTag))
+            if (!string.IsNullOrEmpty(model.HashTag))
             {
                 QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
                 hashTagLink.LinkTo(question);
@@ -91,7 +91,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutPossibleValues(string answer)
         {
-            if (String.Equals(answer, "see individual properties"))
+            if (string.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -128,16 +128,16 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What is the initial value of the {0} property?", propertyName);
+                question.Text = string.Format("What is the initial value of the {0} property?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What is the initial value for the {0} properties?", FormatPluralPropertyName(propertyName));
+                question.Text = string.Format("What is the initial value for the {0} properties?", FormatPluralPropertyName(propertyName));
             }
             question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.InitialValue);
 
             // Create links
-            if (!String.IsNullOrEmpty(model.HashTag))
+            if (!string.IsNullOrEmpty(model.HashTag))
             {
                 QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
                 link.LinkTo(question);
@@ -159,7 +159,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutInitialValue(string answer)
         {
-            if (String.Equals(answer, "see individual properties"))
+            if (string.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -188,14 +188,14 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What types of elements does the {0} property apply to?", propertyName);
+                question.Text = string.Format("What types of elements does the {0} property apply to?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What types of elements do the {0} properties apply to?", FormatPluralPropertyName(propertyName));
+                question.Text = string.Format("What types of elements do the {0} properties apply to?", FormatPluralPropertyName(propertyName));
             }
 
-            if (String.IsNullOrWhiteSpace(model.AppliesTo))
+            if (string.IsNullOrWhiteSpace(model.AppliesTo))
             {
                 question.Answers[0].Text = "all";
             }
@@ -205,7 +205,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             }
 
             // Create links
-            if (!String.IsNullOrEmpty(model.HashTag))
+            if (!string.IsNullOrEmpty(model.HashTag))
             {
                 QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
                 link.LinkTo(question);
@@ -227,7 +227,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutAppliesToElements(string answer)
         {
-            if (String.Equals(answer, "see individual properties"))
+            if (string.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -256,16 +256,16 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("Is the {0} property inherited?", propertyName);
+                question.Text = string.Format("Is the {0} property inherited?", propertyName);
             }
             else
             {
-                question.Text = String.Format("Are the {0} properties inherited?", FormatPluralPropertyName(propertyName));
+                question.Text = string.Format("Are the {0} properties inherited?", FormatPluralPropertyName(propertyName));
             }
             question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.IsInherited);
 
             // Create links
-            if (!String.IsNullOrEmpty(model.HashTag))
+            if (!string.IsNullOrEmpty(model.HashTag))
             {
                 QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
                 link.LinkTo(question);
@@ -287,7 +287,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutIsInherited(string answer)
         {
-            if (String.Equals(answer, "see individual properties"))
+            if (string.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -316,16 +316,16 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What can you say about percentage values for the {0} property?", propertyName);
+                question.Text = string.Format("What can you say about percentage values for the {0} property?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What can you say about percentage values for the {0} properties?", FormatPluralPropertyName(propertyName));
+                question.Text = string.Format("What can you say about percentage values for the {0} properties?", FormatPluralPropertyName(propertyName));
             }
             question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.Percentages);
 
             // Create links
-            if (!String.IsNullOrEmpty(model.HashTag))
+            if (!string.IsNullOrEmpty(model.HashTag))
             {
                 QuestionLink hashTagLink = CreateHashTagLink(propertyName, model.HashTag);
                 hashTagLink.LinkTo(question);
@@ -347,17 +347,17 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutPercentages(string answer)
         {
-            if (String.IsNullOrWhiteSpace(answer))
+            if (string.IsNullOrWhiteSpace(answer))
             {
                 return false;
             }
 
-            if (String.Equals(answer, "see individual properties"))
+            if (string.Equals(answer, "see individual properties"))
             {
                 return false;
             }
 
-            if (String.Equals(answer, "N/A"))
+            if (string.Equals(answer, "N/A"))
             {
                 return false;
             }
@@ -386,16 +386,16 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What media does the {0} property apply to?", propertyName);
+                question.Text = string.Format("What media does the {0} property apply to?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What media do the {0} properties apply to?", FormatPluralPropertyName(propertyName));
+                question.Text = string.Format("What media do the {0} properties apply to?", FormatPluralPropertyName(propertyName));
             }
             question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.Media);
 
             // Create links
-            if (!String.IsNullOrWhiteSpace(model.HashTag))
+            if (!string.IsNullOrWhiteSpace(model.HashTag))
             {
                 QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
                 link.LinkTo(question);
@@ -417,7 +417,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutMedia(string answer)
         {
-            if (String.Equals(answer, "see individual properties"))
+            if (string.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -446,16 +446,16 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("What is the computed value of the {0} property?", propertyName);
+                question.Text = string.Format("What is the computed value of the {0} property?", propertyName);
             }
             else
             {
-                question.Text = String.Format("What is the computed value for the {0} properties?", FormatPluralPropertyName(propertyName));
+                question.Text = string.Format("What is the computed value for the {0} properties?", FormatPluralPropertyName(propertyName));
             }
             question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.ComputedValue);
 
             // Create links
-            if (!String.IsNullOrWhiteSpace(model.HashTag))
+            if (!string.IsNullOrWhiteSpace(model.HashTag))
             {
                 QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
                 link.LinkTo(question);
@@ -477,12 +477,12 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutComputedValue(string answer)
         {
-            if (String.IsNullOrEmpty(answer))
+            if (string.IsNullOrEmpty(answer))
             {
                 return false;
             }
 
-            if (String.Equals(answer, "see individual properties"))
+            if (string.Equals(answer, "see individual properties"))
             {
                 return false;
             }
@@ -511,16 +511,16 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             // Set texts
             if (!IsPlural(propertyName))
             {
-                question.Text = String.Format("Is the {0} property animatable?", propertyName);
+                question.Text = string.Format("Is the {0} property animatable?", propertyName);
             }
             else
             {
-                question.Text = String.Format("Are the {0} properties animatable?", FormatPluralPropertyName(propertyName));
+                question.Text = string.Format("Are the {0} properties animatable?", FormatPluralPropertyName(propertyName));
             }
             question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.IsAnimatable);
 
             // Create links
-            if (!String.IsNullOrEmpty(model.HashTag))
+            if (!string.IsNullOrEmpty(model.HashTag))
             {
                 QuestionLink link = CreateHashTagLink(propertyName, model.HashTag);
                 link.LinkTo(question);
@@ -542,7 +542,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
         private bool MustConvertToQuestionAboutIsAnimatable(string isAnimatable)
         {
-            return !String.IsNullOrEmpty(isAnimatable);
+            return !string.IsNullOrEmpty(isAnimatable);
         }
 
         // Helpers
@@ -550,7 +550,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
         private void AddCategories(Question question, string propertyName)
         {
             //AddCategory(question, "Css3", "Properties", "PropertyAspects");
-            if (!String.IsNullOrEmpty(_categoryIdentifier))
+            if (!string.IsNullOrEmpty(_categoryIdentifier))
             {
                 AddCategory(question, "Css3", "Properties", _categoryIdentifier);
             }
@@ -561,7 +561,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
             foreach (string propertyName2 in ImportHelper.SplitPluralProperty(propertyName))
             {
-                if (!String.IsNullOrEmpty(_categoryIdentifier))
+                if (!string.IsNullOrEmpty(_categoryIdentifier))
                 {
                     AddCategory(question, "Css3", "Properties", _categoryIdentifier, ImportHelper.FormatTerm(propertyName2));
                 }
@@ -613,7 +613,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
             string[] propertyNames = ImportHelper.SplitPluralProperty(value);
 
-            return String.Join(", ", propertyNames.Take(propertyNames.Length - 1)) + " and " + propertyNames.Last();
+            return string.Join(", ", propertyNames.Take(propertyNames.Length - 1)) + " and " + propertyNames.Last();
         }
     }
 }

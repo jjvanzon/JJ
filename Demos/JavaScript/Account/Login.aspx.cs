@@ -12,7 +12,7 @@ namespace JJ.Demos.JavaScript.Account
             OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
 
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
+            if (!string.IsNullOrEmpty(returnUrl))
             {
                 RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             }

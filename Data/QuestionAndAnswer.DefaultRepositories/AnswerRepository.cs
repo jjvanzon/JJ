@@ -16,7 +16,7 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
             Answer entity = TryGetByQuestionID(questionID);
             if (entity == null)
             {
-                throw new Exception(String.Format("Answer with QuestionID '{0}' not found.", questionID));
+                throw new Exception(string.Format("Answer with QuestionID '{0}' not found.", questionID));
             }
             return entity;
         }

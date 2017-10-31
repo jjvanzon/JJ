@@ -9,25 +9,25 @@ namespace JJ.Demos.JavaScript.Account
     {
         protected string ProviderName
         {
-            get { return (string)ViewState["ProviderName"] ?? String.Empty; }
+            get { return (string)ViewState["ProviderName"] ?? string.Empty; }
             private set { ViewState["ProviderName"] = value; }
         }
 
         protected string ProviderDisplayName
         {
-            get { return (string)ViewState["ProviderDisplayName"] ?? String.Empty; }
+            get { return (string)ViewState["ProviderDisplayName"] ?? string.Empty; }
             private set { ViewState["ProviderDisplayName"] = value; }
         }
 
         protected string ProviderUserId
         {
-            get { return (string)ViewState["ProviderUserId"] ?? String.Empty; }
+            get { return (string)ViewState["ProviderUserId"] ?? string.Empty; }
             private set { ViewState["ProviderUserId"] = value; }
         }
 
         protected string ProviderUserName
         {
-            get { return (string)ViewState["ProviderUserName"] ?? String.Empty; }
+            get { return (string)ViewState["ProviderUserName"] ?? string.Empty; }
             private set { ViewState["ProviderUserName"] = value; }
         }
 
@@ -54,7 +54,7 @@ namespace JJ.Demos.JavaScript.Account
             // Process the result from an auth provider in the request
             ProviderName = OpenAuth.GetProviderNameFromCurrentRequest();
 
-            if (String.IsNullOrEmpty(ProviderName))
+            if (string.IsNullOrEmpty(ProviderName))
             {
                 Response.Redirect(FormsAuthentication.LoginUrl);
             }
@@ -62,7 +62,7 @@ namespace JJ.Demos.JavaScript.Account
             // Build the redirect url for OpenAuth verification
             var redirectUrl = "~/Account/RegisterExternalLogin";
             var returnUrl = Request.QueryString["ReturnUrl"];
-            if (!String.IsNullOrEmpty(returnUrl))
+            if (!string.IsNullOrEmpty(returnUrl))
             {
                 redirectUrl += "?ReturnUrl=" + HttpUtility.UrlEncode(returnUrl);
             }
@@ -75,10 +75,10 @@ namespace JJ.Demos.JavaScript.Account
                 Title = "External login failed";
                 userNameForm.Visible = false;
 
-                ModelState.AddModelError("Provider", String.Format("External login {0} failed.", ProviderDisplayName));
+                ModelState.AddModelError("Provider", string.Format("External login {0} failed.", ProviderDisplayName));
 
                 // To view this error, enable page tracing in web.config (<system.web><trace enabled="true"/></system.web>) and visit ~/Trace.axd
-                Trace.Warn("OpenAuth", String.Format("There was an error verifying authentication with {0})", ProviderDisplayName), authResult.Error);
+                Trace.Warn("OpenAuth", string.Format("There was an error verifying authentication with {0})", ProviderDisplayName), authResult.Error);
                 return;
             }
 
@@ -137,7 +137,7 @@ namespace JJ.Demos.JavaScript.Account
         private void RedirectToReturnUrl()
         {
             var returnUrl = Request.QueryString["ReturnUrl"];
-            if (!String.IsNullOrEmpty(returnUrl) && OpenAuth.IsLocalUrl(returnUrl))
+            if (!string.IsNullOrEmpty(returnUrl) && OpenAuth.IsLocalUrl(returnUrl))
             {
                 Response.Redirect(returnUrl);
             }

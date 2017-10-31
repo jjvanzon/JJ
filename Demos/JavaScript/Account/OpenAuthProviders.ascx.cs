@@ -19,7 +19,7 @@ namespace JJ.Demos.JavaScript.Account
                 }
 
                 var redirectUrl = "~/Account/RegisterExternalLogin";
-                if (!String.IsNullOrEmpty(ReturnUrl))
+                if (!string.IsNullOrEmpty(ReturnUrl))
                 {
                     var resolvedReturnUrl = ResolveUrl(ReturnUrl);
                     redirectUrl += "?ReturnUrl=" + HttpUtility.UrlEncode(resolvedReturnUrl);

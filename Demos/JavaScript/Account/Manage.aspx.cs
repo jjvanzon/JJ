@@ -42,8 +42,8 @@ namespace JJ.Demos.JavaScript.Account
                         message == "ChangePwdSuccess" ? "Your password has been changed."
                         : message == "SetPwdSuccess" ? "Your password has been set."
                         : message == "RemoveLoginSuccess" ? "The external login was removed."
-                        : String.Empty;
-                    successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
+                        : string.Empty;
+                    successMessage.Visible = !string.IsNullOrEmpty(SuccessMessage);
                 }
             }
 
@@ -79,7 +79,7 @@ namespace JJ.Demos.JavaScript.Account
         {
             var m = OpenAuth.DeleteAccount(User.Identity.Name, providerName, providerUserId)
                 ? "?m=RemoveLoginSuccess"
-                : String.Empty;
+                : string.Empty;
             Response.Redirect("~/Account/Manage" + m);
         }
 

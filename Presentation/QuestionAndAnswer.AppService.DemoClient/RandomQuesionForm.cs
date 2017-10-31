@@ -56,7 +56,7 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient
         private void ApplyViewModel()
         {
             // TODO: Polymorphic web method results should return either QuestionNotFoundviewModel or RandomQuestionViewModel.
-            bool isNotFound = String.IsNullOrEmpty(_viewModel.Question.Text);
+            bool isNotFound = string.IsNullOrEmpty(_viewModel.Question.Text);
             if (isNotFound)
             {
                 labelQuestion.Text = "";

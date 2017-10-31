@@ -34,7 +34,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
         /// <summary> Trims, but does not throw exception when value is null. </summary>
         public static string TrimValue(string value)
         {
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
                 return value;
             }

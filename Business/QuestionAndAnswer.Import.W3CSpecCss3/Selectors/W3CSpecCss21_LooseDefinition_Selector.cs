@@ -130,7 +130,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
             Match match = regex.Match(value);
             if (match == null)
             {
-                throw new Exception(String.Format("Non-word characters on the left could not be cut off from the following text: '{0}'.", value));
+                throw new Exception(string.Format("Non-word characters on the left could not be cut off from the following text: '{0}'.", value));
             }
 
             return match.Value;

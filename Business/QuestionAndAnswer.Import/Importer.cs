@@ -121,7 +121,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
                 converter.ConvertToEntities(model);
 
                 counter++;
-                DoProgressCallback(String.Format("Processing: {0}", counter));
+                DoProgressCallback(string.Format("Processing: {0}", counter));
             }
 
             return true;

@@ -41,7 +41,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             string hashTextLinkText = ImportHelper.TrimValue(model.HashTagLinkText);
 
             // Set texts
-            question.Text = String.Format("In relation to {0}, what term or keyword is described as follows: {1}?", context, meaning);
+            question.Text = string.Format("In relation to {0}, what term or keyword is described as follows: {1}?", context, meaning);
             question.Answers[0].Text = term;
 
             // Create links
@@ -75,7 +75,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
             string hashTextLinkText = ImportHelper.TrimValue(model.HashTagLinkText);
 
             // Set texts
-            question.Text = String.Format("In relation to {0}, what does '{1}' mean?", context, term);
+            question.Text = string.Format("In relation to {0}, what does '{1}' mean?", context, term);
             question.Answers[0].Text = meaning;
 
             // Create links
@@ -142,7 +142,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
         /// <summary> De-capitalizes the first letter. </summary>
         private string FormatContextForInQuestion(string context)
         {
-            if (String.IsNullOrEmpty(context))
+            if (string.IsNullOrEmpty(context))
             {
                 return context;
             }
@@ -194,7 +194,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
             if (match == null)
             {
-                throw new Exception(String.Format("Error trying to extract the first sentence of the following text: '{0}'.", value));
+                throw new Exception(string.Format("Error trying to extract the first sentence of the following text: '{0}'.", value));
             }
 
             return match.Value;
@@ -204,7 +204,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
         {
             AddCategory(question, "Css3", "Properties", "Aspects", "LooseDefinitions");
 
-            if (!String.IsNullOrEmpty(_categoryIdentifier))
+            if (!string.IsNullOrEmpty(_categoryIdentifier))
             {
                 AddCategory(question, "Css3", "Properties", _categoryIdentifier);
             }
@@ -215,7 +215,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
             foreach (string propertyName2 in ImportHelper.SplitPluralTerm(term))
             {
-                if (!String.IsNullOrEmpty(_categoryIdentifier))
+                if (!string.IsNullOrEmpty(_categoryIdentifier))
                 {
                     AddCategory(question, "Css3", "Properties", _categoryIdentifier, ImportHelper.FormatTerm(propertyName2));
                 }
