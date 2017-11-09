@@ -62,6 +62,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ActionHandler.cs" />
+    <Compile Include="ConfigurationTests.cs" />
     <Compile Include="CSharp7Tests.cs" />
     <Compile Include="PrimaryConstructors.cs" />
     <Compile Include="CovarianceAndContravarianceTests.cs" />
@@ -83,6 +84,7 @@
   <ItemGroup>
     <Content Include="Custom.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config" />
   </ItemGroup>

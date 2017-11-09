@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Globalization;
 using System.Linq;
 // ReSharper disable UnusedVariable
@@ -157,44 +156,6 @@ namespace JJ.Demos.Misc
             public bool MoveNext() => false;
             public int Current { get; set; }
             public IEnumerator GetEnumerator() => new int[0].GetEnumerator();
-        }
-
-        [TestMethod]
-        public void Test_ConfigurationManager_OpenFromFile_ReadFrom_ConfigurationManager_AppSettings_Indexer_DoesNotWork()
-        {
-            Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(
-                new ExeConfigurationFileMap { ExeConfigFilename = "Custom.config" },
-                ConfigurationUserLevel.None);
-
-            string appSettingValue = ConfigurationManager.AppSettings["MyAppSettingKey"];
-
-            AssertHelper.IsNullOrEmpty(() => appSettingValue);
-        }
-
-        [TestMethod]
-        public void Test_ConfigurationManager_OpenFromFile_ReadFrom_Configuration_AppSettings_Settings_Indexer_Value_Works()
-        {
-            Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(
-                new ExeConfigurationFileMap { ExeConfigFilename = "Custom.config" },
-                ConfigurationUserLevel.None);
-
-            string appSettingValue = configuration.AppSettings.Settings["MyAppSettingKey"].Value;
-
-            AssertHelper.AreEqual("MyAppSettingValue", () => appSettingValue);
-        }
-
-        [TestMethod]
-        public void Test_ConfigurationManager_OpenFromFile_ReadFrom_Configuration_AppSettings_Indexer_DoesNotWork()
-        {
-            Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(
-                new ExeConfigurationFileMap { ExeConfigFilename = "Custom.config" },
-                ConfigurationUserLevel.None);
-
-            object appSetting = null;
-            // Not even accessible. Is accessible in my Watch screen, which is strange. Maybe that's a new thing.
-            //object appSetting = configuration.AppSettings["MyAppSettingKey"];
-
-            AssertHelper.IsNull(() => appSetting);
         }
     }
 }
