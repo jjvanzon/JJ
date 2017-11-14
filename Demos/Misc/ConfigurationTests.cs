@@ -7,7 +7,6 @@ namespace JJ.Demos.Misc
     [TestClass]
     public class ConfigurationTests
     {
-
         [TestMethod]
         public void Test_ConfigurationManager_OpenFromFile_ReadFrom_ConfigurationManager_AppSettings_Indexer_DoesNotWork()
         {
