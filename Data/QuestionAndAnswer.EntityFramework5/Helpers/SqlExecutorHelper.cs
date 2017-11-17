@@ -1,8 +1,8 @@
-﻿using JJ.Data.QuestionAndAnswer.Sql;
+﻿using System.Data.SqlClient;
+using JJ.Data.QuestionAndAnswer.Sql;
 using JJ.Framework.Data;
 using JJ.Framework.Data.EntityFramework5;
 using JJ.Framework.Data.SqlClient;
-using System.Data.SqlClient;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers
@@ -11,11 +11,10 @@ namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers
     {
         public static QuestionAndAnswerSqlExecutor CreateQuestionAndAnswerSqlExecutor(IContext context)
         {
-            EntityFramework5Context entityFramework5Context = (EntityFramework5Context)context;
-            SqlConnection sqlConnection = entityFramework5Context.Context.Database.Connection as SqlConnection;
-            if (sqlConnection == null)
+            var entityFramework5Context = (EntityFramework5Context)context;
+            if (!(entityFramework5Context.Context.Database.Connection is SqlConnection sqlConnection))
             {
-                throw new InvalidTypeException<SqlConnection>(() => entityFramework5Context.Context.Database.Connection);
+                throw new IsNotTypeException<SqlConnection>(() => entityFramework5Context.Context.Database.Connection);
             }
             ISqlExecutor sqlExecutor = SqlExecutorFactory.CreateSqlExecutor(sqlConnection);
             var sqlExecutor2 = new QuestionAndAnswerSqlExecutor(sqlExecutor);
