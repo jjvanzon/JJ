@@ -5,18 +5,18 @@ using JJ.Presentation.QuestionAndAnswer.ViewModels;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
-    public class QuestionDeleteViewMapping : ViewMapping<QuestionConfirmDeleteViewModel>
-    {
-        public QuestionDeleteViewMapping()
-        {
-            MapPresenter(PresenterNames.QuestionConfirmDeletePresenter, PresenterActionNames.Show);
-            MapController(ControllerNames.Questions, ActionNames.Delete, ViewNames.Delete);
-            MapParameter(PresenterParameterNames.id, ActionParameterNames.id);
-        }
+	public class QuestionDeleteViewMapping : ViewMapping<QuestionConfirmDeleteViewModel>
+	{
+		public QuestionDeleteViewMapping()
+		{
+			MapPresenter(PresenterNames.QuestionConfirmDeletePresenter, PresenterActionNames.Show);
+			MapController(ControllerNames.Questions, ActionNames.Delete, ViewNames.Delete);
+			MapParameter(PresenterParameterNames.id, ActionParameterNames.id);
+		}
 
-        protected override object GetRouteValues(QuestionConfirmDeleteViewModel viewModel)
-        {
-            return new { id = viewModel.ID };
-        }
-    }
+		protected override object GetRouteValues(QuestionConfirmDeleteViewModel viewModel)
+		{
+			return new { id = viewModel.ID };
+		}
+	}
 }

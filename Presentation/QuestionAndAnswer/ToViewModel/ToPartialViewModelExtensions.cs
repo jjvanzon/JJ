@@ -5,29 +5,29 @@ using JJ.Data.QuestionAndAnswer;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {
-    internal static class ToPartialViewModelExtensions
-    {
-        public static CurrentUserQuestionFlagPartialViewModel ToCurrentUserQuestionFlagViewModel(this QuestionFlag entity)
-        {
-            if (entity == null) throw new NullException(() => entity);
+	internal static class ToPartialViewModelExtensions
+	{
+		public static CurrentUserQuestionFlagPartialViewModel ToCurrentUserQuestionFlagViewModel(this QuestionFlag entity)
+		{
+			if (entity == null) throw new NullException(() => entity);
 
-            return new CurrentUserQuestionFlagPartialViewModel
-            {
-                CanFlag = true,
-                IsFlagged = true,
-                Comment = entity.Comment
-            };
-        }
+			return new CurrentUserQuestionFlagPartialViewModel
+			{
+				CanFlag = true,
+				IsFlagged = true,
+				Comment = entity.Comment
+			};
+		}
 
-        public static LoginPartialViewModel ToLoginPartialViewModel(this User user)
-        {
-            if (user == null) throw new NullException(() => user);
+		public static LoginPartialViewModel ToLoginPartialViewModel(this User user)
+		{
+			if (user == null) throw new NullException(() => user);
 
-            return new LoginPartialViewModel
-            {
-                UserDisplayName = user.DisplayName,
-                CanLogOut = true
-            };
-        }
-    }
+			return new LoginPartialViewModel
+			{
+				UserDisplayName = user.DisplayName,
+				CanLogOut = true
+			};
+		}
+	}
 }

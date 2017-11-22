@@ -6,62 +6,62 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {
-    internal static class CategoryExtensions
-    {
-        public static CategoryViewModel ToViewModelRecursive(this Category category)
-        {
-            if (category == null) throw new NullException(() => category);
+	internal static class CategoryExtensions
+	{
+		public static CategoryViewModel ToViewModelRecursive(this Category category)
+		{
+			if (category == null) throw new NullException(() => category);
 
-            CategoryViewModel viewModel = category.ToViewModel();
+			CategoryViewModel viewModel = category.ToViewModel();
 
-            foreach (Category subCategory in category.SubCategories)
-            {
-                CategoryViewModel subCategoryViewModel = subCategory.ToViewModelRecursive();
-                viewModel.SubCategories.Add(subCategoryViewModel);
-            }
+			foreach (Category subCategory in category.SubCategories)
+			{
+				CategoryViewModel subCategoryViewModel = subCategory.ToViewModelRecursive();
+				viewModel.SubCategories.Add(subCategoryViewModel);
+			}
 
-            // Sort by alphabet
-            viewModel.SubCategories = viewModel.SubCategories.OrderBy(x => x.NameParts.Last()).ToList();
+			// Sort by alphabet
+			viewModel.SubCategories = viewModel.SubCategories.OrderBy(x => x.NameParts.Last()).ToList();
 
-            return viewModel;
-        }
+			return viewModel;
+		}
 
-        public static CategoryViewModel ToViewModel(this Category category)
-        {
-            if (category == null) throw new NullException(() => category);
+		public static CategoryViewModel ToViewModel(this Category category)
+		{
+			if (category == null) throw new NullException(() => category);
 
-            var categoryViewModel = new CategoryViewModel
-            {
-                ID = category.ID,
-                Visible = true,
-                NameParts = GetNameParts(category),
-                SubCategories = new List<CategoryViewModel>()
-            };
+			var categoryViewModel = new CategoryViewModel
+			{
+				ID = category.ID,
+				Visible = true,
+				NameParts = GetNameParts(category),
+				SubCategories = new List<CategoryViewModel>()
+			};
 
-            return categoryViewModel;
-        }
+			return categoryViewModel;
+		}
 
-        private static List<string> GetNameParts(Category category)
-        {
-            List<string> parts = new List<string>();
+		private static List<string> GetNameParts(Category category)
+		{
+			List<string> parts = new List<string>();
 
-            parts.Add(category.Description);
-            category = category.ParentCategory;
+			parts.Add(category.Description);
+			category = category.ParentCategory;
 
-            int counter = 0;
-            int maxRecursion = 100;
+			int counter = 0;
+			int maxRecursion = 100;
 
-            while (category != null && counter < maxRecursion)
-            {
-                parts.Add(category.Description);
-                category = category.ParentCategory;
+			while (category != null && counter < maxRecursion)
+			{
+				parts.Add(category.Description);
+				category = category.ParentCategory;
 
-                counter++;
-            }
+				counter++;
+			}
 
-            parts.Reverse();
+			parts.Reverse();
 
-            return parts;
-        }
-    }
+			return parts;
+		}
+	}
 }

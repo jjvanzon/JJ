@@ -4,53 +4,53 @@ using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 
 namespace JJ.Presentation.QuestionAndAnswer.Helpers
 {
-    public class Repositories
-    {
-        public IQuestionRepository QuestionRepository { get; }
-        public IAnswerRepository AnswerRepository { get; }
-        public ICategoryRepository CategoryRepository { get; }
-        public IQuestionCategoryRepository QuestionCategoryRepository { get; }
-        public IQuestionLinkRepository QuestionLinkRepository { get; }
-        public IQuestionFlagRepository QuestionFlagRepository { get; }
-        public IFlagStatusRepository FlagStatusRepository { get; }
-        public ISourceRepository SourceRepository { get; }
-        public IQuestionTypeRepository QuestionTypeRepository { get; }
-        public IUserRepository UserRepository { get; }
+	public class Repositories
+	{
+		public IQuestionRepository QuestionRepository { get; }
+		public IAnswerRepository AnswerRepository { get; }
+		public ICategoryRepository CategoryRepository { get; }
+		public IQuestionCategoryRepository QuestionCategoryRepository { get; }
+		public IQuestionLinkRepository QuestionLinkRepository { get; }
+		public IQuestionFlagRepository QuestionFlagRepository { get; }
+		public IFlagStatusRepository FlagStatusRepository { get; }
+		public ISourceRepository SourceRepository { get; }
+		public IQuestionTypeRepository QuestionTypeRepository { get; }
+		public IUserRepository UserRepository { get; }
 
-        public EntityStatusManager EntityStatusManager { get; }
+		public EntityStatusManager EntityStatusManager { get; }
 
-        public Repositories(
-            IQuestionRepository questionRepository,
-            IAnswerRepository answerRepository,
-            ICategoryRepository categoryRepository,
-            IQuestionCategoryRepository questionCategoryRepository,
-            IQuestionLinkRepository questionLinkRepository,
-            IQuestionFlagRepository questionFlagRepository,
-            IFlagStatusRepository flagStatusRepository,
-            ISourceRepository sourceRepository,
-            IQuestionTypeRepository questionTypeRepository,
-            IUserRepository userRepository)
-        {
-            QuestionRepository = questionRepository ?? throw new NullException(() => questionRepository);
-            AnswerRepository = answerRepository ?? throw new NullException(() => answerRepository);
-            CategoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
-            QuestionCategoryRepository = questionCategoryRepository ?? throw new NullException(() => questionCategoryRepository);
-            QuestionLinkRepository = questionLinkRepository ?? throw new NullException(() => questionLinkRepository);
-            QuestionFlagRepository = questionFlagRepository ?? throw new NullException(() => questionFlagRepository);
-            FlagStatusRepository = flagStatusRepository;
-            SourceRepository = sourceRepository ?? throw new NullException(() => sourceRepository);
-            QuestionTypeRepository = questionTypeRepository ?? throw new NullException(() => questionTypeRepository);
-            UserRepository = userRepository ?? throw new NullException(() => userRepository);
+		public Repositories(
+			IQuestionRepository questionRepository,
+			IAnswerRepository answerRepository,
+			ICategoryRepository categoryRepository,
+			IQuestionCategoryRepository questionCategoryRepository,
+			IQuestionLinkRepository questionLinkRepository,
+			IQuestionFlagRepository questionFlagRepository,
+			IFlagStatusRepository flagStatusRepository,
+			ISourceRepository sourceRepository,
+			IQuestionTypeRepository questionTypeRepository,
+			IUserRepository userRepository)
+		{
+			QuestionRepository = questionRepository ?? throw new NullException(() => questionRepository);
+			AnswerRepository = answerRepository ?? throw new NullException(() => answerRepository);
+			CategoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
+			QuestionCategoryRepository = questionCategoryRepository ?? throw new NullException(() => questionCategoryRepository);
+			QuestionLinkRepository = questionLinkRepository ?? throw new NullException(() => questionLinkRepository);
+			QuestionFlagRepository = questionFlagRepository ?? throw new NullException(() => questionFlagRepository);
+			FlagStatusRepository = flagStatusRepository;
+			SourceRepository = sourceRepository ?? throw new NullException(() => sourceRepository);
+			QuestionTypeRepository = questionTypeRepository ?? throw new NullException(() => questionTypeRepository);
+			UserRepository = userRepository ?? throw new NullException(() => userRepository);
 
-            EntityStatusManager = new EntityStatusManager();
-        }
+			EntityStatusManager = new EntityStatusManager();
+		}
 
-        /// <summary>
-        /// Sends pending statements to the data store but does not yet commit the transaction.
-        /// This may fill in data generated by the data store, such as ID's.
-        /// </summary>
-        public void Flush() => QuestionRepository.Flush();
+		/// <summary>
+		/// Sends pending statements to the data store but does not yet commit the transaction.
+		/// This may fill in data generated by the data store, such as ID's.
+		/// </summary>
+		public void Flush() => QuestionRepository.Flush();
 
-        public void Commit() => QuestionRepository.Commit();
-    }
+		public void Commit() => QuestionRepository.Commit();
+	}
 }

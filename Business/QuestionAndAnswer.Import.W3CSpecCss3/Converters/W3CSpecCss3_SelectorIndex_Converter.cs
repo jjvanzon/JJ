@@ -6,179 +6,179 @@ using JJ.Business.QuestionAndAnswer.LinkTo;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 {
-    public class W3CSpecCss3_SelectorIndex_Converter : ConverterBase<W3CSpecCss3_SelectorIndex_ImportModel>
-    {
-        public W3CSpecCss3_SelectorIndex_Converter(
-            IQuestionRepository questionRepository,
-            IAnswerRepository answerRepository,
-            ICategoryRepository categoryRepository,
-            IQuestionCategoryRepository questionCategoryRepository,
-            IQuestionLinkRepository questionLinkRepository,
-            IQuestionTypeRepository questionTypeRepository,
-            ISourceRepository sourceRepository,
-            Source source,
-            string categoryIdentifier)
-            : base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source, categoryIdentifier)
-        { }
+	public class W3CSpecCss3_SelectorIndex_Converter : ConverterBase<W3CSpecCss3_SelectorIndex_ImportModel>
+	{
+		public W3CSpecCss3_SelectorIndex_Converter(
+			IQuestionRepository questionRepository,
+			IAnswerRepository answerRepository,
+			ICategoryRepository categoryRepository,
+			IQuestionCategoryRepository questionCategoryRepository,
+			IQuestionLinkRepository questionLinkRepository,
+			IQuestionTypeRepository questionTypeRepository,
+			ISourceRepository sourceRepository,
+			Source source,
+			string categoryIdentifier)
+			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source, categoryIdentifier)
+		{ }
 
-        public override void ConvertToEntities(W3CSpecCss3_SelectorIndex_ImportModel model)
-        {
-            ConvertToQuestionFromPatternToMeaning(model);
-            ConvertToQuestionFromMeaningToPattern(model);
-            ConvertToQuestionAboutSelectorType(model);
-        }
+		public override void ConvertToEntities(W3CSpecCss3_SelectorIndex_ImportModel model)
+		{
+			ConvertToQuestionFromPatternToMeaning(model);
+			ConvertToQuestionFromMeaningToPattern(model);
+			ConvertToQuestionAboutSelectorType(model);
+		}
 
-        private void ConvertToQuestionFromPatternToMeaning(W3CSpecCss3_SelectorIndex_ImportModel model)
-        {
-            // Create question
-            Question question = ConvertToQuestion_BaseMethod();
+		private void ConvertToQuestionFromPatternToMeaning(W3CSpecCss3_SelectorIndex_ImportModel model)
+		{
+			// Create question
+			Question question = ConvertToQuestion_BaseMethod();
 
-            string pattern = ImportHelper.TrimValue(model.Pattern);
+			string pattern = ImportHelper.TrimValue(model.Pattern);
 
-            // Set texts
-            if (!IsPlural(pattern))
-            {
-                question.Text = string.Format("What does the selector {0} mean?", pattern);
-            }
-            else
-            {
-                question.Text = string.Format("What do the selectors {0} mean?", pattern);
-            }
+			// Set texts
+			if (!IsPlural(pattern))
+			{
+				question.Text = string.Format("What does the selector {0} mean?", pattern);
+			}
+			else
+			{
+				question.Text = string.Format("What do the selectors {0} mean?", pattern);
+			}
 
-            question.Answers[0].Text = ImportHelper.TrimValue(model.Meaning);
+			question.Answers[0].Text = ImportHelper.TrimValue(model.Meaning);
 
-            // Create links
-            if (model.DescribedInSectionLink != null)
-            {
-                QuestionLink link = ConvertToLink(model.DescribedInSectionLink);
-                link.LinkTo(question);
-            }
+			// Create links
+			if (model.DescribedInSectionLink != null)
+			{
+				QuestionLink link = ConvertToLink(model.DescribedInSectionLink);
+				link.LinkTo(question);
+			}
 
-            // Add categories
-            AddCategory(question, "Css3", "Selectors", "PatternToMeaning");
+			// Add categories
+			AddCategory(question, "Css3", "Selectors", "PatternToMeaning");
 
-            if (!IsPlural(pattern))
-            {
-                AddCategory(question, "Css3", "Selectors", pattern);
-            }
-            else
-            {
-                foreach (string pattern2 in pattern.Split(' '))
-                {
-                    AddCategory(question, "Css3", "Selectors", pattern2);
-                }
-            }
+			if (!IsPlural(pattern))
+			{
+				AddCategory(question, "Css3", "Selectors", pattern);
+			}
+			else
+			{
+				foreach (string pattern2 in pattern.Split(' '))
+				{
+					AddCategory(question, "Css3", "Selectors", pattern2);
+				}
+			}
 
-            // Validate result
-            ValidateQuestion(question);
-        }
+			// Validate result
+			ValidateQuestion(question);
+		}
 
-        private void ConvertToQuestionFromMeaningToPattern(W3CSpecCss3_SelectorIndex_ImportModel model)
-        {
-            // Create question
-            Question question = ConvertToQuestion_BaseMethod();
+		private void ConvertToQuestionFromMeaningToPattern(W3CSpecCss3_SelectorIndex_ImportModel model)
+		{
+			// Create question
+			Question question = ConvertToQuestion_BaseMethod();
 
-            string meaning = ImportHelper.TrimValue(model.Meaning);
-            string pattern = ImportHelper.TrimValue(model.Pattern);
+			string meaning = ImportHelper.TrimValue(model.Meaning);
+			string pattern = ImportHelper.TrimValue(model.Pattern);
 
-            // Set texts
-            if (!IsPlural(pattern))
-            {
-                question.Text = string.Format("What is the selector for {0}?", meaning);
-            }
-            else
-            {
-                question.Text = string.Format("What are the selectors for {0}?", meaning);
-            }
-            question.Answers[0].Text = pattern;
+			// Set texts
+			if (!IsPlural(pattern))
+			{
+				question.Text = string.Format("What is the selector for {0}?", meaning);
+			}
+			else
+			{
+				question.Text = string.Format("What are the selectors for {0}?", meaning);
+			}
+			question.Answers[0].Text = pattern;
 
-            // Create links
-            if (model.DescribedInSectionLink != null)
-            {
-                QuestionLink link = ConvertToLink(model.DescribedInSectionLink);
-                link.LinkTo(question);
-            }
+			// Create links
+			if (model.DescribedInSectionLink != null)
+			{
+				QuestionLink link = ConvertToLink(model.DescribedInSectionLink);
+				link.LinkTo(question);
+			}
 
-            // Add categories
-            AddCategory(question, "Css3", "Selectors", "MeaningToPattern");
+			// Add categories
+			AddCategory(question, "Css3", "Selectors", "MeaningToPattern");
 
-            if (!IsPlural(pattern))
-            {
-                AddCategory(question, "Css3", "Selectors", pattern);
-            }
-            else
-            {
-                foreach (string pattern2 in pattern.Split(' '))
-                {
-                    AddCategory(question, "Css3", "Selectors", pattern2);
-                }
-            }
+			if (!IsPlural(pattern))
+			{
+				AddCategory(question, "Css3", "Selectors", pattern);
+			}
+			else
+			{
+				foreach (string pattern2 in pattern.Split(' '))
+				{
+					AddCategory(question, "Css3", "Selectors", pattern2);
+				}
+			}
 
-            // Validate result
-            ValidateQuestion(question);
-        }
+			// Validate result
+			ValidateQuestion(question);
+		}
 
-        private void ConvertToQuestionAboutSelectorType(W3CSpecCss3_SelectorIndex_ImportModel model)
-        {
-            // Create question
-            Question question = ConvertToQuestion_BaseMethod();
+		private void ConvertToQuestionAboutSelectorType(W3CSpecCss3_SelectorIndex_ImportModel model)
+		{
+			// Create question
+			Question question = ConvertToQuestion_BaseMethod();
 
-            string pattern = ImportHelper.TrimValue(model.Pattern);
+			string pattern = ImportHelper.TrimValue(model.Pattern);
 
-            // Set texts
-            if (!IsPlural(pattern))
-            {
-                question.Text = string.Format("What type of selector is {0} ?", pattern);
-            }
-            else
-            {
-                question.Text = string.Format("What type of selector are {0} ?", pattern);
-            }
-            question.Answers[0].Text = ImportHelper.TrimValue(model.DescribedInSection);
+			// Set texts
+			if (!IsPlural(pattern))
+			{
+				question.Text = string.Format("What type of selector is {0} ?", pattern);
+			}
+			else
+			{
+				question.Text = string.Format("What type of selector are {0} ?", pattern);
+			}
+			question.Answers[0].Text = ImportHelper.TrimValue(model.DescribedInSection);
 
-            // Create links
-            if (model.DescribedInSectionLink != null)
-            {
-                QuestionLink link = ConvertToLink(model.DescribedInSectionLink);
-                link.LinkTo(question);
-            }
+			// Create links
+			if (model.DescribedInSectionLink != null)
+			{
+				QuestionLink link = ConvertToLink(model.DescribedInSectionLink);
+				link.LinkTo(question);
+			}
 
-            // Add categories
-            AddCategory(question, "Css3", "Selectors", "SelectorType");
+			// Add categories
+			AddCategory(question, "Css3", "Selectors", "SelectorType");
 
-            if (!IsPlural(pattern))
-            {
-                AddCategory(question, "Css3", "Selectors", pattern);
-            }
-            else
-            {
-                foreach (string pattern2 in pattern.Split(' '))
-                {
-                    AddCategory(question, "Css3", "Selectors", pattern2);
-                }
-            }
+			if (!IsPlural(pattern))
+			{
+				AddCategory(question, "Css3", "Selectors", pattern);
+			}
+			else
+			{
+				foreach (string pattern2 in pattern.Split(' '))
+				{
+					AddCategory(question, "Css3", "Selectors", pattern2);
+				}
+			}
 
-            // Validate result
-            ValidateQuestion(question);
-        }
+			// Validate result
+			ValidateQuestion(question);
+		}
 
-        // Helpers
+		// Helpers
 
-        private bool IsPlural(string name)
-        {
-            if (name == null) return false;
+		private bool IsPlural(string name)
+		{
+			if (name == null) return false;
 
-            name = name.Trim();
+			name = name.Trim();
 
-            if (string.Equals(name, "E F") ||
-                string.Equals(name, "E > F") ||
-                string.Equals(name, "E + F") ||
-                string.Equals(name, "E ~ F"))
-            {
-                return false;
-            }
-            
-            return name.Contains(" ");
-        }
-    }
+			if (string.Equals(name, "E F") ||
+				string.Equals(name, "E > F") ||
+				string.Equals(name, "E + F") ||
+				string.Equals(name, "E ~ F"))
+			{
+				return false;
+			}
+			
+			return name.Contains(" ");
+		}
+	}
 }

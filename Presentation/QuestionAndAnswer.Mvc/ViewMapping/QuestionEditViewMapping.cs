@@ -7,32 +7,32 @@ using JJ.Business.Canonical;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
-    public class QuestionEditViewMapping : ViewMapping<QuestionEditViewModel>
-    {
-        public QuestionEditViewMapping()
-        {
-            MapPresenter(PresenterNames.QuestionEditPresenter, PresenterActionNames.Edit);
-            MapController(ControllerNames.Questions, ActionNames.Edit, ViewNames.Edit);
-            MapParameter(PresenterParameterNames.id, ActionParameterNames.id);
-        }
+	public class QuestionEditViewMapping : ViewMapping<QuestionEditViewModel>
+	{
+		public QuestionEditViewMapping()
+		{
+			MapPresenter(PresenterNames.QuestionEditPresenter, PresenterActionNames.Edit);
+			MapController(ControllerNames.Questions, ActionNames.Edit, ViewNames.Edit);
+			MapParameter(PresenterParameterNames.id, ActionParameterNames.id);
+		}
 
-        protected override bool Predicate(QuestionEditViewModel viewModel)
-        {
-            return !viewModel.IsNew;
-        }
+		protected override bool Predicate(QuestionEditViewModel viewModel)
+		{
+			return !viewModel.IsNew;
+		}
 
-        protected override object GetRouteValues(QuestionEditViewModel viewModel)
-        {
-            return new 
-            { 
-                id = viewModel.Question.ID, 
-                ret = TryGetReturnUrl(viewModel.ReturnAction) 
-            };
-        }
+		protected override object GetRouteValues(QuestionEditViewModel viewModel)
+		{
+			return new 
+			{ 
+				id = viewModel.Question.ID, 
+				ret = TryGetReturnUrl(viewModel.ReturnAction) 
+			};
+		}
 
-        protected override ICollection<string> GetValidationMesssages(QuestionEditViewModel viewModel)
-        {
-            return viewModel.ValidationMessages;
-        }
-    }
+		protected override ICollection<string> GetValidationMesssages(QuestionEditViewModel viewModel)
+		{
+			return viewModel.ValidationMessages;
+		}
+	}
 }

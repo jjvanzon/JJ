@@ -3,16 +3,16 @@ using JJ.Data.QuestionAndAnswer.NHibernate.Names;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
 {
-    public class AnswerMapping : ClassMap<Answer>
-    {
-        public AnswerMapping()
-        {
-            Id(x => x.ID);
+	public class AnswerMapping : ClassMap<Answer>
+	{
+		public AnswerMapping()
+		{
+			Id(x => x.ID);
 
-            Map(x => x.Text);
-            Map(x => x.IsCorrectAnswer);
+			Map(x => x.Text);
+			Map(x => x.IsCorrectAnswer);
 
-            References(x => x.Question, ColumnNames.QuestionID);
-        }
-    }
+			References(x => x.Question, ColumnNames.QuestionID);
+		}
+	}
 }

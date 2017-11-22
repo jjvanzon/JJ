@@ -11,145 +11,145 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {
-    internal static class QuestionExtensions
-    {
-        public static QuestionDetailsViewModel ToDetailsViewModel(this Question question, IUserRepository userRepository, string authenticatedUserName)
-        {
-            var viewModel = new QuestionDetailsViewModel();
-            viewModel.Question = question.ToViewModel();
-            viewModel.Question.Source = question.Source.ToViewModel();
-            viewModel.Question.Type = question.QuestionType.ToViewModel();
+	internal static class QuestionExtensions
+	{
+		public static QuestionDetailsViewModel ToDetailsViewModel(this Question question, IUserRepository userRepository, string authenticatedUserName)
+		{
+			var viewModel = new QuestionDetailsViewModel();
+			viewModel.Question = question.ToViewModel();
+			viewModel.Question.Source = question.Source.ToViewModel();
+			viewModel.Question.Type = question.QuestionType.ToViewModel();
 
-            // Partials
-            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+			// Partials
+			viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
 
-            // Categories
-            foreach (QuestionCategory questionCategory in question.QuestionCategories)
-            {
-                QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
-                viewModel.Question.Categories.Add(questionCategoryViewModel);
-            }
+			// Categories
+			foreach (QuestionCategory questionCategory in question.QuestionCategories)
+			{
+				QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
+				viewModel.Question.Categories.Add(questionCategoryViewModel);
+			}
 
-            // Links
-            foreach (QuestionLink questionLink in question.QuestionLinks)
-            {
-                QuestionLinkViewModel linkModel = questionLink.ToViewModel();
-                viewModel.Question.Links.Add(linkModel);
-            }
+			// Links
+			foreach (QuestionLink questionLink in question.QuestionLinks)
+			{
+				QuestionLinkViewModel linkModel = questionLink.ToViewModel();
+				viewModel.Question.Links.Add(linkModel);
+			}
 
-            // Flags
-            foreach (QuestionFlag flag in question.QuestionFlags)
-            {
-                QuestionFlagViewModel flagViewModel = flag.ToViewModel();
-                viewModel.Question.Flags.Add(flagViewModel);
-            }
+			// Flags
+			foreach (QuestionFlag flag in question.QuestionFlags)
+			{
+				QuestionFlagViewModel flagViewModel = flag.ToViewModel();
+				viewModel.Question.Flags.Add(flagViewModel);
+			}
 
-            viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged).Any();
+			viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged).Any();
 
-            return viewModel;
-        }
+			return viewModel;
+		}
 
-        public static QuestionEditViewModel ToEditViewModel(
-            this Question question, 
-            ICategoryRepository categoryRepository, 
-            IUserRepository userRepository,
-            string authenticatedUserName)
-        {
+		public static QuestionEditViewModel ToEditViewModel(
+			this Question question, 
+			ICategoryRepository categoryRepository, 
+			IUserRepository userRepository,
+			string authenticatedUserName)
+		{
 
-            var viewModel = new QuestionEditViewModel
-            {
-                Question = question.ToViewModel(),
-                ValidationMessages = new List<string>(),
-                CanDelete = true,
-                AllCategories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository)
-            };
+			var viewModel = new QuestionEditViewModel
+			{
+				Question = question.ToViewModel(),
+				ValidationMessages = new List<string>(),
+				CanDelete = true,
+				AllCategories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository)
+			};
 
-            viewModel.Question.Source = question.Source.ToViewModel();
-            viewModel.Question.Type = question.QuestionType.ToViewModel();
+			viewModel.Question.Source = question.Source.ToViewModel();
+			viewModel.Question.Type = question.QuestionType.ToViewModel();
 
-            // Partials
-            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+			// Partials
+			viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
 
-            // Links
-            foreach (QuestionLink questionLink in question.QuestionLinks)
-            {
-                QuestionLinkViewModel linkModel = questionLink.ToViewModel();
-                viewModel.Question.Links.Add(linkModel);
-            }
+			// Links
+			foreach (QuestionLink questionLink in question.QuestionLinks)
+			{
+				QuestionLinkViewModel linkModel = questionLink.ToViewModel();
+				viewModel.Question.Links.Add(linkModel);
+			}
 
-            // Question categories
-            foreach (QuestionCategory questionCategory in question.QuestionCategories)
-            {
-                QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
-                viewModel.Question.Categories.Add(questionCategoryViewModel);
-            }
+			// Question categories
+			foreach (QuestionCategory questionCategory in question.QuestionCategories)
+			{
+				QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
+				viewModel.Question.Categories.Add(questionCategoryViewModel);
+			}
 
-            // Flags
-            IList<IDAndName> allFlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel();
+			// Flags
+			IList<IDAndName> allFlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel();
 
-            foreach (QuestionFlag flag in question.QuestionFlags)
-            {
-                QuestionFlagViewModel flagViewModel = flag.ToViewModel();
-                flagViewModel.AllFlagStatuses = allFlagStatuses;
-                viewModel.Question.Flags.Add(flagViewModel);
-            }
+			foreach (QuestionFlag flag in question.QuestionFlags)
+			{
+				QuestionFlagViewModel flagViewModel = flag.ToViewModel();
+				flagViewModel.AllFlagStatuses = allFlagStatuses;
+				viewModel.Question.Flags.Add(flagViewModel);
+			}
 
-            viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged).Any();
+			viewModel.Question.IsFlagged = question.QuestionFlags.Where(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged).Any();
 
-            return viewModel;
-        }
+			return viewModel;
+		}
 
-        public static RandomQuestionViewModel ToRandomQuestionViewModel(this Question entity, IUserRepository userRepository, string authenticatedUserName, QuestionFlag currentUserQuestionFlag = null)
-        {
-            var viewModel = new RandomQuestionViewModel()
-            {
-                SelectedCategories = new List<CategoryViewModel>(),
-                Question = entity.ToViewModel()
-            };
+		public static RandomQuestionViewModel ToRandomQuestionViewModel(this Question entity, IUserRepository userRepository, string authenticatedUserName, QuestionFlag currentUserQuestionFlag = null)
+		{
+			var viewModel = new RandomQuestionViewModel()
+			{
+				SelectedCategories = new List<CategoryViewModel>(),
+				Question = entity.ToViewModel()
+			};
 
-            // Partials
-            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
-            viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
+			// Partials
+			viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+			viewModel.LanguageSelector = ViewModelHelper.CreateLanguageSelectionViewModel();
 
-            // Links
-            foreach (QuestionLink questionLink in entity.QuestionLinks)
-            {
-                QuestionLinkViewModel linkModel = questionLink.ToViewModel();
-                viewModel.Question.Links.Add(linkModel);
-            }
+			// Links
+			foreach (QuestionLink questionLink in entity.QuestionLinks)
+			{
+				QuestionLinkViewModel linkModel = questionLink.ToViewModel();
+				viewModel.Question.Links.Add(linkModel);
+			}
 
-            // Categories
-            foreach (QuestionCategory questionCategory in entity.QuestionCategories)
-            {
-                QuestionCategoryViewModel questionCategoryModel = questionCategory.ToViewModel();
-                viewModel.Question.Categories.Add(questionCategoryModel);
-            }
+			// Categories
+			foreach (QuestionCategory questionCategory in entity.QuestionCategories)
+			{
+				QuestionCategoryViewModel questionCategoryModel = questionCategory.ToViewModel();
+				viewModel.Question.Categories.Add(questionCategoryModel);
+			}
 
-            // Current user flag
-            if (currentUserQuestionFlag != null)
-            {
-                viewModel.CurrentUserQuestionFlag = currentUserQuestionFlag.ToCurrentUserQuestionFlagViewModel();
-                viewModel.Question.IsFlagged = currentUserQuestionFlag.GetFlagStatusEnum() == FlagStatusEnum.Flagged;
-            }
-            else
-            {
-                viewModel.CurrentUserQuestionFlag = new CurrentUserQuestionFlagPartialViewModel();
-            }
+			// Current user flag
+			if (currentUserQuestionFlag != null)
+			{
+				viewModel.CurrentUserQuestionFlag = currentUserQuestionFlag.ToCurrentUserQuestionFlagViewModel();
+				viewModel.Question.IsFlagged = currentUserQuestionFlag.GetFlagStatusEnum() == FlagStatusEnum.Flagged;
+			}
+			else
+			{
+				viewModel.CurrentUserQuestionFlag = new CurrentUserQuestionFlagPartialViewModel();
+			}
 
-            return viewModel;
-        }
+			return viewModel;
+		}
 
-        public static QuestionConfirmDeleteViewModel ToConfirmDeleteViewModel(this Question question, IUserRepository userRepository, string authenticatedUserName)
-        {
-            var viewModel = new QuestionConfirmDeleteViewModel
-            {
-                ID = question.ID,
-                Question = question.Text
-            };
+		public static QuestionConfirmDeleteViewModel ToConfirmDeleteViewModel(this Question question, IUserRepository userRepository, string authenticatedUserName)
+		{
+			var viewModel = new QuestionConfirmDeleteViewModel
+			{
+				ID = question.ID,
+				Question = question.Text
+			};
 
-            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+			viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
 
-            return viewModel;
-        }
-    }
+			return viewModel;
+		}
+	}
 }

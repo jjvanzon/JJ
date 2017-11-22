@@ -5,12 +5,12 @@ using JJ.Presentation.QuestionAndAnswer.ViewModels;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
-    public class CategoryIndexViewMapping : ViewMapping<CategorySelectorViewModel>
-    {
-        public CategoryIndexViewMapping()
-        {
-            MapPresenter(PresenterNames.CategorySelectorPresenter, PresenterActionNames.Show);
-            MapController(ControllerNames.CategorySelector, ActionNames.Index, ViewNames.Index);
-        }
-    }
+	public class CategoryIndexViewMapping : ViewMapping<CategorySelectorViewModel>
+	{
+		public CategoryIndexViewMapping()
+		{
+			MapPresenter(PresenterNames.CategorySelectorPresenter, PresenterActionNames.Show);
+			MapController(ControllerNames.CategorySelector, ActionNames.Index, ViewNames.Index);
+		}
+	}
 }

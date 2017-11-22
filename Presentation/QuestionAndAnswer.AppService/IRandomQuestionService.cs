@@ -3,16 +3,16 @@ using System.ServiceModel;
 
 namespace JJ.Presentation.QuestionAndAnswer.AppService
 {
-    [ServiceContract]
-    public interface IRandomQuestionService
-    {
-        [OperationContract]
-        RandomQuestionViewModel ShowQuestion();
+	[ServiceContract]
+	public interface IRandomQuestionService
+	{
+		[OperationContract]
+		RandomQuestionViewModel ShowQuestion();
 
-        [OperationContract]
-        RandomQuestionViewModel ShowAnswer(RandomQuestionViewModel viewModel);
+		[OperationContract]
+		RandomQuestionViewModel ShowAnswer(RandomQuestionViewModel viewModel);
 
-        [OperationContract]
-        RandomQuestionViewModel HideAnswer(RandomQuestionViewModel viewModel);
-    }
+		[OperationContract]
+		RandomQuestionViewModel HideAnswer(RandomQuestionViewModel viewModel);
+	}
 }

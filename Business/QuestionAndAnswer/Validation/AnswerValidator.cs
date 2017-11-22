@@ -5,13 +5,13 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
-    public class AnswerValidator : VersatileValidator
-    {
-        public AnswerValidator(Answer entity)
-        {
-            if (entity == null) throw new NullException(() => entity);
+	public class AnswerValidator : VersatileValidator
+	{
+		public AnswerValidator(Answer entity)
+		{
+			if (entity == null) throw new NullException(() => entity);
 
-            For(entity.Text, PropertyDisplayNames.Text).NotNullOrWhiteSpace();
-        }
-    }
+			For(entity.Text, PropertyDisplayNames.Text).NotNullOrWhiteSpace();
+		}
+	}
 }

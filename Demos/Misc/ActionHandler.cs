@@ -7,43 +7,43 @@ using JJ.Framework.Business;
 
 namespace JJ.Framework.Presentation
 {
-    /// <summary>
-    /// Not finished. Trying something out.
-    /// </summary>
-    internal abstract class ActionHandler<TViewModel, TEntity>
-        where TViewModel : ViewModelBase
-    {
-        protected TViewModel Action(TViewModel userInput)
-        {
-            userInput.RefreshCounter++;
+	/// <summary>
+	/// Not finished. Trying something out.
+	/// </summary>
+	internal abstract class ActionHandler<TViewModel, TEntity>
+		where TViewModel : ViewModelBase
+	{
+		protected TViewModel Action(TViewModel userInput)
+		{
+			userInput.RefreshCounter++;
 
-            userInput.Successful = false;
+			userInput.Successful = false;
 
-            TEntity entity = ToEntity(userInput);
+			TEntity entity = ToEntity(userInput);
 
-            IResult result = Business(userInput, entity);
+			IResult result = Business(userInput, entity);
 
-            TViewModel viewModel = ToViewModel(entity);
+			TViewModel viewModel = ToViewModel(entity);
 
-            if (result != null)
-            {
-                viewModel.Successful = result.Successful;
-                viewModel.Messages = result.Messages;
-            }
-            viewModel.RefreshCounter = userInput.RefreshCounter;
+			if (result != null)
+			{
+				viewModel.Successful = result.Successful;
+				viewModel.Messages = result.Messages;
+			}
+			viewModel.RefreshCounter = userInput.RefreshCounter;
 
-            NonPersisted(viewModel);
+			NonPersisted(viewModel);
 
-            return viewModel;
-        }
+			return viewModel;
+		}
 
-        protected virtual TEntity ToEntity(TViewModel userInput) => default(TEntity);
+		protected virtual TEntity ToEntity(TViewModel userInput) => default(TEntity);
 
-        protected virtual IResult Business(TViewModel userInput, TEntity entity) => null;
+		protected virtual IResult Business(TViewModel userInput, TEntity entity) => null;
 
-        protected abstract TViewModel ToViewModel(TEntity entity);
+		protected abstract TViewModel ToViewModel(TEntity entity);
 
-        protected virtual void NonPersisted(TViewModel viewModel)
-        { }
-    }
+		protected virtual void NonPersisted(TViewModel viewModel)
+		{ }
+	}
 }

@@ -11,196 +11,196 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
-    public class CategorySelectorPresenter
-    {
-        private ICategoryRepository _categoryRepository;
-        private IQuestionRepository _questionRepository;
-        private IQuestionFlagRepository _questionFlagRepository;
-        private IFlagStatusRepository _flagStatusRepository;
-        private IUserRepository _userRepository;
+	public class CategorySelectorPresenter
+	{
+		private ICategoryRepository _categoryRepository;
+		private IQuestionRepository _questionRepository;
+		private IQuestionFlagRepository _questionFlagRepository;
+		private IFlagStatusRepository _flagStatusRepository;
+		private IUserRepository _userRepository;
 
-        private CategoryManager _categoryManager;
-        private string _authenticatedUserName;
+		private CategoryManager _categoryManager;
+		private string _authenticatedUserName;
 
-        /// <param name="authenticatedUserName">nullable</param>
-        public CategorySelectorPresenter(
-            ICategoryRepository categoryRepository, 
-            IQuestionRepository questionRepository,
-            IQuestionFlagRepository questionFlagRepository,
-            IFlagStatusRepository flagStatusRepository,
-            IUserRepository userRepository,
-            string authenticatedUserName)
-        {
-            if (categoryRepository == null) throw new NullException(() => categoryRepository);
-            if (questionRepository == null) throw new NullException(() => questionRepository);
-            if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
-            if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
-            if (userRepository == null) throw new NullException(() => userRepository);
+		/// <param name="authenticatedUserName">nullable</param>
+		public CategorySelectorPresenter(
+			ICategoryRepository categoryRepository, 
+			IQuestionRepository questionRepository,
+			IQuestionFlagRepository questionFlagRepository,
+			IFlagStatusRepository flagStatusRepository,
+			IUserRepository userRepository,
+			string authenticatedUserName)
+		{
+			if (categoryRepository == null) throw new NullException(() => categoryRepository);
+			if (questionRepository == null) throw new NullException(() => questionRepository);
+			if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
+			if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
+			if (userRepository == null) throw new NullException(() => userRepository);
 
-            _categoryRepository = categoryRepository;
-            _questionRepository = questionRepository;
-            _questionFlagRepository = questionFlagRepository;
-            _flagStatusRepository = flagStatusRepository;
-            _userRepository = userRepository;
+			_categoryRepository = categoryRepository;
+			_questionRepository = questionRepository;
+			_questionFlagRepository = questionFlagRepository;
+			_flagStatusRepository = flagStatusRepository;
+			_userRepository = userRepository;
 
-            _authenticatedUserName = authenticatedUserName;
+			_authenticatedUserName = authenticatedUserName;
 
-            _categoryManager = new CategoryManager(_categoryRepository);
-        }
+			_categoryManager = new CategoryManager(_categoryRepository);
+		}
 
-        public CategorySelectorViewModel Show()
-        {
-            return CreateViewModel();
-        }
+		public CategorySelectorViewModel Show()
+		{
+			return CreateViewModel();
+		}
 
-        /// <summary>
-        /// Required to pass along with the view model:
-        /// the ID's of the already selected categories and the categoryID of the category to add.
-        /// </summary>
-        public CategorySelectorViewModel Add(CategorySelectorViewModel viewModel, int categoryID)
-        {
-            if (viewModel == null) throw new NullException(() => viewModel);
+		/// <summary>
+		/// Required to pass along with the view model:
+		/// the ID's of the already selected categories and the categoryID of the category to add.
+		/// </summary>
+		public CategorySelectorViewModel Add(CategorySelectorViewModel viewModel, int categoryID)
+		{
+			if (viewModel == null) throw new NullException(() => viewModel);
 
-            var selectedCategoryIDs = new List<int>();
-            AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
-            selectedCategoryIDs.Add(categoryID);
+			var selectedCategoryIDs = new List<int>();
+			AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
+			selectedCategoryIDs.Add(categoryID);
 
-            return CreateViewModel(selectedCategoryIDs);
-        }
+			return CreateViewModel(selectedCategoryIDs);
+		}
 
-        /// <summary>
-        /// Required to pass along with the view model:
-        /// the ID's of the already selected categories and the categoryID of the category to remove.
-        /// </summary>
-        public CategorySelectorViewModel Remove(CategorySelectorViewModel viewModel, int categoryID)
-        {
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
+		/// <summary>
+		/// Required to pass along with the view model:
+		/// the ID's of the already selected categories and the categoryID of the category to remove.
+		/// </summary>
+		public CategorySelectorViewModel Remove(CategorySelectorViewModel viewModel, int categoryID)
+		{
+			if (viewModel == null) throw new NullException(() => viewModel);
+			viewModel.NullCoalesce();
 
-            var selectedCategoryIDs = new List<int>();
-            AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
+			var selectedCategoryIDs = new List<int>();
+			AddSelectedCategoryIDsRecursive(selectedCategoryIDs, viewModel.SelectedCategories);
 
-            while (selectedCategoryIDs.Contains(categoryID)) // while is for when there are duplicates
-            {
-                selectedCategoryIDs.Remove(categoryID);
-            }
+			while (selectedCategoryIDs.Contains(categoryID)) // while is for when there are duplicates
+			{
+				selectedCategoryIDs.Remove(categoryID);
+			}
 
-            return CreateViewModel(selectedCategoryIDs);
-        }
+			return CreateViewModel(selectedCategoryIDs);
+		}
 
-        public object StartTraining(CategorySelectorViewModel viewModel)
-        {
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
+		public object StartTraining(CategorySelectorViewModel viewModel)
+		{
+			if (viewModel == null) throw new NullException(() => viewModel);
+			viewModel.NullCoalesce();
 
-            var categoryIDs = new List<int>();
-            AddSelectedCategoryIDsRecursive(categoryIDs, viewModel.SelectedCategories);
+			var categoryIDs = new List<int>();
+			AddSelectedCategoryIDsRecursive(categoryIDs, viewModel.SelectedCategories);
 
-            var randomQuestionPresenter = new RandomQuestionPresenter(_questionRepository, _categoryRepository, _questionFlagRepository, _flagStatusRepository, _userRepository, _authenticatedUserName);
-            return randomQuestionPresenter.Show(categoryIDs.ToArray());
-        }
+			var randomQuestionPresenter = new RandomQuestionPresenter(_questionRepository, _categoryRepository, _questionFlagRepository, _flagStatusRepository, _userRepository, _authenticatedUserName);
+			return randomQuestionPresenter.Show(categoryIDs.ToArray());
+		}
 
-        // Private Methods
+		// Private Methods
 
-        private CategorySelectorViewModel CreateViewModel()
-        {
-            IList<CategoryViewModel> availableCategories = CreateCategoriesViewModelRecursive();
-            IList<CategoryViewModel> selectedCategories = CreateCategoriesViewModelRecursive();
+		private CategorySelectorViewModel CreateViewModel()
+		{
+			IList<CategoryViewModel> availableCategories = CreateCategoriesViewModelRecursive();
+			IList<CategoryViewModel> selectedCategories = CreateCategoriesViewModelRecursive();
 
-            HideAllNodesRecursive(selectedCategories);
+			HideAllNodesRecursive(selectedCategories);
 
-            var viewModel = new CategorySelectorViewModel
-            {
-                AvailableCategories = availableCategories,
-                SelectedCategories = selectedCategories
-            };
+			var viewModel = new CategorySelectorViewModel
+			{
+				AvailableCategories = availableCategories,
+				SelectedCategories = selectedCategories
+			};
 
-            viewModel.NoCategoriesAvailable = viewModel.AvailableCategories.Count == 0;
+			viewModel.NoCategoriesAvailable = viewModel.AvailableCategories.Count == 0;
 
-            viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _userRepository);
+			viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _userRepository);
 
-            return viewModel;
-        }
+			return viewModel;
+		}
 
-        private CategorySelectorViewModel CreateViewModel(IEnumerable<int> selectedCategoryIDs)
-        {
-            CategorySelectorViewModel viewModel = CreateViewModel();
-            HideSelectedLeafNodesRecursive(viewModel.AvailableCategories, selectedCategoryIDs);
-            ShowSelectedNodesRecursive(viewModel.SelectedCategories, selectedCategoryIDs);
-            return viewModel;
-        }
+		private CategorySelectorViewModel CreateViewModel(IEnumerable<int> selectedCategoryIDs)
+		{
+			CategorySelectorViewModel viewModel = CreateViewModel();
+			HideSelectedLeafNodesRecursive(viewModel.AvailableCategories, selectedCategoryIDs);
+			ShowSelectedNodesRecursive(viewModel.SelectedCategories, selectedCategoryIDs);
+			return viewModel;
+		}
 
-        private IList<CategoryViewModel> CreateCategoriesViewModelRecursive()
-        {
-            IEnumerable<Category> categories = _categoryManager.GetCategoryTree();
+		private IList<CategoryViewModel> CreateCategoriesViewModelRecursive()
+		{
+			IEnumerable<Category> categories = _categoryManager.GetCategoryTree();
 
-            var viewModels = new List<CategoryViewModel>();
+			var viewModels = new List<CategoryViewModel>();
 
-            foreach (Category category in categories)
-            {
-                CategoryViewModel viewModel = category.ToViewModelRecursive();
-                viewModels.Add(viewModel);
-            }
+			foreach (Category category in categories)
+			{
+				CategoryViewModel viewModel = category.ToViewModelRecursive();
+				viewModels.Add(viewModel);
+			}
 
-            return viewModels;
-        }
+			return viewModels;
+		}
 
-        private void HideAllNodesRecursive(IList<CategoryViewModel> categoryViewModels)
-        {
-            foreach (CategoryViewModel categoryViewModel in categoryViewModels)
-            {
-                categoryViewModel.Visible = false;
+		private void HideAllNodesRecursive(IList<CategoryViewModel> categoryViewModels)
+		{
+			foreach (CategoryViewModel categoryViewModel in categoryViewModels)
+			{
+				categoryViewModel.Visible = false;
 
-                HideAllNodesRecursive(categoryViewModel.SubCategories);
-            }
-        }
+				HideAllNodesRecursive(categoryViewModel.SubCategories);
+			}
+		}
 
-        private void AddSelectedCategoryIDsRecursive(IList<int> outputList, IList<CategoryViewModel> categoryViewModels)
-        {
-            if (categoryViewModels == null)
-            {
-                return;
-            }
+		private void AddSelectedCategoryIDsRecursive(IList<int> outputList, IList<CategoryViewModel> categoryViewModels)
+		{
+			if (categoryViewModels == null)
+			{
+				return;
+			}
 
-            foreach (CategoryViewModel categoryViewModel in categoryViewModels)
-            {
-                if (categoryViewModel.Visible)
-                {
-                    outputList.Add(categoryViewModel.ID);
-                }
+			foreach (CategoryViewModel categoryViewModel in categoryViewModels)
+			{
+				if (categoryViewModel.Visible)
+				{
+					outputList.Add(categoryViewModel.ID);
+				}
 
-                AddSelectedCategoryIDsRecursive(outputList, categoryViewModel.SubCategories);
-            }
-        }
+				AddSelectedCategoryIDsRecursive(outputList, categoryViewModel.SubCategories);
+			}
+		}
 
-        private void ShowSelectedNodesRecursive(IList<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
-        {
-            foreach (CategoryViewModel categoryViewModel in categoryViewModels)
-            {
-                bool isSelected = selectedCategoryIDs.Contains(categoryViewModel.ID);
-                if (isSelected)
-                {
-                    categoryViewModel.Visible = true;
-                }
+		private void ShowSelectedNodesRecursive(IList<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
+		{
+			foreach (CategoryViewModel categoryViewModel in categoryViewModels)
+			{
+				bool isSelected = selectedCategoryIDs.Contains(categoryViewModel.ID);
+				if (isSelected)
+				{
+					categoryViewModel.Visible = true;
+				}
 
-                ShowSelectedNodesRecursive(categoryViewModel.SubCategories, selectedCategoryIDs);
-            }
-        }
+				ShowSelectedNodesRecursive(categoryViewModel.SubCategories, selectedCategoryIDs);
+			}
+		}
 
-        private void HideSelectedLeafNodesRecursive(IList<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
-        {
-            foreach (CategoryViewModel categoryViewModel in categoryViewModels)
-            {
-                bool isSelected = selectedCategoryIDs.Contains(categoryViewModel.ID);
-                bool isLeaf = categoryViewModel.SubCategories.Count == 0;
+		private void HideSelectedLeafNodesRecursive(IList<CategoryViewModel> categoryViewModels, IEnumerable<int> selectedCategoryIDs)
+		{
+			foreach (CategoryViewModel categoryViewModel in categoryViewModels)
+			{
+				bool isSelected = selectedCategoryIDs.Contains(categoryViewModel.ID);
+				bool isLeaf = categoryViewModel.SubCategories.Count == 0;
 
-                if (isSelected && isLeaf)
-                {
-                    categoryViewModel.Visible = false;
-                }
+				if (isSelected && isLeaf)
+				{
+					categoryViewModel.Visible = false;
+				}
 
-                HideSelectedLeafNodesRecursive(categoryViewModel.SubCategories, selectedCategoryIDs);
-            }
-        }
-    }
+				HideSelectedLeafNodesRecursive(categoryViewModel.SubCategories, selectedCategoryIDs);
+			}
+		}
+	}
 }

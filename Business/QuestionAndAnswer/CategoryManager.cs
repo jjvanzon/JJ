@@ -8,141 +8,141 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer
 {
-    public class CategoryManager
-    {
-        private readonly ICategoryRepository _categoryRepository;
+	public class CategoryManager
+	{
+		private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryManager(ICategoryRepository categoryRepository)
-        {
-            _categoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
-        }
+		public CategoryManager(ICategoryRepository categoryRepository)
+		{
+			_categoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
+		}
 
-        /// <summary>
-        /// Retrieves all categories from the data store and returns the root nodes.
-        /// </summary>
-        public Category[] GetCategoryTree()
-        {
-            IEnumerable<Category> allCategories = _categoryRepository.GetAll().ToArray(); // For performance, make sure all entities are loaded.
-            IEnumerable<Category> rootCategories = allCategories.Where(x => x.ParentCategory == null);
-            return rootCategories.ToArray();
-        }
+		/// <summary>
+		/// Retrieves all categories from the data store and returns the root nodes.
+		/// </summary>
+		public Category[] GetCategoryTree()
+		{
+			IEnumerable<Category> allCategories = _categoryRepository.GetAll().ToArray(); // For performance, make sure all entities are loaded.
+			IEnumerable<Category> rootCategories = allCategories.Where(x => x.ParentCategory == null);
+			return rootCategories.ToArray();
+		}
 
-        // Get By Path
+		// Get By Path
 
-        public Category TryGetCategoryByIdentifierPath(params string[] identifiers)
-        {
-            if (identifiers == null) throw new NullException(() => identifiers);
-            if (identifiers.Length == 0) throw new Exception("identifiers collection cannot be empty.");
+		public Category TryGetCategoryByIdentifierPath(params string[] identifiers)
+		{
+			if (identifiers == null) throw new NullException(() => identifiers);
+			if (identifiers.Length == 0) throw new Exception("identifiers collection cannot be empty.");
 
-            string rootIdentifier = identifiers[0];
-            Category category = _categoryRepository.TryGetByIdentifier(rootIdentifier);
-            if (category == null)
-            {
-                return null;
-            }
+			string rootIdentifier = identifiers[0];
+			Category category = _categoryRepository.TryGetByIdentifier(rootIdentifier);
+			if (category == null)
+			{
+				return null;
+			}
 
-            Category parentCategory = category;
+			Category parentCategory = category;
 
-            foreach (string identifier in identifiers.Skip(1))
-            {
-                category = _categoryRepository.TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
-                if (category == null)
-                {
-                    return null;
-                }
+			foreach (string identifier in identifiers.Skip(1))
+			{
+				category = _categoryRepository.TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
+				if (category == null)
+				{
+					return null;
+				}
 
-                parentCategory = category;
-            }
+				parentCategory = category;
+			}
 
-            return category;
-        }
+			return category;
+		}
 
-        public Category FindOrCreateCategoryByIdentifierPath(params string[] identifiers)
-        {
-            if (identifiers == null) throw new NullException(() => identifiers);
-            if (identifiers.Length == 0) throw new Exception("identifiers collection cannot be empty.");
+		public Category FindOrCreateCategoryByIdentifierPath(params string[] identifiers)
+		{
+			if (identifiers == null) throw new NullException(() => identifiers);
+			if (identifiers.Length == 0) throw new Exception("identifiers collection cannot be empty.");
 
-            string rootIdentifier = identifiers[0];
-            Category category = _categoryRepository.TryGetByIdentifier(rootIdentifier);
-            if (category == null)
-            {
-                category = _categoryRepository.Create();
-                category.Identifier = rootIdentifier;
-                category.Description = rootIdentifier; // Default description is the identifier. Somebody could edit it later.
-            }
+			string rootIdentifier = identifiers[0];
+			Category category = _categoryRepository.TryGetByIdentifier(rootIdentifier);
+			if (category == null)
+			{
+				category = _categoryRepository.Create();
+				category.Identifier = rootIdentifier;
+				category.Description = rootIdentifier; // Default description is the identifier. Somebody could edit it later.
+			}
 
-            Category parentCategory = category;
+			Category parentCategory = category;
 
-            foreach (string identifier in identifiers.Skip(1))
-            {
-                category = _categoryRepository.TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
-                if (category == null)
-                {
-                    category = _categoryRepository.Create();
-                    category.Identifier = identifier;
-                    category.Description = identifier; // Default description is the identifier. Somebody could edit it later.
+			foreach (string identifier in identifiers.Skip(1))
+			{
+				category = _categoryRepository.TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
+				if (category == null)
+				{
+					category = _categoryRepository.Create();
+					category.Identifier = identifier;
+					category.Description = identifier; // Default description is the identifier. Somebody could edit it later.
 
-                    category.LinkToParentCategory(parentCategory);
-                }
+					category.LinkToParentCategory(parentCategory);
+				}
 
-                parentCategory = category;
-            }
+				parentCategory = category;
+			}
 
-            return category;
-        }
+			return category;
+		}
 
-        /// <summary>
-        /// Builds up a flat list of category nodes, based on the selected categories.
-        /// This is not as straightforeward as just taking the selected categories with their descendants.
-        /// When a parent category is selected, but no child categories, you have to take all the nodes in the parent category.
-        /// When a parent and some child categories are selected, you have to take those child categories.
-        /// Effectively this means first excluding the parent nodes from the selected branches and then flattening the hierarchy of the nodes that remain.
-        /// </summary>
-        public IList<Category> SelectNodesRecursive(IEnumerable<Category> selectedCategories)
-        {
-            IList<Category> ancestors = GetAncestorsRecursive(selectedCategories);
-            Category[] selectedBranches = selectedCategories.Except(ancestors).ToArray();
+		/// <summary>
+		/// Builds up a flat list of category nodes, based on the selected categories.
+		/// This is not as straightforeward as just taking the selected categories with their descendants.
+		/// When a parent category is selected, but no child categories, you have to take all the nodes in the parent category.
+		/// When a parent and some child categories are selected, you have to take those child categories.
+		/// Effectively this means first excluding the parent nodes from the selected branches and then flattening the hierarchy of the nodes that remain.
+		/// </summary>
+		public IList<Category> SelectNodesRecursive(IEnumerable<Category> selectedCategories)
+		{
+			IList<Category> ancestors = GetAncestorsRecursive(selectedCategories);
+			Category[] selectedBranches = selectedCategories.Except(ancestors).ToArray();
 
-            var list = new List<Category>();
+			var list = new List<Category>();
 
-            foreach(Category selectedBranch in selectedBranches)
-            {
-                AddNodesRecursive(list, selectedBranch);
-            }
+			foreach(Category selectedBranch in selectedBranches)
+			{
+				AddNodesRecursive(list, selectedBranch);
+			}
 
-            return list;
-        }
+			return list;
+		}
 
-        private IList<Category> GetAncestorsRecursive(IEnumerable<Category> categories)
-        {
-            var list = new List<Category>();
-            foreach (Category category in categories)
-            {
-                AddAncestorsRecursive(list, category);
-            }
-            return list;
-        }
+		private IList<Category> GetAncestorsRecursive(IEnumerable<Category> categories)
+		{
+			var list = new List<Category>();
+			foreach (Category category in categories)
+			{
+				AddAncestorsRecursive(list, category);
+			}
+			return list;
+		}
 
-        private void AddAncestorsRecursive(List<Category> outputList, Category category)
-        {
-            // TODO: Handle circularities.
-            while (category.ParentCategory != null)
-            {
-                outputList.Add(category.ParentCategory);
+		private void AddAncestorsRecursive(List<Category> outputList, Category category)
+		{
+			// TODO: Handle circularities.
+			while (category.ParentCategory != null)
+			{
+				outputList.Add(category.ParentCategory);
 
-                category = category.ParentCategory;
-            }
-        }
+				category = category.ParentCategory;
+			}
+		}
 
-        private void AddNodesRecursive(List<Category> outputList, Category node)
-        {
-            // TODO: Handle circularities.
-            outputList.Add(node);
+		private void AddNodesRecursive(List<Category> outputList, Category node)
+		{
+			// TODO: Handle circularities.
+			outputList.Add(node);
 
-            foreach (Category subNode in node.SubCategories)
-            {
-                AddNodesRecursive(outputList, subNode);
-            }
-        }
-    }
+			foreach (Category subNode in node.SubCategories)
+			{
+				AddNodesRecursive(outputList, subNode);
+			}
+		}
+	}
 }

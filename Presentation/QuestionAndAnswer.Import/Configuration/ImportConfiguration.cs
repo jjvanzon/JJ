@@ -2,9 +2,9 @@
 
 namespace JJ.Presentation.QuestionAndAnswer.Import.Configuration
 {
-    public class ImportConfiguration
-    {
-        [XmlArrayItem("importer")]
-        public ImportConfigurationImporter[] Importers { get; set; }
-    }
+	public class ImportConfiguration
+	{
+		[XmlArrayItem("importer")]
+		public ImportConfigurationImporter[] Importers { get; set; }
+	}
 }

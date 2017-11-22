@@ -8,23 +8,23 @@ using JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.RandomQuestionServ
 
 namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient
 {
-    internal class QuestionController
-    {
-        private RandomQuestionServiceClient _service = new RandomQuestionServiceClient();
+	internal class QuestionController
+	{
+		private RandomQuestionServiceClient _service = new RandomQuestionServiceClient();
 
-        public RandomQuestionViewModel ShowQuestion()
-        {
-            return _service.ShowQuestion();
-        }
+		public RandomQuestionViewModel ShowQuestion()
+		{
+			return _service.ShowQuestion();
+		}
 
-        public RandomQuestionViewModel ShowAnswer(RandomQuestionViewModel viewModel)
-        {
-            return _service.ShowAnswer(viewModel);
-        }
+		public RandomQuestionViewModel ShowAnswer(RandomQuestionViewModel viewModel)
+		{
+			return _service.ShowAnswer(viewModel);
+		}
 
-        public RandomQuestionViewModel HideAnswer(RandomQuestionViewModel viewModel)
-        {
-            return _service.HideAnswer(viewModel);
-        }
-    }
+		public RandomQuestionViewModel HideAnswer(RandomQuestionViewModel viewModel)
+		{
+			return _service.HideAnswer(viewModel);
+		}
+	}
 }

@@ -5,14 +5,14 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
-    public class QuestionLinkValidator : VersatileValidator
-    {
-        public QuestionLinkValidator(QuestionLink entity)
-        {
-            if (entity == null) throw new NullException(() => entity);
+	public class QuestionLinkValidator : VersatileValidator
+	{
+		public QuestionLinkValidator(QuestionLink entity)
+		{
+			if (entity == null) throw new NullException(() => entity);
 
-            For(entity.Description, PropertyDisplayNames.Description).NotNullOrWhiteSpace();
-            For(entity.Url, PropertyDisplayNames.Url).NotNullOrWhiteSpace();
-        }
-    }
+			For(entity.Description, PropertyDisplayNames.Description).NotNullOrWhiteSpace();
+			For(entity.Url, PropertyDisplayNames.Url).NotNullOrWhiteSpace();
+		}
+	}
 }

@@ -10,57 +10,57 @@ using JJ.Framework.Web;
 
 namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Controllers
 {
-    public class LoginController : MasterController
-    {
-        public ActionResult Index()
-        {
-            object viewModel;
-            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
-            {
-                using (IContext context = PersistenceHelper.CreateContext())
-                {
-                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    LoginPresenter presenter = new LoginPresenter(repositories);
-                    viewModel = presenter.Show();
-                }
-            }
+	public class LoginController : MasterController
+	{
+		public ActionResult Index()
+		{
+			object viewModel;
+			if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
+			{
+				using (IContext context = PersistenceHelper.CreateContext())
+				{
+					Repositories repositories = PersistenceHelper.CreateRepositories(context);
+					LoginPresenter presenter = new LoginPresenter(repositories);
+					viewModel = presenter.Show();
+				}
+			}
 
-            return GetActionResult(ActionNames.Index, viewModel);
-        }
+			return GetActionResult(ActionNames.Index, viewModel);
+		}
 
-        [HttpPost]
-        public ActionResult Index(LoginViewModel viewModel, string lang = null)
-        {
-            using (IContext context = PersistenceHelper.CreateContext())
-            {
-                Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                LoginPresenter presenter = new LoginPresenter(repositories);
-                object viewModel2;
-                if (!string.IsNullOrEmpty(lang))
-                {
-                    viewModel2 = presenter.SetLanguage(viewModel, lang);
-                    CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
-                }
-                else
-                {
-                    viewModel2 = presenter.Login(viewModel);
-                }
+		[HttpPost]
+		public ActionResult Index(LoginViewModel viewModel, string lang = null)
+		{
+			using (IContext context = PersistenceHelper.CreateContext())
+			{
+				Repositories repositories = PersistenceHelper.CreateRepositories(context);
+				LoginPresenter presenter = new LoginPresenter(repositories);
+				object viewModel2;
+				if (!string.IsNullOrEmpty(lang))
+				{
+					viewModel2 = presenter.SetLanguage(viewModel, lang);
+					CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
+				}
+				else
+				{
+					viewModel2 = presenter.Login(viewModel);
+				}
 
-                // TODO: This is dirty.
-                if (!(viewModel2 is LoginViewModel))
-                {
-                    SetAuthenticatedUserName(viewModel.UserName);
-                }
+				// TODO: This is dirty.
+				if (!(viewModel2 is LoginViewModel))
+				{
+					SetAuthenticatedUserName(viewModel.UserName);
+				}
 
-                return GetActionResult(ActionNames.Index, viewModel2);
-            }
-        }
+				return GetActionResult(ActionNames.Index, viewModel2);
+			}
+		}
 
-        public ActionResult LogOut()
-        {
-            SessionWrapper.AuthenticatedUserName = null;
+		public ActionResult LogOut()
+		{
+			SessionWrapper.AuthenticatedUserName = null;
 
-            return RedirectToAction(ActionNames.Index, ControllerNames.Login);
-        }
-    }
+			return RedirectToAction(ActionNames.Index, ControllerNames.Login);
+		}
+	}
 }

@@ -5,13 +5,13 @@ using JJ.Presentation.QuestionAndAnswer.ViewModels;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
-    public class QuestionRandomViewMapping : ViewMapping<RandomQuestionViewModel>
-    {
-        public QuestionRandomViewMapping()
-        {
-            MapPresenter(PresenterNames.RandomQuestionPresenter, PresenterActionNames.Edit);
-            MapController(ControllerNames.Questions, ActionNames.Random, ViewNames.Random);
-            MapParameter(PresenterParameterNames.categoryIDs, ActionParameterNames.c);
-        }
-    }
+	public class QuestionRandomViewMapping : ViewMapping<RandomQuestionViewModel>
+	{
+		public QuestionRandomViewMapping()
+		{
+			MapPresenter(PresenterNames.RandomQuestionPresenter, PresenterActionNames.Edit);
+			MapController(ControllerNames.Questions, ActionNames.Random, ViewNames.Random);
+			MapParameter(PresenterParameterNames.categoryIDs, ActionParameterNames.c);
+		}
+	}
 }
