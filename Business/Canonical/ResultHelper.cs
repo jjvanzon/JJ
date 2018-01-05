@@ -1,8 +1,8 @@
-﻿using JJ.Data.Canonical;
+﻿using System;
+using JJ.Data.Canonical;
 using JJ.Framework.Business;
 using JJ.Framework.Collections;
 using JJ.Framework.Exceptions;
-using System;
 
 namespace JJ.Business.Canonical
 {
@@ -50,9 +50,9 @@ namespace JJ.Business.Canonical
 
 		// Business
 
-		public static IResult Successful { get; } = CreateSuccessfulVoidResult();
+		public static VoidResult Successful { get; } = CreateSuccessfulVoidResult();
 
-		private static IResult CreateSuccessfulVoidResult() => new VoidResult { Successful = true };
+		private static VoidResult CreateSuccessfulVoidResult() => new VoidResult { Successful = true };
 
 		[Obsolete("Use IResult.Assert() instead.")]
 		public static void Assert(IResult result)
