@@ -348,15 +348,15 @@
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Presentation.JavaScript\JJ.Framework.JavaScript.csproj">
+    <ProjectReference Include="..\..\Framework\JavaScript\JJ.Framework.JavaScript.csproj">
       <Project>{bd4cf454-be0b-490f-997d-665da7ebec96}</Project>
       <Name>JJ.Framework.JavaScript</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Presentation.Mvc\JJ.Framework.Mvc.csproj">
+    <ProjectReference Include="..\..\Framework\Mvc\JJ.Framework.Mvc.csproj">
       <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
       <Name>JJ.Framework.Mvc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Presentation.Resources\JJ.Framework.Resources.csproj">
+    <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
       <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
       <Name>JJ.Framework.Resources</Name>
     </ProjectReference>

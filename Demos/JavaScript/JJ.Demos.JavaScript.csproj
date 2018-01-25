@@ -311,7 +311,7 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Presentation.JavaScript\JJ.Framework.JavaScript.csproj">
+    <ProjectReference Include="..\..\Framework\JavaScript\JJ.Framework.JavaScript.csproj">
       <Project>{bd4cf454-be0b-490f-997d-665da7ebec96}</Project>
       <Name>JJ.Framework.JavaScript</Name>
     </ProjectReference>
