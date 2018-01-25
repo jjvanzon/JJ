@@ -1,5 +1,5 @@
 ﻿using System;
-using JJ.Framework.Presentation.WinForms.Forms;
+using JJ.Framework.WinForms.Forms;
 
 namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 {

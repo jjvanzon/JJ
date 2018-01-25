@@ -32,6 +32,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -342,13 +343,13 @@
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.csproj">
+    <ProjectReference Include="..\..\Framework\Presentation.JavaScript\JJ.Framework.JavaScript.csproj">
       <Project>{bd4cf454-be0b-490f-997d-665da7ebec96}</Project>
-      <Name>JJ.Framework.Presentation.JavaScript</Name>
+      <Name>JJ.Framework.JavaScript</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Presentation.Mvc\JJ.Framework.Presentation.Mvc.csproj">
+    <ProjectReference Include="..\..\Framework\Presentation.Mvc\JJ.Framework.Mvc.csproj">
       <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
-      <Name>JJ.Framework.Presentation.Mvc</Name>
+      <Name>JJ.Framework.Mvc</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Presentation\JJ.Framework.Presentation.csproj">
       <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>
@@ -358,9 +359,9 @@
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Presentation.Resources\JJ.Framework.Presentation.Resources.csproj">
+    <ProjectReference Include="..\..\Framework\Presentation.Resources\JJ.Framework.Resources.csproj">
       <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
-      <Name>JJ.Framework.Presentation.Resources</Name>
+      <Name>JJ.Framework.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Web\JJ.Framework.Web.csproj">
       <Project>{164520aa-2db7-4405-9ae5-eb515527a33b}</Project>

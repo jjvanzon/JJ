@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Presentation.Mvc;
+﻿using JJ.Framework.Mvc;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 

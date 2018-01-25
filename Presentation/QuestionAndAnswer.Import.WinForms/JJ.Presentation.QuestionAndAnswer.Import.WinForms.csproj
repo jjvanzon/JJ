@@ -169,9 +169,9 @@
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Presentation.WinForms\JJ.Framework.Presentation.WinForms.csproj">
+    <ProjectReference Include="..\..\Framework\Presentation.WinForms\JJ.Framework.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
-      <Name>JJ.Framework.Presentation.WinForms</Name>
+      <Name>JJ.Framework.WinForms</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\QuestionAndAnswer.EntityFramework5\JJ.Data.QuestionAndAnswer.EntityFramework5.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>

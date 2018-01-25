@@ -24,7 +24,7 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService
 
 		public CommonResources GetCommonResources(string cultureName)
 		{
-			return (CommonResources)ConvertResources(typeof(JJ.Framework.Presentation.Resources.CommonResourceFormatter), typeof(CommonResources), cultureName);
+			return (CommonResources)ConvertResources(typeof(JJ.Framework.Resources.CommonResourceFormatter), typeof(CommonResources), cultureName);
 		}
 
 		private TDest ConvertResources<TSource, TDest>(string cultureName)
