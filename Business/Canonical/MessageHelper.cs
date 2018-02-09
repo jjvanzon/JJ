@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using JJ.Data.Canonical;
-using JJ.Framework.Business;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Exceptions;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Business.Canonical
 {
@@ -21,7 +18,7 @@ namespace JJ.Business.Canonical
 		}
 
 		// Business
-		
+
 		public static string FormatMessages(IEnumerable<string> messages)
 		{
 			if (messages == null) throw new NullException(() => messages);

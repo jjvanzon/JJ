@@ -1,19 +1,18 @@
-﻿using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Business.QuestionAndAnswer;
-using JJ.Data.QuestionAndAnswer;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Framework.Exceptions;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
+﻿using System.Collections.Generic;
 using System.Globalization;
+using JJ.Business.Canonical;
+using JJ.Business.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Data.Canonical;
+using JJ.Data.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Exceptions;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Presentation;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.Resources;
+using JJ.Presentation.QuestionAndAnswer.ViewModels;
+using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
+using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {

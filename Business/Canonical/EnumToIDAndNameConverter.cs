@@ -4,7 +4,7 @@ using System.Resources;
 using JJ.Data.Canonical;
 using JJ.Framework.Exceptions;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Business.Canonical
 {
 	public static class EnumToIDAndNameConverter
 	{
