@@ -1,6 +1,10 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable ReturnValueOfPureMethodIsNotUsed
+// ReSharper disable FormatStringProblem
+// ReSharper disable UnusedVariable
+#pragma warning disable IDE0022 // Use expression body for methods
 
 namespace JJ.Demos.Misc
 {

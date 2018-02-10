@@ -1,10 +1,14 @@
-﻿using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using JJ.Framework.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable UnusedVariable
+// ReSharper disable HeuristicUnreachableCode
+// ReSharper disable ExpressionIsAlwaysNull
+// ReSharper disable UnusedParameter.Local
+// ReSharper disable UnusedMember.Local
 #pragma warning disable 162
 #pragma warning disable 219
 
@@ -24,10 +28,10 @@ namespace JJ.Demos.Misc
 		[TestMethod]
 		public void Test_CultureInfo_TextInfo_ListSeparator_Chinese_Etc()
 		{
-			CultureInfo chineseCulture = new CultureInfo("zh-CN");
-			CultureInfo russianCulture = new CultureInfo("ru-RU");
-			CultureInfo dutchCulture = new CultureInfo("nl-NL");
-			CultureInfo enUSCulture = new CultureInfo("en-US");
+			var chineseCulture = new CultureInfo("zh-CN");
+			var russianCulture = new CultureInfo("ru-RU");
+			var dutchCulture = new CultureInfo("nl-NL");
+			var enUSCulture = new CultureInfo("en-US");
 
 			// These are not exactly what you would expect in terms of punctuation, so in most cases there is no point using it.
 			string chineseListSeparator = chineseCulture.TextInfo.ListSeparator;
@@ -63,7 +67,7 @@ namespace JJ.Demos.Misc
 			int count = values.Length;
 
 			// Array index is the value index at which we start counting
-			int[] maxArray = new int[count];
+			var maxArray = new int[count];
 
 			for (int i = 0; i < count; i++)
 			{

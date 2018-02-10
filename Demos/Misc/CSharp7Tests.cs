@@ -1,6 +1,20 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable UnusedVariable
+// ReSharper disable NotAccessedVariable
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
+// ReSharper disable HeuristicUnreachableCode
+// ReSharper disable RedundantAssignment
+// ReSharper disable NotAccessedField.Local
+// ReSharper disable SuggestVarOrType_SimpleTypes
+// ReSharper disable ConstantNullCoalescingCondition
+// ReSharper disable JoinNullCheckWithUsage
+// ReSharper disable UnusedTupleComponentInReturnValue
+// ReSharper disable UnusedMember.Local
+// ReSharper disable ArrangeAccessorOwnerBody
+#pragma warning disable 219
 #pragma warning disable IDE0020 // Use pattern matching
+#pragma warning disable IDE0018 // Inline variable declaration
 
 namespace JJ.Demos.Misc
 {

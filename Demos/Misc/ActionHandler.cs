@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JJ.Framework.Business;
+﻿using JJ.Framework.Business;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Demos.Misc
 {
 	/// <summary>
 	/// Not finished. Trying something out.
@@ -37,7 +32,7 @@ namespace JJ.Framework.Presentation
 			return viewModel;
 		}
 
-		protected virtual TEntity ToEntity(TViewModel userInput) => default(TEntity);
+		protected virtual TEntity ToEntity(TViewModel userInput) => default;
 
 		protected virtual IResult Business(TViewModel userInput, TEntity entity) => null;
 

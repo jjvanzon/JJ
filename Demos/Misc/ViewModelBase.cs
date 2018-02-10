@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Demos.Misc
 {
 	/// <summary>
 	/// Not finished. Trying something out.

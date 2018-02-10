@@ -1,6 +1,7 @@
-﻿using JJ.Framework.Testing;
+﻿using System.Configuration;
+using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Configuration;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Demos.Misc
 {
