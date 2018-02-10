@@ -1,19 +1,19 @@
-﻿using JJ.Data.QuestionAndAnswer;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.Extensions;
-using System;
+﻿using System;
 using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Data.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer
 {
 	public class QuestionFlagger
 	{
-		private User _user;
+		private readonly User _user;
 
-		private IQuestionFlagRepository _questionFlagRepository;
-		private IFlagStatusRepository _flagStatusRepository;
+		private readonly IQuestionFlagRepository _questionFlagRepository;
+		private readonly IFlagStatusRepository _flagStatusRepository;
 
 		public QuestionFlagger(User user, IQuestionFlagRepository questionFlagRepository, IFlagStatusRepository flagStatusRepository)
 		{

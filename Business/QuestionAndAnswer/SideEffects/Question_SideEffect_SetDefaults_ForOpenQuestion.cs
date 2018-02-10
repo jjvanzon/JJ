@@ -1,17 +1,17 @@
-﻿using JJ.Framework.Business;
-using JJ.Framework.Exceptions;
+﻿using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.Enums;
-using JJ.Business.QuestionAndAnswer.Extensions;
+using JJ.Framework.Business;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.SideEffects
 {
 	public class Question_SideEffect_SetDefaults_ForOpenQuestion : ISideEffect
 	{
-		private Question _entity;
-		private IQuestionTypeRepository _questionTypeRepository;
-		private EntityStatusManager _statusManager;
+		private readonly Question _entity;
+		private readonly IQuestionTypeRepository _questionTypeRepository;
+		private readonly EntityStatusManager _statusManager;
 
 		public Question_SideEffect_SetDefaults_ForOpenQuestion(
 			Question entity,

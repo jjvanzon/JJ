@@ -1,8 +1,8 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
-using JJ.Framework.Validation;
 using JJ.Data.QuestionAndAnswer;
-using System;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Validation;
+// ReSharper disable JoinDeclarationAndInitializer
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {

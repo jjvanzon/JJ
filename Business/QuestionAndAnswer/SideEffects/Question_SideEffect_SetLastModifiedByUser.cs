@@ -1,15 +1,15 @@
-﻿using JJ.Framework.Business;
-using JJ.Framework.Exceptions;
+﻿using System.Linq;
 using JJ.Data.QuestionAndAnswer;
-using System.Linq;
+using JJ.Framework.Business;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.SideEffects
 {
 	public class Question_SideEffect_SetLastModifiedByUser : ISideEffect
 	{
-		private Question _question;
-		private User _user;
-		private EntityStatusManager _statusManager;
+		private readonly Question _question;
+		private readonly User _user;
+		private readonly EntityStatusManager _statusManager;
 
 		public Question_SideEffect_SetLastModifiedByUser(Question question, User user, EntityStatusManager statusManager)
 		{

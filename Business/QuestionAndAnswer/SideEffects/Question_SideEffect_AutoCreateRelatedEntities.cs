@@ -1,17 +1,17 @@
-﻿using JJ.Framework.Business;
-using JJ.Framework.Exceptions;
+﻿using System.Linq;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.LinkTo;
-using System.Linq;
+using JJ.Framework.Business;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.SideEffects
 {
 	public class Question_SideEffect_AutoCreateRelatedEntities : ISideEffect
 	{
-		private Question _question;
-		private IAnswerRepository _answerRepository;
-		private EntityStatusManager _entityStatusManager;
+		private readonly Question _question;
+		private readonly IAnswerRepository _answerRepository;
+		private readonly EntityStatusManager _entityStatusManager;
 
 		public Question_SideEffect_AutoCreateRelatedEntities(Question question, IAnswerRepository answerRepository, EntityStatusManager entityStatusManager)
 		{

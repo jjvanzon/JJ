@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using JJ.Framework.Collections;
-using JJ.Framework.Exceptions;
 using JJ.Data.Canonical;
 using JJ.Framework.Business;
+using JJ.Framework.Collections;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.Canonical
 {
@@ -57,7 +57,14 @@ namespace JJ.Business.Canonical
 		{
 			if (result == null) throw new NullException(() => result);
 
-			ResultHelper.Assert(result);
+			if (result == null) throw new NullException(() => result);
+
+			// ReSharper disable once InvertIf
+			if (!result.Successful)
+			{
+				string formattedMessages = ResultHelper.FormatMessages(result);
+				throw new Exception(formattedMessages);
+			}
 		}
 	}
 }

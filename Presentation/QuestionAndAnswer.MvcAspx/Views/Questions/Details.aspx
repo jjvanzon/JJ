@@ -141,7 +141,7 @@
                         </div>
                         <div>
                             <%: PropertyDisplayNames.FlagStatus %>
-                            <%: flag.Status.Description %>
+                            <%: flag.Status.Name %>
                         </div>
                         <div>
                             <%: PropertyDisplayNames.Comment %>

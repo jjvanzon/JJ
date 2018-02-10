@@ -1,14 +1,14 @@
-﻿using JJ.Framework.Business;
-using JJ.Framework.Exceptions;
+﻿using System.Linq;
 using JJ.Data.QuestionAndAnswer;
-using System.Linq;
+using JJ.Framework.Business;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.SideEffects
 {
 	public class Question_SideEffect_SetIsManual : ISideEffect
 	{
-		private Question _entity;
-		private EntityStatusManager _statusManager;
+		private readonly Question _entity;
+		private readonly EntityStatusManager _statusManager;
 
 		public Question_SideEffect_SetIsManual(Question entity, EntityStatusManager statusManager)
 		{

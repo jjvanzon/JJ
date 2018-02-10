@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer
@@ -100,7 +100,9 @@ namespace JJ.Business.QuestionAndAnswer
 		/// </summary>
 		public IList<Category> SelectNodesRecursive(IEnumerable<Category> selectedCategories)
 		{
+			// ReSharper disable once PossibleMultipleEnumeration
 			IList<Category> ancestors = GetAncestorsRecursive(selectedCategories);
+			// ReSharper disable once PossibleMultipleEnumeration
 			Category[] selectedBranches = selectedCategories.Except(ancestors).ToArray();
 
 			var list = new List<Category>();

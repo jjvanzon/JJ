@@ -1,14 +1,14 @@
-﻿using JJ.Framework.Business;
+﻿using JJ.Data.QuestionAndAnswer;
+using JJ.Framework.Business;
 using JJ.Framework.Exceptions;
-using JJ.Data.QuestionAndAnswer;
 
 namespace JJ.Business.QuestionAndAnswer.SideEffects
 {
 	public class QuestionFlag_SideEffect_SetLastModifiedByUser : ISideEffect
 	{
-		private QuestionFlag _questionFlag;
-		private User _user;
-		private EntityStatusManager _statusManager;
+		private readonly QuestionFlag _questionFlag;
+		private readonly User _user;
+		private readonly EntityStatusManager _statusManager;
 
 		public QuestionFlag_SideEffect_SetLastModifiedByUser(QuestionFlag questionFlag, User user, EntityStatusManager statusManager)
 		{

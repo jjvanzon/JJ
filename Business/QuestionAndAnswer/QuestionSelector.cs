@@ -1,9 +1,9 @@
-﻿using JJ.Framework.Mathematics;
-using JJ.Framework.Exceptions;
+﻿using System.Collections.Generic;
+using System.Linq;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Mathematics;
 
 namespace JJ.Business.QuestionAndAnswer
 {
@@ -28,7 +28,7 @@ namespace JJ.Business.QuestionAndAnswer
 
 			foreach (Category category in categories)
 			{
-				var ids = _questionRepository.GetQuestionIDsByCategory(category);
+				IList<int> ids = _questionRepository.GetQuestionIDsByCategory(category);
 				_ids.AddRange(ids);
 			}
 

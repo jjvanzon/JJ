@@ -54,19 +54,6 @@ namespace JJ.Business.Canonical
 
 		private static VoidResult CreateSuccessfulVoidResult() => new VoidResult { Successful = true };
 
-		[Obsolete("Use IResult.Assert() instead.")]
-		public static void Assert(IResult result)
-		{
-			if (result == null) throw new NullException(() => result);
-
-			// ReSharper disable once InvertIf
-			if (!result.Successful)
-			{
-				string formattedMessages = FormatMessages(result);
-				throw new Exception(formattedMessages);
-			}
-		}
-
 		public static string FormatMessages(IResult result)
 		{
 			if (result == null) throw new NullException(() => result);

@@ -1,8 +1,7 @@
-﻿using System;
+﻿using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Business.QuestionAndAnswer.LinkTo;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 {
@@ -15,10 +14,9 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			IQuestionCategoryRepository questionCategoryRepository,
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
-			ISourceRepository sourceRepository,
 			Source source,
 			string categoryIdentifier)
-			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source, categoryIdentifier)
+			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, source, categoryIdentifier)
 		{ }
 
 		public override void ConvertToEntities(W3CSpecCss3_SelectorIndex_ImportModel model)

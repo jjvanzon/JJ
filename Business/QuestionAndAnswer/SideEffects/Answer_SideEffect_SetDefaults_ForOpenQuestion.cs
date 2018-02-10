@@ -1,20 +1,18 @@
-﻿using JJ.Framework.Business;
+﻿using JJ.Data.QuestionAndAnswer;
+using JJ.Framework.Business;
 using JJ.Framework.Exceptions;
-using JJ.Data.QuestionAndAnswer;
 
 namespace JJ.Business.QuestionAndAnswer.SideEffects
 {
 	public class Answer_SideEffect_SetDefaults_ForOpenQuestion : ISideEffect
 	{
-		private Answer _entity;
-		private EntityStatusManager _statusManager;
+		private readonly Answer _entity;
+		private readonly EntityStatusManager _statusManager;
 
 		public Answer_SideEffect_SetDefaults_ForOpenQuestion(Answer entity, EntityStatusManager statusManager)
 		{
-			if (entity == null) throw new NullException(() => entity);
-			if (statusManager == null) throw new NullException(() => statusManager);
-			_entity = entity;
-			_statusManager = statusManager;
+			_entity = entity ?? throw new NullException(() => entity);
+			_statusManager = statusManager ?? throw new NullException(() => statusManager);
 		}
 
 		public void Execute()

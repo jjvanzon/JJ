@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Common;
-using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Business.QuestionAndAnswer.LinkTo;
+// ReSharper disable UnusedParameter.Local
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 {
@@ -18,10 +19,9 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			IQuestionCategoryRepository questionCategoryRepository,
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
-			ISourceRepository sourceRepository,
 			Source source,
 			string categoryIdentifier)
-			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source, categoryIdentifier)
+			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, source, categoryIdentifier)
 		{ }
 
 		public override void ConvertToEntities(LooseDefinitionImportModel model)
@@ -126,11 +126,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Replace the term(s) in the meaning with '...'.
 			foreach (string term2 in ImportHelper.SplitPluralTerm(term))
 			{
-				meaning = meaning.Replace("The " + term, "...", ignoreCase: true);
-				meaning = meaning.Replace(" the " + term, " ...", ignoreCase: true);
-				meaning = meaning.Replace("A " + term, "...", ignoreCase: true);
-				meaning = meaning.Replace(" a " + term, " ...", ignoreCase: true);
-				meaning = meaning.Replace(term, "...", ignoreCase: true);
+				meaning = meaning.Replace("The " + term2, "...", ignoreCase: true);
+				meaning = meaning.Replace(" the " + term2, " ...", ignoreCase: true);
+				meaning = meaning.Replace("A " + term2, "...", ignoreCase: true);
+				meaning = meaning.Replace(" a " + term2, " ...", ignoreCase: true);
+				meaning = meaning.Replace(term2, "...", ignoreCase: true);
 			}
 
 			// Cut away period from the end, so that it can be followed by a question mark (?).
@@ -226,6 +226,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			}
 		}
 
+		// ReSharper disable once UnusedMember.Local
 		private void ScanTextForExistingCategoriesAndLinkQuestionToThem(Question question, string context)
 		{
 			// TODO: This is pointless if the source of information renders only terrible questions. Perhaps try this solution in a later import, where it is worth is.

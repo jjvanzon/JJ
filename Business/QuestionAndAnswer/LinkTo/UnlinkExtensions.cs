@@ -36,22 +36,22 @@ namespace JJ.Business.QuestionAndAnswer.LinkTo
 
 		public static void UnlinkFlaggedByUser(this QuestionFlag questionFlag)
 		{
-			questionFlag.LinkToFlaggedByUser((User)null);
+			questionFlag.LinkToFlaggedByUser(null);
 		}
 
 		public static void UnlinkLastModifiedByUser(this QuestionFlag questionFlag)
 		{
-			questionFlag.LinkToLastModifiedByUser((User)null);
+			questionFlag.LinkToLastModifiedByUser(null);
 		}
 
 		public static void UnlinkQuestion(this QuestionLink questionLink)
 		{
-			questionLink.LinkTo((Question)null);
+			questionLink.LinkTo(null);
 		}
 
 		public static void UnlinkQuestion(this Answer answer)
 		{
-			answer.LinkTo((Question)null);
+			answer.LinkTo(null);
 		}
 	}
 }

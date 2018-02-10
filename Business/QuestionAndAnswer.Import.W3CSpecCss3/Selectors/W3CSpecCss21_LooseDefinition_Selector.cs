@@ -4,17 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
-using JJ.Framework.Xml;
+using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
+	[UsedImplicitly]
 	public class W3CSpecCss21_LooseDefinition_Selector : ISelector<LooseDefinitionImportModel>
 	{
 		private class Record
 		{
 			public XmlNode HTag { get; set; }
+			// ReSharper disable once UnusedAutoPropertyAccessor.Local
 			public XmlNode DlTag { get; set; }
 			public XmlNode DtTag { get; set; }
 			public XmlNode DdTag { get; set; }
@@ -63,6 +66,12 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		{
 			string xpath = "//dl[not(ancestor::div[@class='propdef'])]";
 			XmlNodeList nodes = doc.SelectNodes(xpath);
+
+			if (nodes == null)
+			{
+				throw new NullException(() => doc.SelectNodes(xpath));
+			}
+
 			return nodes.OfType<XmlNode>();
 		}
 
@@ -84,6 +93,12 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		{
 			string xpath = "dt";
 			XmlNodeList nodes = dlTag.SelectNodes(xpath);
+
+			if (nodes == null)
+			{
+				throw new NullException(() => dlTag.SelectNodes(xpath));
+			}
+
 			return nodes.OfType<XmlNode>();
 		}
 
@@ -126,7 +141,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		{
 			string value = GetText(record.HTag);
 
-			Regex regex = new Regex(@"([^0-9\. ]\w.*)");
+			var regex = new Regex(@"([^0-9\. ]\w.*)");
 			Match match = regex.Match(value);
 			if (match == null)
 			{
@@ -165,7 +180,14 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
 		private IEnumerable<LinkModel> GetLinks(XmlNode node, string xpath)
 		{
-			foreach (XmlNode node2 in node.SelectNodes(xpath))
+			XmlNodeList childNodes = node.SelectNodes(xpath);
+
+			if (childNodes == null)
+			{
+				throw new NullException(() => node.SelectNodes(xpath));
+			}
+
+			foreach (XmlNode node2 in childNodes)
 			{
 				LinkModel model = CreateLinkModel(node2);
 				yield return model;
@@ -197,15 +219,6 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		}
 
 		// Helpers
-
-		/// <summary>
-		/// Gets the text from the content selected with an XPath from an XmlNode, HTML-decodes it and removes excessive whitespace.
-		/// </summary>
-		private string SelectText(XmlNode node, string xpath)
-		{
-			XmlNode node2 = XmlHelper.SelectNode(node, xpath);
-			return GetText(node2);
-		}
 
 		/// <summary>
 		/// Gets the text from an XmlNode, HTML-decodes and removes excessive whitespace.

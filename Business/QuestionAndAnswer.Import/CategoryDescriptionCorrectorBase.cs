@@ -1,18 +1,16 @@
-﻿using JJ.Framework.Exceptions;
-using JJ.Data.QuestionAndAnswer;
+﻿using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {
 	public abstract class CategoryDescriptionCorrectorBase
 	{
-		private ICategoryRepository _categoryRepository;
+		private readonly ICategoryRepository _categoryRepository;
 
 		public CategoryDescriptionCorrectorBase(ICategoryRepository categoryRepository)
 		{
-			if (categoryRepository == null) throw new NullException(() => categoryRepository);
-
-			_categoryRepository = categoryRepository;
+			_categoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
 		}
 
 		public abstract void Execute();

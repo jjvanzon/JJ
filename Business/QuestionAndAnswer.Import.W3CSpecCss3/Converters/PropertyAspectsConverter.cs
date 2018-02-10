@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
-using JJ.Framework.Common;
-using JJ.Data.QuestionAndAnswer;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Data.QuestionAndAnswer;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Common;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 {
@@ -20,10 +19,9 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			IQuestionCategoryRepository questionCategoryRepository,
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
-			ISourceRepository sourceRepository,
 			Source source,
 			string categoryIdentifier)
-			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, sourceRepository, source, categoryIdentifier)
+			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, source, categoryIdentifier)
 		{ }
 
 		public override void ConvertToEntities(PropertyAspectsImportModel model)
@@ -585,7 +583,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 		private bool ContainsSee(string value)
 		{
-			Regex regex = new Regex(@"\bsee\b");
+			var regex = new Regex(@"\bsee\b");
 			return regex.IsMatch(value);
 		}
 

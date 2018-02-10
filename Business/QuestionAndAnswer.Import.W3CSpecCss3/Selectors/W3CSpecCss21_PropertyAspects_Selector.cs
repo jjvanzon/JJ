@@ -2,9 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Xml;
-using JJ.Framework.Xml;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
@@ -33,6 +33,10 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		{
 			string xpath = "//div[@class='propdef']/dl";
 			XmlNodeList nodes = doc.SelectNodes(xpath);
+			if (nodes == null)
+			{
+				throw new NullException(() => doc.SelectNodes(xpath));
+			}
 			return nodes.OfType<XmlNode>();
 		}
 
@@ -167,7 +171,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
 		private IEnumerable<LinkModel> GetLinks(XmlNode node, string xpath)
 		{
-			foreach (XmlNode node2 in node.SelectNodes(xpath))
+			XmlNodeList childNodes = node.SelectNodes(xpath);
+			if (childNodes == null)
+			{
+				throw new NullException(() => node.SelectNodes(xpath));
+			}
+
+			foreach (XmlNode node2 in childNodes)
 			{
 				LinkModel model = CreateLinkModel(node2);
 				yield return model;

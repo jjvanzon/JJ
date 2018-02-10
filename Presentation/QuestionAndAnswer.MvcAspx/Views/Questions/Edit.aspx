@@ -239,7 +239,7 @@
                                         Model.Question.Flags[i].AllFlagStatuses.Select(x => new SelectListItem 
                                         {
                                             Value = x.ID.ToString(), 
-                                            Text = x.Description, 
+                                            Text = x.Name, 
                                             Selected = x.ID == Model.Question.Flags[i].Status.ID 
                                         }))%>
 

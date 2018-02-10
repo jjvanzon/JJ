@@ -173,7 +173,7 @@
     <Compile Include="Names\ControllerNames.cs" />
     <Compile Include="Names\CookieNames.cs" />
     <Compile Include="Names\HttpHeaderNames.cs" />
-    <Compile Include="Names\SectionNames.cs" />
+    <Compile Include="Names\2018-02-09 Backup of SectionNames.cs" />
     <Compile Include="Names\SessionKeys.cs" />
     <Compile Include="Names\ViewDataKeys.cs" />
     <Compile Include="Names\ViewNames.cs" />

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>
-        @RenderSection(SectionNames.Title)
+        @RenderSection("Title")
     </title>
 
     @*TODO: Google why to do it with Scripts.Render instead of the classic way.*@
@@ -19,7 +19,7 @@
     <script src="/Scripts/JJ.Framework.RememberScrollPosition.js"></script>
     <script src="/Scripts/JJ.Framework.Url.js"></script>
 
-    @RenderSection(SectionNames.Scripts, required: false)
+    @RenderSection("Scripts", required: false)
 </head>
 <body>
     <header>
@@ -27,7 +27,7 @@
         <br />
         <h1>Q&A</h1>
         
-        @RenderSection(SectionNames.Header, required: false)
+        @RenderSection("Header", required: false)
     </header>
 
     <nav>

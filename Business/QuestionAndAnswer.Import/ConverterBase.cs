@@ -1,13 +1,12 @@
-﻿using System;
-using JJ.Framework.Common;
-using JJ.Framework.Validation;
+﻿using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Business.QuestionAndAnswer.SideEffects;
+using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.Validation;
-using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Business;
-using JJ.Business.QuestionAndAnswer.SideEffects;
+using JJ.Framework.Common;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Validation;
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {
@@ -15,17 +14,16 @@ namespace JJ.Business.QuestionAndAnswer.Import
 	{
 		protected readonly Source _source;
 
-		protected EntityStatusManager _entityStatusManager;
+		protected readonly EntityStatusManager _entityStatusManager;
 
-		protected IQuestionRepository _questionRepository;
-		protected IAnswerRepository _answerRepository;
-		protected ICategoryRepository _categoryRepository;
-		protected IQuestionCategoryRepository _questionCategoryRepository;
-		protected IQuestionLinkRepository _questionLinkRepository;
-		protected IQuestionTypeRepository _questionTypeRepository;
-		protected ISourceRepository _sourceRepository;
+		protected readonly IQuestionRepository _questionRepository;
+		protected readonly IAnswerRepository _answerRepository;
+		protected readonly ICategoryRepository _categoryRepository;
+		protected readonly IQuestionCategoryRepository _questionCategoryRepository;
+		protected readonly IQuestionLinkRepository _questionLinkRepository;
+		protected readonly IQuestionTypeRepository _questionTypeRepository;
 
-		private CategoryManager _categoryManager;
+		private readonly CategoryManager _categoryManager;
 
 		protected string _categoryIdentifier;
 
@@ -37,26 +35,15 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			IQuestionCategoryRepository questionCategoryRepository,
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
-			ISourceRepository sourceRepository,
 			Source source,
 			string categoryIdentifier)
 		{
-			if (questionRepository == null) throw new NullException(() => questionRepository);
-			if (answerRepository == null) throw new NullException(() => answerRepository);
-			if (categoryRepository == null) throw new NullException(() => categoryRepository);
-			if (questionCategoryRepository == null) throw new NullException(() => questionCategoryRepository);
-			if (questionLinkRepository == null) throw new NullException(() => questionLinkRepository);
-			if (questionTypeRepository == null) throw new NullException(() => questionTypeRepository);
-			if (sourceRepository == null) throw new NullException(() => sourceRepository);
-			if (source == null) throw new NullException(() => source);
-
-			_questionRepository = questionRepository;
-			_answerRepository = answerRepository;
-			_categoryRepository = categoryRepository;
-			_questionCategoryRepository = questionCategoryRepository;
-			_questionLinkRepository = questionLinkRepository;
-			_questionTypeRepository = questionTypeRepository;
-			_sourceRepository = sourceRepository;
+			_questionRepository = questionRepository ?? throw new NullException(() => questionRepository);
+			_answerRepository = answerRepository ?? throw new NullException(() => answerRepository);
+			_categoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
+			_questionCategoryRepository = questionCategoryRepository ?? throw new NullException(() => questionCategoryRepository);
+			_questionLinkRepository = questionLinkRepository ?? throw new NullException(() => questionLinkRepository);
+			_questionTypeRepository = questionTypeRepository ?? throw new NullException(() => questionTypeRepository);
 
 			_entityStatusManager = new EntityStatusManager();
 
@@ -64,7 +51,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
 
 			_categoryIdentifier = categoryIdentifier;
 
-			_source = source;
+			_source = source ?? throw new NullException(() => source);
 		}
 
 		public abstract void ConvertToEntities(TModel model);

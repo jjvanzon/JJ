@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Business.QuestionAndAnswer.Import
@@ -15,21 +15,21 @@ namespace JJ.Business.QuestionAndAnswer.Import
 		where TSelector : ISelector<TModel>, new()
 		where TConverter : ConverterBase<TModel>
 	{
-		private Source _source;
+		private readonly Source _source;
 
-		private IQuestionRepository _questionRepository;
-		private IAnswerRepository _answerRepository;
-		private ICategoryRepository _categoryRepository;
-		private IQuestionCategoryRepository _questionCategoryRepository;
-		private IQuestionLinkRepository _questionLinkRepository;
-		private IQuestionTypeRepository _questionTypeRepository;
-		private ISourceRepository _sourceRepository;
-		private IQuestionFlagRepository _questionFlagRepository;
+		private readonly IQuestionRepository _questionRepository;
+		private readonly IAnswerRepository _answerRepository;
+		private readonly ICategoryRepository _categoryRepository;
+		private readonly IQuestionCategoryRepository _questionCategoryRepository;
+		private readonly IQuestionLinkRepository _questionLinkRepository;
+		private readonly IQuestionTypeRepository _questionTypeRepository;
+		private readonly ISourceRepository _sourceRepository;
+		private readonly IQuestionFlagRepository _questionFlagRepository;
 
 		private Action<string> _progressCallback;
 		private Func<bool> _isCancelledCallback;
 
-		private string _categoryIdenfier;
+		private readonly string _categoryIdentifier;
 
 		/// <param name="categoryIdentifier">Defines an extra category to use for the converter.</param>
 		public Importer(
@@ -42,29 +42,19 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			ISourceRepository sourceRepository,
 			IQuestionFlagRepository questionFlagRepository,
 			Source source,
-			string categoryIdenfier)
+			string categoryIdentifier)
 		{
-			if (questionRepository == null) throw new NullException(() => questionRepository);
-			if (answerRepository == null) throw new NullException(() => answerRepository);
-			if (categoryRepository == null) throw new NullException(() => categoryRepository);
-			if (questionCategoryRepository == null) throw new NullException(() => questionCategoryRepository);
-			if (questionLinkRepository == null) throw new NullException(() => questionLinkRepository);
-			if (questionTypeRepository == null) throw new NullException(() => questionTypeRepository);
-			if (sourceRepository == null) throw new NullException(() => sourceRepository);
-			if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
-			if (source == null) throw new NullException(() => source);
+			_questionRepository = questionRepository ?? throw new NullException(() => questionRepository);
+			_answerRepository = answerRepository ?? throw new NullException(() => answerRepository);
+			_categoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
+			_questionCategoryRepository = questionCategoryRepository ?? throw new NullException(() => questionCategoryRepository);
+			_questionLinkRepository = questionLinkRepository ?? throw new NullException(() => questionLinkRepository);
+			_questionTypeRepository = questionTypeRepository ?? throw new NullException(() => questionTypeRepository);
+			_sourceRepository = sourceRepository ?? throw new NullException(() => sourceRepository);
+			_questionFlagRepository = questionFlagRepository ?? throw new NullException(() => questionFlagRepository);
 
-			_questionRepository = questionRepository;
-			_answerRepository = answerRepository;
-			_categoryRepository = categoryRepository;
-			_questionCategoryRepository = questionCategoryRepository;
-			_questionLinkRepository = questionLinkRepository;
-			_questionTypeRepository = questionTypeRepository;
-			_sourceRepository = sourceRepository;
-			_questionFlagRepository = questionFlagRepository;
-
-			_source = source;
-			_categoryIdenfier = categoryIdenfier;
+			_source = source ?? throw new NullException(() => source);
+			_categoryIdentifier = categoryIdentifier;
 		}
 
 		public void Execute(string filePath, Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
@@ -108,7 +98,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			int counter = 0;
 
 			var selector = new TSelector();
-			var converter = CreateConverter();
+			TConverter converter = CreateConverter();
 
 			foreach (TModel model in selector.GetSelection(stream))
 			{
@@ -138,7 +128,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
 				_questionTypeRepository,
 				_sourceRepository,
 				_source,
-				_categoryIdenfier);
+				_categoryIdentifier);
 		}
 
 		private void DeleteExistingQuestions()

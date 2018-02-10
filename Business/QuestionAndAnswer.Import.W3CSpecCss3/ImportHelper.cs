@@ -15,7 +15,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
 		/// </summary>
 		public static string[] SplitPluralTerm(string input)
 		{
-			string[] output = input.Split(new string[] { " and ", " or ", "," }, StringSplitOptions.RemoveEmptyEntries);
+			string[] output = input.Split(new[] { " and ", " or ", "," }, StringSplitOptions.RemoveEmptyEntries);
 			output = output.TrimAll();
 			return output;
 		}
@@ -26,7 +26,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
 		/// </summary>
 		public static string[] SplitPluralProperty(string input)
 		{
-			string[] output = input.Split(new string[] { " and ", " or ", ",", " " }, StringSplitOptions.RemoveEmptyEntries);
+			string[] output = input.Split(new[] { " and ", " or ", ",", " " }, StringSplitOptions.RemoveEmptyEntries);
 			output = output.TrimAll();
 			return output;
 		}
@@ -57,7 +57,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
 			text = text.RemoveExcessiveWhiteSpace();
 
 			// Replace non-space whitespace characters by spaces.
-			Regex regex = new Regex(@"(\s{1})");
+			var regex = new Regex(@"(\s{1})");
 			text = regex.Replace(text, " ");
 
 			return text;
@@ -126,6 +126,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
 
 			string value = input;
 
+			// ReSharper disable once SuggestVarOrType_Elsewhere
 			foreach (var x in _substitutions)
 			{
 				value = value.Replace(x.Key, x.Value);

@@ -4,17 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
-using JJ.Framework.Xml;
+using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
+	[UsedImplicitly]
 	public class W3CSpecCss3_LooseDefinition_Selector : ISelector<LooseDefinitionImportModel>
 	{
 		private class Record
 		{
 			public XmlNode HTag { get; set; }
+			// ReSharper disable once UnusedAutoPropertyAccessor.Local
 			public XmlNode DlTag { get; set; }
 			public XmlNode DtTag { get; set; }
 			public XmlNode DdTag { get; set; }
@@ -88,6 +91,10 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		{
 			string xpath = "dt";
 			XmlNodeList nodes = dlTag.SelectNodes(xpath);
+			if (nodes == null)
+			{
+				throw new NullException(() => dlTag.SelectNodes(xpath));
+			}
 			return nodes.OfType<XmlNode>();
 		}
 
