@@ -5,7 +5,8 @@ using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Common;
+using JJ.Framework.Text;
+
 // ReSharper disable UnusedParameter.Local
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters

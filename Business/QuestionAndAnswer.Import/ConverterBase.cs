@@ -4,8 +4,8 @@ using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Business;
-using JJ.Framework.Common;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Text;
 using JJ.Framework.Validation;
 
 namespace JJ.Business.QuestionAndAnswer.Import
