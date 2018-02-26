@@ -12,11 +12,8 @@ namespace JJ.Business.QuestionAndAnswer.SideEffects
 
 		public Question_SideEffect_SetIsManual(Question entity, EntityStatusManager statusManager)
 		{
-			if (entity == null) throw new NullException(() => entity);
-			if (statusManager == null) throw new NullException(() => statusManager);
-
-			_entity = entity;
-			_statusManager = statusManager;
+			_entity = entity ?? throw new NullException(() => entity);
+			_statusManager = statusManager ?? throw new NullException(() => statusManager);
 		}
 
 		public void Execute()

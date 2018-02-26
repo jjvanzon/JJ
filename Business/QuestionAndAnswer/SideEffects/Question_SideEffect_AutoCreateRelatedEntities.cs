@@ -13,15 +13,14 @@ namespace JJ.Business.QuestionAndAnswer.SideEffects
 		private readonly IAnswerRepository _answerRepository;
 		private readonly EntityStatusManager _entityStatusManager;
 
-		public Question_SideEffect_AutoCreateRelatedEntities(Question question, IAnswerRepository answerRepository, EntityStatusManager entityStatusManager)
+		public Question_SideEffect_AutoCreateRelatedEntities(
+			Question question,
+			IAnswerRepository answerRepository,
+			EntityStatusManager entityStatusManager)
 		{
-			if (question == null) throw new NullException(() => question);
-			if (answerRepository == null) throw new NullException(() => answerRepository);
-			if (entityStatusManager == null) throw new NullException(() => entityStatusManager);
-
-			_question = question;
-			_answerRepository = answerRepository;
-			_entityStatusManager = entityStatusManager;
+			_question = question ?? throw new NullException(() => question);
+			_answerRepository = answerRepository ?? throw new NullException(() => answerRepository);
+			_entityStatusManager = entityStatusManager ?? throw new NullException(() => entityStatusManager);
 		}
 
 		public void Execute()

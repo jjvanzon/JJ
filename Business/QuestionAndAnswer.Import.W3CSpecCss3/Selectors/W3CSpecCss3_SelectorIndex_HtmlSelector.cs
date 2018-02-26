@@ -1,9 +1,9 @@
-﻿using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Xml;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
@@ -22,7 +22,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 				// Most of all to keep 'plural' css selectors separated.
 				xml = xml.Replace("<br />", " ");
 
-				XmlDocument doc = new XmlDocument();
+				var doc = new XmlDocument();
 				doc.LoadXml(xml);
 
 				foreach (XmlNode node in GetRecords(doc))

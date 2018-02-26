@@ -19,10 +19,9 @@ namespace JJ.Business.QuestionAndAnswer
 
 		public QuestionSelector(IQuestionRepository questionRepository, params Category[] categories)
 		{
-			if (questionRepository == null) throw new NullException(() => questionRepository);
 			if (categories == null) throw new NullException(() => categories);
 
-			_questionRepository = questionRepository;
+			_questionRepository = questionRepository ?? throw new NullException(() => questionRepository);
 
 			_ids = new List<int>();
 

@@ -1,9 +1,11 @@
 ﻿using System.Data.Entity;
 using System.Linq;
+using JJ.Data.QuestionAndAnswer.EntityFramework5.Mapping;
 using JJ.Data.QuestionAndAnswer.Tests.Helpers;
 using JJ.Framework.Configuration;
 using JJ.Framework.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Data.QuestionAndAnswer.Tests
 {
@@ -13,8 +15,9 @@ namespace JJ.Data.QuestionAndAnswer.Tests
 		[TestMethod]
 		public void Test_QuestionAndAnswerOrmMappings_EntityFramework5_Directly()
 		{
-			string specialConnectionString = @"metadata=res://*/Mapping.QuestionAndAnswer.csdl|res://*/Mapping.QuestionAndAnswer.ssdl|res://*/Mapping.QuestionAndAnswer.msl;provider=System.Data.SqlClient;provider connection string=""data source=.\SQLEXPRESS;initial catalog=DEV_QuestionAndAnswerDB_UnitTests;persist security info=True;user id=dev;password=dev;MultipleActiveResultSets=True;App=EntityFramework"";";
-			using (DbContext context = new JJ.Data.QuestionAndAnswer.EntityFramework5.Mapping.QuestionAndAnswerContext(specialConnectionString))
+			string specialConnectionString =
+				@"metadata=res://*/Mapping.QuestionAndAnswer.csdl|res://*/Mapping.QuestionAndAnswer.ssdl|res://*/Mapping.QuestionAndAnswer.msl;provider=System.Data.SqlClient;provider connection string=""data source=.\SQLEXPRESS;initial catalog=DEV_QuestionAndAnswerDB_UnitTests;persist security info=True;user id=dev;password=dev;MultipleActiveResultSets=True;App=EntityFramework"";";
+			using (DbContext context = new QuestionAndAnswerContext(specialConnectionString))
 			{
 				foreach (var entity in context.Set<Question>())
 				{
@@ -29,7 +32,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
 			using (IContext context = CreateEntityFramework5Context())
 			{
 				int existingQuestionID = GetExistingQuestionID();
-				Question question = context.Get<Question>(existingQuestionID);
+				var question = context.Get<Question>(existingQuestionID);
 			}
 		}
 
@@ -52,7 +55,9 @@ namespace JJ.Data.QuestionAndAnswer.Tests
 		private PersistenceConfiguration GetNHibernatePersistenceConfiguration()
 		{
 			string contextTypeName = "NHibernate";
-			return CustomConfigurationManager.GetSection<ConfigurationSection>().PersistenceConfigurations.Where(x => x.ContextType == contextTypeName).Single();
+			return CustomConfigurationManager.GetSection<ConfigurationSection>()
+			                                 .PersistenceConfigurations.Where(x => x.ContextType == contextTypeName)
+			                                 .Single();
 		}
 
 		private IContext CreateEntityFramework5Context()
@@ -64,7 +69,9 @@ namespace JJ.Data.QuestionAndAnswer.Tests
 		private PersistenceConfiguration GetEntityFramework5PersistenceConfiguration()
 		{
 			string contextTypeName = "EntityFramework5";
-			return CustomConfigurationManager.GetSection<ConfigurationSection>().PersistenceConfigurations.Where(x => x.ContextType == contextTypeName).Single();
+			return CustomConfigurationManager.GetSection<ConfigurationSection>()
+			                                 .PersistenceConfigurations.Where(x => x.ContextType == contextTypeName)
+			                                 .Single();
 		}
 
 		private int GetExistingQuestionID()

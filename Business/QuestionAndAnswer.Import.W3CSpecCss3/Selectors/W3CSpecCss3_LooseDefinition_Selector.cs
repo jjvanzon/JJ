@@ -156,11 +156,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		{
 			string value = GetText(record.HTag);
 
-			Regex regex = new Regex(@"([^0-9\. ]\w.*)");
+			var regex = new Regex(@"([^0-9\. ]\w.*)");
 			Match match = regex.Match(value);
 			if (match == null)
 			{
-				throw new Exception(string.Format("Non-word characters on the left could not be cut off from the following text: '{0}'.", value));
+				throw new Exception($"Non-word characters on the left could not be cut off from the following text: '{value}'.");
 			}
 
 			return match.Value;

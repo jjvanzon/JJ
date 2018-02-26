@@ -13,13 +13,9 @@ namespace JJ.Business.QuestionAndAnswer.SideEffects
 
 		public Question_SideEffect_SetLastModifiedByUser(Question question, User user, EntityStatusManager statusManager)
 		{
-			if (question == null) throw new NullException(() => question);
-			if (user == null) throw new NullException(() => user);
-			if (statusManager == null) throw new NullException(() => statusManager);
-
-			_question = question;
-			_user = user;
-			_statusManager = statusManager;
+			_question = question ?? throw new NullException(() => question);
+			_user = user ?? throw new NullException(() => user);
+			_statusManager = statusManager ?? throw new NullException(() => statusManager);
 		}
 
 		public void Execute()

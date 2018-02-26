@@ -1,8 +1,8 @@
-﻿using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.IO;
-using JJ.Framework.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
+using JJ.Framework.Exceptions;
+using JJ.Framework.IO;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
@@ -12,7 +12,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		{
 			if (stream == null) throw new NullException(() => stream);
 
-			using (CsvReader reader = new CsvReader(stream))
+			using (var reader = new CsvReader(stream))
 			{
 				// Skip header.
 				reader.Read();

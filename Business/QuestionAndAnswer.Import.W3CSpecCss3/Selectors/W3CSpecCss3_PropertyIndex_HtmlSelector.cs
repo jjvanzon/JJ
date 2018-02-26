@@ -1,10 +1,10 @@
-﻿using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Xml;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
@@ -25,7 +25,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 				// Trick to keep 'plural' properties separated.
 				xml = xml.Replace("<code>", "<code> ");
 
-				XmlDocument doc = new XmlDocument();
+				var doc = new XmlDocument();
 				doc.LoadXml(xml);
 
 				foreach (XmlNode node in GetRecords(doc))

@@ -17,13 +17,9 @@ namespace JJ.Business.QuestionAndAnswer
 
 		public QuestionFlagger(User user, IQuestionFlagRepository questionFlagRepository, IFlagStatusRepository flagStatusRepository)
 		{
-			if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
-			if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
-			if (user == null) throw new NullException(() => user);
-
-			_questionFlagRepository = questionFlagRepository;
-			_flagStatusRepository = flagStatusRepository;
-			_user = user;
+			_questionFlagRepository = questionFlagRepository ?? throw new NullException(() => questionFlagRepository);
+			_flagStatusRepository = flagStatusRepository ?? throw new NullException(() => flagStatusRepository);
+			_user = user ?? throw new NullException(() => user);
 		}
 
 		/// <summary> Flags a question. If an existing flag already exists for this user, then it is updated. </summary>

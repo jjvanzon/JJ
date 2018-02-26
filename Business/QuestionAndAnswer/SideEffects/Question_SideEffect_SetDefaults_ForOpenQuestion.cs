@@ -18,13 +18,9 @@ namespace JJ.Business.QuestionAndAnswer.SideEffects
 			IQuestionTypeRepository questionTypeRepository,
 			EntityStatusManager statusManager)
 		{
-			if (entity == null) throw new NullException(() => entity);
-			if (questionTypeRepository == null) throw new NullException(() => questionTypeRepository);
-			if (statusManager == null) throw new NullException(() => statusManager);
-
-			_entity = entity;
-			_questionTypeRepository = questionTypeRepository;
-			_statusManager = statusManager;
+			_entity = entity ?? throw new NullException(() => entity);
+			_questionTypeRepository = questionTypeRepository ?? throw new NullException(() => questionTypeRepository);
+			_statusManager = statusManager ?? throw new NullException(() => statusManager);
 		}
 
 		public void Execute()

@@ -4,7 +4,7 @@ using JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers;
 
 namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Repositories
 {
-	public class QuestionRepository : JJ.Data.QuestionAndAnswer.DefaultRepositories.QuestionRepository
+	public class QuestionRepository : DefaultRepositories.QuestionRepository
 	{
 		public QuestionRepository(IContext context)
 			: base(context)

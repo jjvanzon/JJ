@@ -45,7 +45,7 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 
 			foreach (Category subCategory in category.SubCategories)
 			{
-				var ids2 = GetQuestionIDsByCategory(subCategory);
+				IList<int> ids2 = GetQuestionIDsByCategory(subCategory);
 				ids.AddRange(ids2);
 			}
 
