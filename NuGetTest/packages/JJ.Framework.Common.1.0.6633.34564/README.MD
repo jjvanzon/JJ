@@ -7,5 +7,5 @@ Some basic helpers, for instance:
 * `DoubleHelper`: For instance making it easier to parse nullable doubles.
 * `EmbeddedResourceHelper`: Make it a little easier to get embedded resource Streams, bytes and strings.
 * `EnumHelper`: Make it a little easier to call enum parsing and check the validitiy of enum values.
-* `EventArgs<T>`: A generic version of event args. If you use a C# 7 tuple for T you can basically use it for everything.
+* `EventArgs`<`T`>: A generic version of event args. If you use a C# 7 tuple for T you can basically use it for everything.
 * `Int32Helper`: For instance making it easier to parse nullable ints.
