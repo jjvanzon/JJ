@@ -142,6 +142,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.Canonical", "Bu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text", "Framework\Text\JJ.Framework.Text.csproj", "{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Conversion", "Framework\Conversion\JJ.Framework.Conversion.csproj", "{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections", "Framework\Collections\JJ.Framework.Collections.csproj", "{5D06A212-5459-47F3-8109-E012C5FC9E3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -551,6 +555,18 @@ Global
 		{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D06A212-5459-47F3-8109-E012C5FC9E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D06A212-5459-47F3-8109-E012C5FC9E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D06A212-5459-47F3-8109-E012C5FC9E3A}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D06A212-5459-47F3-8109-E012C5FC9E3A}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{5D06A212-5459-47F3-8109-E012C5FC9E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D06A212-5459-47F3-8109-E012C5FC9E3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -605,12 +621,14 @@ Global
 		{52E03E08-331A-4CA7-8D8F-6F598C94EED4} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{964DE0B4-27F8-40F8-8D50-C97388BF8CE2} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{5D06A212-5459-47F3-8109-E012C5FC9E3A} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {150DCFBA-858F-4E77-8AF6-52BF6D7B7BE8}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 68
+		SccNumberOfProjects = 70
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -864,5 +882,13 @@ Global
 		SccProjectTopLevelParentUniqueName67 = QuestionAndAnswer.sln
 		SccProjectName67 = Framework/Text
 		SccLocalPath67 = Framework\\Text
+		SccProjectUniqueName68 = Framework\\Conversion\\JJ.Framework.Conversion.csproj
+		SccProjectTopLevelParentUniqueName68 = QuestionAndAnswer.sln
+		SccProjectName68 = Framework/Conversion
+		SccLocalPath68 = Framework\\Conversion
+		SccProjectUniqueName69 = Framework\\Collections\\JJ.Framework.Collections.csproj
+		SccProjectTopLevelParentUniqueName69 = QuestionAndAnswer.sln
+		SccProjectName69 = Framework/Collections
+		SccLocalPath69 = Framework\\Collections
 	EndGlobalSection
 EndGlobal
