@@ -2,6 +2,7 @@
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Data;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Aggregates;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 {

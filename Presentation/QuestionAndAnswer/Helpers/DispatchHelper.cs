@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Presentation;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Helpers
 {

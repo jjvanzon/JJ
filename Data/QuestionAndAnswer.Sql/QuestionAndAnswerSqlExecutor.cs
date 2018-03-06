@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.Data.SqlClient;
 using JJ.Framework.Exceptions;
 using System.Collections.Generic;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Data.QuestionAndAnswer.Sql
 {

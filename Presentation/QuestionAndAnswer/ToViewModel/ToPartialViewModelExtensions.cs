@@ -2,6 +2,7 @@
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Framework.Exceptions;
 using JJ.Data.QuestionAndAnswer;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {

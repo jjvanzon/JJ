@@ -2,6 +2,7 @@
 using JJ.Framework.Data;
 using JJ.Framework.Data.NHibernate;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Helpers
 {

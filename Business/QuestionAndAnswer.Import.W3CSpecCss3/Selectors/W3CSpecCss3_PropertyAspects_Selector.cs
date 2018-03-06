@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {

@@ -3,6 +3,7 @@ using JJ.Data.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {

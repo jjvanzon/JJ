@@ -5,6 +5,7 @@ using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer
 {

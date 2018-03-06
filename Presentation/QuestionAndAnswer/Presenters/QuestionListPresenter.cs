@@ -13,6 +13,7 @@ using JJ.Presentation.QuestionAndAnswer.Configuration;
 using JJ.Framework.Common;
 using JJ.Framework.Presentation;
 using System.Linq.Expressions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {

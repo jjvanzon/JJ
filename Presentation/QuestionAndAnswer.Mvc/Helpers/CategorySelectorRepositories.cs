@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Exceptions;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Helpers
 {

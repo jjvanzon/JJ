@@ -4,6 +4,7 @@ using JJ.Data.QuestionAndAnswer;
 using System;
 using System.Collections.Generic;
 using JJ.Data.Canonical;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Presentation.QuestionAndAnswer.Resources;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel

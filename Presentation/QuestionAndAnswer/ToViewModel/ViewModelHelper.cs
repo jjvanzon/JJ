@@ -7,6 +7,7 @@ using JJ.Data.Canonical;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.Resources;

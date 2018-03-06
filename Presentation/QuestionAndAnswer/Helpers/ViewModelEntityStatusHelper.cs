@@ -3,6 +3,7 @@ using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Data.QuestionAndAnswer;
 using System;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Helpers
 {

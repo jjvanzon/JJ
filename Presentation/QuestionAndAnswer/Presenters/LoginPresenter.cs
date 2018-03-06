@@ -5,6 +5,7 @@ using JJ.Framework.Presentation;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Security;
 using JJ.Data.QuestionAndAnswer;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {

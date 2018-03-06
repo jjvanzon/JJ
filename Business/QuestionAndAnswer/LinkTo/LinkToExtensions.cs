@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Exceptions;
 using JJ.Data.QuestionAndAnswer;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer.LinkTo
 {

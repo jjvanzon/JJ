@@ -5,6 +5,7 @@ using JJ.Data.QuestionAndAnswer;
 using System.Linq;
 using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {

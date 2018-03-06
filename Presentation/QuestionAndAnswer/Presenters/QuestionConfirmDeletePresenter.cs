@@ -7,6 +7,7 @@ using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Framework.Presentation;
 using JJ.Framework.Exceptions;
 using System.Linq.Expressions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {

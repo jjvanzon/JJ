@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories
 {

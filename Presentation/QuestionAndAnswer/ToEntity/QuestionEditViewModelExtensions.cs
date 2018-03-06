@@ -2,6 +2,7 @@
 using JJ.Framework.Exceptions;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.Extensions;

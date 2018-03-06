@@ -1,6 +1,7 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.MvcAspx.Names;
 using JJ.Framework.Exceptions;
 using System.Web;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.MvcAspx.Helpers
 {

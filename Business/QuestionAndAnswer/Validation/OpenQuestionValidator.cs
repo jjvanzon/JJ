@@ -4,6 +4,7 @@ using JJ.Framework.Validation;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {

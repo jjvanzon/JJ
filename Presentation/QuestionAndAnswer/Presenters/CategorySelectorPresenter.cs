@@ -8,6 +8,7 @@ using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {

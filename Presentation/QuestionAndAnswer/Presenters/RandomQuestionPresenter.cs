@@ -7,6 +7,7 @@ using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
