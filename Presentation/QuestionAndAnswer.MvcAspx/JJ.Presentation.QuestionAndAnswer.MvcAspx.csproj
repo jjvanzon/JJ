@@ -64,7 +64,7 @@
       <HintPath>..\..\Third Party\NHibernate\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.Exceptions">
-      <HintPath>..\..\Framework\Exceptions\bin\Debug\JJ.Framework.Exceptions.dll</HintPath>
+      <HintPath>..\..\Framework\Exceptions\bin\Release\JJ.Framework.Exceptions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
