@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="Helpers\DebuggerDisplayFormatter.cs" />
     <Compile Include="IDAndName.cs" />
-    <Compile Include="IDNameAndObjectType.cs" />
     <Compile Include="IResultDto.cs" />
     <Compile Include="ResultDtoT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
