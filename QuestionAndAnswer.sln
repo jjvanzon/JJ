@@ -88,7 +88,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAnd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions", "Demos\ReturnActions\JJ.Demos.ReturnActions.csproj", "{757F8B06-8527-4DAA-A206-E26EB167CA13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameterViewMappings", "Demos\ReturnActions.MvcUrlParameter\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameterViewMappings", "Demos\ReturnActions.MvcUrlParameterViewMappings\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "Third Party\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
 EndProject
@@ -110,7 +110,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.QuestionAndAnswer.Import.Language", "Business\QuestionAndAnswer.Import.Language\JJ.Business.QuestionAndAnswer.Import.Language.csproj", "{E850BB7E-ECE9-454B-B1F5-92E7E555E67B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcPostDataViewMappings", "Demos\ReturnActions.MvcPostData\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcPostDataViewMappings", "Demos\ReturnActions.MvcPostDataViewMappings\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -760,16 +760,16 @@ Global
 		SccAuxPath49 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath49 = Business\\QuestionAndAnswer.Import.Language
 		SccProvider49 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName50 = Demos\\ReturnActions.MvcPostData\\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj
+		SccProjectUniqueName50 = Demos\\ReturnActions.MvcPostDataViewMappings\\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj
 		SccProjectTopLevelParentUniqueName50 = QuestionAndAnswer.sln
-		SccProjectName50 = Demos/ReturnActions.MvcPostData
+		SccProjectName50 = Demos/ReturnActions.MvcPostDataViewMappings
 		SccAuxPath50 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath50 = Demos\\ReturnActions.MvcPostData
+		SccLocalPath50 = Demos\\ReturnActions.MvcPostDataViewMappings
 		SccProvider50 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName51 = Demos\\ReturnActions.MvcUrlParameter\\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj
-		SccProjectName51 = Demos/ReturnActions.MvcUrlParameter
+		SccProjectUniqueName51 = Demos\\ReturnActions.MvcUrlParameterViewMappings\\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj
+		SccProjectName51 = Demos/ReturnActions.MvcUrlParameterViewMappings
 		SccAuxPath51 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath51 = Demos\\ReturnActions.MvcUrlParameter
+		SccLocalPath51 = Demos\\ReturnActions.MvcUrlParameterViewMappings
 		SccProvider51 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 EndGlobal
