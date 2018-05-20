@@ -107,7 +107,7 @@
       <Project>{d2ebc8ce-4fc5-43c0-9cef-f060c2e4b439}</Project>
       <Name>JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Business\QuestionAndAnswer.Import.Words\JJ.Business.QuestionAndAnswer.Import.Language.csproj">
+    <ProjectReference Include="..\..\Business\QuestionAndAnswer.Import.Language\JJ.Business.QuestionAndAnswer.Import.Language.csproj">
       <Project>{e850bb7e-ece9-454b-b1f5-92e7e555e67b}</Project>
       <Name>JJ.Business.QuestionAndAnswer.Import.Language</Name>
     </ProjectReference>
