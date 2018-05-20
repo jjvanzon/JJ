@@ -7,19 +7,19 @@
 
 @section Header
 {
-    @Html.Partial(ViewNames._Login, Model.Login)
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
 }
 
 @using (Html.BeginForm())
 {
     <h2>@PropertyDisplayNames.Questions</h2>
 
-    <p>@Html.ActionLink(Titles.CreateQuestion, ActionNames.Create, new
+    <p>@Html.ActionLink(Titles.CreateQuestion, nameof(ActionNames.Create), new
     {
-        ret = Url.Action(ActionNames.Index, ControllerNames.Questions, new { page = Model.Pager.PageNumber })
+        ret = Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.Questions), new { page = Model.Pager.PageNumber })
     })</p>
 
-    @Html.Partial(ViewNames._Pager, Model.Pager)
+    @Html.Partial(nameof(ViewNames._Pager), Model.Pager)
 
     <table>
 
@@ -34,17 +34,17 @@
         {
             <tr>
                 <td>@question.ID</td>
-                <td>@Html.ActionLink(question.Text, ActionNames.Details, new { id = question.ID })</td>
+                <td>@Html.ActionLink(question.Text, nameof(ActionNames.Details), new { id = question.ID })</td>
                 <td>@(question.IsFlagged ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)</td>
-                <td>@Html.ActionLink(CommonResourceFormatter.Edit, ActionNames.Edit, new
+                <td>@Html.ActionLink(CommonResourceFormatter.Edit, nameof(ActionNames.Edit), new
                     {
                         id = question.ID,
-                        ret = Url.Action(ActionNames.Index, ControllerNames.Questions, new { page = Model.Pager.PageNumber })
+                        ret = Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.Questions), new { page = Model.Pager.PageNumber })
                     }) </td>
-                <td>@Html.ActionLink(CommonResourceFormatter.Delete, ActionNames.Delete, new { id = question.ID })</td>
+                <td>@Html.ActionLink(nameof(CommonResourceFormatter.Delete), nameof(ActionNames.Delete), new { id = question.ID })</td>
             </tr>
         }
     </table>
 
-    @Html.Partial(ViewNames._Pager, Model.Pager)
+    @Html.Partial(nameof(ViewNames._Pager), Model.Pager)
 }

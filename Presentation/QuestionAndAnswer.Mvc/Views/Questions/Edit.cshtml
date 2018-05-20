@@ -7,7 +7,7 @@
 
 @section Header
 {
-    @Html.Partial(ViewNames._Login, Model.Login)
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
 }
 
 @using (Html.BeginForm())
@@ -16,31 +16,31 @@
 
     <h2>@Model.Title</h2>
 
-    @Html.Partial(ViewNames._EditButtons, Model);
+    @Html.Partial(nameof(ViewNames._EditButtons), Model);
 
     using (Html.BeginItem(() => Model.Question))
     {
-        @Html.Partial(ViewNames._EditProperties, Model.Question)
-        @Html.Partial(ViewNames._EditTexts, Model.Question)
+        @Html.Partial(nameof(ViewNames._EditProperties), Model.Question)
+        @Html.Partial(nameof(ViewNames._EditTexts), Model.Question)
  
         <br />
 
-        ViewData[ViewDataKeys.AllCategories] = Model.AllCategories;
+        ViewData[nameof(ViewDataKeys.AllCategories)] = Model.AllCategories;
             
         using (Html.BeginCollection(() => Model.Question.Categories))
         {
-            @Html.Partial(ViewNames._EditCategories, Model.Question.Categories)
+            @Html.Partial(nameof(ViewNames._EditCategories), Model.Question.Categories)
         }
 
         using (Html.BeginCollection(() => Model.Question.Links))
         {
-            @Html.Partial(ViewNames._EditLinks, Model.Question.Links)
+            @Html.Partial(nameof(ViewNames._EditLinks), Model.Question.Links)
         }
 
-        @Html.Partial(ViewNames._EditFlags, Model.Question)
+        @Html.Partial(nameof(ViewNames._EditFlags), Model.Question)
     }
     
     @Html.ValidationSummary()
 
-    @Html.Partial(ViewNames._EditButtons, Model);
+    @Html.Partial(nameof(ViewNames._EditButtons), Model);
 }

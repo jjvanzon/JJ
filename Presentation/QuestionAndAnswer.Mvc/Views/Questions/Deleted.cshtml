@@ -7,11 +7,11 @@
 
 @section Header
 {
-    @Html.Partial(ViewNames._Login, Model.Login)
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
 }
 
 <h2>@Titles.DeleteQuestion</h2>
     
 <p>@Messages.QuestionIsDeleted</p>
 
-<p>@Html.ActionLink(Titles.BackToList, ActionNames.Index)</p>
+<p>@Html.ActionLink(Titles.BackToList, nameof(ActionNames.Index))</p>

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Framework.Web;
+using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {
@@ -21,14 +21,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 
 		// Login
 
-		protected string TryGetAuthenticatedUserName()
-		{
-			return SessionWrapper.AuthenticatedUserName;
-		}
+		protected string TryGetAuthenticatedUserName() => SessionWrapper.AuthenticatedUserName;
 
-		public void SetAuthenticatedUserName(string authenticatedUserName)
-		{
-			SessionWrapper.AuthenticatedUserName = authenticatedUserName;
-		}
+		public void SetAuthenticatedUserName(string authenticatedUserName) 
+			=> SessionWrapper.AuthenticatedUserName = authenticatedUserName;
 	}
 }

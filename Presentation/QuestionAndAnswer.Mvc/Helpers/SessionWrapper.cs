@@ -1,24 +1,19 @@
-﻿using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
-using JJ.Framework.Exceptions;
-using System.Web;
+﻿using System.Web;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Helpers
 {
 	public class SessionWrapper
 	{
-		private HttpSessionStateBase _session;
+		private readonly HttpSessionStateBase _session;
 
-		public SessionWrapper(HttpSessionStateBase session)
-		{
-			if (session == null) throw new NullException(() => session);
-			_session = session;
-		}
+		public SessionWrapper(HttpSessionStateBase session) => _session = session ?? throw new NullException(() => session);
 
 		public string AuthenticatedUserName
 		{
-			get { return (string)_session[SessionKeys.AuthenticatedUserName]; }
-			set { _session[SessionKeys.AuthenticatedUserName] = value; }
+			get => (string)_session[nameof(SessionKeys.AuthenticatedUserName)];
+			set => _session[nameof(SessionKeys.AuthenticatedUserName)] = value;
 		}
 	}
 }

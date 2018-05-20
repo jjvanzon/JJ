@@ -9,8 +9,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 	{
 		public CategoryIndexViewMapping()
 		{
-			MapPresenter(PresenterNames.CategorySelectorPresenter, PresenterActionNames.Show);
-			MapController(ControllerNames.CategorySelector, ActionNames.Index, ViewNames.Index);
+			MapPresenter(nameof(PresenterNames.CategorySelectorPresenter), nameof(PresenterActionNames.Show));
+			MapController(nameof(ControllerNames.CategorySelector), nameof(ActionNames.Index), nameof(ViewNames.Index));
 		}
 	}
 }

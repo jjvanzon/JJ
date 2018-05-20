@@ -15,8 +15,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 	{
 		public ActionResult Index(string ret = null)
 		{
-			object viewModel;
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
+			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
 			{
 				using (IContext context = PersistenceHelper.CreateContext())
 				{
@@ -27,7 +26,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 				}
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
 		}
 
 		[HttpPost]
@@ -55,7 +54,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 					SetAuthenticatedUserName(viewModel.UserName);
 				}
 
-				return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel2);
+				return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel2);
 			}
 		}
 
@@ -63,7 +62,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 		{
 			SessionWrapper.AuthenticatedUserName = null;
 
-			return RedirectToAction(ActionNames.Index, ControllerNames.Login);
+			return RedirectToAction(nameof(ActionNames.Index), nameof(ControllerNames.Login));
 		}
 	}
 }

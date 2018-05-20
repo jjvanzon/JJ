@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.RandomQuestionService;
+﻿using System.Threading;
 using JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.ResourceService;
 
 namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient
@@ -31,9 +26,6 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient
 			}
 		}
 
-		private static string GetCultureName()
-		{
-			return System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
-		}
+		private static string GetCultureName() => Thread.CurrentThread.CurrentUICulture.Name;
 	}
 }

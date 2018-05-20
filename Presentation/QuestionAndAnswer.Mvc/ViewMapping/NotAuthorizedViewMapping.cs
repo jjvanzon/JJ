@@ -6,9 +6,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
 	public class NotAuthorizedViewMapping : ViewMapping<NotAuthorizedViewModel>
 	{
-		public NotAuthorizedViewMapping()
-		{
-			ViewName = ViewNames.NotAuthorized;
-		}
+		public NotAuthorizedViewMapping() => ViewName = nameof(ViewNames.NotAuthorized);
 	}
 }

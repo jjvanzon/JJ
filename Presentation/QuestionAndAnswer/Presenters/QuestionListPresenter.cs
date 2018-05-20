@@ -19,10 +19,10 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
 	public class QuestionListPresenter
 	{
-		private Repositories _repositories;
-		private string _authenticatedUserName;
-		private static int _pageSize;
-		private static int _maxVisiblePageNumbers;
+		private readonly Repositories _repositories;
+		private readonly string _authenticatedUserName;
+		private static readonly int _pageSize;
+		private static readonly int _maxVisiblePageNumbers;
 
 		static QuestionListPresenter()
 		{

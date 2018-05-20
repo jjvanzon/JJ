@@ -6,9 +6,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
 	public class QuestionNotFoundViewMapping : ViewMapping<QuestionNotFoundViewModel>
 	{
-		public QuestionNotFoundViewMapping()
-		{
-			MapController(ControllerNames.Questions, ViewNames.NotFound);
-		}
+		public QuestionNotFoundViewMapping() => MapController(nameof(ControllerNames.Questions), nameof(ViewNames.NotFound));
 	}
 }

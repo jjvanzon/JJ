@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="$this.Description" xml:space="preserve">
-    <value>This one-off process converts HTML files with information about CSS3 to questions and answers.
-The HTML files were saved from the CSS3 specification from the W3C web site.
-Links to the web sources can be found in the App.config.
-See the IO Files folder in the bin directory for the files that will be imported.
-Only the structured reference material is converted to questions. The textual explanations are not.</value>
+    <value>This process imports questions from HTML or CSV files with information about e.g. CSS3 and word translations.
+Some of the HTML files were saved from the CSS3 specification from the W3C web site.
+The App.config configures which imports will run.
+Links to the web sources can also found in the App.config.
+Import files are generally put in the IO Files folder.</value>
   </data>
 </root>

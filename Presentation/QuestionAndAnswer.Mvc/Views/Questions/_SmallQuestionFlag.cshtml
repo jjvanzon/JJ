@@ -13,13 +13,13 @@
         {
             <input type="submit" 
                    value="@Titles.FlagContent" 
-                   formaction="@Url.Action(ActionNames.Flag, ControllerNames.Questions)" />
+                   formaction="@Url.Action(nameof(ActionNames.Flag), nameof(ControllerNames.Questions))" />
         }
         else 
         {
             <input type="submit"
                    value="@Titles.UnflagContent"
-                   formaction="@Url.Action(ActionNames.Unflag, ControllerNames.Questions)" />
+                   formaction="@Url.Action(nameof(ActionNames.Unflag), nameof(ControllerNames.Questions))" />
         }
     </div>
 }

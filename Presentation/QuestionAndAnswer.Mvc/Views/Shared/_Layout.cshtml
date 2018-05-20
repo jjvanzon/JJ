@@ -32,8 +32,8 @@
 
     <nav>
         <ul>
-            <li><a href="@Url.Action(ActionNames.Random, ControllerNames.Questions)">@PropertyDisplayNames.Question</a></li>
-            <li><a href="@Url.Action(ActionNames.Index, ControllerNames.CategorySelector)">@PropertyDisplayNames.Categories</a></li>
+            <li><a href="@Url.Action(nameof(ActionNames.Random), nameof(ControllerNames.Questions))">@PropertyDisplayNames.Question</a></li>
+            <li><a href="@Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.CategorySelector))">@PropertyDisplayNames.Categories</a></li>
             <li><a>@CommonResourceFormatter.Search</a></li>
             <li><a>@Titles.Statistics</a></li>
             <li><a>@PropertyDisplayNames.Runs</a></li>
@@ -42,7 +42,7 @@
                 <ul>
                     <li><a>@Titles.ContentSourcesAndImports</a></li>
                     <li><a>@PropertyDisplayNames.Categories</a></li>
-                    <li><a href="@Url.Action(ActionNames.Index, ControllerNames.Questions)">@PropertyDisplayNames.Questions</a></li>
+                    <li><a href="@Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.Questions))">@PropertyDisplayNames.Questions</a></li>
                     <li><a>@Titles.FlaggedContent</a></li>
                 </ul>
             </li>
@@ -52,12 +52,5 @@
     <div>
         @RenderBody()
     </div>
-    @*
-    @Scripts.Render("~/bundles/jquery")
-    *@
-
-    @*
-    @RenderSection("scripts", required: false)
-    *@
 </body>
 </html>

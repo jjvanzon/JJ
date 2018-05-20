@@ -4,13 +4,13 @@ using System.IO;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {
 	/// <summary>
 	/// Runs a selector and a converter and returns progress info.
+	/// Also deletes the questions of a certain source first.
 	/// </summary>
 	public class Importer<TModel, TSelector, TConverter> : IImporter
 		where TSelector : ISelector<TModel>, new()
@@ -24,7 +24,6 @@ namespace JJ.Business.QuestionAndAnswer.Import
 		private readonly IQuestionCategoryRepository _questionCategoryRepository;
 		private readonly IQuestionLinkRepository _questionLinkRepository;
 		private readonly IQuestionTypeRepository _questionTypeRepository;
-		private readonly ISourceRepository _sourceRepository;
 		private readonly IQuestionFlagRepository _questionFlagRepository;
 
 		private Action<string> _progressCallback;
@@ -40,7 +39,6 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			IQuestionCategoryRepository questionCategoryRepository,
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
-			ISourceRepository sourceRepository,
 			IQuestionFlagRepository questionFlagRepository,
 			Source source,
 			string categoryIdentifier)
@@ -51,7 +49,6 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			_questionCategoryRepository = questionCategoryRepository ?? throw new NullException(() => questionCategoryRepository);
 			_questionLinkRepository = questionLinkRepository ?? throw new NullException(() => questionLinkRepository);
 			_questionTypeRepository = questionTypeRepository ?? throw new NullException(() => questionTypeRepository);
-			_sourceRepository = sourceRepository ?? throw new NullException(() => sourceRepository);
 			_questionFlagRepository = questionFlagRepository ?? throw new NullException(() => questionFlagRepository);
 
 			_source = source ?? throw new NullException(() => source);
@@ -78,7 +75,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
 
 			DoProgressCallback("Processing...");
 
-			DeleteExistingQuestions();
+			DeleteExistingQuestionsOfSource();
 
 			if (!DoImport(stream))
 			{
@@ -112,44 +109,38 @@ namespace JJ.Business.QuestionAndAnswer.Import
 				converter.ConvertToEntities(model);
 
 				counter++;
-				DoProgressCallback(string.Format("Processing: {0}", counter));
+				DoProgressCallback($"Processing: {counter}");
 			}
 
 			return true;
 		}
 
 		private TConverter CreateConverter()
-		{
-			return (TConverter)Activator.CreateInstance(typeof(TConverter),
+			=> (TConverter)Activator.CreateInstance(
+				typeof(TConverter),
 				_questionRepository,
 				_answerRepository,
 				_categoryRepository,
 				_questionCategoryRepository,
 				_questionLinkRepository,
 				_questionTypeRepository,
-				_sourceRepository,
 				_source,
 				_categoryIdentifier);
-		}
 
-		private void DeleteExistingQuestions()
+		private void DeleteExistingQuestionsOfSource()
 		{
-			foreach (Question question in GetExistingQuestions())
+			foreach (Question question in GetExistingQuestionsOfSource())
 			{
 				question.DeleteRelatedEntities(_answerRepository, _questionCategoryRepository, _questionLinkRepository, _questionFlagRepository);
 				_questionRepository.Delete(question);
 			}
 		}
 
-		private IList<Question> GetExistingQuestions()
-		{
-			// _source.ID could be 0 for a new repository, but in that case there are no existing questions anyway and this method will return an empty collection.
-			return _questionRepository.GetBySourceID(_source.ID);
-		}
+		private IList<Question> GetExistingQuestionsOfSource() => _questionRepository.GetBySourceID(_source.ID);
 
 		private void DoProgressCallback(string message)
 		{
-			if (_progressCallback != null) _progressCallback(message);
+			_progressCallback?.Invoke(message);
 		}
 
 		private bool DoIsCancelledCallback()

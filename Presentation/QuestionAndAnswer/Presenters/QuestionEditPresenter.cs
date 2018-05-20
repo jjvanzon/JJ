@@ -1,33 +1,31 @@
 ﻿using System;
 using System.Linq;
-using JJ.Framework.Validation;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Business;
-using JJ.Data.QuestionAndAnswer;
+using System.Linq.Expressions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Business.QuestionAndAnswer.SideEffects;
-using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Presentation.QuestionAndAnswer.ToViewModel;
-using JJ.Presentation.QuestionAndAnswer.ToEntity;
+using JJ.Business.QuestionAndAnswer.Validation;
+using JJ.Data.QuestionAndAnswer;
+using JJ.Framework.Business;
+using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Presentation;
+using JJ.Framework.Validation;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.Resources;
 using JJ.Presentation.QuestionAndAnswer.SideEffects;
-using JJ.Framework.Presentation;
-using System.Linq.Expressions;
-using JJ.Business.Canonical;
-using JJ.Framework.Exceptions.Basic;
+using JJ.Presentation.QuestionAndAnswer.ToEntity;
+using JJ.Presentation.QuestionAndAnswer.ToViewModel;
+using JJ.Presentation.QuestionAndAnswer.ViewModels;
+using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
 	public class QuestionEditPresenter
 	{
-		private static ActionInfo _defaultReturnAction;
+		private static readonly ActionInfo _defaultReturnAction;
 
-		private Repositories _repositories;
-		private string _authenticatedUserName;
+		private readonly Repositories _repositories;
+		private readonly string _authenticatedUserName;
 
 		static QuestionEditPresenter()
 		{
@@ -39,9 +37,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			Repositories repositories, 
 			string authenticatedUserName)
 		{
-			if (repositories == null) throw new NullException(() => repositories);
-
-			_repositories = repositories;
+			_repositories = repositories ?? throw new NullException(() => repositories);
 			_authenticatedUserName = authenticatedUserName;
 		}
 

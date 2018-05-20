@@ -18,7 +18,7 @@
     <ul class="category available">
         @foreach (var subCategory in Model.SubCategories)
         {
-            @Html.Partial(ViewNames._AvailableCategory, subCategory)
+            @Html.Partial(nameof(ViewNames._AvailableCategory), subCategory)
         }
     </ul>
 }

@@ -1,23 +1,20 @@
-﻿using JJ.Presentation.QuestionAndAnswer.Helpers;
+﻿using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Exceptions.Basic;
+using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Framework.Exceptions;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
 	public class QuestionNotFoundPresenter
 	{
-		private string _authenticatedUserName;
-		private IUserRepository _userRepository;
+		private readonly string _authenticatedUserName;
+		private readonly IUserRepository _userRepository;
 
 		/// <param name="authenticatedUserName">nullable</param>
 		public QuestionNotFoundPresenter(IUserRepository userRepository, string authenticatedUserName)
 		{
-			if (userRepository == null) throw new NullException(() => userRepository);
-
-			_userRepository = userRepository;
+			_userRepository = userRepository ?? throw new NullException(() => userRepository);
 			_authenticatedUserName = authenticatedUserName;
 		}
 

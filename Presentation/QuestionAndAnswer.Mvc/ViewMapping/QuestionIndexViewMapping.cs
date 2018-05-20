@@ -9,14 +9,11 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 	{
 		public QuestionIndexViewMapping()
 		{
-			MapPresenter(PresenterNames.QuestionListPresenter, PresenterActionNames.Show);
-			MapController(ControllerNames.Questions, ActionNames.Index, ViewNames.Index);
-			MapParameter(PresenterParameterNames.pageNumber, ActionParameterNames.page);
+			MapPresenter(nameof(PresenterNames.QuestionListPresenter), nameof(PresenterActionNames.Show));
+			MapController(nameof(ControllerNames.Questions), nameof(ActionNames.Index), nameof(ViewNames.Index));
+			MapParameter(nameof(PresenterParameterNames.pageNumber), nameof(ActionParameterNames.page));
 		}
 
-		protected override object GetRouteValues(QuestionListViewModel viewModel)
-		{
-			return new { page = viewModel.Pager.PageNumber };
-		}
+		protected override object GetRouteValues(QuestionListViewModel viewModel) => new { page = viewModel.Pager.PageNumber };
 	}
 }

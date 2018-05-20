@@ -6,9 +6,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 {
 	public class QuestionDeletedViewMapping : ViewMapping<QuestionDeleteConfirmedViewModel>
 	{
-		public QuestionDeletedViewMapping()
-		{
-			MapController(ControllerNames.Questions, ViewNames.Deleted);
-		}
+		public QuestionDeletedViewMapping() => MapController(nameof(ControllerNames.Questions), nameof(ViewNames.Deleted));
 	}
 }

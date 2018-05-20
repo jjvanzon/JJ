@@ -4,12 +4,12 @@
     <tr>
         @if (Model.CanGoToFirstPage)
         {
-            <td>@Html.ActionLinkWithParams("<<", ActionNames.Index, ActionParameterNames.page, 1)</td>
+            <td>@Html.ActionLinkWithParams("<<", nameof(ActionNames.Index), nameof(ActionParameterNames.page), 1)</td>
         }
 
         @if (Model.CanGoToPreviousPage)
         {
-            <td>@Html.ActionLinkWithParams("<", ActionNames.Index, ActionParameterNames.page, Model.PageNumber - 1)</td>
+            <td>@Html.ActionLinkWithParams("<", nameof(ActionNames.Index), nameof(ActionParameterNames.page), Model.PageNumber - 1)</td>
         }
 
         @if (Model.MustShowLeftEllipsis)
@@ -25,7 +25,7 @@
             }
             else
             {
-                <td>@Html.ActionLinkWithParams(pageNumber.ToString(), ActionNames.Index, ActionParameterNames.page, pageNumber)</td>    
+                <td>@Html.ActionLinkWithParams(pageNumber.ToString(), nameof(ActionNames.Index), nameof(ActionParameterNames.page), pageNumber)</td>    
             }
         }
         
@@ -36,12 +36,12 @@
 
         @if (Model.CanGoToNextPage)
         {
-            <td>@Html.ActionLinkWithParams(">", ActionNames.Index, ActionParameterNames.page, Model.PageNumber + 1)</td>
+            <td>@Html.ActionLinkWithParams(">", nameof(ActionNames.Index), nameof(ActionParameterNames.page), Model.PageNumber + 1)</td>
         }
 
         @if (Model.CanGoToLastPage)
         {
-            <td>@Html.ActionLinkWithParams(">>", ActionNames.Index, ActionParameterNames.page, Model.PageCount)</td>
+            <td>@Html.ActionLinkWithParams(">>", nameof(ActionNames.Index), nameof(ActionParameterNames.page), Model.PageCount)</td>
         }
     </tr>
 </table>

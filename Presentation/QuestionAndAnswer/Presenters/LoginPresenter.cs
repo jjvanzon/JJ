@@ -1,30 +1,25 @@
-﻿using JJ.Presentation.QuestionAndAnswer.Helpers;
+﻿using JJ.Data.QuestionAndAnswer;
+using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Presentation;
+using JJ.Framework.Security;
+using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Framework.Presentation;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Security;
-using JJ.Data.QuestionAndAnswer;
-using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
 	public class LoginPresenter
 	{
-		private static ActionInfo _defaultReturnAction;
+		private static readonly ActionInfo _defaultReturnAction;
 
-		private Repositories _repositories;
+		private readonly Repositories _repositories;
 
 		static LoginPresenter()
 		{
 			_defaultReturnAction = ActionDispatcher.CreateActionInfo<RandomQuestionPresenter>(x => x.Show(null));
 		}
 
-		public LoginPresenter(Repositories repositories)
-		{
-			if (repositories == null) throw new NullException(() => repositories);
-			_repositories = repositories;
-		}
+		public LoginPresenter(Repositories repositories) => _repositories = repositories ?? throw new NullException(() => repositories);
 
 		public LoginViewModel Show(ActionInfo returnAction = null)
 		{

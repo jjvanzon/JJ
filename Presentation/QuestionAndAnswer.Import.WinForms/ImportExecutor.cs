@@ -1,11 +1,12 @@
-﻿using JJ.Presentation.QuestionAndAnswer.Import.Configuration;
+﻿using System;
 using JJ.Business.QuestionAndAnswer.Import;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3;
-using JJ.Framework.Configuration;
-using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using System;
+using JJ.Framework.Configuration;
+using JJ.Framework.Data;
+using JJ.Framework.Exceptions.Aggregates;
+using JJ.Presentation.QuestionAndAnswer.Import.Configuration;
 
 namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 {
@@ -13,7 +14,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 	{
 		public static void RunAllImportsFromConfiguration(Action<string> progressCallback = null, Func<bool> isCancelledCallback = null)
 		{
-			ImportConfiguration configSection = CustomConfigurationManager.GetSection<ImportConfiguration>();
+			var configSection = CustomConfigurationManager.GetSection<ImportConfiguration>();
 
 			foreach (ImportConfigurationImporter importerConfig in configSection.Importers)
 			{
@@ -29,29 +30,29 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 					Type modelType = Type.GetType(importerConfig.ModelType);
 					if (modelType == null)
 					{
-						throw new Exception($"modelType '{importerConfig.ModelType}' not found.");
+						throw new NotFoundException(() => importerConfig.ModelType);
 					}
 
 					Type converterType = Type.GetType(importerConfig.ConverterType);
 					if (converterType == null)
 					{
-						throw new Exception($"converterType '{importerConfig.ConverterType}' not found.");
+						throw new NotFoundException(() => importerConfig.ConverterType);
 					}
 
 					Type selectorType = Type.GetType(importerConfig.SelectorType);
 					if (selectorType == null)
 					{
-						throw new Exception($"selectorType '{importerConfig.SelectorType}' not found.");
+						throw new NotFoundException(() => importerConfig.SelectorType);
 					}
 
-					IQuestionRepository questionRepository = PersistenceHelper.CreateRepository<IQuestionRepository>(context);
-					IAnswerRepository answerRepository = PersistenceHelper.CreateRepository<IAnswerRepository>(context);
-					ICategoryRepository categoryRepository = PersistenceHelper.CreateRepository<ICategoryRepository>(context);
-					IQuestionCategoryRepository questionCategoryRepository = PersistenceHelper.CreateRepository<IQuestionCategoryRepository>(context);
-					IQuestionLinkRepository questionLinkRepository = PersistenceHelper.CreateRepository<IQuestionLinkRepository>(context);
-					IQuestionTypeRepository questionTypeRepository = PersistenceHelper.CreateRepository<IQuestionTypeRepository>(context);
-					ISourceRepository sourceRepository = PersistenceHelper.CreateRepository<ISourceRepository>(context);
-					IQuestionFlagRepository questionFlagRepository = PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context);
+					var questionRepository = PersistenceHelper.CreateRepository<IQuestionRepository>(context);
+					var answerRepository = PersistenceHelper.CreateRepository<IAnswerRepository>(context);
+					var categoryRepository = PersistenceHelper.CreateRepository<ICategoryRepository>(context);
+					var questionCategoryRepository = PersistenceHelper.CreateRepository<IQuestionCategoryRepository>(context);
+					var questionLinkRepository = PersistenceHelper.CreateRepository<IQuestionLinkRepository>(context);
+					var questionTypeRepository = PersistenceHelper.CreateRepository<IQuestionTypeRepository>(context);
+					var sourceRepository = PersistenceHelper.CreateRepository<ISourceRepository>(context);
+					var questionFlagRepository = PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context);
 
 					Source source = sourceRepository.TryGetByIdentifier(sourceIdentifier);
 					if (source == null)
@@ -59,13 +60,14 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 						source = sourceRepository.Create();
 						source.Identifier = sourceIdentifier;
 					}
+
 					source.Description = sourceDescription;
 					source.Url = sourceUrl;
 
 					Type importerType = typeof(Importer<,,>);
 					Type importerType2 = importerType.MakeGenericType(modelType, selectorType, converterType);
 
-					IImporter importer = (IImporter)Activator.CreateInstance(
+					var importer = (IImporter)Activator.CreateInstance(
 						importerType2,
 						questionRepository,
 						answerRepository,
@@ -73,7 +75,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 						questionCategoryRepository,
 						questionLinkRepository,
 						questionTypeRepository,
-						sourceRepository,
 						questionFlagRepository,
 						source,
 						categoryIdentifier);
@@ -95,7 +96,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 			// Correct category descriptions
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
-				ICategoryRepository categoryRepository = PersistenceHelper.CreateRepository<ICategoryRepository>(context);
+				var categoryRepository = PersistenceHelper.CreateRepository<ICategoryRepository>(context);
 
 				var categoryDescriptionCorrector = new CategoryDescriptionCorrector(categoryRepository);
 				categoryDescriptionCorrector.Execute();

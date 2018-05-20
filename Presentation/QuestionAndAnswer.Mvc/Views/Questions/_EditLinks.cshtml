@@ -11,7 +11,7 @@
             {
                 using (Html.BeginCollectionItem())
                 {
-                    @Html.Partial(ViewNames._EditLink, questionLink)
+                    @Html.Partial(nameof(ViewNames._EditLink), questionLink)
                 }
             }
 
@@ -19,7 +19,7 @@
                 <td />
                 <td />
                 <td style="vertical-align:bottom;text-align:center;">
-                    <input type="submit" value="@CommonResourceFormatter.Add" formaction="@Url.Action(ActionNames.AddLink)" />
+                    <input type="submit" value="@CommonResourceFormatter.Add" formaction="@Url.Action(nameof(ActionNames.AddLink))" />
                 </td>
             </tr>
         </table>
@@ -27,6 +27,6 @@
     else
     {
         <br />
-        <input type="submit" value="@CommonResourceFormatter.Add" formaction="@Url.Action(ActionNames.AddLink)" />
+        <input type="submit" value="@CommonResourceFormatter.Add" formaction="@Url.Action(nameof(ActionNames.AddLink))" />
     }
 </fieldset>

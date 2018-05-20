@@ -9,14 +9,11 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 	{
 		public QuestionDeleteViewMapping()
 		{
-			MapPresenter(PresenterNames.QuestionConfirmDeletePresenter, PresenterActionNames.Show);
-			MapController(ControllerNames.Questions, ActionNames.Delete, ViewNames.Delete);
-			MapParameter(PresenterParameterNames.id, ActionParameterNames.id);
+			MapPresenter(nameof(PresenterNames.QuestionConfirmDeletePresenter), nameof(PresenterActionNames.Show));
+			MapController(nameof(ControllerNames.Questions), nameof(ActionNames.Delete), nameof(ViewNames.Delete));
+			MapParameter(nameof(PresenterParameterNames.id), nameof(ActionParameterNames.id));
 		}
 
-		protected override object GetRouteValues(QuestionConfirmDeleteViewModel viewModel)
-		{
-			return new { id = viewModel.ID };
-		}
+		protected override object GetRouteValues(QuestionConfirmDeleteViewModel viewModel) => new { id = viewModel.ID };
 	}
 }

@@ -3,7 +3,7 @@
 <div id="loginDiv">
     @if (Model.CanLogIn)
     {
-        @Html.ActionLink(CommonResourceFormatter.LogIn, ActionNames.Index, ControllerNames.Login)
+        @Html.ActionLink(CommonResourceFormatter.LogIn, nameof(ActionNames.Index), nameof(ControllerNames.Login))
     }
 
     @Model.UserDisplayName 
@@ -11,7 +11,7 @@
     @if (Model.CanLogOut)
     { 
         <div id="logindropdown">
-            @Html.ActionLink(CommonResourceFormatter.LogOut, ActionNames.LogOut, ControllerNames.Login) 
+            @Html.ActionLink(CommonResourceFormatter.LogOut, nameof(ActionNames.LogOut), nameof(ControllerNames.Login))
         </div>
     } 
 </div>

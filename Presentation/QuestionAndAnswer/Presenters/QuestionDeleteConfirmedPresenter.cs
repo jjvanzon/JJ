@@ -1,25 +1,22 @@
 ﻿using System;
-using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Presentation.QuestionAndAnswer.Helpers;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation;
 using System.Linq.Expressions;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Presentation;
+using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
+using JJ.Presentation.QuestionAndAnswer.ViewModels;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
 	public class QuestionDeleteConfirmedPresenter
 	{
-		private Repositories _repositories;
-		private string _authenticatedUserName;
+		private readonly Repositories _repositories;
+		private readonly string _authenticatedUserName;
 
 		/// <param name="authenticatedUserName">nullable</param>
 		public QuestionDeleteConfirmedPresenter(Repositories repositories, string authenticatedUserName)
 		{
-			if (repositories == null) throw new NullException(() => repositories);
-
-			_repositories = repositories;
+			_repositories = repositories ?? throw new NullException(() => repositories);
 			_authenticatedUserName = authenticatedUserName;
 		}
 		

@@ -1,9 +1,13 @@
-﻿namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
+﻿// ReSharper disable InconsistentNaming
+
+using JJ.Framework.Exceptions;
+
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
 {
 	public static class ControllerNames
 	{
-		public const string Questions = "Questions";
-		public const string CategorySelector = "CategorySelector";
-		public const string Login = "Login";
+		public static void Questions() => throw new NameOfOnlyException();
+		public static void CategorySelector() => throw new NameOfOnlyException();
+		public static void Login() => throw new NameOfOnlyException();
 	}
 }

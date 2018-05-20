@@ -1,28 +1,25 @@
 ﻿using System;
-using JJ.Data.QuestionAndAnswer;
-using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using JJ.Presentation.QuestionAndAnswer.ToViewModel;
-using JJ.Presentation.QuestionAndAnswer.Helpers;
-using JJ.Framework.Exceptions;
 using System.Linq.Expressions;
+using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Presentation;
+using JJ.Presentation.QuestionAndAnswer.Helpers;
+using JJ.Presentation.QuestionAndAnswer.ToViewModel;
+using JJ.Presentation.QuestionAndAnswer.ViewModels;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
 	public class QuestionDetailsPresenter
 	{
-		private Repositories _repositories;
-		private string _authenticatedUserName;
+		private readonly Repositories _repositories;
+		private readonly string _authenticatedUserName;
 
 		/// <param name="authenticatedUserName">nullable</param>
 		public QuestionDetailsPresenter(
 			Repositories repositories, 
 			string authenticatedUserName)
 		{
-			if (repositories == null) throw new NullException(() => repositories);
-
-			_repositories = repositories;
+			_repositories = repositories ?? throw new NullException(() => repositories);
 			_authenticatedUserName = authenticatedUserName;
 		}
 

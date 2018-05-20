@@ -8,7 +8,7 @@
     </td>
 
     <td>
-        @{var allCategories = (IList<CategoryViewModel>)ViewData[ViewDataKeys.AllCategories];}
+        @{var allCategories = (IList<CategoryViewModel>)ViewData[nameof(ViewDataKeys.AllCategories)];}
 
         @Html.DropDownListFor(
             x => x.Category.ID,
@@ -22,13 +22,15 @@
     </td>
 
     <td style="vertical-align:bottom;text-align:center;">
-        <input type="submit" value="@CommonResourceFormatter.Remove" formaction="@Url.ActionWithParams(ActionNames.RemoveCategory, 
-                                                                                            ControllerNames.Questions,
-                                                                                            ActionParameterNames.temporaryID,
-                                                                                            Model.TemporaryID)" />
+	    <input type="submit" 
+	           value="@CommonResourceFormatter.Remove" 
+	           formaction="@Url.ActionWithParams(
+		                       nameof(ActionNames.RemoveCategory), 
+		                       nameof(ControllerNames.Questions), 
+		                       nameof(ActionParameterNames.temporaryID), 
+		                       Model.TemporaryID)" />
     </td>
     <td>
         @Html.ValidationMessageFor(x => x.Category.ID)
     </td>
-
 </tr>

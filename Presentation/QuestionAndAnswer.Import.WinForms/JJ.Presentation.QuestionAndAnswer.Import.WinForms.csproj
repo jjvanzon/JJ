@@ -53,18 +53,10 @@
     <Compile Include="PersistenceHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="IO Files\CSS Backgrounds and Borders Module Level 3.htm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\CSS Marquee Module Level 3.htm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss3_PropertyIndex.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss3_SelectorIndex.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="IO Files\CSS Backgrounds and Borders Module Level 3.htm" />
+    <Content Include="IO Files\CSS Marquee Module Level 3.htm" />
+    <Content Include="IO Files\W3CSpecCss3_PropertyIndex.html" />
+    <Content Include="IO Files\W3CSpecCss3_SelectorIndex.html" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -77,12 +69,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Content Include="IO Files\W3CSpecCss3_PropertyIndex.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss3_SelectorIndex.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="IO Files\W3CSpecCss3_PropertyIndex.csv" />
+    <Content Include="IO Files\W3CSpecCss3_SelectorIndex.csv" />
+    <Content Include="IO Files\DutchToPolish.csv" />
+    <None Include="IO Files\DutchToPolish.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,47 +89,27 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IO Files\W3CSpecCss21_Aural.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_BoxModel.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_ColorsAndBackgrounds.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_Fonts.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_GeneratedContent.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_PagedMedia.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_Tables.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_Text.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_UserInterface.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_VisualEffects.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_VisualFormattingModel.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="IO Files\W3CSpecCss21_VisualFormattingModelDetails.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="IO Files\W3CSpecCss21_Aural.html" />
+    <Content Include="IO Files\W3CSpecCss21_BoxModel.html" />
+    <Content Include="IO Files\W3CSpecCss21_ColorsAndBackgrounds.html" />
+    <Content Include="IO Files\W3CSpecCss21_Fonts.html" />
+    <Content Include="IO Files\W3CSpecCss21_GeneratedContent.html" />
+    <Content Include="IO Files\W3CSpecCss21_PagedMedia.html" />
+    <Content Include="IO Files\W3CSpecCss21_Tables.html" />
+    <Content Include="IO Files\W3CSpecCss21_Text.html" />
+    <Content Include="IO Files\W3CSpecCss21_UserInterface.html" />
+    <Content Include="IO Files\W3CSpecCss21_VisualEffects.html" />
+    <Content Include="IO Files\W3CSpecCss21_VisualFormattingModel.html" />
+    <Content Include="IO Files\W3CSpecCss21_VisualFormattingModelDetails.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\QuestionAndAnswer.Import.W3CSpecCss3\JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.csproj">
       <Project>{d2ebc8ce-4fc5-43c0-9cef-f060c2e4b439}</Project>
       <Name>JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\QuestionAndAnswer.Import.Words\JJ.Business.QuestionAndAnswer.Import.Language.csproj">
+      <Project>{e850bb7e-ece9-454b-b1f5-92e7e555e67b}</Project>
+      <Name>JJ.Business.QuestionAndAnswer.Import.Language</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Business\QuestionAndAnswer.Import\JJ.Business.QuestionAndAnswer.Import.csproj">
       <Project>{d91d777a-f46e-48b6-90e9-90931a3ccfff}</Project>
@@ -168,6 +138,14 @@
     <ProjectReference Include="..\..\Framework\Data\JJ.Framework.Data.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
+      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
+      <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
+      <Project>{964de0b4-27f8-40f8-8d50-c97388bf8ce2}</Project>
+      <Name>JJ.Framework.Text</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\WinForms\JJ.Framework.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>

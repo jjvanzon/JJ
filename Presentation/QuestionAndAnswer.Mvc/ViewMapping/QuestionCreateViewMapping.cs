@@ -9,29 +9,20 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 	public class QuestionCreateViewMapping : ViewMapping<QuestionEditViewModel>
 	{
 		public QuestionCreateViewMapping()
-			: base()
-		{ 
-			MapPresenter(PresenterNames.QuestionEditPresenter, PresenterActionNames.Create);
-			MapController(ControllerNames.Questions, ActionNames.Create, ViewNames.Edit);
+		{
+			MapPresenter(nameof(PresenterNames.QuestionEditPresenter), nameof(PresenterActionNames.Create));
+			MapController(nameof(ControllerNames.Questions), nameof(ActionNames.Create), nameof(ViewNames.Edit));
 		}
 
-		protected override bool Predicate(QuestionEditViewModel viewModel)
-		{
-			return viewModel.IsNew;
-		}
+		protected override bool Predicate(QuestionEditViewModel viewModel) => viewModel.IsNew;
 
 		protected override object GetRouteValues(QuestionEditViewModel viewModel)
-		{
-			return new 
-			{ 
-				id = viewModel.Question.ID, 
-				ret = TryGetReturnUrl(viewModel.ReturnAction) 
+			=> new
+			{
+				id = viewModel.Question.ID,
+				ret = TryGetReturnUrl(viewModel.ReturnAction)
 			};
-		}
 
-		protected override ICollection<string> GetValidationMesssages(QuestionEditViewModel viewModel)
-		{
-			return viewModel.ValidationMessages;
-		}
+		protected override ICollection<string> GetValidationMesssages(QuestionEditViewModel viewModel) => viewModel.ValidationMessages;
 	}
 }

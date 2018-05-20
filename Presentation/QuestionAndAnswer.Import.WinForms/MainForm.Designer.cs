@@ -33,10 +33,12 @@
 			// 
 			// MainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(737, 253);
+			this.ClientSize = new System.Drawing.Size(935, 371);
 			this.Description = resources.GetString("$this.Description");
+			this.Margin = new System.Windows.Forms.Padding(5);
+			this.MustShowExceptions = true;
 			this.Name = "MainForm";
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.ResumeLayout(false);

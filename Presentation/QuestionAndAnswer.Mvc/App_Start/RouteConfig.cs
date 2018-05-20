@@ -12,11 +12,11 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
 
 			routes.MapRoute(
 				name: "Index",
-				url: "{controller}/" + ActionNames.Index + "/{page}",
+				url: "{controller}/" + nameof(ActionNames.Index) + "/{page}",
 				defaults: new
 				{
-					controller = ControllerNames.Questions,
-					action = ActionNames.Index,
+					controller = nameof(ControllerNames.Questions),
+					action = nameof(ActionNames.Index),
 					page = 1
 				});
 
@@ -25,8 +25,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
 				url: "{controller}/{action}/{id}",
 				defaults: new
 				{
-					controller = ControllerNames.Questions,
-					action = ActionNames.Random,
+					controller = nameof(ControllerNames.Questions),
+					action = nameof(ActionNames.Random),
 					id = UrlParameter.Optional
 				});
 		}

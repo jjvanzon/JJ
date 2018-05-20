@@ -9,13 +9,10 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 	{
 		public LoginIndexViewMapping()
 		{
-			MapPresenter(PresenterNames.LoginPresenter, PresenterActionNames.Show);
-			MapController(ControllerNames.Login, ActionNames.Index, ViewNames.Index);
+			MapPresenter(nameof(PresenterNames.LoginPresenter), nameof(PresenterActionNames.Show));
+			MapController(nameof(ControllerNames.Login), nameof(ActionNames.Index), nameof(ViewNames.Index));
 		}
 
-		protected override object GetRouteValues(LoginViewModel viewModel)
-		{
-			return new { ret = TryGetReturnUrl(viewModel.ReturnAction) };
-		}
+		protected override object GetRouteValues(LoginViewModel viewModel) => new { ret = TryGetReturnUrl(viewModel.ReturnAction) };
 	}
 }

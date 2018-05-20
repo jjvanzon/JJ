@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using JJ.Presentation.QuestionAndAnswer.AppService.DemoClient.RandomQuestionService;
 
@@ -13,7 +6,7 @@ namespace JJ.Presentation.QuestionAndAnswer.AppService.DemoClient
 {
 	internal partial class RandomQuesionForm : Form
 	{
-		private QuestionController _controller;
+		private readonly QuestionController _controller;
 		private RandomQuestionViewModel _viewModel;
 
 		public RandomQuesionForm()

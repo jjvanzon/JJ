@@ -9,9 +9,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 	{
 		public QuestionRandomViewMapping()
 		{
-			MapPresenter(PresenterNames.RandomQuestionPresenter, PresenterActionNames.Edit);
-			MapController(ControllerNames.Questions, ActionNames.Random, ViewNames.Random);
-			MapParameter(PresenterParameterNames.categoryIDs, ActionParameterNames.c);
+			MapPresenter(nameof(PresenterNames.RandomQuestionPresenter), nameof(PresenterActionNames.Edit));
+			MapController(nameof(ControllerNames.Questions), nameof(ActionNames.Random), nameof(ViewNames.Random));
+			MapParameter(nameof(PresenterParameterNames.categoryIDs), nameof(ActionParameterNames.c));
 		}
 	}
 }

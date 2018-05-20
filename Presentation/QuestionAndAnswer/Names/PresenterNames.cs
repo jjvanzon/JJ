@@ -1,4 +1,5 @@
-﻿namespace JJ.Presentation.QuestionAndAnswer.Names
+﻿// ReSharper disable InconsistentNaming
+namespace JJ.Presentation.QuestionAndAnswer.Names
 {
 	public static class PresenterNames
 	{

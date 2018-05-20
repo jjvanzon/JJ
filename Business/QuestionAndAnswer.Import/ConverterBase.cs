@@ -1,13 +1,14 @@
-﻿using JJ.Business.QuestionAndAnswer.LinkTo;
+﻿using System;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Business.QuestionAndAnswer.SideEffects;
 using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Business;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Text;
 using JJ.Framework.Validation;
+using static JJ.Framework.Reflection.ExpressionHelper;
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {
@@ -102,11 +103,11 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			if (value != null)
 			{
 				value = value.Replace("<'", "")
-							 .Replace("'>", "")
-							 .Replace(">", "")
-							 .Replace("<", "")
-							 .TrimStart("'")
-							 .TrimEnd("'");
+				             .Replace("'>", "")
+				             .Replace(">", "")
+				             .Replace("<", "")
+				             .TrimStart("'")
+				             .TrimEnd("'");
 			}
 
 			// Older (?) version.
@@ -126,7 +127,8 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			}
 
 			// Absolute URL e.g. "http://www.bla.com/something/page.html"
-			if (url.StartsWith("http://"))
+			if (url.StartsWith("http://") ||
+			    url.StartsWith("https://"))
 			{
 				return url;
 			}
@@ -138,16 +140,19 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			}
 
 			// A relative link to another page on the same site e.g. "anotherpage.html#mysection"
-			else
-			{
-				// Source url can be e.g.
-				// - "http://www.w3.org/TR/CSS21/tables.html#table-display"
-				// - "http://www.w3.org/TR/CSS21/tables.html"
-				// - "http://www.w3.org/TR/CSS21/tables.bla/"
+			// Source url can be e.g.
+			// - "http://www.w3.org/TR/CSS21/tables.html#table-display"
+			// - "http://www.w3.org/TR/CSS21/tables.html"
+			// - "http://www.w3.org/TR/CSS21/tables.bla/"
 
-				// It is assumed that it either ends with a slash, or you have to cut off everything until the slash.
-				return _source.Url.TrimEndUntil("/") + url;
+			// It is assumed that it either ends with a slash, or you have to cut off everything until the slash.
+			if (string.IsNullOrWhiteSpace(_source.Url))
+			{
+				throw new Exception(
+					$"{new { url }} was considered a relative URL, but those do not work if if {GetText(() => _source.Url)} is empty.");
 			}
+
+			return _source.Url.TrimEndUntil("/") + url;
 		}
 
 		/// <summary> Trims, but does not throw exception when value is null. </summary>

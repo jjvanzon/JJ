@@ -1,27 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using JJ.Business.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer;
+using JJ.Framework.Exceptions.Basic;
+using JJ.Presentation.QuestionAndAnswer.Extensions;
+using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Presentation.QuestionAndAnswer.ToViewModel;
-using JJ.Presentation.QuestionAndAnswer.Extensions;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
 	public class CategorySelectorPresenter
 	{
-		private ICategoryRepository _categoryRepository;
-		private IQuestionRepository _questionRepository;
-		private IQuestionFlagRepository _questionFlagRepository;
-		private IFlagStatusRepository _flagStatusRepository;
-		private IUserRepository _userRepository;
+		private readonly ICategoryRepository _categoryRepository;
+		private readonly IQuestionRepository _questionRepository;
+		private readonly IQuestionFlagRepository _questionFlagRepository;
+		private readonly IFlagStatusRepository _flagStatusRepository;
+		private readonly IUserRepository _userRepository;
 
-		private CategoryManager _categoryManager;
-		private string _authenticatedUserName;
+		private readonly CategoryManager _categoryManager;
+		private readonly string _authenticatedUserName;
 
 		/// <param name="authenticatedUserName">nullable</param>
 		public CategorySelectorPresenter(
@@ -32,17 +31,11 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			IUserRepository userRepository,
 			string authenticatedUserName)
 		{
-			if (categoryRepository == null) throw new NullException(() => categoryRepository);
-			if (questionRepository == null) throw new NullException(() => questionRepository);
-			if (questionFlagRepository == null) throw new NullException(() => questionFlagRepository);
-			if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);
-			if (userRepository == null) throw new NullException(() => userRepository);
-
-			_categoryRepository = categoryRepository;
-			_questionRepository = questionRepository;
-			_questionFlagRepository = questionFlagRepository;
-			_flagStatusRepository = flagStatusRepository;
-			_userRepository = userRepository;
+			_categoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
+			_questionRepository = questionRepository ?? throw new NullException(() => questionRepository);
+			_questionFlagRepository = questionFlagRepository ?? throw new NullException(() => questionFlagRepository);
+			_flagStatusRepository = flagStatusRepository ?? throw new NullException(() => flagStatusRepository);
+			_userRepository = userRepository ?? throw new NullException(() => userRepository);
 
 			_authenticatedUserName = authenticatedUserName;
 

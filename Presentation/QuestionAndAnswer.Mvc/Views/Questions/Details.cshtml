@@ -7,23 +7,23 @@
 
 @section Header
 {
-    @Html.Partial(ViewNames._Login, Model.Login)
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
 }
 
 <h2>@Titles.QuestionDetails</h2>
 
 <p>
-    @Html.ActionLink(CommonResourceFormatter.Edit, ActionNames.Edit, new 
+    @Html.ActionLink(CommonResourceFormatter.Edit, nameof(ActionNames.Edit), new 
     {
         id = Model.Question.ID,
-        ret = Url.Action(ActionNames.Details, ControllerNames.Questions, new  { id = Model.Question.ID })
+        ret = Url.Action(nameof(ActionNames.Details), nameof(ControllerNames.Questions), new  { id = Model.Question.ID })
     }) |
-    @Html.ActionLink(CommonResourceFormatter.New, ActionNames.Create, new
+    @Html.ActionLink(CommonResourceFormatter.New, nameof(ActionNames.Create), new
     {
-        ret = Url.Action(ActionNames.Details, ControllerNames.Questions, new  { id = Model.Question.ID })
+        ret = Url.Action(nameof(ActionNames.Details), nameof(ControllerNames.Questions), new  { id = Model.Question.ID })
     }) |
-    @Html.ActionLink(CommonResourceFormatter.Delete, ActionNames.Delete, new { id = Model.Question.ID }) |
-    @Html.ActionLink(Titles.BackToList, ActionNames.Index)
+    @Html.ActionLink(CommonResourceFormatter.Delete, nameof(ActionNames.Delete), new { id = Model.Question.ID }) |
+    @Html.ActionLink(Titles.BackToList, nameof(ActionNames.Index))
 </p>
 
 <table class="properties">

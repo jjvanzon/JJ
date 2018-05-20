@@ -1,7 +1,6 @@
-﻿using JJ.Framework.Business;
-using JJ.Framework.Exceptions;
-using JJ.Data.QuestionAndAnswer;
+﻿using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Business;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.SideEffects
@@ -14,22 +13,18 @@ namespace JJ.Presentation.QuestionAndAnswer.SideEffects
 	{
 		private const string DEFAULT_SOURCE_IDENTIFIER = "Manual";
 
-		private Question _entity;
-		private ISourceRepository _sourceRepository;
-		private EntityStatusManager _statusManager;
+		private readonly Question _entity;
+		private readonly ISourceRepository _sourceRepository;
+		private readonly EntityStatusManager _statusManager;
 
 		public Question_SetDefaults_ForOpenQuestion_FrontEnd_SideEffect(
 			Question entity,
 			ISourceRepository sourceRepository,
 			EntityStatusManager statusManager)
 		{
-			if (entity == null) throw new NullException(() => entity);
-			if (sourceRepository == null) throw new NullException(() => sourceRepository);
-			if (statusManager == null) throw new NullException(() => statusManager);
-
-			_entity = entity;
-			_sourceRepository = sourceRepository;
-			_statusManager = statusManager;
+			_entity = entity ?? throw new NullException(() => entity);
+			_sourceRepository = sourceRepository ?? throw new NullException(() => sourceRepository);
+			_statusManager = statusManager ?? throw new NullException(() => statusManager);
 		}
 
 		public void Execute()

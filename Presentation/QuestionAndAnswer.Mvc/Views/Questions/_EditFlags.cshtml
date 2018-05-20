@@ -15,7 +15,7 @@
         {
             using (Html.BeginCollectionItem())
             {
-                @Html.Partial(ViewNames._EditFlag, questionFlag);
+                @Html.Partial(nameof(ViewNames._EditFlag), questionFlag);
 
                 if (questionFlag != Model.Flags.Last())
                 {

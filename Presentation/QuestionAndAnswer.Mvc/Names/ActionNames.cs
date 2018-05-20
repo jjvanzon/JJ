@@ -1,26 +1,30 @@
-﻿namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
+﻿// ReSharper disable InconsistentNaming
+
+using JJ.Framework.Exceptions;
+
+namespace JJ.Presentation.QuestionAndAnswer.Mvc.Names
 {
 	public static class ActionNames
 	{
-		public const string Random = "Random";
-		public const string HideAnswer = "HideAnswer";
-		public const string ShowAnswer = "ShowAnswer";
-		public const string Add = "Add";
-		public const string Remove = "Remove";
-		public const string Index = "Index";
-		public const string SetLanguage = "SetLanguage";
-		public const string LogOut = "LogOut";
-		public const string Flag = "Flag";
-		public const string Unflag = "Unflag";
-		public const string Details = "Details";
-		public const string Edit = "Edit";
-		public const string AddLink = "AddLink";
-		public const string RemoveLink = "RemoveLink";
-		public const string AddCategory = "AddCategory";
-		public const string RemoveCategory = "RemoveCategory";
-		public const string Create = "Create";
-		public const string Delete = "Delete";
-		public const string CancelEdit = "CancelEdit";
-		public const string EditFromList = "EditFromList";
+		public static void Random() => throw new NameOfOnlyException();
+		public static void HideAnswer() => throw new NameOfOnlyException();
+		public static void ShowAnswer() => throw new NameOfOnlyException();
+		public static void Add() => throw new NameOfOnlyException();
+		public static void Remove() => throw new NameOfOnlyException();
+		public static void Index() => throw new NameOfOnlyException();
+		public static void SetLanguage() => throw new NameOfOnlyException();
+		public static void LogOut() => throw new NameOfOnlyException();
+		public static void Flag() => throw new NameOfOnlyException();
+		public static void Unflag() => throw new NameOfOnlyException();
+		public static void Details() => throw new NameOfOnlyException();
+		public static void Edit() => throw new NameOfOnlyException();
+		public static void AddLink() => throw new NameOfOnlyException();
+		public static void RemoveLink() => throw new NameOfOnlyException();
+		public static void AddCategory() => throw new NameOfOnlyException();
+		public static void RemoveCategory() => throw new NameOfOnlyException();
+		public static void Create() => throw new NameOfOnlyException();
+		public static void Delete() => throw new NameOfOnlyException();
+		public static void CancelEdit() => throw new NameOfOnlyException();
+		public static void EditFromList() => throw new NameOfOnlyException();
 	}
 }
