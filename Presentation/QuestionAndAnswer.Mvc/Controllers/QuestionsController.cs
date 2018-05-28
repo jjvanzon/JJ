@@ -77,20 +77,19 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 
 		public ActionResult Edit(int id, string ret = null)
 		{
-			object viewModel;
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
-			{
-				using (IContext context = PersistenceHelper.CreateContext())
-				{
-					Repositories repositories = PersistenceHelper.CreateRepositories(context);
-					var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+            {
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
+                    var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
 
-					ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
-					viewModel = presenter.Edit(id, returnAction);
-				}
-			}
+                    ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
+                    viewModel = presenter.Edit(id, returnAction);
+                }
+            }
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel);
+            return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel);
 		}
 
 		[HttpPost]
@@ -121,18 +120,17 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			object viewModel;
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
-			{
-				using (IContext context = PersistenceHelper.CreateContext())
-				{
-					Repositories repositories = PersistenceHelper.CreateRepositories(context);
-					var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
-					viewModel = presenter.Show(id);
-				}
-			}
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+            {
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
+                    var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
+                    viewModel = presenter.Show(id);
+                }
+            }
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Delete), viewModel);
+            return ActionDispatcher.Dispatch(this, nameof(ActionNames.Delete), viewModel);
 		}
 
 		[HttpPost]

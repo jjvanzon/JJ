@@ -11,58 +11,58 @@ using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {
-	public class LoginController : MasterController
-	{
-		public ActionResult Index(string ret = null)
-		{
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
-			{
-				using (IContext context = PersistenceHelper.CreateContext())
-				{
-					Repositories repositories = PersistenceHelper.CreateRepositories(context);
-					LoginPresenter presenter = new LoginPresenter(repositories);
-					ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
-					viewModel = presenter.Show(returnAction);
-				}
-			}
+    public class LoginController : MasterController
+    {
+        public ActionResult Index(string ret = null)
+        {
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+            {
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
+                    var presenter = new LoginPresenter(repositories);
+                    ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
+                    viewModel = presenter.Show(returnAction);
+                }
+            }
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
-		}
+            return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
+        }
 
-		[HttpPost]
-		public ActionResult Index(LoginViewModel viewModel, string lang = null, string ret = null)
-		{
-			using (IContext context = PersistenceHelper.CreateContext())
-			{
-				Repositories repositories = PersistenceHelper.CreateRepositories(context);
-				LoginPresenter presenter = new LoginPresenter(repositories);
-				object viewModel2;
-				if (!string.IsNullOrEmpty(lang))
-				{
-					viewModel2 = presenter.SetLanguage(viewModel, lang);
-					CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
-				}
-				else
-				{
-					viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
-					viewModel2 = presenter.Login(viewModel);
-				}
+        [HttpPost]
+        public ActionResult Index(LoginViewModel viewModel, string lang = null, string ret = null)
+        {
+            using (IContext context = PersistenceHelper.CreateContext())
+            {
+                Repositories repositories = PersistenceHelper.CreateRepositories(context);
+                var presenter = new LoginPresenter(repositories);
+                object viewModel2;
+                if (!string.IsNullOrEmpty(lang))
+                {
+                    viewModel2 = presenter.SetLanguage(viewModel, lang);
+                    CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
+                }
+                else
+                {
+                    viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
+                    viewModel2 = presenter.Login(viewModel);
+                }
 
-				// TODO: This is dirty.
-				if (!(viewModel2 is LoginViewModel))
-				{
-					SetAuthenticatedUserName(viewModel.UserName);
-				}
+                // TODO: This is dirty.
+                if (!(viewModel2 is LoginViewModel))
+                {
+                    SetAuthenticatedUserName(viewModel.UserName);
+                }
 
-				return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel2);
-			}
-		}
+                return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel2);
+            }
+        }
 
-		public ActionResult LogOut()
-		{
-			SessionWrapper.AuthenticatedUserName = null;
+        public ActionResult LogOut()
+        {
+            SessionWrapper.AuthenticatedUserName = null;
 
-			return RedirectToAction(nameof(ActionNames.Index), nameof(ControllerNames.Login));
-		}
-	}
+            return RedirectToAction(nameof(ActionNames.Index), nameof(ControllerNames.Login));
+        }
+    }
 }

@@ -7,6 +7,9 @@ using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Collections;
 using JJ.Framework.Text;
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
+// ReSharper disable HeuristicUnreachableCode
+#pragma warning disable 162
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 {

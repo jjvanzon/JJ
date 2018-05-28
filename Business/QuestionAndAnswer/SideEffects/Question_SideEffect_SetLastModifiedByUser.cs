@@ -33,13 +33,13 @@ namespace JJ.Business.QuestionAndAnswer.SideEffects
 				   statusManager.IsDirty(() => entity.QuestionType) ||
 				   statusManager.IsDirty(() => entity.Source) ||
 				   statusManager.IsDirty(() => entity.QuestionCategories) ||
-				   entity.QuestionCategories.Any(x => statusManager.IsDirty(x)) ||
+				   entity.QuestionCategories.Any(statusManager.IsDirty) ||
 				   statusManager.IsDirty(() => entity.QuestionLinks) ||
-				   entity.QuestionLinks.Any(x => statusManager.IsDirty(x)) ||
-				   entity.QuestionLinks.Any(x => statusManager.IsNew(x)) ||
+				   entity.QuestionLinks.Any(statusManager.IsDirty) ||
+				   entity.QuestionLinks.Any(statusManager.IsNew) ||
 				   statusManager.IsDirty(() => entity.QuestionFlags) ||
-				   entity.QuestionFlags.Any(x => statusManager.IsDirty(x)) ||
-				   entity.QuestionFlags.Any(x => statusManager.IsNew(x));
+				   entity.QuestionFlags.Any(statusManager.IsDirty) ||
+				   entity.QuestionFlags.Any(statusManager.IsNew);
 
 		}
 	}

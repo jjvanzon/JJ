@@ -68,7 +68,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
 		private IEnumerable<XmlNode> GetDlTags(XmlDocument doc)
 		{
-			string xpath = "//dl[not(parent::div[@class='head']) and not (@class='bibliography')]";
+			const string xpath = "//dl[not(parent::div[@class='head']) and not (@class='bibliography')]";
 			XmlNodeList nodes = doc.SelectNodes(xpath);
 			return nodes.OfType<XmlNode>();
 		}
