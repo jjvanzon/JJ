@@ -11,8 +11,8 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 		{
 			if (entity == null) throw new NullException(() => entity);
 
-			For(entity.Question, PropertyDisplayNames.Question).NotNull();
-			For(entity.Category, PropertyDisplayNames.Category).NotNull();
+			For(entity.Question, ResourceFormatter.Question).NotNull();
+			For(entity.Category, ResourceFormatter.Category).NotNull();
 		}
 	}
 }

@@ -2,7 +2,7 @@
 
 @section Title
 {
-    @Titles.QuestionDetails
+    @ResourceFormatter.QuestionDetails
 }
 
 @section Header
@@ -10,7 +10,7 @@
     @Html.Partial(nameof(ViewNames._Login), Model.Login)
 }
 
-<h2>@Titles.QuestionDetails</h2>
+<h2>@ResourceFormatter.QuestionDetails</h2>
 
 <p>
     @Html.ActionLink(CommonResourceFormatter.Edit, nameof(ActionNames.Edit), new 
@@ -23,30 +23,30 @@
         ret = Url.Action(nameof(ActionNames.Details), nameof(ControllerNames.Questions), new  { id = Model.Question.ID })
     }) |
     @Html.ActionLink(CommonResourceFormatter.Delete, nameof(ActionNames.Delete), new { id = Model.Question.ID }) |
-    @Html.ActionLink(Titles.BackToList, nameof(ActionNames.Index))
+    @Html.ActionLink(ResourceFormatter.BackToList, nameof(ActionNames.Index))
 </p>
 
 <table class="properties">
     <tr>
-        <th>@PropertyDisplayNames.ID:</th>
+        <th>@ResourceFormatter.ID:</th>
         <td>@Model.Question.ID</td>
     </tr>
 
     <tr>
-        <th>@PropertyDisplayNames.Question:</th>
+        <th>@ResourceFormatter.Question:</th>
         <td>@Model.Question.Text</td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.Answer:</th>
+        <th>@ResourceFormatter.Answer:</th>
         <td>@Model.Question.Answer</td>
     </tr>
 
     <tr>
-        <th>@PropertyDisplayNames.IsActive:</th>
+        <th>@ResourceFormatter.IsActive:</th>
         <td>@(Model.Question.IsActive ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)</td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.Source:</th>
+        <th>@ResourceFormatter.Source:</th>
         <td>
             @if (!String.IsNullOrEmpty(Model.Question.Source.Url))
             {
@@ -61,12 +61,12 @@
         </td>
     </tr>
     <tr>
-        <th>@Titles.Type:</th>
+        <th>@ResourceFormatter.Type:</th>
         <td>@Model.Question.Type.Name</td>
     </tr>
 
     <tr>
-        <th>@PropertyDisplayNames.Categories:</th>
+        <th>@ResourceFormatter.Categories:</th>
         <td>
 
             @foreach (var category in Model.Question.Categories.Select(x => x.Category))
@@ -84,7 +84,7 @@
         </td>
     </tr>
     <tr>
-        <th>@Titles.Links:</th>
+        <th>@ResourceFormatter.Links:</th>
         <td>
                 
             @foreach (var link in Model.Question.Links)
@@ -100,29 +100,29 @@
         </td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.LastModifiedByUser:</th>
+        <th>@ResourceFormatter.LastModifiedByUser:</th>
         <td>@Model.Question.LastModifiedBy</td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.IsManual:</th>
+        <th>@ResourceFormatter.IsManual:</th>
         <td>
             @(Model.Question.IsManual ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)
 
             @if (Model.Question.IsManual)
             {
                 <br />
-                @Messages.ExplanationOfIsManualWithParenthesis
+                @ResourceFormatter.ExplanationOfIsManualWithParenthesis
             }
         </td>
     </tr>
 </table>
 
 <fieldset>
-    <legend>@Titles.ContentFlags</legend>
+    <legend>@ResourceFormatter.ContentFlags</legend>
 
     <table class="properties">
         <tr>
-            <th>@Titles.HasActiveFlags</th>
+            <th>@ResourceFormatter.HasActiveFlags</th>
             <td>@(Model.Question.IsFlagged ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)</td>
         </tr>
 
@@ -133,19 +133,19 @@
                 <td>
                     <table class="properties">
                         <tr>
-                            <th>@PropertyDisplayNames.DateTime:</th>
+                            <th>@ResourceFormatter.DateTime:</th>
                             <td>@flag.DateAndTime.ToString()</td>
                         </tr>
                         <tr>
-                            <th>@PropertyDisplayNames.FlagStatus:</th>
+                            <th>@ResourceFormatter.FlagStatus:</th>
                             <td>@flag.Status.Name</td>
                         </tr>
                         <tr>
-                            <th>@PropertyDisplayNames.Comment:</th>
+                            <th>@ResourceFormatter.Comment:</th>
                             <td>@flag.Comment</td>
                         </tr>
                         <tr>
-                            <th>@PropertyDisplayNames.LastModifiedByUser:</th>
+                            <th>@ResourceFormatter.LastModifiedByUser:</th>
                             <td>@flag.LastModifiedBy</td>
                         </tr>
                      </table>

@@ -2,7 +2,7 @@
 
 @section Title
 {
-	@Titles.SelectCategories
+	@ResourceFormatter.SelectCategories
 }
 
 @section Header
@@ -12,18 +12,18 @@
 
 @using (Html.BeginForm())
 {
-	<h2>@Titles.SelectCategories </h2>
+	<h2>@ResourceFormatter.SelectCategories </h2>
 
 	if (Model.NoCategoriesAvailable)
 	{
 		<div id="divNoCategoriesAvailable">
-			@Messages.NoCategoriesAvailable
+			@ResourceFormatter.NoCategoriesAvailable
 		</div>
 	}
 	else
 	{
 		@Html.ActionLinkWithCollection(
-			Titles.StartTraining, 
+		    ResourceFormatter.StartTraining, 
 			nameof(ActionNames.Random), 
 			nameof(ControllerNames.Questions), 
 			nameof(ActionParameterNames.c), 
@@ -36,7 +36,7 @@
 					     ondragover="divAvailableCategories_onDragOver(event)"
 					     ondrop="divAvailableCategories_onDrop(event)">
 
-						<h3>@Titles.AvailableCategories</h3>
+						<h3>@ResourceFormatter.AvailableCategories</h3>
 
 						<ul class="category available">
 							@foreach (var availableCategory in Model.AvailableCategories)
@@ -52,7 +52,7 @@
 					     ondragover="divSelectedCategories_onDragOver(event)"
 					     ondrop="divSelectedCategories_onDrop(event)">
 
-						<h3>@Titles.Selection</h3>
+						<h3>@ResourceFormatter.Selection</h3>
 
 						<ul class="category selected">
 

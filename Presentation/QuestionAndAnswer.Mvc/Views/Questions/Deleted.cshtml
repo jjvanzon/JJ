@@ -2,7 +2,7 @@
 
 @section Title
 {
-    @Titles.DeleteQuestion
+    @ResourceFormatter.DeleteQuestion
 }
 
 @section Header
@@ -10,8 +10,8 @@
     @Html.Partial(nameof(ViewNames._Login), Model.Login)
 }
 
-<h2>@Titles.DeleteQuestion</h2>
+<h2>@ResourceFormatter.DeleteQuestion</h2>
     
-<p>@Messages.QuestionIsDeleted</p>
+<p>@ResourceFormatter.QuestionIsDeleted</p>
 
-<p>@Html.ActionLink(Titles.BackToList, nameof(ActionNames.Index))</p>
+<p>@Html.ActionLink(ResourceFormatter.BackToList, nameof(ActionNames.Index))</p>

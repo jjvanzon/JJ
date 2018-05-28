@@ -50,20 +50,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionFlagger.cs" />
     <Compile Include="QuestionSelector.cs" />
-    <Compile Include="Resources\PropertyDisplayNames.Designer.cs">
+    <Compile Include="Resources\ResourceFormatter.cs" />
+    <Compile Include="Resources\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PropertyDisplayNames.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\PropertyDisplayNames.en-US.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PropertyDisplayNames.en-US.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\PropertyDisplayNames.nl-NL.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PropertyDisplayNames.nl-NL.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SideEffects\Answer_SideEffect_SetDefaults_ForOpenQuestion.cs" />
     <Compile Include="SideEffects\QuestionFlag_SideEffect_SetLastModifiedByUser.cs" />
@@ -109,6 +100,10 @@
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
+      <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
+      <Name>JJ.Framework.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Validation\JJ.Framework.Validation.csproj">
       <Project>{59ddc853-62af-4f86-a803-3d4dd491e978}</Project>
       <Name>JJ.Framework.Validation</Name>
@@ -123,17 +118,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\PropertyDisplayNames.en-US.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PropertyDisplayNames.en-US.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\PropertyDisplayNames.nl-NL.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PropertyDisplayNames.nl-NL.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\PropertyDisplayNames.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PropertyDisplayNames.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Resources\Resources.nl-NL.resx" />
+    <EmbeddedResource Include="Resources\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

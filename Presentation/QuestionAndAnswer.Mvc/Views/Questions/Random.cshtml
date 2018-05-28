@@ -2,7 +2,7 @@
 
 @section Title
 {
-	@PropertyDisplayNames.Question
+	@ResourceFormatter.Question
 }
 
 @section Header
@@ -13,13 +13,13 @@
 
 @using (Html.BeginForm())
 {
-	<h2>@PropertyDisplayNames.Question</h2>
+	<h2>@ResourceFormatter.Question</h2>
 
 	<div class="display-field">@Model.Question.Text</div>
 
 	<br/>
 
-	<div class="display-label">@PropertyDisplayNames.Answer:</div>
+	<div class="display-label">@ResourceFormatter.Answer:</div>
 	<div class="text-field">@Html.TextBoxFor(x => x.UserAnswer, new { autocomplete = "off", style = "width:80%;" })</div>
 
 	<br/>
@@ -27,11 +27,11 @@
 	<div id="buttons">
 		@if (!Model.AnswerIsVisible)
 		{
-			<input type="submit" value="@Titles.ShowAnswer" formaction="@Url.Action(nameof(ActionNames.ShowAnswer))"/>
+			<input type="submit" value="@ResourceFormatter.ShowAnswer" formaction="@Url.Action(nameof(ActionNames.ShowAnswer))"/>
 		}
 		else
 		{
-			<input type="submit" value="@Titles.HideAnswer" formaction="@Url.Action(nameof(ActionNames.HideAnswer))"/>
+			<input type="submit" value="@ResourceFormatter.HideAnswer" formaction="@Url.Action(nameof(ActionNames.HideAnswer))"/>
 		}
 	</div>
 
@@ -39,7 +39,7 @@
 
 	<div id="nextQuestion">
 		@Html.ActionLinkWithCollection(
-			Titles.NextQuestion, 
+		    ResourceFormatter.NextQuestion, 
 			nameof(ActionNames.Random), 
 			nameof(ControllerNames.Questions), 
 			nameof(ActionParameterNames.c), 
@@ -50,7 +50,7 @@
 	{
 		<div id="answer">
 			<br/>
-			<div class="display-label">@Titles.TheCorrectAnswer:</div>
+			<div class="display-label">@ResourceFormatter.TheCorrectAnswer:</div>
 			<br/>
 			<div class="display-field">@Html.DisplayFor(x => x.Question.Answer)</div>
 		</div>
@@ -62,7 +62,7 @@
 			<br/>
 			<br/>
 
-			@Titles.AdditionalInformation<text>:</text>
+			@ResourceFormatter.AdditionalInformation<text>:</text>
 
 			<ul>
 				@foreach (var link in Model.Question.Links)
@@ -81,7 +81,7 @@
 			@if (Model.Question.Categories.Count > 0)
 			{
 				<br/>
-				@PropertyDisplayNames.Categories<text>:</text>
+				@ResourceFormatter.Categories<text>:</text>
 
 				@(string.Join(" | ", Model.Question.Categories.SelectMany(x => x.Category.NameParts).Distinct()))
 			}

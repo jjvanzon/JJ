@@ -2,7 +2,7 @@
 
 @section Title
 {
-    @PropertyDisplayNames.Questions
+    @ResourceFormatter.Questions
 }
 
 @section Header
@@ -12,9 +12,9 @@
 
 @using (Html.BeginForm())
 {
-    <h2>@PropertyDisplayNames.Questions</h2>
+    <h2>@ResourceFormatter.Questions</h2>
 
-    <p>@Html.ActionLink(Titles.CreateQuestion, nameof(ActionNames.Create), new
+    <p>@Html.ActionLink(ResourceFormatter.CreateQuestion, nameof(ActionNames.Create), new
     {
         ret = Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.Questions), new { page = Model.Pager.PageNumber })
     })</p>
@@ -24,9 +24,9 @@
     <table>
 
         <tr>
-            <th>@PropertyDisplayNames.ID</th>
-            <th>@PropertyDisplayNames.Question</th>
-            <th>@Titles.ContentIsFlagged </th>
+            <th>@ResourceFormatter.ID</th>
+            <th>@ResourceFormatter.Question</th>
+            <th>@ResourceFormatter.ContentIsFlagged </th>
             <th></th>
         </tr>
 

@@ -1,4 +1,5 @@
-﻿using JJ.Business.QuestionAndAnswer.Resources;
+﻿using System.Resources;
+using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Validation;
@@ -14,15 +15,15 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 		{
 			if (entity == null) throw new NullException(() => entity);
 
-			For(entity.QuestionType, PropertyDisplayNames.QuestionType).NotNull();
-			For(entity.Text, PropertyDisplayNames.Text).NotNullOrWhiteSpace();
+			For(entity.QuestionType, ResourceFormatter.QuestionType).NotNull();
+			For(entity.Text, ResourceFormatter.Text).NotNullOrWhiteSpace();
 
 			int i;
 
 			i = 1;
 			foreach (Answer answer in entity.Answers)
 			{
-				string messagePrefix = $"{PropertyDisplayNames.Answer} {i++}: ";
+				string messagePrefix = $"{ResourceFormatter.Answer} {i++}: ";
 
 				ExecuteValidator(new AnswerValidator(answer), messagePrefix);
 			}
@@ -30,14 +31,14 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 			i = 1;
 			foreach (QuestionCategory questionCategory in entity.QuestionCategories)
 			{
-				string messagePrefix = $"{PropertyDisplayNames.QuestionCategory} {i++}: ";
+				string messagePrefix = $"{ResourceFormatter.QuestionCategory} {i++}: ";
 				ExecuteValidator(new QuestionCategoryValidator(questionCategory), messagePrefix);
 			}
 
 			i = 1;
 			foreach (QuestionLink questionLink in entity.QuestionLinks)
 			{
-				string messagePrefix = $"{PropertyDisplayNames.QuestionLink} {i++}: ";
+				string messagePrefix = $"{ResourceFormatter.QuestionLink} {i++}: ";
 
 				ExecuteValidator(new QuestionLinkValidator(questionLink), messagePrefix);
 			}

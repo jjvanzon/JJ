@@ -18,14 +18,14 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 
 			if (entity.QuestionType != null)
 			{
-				For(entity.GetQuestionTypeEnum(), PropertyDisplayNames.QuestionType)
+				For(entity.GetQuestionTypeEnum(), ResourceFormatter.QuestionType)
 					.Is(QuestionTypeEnum.SeveralMayApply);
 			}
 
-			For(entity.Answers.Count, PropertyDisplayNames.AnswersCount)
+			For(entity.Answers.Count, ResourceFormatter.AnswersCount)
 				.GreaterThan(1);
 
-			For(entity.Answers.Where(x => x.IsCorrectAnswer).Count(), PropertyDisplayNames.CorrectAnswerCount)
+			For(entity.Answers.Where(x => x.IsCorrectAnswer).Count(), ResourceFormatter.CorrectAnswerCount)
 				.GreaterThan(1);
 		}
 	}

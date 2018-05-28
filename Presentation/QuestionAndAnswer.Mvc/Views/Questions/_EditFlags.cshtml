@@ -1,9 +1,9 @@
 ﻿@model QuestionViewModel
 
 <fieldset>
-    <legend>@Titles.ContentFlags</legend>
+    <legend>@ResourceFormatter.ContentFlags</legend>
 
-    @Titles.HasActiveFlags:
+    @ResourceFormatter.HasActiveFlags:
     @(Model.IsFlagged ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)
 
     <br />

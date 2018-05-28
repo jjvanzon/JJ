@@ -1,6 +1,7 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Resources;
 using JJ.Framework.Validation;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
@@ -11,8 +12,8 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 		{
 			if (entity == null) throw new NullException(() => entity);
 
-			For(entity.Description, PropertyDisplayNames.Description).NotNullOrWhiteSpace();
-			For(entity.Url, PropertyDisplayNames.Url).NotNullOrWhiteSpace();
+			For(entity.Description, CommonResourceFormatter.Description).NotNullOrWhiteSpace();
+			For(entity.Url, ResourceFormatter.Url).NotNullOrWhiteSpace();
 		}
 	}
 }

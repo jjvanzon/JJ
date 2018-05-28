@@ -6,7 +6,7 @@
     <legend>@Model.FlaggedBy, @Model.DateAndTime.ToShortDateString()</legend>
     <table class="properties" >
         <tr>
-            <th>@PropertyDisplayNames.FlagStatus:</th>
+            <th>@ResourceFormatter.FlagStatus:</th>
             <td>
                 @Html.DropDownListFor(
                         x => x.Status.ID,
@@ -22,7 +22,7 @@
         </tr>
 
         <tr>
-            <th>@PropertyDisplayNames.Comment:</th>
+            <th>@ResourceFormatter.Comment:</th>
             <td>
                 @Html.TextAreaFor(x => x.Comment)
                 @Html.ValidationMessageFor(x => x.Comment)
@@ -30,7 +30,7 @@
         </tr>
 
         <tr>
-            <th>@PropertyDisplayNames.LastModifiedByUser:</th>
+            <th>@ResourceFormatter.LastModifiedByUser:</th>
             <td>
                 @Model.LastModifiedBy
             </td>

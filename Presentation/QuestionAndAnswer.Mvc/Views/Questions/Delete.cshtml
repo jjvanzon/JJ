@@ -2,7 +2,7 @@
 
 @section Title
 {
-    @Titles.DeleteQuestion
+    @ResourceFormatter.DeleteQuestion
 }
 
 @section Header
@@ -12,23 +12,23 @@
 
 @using (Html.BeginForm())
 {
-    <h2>@Titles.DeleteQuestion</h2>
+    <h2>@ResourceFormatter.DeleteQuestion</h2>
     
-    <p>@Messages.AreYouSureYouWishToDeleteTheFollowingQuestion</p>
+    <p>@ResourceFormatter.AreYouSureYouWishToDeleteTheFollowingQuestion</p>
 
     <table>
         <tr>
-            <th> @PropertyDisplayNames.ID </th>
+            <th> @ResourceFormatter.ID </th>
             <td> @Model.ID </td>
         </tr>
         <tr>
-            <th> @PropertyDisplayNames.Question </th>
+            <th> @ResourceFormatter.Question </th>
             <td> @Model.Question </td>
         </tr>
     </table>
 
     <p>
-        <input type="submit" value="@Titles.Confirm" /> |
+        <input type="submit" value="@ResourceFormatter.Confirm" /> |
         <a href="javascript:history.back()"> @CommonResourceFormatter.Cancel </a>
     </p>
 }

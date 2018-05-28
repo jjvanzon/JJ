@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Business.QuestionAndAnswer.SideEffects;
 using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Data.QuestionAndAnswer;
@@ -11,7 +12,6 @@ using JJ.Framework.Presentation;
 using JJ.Framework.Validation;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
-using JJ.Presentation.QuestionAndAnswer.Resources;
 using JJ.Presentation.QuestionAndAnswer.SideEffects;
 using JJ.Presentation.QuestionAndAnswer.ToEntity;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
@@ -66,7 +66,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
 			QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
 			viewModel.CanDelete = true;
-			viewModel.Title = Titles.EditQuestion;
+			viewModel.Title = ResourceFormatter.EditQuestion;
 			viewModel.ReturnAction = returnAction;
 
 			return viewModel;
@@ -96,7 +96,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
 			QuestionEditViewModel viewModel = entity.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
 			viewModel.IsNew = true;
-			viewModel.Title = Titles.CreateQuestion;
+			viewModel.Title = ResourceFormatter.CreateQuestion;
 
 			if (returnAction == null)
 			{

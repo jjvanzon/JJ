@@ -8,6 +8,7 @@ using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Data.Canonical;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Framework.Exceptions;
+using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {

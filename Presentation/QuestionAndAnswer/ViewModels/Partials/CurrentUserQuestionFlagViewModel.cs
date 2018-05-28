@@ -1,4 +1,4 @@
-﻿namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Entities
+﻿namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Partials
 {
 	public sealed class CurrentUserQuestionFlagPartialViewModel
 	{

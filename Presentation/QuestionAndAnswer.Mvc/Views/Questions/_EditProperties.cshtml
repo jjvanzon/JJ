@@ -2,21 +2,21 @@
 
 <table class="properties">
     <tr>
-        <th>@PropertyDisplayNames.ID:</th>
+        <th>@ResourceFormatter.ID:</th>
         <td >
             @Model.ID
             @Html.HiddenFor(x => x.ID)
         </td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.IsActive:</th>
+        <th>@ResourceFormatter.IsActive:</th>
         <td>
             @Html.CheckBoxFor(x => x.IsActive)
             @Html.ValidationMessageFor(x => x.IsActive)
         </td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.Source:</th>
+        <th>@ResourceFormatter.Source:</th>
         <td>
             @if (!String.IsNullOrEmpty(Model.Source.Url))
             {
@@ -32,25 +32,25 @@
         </td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.QuestionType:</th>
+        <th>@ResourceFormatter.QuestionType:</th>
         <td>
             @Model.Type.Name
             @Html.HiddenFor(x => x.Type.ID)
         </td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.LastModifiedByUser:</th>
+        <th>@ResourceFormatter.LastModifiedByUser:</th>
         <td>@Model.LastModifiedBy </td>
     </tr>
     <tr>
-        <th>@PropertyDisplayNames.IsManual:</th>
+        <th>@ResourceFormatter.IsManual:</th>
         <td>
             @(Model.IsManual ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)
 
             @if (Model.IsManual)
             {
                 <br />
-                @Messages.ExplanationOfIsManualWithParenthesis
+                @ResourceFormatter.ExplanationOfIsManualWithParenthesis
             }
         </td>
     </tr>

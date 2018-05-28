@@ -3,141 +3,132 @@ using System.Globalization;
 using JJ.Business.Canonical;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Data.Canonical;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
-using JJ.Presentation.QuestionAndAnswer.Resources;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {
-	internal static class ViewModelHelper
-	{
-		public static IList<IDAndName> CreateFlagStatusListViewModel()
-		{
-			return EnumToIDAndNameConverter.Convert<FlagStatusEnum>(Titles.ResourceManager, mustIncludeUndefined: false);
-		}
+    internal static class ViewModelHelper
+    {
+        public static IList<IDAndName> CreateFlagStatusListViewModel()
+            => EnumToIDAndNameConverter.Convert<FlagStatusEnum>(ResourceFormatter.ResourceManager, mustIncludeUndefined: false);
 
-		/// <summary> Gets a tree of category view models. </summary>
-		public static IList<CategoryViewModel> CreateCategoryListViewModelRecursive(ICategoryRepository categoryRepository)
-		{
-			if (categoryRepository == null) throw new NullException(() => categoryRepository);
+        /// <summary> Gets a tree of category view models. </summary>
+        public static IList<CategoryViewModel> CreateCategoryListViewModelRecursive(ICategoryRepository categoryRepository)
+        {
+            if (categoryRepository == null) throw new NullException(() => categoryRepository);
 
-			var categoryManager = new CategoryManager(categoryRepository);
+            var categoryManager = new CategoryManager(categoryRepository);
 
-			IEnumerable<Category> categories = categoryManager.GetCategoryTree();
+            IEnumerable<Category> categories = categoryManager.GetCategoryTree();
 
-			var viewModels = new List<CategoryViewModel>();
+            var viewModels = new List<CategoryViewModel>();
 
-			foreach (Category category in categories)
-			{
-				CategoryViewModel viewModel = category.ToViewModelRecursive();
-				viewModels.Add(viewModel);
-			}
+            foreach (Category category in categories)
+            {
+                CategoryViewModel viewModel = category.ToViewModelRecursive();
+                viewModels.Add(viewModel);
+            }
 
-			return viewModels;
-		}
+            return viewModels;
+        }
 
-		public static CategoryViewModel CreateEmptyCategoryViewModel()
-		{
-			return new CategoryViewModel
-			{
-				NameParts = new List<string>(),
-				SubCategories = new List<CategoryViewModel>(),
-				Visible = true
-			};
-		}
+        public static CategoryViewModel CreateEmptyCategoryViewModel()
+            => new CategoryViewModel
+            {
+                NameParts = new List<string>(),
+                SubCategories = new List<CategoryViewModel>(),
+                Visible = true
+            };
 
-		/// <param name="authenticatedUserName">nullable</param>
-		public static LoginPartialViewModel CreateLoginPartialViewModel(string authenticatedUserName, IUserRepository userRepository)
-		{
-			if (userRepository == null) throw new NullException(() => userRepository);
+        /// <param name="authenticatedUserName">nullable</param>
+        public static LoginPartialViewModel CreateLoginPartialViewModel(string authenticatedUserName, IUserRepository userRepository)
+        {
+            if (userRepository == null) throw new NullException(() => userRepository);
 
-			User user = userRepository.TryGetByUserName(authenticatedUserName);
-			if (user != null)
-			{
-				return user.ToLoginPartialViewModel();
-			}
-			else
-			{
-				return ViewModelHelper.CreateLoggedOutLoginPartialViewModel();
-			}
-		}
+            User user = userRepository.TryGetByUserName(authenticatedUserName);
+            if (user != null)
+            {
+                return user.ToLoginPartialViewModel();
+            }
 
-		private static LoginPartialViewModel CreateLoggedOutLoginPartialViewModel()
-		{
-			return new LoginPartialViewModel
-			{
-				CanLogIn = true
-			};
-		}
+            return CreateLoggedOutLoginPartialViewModel();
+        }
 
-		public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel()
-		{
-			return ViewModelHelper.CreateLanguageSelectionViewModel(CultureHelper.GetAvailableCultureNames(), CultureHelper.GetCurrentCultureName());
-		}
+        private static LoginPartialViewModel CreateLoggedOutLoginPartialViewModel()
+            => new LoginPartialViewModel
+            {
+                CanLogIn = true
+            };
 
-		public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel(string cultureName)
-		{
-			return ViewModelHelper.CreateLanguageSelectionViewModel(CultureHelper.GetAvailableCultureNames(), cultureName);
-		}
+        public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel()
+            => CreateLanguageSelectionViewModel(CultureHelper.GetAvailableCultureNames(), CultureHelper.GetCurrentCultureName());
 
-		public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel(IList<string> availableCultureNames, string selectedCultureName)
-		{
-			var viewModel = new LanguageSelectorPartialViewModel();
+        public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel(string cultureName)
+            => CreateLanguageSelectionViewModel(CultureHelper.GetAvailableCultureNames(), cultureName);
 
-			// Fill culture list
-			viewModel.Languages = new List<LanguageViewModel>();
+        public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel(
+            IList<string> availableCultureNames,
+            string selectedCultureName)
+        {
+            var viewModel = new LanguageSelectorPartialViewModel { Languages = new List<LanguageViewModel>() };
 
-			foreach (string cultureName in availableCultureNames)
-			{
-				CultureInfo cultureInfo = CultureInfo_PlatformSafe.GetCultureInfo(cultureName);
+            // Fill culture list
 
-				var language = new LanguageViewModel
-				{
-					CultureName = cultureName,
-					Name = cultureInfo.NativeName
-				};
+            foreach (string cultureName in availableCultureNames)
+            {
+                CultureInfo cultureInfo = CultureInfo_PlatformSafe.GetCultureInfo(cultureName);
 
-				viewModel.Languages.Add(language);
-			}
+                var language = new LanguageViewModel
+                {
+                    CultureName = cultureName,
+                    Name = cultureInfo.NativeName
+                };
 
-			// Set selected culture
-			string currentCultureName = CultureInfo.CurrentUICulture.Name;
-			if (availableCultureNames.Contains(currentCultureName))
-			{
-				viewModel.SelectedLanguageCultureName = currentCultureName;
-			}
+                viewModel.Languages.Add(language);
+            }
 
-			return viewModel;
-		}
+            // Set selected culture
+            string currentCultureName = CultureInfo.CurrentUICulture.Name;
+            if (availableCultureNames.Contains(currentCultureName))
+            {
+                viewModel.SelectedLanguageCultureName = currentCultureName;
+            }
 
-		public static LoginViewModel CreateLoginViewModel()
-		{
-			var viewModel = new LoginViewModel
-			{
-				LanguageSelector = CreateLanguageSelectionViewModel()
-			};
+            return viewModel;
+        }
 
-			return viewModel;
-		}
+        public static LoginViewModel CreateLoginViewModel()
+        {
+            var viewModel = new LoginViewModel
+            {
+                LanguageSelector = CreateLanguageSelectionViewModel()
+            };
 
-		public static QuestionDeleteConfirmedViewModel CreateDeleteConfirmedViewModel(int questionID, IUserRepository userRepository, string authenticatedUserName)
-		{
-			var viewModel = new QuestionDeleteConfirmedViewModel
-			{
-				ID = questionID
-			};
+            return viewModel;
+        }
 
-			viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+        public static QuestionDeleteConfirmedViewModel CreateDeleteConfirmedViewModel(
+            int questionID,
+            IUserRepository userRepository,
+            string authenticatedUserName)
+        {
+            var viewModel = new QuestionDeleteConfirmedViewModel
+            {
+                ID = questionID
+            };
 
-			return viewModel;
-		}
-	}
+            viewModel.Login = CreateLoginPartialViewModel(authenticatedUserName, userRepository);
+
+            return viewModel;
+        }
+    }
 }

@@ -32,18 +32,18 @@
 
     <nav>
         <ul>
-            <li><a href="@Url.Action(nameof(ActionNames.Random), nameof(ControllerNames.Questions))">@PropertyDisplayNames.Question</a></li>
-            <li><a href="@Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.CategorySelector))">@PropertyDisplayNames.Categories</a></li>
+            <li><a href="@Url.Action(nameof(ActionNames.Random), nameof(ControllerNames.Questions))">@ResourceFormatter.Question</a></li>
+            <li><a href="@Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.CategorySelector))">@ResourceFormatter.Categories</a></li>
             <li><a>@CommonResourceFormatter.Search</a></li>
-            <li><a>@Titles.Statistics</a></li>
-            <li><a>@PropertyDisplayNames.Runs</a></li>
+            <li><a>@ResourceFormatter.Statistics</a></li>
+            <li><a>@ResourceFormatter.Runs</a></li>
             <li>
-                <span id="contentManagementMenuItemSpan">@Titles.ContentManagement</span>
+                <span id="contentManagementMenuItemSpan">@ResourceFormatter.ContentManagement</span>
                 <ul>
-                    <li><a>@Titles.ContentSourcesAndImports</a></li>
-                    <li><a>@PropertyDisplayNames.Categories</a></li>
-                    <li><a href="@Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.Questions))">@PropertyDisplayNames.Questions</a></li>
-                    <li><a>@Titles.FlaggedContent</a></li>
+                    <li><a>@ResourceFormatter.ContentSourcesAndImports</a></li>
+                    <li><a>@ResourceFormatter.Categories</a></li>
+                    <li><a href="@Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.Questions))">@ResourceFormatter.Questions</a></li>
+                    <li><a>@ResourceFormatter.FlaggedContent</a></li>
                 </ul>
             </li>
         </ul>

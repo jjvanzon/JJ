@@ -12,13 +12,13 @@
         @if (!Model.CurrentUserQuestionFlag.IsFlagged)
         {
             <input type="submit" 
-                   value="@Titles.FlagContent" 
+                   value="@ResourceFormatter.FlagContent" 
                    formaction="@Url.Action(nameof(ActionNames.Flag), nameof(ControllerNames.Questions))" />
         }
         else 
         {
             <input type="submit"
-                   value="@Titles.UnflagContent"
+                   value="@ResourceFormatter.UnflagContent"
                    formaction="@Url.Action(nameof(ActionNames.Unflag), nameof(ControllerNames.Questions))" />
         }
     </div>

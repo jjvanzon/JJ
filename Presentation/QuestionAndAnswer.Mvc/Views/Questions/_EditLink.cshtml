@@ -2,7 +2,7 @@
 
 <tr style="height: 47px">
 	<td>
-		@PropertyDisplayNames.Description
+		@CommonResourceFormatter.Description
 		<span class="editor-field">
 			@Html.TextBoxFor(x => x.Description, new { style = "width:200px;" })
 			@Html.ValidationMessageFor(x => x.Description)
@@ -13,12 +13,12 @@
 		@if (!string.IsNullOrEmpty(Model.Url))
 		{
 			<a href="@Model.Url" target="_blank">
-				@PropertyDisplayNames.Url
+				@ResourceFormatter.Url
 			</a>
 		}
 		else
 		{
-			@PropertyDisplayNames.Url
+			@ResourceFormatter.Url
 		}
 
 		<span class="editor-field">
