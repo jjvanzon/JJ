@@ -1,10 +1,11 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.Framework.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Data.QuestionAndAnswer.Tests.Helpers;
 using JJ.Framework.Configuration;
-using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Data.QuestionAndAnswer.Tests
 {
@@ -19,7 +20,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
 				using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
 				{
 					int id = GetExistingQuestionID();
-					IQuestionRepository repository = RepositoryFactory.CreateRepositoryFromConfiguration<IQuestionRepository>(context, persistenceConfiguration);
+					var repository = RepositoryFactory.CreateRepositoryFromConfiguration<IQuestionRepository>(context, persistenceConfiguration);
 					Question item = repository.Get(id);
 				}
 			}
@@ -32,7 +33,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
 			{
 				using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
 				{
-					IQuestionRepository repository = RepositoryFactory.CreateRepositoryFromConfiguration<IQuestionRepository>(context, persistenceConfiguration);
+					var repository = RepositoryFactory.CreateRepositoryFromConfiguration<IQuestionRepository>(context, persistenceConfiguration);
 					List<Question> list = repository.GetAll().ToList();
 				}
 			}
@@ -47,7 +48,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
 			{
 				using (IContext context = ContextFactory.CreateContextFromConfiguration(persistenceConfiguration))
 				{
-					IQuestionRepository repository = RepositoryFactory.CreateRepositoryFromConfiguration<IQuestionRepository>(context, persistenceConfiguration);
+					var repository = RepositoryFactory.CreateRepositoryFromConfiguration<IQuestionRepository>(context, persistenceConfiguration);
 					Question[] list = repository.GetBySourceID(TEST_SOURCE_ID).ToArray();
 				}
 			}

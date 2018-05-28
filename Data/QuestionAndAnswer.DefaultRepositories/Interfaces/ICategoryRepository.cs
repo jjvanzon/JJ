@@ -6,11 +6,8 @@ namespace JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces
 	public interface ICategoryRepository : IRepository<Category, int>
 	{
 		IList<Category> GetAll();
-
+		IList<Category> TryGetManyByIdentifier(string identifier);
 		Category TryGetByIdentifier(string identifier);
-
-		/// <summary> TODO: Refactor so that it takes parentCategoryID instead. </summary>
-		Category TryGetCategoryByParentAndIdentifier(Category parentCategory, string identifier);
 		IList<Category> GetRootCategories();
 	}
 }

@@ -3,7 +3,6 @@ using JJ.Data.QuestionAndAnswer.Sql;
 using JJ.Framework.Data;
 using JJ.Framework.Data.EntityFramework5;
 using JJ.Framework.Data.SqlClient;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.TypeChecking;
 
 namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers

@@ -4,7 +4,7 @@ using System.Linq;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Exceptions;
+using JJ.Framework.Collections;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer
@@ -30,12 +30,14 @@ namespace JJ.Business.QuestionAndAnswer
 
 		// Get By Path
 
+		// ReSharper disable once UnusedMember.Global
 		public Category TryGetCategoryByIdentifierPath(params string[] identifiers)
 		{
 			if (identifiers == null) throw new NullException(() => identifiers);
 			if (identifiers.Length == 0) throw new Exception("identifiers collection cannot be empty.");
 
 			string rootIdentifier = identifiers[0];
+			// TODO: Looks like this could select a child category, while it only should get a root category.
 			Category category = _categoryRepository.TryGetByIdentifier(rootIdentifier);
 			if (category == null)
 			{
@@ -46,7 +48,7 @@ namespace JJ.Business.QuestionAndAnswer
 
 			foreach (string identifier in identifiers.Skip(1))
 			{
-				category = _categoryRepository.TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
+				category = TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
 				if (category == null)
 				{
 					return null;
@@ -58,12 +60,17 @@ namespace JJ.Business.QuestionAndAnswer
 			return category;
 		}
 
+		// ReSharper disable once UnusedMember.Global
 		public Category FindOrCreateCategoryByIdentifierPath(params string[] identifiers)
+			=> FindOrCreateCategoryByIdentifierPath((IList<string>)identifiers);
+
+		public Category FindOrCreateCategoryByIdentifierPath(IList<string> identifiers)
 		{
-			if (identifiers == null) throw new NullException(() => identifiers);
-			if (identifiers.Length == 0) throw new Exception("identifiers collection cannot be empty.");
+			if (identifiers == null) throw new ArgumentNullException(nameof(identifiers));
+			if (identifiers.Count == 0) throw new CollectionEmptyException(nameof(identifiers));
 
 			string rootIdentifier = identifiers[0];
+			// TODO: Looks like this could select a child category, while it only should get a root category.
 			Category category = _categoryRepository.TryGetByIdentifier(rootIdentifier);
 			if (category == null)
 			{
@@ -76,7 +83,7 @@ namespace JJ.Business.QuestionAndAnswer
 
 			foreach (string identifier in identifiers.Skip(1))
 			{
-				category = _categoryRepository.TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
+				category = TryGetCategoryByParentAndIdentifier(parentCategory, identifier);
 				if (category == null)
 				{
 					category = _categoryRepository.Create();
@@ -89,6 +96,14 @@ namespace JJ.Business.QuestionAndAnswer
 				parentCategory = category;
 			}
 
+			return category;
+		}
+
+		private Category TryGetCategoryByParentAndIdentifier(Category parentCategory, string identifier)
+		{
+			Category category = parentCategory.SubCategories
+			                                  .Where(x => string.Equals(x.Identifier, identifier))
+			                                  .SingleOrDefaultWithClearException(new { parentCategoryID = parentCategory.ID, identifier });
 			return category;
 		}
 
@@ -108,7 +123,7 @@ namespace JJ.Business.QuestionAndAnswer
 
 			var list = new List<Category>();
 
-			foreach(Category selectedBranch in selectedBranches)
+			foreach (Category selectedBranch in selectedBranches)
 			{
 				AddNodesRecursive(list, selectedBranch);
 			}
@@ -123,6 +138,7 @@ namespace JJ.Business.QuestionAndAnswer
 			{
 				AddAncestorsRecursive(list, category);
 			}
+
 			return list;
 		}
 

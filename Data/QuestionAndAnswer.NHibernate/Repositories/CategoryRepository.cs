@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using JJ.Framework.Data;
 using JJ.Framework.Data.NHibernate;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
 {
@@ -21,24 +19,15 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
 		public override Category TryGetByIdentifier(string identifier)
 		{
 			return _context.Session.QueryOver<Category>()
-								   .Where(x => x.Identifier == identifier)
-								   .SingleOrDefault();
+			               .Where(x => x.Identifier == identifier)
+			               .SingleOrDefault();
 		}
 
-		public override Category TryGetCategoryByParentAndIdentifier(Category parentCategory, string identifier)
+		public override IList<Category> TryGetManyByIdentifier(string identifier)
 		{
-			if (parentCategory == null) throw new NullException(() => parentCategory);
-
-			int parentCategoryID = parentCategory.ID;
-
-			Category c = null;
-			Category pc = null;
-
-			return _context.Session.QueryOver(() => c)
-								   .JoinAlias(() => c.ParentCategory, () => pc)
-								   .Where(() => c.Identifier == identifier)
-								   .Where(() => pc.ID == parentCategoryID)
-								   .SingleOrDefault();
+			return _context.Session.QueryOver<Category>()
+			               .Where(x => x.Identifier == identifier)
+			               .List();
 		}
 
 		public override IList<Category> GetRootCategories()

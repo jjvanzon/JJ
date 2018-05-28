@@ -1,6 +1,6 @@
-﻿using JJ.Data.QuestionAndAnswer;
+﻿using System.Collections.Generic;
+using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer.Import
@@ -18,12 +18,11 @@ namespace JJ.Business.QuestionAndAnswer.Import
 
 		protected void CorrectCategoryDescription(string identifier, string description)
 		{
-			Category category = _categoryRepository.TryGetByIdentifier(identifier);
-			if (category == null)
+			IList<Category> categories = _categoryRepository.TryGetManyByIdentifier(identifier);
+			foreach (Category category in categories)
 			{
-				return;
+				category.Description = description;
 			}
-			category.Description = description;
 		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Data.QuestionAndAnswer;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Validation;
 // ReSharper disable JoinDeclarationAndInitializer

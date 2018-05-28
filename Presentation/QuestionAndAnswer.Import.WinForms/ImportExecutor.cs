@@ -1,5 +1,6 @@
 ﻿using System;
 using JJ.Business.QuestionAndAnswer.Import;
+using JJ.Business.QuestionAndAnswer.Import.Language;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
@@ -25,7 +26,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 					string sourceIdentifier = importerConfig.SourceIdentifier;
 					string sourceUrl = importerConfig.SourceUrl;
 					string sourceDescription = importerConfig.SourceDescription;
-					string categoryIdentifier = importerConfig.CategoryIdentifier;
+					string categoryIdentifier = importerConfig.CategoryPath;
 
 					Type modelType = Type.GetType(importerConfig.ModelType);
 					if (modelType == null)
@@ -98,8 +99,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 			{
 				var categoryRepository = PersistenceHelper.CreateRepository<ICategoryRepository>(context);
 
-				var categoryDescriptionCorrector = new CategoryDescriptionCorrector(categoryRepository);
-				categoryDescriptionCorrector.Execute();
+				new W3CSpecCss3CategoryDescriptionCorrector(categoryRepository).Execute();
+				new LanguageCategoryDescriptionCorrector(categoryRepository).Execute();
 
 				context.Commit();
 			}

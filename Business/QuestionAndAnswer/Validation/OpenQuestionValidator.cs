@@ -1,10 +1,9 @@
-﻿using JJ.Business.QuestionAndAnswer.Extensions;
-using JJ.Business.QuestionAndAnswer.Enums;
-using JJ.Framework.Validation;
-using JJ.Data.QuestionAndAnswer;
+﻿using JJ.Business.QuestionAndAnswer.Enums;
+using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.Resources;
-using JJ.Framework.Exceptions;
+using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Validation;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {

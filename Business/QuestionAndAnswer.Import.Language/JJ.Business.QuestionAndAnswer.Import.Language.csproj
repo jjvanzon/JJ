@@ -46,6 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CsvSelector.cs" />
     <Compile Include="Converter.cs" />
+    <Compile Include="LanguageCategoryDescriptionCorrector.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\QuestionAndAnswer.DefaultRepositories\JJ.Data.QuestionAndAnswer.DefaultRepositories.csproj">

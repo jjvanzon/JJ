@@ -1,10 +1,10 @@
 ﻿using System.Globalization;
+using System.Linq;
 using System.Web;
 using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Text;
 
 namespace JJ.Business.QuestionAndAnswer.Import.Language
@@ -20,7 +20,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.Language
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
 			Source source,
-			string categoryIdentifier)
+			string categoryPath)
 			: base(
 				questionRepository,
 				answerRepository,
@@ -29,11 +29,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.Language
 				questionLinkRepository,
 				questionTypeRepository,
 				source,
-				categoryIdentifier)
-		{
-			// Category identifier not pemitted in this implementation
-			if (!string.IsNullOrEmpty(categoryIdentifier)) throw new NotNullOrEmptyException(() => categoryIdentifier);
-		}
+				categoryPath)
+		{ }
 
 		public override void ConvertToEntities(Model model)
 		{
@@ -70,7 +67,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.Language
 			questionLink.LinkTo(question);
 
 			// Add categories
-			AddCategory(question, "Language", $"{friendlyLanguageNameA}To{friendlyLanguageNameB}");
+			string[] formattedCategoryIdentifiers = _categoryIdentifiers
+			                                        .Select(x => x.Replace("{0}", friendlyLanguageNameA).Replace("{1}", friendlyLanguageNameB))
+			                                        .ToArray();
+
+			AutoCreateCategory(question, formattedCategoryIdentifiers);
 
 			// Validate result
 			ValidateQuestion(question);

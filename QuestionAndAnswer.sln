@@ -86,9 +86,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.SqlClient
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.Mvc", "Presentation\QuestionAndAnswer.Mvc\JJ.Presentation.QuestionAndAnswer.Mvc.csproj", "{0DD800E5-1FD2-412E-A15F-C4AF46954E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions", "Demos\ReturnActions\JJ.Demos.ReturnActions.csproj", "{757F8B06-8527-4DAA-A206-E26EB167CA13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.WithViewMapping", "Demos\ReturnActions\JJ.Demos.ReturnActions.WithViewMapping.csproj", "{757F8B06-8527-4DAA-A206-E26EB167CA13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameterViewMappings", "Demos\ReturnActions.MvcUrlParameterViewMappings\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter", "Demos\ReturnActions.MvcUrlParameterViewMappings\JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "Third Party\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
 EndProject
@@ -110,7 +110,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.QuestionAndAnswer.Import.Language", "Business\QuestionAndAnswer.Import.Language\JJ.Business.QuestionAndAnswer.Import.Language.csproj", "{E850BB7E-ECE9-454B-B1F5-92E7E555E67B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcPostDataViewMappings", "Demos\ReturnActions.MvcPostDataViewMappings\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData", "Demos\ReturnActions.MvcPostDataViewMappings\JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter", "Demos\ReturnActions.MvcUrlParameter\JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.csproj", "{83A6C3E0-4525-4C48-AC79-4FFB08EF6975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.WithViewMapping.Mvc", "Demos\ReturnActions.WithViewMappings.MvcBase\JJ.Demos.ReturnActions.WithViewMapping.Mvc.csproj", "{B13C36FF-FC92-45BA-B65A-02F9700F32C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.NoViewMapping", "Demos\ReturnActions.NoViewMapping\JJ.Demos.ReturnActions.NoViewMapping.csproj", "{FD0DD364-D5DA-48D2-9A3E-A08BB31C8DD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions", "Demos\ReturnActions2\JJ.Demos.ReturnActions.csproj", "{054214D2-0B1F-4ADD-BC45-E8A49C20F219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Mvc", "Demos\ReturnActions.Mvc\JJ.Demos.ReturnActions.Mvc.csproj", "{6EF04A89-7C2E-4EEB-B6A7-5C34DE83DF73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.Misc", "Demos\Misc\JJ.Demos.Misc.csproj", "{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -431,6 +443,42 @@ Global
 		{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83A6C3E0-4525-4C48-AC79-4FFB08EF6975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A6C3E0-4525-4C48-AC79-4FFB08EF6975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83A6C3E0-4525-4C48-AC79-4FFB08EF6975}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A6C3E0-4525-4C48-AC79-4FFB08EF6975}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{83A6C3E0-4525-4C48-AC79-4FFB08EF6975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83A6C3E0-4525-4C48-AC79-4FFB08EF6975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B13C36FF-FC92-45BA-B65A-02F9700F32C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B13C36FF-FC92-45BA-B65A-02F9700F32C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B13C36FF-FC92-45BA-B65A-02F9700F32C6}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B13C36FF-FC92-45BA-B65A-02F9700F32C6}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{B13C36FF-FC92-45BA-B65A-02F9700F32C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B13C36FF-FC92-45BA-B65A-02F9700F32C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD0DD364-D5DA-48D2-9A3E-A08BB31C8DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD0DD364-D5DA-48D2-9A3E-A08BB31C8DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD0DD364-D5DA-48D2-9A3E-A08BB31C8DD1}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD0DD364-D5DA-48D2-9A3E-A08BB31C8DD1}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{FD0DD364-D5DA-48D2-9A3E-A08BB31C8DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD0DD364-D5DA-48D2-9A3E-A08BB31C8DD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{054214D2-0B1F-4ADD-BC45-E8A49C20F219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{054214D2-0B1F-4ADD-BC45-E8A49C20F219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{054214D2-0B1F-4ADD-BC45-E8A49C20F219}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{054214D2-0B1F-4ADD-BC45-E8A49C20F219}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{054214D2-0B1F-4ADD-BC45-E8A49C20F219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{054214D2-0B1F-4ADD-BC45-E8A49C20F219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EF04A89-7C2E-4EEB-B6A7-5C34DE83DF73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF04A89-7C2E-4EEB-B6A7-5C34DE83DF73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF04A89-7C2E-4EEB-B6A7-5C34DE83DF73}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF04A89-7C2E-4EEB-B6A7-5C34DE83DF73}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF04A89-7C2E-4EEB-B6A7-5C34DE83DF73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF04A89-7C2E-4EEB-B6A7-5C34DE83DF73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -474,7 +522,7 @@ Global
 		SolutionGuid = {E3FB5B08-F995-446F-9222-97AF1E185F77}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 52
+		SccNumberOfProjects = 55
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccProjectUniqueName0 = Presentation\\QuestionAndAnswer\\JJ.Presentation.QuestionAndAnswer.csproj
@@ -696,80 +744,94 @@ Global
 		SccAuxPath38 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath38 = Presentation\\QuestionAndAnswer.Mvc
 		SccProvider38 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName39 = Demos\\ReturnActions\\JJ.Demos.ReturnActions.csproj
-		SccProjectName39 = Demos/ReturnActions
+		SccProjectUniqueName39 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate\\FluentNHibernate.csproj
+		SccProjectTopLevelParentUniqueName39 = QuestionAndAnswer.sln
+		SccProjectName39 = Third\u0020Party/FluentNHibernate/Source\u0020Code/1.3/src/FluentNHibernate
 		SccAuxPath39 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath39 = Demos\\ReturnActions
+		SccLocalPath39 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate
 		SccProvider39 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName40 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate\\FluentNHibernate.csproj
+		SccProjectUniqueName40 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate\\NHibernate.csproj
 		SccProjectTopLevelParentUniqueName40 = QuestionAndAnswer.sln
-		SccProjectName40 = Third\u0020Party/FluentNHibernate/Source\u0020Code/1.3/src/FluentNHibernate
+		SccProjectName40 = Third\u0020Party/NHibernate/Source\u0020Code/3.3.1.GA/src/NHibernate
 		SccAuxPath40 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath40 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate
+		SccLocalPath40 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate
 		SccProvider40 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName41 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate\\NHibernate.csproj
+		SccProjectUniqueName41 = Framework\\Exceptions\\JJ.Framework.Exceptions.csproj
 		SccProjectTopLevelParentUniqueName41 = QuestionAndAnswer.sln
-		SccProjectName41 = Third\u0020Party/NHibernate/Source\u0020Code/3.3.1.GA/src/NHibernate
+		SccProjectName41 = Framework/Exceptions
 		SccAuxPath41 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath41 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate
+		SccLocalPath41 = Framework\\Exceptions
 		SccProvider41 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName42 = Framework\\Exceptions\\JJ.Framework.Exceptions.csproj
+		SccProjectUniqueName42 = Framework\\Drawing\\JJ.Framework.Drawing.csproj
 		SccProjectTopLevelParentUniqueName42 = QuestionAndAnswer.sln
-		SccProjectName42 = Framework/Exceptions
+		SccProjectName42 = Framework/Drawing
 		SccAuxPath42 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath42 = Framework\\Exceptions
+		SccLocalPath42 = Framework\\Drawing
 		SccProvider42 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName43 = Framework\\Drawing\\JJ.Framework.Drawing.csproj
+		SccProjectUniqueName43 = Framework\\VectorGraphics\\JJ.Framework.VectorGraphics.csproj
 		SccProjectTopLevelParentUniqueName43 = QuestionAndAnswer.sln
-		SccProjectName43 = Framework/Drawing
+		SccProjectName43 = Framework/VectorGraphics
 		SccAuxPath43 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath43 = Framework\\Drawing
+		SccLocalPath43 = Framework\\VectorGraphics
 		SccProvider43 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName44 = Framework\\VectorGraphics\\JJ.Framework.VectorGraphics.csproj
+		SccProjectUniqueName44 = Business\\Canonical\\JJ.Business.Canonical.csproj
 		SccProjectTopLevelParentUniqueName44 = QuestionAndAnswer.sln
-		SccProjectName44 = Framework/VectorGraphics
+		SccProjectName44 = Business/Canonical
 		SccAuxPath44 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath44 = Framework\\VectorGraphics
+		SccLocalPath44 = Business\\Canonical
 		SccProvider44 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName45 = Business\\Canonical\\JJ.Business.Canonical.csproj
+		SccProjectUniqueName45 = Framework\\Text\\JJ.Framework.Text.csproj
 		SccProjectTopLevelParentUniqueName45 = QuestionAndAnswer.sln
-		SccProjectName45 = Business/Canonical
+		SccProjectName45 = Framework/Text
 		SccAuxPath45 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath45 = Business\\Canonical
+		SccLocalPath45 = Framework\\Text
 		SccProvider45 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName46 = Framework\\Text\\JJ.Framework.Text.csproj
+		SccProjectUniqueName46 = Framework\\Conversion\\JJ.Framework.Conversion.csproj
 		SccProjectTopLevelParentUniqueName46 = QuestionAndAnswer.sln
-		SccProjectName46 = Framework/Text
+		SccProjectName46 = Framework/Conversion
 		SccAuxPath46 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath46 = Framework\\Text
+		SccLocalPath46 = Framework\\Conversion
 		SccProvider46 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName47 = Framework\\Conversion\\JJ.Framework.Conversion.csproj
+		SccProjectUniqueName47 = Framework\\Collections\\JJ.Framework.Collections.csproj
 		SccProjectTopLevelParentUniqueName47 = QuestionAndAnswer.sln
-		SccProjectName47 = Framework/Conversion
+		SccProjectName47 = Framework/Collections
 		SccAuxPath47 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath47 = Framework\\Conversion
+		SccLocalPath47 = Framework\\Collections
 		SccProvider47 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName48 = Framework\\Collections\\JJ.Framework.Collections.csproj
-		SccProjectTopLevelParentUniqueName48 = QuestionAndAnswer.sln
-		SccProjectName48 = Framework/Collections
+		SccProjectUniqueName48 = Business\\QuestionAndAnswer.Import.Language\\JJ.Business.QuestionAndAnswer.Import.Language.csproj
+		SccProjectName48 = Business/QuestionAndAnswer.Import.Language
 		SccAuxPath48 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath48 = Framework\\Collections
+		SccLocalPath48 = Business\\QuestionAndAnswer.Import.Language
 		SccProvider48 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName49 = Business\\QuestionAndAnswer.Import.Language\\JJ.Business.QuestionAndAnswer.Import.Language.csproj
-		SccProjectName49 = Business/QuestionAndAnswer.Import.Language
+		SccProjectUniqueName49 = Demos\\ReturnActions\\JJ.Demos.ReturnActions.WithViewMapping.csproj
+		SccProjectName49 = Demos/ReturnActions
 		SccAuxPath49 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath49 = Business\\QuestionAndAnswer.Import.Language
+		SccLocalPath49 = Demos\\ReturnActions
 		SccProvider49 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName50 = Demos\\ReturnActions.MvcPostDataViewMappings\\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj
-		SccProjectTopLevelParentUniqueName50 = QuestionAndAnswer.sln
+		SccProjectUniqueName50 = Demos\\ReturnActions.MvcPostDataViewMappings\\JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.csproj
 		SccProjectName50 = Demos/ReturnActions.MvcPostDataViewMappings
 		SccAuxPath50 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath50 = Demos\\ReturnActions.MvcPostDataViewMappings
 		SccProvider50 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName51 = Demos\\ReturnActions.MvcUrlParameterViewMappings\\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj
+		SccProjectUniqueName51 = Demos\\ReturnActions.MvcUrlParameterViewMappings\\JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.csproj
 		SccProjectName51 = Demos/ReturnActions.MvcUrlParameterViewMappings
 		SccAuxPath51 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath51 = Demos\\ReturnActions.MvcUrlParameterViewMappings
 		SccProvider51 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName52 = Demos\\ReturnActions.MvcUrlParameter\\JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.csproj
+		SccProjectName52 = Demos/ReturnActions.MvcUrlParameter
+		SccAuxPath52 = http://jjs-server:8080/tfs/defaultcollection
+		SccLocalPath52 = Demos\\ReturnActions.MvcUrlParameter
+		SccProvider52 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName53 = Demos\\ReturnActions.Mvc\\JJ.Demos.ReturnActions.Mvc.csproj
+		SccProjectName53 = Demos/ReturnActions.Mvc
+		SccAuxPath53 = http://jjs-server:8080/tfs/defaultcollection
+		SccLocalPath53 = Demos\\ReturnActions.Mvc
+		SccProvider53 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName54 = Demos\\Misc\\JJ.Demos.Misc.csproj
+		SccProjectName54 = Demos/Misc
+		SccAuxPath54 = http://jjs-server:8080/tfs/defaultcollection
+		SccLocalPath54 = Demos\\Misc
+		SccProvider54 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,5 @@
 ﻿using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Business;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer.SideEffects

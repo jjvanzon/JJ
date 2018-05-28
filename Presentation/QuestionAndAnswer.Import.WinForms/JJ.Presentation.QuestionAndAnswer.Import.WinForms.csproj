@@ -73,6 +73,10 @@
     <Content Include="IO Files\W3CSpecCss3_SelectorIndex.csv" />
     <Content Include="IO Files\DutchToPolish.csv" />
     <None Include="IO Files\DutchToPolish.xlsx" />
+    <None Include="IO Files\DutchToPolishFriendly.csv" />
+    <None Include="IO Files\DutchToPolishFriendly.xlsx" />
+    <None Include="IO Files\DutchToPolishHomeImprovement.csv" />
+    <None Include="IO Files\DutchToPolishHomeImprovement.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,16 +1,19 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
+using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Collections;
 using JJ.Framework.Text;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 {
+	[UsedImplicitly]
 	public class PropertyAspectsConverter : ConverterBase<PropertyAspectsImportModel>
 	{
-		private bool INCLUDE_ANSWERS_THAT_ARE_REFERENCES = true;
+		private const bool INCLUDE_ANSWERS_THAT_ARE_REFERENCES = true;
 
 		public PropertyAspectsConverter(
 			IQuestionRepository questionRepository,
@@ -20,9 +23,16 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
 			Source source,
-			string categoryIdentifier)
-			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, source, categoryIdentifier)
-		{ }
+			string categoryPath)
+			: base(
+				questionRepository,
+				answerRepository,
+				categoryRepository,
+				questionCategoryRepository,
+				questionLinkRepository,
+				questionTypeRepository,
+				source,
+				categoryPath) { }
 
 		public override void ConvertToEntities(PropertyAspectsImportModel model)
 		{
@@ -52,11 +62,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(propertyName))
 			{
-				question.Text = string.Format("What are the possible values for the {0} property?", propertyName);
+				question.Text = $"What are the possible values for the {propertyName} property?";
 			}
 			else
 			{
-				question.Text = string.Format("What are the possible values for the {0} properties?", FormatPluralPropertyName(propertyName));
+				question.Text = $"What are the possible values for the {FormatPluralPropertyName(propertyName)} properties?";
 			}
 
 			if (IsComplexShorthandProperty(model))
@@ -81,7 +91,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, propertyName);
-			AddCategory(question, "Css3", "Properties", "Aspects", "PossibleValues");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "PossibleValues");
 
 			// Validate result
 			ValidateQuestion(question);
@@ -107,7 +117,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			if (importModel.PossibleValues == null) return false;
 
 			return importModel.PossibleValues.Contains("||") &&
-				   importModel.PropertyName != "text-decoration"; // Special case where values syntax contains || even though it is not complex shorthand.
+			       importModel.PropertyName !=
+			       "text-decoration"; // Special case where values syntax contains || even though it is not complex shorthand.
 		}
 
 		private void TryConvertToQuestionAboutInitialValue(PropertyAspectsImportModel model)
@@ -126,12 +137,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(propertyName))
 			{
-				question.Text = string.Format("What is the initial value of the {0} property?", propertyName);
+				question.Text = $"What is the initial value of the {propertyName} property?";
 			}
 			else
 			{
-				question.Text = string.Format("What is the initial value for the {0} properties?", FormatPluralPropertyName(propertyName));
+				question.Text = $"What is the initial value for the {FormatPluralPropertyName(propertyName)} properties?";
 			}
+
 			question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.InitialValue);
 
 			// Create links
@@ -149,7 +161,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, propertyName);
-			AddCategory(question, "Css3", "Properties", "Aspects", "InitialValue");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "InitialValue");
 
 			// Validate result
 			ValidateQuestion(question);
@@ -186,11 +198,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(propertyName))
 			{
-				question.Text = string.Format("What types of elements does the {0} property apply to?", propertyName);
+				question.Text = $"What types of elements does the {propertyName} property apply to?";
 			}
 			else
 			{
-				question.Text = string.Format("What types of elements do the {0} properties apply to?", FormatPluralPropertyName(propertyName));
+				question.Text = $"What types of elements do the {FormatPluralPropertyName(propertyName)} properties apply to?";
 			}
 
 			if (string.IsNullOrWhiteSpace(model.AppliesTo))
@@ -217,7 +229,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, propertyName);
-			AddCategory(question, "Css3", "Properties", "Aspects", "AppliesToElements");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "AppliesToElements");
 
 			// Validate result
 			ValidateQuestion(question);
@@ -254,12 +266,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(propertyName))
 			{
-				question.Text = string.Format("Is the {0} property inherited?", propertyName);
+				question.Text = $"Is the {propertyName} property inherited?";
 			}
 			else
 			{
-				question.Text = string.Format("Are the {0} properties inherited?", FormatPluralPropertyName(propertyName));
+				question.Text = $"Are the {FormatPluralPropertyName(propertyName)} properties inherited?";
 			}
+
 			question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.IsInherited);
 
 			// Create links
@@ -277,7 +290,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, propertyName);
-			AddCategory(question, "Css3", "Properties", "Aspects", "IsInherited");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "IsInherited");
 
 			// Validate result
 			ValidateQuestion(question);
@@ -314,12 +327,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(propertyName))
 			{
-				question.Text = string.Format("What can you say about percentage values for the {0} property?", propertyName);
+				question.Text = $"What can you say about percentage values for the {propertyName} property?";
 			}
 			else
 			{
-				question.Text = string.Format("What can you say about percentage values for the {0} properties?", FormatPluralPropertyName(propertyName));
+				question.Text = $"What can you say about percentage values for the {FormatPluralPropertyName(propertyName)} properties?";
 			}
+
 			question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.Percentages);
 
 			// Create links
@@ -337,7 +351,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, propertyName);
-			AddCategory(question, "Css3", "Properties", "Aspects", "Percentages");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "Percentages");
 
 			// Validate result
 			ValidateQuestion(question);
@@ -384,12 +398,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(propertyName))
 			{
-				question.Text = string.Format("What media does the {0} property apply to?", propertyName);
+				question.Text = $"What media does the {propertyName} property apply to?";
 			}
 			else
 			{
-				question.Text = string.Format("What media do the {0} properties apply to?", FormatPluralPropertyName(propertyName));
+				question.Text = $"What media do the {FormatPluralPropertyName(propertyName)} properties apply to?";
 			}
+
 			question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.Media);
 
 			// Create links
@@ -407,7 +422,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, propertyName);
-			AddCategory(question, "Css3", "Properties", "Aspects", "Media");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "Media");
 
 			// Validate result
 			ValidateQuestion(question);
@@ -444,12 +459,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(propertyName))
 			{
-				question.Text = string.Format("What is the computed value of the {0} property?", propertyName);
+				question.Text = $"What is the computed value of the {propertyName} property?";
 			}
 			else
 			{
-				question.Text = string.Format("What is the computed value for the {0} properties?", FormatPluralPropertyName(propertyName));
+				question.Text = $"What is the computed value for the {FormatPluralPropertyName(propertyName)} properties?";
 			}
+
 			question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.ComputedValue);
 
 			// Create links
@@ -467,7 +483,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, propertyName);
-			AddCategory(question, "Css3", "Properties", "Aspects", "ComputedValue");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "ComputedValue");
 
 			// Validate result
 			ValidateQuestion(question);
@@ -509,12 +525,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(propertyName))
 			{
-				question.Text = string.Format("Is the {0} property animatable?", propertyName);
+				question.Text = $"Is the {propertyName} property animatable?";
 			}
 			else
 			{
-				question.Text = string.Format("Are the {0} properties animatable?", FormatPluralPropertyName(propertyName));
+				question.Text = $"Are the {FormatPluralPropertyName(propertyName)} properties animatable?";
 			}
+
 			question.Answers[0].Text = ImportHelper.ApplySubstitutionsAndTrim(model.IsAnimatable);
 
 			// Create links
@@ -532,41 +549,23 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, propertyName);
-			AddCategory(question, "Css3", "Properties", "Aspects", "IsAnimatable");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "IsAnimatable");
 
 			// Validate result
 			ValidateQuestion(question);
 		}
 
-		private bool MustConvertToQuestionAboutIsAnimatable(string isAnimatable)
-		{
-			return !string.IsNullOrEmpty(isAnimatable);
-		}
+		private bool MustConvertToQuestionAboutIsAnimatable(string isAnimatable) => !string.IsNullOrEmpty(isAnimatable);
 
 		// Helpers
 
 		private void AddCategories(Question question, string propertyName)
 		{
-			//AddCategory(question, "Css3", "Properties", "PropertyAspects");
-			if (!string.IsNullOrEmpty(_categoryIdentifier))
-			{
-				AddCategory(question, "Css3", "Properties", _categoryIdentifier);
-			}
-			else
-			{
-				AddCategory(question, "Css3", "Properties");
-			}
+			AutoCreateCategory(question, _categoryIdentifiers);
 
 			foreach (string propertyName2 in ImportHelper.SplitPluralProperty(propertyName))
 			{
-				if (!string.IsNullOrEmpty(_categoryIdentifier))
-				{
-					AddCategory(question, "Css3", "Properties", _categoryIdentifier, ImportHelper.FormatTerm(propertyName2));
-				}
-				else
-				{
-					AddCategory(question, "Css3", "Properties", ImportHelper.FormatTerm(propertyName2));
-				}
+				AutoCreateCategory(question, _categoryIdentifiers.Concat(ImportHelper.FormatTerm(propertyName2)));
 			}
 		}
 

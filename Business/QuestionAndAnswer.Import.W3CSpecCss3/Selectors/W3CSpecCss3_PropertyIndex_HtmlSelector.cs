@@ -2,13 +2,14 @@
 using System.IO;
 using System.Linq;
 using System.Xml;
+using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
+	[UsedImplicitly]
 	public class W3CSpecCss3_PropertyIndex_HtmlSelector : ISelector<PropertyAspectsImportModel>
 	{
 		public IEnumerable<PropertyAspectsImportModel> GetSelection(Stream stream)
@@ -117,40 +118,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 			return value;
 		}
 
-		private IEnumerable<LinkModel> GetNameLinks(XmlNode node)
-		{
-			return GetLinks(node, "th/a");
-		}
-
-		private IEnumerable<LinkModel> GetPossibleValuesLinks(XmlNode node)
-		{
-			return GetLinks(node, "td[1]/a");
-		}
-
-		private IEnumerable<LinkModel> GetInitialValueLinks(XmlNode node)
-		{
-			return GetLinks(node, "td[2]/a");
-		}
-
-		private IEnumerable<LinkModel> GetAppliesToLinks(XmlNode node)
-		{
-			return GetLinks(node, "td[3]/a");
-		}
-
-		private IEnumerable<LinkModel> GetIsInheritedLinks(XmlNode node)
-		{
-			return GetLinks(node, "td[4]/a");
-		}
-
-		private IEnumerable<LinkModel> GetPercentagesLinks(XmlNode node)
-		{
-			return GetLinks(node, "td[5]/a");
-		}
-
-		private IEnumerable<LinkModel> GetMediaLinks(XmlNode node)
-		{
-			return GetLinks(node, "td[6]/a");
-		}
+		private IEnumerable<LinkModel> GetNameLinks(XmlNode node) => GetLinks(node, "th/a");
+		private IEnumerable<LinkModel> GetPossibleValuesLinks(XmlNode node) => GetLinks(node, "td[1]/a");
+		private IEnumerable<LinkModel> GetInitialValueLinks(XmlNode node) => GetLinks(node, "td[2]/a");
+		private IEnumerable<LinkModel> GetAppliesToLinks(XmlNode node) => GetLinks(node, "td[3]/a");
+		private IEnumerable<LinkModel> GetIsInheritedLinks(XmlNode node) => GetLinks(node, "td[4]/a");
+		private IEnumerable<LinkModel> GetPercentagesLinks(XmlNode node) => GetLinks(node, "td[5]/a");
+		private IEnumerable<LinkModel> GetMediaLinks(XmlNode node) => GetLinks(node, "td[6]/a");
 
 		private IEnumerable<LinkModel> GetLinks(XmlNode node, string xpath)
 		{

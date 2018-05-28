@@ -2,9 +2,9 @@
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3
 {
-	public class CategoryDescriptionCorrector : CategoryDescriptionCorrectorBase
+	public class W3CSpecCss3CategoryDescriptionCorrector : CategoryDescriptionCorrectorBase
 	{
-		public CategoryDescriptionCorrector(ICategoryRepository categoryRepository)
+		public W3CSpecCss3CategoryDescriptionCorrector(ICategoryRepository categoryRepository)
 			: base(categoryRepository)
 		{ }
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Business.QuestionAndAnswer.SideEffects;
 using JJ.Business.QuestionAndAnswer.Validation;
@@ -9,6 +11,7 @@ using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Text;
 using JJ.Framework.Validation;
 using static JJ.Framework.Reflection.ExpressionHelper;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace JJ.Business.QuestionAndAnswer.Import
 {
@@ -27,9 +30,9 @@ namespace JJ.Business.QuestionAndAnswer.Import
 
 		private readonly CategoryManager _categoryManager;
 
-		protected string _categoryIdentifier;
+		protected readonly string[] _categoryIdentifiers;
 
-		/// <param name="categoryIdentifier">Defines an extra category to use for this specific converter.</param>
+		/// <param name="categoryPath">Defines an extra category to use for this specific converter.</param>
 		public ConverterBase(
 			IQuestionRepository questionRepository,
 			IAnswerRepository answerRepository,
@@ -38,7 +41,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
 			Source source,
-			string categoryIdentifier)
+			string categoryPath)
 		{
 			_questionRepository = questionRepository ?? throw new NullException(() => questionRepository);
 			_answerRepository = answerRepository ?? throw new NullException(() => answerRepository);
@@ -51,7 +54,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
 
 			_categoryManager = new CategoryManager(_categoryRepository);
 
-			_categoryIdentifier = categoryIdentifier;
+			_categoryIdentifiers = (categoryPath ?? "").Split("\\").Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
 
 			_source = source ?? throw new NullException(() => source);
 		}
@@ -77,7 +80,13 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			return question;
 		}
 
-		protected void AddCategory(Question question, params string[] categoryIdentifiers)
+		protected void AutoCreateCategory(Question question, IEnumerable<string> categoryIdentifiers)
+			=> AutoCreateCategory(question, categoryIdentifiers.ToArray());
+
+		protected void AutoCreateCategory(Question question, params string[] categoryIdentifiers)
+			=> AutoCreateCategory(question, (IList<string>)categoryIdentifiers);
+
+		protected void AutoCreateCategory(Question question, IList<string> categoryIdentifiers)
 		{
 			Category category = _categoryManager.FindOrCreateCategoryByIdentifierPath(categoryIdentifiers);
 			QuestionCategory questionCategory = _questionCategoryRepository.Create();
@@ -97,24 +106,16 @@ namespace JJ.Business.QuestionAndAnswer.Import
 		private string FormatLinkDescription(string value)
 		{
 			// Some link descriptions are terms, that are sometimes surrounded with < and >, and sometimes with single quotes (').
-			value = TrimValue(value);
+			value = value?.Trim();
 
 			// Some terms have < > around them, and sometimes even '< and >'. Those are ugly in a link.
-			if (value != null)
-			{
-				value = value.Replace("<'", "")
-				             .Replace("'>", "")
-				             .Replace(">", "")
-				             .Replace("<", "")
-				             .TrimStart("'")
-				             .TrimEnd("'");
-			}
+			value = value?.Replace("<'", "")
+			             .Replace("'>", "")
+			             .Replace(">", "")
+			             .Replace("<", "")
+			             .TrimStart("'")
+			             .TrimEnd("'");
 
-			// Older (?) version.
-			/*value = value.CutLeft("<");
-			value = value.CutRight(">");
-			value = value.CutLeft("'");
-			value = value.CutRight("'");*/
 			return value;
 		}
 
@@ -153,17 +154,6 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			}
 
 			return _source.Url.TrimEndUntil("/") + url;
-		}
-
-		/// <summary> Trims, but does not throw exception when value is null. </summary>
-		private string TrimValue(string value)
-		{
-			if (string.IsNullOrEmpty(value))
-			{
-				return value;
-			}
-
-			return value.Trim();
 		}
 
 		protected void ValidateQuestion(Question question)

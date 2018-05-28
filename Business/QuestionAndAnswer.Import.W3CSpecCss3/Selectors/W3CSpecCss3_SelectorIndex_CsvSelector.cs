@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.IO;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
+	[UsedImplicitly]
 	public class W3CSpecCss3_SelectorIndex_CsvSelector : ISelector<W3CSpecCss3_SelectorIndex_ImportModel>
 	{
 		public IEnumerable<W3CSpecCss3_SelectorIndex_ImportModel> GetSelection(Stream stream)

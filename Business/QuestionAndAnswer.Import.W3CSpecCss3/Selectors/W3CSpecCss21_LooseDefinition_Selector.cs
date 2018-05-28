@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Xml;
 
@@ -146,7 +145,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 			Match match = regex.Match(value);
 			if (match == null)
 			{
-				throw new Exception(string.Format("Non-word characters on the left could not be cut off from the following text: '{0}'.", value));
+				throw new Exception($"Non-word characters on the left could not be cut off from the following text: '{value}'.");
 			}
 
 			return match.Value;

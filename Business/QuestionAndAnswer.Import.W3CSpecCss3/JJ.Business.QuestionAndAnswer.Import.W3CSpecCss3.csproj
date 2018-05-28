@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryDescriptionCorrector.cs" />
+    <Compile Include="W3CSpecCss3CategoryDescriptionCorrector.cs" />
     <Compile Include="ImportHelper.cs" />
     <Compile Include="Converters\LooseDefinitionConverter.cs" />
     <Compile Include="Converters\PropertyAspectsConverter.cs" />

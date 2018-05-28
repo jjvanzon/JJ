@@ -38,7 +38,6 @@
 			this.ClientSize = new System.Drawing.Size(935, 371);
 			this.Description = resources.GetString("$this.Description");
 			this.Margin = new System.Windows.Forms.Padding(5);
-			this.MustShowExceptions = true;
 			this.Name = "MainForm";
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.ResumeLayout(false);

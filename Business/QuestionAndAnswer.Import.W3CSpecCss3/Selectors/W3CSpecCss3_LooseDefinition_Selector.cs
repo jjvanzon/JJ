@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Xml;
 
@@ -230,20 +229,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		// Helpers
 
 		/// <summary>
-		/// Gets the text from the content selected with an XPath from an XmlNode, HTML-decodes it and removes excessive whitespace.
-		/// </summary>
-		private string SelectText(XmlNode node, string xpath)
-		{
-			XmlNode node2 = XmlHelper.SelectNode(node, xpath);
-			return GetText(node2);
-		}
-
-		/// <summary>
 		/// Gets the text from an XmlNode, HTML-decodes and removes excessive whitespace.
 		/// </summary>
-		private string GetText(XmlNode node)
-		{
-			return ImportHelper.FormatHtmlText(node.InnerText);
-		}
+		private string GetText(XmlNode node) => ImportHelper.FormatHtmlText(node.InnerText);
 	}
 }

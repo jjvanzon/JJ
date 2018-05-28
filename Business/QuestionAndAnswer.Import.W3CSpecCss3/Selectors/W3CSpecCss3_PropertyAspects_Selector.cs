@@ -1,14 +1,15 @@
-﻿using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Xml;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using JetBrains.Annotations;
+using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
+	[UsedImplicitly]
 	public class W3CSpecCss3_PropertyAspects_Selector : ISelector<PropertyAspectsImportModel>
 	{
 		public IEnumerable<PropertyAspectsImportModel> GetSelection(Stream stream)
@@ -38,8 +39,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		}
 
 		private PropertyAspectsImportModel CreatePropertyDefinitionModel(XmlNode node)
-		{
-			return new PropertyAspectsImportModel
+			=> new PropertyAspectsImportModel
 			{
 				HashTag = GetHashTag(node),
 
@@ -63,7 +63,6 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 				ComputedValueLinks = GetComputedValueLinks(node).ToList(),
 				IsAnimatableLinks = GetIsAnimatableLinks(node).ToList()
 			};
-		}
 
 		private string GetHashTag(XmlNode node)
 		{
@@ -135,50 +134,23 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 			return value;
 		}
 
-		private IEnumerable<LinkModel> GetNameLinks(XmlNode node)
-		{
-			return GetLinks(node, "descendant::tr[1]/descendant::a[@href]");
-		}
+		private IEnumerable<LinkModel> GetNameLinks(XmlNode node) => GetLinks(node, "descendant::tr[1]/descendant::a[@href]");
 
-		private IEnumerable<LinkModel> GetPossibleValuesLinks(XmlNode node)
-		{
-			return GetLinks(node, "descendant::tr[2]/descendant::a[@href]");
-		}
+		private IEnumerable<LinkModel> GetPossibleValuesLinks(XmlNode node) => GetLinks(node, "descendant::tr[2]/descendant::a[@href]");
 
-		private IEnumerable<LinkModel> GetInitialValueLinks(XmlNode node)
-		{
-			return GetLinks(node, "descendant::tr[3]/descendant::a[@href]");
-		}
+		private IEnumerable<LinkModel> GetInitialValueLinks(XmlNode node) => GetLinks(node, "descendant::tr[3]/descendant::a[@href]");
 
-		private IEnumerable<LinkModel> GetAppliesToLinks(XmlNode node)
-		{
-			return GetLinks(node, "descendant::tr[4]/descendant::a[@href]");
-		}
+		private IEnumerable<LinkModel> GetAppliesToLinks(XmlNode node) => GetLinks(node, "descendant::tr[4]/descendant::a[@href]");
 
-		private IEnumerable<LinkModel> GetIsInheritedLinks(XmlNode node)
-		{
-			return GetLinks(node, "descendant::tr[5]/descendant::a[@href]");
-		}
+		private IEnumerable<LinkModel> GetIsInheritedLinks(XmlNode node) => GetLinks(node, "descendant::tr[5]/descendant::a[@href]");
 
-		private IEnumerable<LinkModel> GetPercentagesLinks(XmlNode node)
-		{
-			return GetLinks(node, "descendant::tr[6]/descendant::a[@href]");
-		}
+		private IEnumerable<LinkModel> GetPercentagesLinks(XmlNode node) => GetLinks(node, "descendant::tr[6]/descendant::a[@href]");
 
-		private IEnumerable<LinkModel> GetMediaLinks(XmlNode node)
-		{
-			return GetLinks(node, "descendant::tr[7]/descendant::a[@href]");
-		}
+		private IEnumerable<LinkModel> GetMediaLinks(XmlNode node) => GetLinks(node, "descendant::tr[7]/descendant::a[@href]");
 
-		private IEnumerable<LinkModel> GetComputedValueLinks(XmlNode node)
-		{
-			return GetLinks(node, "descendant::tr[8]/descendant::a[@href]");
-		}
+		private IEnumerable<LinkModel> GetComputedValueLinks(XmlNode node) => GetLinks(node, "descendant::tr[8]/descendant::a[@href]");
 
-		private IEnumerable<LinkModel> GetIsAnimatableLinks(XmlNode node)
-		{
-			return GetLinks(node, "descendant::tr[9]/descendant::a[@href]");
-		}
+		private IEnumerable<LinkModel> GetIsAnimatableLinks(XmlNode node) => GetLinks(node, "descendant::tr[9]/descendant::a[@href]");
 
 		private IEnumerable<LinkModel> GetLinks(XmlNode node, string xpath)
 		{

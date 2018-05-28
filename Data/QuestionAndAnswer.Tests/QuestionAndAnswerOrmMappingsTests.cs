@@ -19,7 +19,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
 				@"metadata=res://*/Mapping.QuestionAndAnswer.csdl|res://*/Mapping.QuestionAndAnswer.ssdl|res://*/Mapping.QuestionAndAnswer.msl;provider=System.Data.SqlClient;provider connection string=""data source=.\SQLEXPRESS;initial catalog=DEV_QuestionAndAnswerDB_UnitTests;persist security info=True;user id=dev;password=dev;MultipleActiveResultSets=True;App=EntityFramework"";";
 			using (DbContext context = new QuestionAndAnswerContext(specialConnectionString))
 			{
-				foreach (var entity in context.Set<Question>())
+				foreach (Question entity in context.Set<Question>())
 				{
 					string value = entity.Text;
 				}
@@ -42,7 +42,7 @@ namespace JJ.Data.QuestionAndAnswer.Tests
 			using (IContext context = CreateNHibernateContext())
 			{
 				int existingQuestionID = GetExistingQuestionID();
-				Question question = context.Get<Question>(existingQuestionID);
+				var question = context.Get<Question>(existingQuestionID);
 			}
 		}
 

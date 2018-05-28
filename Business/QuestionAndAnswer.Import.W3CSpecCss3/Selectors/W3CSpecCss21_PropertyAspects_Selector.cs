@@ -2,13 +2,14 @@
 using System.IO;
 using System.Linq;
 using System.Xml;
+using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Xml;
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 {
+	[UsedImplicitly]
 	public class W3CSpecCss21_PropertyAspects_Selector : ISelector<PropertyAspectsImportModel>
 	{
 		public IEnumerable<PropertyAspectsImportModel> GetSelection(Stream stream)

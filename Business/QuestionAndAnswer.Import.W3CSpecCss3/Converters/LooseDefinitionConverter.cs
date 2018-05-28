@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using JetBrains.Annotations;
 using JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Models;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Collections;
 using JJ.Framework.Text;
 
 // ReSharper disable UnusedParameter.Local
 
 namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 {
+	[UsedImplicitly]
 	public class LooseDefinitionConverter : ConverterBase<LooseDefinitionImportModel>
 	{
 		public LooseDefinitionConverter(
@@ -21,9 +24,16 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
 			Source source,
-			string categoryIdentifier)
-			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, source, categoryIdentifier)
-		{ }
+			string categoryPath)
+			: base(
+				questionRepository,
+				answerRepository,
+				categoryRepository,
+				questionCategoryRepository,
+				questionLinkRepository,
+				questionTypeRepository,
+				source,
+				categoryPath) { }
 
 		public override void ConvertToEntities(LooseDefinitionImportModel model)
 		{
@@ -42,7 +52,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			string hashTextLinkText = ImportHelper.TrimValue(model.HashTagLinkText);
 
 			// Set texts
-			question.Text = string.Format("In relation to {0}, what term or keyword is described as follows: {1}?", context, meaning);
+			question.Text = $"In relation to {context}, what term or keyword is described as follows: {meaning}?";
 			question.Answers[0].Text = term;
 
 			// Create links
@@ -57,7 +67,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, term);
-			AddCategory(question, "Css3", "Properties", "Aspects", "MeaningToTerm");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "MeaningToTerm");
 
 			//ScanTextForExistingCategoriesAndLinkQuestionToThem(question, context);
 
@@ -76,7 +86,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			string hashTextLinkText = ImportHelper.TrimValue(model.HashTagLinkText);
 
 			// Set texts
-			question.Text = string.Format("In relation to {0}, what does '{1}' mean?", context, term);
+			question.Text = $"In relation to {context}, what does '{term}' mean?";
 			question.Answers[0].Text = meaning;
 
 			// Create links
@@ -91,7 +101,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 			// Add categories
 			AddCategories(question, term);
-			AddCategory(question, "Css3", "Properties", "Aspects", "TermToMeaning");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "TermToMeaning");
 
 			//ScanTextForExistingCategoriesAndLinkQuestionToThem(question, context);
 
@@ -190,12 +200,13 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 		/// <summary> Gets the text up until the first period (.) or until the end of the string. </summary>
 		private string GetFirstSentence(string value)
 		{
-			var regex = new Regex(@"^[^\.$]*(\.|$)"); // Start of string, any character that is not period (.) or end of string, followed by a period (.) or end of string.
+			// Start of string, any character that is not period (.) or end of string, followed by a period (.) or end of string.
+			var regex = new Regex(@"^[^\.$]*(\.|$)"); 
 			Match match = regex.Match(value);
 
 			if (match == null)
 			{
-				throw new Exception(string.Format("Error trying to extract the first sentence of the following text: '{0}'.", value));
+				throw new Exception($"Error trying to extract the first sentence of the following text: '{value}'.");
 			}
 
 			return match.Value;
@@ -203,27 +214,12 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 
 		private void AddCategories(Question question, string term)
 		{
-			AddCategory(question, "Css3", "Properties", "Aspects", "LooseDefinitions");
+			AutoCreateCategory(question, "Css3", "Properties", "Aspects", "LooseDefinitions");
+			AutoCreateCategory(question, _categoryIdentifiers);
 
-			if (!string.IsNullOrEmpty(_categoryIdentifier))
+			foreach (string term2 in ImportHelper.SplitPluralTerm(term))
 			{
-				AddCategory(question, "Css3", "Properties", _categoryIdentifier);
-			}
-			else
-			{
-				AddCategory(question, "Css3", "Properties");
-			}
-
-			foreach (string propertyName2 in ImportHelper.SplitPluralTerm(term))
-			{
-				if (!string.IsNullOrEmpty(_categoryIdentifier))
-				{
-					AddCategory(question, "Css3", "Properties", _categoryIdentifier, ImportHelper.FormatTerm(propertyName2));
-				}
-				else
-				{
-					AddCategory(question, "Css3", "Properties", ImportHelper.FormatTerm(propertyName2));
-				}
+				AutoCreateCategory(question, _categoryIdentifiers.Concat(ImportHelper.FormatTerm(term2)));
 			}
 		}
 

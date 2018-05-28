@@ -1,9 +1,8 @@
-﻿using JJ.Framework.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Exceptions;
+using JJ.Framework.Data;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories

@@ -1,6 +1,5 @@
-﻿using JJ.Data.QuestionAndAnswer;
-using JJ.Business.QuestionAndAnswer.LinkTo;
-using JJ.Framework.Exceptions;
+﻿using JJ.Business.QuestionAndAnswer.LinkTo;
+using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Business.QuestionAndAnswer.Extensions

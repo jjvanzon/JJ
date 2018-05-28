@@ -26,6 +26,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.Configuration
 		public string ConverterType { get; set; }
 
 		[XmlAttribute]
-		public string CategoryIdentifier { get; set; }
+		public string CategoryPath { get; set; }
 	}
 }

@@ -15,8 +15,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			IQuestionLinkRepository questionLinkRepository,
 			IQuestionTypeRepository questionTypeRepository,
 			Source source,
-			string categoryIdentifier)
-			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, source, categoryIdentifier)
+			string categoryPath)
+			: base(questionRepository, answerRepository, categoryRepository, questionCategoryRepository, questionLinkRepository, questionTypeRepository, source, categoryPath)
 		{ }
 
 		public override void ConvertToEntities(W3CSpecCss3_SelectorIndex_ImportModel model)
@@ -36,11 +36,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(pattern))
 			{
-				question.Text = string.Format("What does the selector {0} mean?", pattern);
+				question.Text = $"What does the selector {pattern} mean?";
 			}
 			else
 			{
-				question.Text = string.Format("What do the selectors {0} mean?", pattern);
+				question.Text = $"What do the selectors {pattern} mean?";
 			}
 
 			question.Answers[0].Text = ImportHelper.TrimValue(model.Meaning);
@@ -53,17 +53,17 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			}
 
 			// Add categories
-			AddCategory(question, "Css3", "Selectors", "PatternToMeaning");
+			AutoCreateCategory(question, "Css3", "Selectors", "PatternToMeaning");
 
 			if (!IsPlural(pattern))
 			{
-				AddCategory(question, "Css3", "Selectors", pattern);
+				AutoCreateCategory(question, "Css3", "Selectors", pattern);
 			}
 			else
 			{
 				foreach (string pattern2 in pattern.Split(' '))
 				{
-					AddCategory(question, "Css3", "Selectors", pattern2);
+					AutoCreateCategory(question, "Css3", "Selectors", pattern2);
 				}
 			}
 
@@ -82,11 +82,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(pattern))
 			{
-				question.Text = string.Format("What is the selector for {0}?", meaning);
+				question.Text = $"What is the selector for {meaning}?";
 			}
 			else
 			{
-				question.Text = string.Format("What are the selectors for {0}?", meaning);
+				question.Text = $"What are the selectors for {meaning}?";
 			}
 			question.Answers[0].Text = pattern;
 
@@ -98,17 +98,17 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			}
 
 			// Add categories
-			AddCategory(question, "Css3", "Selectors", "MeaningToPattern");
+			AutoCreateCategory(question, "Css3", "Selectors", "MeaningToPattern");
 
 			if (!IsPlural(pattern))
 			{
-				AddCategory(question, "Css3", "Selectors", pattern);
+				AutoCreateCategory(question, "Css3", "Selectors", pattern);
 			}
 			else
 			{
 				foreach (string pattern2 in pattern.Split(' '))
 				{
-					AddCategory(question, "Css3", "Selectors", pattern2);
+					AutoCreateCategory(question, "Css3", "Selectors", pattern2);
 				}
 			}
 
@@ -126,11 +126,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// Set texts
 			if (!IsPlural(pattern))
 			{
-				question.Text = string.Format("What type of selector is {0} ?", pattern);
+				question.Text = $"What type of selector is {pattern} ?";
 			}
 			else
 			{
-				question.Text = string.Format("What type of selector are {0} ?", pattern);
+				question.Text = $"What type of selector are {pattern} ?";
 			}
 			question.Answers[0].Text = ImportHelper.TrimValue(model.DescribedInSection);
 
@@ -142,17 +142,17 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			}
 
 			// Add categories
-			AddCategory(question, "Css3", "Selectors", "SelectorType");
+			AutoCreateCategory(question, "Css3", "Selectors", "SelectorType");
 
 			if (!IsPlural(pattern))
 			{
-				AddCategory(question, "Css3", "Selectors", pattern);
+				AutoCreateCategory(question, "Css3", "Selectors", pattern);
 			}
 			else
 			{
 				foreach (string pattern2 in pattern.Split(' '))
 				{
-					AddCategory(question, "Css3", "Selectors", pattern2);
+					AutoCreateCategory(question, "Css3", "Selectors", pattern2);
 				}
 			}
 
