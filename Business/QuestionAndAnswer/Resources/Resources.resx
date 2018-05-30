@@ -121,7 +121,7 @@
     <value>Answer</value>
   </data>
   <data name="AnswersCount" xml:space="preserve">
-    <value>Number of answers</value>
+    <value>Number of Answers</value>
   </data>
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
@@ -135,17 +135,8 @@
   <data name="CorrectAnswerCount" xml:space="preserve">
     <value>Number of correct answers</value>
   </data>
-  <data name="DateTime" xml:space="preserve">
-    <value>Date and time</value>
-  </data>
   <data name="FlagStatus" xml:space="preserve">
-    <value>Flag status</value>
-  </data>
-  <data name="ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="IsActive" xml:space="preserve">
-    <value>Active</value>
+    <value>Flag Status</value>
   </data>
   <data name="IsCorrectAnswer" xml:space="preserve">
     <value>Is correct answer</value>
@@ -160,7 +151,7 @@
     <value>Question</value>
   </data>
   <data name="QuestionCategory" xml:space="preserve">
-    <value>Question category</value>
+    <value>Question Category</value>
   </data>
   <data name="QuestionLink" xml:space="preserve">
     <value>Link</value>
@@ -173,7 +164,7 @@
     <value>Questions</value>
   </data>
   <data name="QuestionType" xml:space="preserve">
-    <value>Question type</value>
+    <value>Question Type</value>
   </data>
   <data name="Runs" xml:space="preserve">
     <value>Runs</value>
@@ -181,23 +172,11 @@
   <data name="Source" xml:space="preserve">
     <value>Source</value>
   </data>
-  <data name="Text" xml:space="preserve">
-    <value>Text</value>
-  </data>
-  <data name="Url" xml:space="preserve">
-    <value>URL</value>
-  </data>
   <data name="AdditionalInformation" xml:space="preserve">
     <value>Additional Information</value>
   </data>
   <data name="AvailableCategories" xml:space="preserve">
     <value>Available Categories</value>
-  </data>
-  <data name="BackToList" xml:space="preserve">
-    <value>Back to List</value>
-  </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
   </data>
   <data name="ContentFlaggedBy" xml:space="preserve">
     <value>Flagged By</value>
@@ -217,24 +196,12 @@
   <data name="CreateQuestion" xml:space="preserve">
     <value>Create Question</value>
   </data>
-  <data name="Date" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="DeleteQuestion" xml:space="preserve">
-    <value>Delete Question</value>
-  </data>
-  <data name="EditQuestion" xml:space="preserve">
-    <value>Edit Question</value>
-  </data>
   <data name="FlagContent" xml:space="preserve">
     <value>Flag</value>
     <comment>Verb</comment>
   </data>
   <data name="FlaggedContent" xml:space="preserve">
     <value>Flagged Content</value>
-  </data>
-  <data name="General" xml:space="preserve">
-    <value>General</value>
   </data>
   <data name="HasActiveFlags" xml:space="preserve">
     <value>Has Active Flaggings</value>
@@ -245,20 +212,8 @@
   <data name="Links" xml:space="preserve">
     <value>Links</value>
   </data>
-  <data name="NextQuestion" xml:space="preserve">
-    <value>Next Question</value>
-  </data>
   <data name="NoQuestionsFound" xml:space="preserve">
-    <value>No questions found</value>
-  </data>
-  <data name="QuestionDetails" xml:space="preserve">
-    <value>Question Details</value>
-  </data>
-  <data name="SelectCategories" xml:space="preserve">
-    <value>Select Categories</value>
-  </data>
-  <data name="Selection" xml:space="preserve">
-    <value>Selection</value>
+    <value>No questions found.</value>
   </data>
   <data name="ShowAnswer" xml:space="preserve">
     <value>Show Answer</value>
@@ -272,9 +227,6 @@
   <data name="TheCorrectAnswer" xml:space="preserve">
     <value>The correct anwer is</value>
   </data>
-  <data name="Type" xml:space="preserve">
-    <value>Type</value>
-  </data>
   <data name="UnflagContent" xml:space="preserve">
     <value>Unflag</value>
   </data>
@@ -286,12 +238,6 @@
   </data>
   <data name="NoCategoriesAvailable" xml:space="preserve">
     <value>No categories available.</value>
-  </data>
-  <data name="NotAuthorizedMessage" xml:space="preserve">
-    <value>You are not authorized to view this content.</value>
-  </data>
-  <data name="QuestionIsDeleted" xml:space="preserve">
-    <value>The question has been deleted.</value>
   </data>
   <data name="YouHaveJavaScriptDisabled" xml:space="preserve">
     <value>You have JavaScript disabled. Here is the alternative content:</value>

@@ -13,7 +13,7 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 			if (entity == null) throw new NullException(() => entity);
 
 			For(entity.Description, CommonResourceFormatter.Description).NotNullOrWhiteSpace();
-			For(entity.Url, ResourceFormatter.Url).NotNullOrWhiteSpace();
+			For(entity.Url, CommonResourceFormatter.Url).NotNullOrWhiteSpace();
 		}
 	}
 }

@@ -2,7 +2,7 @@
 
 @section Title
 {
-    @ResourceFormatter.DeleteQuestion
+    @CommonResourceFormatter.Delete_WithName(ResourceFormatter.Question)
 }
 
 @section Header
@@ -12,13 +12,13 @@
 
 @using (Html.BeginForm())
 {
-    <h2>@ResourceFormatter.DeleteQuestion</h2>
+    <h2>@CommonResourceFormatter.Delete_WithName(ResourceFormatter.Question)</h2>
     
     <p>@ResourceFormatter.AreYouSureYouWishToDeleteTheFollowingQuestion</p>
 
     <table>
         <tr>
-            <th> @ResourceFormatter.ID </th>
+            <th> @CommonResourceFormatter.ID </th>
             <td> @Model.ID </td>
         </tr>
         <tr>
@@ -28,7 +28,7 @@
     </table>
 
     <p>
-        <input type="submit" value="@ResourceFormatter.Confirm" /> |
+        <input type="submit" value="@CommonResourceFormatter.Confirm" /> |
         <a href="javascript:history.back()"> @CommonResourceFormatter.Cancel </a>
     </p>
 }

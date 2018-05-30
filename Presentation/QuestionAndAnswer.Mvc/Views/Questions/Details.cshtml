@@ -2,7 +2,7 @@
 
 @section Title
 {
-    @ResourceFormatter.QuestionDetails
+    @CommonResourceFormatter.Details_WithName(ResourceFormatter.Question)
 }
 
 @section Header
@@ -10,7 +10,7 @@
     @Html.Partial(nameof(ViewNames._Login), Model.Login)
 }
 
-<h2>@ResourceFormatter.QuestionDetails</h2>
+<h2>@CommonResourceFormatter.Details_WithName(ResourceFormatter.Question)</h2>
 
 <p>
     @Html.ActionLink(CommonResourceFormatter.Edit, nameof(ActionNames.Edit), new 
@@ -23,12 +23,12 @@
         ret = Url.Action(nameof(ActionNames.Details), nameof(ControllerNames.Questions), new  { id = Model.Question.ID })
     }) |
     @Html.ActionLink(CommonResourceFormatter.Delete, nameof(ActionNames.Delete), new { id = Model.Question.ID }) |
-    @Html.ActionLink(ResourceFormatter.BackToList, nameof(ActionNames.Index))
+    @Html.ActionLink(CommonResourceFormatter.BackToList, nameof(ActionNames.Index))
 </p>
 
 <table class="properties">
     <tr>
-        <th>@ResourceFormatter.ID:</th>
+        <th>@CommonResourceFormatter.ID:</th>
         <td>@Model.Question.ID</td>
     </tr>
 
@@ -42,7 +42,7 @@
     </tr>
 
     <tr>
-        <th>@ResourceFormatter.IsActive:</th>
+        <th>@CommonResourceFormatter.IsActive:</th>
         <td>@(Model.Question.IsActive ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)</td>
     </tr>
     <tr>
@@ -61,7 +61,7 @@
         </td>
     </tr>
     <tr>
-        <th>@ResourceFormatter.Type:</th>
+        <th>@CommonResourceFormatter.Type:</th>
         <td>@Model.Question.Type.Name</td>
     </tr>
 
@@ -133,7 +133,7 @@
                 <td>
                     <table class="properties">
                         <tr>
-                            <th>@ResourceFormatter.DateTime:</th>
+                            <th>@CommonResourceFormatter.DateTime:</th>
                             <td>@flag.DateAndTime.ToString()</td>
                         </tr>
                         <tr>

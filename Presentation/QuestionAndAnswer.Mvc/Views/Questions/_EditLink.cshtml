@@ -13,12 +13,12 @@
 		@if (!string.IsNullOrEmpty(Model.Url))
 		{
 			<a href="@Model.Url" target="_blank">
-				@ResourceFormatter.Url
+				@CommonResourceFormatter.Url
 			</a>
 		}
 		else
 		{
-			@ResourceFormatter.Url
+			@CommonResourceFormatter.Url
 		}
 
 		<span class="editor-field">

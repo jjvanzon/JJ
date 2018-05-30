@@ -126,6 +126,10 @@
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
+      <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
+      <Name>JJ.Framework.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Security\JJ.Framework.Security.csproj">
       <Project>{4007568e-b2b4-4fc5-aa38-34edc272f010}</Project>
       <Name>JJ.Framework.Security</Name>

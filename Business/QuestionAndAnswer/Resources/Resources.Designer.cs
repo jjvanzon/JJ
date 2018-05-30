@@ -79,7 +79,7 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of answers.
+        ///   Looks up a localized string similar to Number of Answers.
         /// </summary>
         internal static string AnswersCount {
             get {
@@ -102,15 +102,6 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         internal static string AvailableCategories {
             get {
                 return ResourceManager.GetString("AvailableCategories", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Back to List.
-        /// </summary>
-        internal static string BackToList {
-            get {
-                return ResourceManager.GetString("BackToList", resourceCulture);
             }
         }
         
@@ -138,15 +129,6 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         internal static string Comment {
             get {
                 return ResourceManager.GetString("Comment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm.
-        /// </summary>
-        internal static string Confirm {
-            get {
-                return ResourceManager.GetString("Confirm", resourceCulture);
             }
         }
         
@@ -214,42 +196,6 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date.
-        /// </summary>
-        internal static string Date {
-            get {
-                return ResourceManager.GetString("Date", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date and time.
-        /// </summary>
-        internal static string DateTime {
-            get {
-                return ResourceManager.GetString("DateTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete Question.
-        /// </summary>
-        internal static string DeleteQuestion {
-            get {
-                return ResourceManager.GetString("DeleteQuestion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit Question.
-        /// </summary>
-        internal static string EditQuestion {
-            get {
-                return ResourceManager.GetString("EditQuestion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to (Manually edited questions will not be overwritten by automatic processes.).
         /// </summary>
         internal static string ExplanationOfIsManualWithParenthesis {
@@ -277,20 +223,11 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Flag status.
+        ///   Looks up a localized string similar to Flag Status.
         /// </summary>
         internal static string FlagStatus {
             get {
                 return ResourceManager.GetString("FlagStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to General.
-        /// </summary>
-        internal static string General {
-            get {
-                return ResourceManager.GetString("General", resourceCulture);
             }
         }
         
@@ -309,24 +246,6 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         internal static string HideAnswer {
             get {
                 return ResourceManager.GetString("HideAnswer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ID.
-        /// </summary>
-        internal static string ID {
-            get {
-                return ResourceManager.GetString("ID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Active.
-        /// </summary>
-        internal static string IsActive {
-            get {
-                return ResourceManager.GetString("IsActive", resourceCulture);
             }
         }
         
@@ -367,15 +286,6 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Next Question.
-        /// </summary>
-        internal static string NextQuestion {
-            get {
-                return ResourceManager.GetString("NextQuestion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No categories available..
         /// </summary>
         internal static string NoCategoriesAvailable {
@@ -385,20 +295,11 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No questions found.
+        ///   Looks up a localized string similar to No questions found..
         /// </summary>
         internal static string NoQuestionsFound {
             get {
                 return ResourceManager.GetString("NoQuestionsFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are not authorized to view this content..
-        /// </summary>
-        internal static string NotAuthorizedMessage {
-            get {
-                return ResourceManager.GetString("NotAuthorizedMessage", resourceCulture);
             }
         }
         
@@ -412,29 +313,11 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Question category.
+        ///   Looks up a localized string similar to Question Category.
         /// </summary>
         internal static string QuestionCategory {
             get {
                 return ResourceManager.GetString("QuestionCategory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Question Details.
-        /// </summary>
-        internal static string QuestionDetails {
-            get {
-                return ResourceManager.GetString("QuestionDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The question has been deleted..
-        /// </summary>
-        internal static string QuestionIsDeleted {
-            get {
-                return ResourceManager.GetString("QuestionIsDeleted", resourceCulture);
             }
         }
         
@@ -466,7 +349,7 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Question type.
+        ///   Looks up a localized string similar to Question Type.
         /// </summary>
         internal static string QuestionType {
             get {
@@ -480,24 +363,6 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         internal static string Runs {
             get {
                 return ResourceManager.GetString("Runs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select Categories.
-        /// </summary>
-        internal static string SelectCategories {
-            get {
-                return ResourceManager.GetString("SelectCategories", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Selection.
-        /// </summary>
-        internal static string Selection {
-            get {
-                return ResourceManager.GetString("Selection", resourceCulture);
             }
         }
         
@@ -538,15 +403,6 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text.
-        /// </summary>
-        internal static string Text {
-            get {
-                return ResourceManager.GetString("Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The correct anwer is.
         /// </summary>
         internal static string TheCorrectAnswer {
@@ -556,29 +412,11 @@ namespace JJ.Business.QuestionAndAnswer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type.
-        /// </summary>
-        internal static string Type {
-            get {
-                return ResourceManager.GetString("Type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unflag.
         /// </summary>
         internal static string UnflagContent {
             get {
                 return ResourceManager.GetString("UnflagContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to URL.
-        /// </summary>
-        internal static string Url {
-            get {
-                return ResourceManager.GetString("Url", resourceCulture);
             }
         }
         

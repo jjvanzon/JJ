@@ -2,7 +2,7 @@
 
 @section Title
 {
-    @ResourceFormatter.DeleteQuestion
+    @CommonResourceFormatter.Delete_WithName(ResourceFormatter.Question)
 }
 
 @section Header
@@ -10,8 +10,8 @@
     @Html.Partial(nameof(ViewNames._Login), Model.Login)
 }
 
-<h2>@ResourceFormatter.DeleteQuestion</h2>
+<h2>@CommonResourceFormatter.Delete_WithName(ResourceFormatter.Question)</h2>
     
-<p>@ResourceFormatter.QuestionIsDeleted</p>
+<p>@CommonResourceFormatter.IsDeleted_WithName(ResourceFormatter.Question)</p>
 
-<p>@Html.ActionLink(ResourceFormatter.BackToList, nameof(ActionNames.Index))</p>
+<p>@Html.ActionLink(CommonResourceFormatter.BackToList, nameof(ActionNames.Index))</p>

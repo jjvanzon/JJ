@@ -2,14 +2,14 @@
 
 <table class="properties">
     <tr>
-        <th>@ResourceFormatter.ID:</th>
+        <th>@CommonResourceFormatter.ID:</th>
         <td >
             @Model.ID
             @Html.HiddenFor(x => x.ID)
         </td>
     </tr>
     <tr>
-        <th>@ResourceFormatter.IsActive:</th>
+        <th>@CommonResourceFormatter.IsActive:</th>
         <td>
             @Html.CheckBoxFor(x => x.IsActive)
             @Html.ValidationMessageFor(x => x.IsActive)

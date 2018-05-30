@@ -1,6 +1,7 @@
 ﻿using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Resources;
 using JJ.Framework.Validation;
 // ReSharper disable JoinDeclarationAndInitializer
 
@@ -15,7 +16,7 @@ namespace JJ.Business.QuestionAndAnswer.Validation
 			if (entity == null) throw new NullException(() => entity);
 
 			For(entity.QuestionType, ResourceFormatter.QuestionType).NotNull();
-			For(entity.Text, ResourceFormatter.Text).NotNullOrWhiteSpace();
+			For(entity.Text, CommonResourceFormatter.Text).NotNullOrWhiteSpace();
 
 			int i;
 

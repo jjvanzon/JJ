@@ -9,6 +9,7 @@ using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Business;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Presentation;
+using JJ.Framework.Resources;
 using JJ.Framework.Validation;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
@@ -66,7 +67,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
 			QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
 			viewModel.CanDelete = true;
-			viewModel.Title = ResourceFormatter.EditQuestion;
+			viewModel.Title = CommonResourceFormatter.Edit_WithName(ResourceFormatter.Question);
 			viewModel.ReturnAction = returnAction;
 
 			return viewModel;

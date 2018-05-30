@@ -39,7 +39,7 @@
 
 	<div id="nextQuestion">
 		@Html.ActionLinkWithCollection(
-		    ResourceFormatter.NextQuestion, 
+		    CommonResourceFormatter.Next_WithName(ResourceFormatter.Question), 
 			nameof(ActionNames.Random), 
 			nameof(ControllerNames.Questions), 
 			nameof(ActionParameterNames.c), 

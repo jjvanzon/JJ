@@ -2,7 +2,7 @@
 
 @section Title
 {
-	@ResourceFormatter.SelectCategories
+	@CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories)
 }
 
 @section Header
@@ -12,7 +12,7 @@
 
 @using (Html.BeginForm())
 {
-	<h2>@ResourceFormatter.SelectCategories </h2>
+	<h2>@CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories)</h2>
 
 	if (Model.NoCategoriesAvailable)
 	{
@@ -52,7 +52,7 @@
 					     ondragover="divSelectedCategories_onDragOver(event)"
 					     ondrop="divSelectedCategories_onDrop(event)">
 
-						<h3>@ResourceFormatter.Selection</h3>
+						<h3>@CommonResourceFormatter.Selection</h3>
 
 						<ul class="category selected">
 

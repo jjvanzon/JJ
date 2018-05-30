@@ -132,12 +132,6 @@
   <data name="CorrectAnswerCount" xml:space="preserve">
     <value>Aantal correcte antwoorden</value>
   </data>
-  <data name="ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="IsActive" xml:space="preserve">
-    <value>Actief</value>
-  </data>
   <data name="IsCorrectAnswer" xml:space="preserve">
     <value>Is correct antwoord</value>
   </data>
@@ -156,20 +150,11 @@
   <data name="QuestionType" xml:space="preserve">
     <value>Vraagsoort</value>
   </data>
-  <data name="Text" xml:space="preserve">
-    <value>Tekst</value>
-  </data>
-  <data name="Url" xml:space="preserve">
-    <value>URL</value>
-  </data>
   <data name="Runs" xml:space="preserve">
     <value>Trainingen</value>
   </data>
   <data name="Comment" xml:space="preserve">
     <value>Commentaar</value>
-  </data>
-  <data name="DateTime" xml:space="preserve">
-    <value>Datum en tijd</value>
   </data>
   <data name="IsManual" xml:space="preserve">
     <value>Handmatig bewerkt</value>
@@ -192,12 +177,6 @@
   <data name="AvailableCategories" xml:space="preserve">
     <value>Beschikbare categorieën</value>
   </data>
-  <data name="BackToList" xml:space="preserve">
-    <value>Terug naar lijst</value>
-  </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Bevestigen</value>
-  </data>
   <data name="ContentFlaggedBy" xml:space="preserve">
     <value>Gemarkeerd door</value>
   </data>
@@ -216,23 +195,11 @@
   <data name="CreateQuestion" xml:space="preserve">
     <value>Nieuwe vraag aanmaken</value>
   </data>
-  <data name="Date" xml:space="preserve">
-    <value>Datum</value>
-  </data>
-  <data name="DeleteQuestion" xml:space="preserve">
-    <value>Vraag verwijderen</value>
-  </data>
-  <data name="EditQuestion" xml:space="preserve">
-    <value>Vraag bewerken</value>
-  </data>
   <data name="FlagContent" xml:space="preserve">
     <value>Markeren</value>
   </data>
   <data name="FlaggedContent" xml:space="preserve">
     <value>Gemarkeerde inhoud</value>
-  </data>
-  <data name="General" xml:space="preserve">
-    <value>Algemeen</value>
   </data>
   <data name="HasActiveFlags" xml:space="preserve">
     <value>Heeft actieve markeringen</value>
@@ -243,20 +210,8 @@
   <data name="Links" xml:space="preserve">
     <value>Links</value>
   </data>
-  <data name="NextQuestion" xml:space="preserve">
-    <value>Volgende vraag</value>
-  </data>
   <data name="NoQuestionsFound" xml:space="preserve">
     <value>Geen vragen gevonden.</value>
-  </data>
-  <data name="QuestionDetails" xml:space="preserve">
-    <value>Vraag details</value>
-  </data>
-  <data name="SelectCategories" xml:space="preserve">
-    <value>Selecteer categorieën</value>
-  </data>
-  <data name="Selection" xml:space="preserve">
-    <value>Selectie</value>
   </data>
   <data name="ShowAnswer" xml:space="preserve">
     <value>Toon antwoord</value>
@@ -270,9 +225,6 @@
   <data name="TheCorrectAnswer" xml:space="preserve">
     <value>Het correcte antwoord is</value>
   </data>
-  <data name="Type" xml:space="preserve">
-    <value>Soort</value>
-  </data>
   <data name="UnflagContent" xml:space="preserve">
     <value>Marking verwijderen</value>
   </data>
@@ -284,12 +236,6 @@
   </data>
   <data name="NoCategoriesAvailable" xml:space="preserve">
     <value>Geen categorieën beschikbaar.</value>
-  </data>
-  <data name="NotAuthorizedMessage" xml:space="preserve">
-    <value>U bent niet gemachtigd om deze inhoud te zien.</value>
-  </data>
-  <data name="QuestionIsDeleted" xml:space="preserve">
-    <value>De vraag is verwijderd.</value>
   </data>
   <data name="YouHaveJavaScriptDisabled" xml:space="preserve">
     <value>U heeft JavaScript uit staan. Hier is de alternatieve inhoud:</value>
