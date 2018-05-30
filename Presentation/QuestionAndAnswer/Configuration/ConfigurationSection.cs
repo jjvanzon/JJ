@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace JJ.Presentation.QuestionAndAnswer.Configuration
 {
@@ -9,5 +11,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Configuration
 
 		[XmlAttribute]
 		public int MaxVisiblePageNumbers { get; set; }
+
+        public IList<string> AvailableCultureCodes { get; set; }
 	}
 }

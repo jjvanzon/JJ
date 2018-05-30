@@ -70,10 +70,10 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             };
 
         public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel()
-            => CreateLanguageSelectionViewModel(CultureHelper.GetAvailableCultureNames(), CultureHelper.GetCurrentCultureName());
+            => CreateLanguageSelectionViewModel(CultureHelper.AvailableCultureNames, CultureHelper.GetCurrentCultureName());
 
         public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel(string cultureName)
-            => CreateLanguageSelectionViewModel(CultureHelper.GetAvailableCultureNames(), cultureName);
+            => CreateLanguageSelectionViewModel(CultureHelper.AvailableCultureNames, cultureName);
 
         public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel(
             IList<string> availableCultureNames,

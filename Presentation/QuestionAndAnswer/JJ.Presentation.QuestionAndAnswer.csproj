@@ -106,6 +106,10 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805A8237-05ED-40AE-8D1A-9288373EA5E0}</Project>
+      <Name>JJ.Framework.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Data\JJ.Framework.Data.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Data</Name>
