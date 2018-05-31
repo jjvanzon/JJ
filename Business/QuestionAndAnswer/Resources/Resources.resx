@@ -242,4 +242,10 @@
   <data name="YouHaveJavaScriptDisabled" xml:space="preserve">
     <value>You have JavaScript disabled. Here is the alternative content:</value>
   </data>
+  <data name="Categories_Accusative" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Question_Accusative" xml:space="preserve">
+    <value>Question</value>
+  </data>
 </root>

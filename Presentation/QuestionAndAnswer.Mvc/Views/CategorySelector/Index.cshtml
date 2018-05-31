@@ -2,7 +2,7 @@
 
 @section Title
 {
-	@CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories)
+	@CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories_Accusative)
 }
 
 @section Header
@@ -12,7 +12,7 @@
 
 @using (Html.BeginForm())
 {
-	<h2>@CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories)</h2>
+	<h2>@CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories_Accusative)</h2>
 
 	if (Model.NoCategoriesAvailable)
 	{

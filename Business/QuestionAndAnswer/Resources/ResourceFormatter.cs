@@ -12,6 +12,7 @@ namespace JJ.Business.QuestionAndAnswer.Resources
         public static string AreYouSureYouWishToDeleteTheFollowingQuestion => Resources.AreYouSureYouWishToDeleteTheFollowingQuestion;
         public static string AvailableCategories => Resources.AvailableCategories;
         public static string Categories => Resources.Categories;
+        public static string Categories_Accusative => Resources.Categories_Accusative;
         public static string Category => Resources.Category;
         public static string Comment => Resources.Comment;
         public static string ContentFlaggedBy => Resources.ContentFlaggedBy;
@@ -34,6 +35,7 @@ namespace JJ.Business.QuestionAndAnswer.Resources
         public static string NoCategoriesAvailable => Resources.NoCategoriesAvailable;
         public static string NoQuestionsFound => Resources.NoQuestionsFound;
         public static string Question => Resources.Question;
+        public static string Question_Accusative => Resources.Question_Accusative;
         public static string QuestionCategory => Resources.QuestionCategory;
         public static string QuestionLink => Resources.QuestionLink;
         public static string QuestionLinks => Resources.QuestionLinks;

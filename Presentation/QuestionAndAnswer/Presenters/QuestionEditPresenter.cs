@@ -67,7 +67,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
 			QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
 			viewModel.CanDelete = true;
-			viewModel.Title = CommonResourceFormatter.Edit_WithName(ResourceFormatter.Question);
+			viewModel.Title = CommonResourceFormatter.Edit_WithName(ResourceFormatter.Question_Accusative);
 			viewModel.ReturnAction = returnAction;
 
 			return viewModel;

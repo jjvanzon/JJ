@@ -240,4 +240,10 @@
   <data name="YouHaveJavaScriptDisabled" xml:space="preserve">
     <value>U heeft JavaScript uit staan. Hier is de alternatieve inhoud:</value>
   </data>
+  <data name="Categories_Accusative" xml:space="preserve">
+    <value>Categorieën</value>
+  </data>
+  <data name="Question_Accusative" xml:space="preserve">
+    <value>Vraag</value>
+  </data>
 </root>

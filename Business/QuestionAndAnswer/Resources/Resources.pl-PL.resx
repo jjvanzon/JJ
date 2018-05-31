@@ -240,4 +240,12 @@
   <data name="YouHaveJavaScriptDisabled" xml:space="preserve">
     <value>Masz wyłączoną obsługę JavaScript. Oto alternatywna treść:</value>
   </data>
+  <data name="Categories_Accusative" xml:space="preserve">
+    <value>Kategorie</value>
+    <comment>Not sure how to make it accusative in Polish.</comment>
+  </data>
+  <data name="Question_Accusative" xml:space="preserve">
+    <value>Pytanie</value>
+    <comment>Not sure how to make it accusative in Polish.</comment>
+  </data>
 </root>
