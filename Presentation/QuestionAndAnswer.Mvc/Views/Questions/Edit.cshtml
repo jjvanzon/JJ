@@ -16,7 +16,7 @@
 
     <h2>@Model.Title</h2>
 
-    @Html.Partial(nameof(ViewNames._EditButtons), Model);
+    @Html.Partial(nameof(ViewNames._EditButtons), Model)
 
     using (Html.BeginItem(() => Model.Question))
     {
@@ -42,5 +42,5 @@
     
     @Html.ValidationSummary()
 
-    @Html.Partial(nameof(ViewNames._EditButtons), Model);
+    @Html.Partial(nameof(ViewNames._EditButtons), Model)
 }

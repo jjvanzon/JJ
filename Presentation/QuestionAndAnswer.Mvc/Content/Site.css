@@ -18,10 +18,10 @@ section
 
 h1
 {
-    margin: 0px;
+    margin: 0;
     margin-top: 10px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 6px;
 }
 
@@ -29,7 +29,7 @@ h2
 {
     font-size: 16pt;
     margin: -1px;
-    padding-left: 0px;
+    padding-left: 0;
     padding-right: 4px;
     padding-top: 6px;
     padding-bottom: 2px;
@@ -38,7 +38,7 @@ h2
 h3
 {
     font-size: 12pt;
-    margin: 0px;
+    margin: 0;
     padding-left: 4px;
     padding-right: 4px;
     padding-top: 5px;
@@ -65,7 +65,7 @@ nav a:hover
 nav > ul
 {
     display: inline;
-    padding: 0px;
+    padding: 0;
 }
 
 nav li
@@ -77,13 +77,13 @@ nav li
 nav > ul > li
 {
     display: inline-block;
-    margin: 0px;
+    margin: 0;
     vertical-align: top;
 }
 
 nav > ul > li > ul
 {
-    padding: 0px;
+    padding: 0;
     padding-left: 16px;
     margin-top: 4px;
 }
@@ -91,7 +91,7 @@ nav > ul > li > ul
 nav > ul > li > ul > li
 {
     display: block;
-    margin: 0px;
+    margin: 0;
     vertical-align: top;
 }
 
@@ -171,7 +171,7 @@ table.pane
 
 table.pane td
 {
-    margin: 0px;
+    margin: 0;
     margin-right: 4px;
     padding: 4px;
 

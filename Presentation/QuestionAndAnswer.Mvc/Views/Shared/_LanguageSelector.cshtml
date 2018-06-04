@@ -18,7 +18,7 @@
                 var cultureName = $(this).val();
                 var url = JJ.Framework.Url.setParameter(window.location.href, "@nameof(ActionParameterNames.lang)", cultureName);
 
-                if (window.document.forms.length == 0) {
+                if (window.document.forms.length === 0) {
                     window.location.href = url;
                 }
                 else {

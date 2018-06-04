@@ -239,6 +239,11 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\JJ.Framework.Assert.js" />
+    <Content Include="Scripts\JJ.Framework.Check.js" />
+    <Content Include="Scripts\JJ.Framework.Cookie.js" />
+    <Content Include="Scripts\JJ.Framework.RememberScrollPosition.js" />
+    <Content Include="Scripts\JJ.Framework.Url.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
