@@ -57,7 +57,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			}
 			else
 			{
-				QuestionSelector selector = new QuestionSelector(_questionRepository, selectedCategoryNodes);
+				var selector = new QuestionSelector(_questionRepository, selectedCategoryNodes);
 				question = selector.TryGetRandomQuestion();
 			}
 
@@ -106,7 +106,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			}
 			if (viewModel.SelectedCategories != null)
 			{
-				viewModel2.SelectedCategories = viewModel?.SelectedCategories;
+				viewModel2.SelectedCategories = viewModel.SelectedCategories;
 			}
 
 			return viewModel2;

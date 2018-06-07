@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
+namespace JJ.Presentation.QuestionAndAnswer.Mvc
 {
 	public static class WebApiConfig
 	{

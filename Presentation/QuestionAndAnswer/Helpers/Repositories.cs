@@ -1,5 +1,4 @@
 ﻿using JJ.Framework.Business;
-using JJ.Framework.Exceptions;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Exceptions.Basic;
 

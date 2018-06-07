@@ -3,7 +3,6 @@ using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Data;
 using JJ.Framework.Mvc;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
-using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 

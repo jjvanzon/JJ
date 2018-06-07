@@ -1,7 +1,9 @@
-﻿namespace JJ.Data.QuestionAndAnswer.NHibernate.Names
+﻿using JJ.Framework.Exceptions;
+
+namespace JJ.Data.QuestionAndAnswer.NHibernate.Names
 {
-	internal static class TableNames
-	{
-		public const string Users = "Users";
-	}
+    internal abstract class TableNames
+    {
+        public void Users() => throw new NameOfOnlyException();
+    }
 }

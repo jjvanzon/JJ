@@ -1,79 +1,81 @@
-﻿@model CategorySelectorViewModel
+﻿@* ReSharper disable SuggestVarOrType_SimpleTypes*@
+
+@model CategorySelectorViewModel
 
 @section Title
 {
-	@CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories_Accusative)
+    @CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories_Accusative)
 }
 
 @section Header
 {
-	@Html.Partial(nameof(ViewNames._Login), Model.Login)
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
 }
 
 @using (Html.BeginForm())
 {
-	<h2>@CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories_Accusative)</h2>
+    <h2>@CommonResourceFormatter.Select_WithName(ResourceFormatter.Categories_Accusative)</h2>
 
-	if (Model.NoCategoriesAvailable)
-	{
-		<div id="divNoCategoriesAvailable">
-			@ResourceFormatter.NoCategoriesAvailable
-		</div>
-	}
-	else
-	{
-		@Html.ActionLinkWithCollection(
-		    ResourceFormatter.StartTraining, 
-			nameof(ActionNames.Random), 
-			nameof(ControllerNames.Questions), 
-			nameof(ActionParameterNames.c), 
-			Model.SelectedCategories.UnionRecursive(x => x.SubCategories).Where(x => x.Visible).Select(x => x.ID).ToArray())
+    if (Model.NoCategoriesAvailable)
+    {
+        <div id="divNoCategoriesAvailable">
+            @ResourceFormatter.NoCategoriesAvailable
+        </div>
+    }
+    else
+    {
+        @Html.ActionLinkWithCollection(
+            ResourceFormatter.StartTraining,
+            nameof(ActionNames.Random),
+            nameof(ControllerNames.Questions),
+            nameof(ActionParameterNames.c),
+            Model.SelectedCategories.UnionRecursive(x => x.SubCategories).Where(x => x.Visible).Select(x => x.ID).ToArray())
 
-		<table class="pane">
-			<tr>
-				<td class="col1of2">
-					<div id="divAvailableCategories"
-					     ondragover="divAvailableCategories_onDragOver(event)"
-					     ondrop="divAvailableCategories_onDrop(event)">
+        <table class="pane">
+            <tr>
+                <td class="col1of2">
+                    <div id="divAvailableCategories"
+                         ondragover="divAvailableCategories_onDragOver(event)"
+                         ondrop="divAvailableCategories_onDrop(event)">
 
-						<h3>@ResourceFormatter.AvailableCategories</h3>
+                        <h3>@ResourceFormatter.AvailableCategories</h3>
 
-						<ul class="category available">
-							@foreach (var availableCategory in Model.AvailableCategories)
-							{
-								@Html.Partial(nameof(ViewNames._AvailableCategory), availableCategory)
-							}
-						</ul>
-					</div>
-				</td>
+                        <ul class="category available">
+                            @foreach (var availableCategory in Model.AvailableCategories)
+                            {
+                                @Html.Partial(nameof(ViewNames._AvailableCategory), availableCategory)
+                            }
+                        </ul>
+                    </div>
+                </td>
 
-				<td class="col2of2">
-					<div id="divSelectedCategories"
-					     ondragover="divSelectedCategories_onDragOver(event)"
-					     ondrop="divSelectedCategories_onDrop(event)">
+                <td class="col2of2">
+                    <div id="divSelectedCategories"
+                         ondragover="divSelectedCategories_onDragOver(event)"
+                         ondrop="divSelectedCategories_onDrop(event)">
 
-						<h3>@CommonResourceFormatter.Selection</h3>
+                        <h3>@CommonResourceFormatter.Selection</h3>
 
-						<ul class="category selected">
+                        <ul class="category selected">
 
-							@using (Html.BeginCollection(() => Model.SelectedCategories))
-							{
-								foreach (var selectedCategory in Model.SelectedCategories)
-								{
-									@Html.Partial(nameof(ViewNames._SelectedCategory), selectedCategory)
-								}
-							}
-						</ul>
-					</div>
-				</td>
-			</tr>
-		</table>
-	}
+                            @using (Html.BeginCollection(() => Model.SelectedCategories))
+                            {
+                                foreach (var selectedCategory in Model.SelectedCategories)
+                                {
+                                    @Html.Partial(nameof(ViewNames._SelectedCategory), selectedCategory)
+                                }
+                            }
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
 }
 
 @section Scripts
 {
-	<script>
+    <script>
 
 		function liAvailableCategory_onDragStart(ev) {
 			ev.dataTransfer.setData("liAvailableCategoryId", ev.target.id);
@@ -143,5 +145,5 @@
 			window.document.forms[0].submit();
 		};
 
-	</script>
+    </script>
 }

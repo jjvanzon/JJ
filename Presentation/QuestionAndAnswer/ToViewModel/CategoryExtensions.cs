@@ -2,7 +2,6 @@
 using System.Linq;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
@@ -44,10 +43,9 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 
 		private static List<string> GetNameParts(Category category)
 		{
-			List<string> parts = new List<string>();
+		    var parts = new List<string> { category.Description };
 
-			parts.Add(category.Description);
-			category = category.ParentCategory;
+		    category = category.ParentCategory;
 
 			int counter = 0;
 			int maxRecursion = 100;

@@ -8,6 +8,7 @@ using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
+// ReSharper disable PossibleMultipleEnumeration
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {

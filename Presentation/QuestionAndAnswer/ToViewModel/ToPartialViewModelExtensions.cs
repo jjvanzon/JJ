@@ -1,6 +1,4 @@
-﻿using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
-using JJ.Framework.Exceptions;
+﻿using JJ.Presentation.QuestionAndAnswer.ViewModels.Partials;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
 

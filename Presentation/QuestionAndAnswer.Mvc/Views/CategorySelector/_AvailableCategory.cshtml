@@ -1,13 +1,16 @@
-﻿@model CategoryViewModel
+﻿@* ReSharper disable SuggestVarOrType_SimpleTypes *@
+
+@model CategoryViewModel
 
 @if (Model.Visible)
 {
     <text>
-    <li draggable="true" 
-        ondragstart="liAvailableCategory_onDragStart(event)"
-        data-category-id="@Model.ID"
-        class="category available"
-        id="liAvailableCategory(@Model.ID)"> @* The element needs an ID for HTML5 drag and drop to work. *@
+        <li draggable="true"
+            ondragstart="liAvailableCategory_onDragStart(event)"
+            data-category-id="@Model.ID"
+            class="category available"
+            id="liAvailableCategory(@Model.ID)">
+            @* The element needs an ID for HTML5 drag and drop to work. *@
     </text>
 
     @Model.NameParts.Last()
@@ -25,5 +28,5 @@
 
 @if (Model.Visible)
 {
-    @:</li>
+@:</li>
 }

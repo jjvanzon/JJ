@@ -1,4 +1,6 @@
-﻿@model CategoryViewModel
+﻿@* ReSharper disable SuggestVarOrType_SimpleTypes*@
+
+@model CategoryViewModel
 
 @using (Html.BeginCollectionItem())
 {
@@ -8,16 +10,17 @@
         @Html.HiddenFor(x => x.Visible)
 
         <text>
-        <li draggable="true" 
-            ondragstart="liSelectedCategory_onDragStart(event)" 
-            data-category-id="@Model.ID" 
-            class="category selected" 
-            id="liSelectedCategory(@Model.ID)"> @* The element needs an ID for HTML5 drag and drop to work. *@
+            <li draggable="true"
+                ondragstart="liSelectedCategory_onDragStart(event)"
+                data-category-id="@Model.ID"
+                class="category selected"
+                id="liSelectedCategory(@Model.ID)">
+                @* The element needs an ID for HTML5 drag and drop to work. *@
         </text>
-    
+
         @Model.NameParts.Last()
     }
-    
+
     if (Model.SubCategories.Count > 0)
     {
         <ul class="category selected">
@@ -33,6 +36,6 @@
 
     if (Model.Visible)
     {
-        @:</li>
-    }
+    @:</li>
+}
 }

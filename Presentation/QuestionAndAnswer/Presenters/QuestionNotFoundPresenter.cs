@@ -20,9 +20,11 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
 		public QuestionNotFoundViewModel Show()
 		{
-			var viewModel = new QuestionNotFoundViewModel();
-			viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _userRepository);
-			return viewModel;
+		    var viewModel = new QuestionNotFoundViewModel
+		    {
+		        Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _userRepository)
+		    };
+		    return viewModel;
 		}
 
 		public QuestionNotFoundViewModel SetLanguage(string cultureName)

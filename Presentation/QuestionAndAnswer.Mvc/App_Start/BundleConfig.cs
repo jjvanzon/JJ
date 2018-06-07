@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
+namespace JJ.Presentation.QuestionAndAnswer.Mvc
 {
 	public class BundleConfig
 	{

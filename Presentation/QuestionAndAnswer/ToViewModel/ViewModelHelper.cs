@@ -19,10 +19,11 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
     internal static class ViewModelHelper
     {
         public static IList<IDAndName> CreateFlagStatusListViewModel()
-            => EnumToIDAndNameConverter.Convert<FlagStatusEnum>(ResourceFormatter.ResourceManager, mustIncludeUndefined: false);
+            => EnumToIDAndNameConverter.Convert<FlagStatusEnum>(ResourceFormatter.ResourceManager, false);
 
         /// <summary> Gets a tree of category view models. </summary>
-        public static IList<CategoryViewModel> CreateCategoryListViewModelRecursive(ICategoryRepository categoryRepository)
+        public static IList<CategoryViewModel> CreateCategoryListViewModelRecursive(
+            ICategoryRepository categoryRepository)
         {
             if (categoryRepository == null) throw new NullException(() => categoryRepository);
 
@@ -50,7 +51,9 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             };
 
         /// <param name="authenticatedUserName">nullable</param>
-        public static LoginPartialViewModel CreateLoginPartialViewModel(string authenticatedUserName, IUserRepository userRepository)
+        public static LoginPartialViewModel CreateLoginPartialViewModel(
+            string authenticatedUserName,
+            IUserRepository userRepository)
         {
             if (userRepository == null) throw new NullException(() => userRepository);
 
@@ -70,7 +73,9 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             };
 
         public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel()
-            => CreateLanguageSelectionViewModel(CultureHelper.AvailableCultureNames, CultureHelper.GetCurrentCultureName());
+            => CreateLanguageSelectionViewModel(
+                CultureHelper.AvailableCultureNames,
+                CultureHelper.GetCurrentCultureName());
 
         public static LanguageSelectorPartialViewModel CreateLanguageSelectionViewModel(string cultureName)
             => CreateLanguageSelectionViewModel(CultureHelper.AvailableCultureNames, cultureName);
@@ -123,10 +128,9 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
         {
             var viewModel = new QuestionDeleteConfirmedViewModel
             {
-                ID = questionID
+                ID = questionID,
+                Login = CreateLoginPartialViewModel(authenticatedUserName, userRepository)
             };
-
-            viewModel.Login = CreateLoginPartialViewModel(authenticatedUserName, userRepository);
 
             return viewModel;
         }

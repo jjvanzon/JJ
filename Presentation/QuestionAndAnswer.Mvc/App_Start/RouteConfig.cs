@@ -2,7 +2,7 @@
 using System.Web.Routing;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
+namespace JJ.Presentation.QuestionAndAnswer.Mvc
 {
 	public class RouteConfig
 	{

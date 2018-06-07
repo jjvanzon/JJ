@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using JJ.Framework.Exceptions;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Framework.Exceptions.Basic;
@@ -20,7 +19,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToEntity
 			viewModel.NullCoalesce();
 
 			// Question
-			Question question = viewModel.Question.ToEntity(repositories.QuestionRepository, repositories.AnswerRepository, repositories.SourceRepository, repositories.QuestionTypeRepository, repositories.EntityStatusManager);
+			Question question = viewModel.Question.ToEntity(repositories.QuestionRepository, repositories.SourceRepository, repositories.QuestionTypeRepository, repositories.EntityStatusManager);
 
 			// Answer
 			// For now multiple answers are not supported.

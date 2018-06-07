@@ -1,13 +1,15 @@
 ﻿using FluentNHibernate.Mapping;
+using JetBrains.Annotations;
 using JJ.Data.QuestionAndAnswer.NHibernate.Names;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
 {
+	[UsedImplicitly]
 	public class UserMapping : ClassMap<User>
 	{
 		public UserMapping()
 		{
-			Table(TableNames.Users);
+			Table(nameof(TableNames.Users));
 
 			Id(x => x.ID);
 

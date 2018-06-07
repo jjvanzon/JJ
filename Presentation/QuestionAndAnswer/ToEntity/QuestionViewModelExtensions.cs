@@ -11,7 +11,6 @@ namespace JJ.Presentation.QuestionAndAnswer.ToEntity
 		public static Question ToEntity(
 			this QuestionViewModel viewModel, 
 			IQuestionRepository questionRepository, 
-			IAnswerRepository answerRepository,
 			ISourceRepository sourceRepository,
 			IQuestionTypeRepository questionTypeRepository,
 			EntityStatusManager entityStatusManager)

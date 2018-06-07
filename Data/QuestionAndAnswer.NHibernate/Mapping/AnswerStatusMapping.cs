@@ -1,8 +1,10 @@
 ﻿using FluentNHibernate.Mapping;
+using JetBrains.Annotations;
 using JJ.Data.QuestionAndAnswer.NHibernate.Names;
 
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
 {
+    [UsedImplicitly]
 	public class AnswerStatusMapping : ClassMap<AnswerStatus>
 	{
 		public AnswerStatusMapping()

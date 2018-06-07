@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
+namespace JJ.Presentation.QuestionAndAnswer.Mvc
 {
 	internal class DispatcherConfig
 	{

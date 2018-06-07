@@ -1,4 +1,6 @@
-﻿@model QuestionDetailsViewModel
+﻿@* ReSharper disable SuggestVarOrType_SimpleTypes*@
+
+@model QuestionDetailsViewModel
 
 @section Title
 {
@@ -13,7 +15,7 @@
 <h2>@CommonResourceFormatter.Details_WithName(ResourceFormatter.Question)</h2>
 
 <p>
-    @Html.ActionLink(CommonResourceFormatter.Edit, nameof(ActionNames.Edit), new 
+    @Html.ActionLink(CommonResourceFormatter.Edit, nameof(ActionNames.Edit), new
     {
         id = Model.Question.ID,
         ret = Url.Action(nameof(ActionNames.Details), nameof(ControllerNames.Questions), new  { id = Model.Question.ID })
@@ -72,11 +74,11 @@
             @foreach (var category in Model.Question.Categories.Select(x => x.Category))
             {
                 <div>
-                    @category.ID- 
+                    @category.ID-
                     @String.Join(@" \ ", category.NameParts)
                 </div>
             }
-                
+
             @if (Model.Question.Categories.Count == 0)
             {
                 @CommonResourceFormatter.None
@@ -86,7 +88,7 @@
     <tr>
         <th>@ResourceFormatter.Links:</th>
         <td>
-                
+
             @foreach (var link in Model.Question.Links)
             {
                 @link.Description<text>:</text> <a href="@link.Url" target="_blank"> @link.Url</a>
@@ -148,7 +150,7 @@
                             <th>@ResourceFormatter.LastModifiedByUser:</th>
                             <td>@flag.LastModifiedBy</td>
                         </tr>
-                     </table>
+                    </table>
                 </td>
             </tr>
         }

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace JJ.Presentation.QuestionAndAnswer.Mvc.App_Start
+namespace JJ.Presentation.QuestionAndAnswer.Mvc
 {
 	public static class FilterConfig
 	{
