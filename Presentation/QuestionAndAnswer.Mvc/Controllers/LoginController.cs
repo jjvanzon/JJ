@@ -26,7 +26,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 }
             }
 
-            return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
+            return ActionDispatcher.Dispatch(this, viewModel);
         }
 
         [HttpPost]
@@ -54,7 +54,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                     SetAuthenticatedUserName(viewModel.UserName);
                 }
 
-                return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel2);
+                return ActionDispatcher.Dispatch(this, viewModel2);
             }
         }
 

@@ -14,6 +14,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 			MapParameter(nameof(PresenterParameterNames.pageNumber), nameof(ActionParameterNames.page));
 		}
 
-		protected override object GetRouteValues(QuestionListViewModel viewModel) => new { page = viewModel.Pager.PageNumber };
+		protected override object TryGetRouteValues(QuestionListViewModel viewModel) => new { page = viewModel.Pager.PageNumber };
 	}
 }

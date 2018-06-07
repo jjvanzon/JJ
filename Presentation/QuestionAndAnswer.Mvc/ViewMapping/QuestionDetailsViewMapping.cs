@@ -14,6 +14,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 			MapParameter(nameof(PresenterParameterNames.id), nameof(ActionParameterNames.id));
 		}
 
-		protected override object GetRouteValues(QuestionDetailsViewModel viewModel) => new { id = viewModel.Question.ID };
+		protected override object TryGetRouteValues(QuestionDetailsViewModel viewModel) => new { id = viewModel.Question.ID };
 	}
 }

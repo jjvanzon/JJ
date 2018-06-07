@@ -16,7 +16,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 
 		protected override bool Predicate(QuestionEditViewModel viewModel) => viewModel.IsNew;
 
-		protected override object GetRouteValues(QuestionEditViewModel viewModel)
+		protected override object TryGetRouteValues(QuestionEditViewModel viewModel)
 			=> new
 			{
 				id = viewModel.Question.ID,

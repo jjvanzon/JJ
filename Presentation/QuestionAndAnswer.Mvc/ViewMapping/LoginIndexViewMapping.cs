@@ -13,6 +13,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 			MapController(nameof(ControllerNames.Login), nameof(ActionNames.Index), nameof(ViewNames.Index));
 		}
 
-		protected override object GetRouteValues(LoginViewModel viewModel) => new { ret = TryGetReturnUrl(viewModel.ReturnAction) };
+		protected override object TryGetRouteValues(LoginViewModel viewModel) => new { ret = TryGetReturnUrl(viewModel.ReturnAction) };
 	}
 }

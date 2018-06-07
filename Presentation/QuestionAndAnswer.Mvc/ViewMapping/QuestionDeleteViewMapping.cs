@@ -14,6 +14,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.ViewMapping
 			MapParameter(nameof(PresenterParameterNames.id), nameof(ActionParameterNames.id));
 		}
 
-		protected override object GetRouteValues(QuestionConfirmDeleteViewModel viewModel) => new { id = viewModel.ID };
+		protected override object TryGetRouteValues(QuestionConfirmDeleteViewModel viewModel) => new { id = viewModel.ID };
 	}
 }
