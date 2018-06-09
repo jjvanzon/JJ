@@ -35,6 +35,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		{
 			string xpath = "//table[@class='propdef']";
 			XmlNodeList nodes = doc.SelectNodes(xpath);
+		    if (nodes == null) return new XmlNode[0];
 			return nodes.OfType<XmlNode>();
 		}
 
@@ -154,7 +155,10 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
 		private IEnumerable<LinkModel> GetLinks(XmlNode node, string xpath)
 		{
-			foreach (XmlNode node2 in node.SelectNodes(xpath))
+		    XmlNodeList nodes = node.SelectNodes(xpath);
+		    if (nodes == null) yield break;
+
+		    foreach (XmlNode node2 in nodes)
 			{
 				LinkModel model = CreateLinkModel(node2);
 				yield return model;

@@ -40,6 +40,9 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 			string xpath = "//table[@class='data']/tbody/tr";
 
 			XmlNodeList list = doc.SelectNodes(xpath);
+
+		    if (list == null) yield break;
+
 			foreach (XmlNode node in list)
 			{
 				yield return node;

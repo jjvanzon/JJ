@@ -70,7 +70,8 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 		{
 			const string xpath = "//dl[not(parent::div[@class='head']) and not (@class='bibliography')]";
 			XmlNodeList nodes = doc.SelectNodes(xpath);
-			return nodes.OfType<XmlNode>();
+		    if (nodes == null) return new XmlNode[0];
+		    return nodes.OfType<XmlNode>();
 		}
 
 		private XmlNode GetHTag(XmlNode dlTag)
@@ -195,7 +196,11 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
 		private IEnumerable<LinkModel> GetLinks(XmlNode node, string xpath)
 		{
-			foreach (XmlNode node2 in node.SelectNodes(xpath))
+		    XmlNodeList nodes = node.SelectNodes(xpath);
+
+		    if (nodes == null) yield break;
+
+            foreach (XmlNode node2 in nodes)
 			{
 				LinkModel model = CreateLinkModel(node2);
 				yield return model;
