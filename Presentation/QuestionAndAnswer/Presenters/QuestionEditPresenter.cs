@@ -21,295 +21,327 @@ using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
-	public class QuestionEditPresenter
-	{
-		private static readonly ActionInfo _defaultReturnAction;
+    public class QuestionEditPresenter
+    {
+        private static readonly ActionInfo _defaultReturnAction;
 
-		private readonly Repositories _repositories;
-		private readonly string _authenticatedUserName;
+        private readonly Repositories _repositories;
+        private readonly string _authenticatedUserName;
 
-		static QuestionEditPresenter()
-		{
-			_defaultReturnAction = ActionDispatcher.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
-		}
+        static QuestionEditPresenter() => _defaultReturnAction = ActionDispatcher.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
 
-		/// <param name="authenticatedUserName">nullable</param>
-		public QuestionEditPresenter(
-			Repositories repositories, 
-			string authenticatedUserName)
-		{
-			_repositories = repositories ?? throw new NullException(() => repositories);
-			_authenticatedUserName = authenticatedUserName;
-		}
+        /// <param name="authenticatedUserName">nullable</param>
+        public QuestionEditPresenter(
+            Repositories repositories,
+            string authenticatedUserName)
+        {
+            _repositories = repositories ?? throw new NullException(() => repositories);
+            _authenticatedUserName = authenticatedUserName;
+        }
 
-		public object Edit(int id, ActionInfo returnAction = null)
-		{
-			returnAction = returnAction ?? _defaultReturnAction;
+        public object Edit(int id, ActionInfo returnAction = null)
+        {
+            returnAction = returnAction ?? _defaultReturnAction;
 
-			if (string.IsNullOrEmpty(_authenticatedUserName))
-			{
-				var presenter2 = new LoginPresenter(_repositories);
-				ActionInfo returnAction2 = CreateReturnAction(() => Edit(id, returnAction));
-				return presenter2.Show(returnAction2);
-			}
+            if (string.IsNullOrEmpty(_authenticatedUserName))
+            {
+                var presenter2 = new LoginPresenter(_repositories);
+                ActionInfo returnAction2 = CreateReturnAction(() => Edit(id, returnAction));
+                return presenter2.Show(returnAction2);
+            }
 
-			Question question = _repositories.QuestionRepository.TryGet(id);
-			if (question == null)
-			{
-				var presenter2 = new QuestionNotFoundPresenter(_repositories.UserRepository, _authenticatedUserName);
-				return presenter2.Show();
-			}
+            Question question = _repositories.QuestionRepository.TryGet(id);
 
-			if (returnAction == null)
-			{
-				returnAction = ActionDispatcher.CreateActionInfo<QuestionDetailsPresenter>(x => x.Show(id));
-			}
+            if (question == null)
+            {
+                var presenter2 = new QuestionNotFoundPresenter(_repositories.UserRepository, _authenticatedUserName);
+                return presenter2.Show();
+            }
 
-			QuestionEditViewModel viewModel = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
-			viewModel.CanDelete = true;
-			viewModel.Title = CommonResourceFormatter.Edit_WithName(ResourceFormatter.Question_Accusative);
-			viewModel.ReturnAction = returnAction;
+            if (returnAction == null)
+            {
+                returnAction = ActionDispatcher.CreateActionInfo<QuestionDetailsPresenter>(x => x.Show(id));
+            }
 
-			return viewModel;
-		}
+            QuestionEditViewModel viewModel = question.ToEditViewModel(
+                _repositories.CategoryRepository,
+                _repositories.UserRepository,
+                _authenticatedUserName);
 
-		public object Create(ActionInfo returnAction = null)
-		{
-			returnAction = returnAction ?? _defaultReturnAction;
+            viewModel.CanDelete = true;
+            viewModel.Title = CommonResourceFormatter.Edit_WithName(ResourceFormatter.Question_Accusative);
+            viewModel.ReturnAction = returnAction;
 
-			if (string.IsNullOrEmpty(_authenticatedUserName))
-			{
-				var presenter2 = new LoginPresenter(_repositories);
-				return presenter2.Show(CreateReturnAction(() => Create(null)));
-			}
+            return viewModel;
+        }
 
-			Question entity = _repositories.QuestionRepository.Create();
-			_repositories.EntityStatusManager.SetIsNew(entity);
+        public object Create(ActionInfo returnAction = null)
+        {
+            returnAction = returnAction ?? _defaultReturnAction;
 
-			ISideEffect sideEffect1 = new Question_SideEffect_AutoCreateRelatedEntities(entity, _repositories.AnswerRepository, _repositories.EntityStatusManager);
-			sideEffect1.Execute();
+            if (string.IsNullOrEmpty(_authenticatedUserName))
+            {
+                var presenter2 = new LoginPresenter(_repositories);
+                return presenter2.Show(CreateReturnAction(() => Create(null)));
+            }
 
-			ISideEffect sideEffect2 = new Question_SideEffect_SetDefaults_ForOpenQuestion(entity, _repositories.QuestionTypeRepository, _repositories.EntityStatusManager);
-			sideEffect2.Execute();
+            Question entity = _repositories.QuestionRepository.Create();
+            _repositories.EntityStatusManager.SetIsNew(entity);
 
-			ISideEffect sideEffect3 = new Question_SetDefaults_ForOpenQuestion_FrontEnd_SideEffect(entity, _repositories.SourceRepository, _repositories.EntityStatusManager);
-			sideEffect3.Execute();
+            ISideEffect sideEffect1 = new Question_SideEffect_AutoCreateRelatedEntities(
+                entity,
+                _repositories.AnswerRepository,
+                _repositories.EntityStatusManager);
 
-			QuestionEditViewModel viewModel = entity.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
-			viewModel.IsNew = true;
-			viewModel.Title = ResourceFormatter.CreateQuestion;
+            sideEffect1.Execute();
 
-			if (returnAction == null)
-			{
-				returnAction = ActionDispatcher.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
-			}
-			viewModel.ReturnAction = returnAction;
+            ISideEffect sideEffect2 = new Question_SideEffect_SetDefaults_ForOpenQuestion(
+                entity,
+                _repositories.QuestionTypeRepository,
+                _repositories.EntityStatusManager);
 
-			return viewModel;
-		}
+            sideEffect2.Execute();
 
-		public object AddLink(QuestionEditViewModel viewModel)
-		{
-			if (viewModel == null) throw new NullException(() => viewModel);
-			viewModel.NullCoalesce();
+            ISideEffect sideEffect3 = new Question_SetDefaults_ForOpenQuestion_FrontEnd_SideEffect(
+                entity,
+                _repositories.SourceRepository,
+                _repositories.EntityStatusManager);
 
-			// ToEntity
-			Question question = viewModel.ToEntity(_repositories);
+            sideEffect3.Execute();
 
-			// Business
-			QuestionLink questionLink = _repositories.QuestionLinkRepository.Create();
-			questionLink.LinkTo(question);
+            QuestionEditViewModel viewModel = entity.ToEditViewModel(
+                _repositories.CategoryRepository,
+                _repositories.UserRepository,
+                _authenticatedUserName);
 
-			// ToViewModel
-			QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
+            viewModel.IsNew = true;
+            viewModel.Title = ResourceFormatter.CreateQuestion;
 
-			// Non-persisted properties
-			viewModel2.IsNew = viewModel.IsNew;
-			viewModel2.CanDelete = viewModel.CanDelete;
-			viewModel2.Title = viewModel.Title;
+            if (returnAction == null)
+            {
+                returnAction = ActionDispatcher.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
+            }
 
-			return viewModel2;
-		}
+            viewModel.ReturnAction = returnAction;
 
-		public QuestionEditViewModel RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
-		{
-			// The problem here is that you may want to remove one out of many uncommitted entities do not exist in the database yet,
-			// and you cannot identify them uniquely with the ID (which is 0),
-			// which makes it impossible to perform the delete operation on the entity model when given an ID.
-			// So instead you have to perform the operation on the viewmodel which has temporary ID's.
+            return viewModel;
+        }
 
-			if (viewModel == null) throw new NullException(() => viewModel);
-			viewModel.NullCoalesce();
+        public object AddLink(QuestionEditViewModel viewModel)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
 
-			// 'Business'
-			QuestionLinkViewModel questionLinkViewModel = viewModel.Question.Links.Where(x => x.TemporaryID == temporaryID).SingleOrDefault();
-			if (questionLinkViewModel == null)
-			{
-				throw new Exception(string.Format("QuestionLinkViewModel with TemporaryID '{0}' not found.", temporaryID));
-			}
-			viewModel.Question.Links.Remove(questionLinkViewModel);
+            // ToEntity
+            Question question = viewModel.ToEntity(_repositories);
 
-			// ToEntity
-			Question question = viewModel.ToEntity(_repositories);
+            // Business
+            QuestionLink questionLink = _repositories.QuestionLinkRepository.Create();
+            questionLink.LinkTo(question);
 
-			// ToViewModel
-			QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
+            // ToViewModel
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+                _repositories.CategoryRepository,
+                _repositories.UserRepository,
+                _authenticatedUserName);
 
-			// Non-persisted properties
-			viewModel2.IsNew = viewModel.IsNew;
-			viewModel2.CanDelete = viewModel.CanDelete;
-			viewModel2.Title = viewModel.Title;
+            // Non-persisted properties
+            viewModel2.IsNew = viewModel.IsNew;
+            viewModel2.CanDelete = viewModel.CanDelete;
+            viewModel2.Title = viewModel.Title;
 
-			return viewModel2;
-		}
+            return viewModel2;
+        }
 
-		public QuestionEditViewModel AddCategory(QuestionEditViewModel viewModel)
-		{
-			if (viewModel == null) throw new NullException(() => viewModel);
-			viewModel.NullCoalesce();
+        public QuestionEditViewModel RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
+        {
+            // The problem here is that you may want to remove one out of many uncommitted entities do not exist in the database yet,
+            // and you cannot identify them uniquely with the ID (which is 0),
+            // which makes it impossible to perform the delete operation on the entity model when given an ID.
+            // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
-			// ToEntity
-			Question question = viewModel.ToEntity(_repositories);
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
 
-			// Businesss
-			QuestionCategory questionCategory = _repositories.QuestionCategoryRepository.Create();
-			questionCategory.LinkTo(question);
+            // 'Business'
+            QuestionLinkViewModel questionLinkViewModel = viewModel.Question.Links.Where(x => x.TemporaryID == temporaryID).SingleOrDefault();
 
-			// ToViewModel
-			QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
+            if (questionLinkViewModel == null)
+            {
+                throw new Exception($"QuestionLinkViewModel with TemporaryID '{temporaryID}' not found.");
+            }
 
-			// Non-persisted properties
-			viewModel2.IsNew = viewModel.IsNew;
-			viewModel2.CanDelete = viewModel.CanDelete;
-			viewModel2.Title = viewModel.Title;
+            viewModel.Question.Links.Remove(questionLinkViewModel);
 
-			return viewModel2;
-		}
+            // ToEntity
+            Question question = viewModel.ToEntity(_repositories);
 
-		public QuestionEditViewModel RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
-		{
-			// The problem here is that you may want to remove one out of many uncommitted entities that do not exist in the database yet,
-			// and you cannot identify them uniquely with the ID (which is 0),
-			// which makes it impossible to perform the delete operation on the entity model when given an ID.
-			// So instead you have to perform the operation on the viewmodel which has temporary ID's.
+            // ToViewModel
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+                _repositories.CategoryRepository,
+                _repositories.UserRepository,
+                _authenticatedUserName);
 
-			if (viewModel == null) throw new NullException(() => viewModel);
-			viewModel.NullCoalesce();
+            // Non-persisted properties
+            viewModel2.IsNew = viewModel.IsNew;
+            viewModel2.CanDelete = viewModel.CanDelete;
+            viewModel2.Title = viewModel.Title;
 
-			// 'Business'
-			QuestionCategoryViewModel questionCategoryViewModel = viewModel.Question.Categories.Where(x => x.TemporaryID == temporaryID).FirstOrDefault();
-			if (questionCategoryViewModel == null)
-			{
-				throw new Exception(string.Format("questionCategoryViewModel with TemporaryID '{0}' not found.", temporaryID));
-			}
-			viewModel.Question.Categories.Remove(questionCategoryViewModel);
+            return viewModel2;
+        }
 
-			// ToEntity
-			Question question = viewModel.ToEntity(_repositories);
+        public QuestionEditViewModel AddCategory(QuestionEditViewModel viewModel)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
 
-			// ToViewModel
-			QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
+            // ToEntity
+            Question question = viewModel.ToEntity(_repositories);
 
-			// Non-persisted properties
-			viewModel2.IsNew = viewModel.IsNew;
-			viewModel2.CanDelete = viewModel.CanDelete;
-			viewModel2.Title = viewModel.Title;
+            // Businesss
+            QuestionCategory questionCategory = _repositories.QuestionCategoryRepository.Create();
+            questionCategory.LinkTo(question);
 
-			return viewModel2;
-		}
+            // ToViewModel
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+                _repositories.CategoryRepository,
+                _repositories.UserRepository,
+                _authenticatedUserName);
 
-		public object Save(QuestionEditViewModel viewModel)
-		{
-			if (viewModel == null) throw new NullException(() => viewModel);
-			viewModel.NullCoalesce();
+            // Non-persisted properties
+            viewModel2.IsNew = viewModel.IsNew;
+            viewModel2.CanDelete = viewModel.CanDelete;
+            viewModel2.Title = viewModel.Title;
 
-			User user;
-			if (string.IsNullOrEmpty(_authenticatedUserName))
-			{
-				return new NotAuthorizedViewModel();
-			}
-			else
-			{
-				user = _repositories.UserRepository.TryGetByUserName(_authenticatedUserName);
-				if (user == null)
-				{
-					return new NotAuthorizedViewModel();
-				}
-			}
+            return viewModel2;
+        }
 
-			// Set Entity Status (do this before ToEntity)
-			Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
-			if (question != null)
-			{
-				ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(_repositories.EntityStatusManager, question, viewModel.Question);
-			}
+        public QuestionEditViewModel RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
+        {
+            // The problem here is that you may want to remove one out of many uncommitted entities that do not exist in the database yet,
+            // and you cannot identify them uniquely with the ID (which is 0),
+            // which makes it impossible to perform the delete operation on the entity model when given an ID.
+            // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
-			// ToEntity
-			question = viewModel.ToEntity(_repositories);
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
 
-			// Validate
-			IValidator validator = new VersatileQuestionValidator(question);
-			if (!validator.IsValid)
-			{
-				// ToViewModel
-				QuestionEditViewModel viewModel2 = question.ToEditViewModel(_repositories.CategoryRepository, _repositories.UserRepository, _authenticatedUserName);
+            // 'Business'
+            QuestionCategoryViewModel questionCategoryViewModel =
+                viewModel.Question.Categories.Where(x => x.TemporaryID == temporaryID).FirstOrDefault();
 
-				// Non-persisted properties
-				viewModel2.IsNew = viewModel.IsNew;
-				viewModel2.CanDelete = viewModel.CanDelete;
-				viewModel2.Title = viewModel.Title;
+            if (questionCategoryViewModel == null)
+            {
+                throw new Exception($"questionCategoryViewModel with TemporaryID '{temporaryID}' not found.");
+            }
 
-				viewModel2.ValidationMessages = validator.Messages;
+            viewModel.Question.Categories.Remove(questionCategoryViewModel);
 
-				return viewModel2;
-			}
-			else
-			{
-				// Side-effects
-				ISideEffect sideEffect1 = new Question_SideEffect_SetIsManual(question, _repositories.EntityStatusManager);
-				sideEffect1.Execute();
+            // ToEntity
+            Question question = viewModel.ToEntity(_repositories);
 
-				ISideEffect sideEffect2 = new Question_SideEffect_SetLastModifiedByUser(question, user, _repositories.EntityStatusManager);
-				sideEffect2.Execute();
+            // ToViewModel
+            QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+                _repositories.CategoryRepository,
+                _repositories.UserRepository,
+                _authenticatedUserName);
 
-				foreach (QuestionFlag questionFlag in question.QuestionFlags)
-				{
-					ISideEffect sideEffect3 = new QuestionFlag_SideEffect_SetLastModifiedByUser(questionFlag, user, _repositories.EntityStatusManager);
-					sideEffect3.Execute();
-				}
+            // Non-persisted properties
+            viewModel2.IsNew = viewModel.IsNew;
+            viewModel2.CanDelete = viewModel.CanDelete;
+            viewModel2.Title = viewModel.Title;
 
-				// Commit
-				_repositories.QuestionRepository.Commit();
+            return viewModel2;
+        }
 
-				// On success: go to return action.
-				ActionInfo returnAction = viewModel.ReturnAction ?? _defaultReturnAction;
-				object viewModel2 = DispatchHelper.DispatchAction(returnAction, _repositories, _authenticatedUserName);
-				return viewModel2;
-			}
-		}
+        public object Save(QuestionEditViewModel viewModel)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            viewModel.NullCoalesce();
 
-		public object Delete(QuestionEditViewModel viewModel)
-		{
-			var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
-			return deletePresenter.Show(viewModel.Question.ID);
-		}
+            if (string.IsNullOrEmpty(_authenticatedUserName))
+            {
+                return new NotAuthorizedViewModel();
+            }
 
-		public object Cancel(QuestionEditViewModel viewModel)
-		{
-			ActionInfo returnAction = viewModel.ReturnAction ?? _defaultReturnAction;
-			object viewModel2 = DispatchHelper.DispatchAction(returnAction, _repositories, _authenticatedUserName);
-			return viewModel2;
-		}
+            User user = _repositories.UserRepository.TryGetByUserName(_authenticatedUserName);
 
-		public QuestionListViewModel BackToList(int pageSize, int maxVisiblePageNumbers)
-		{
-			var listPresenter = new QuestionListPresenter(_repositories, _authenticatedUserName);
-			return listPresenter.Show();
-		}
+            if (user == null)
+            {
+                return new NotAuthorizedViewModel();
+            }
 
-		private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
-		{
-			return ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
-		}
-	}
+            // Set Entity Status (do this before ToEntity)
+            Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
+
+            if (question != null)
+            {
+                ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(
+                    _repositories.EntityStatusManager,
+                    question,
+                    viewModel.Question);
+            }
+
+            // ToEntity
+            question = viewModel.ToEntity(_repositories);
+
+            // Validate
+            IValidator validator = new VersatileQuestionValidator(question);
+
+            if (!validator.IsValid)
+            {
+                // ToViewModel
+                QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+                    _repositories.CategoryRepository,
+                    _repositories.UserRepository,
+                    _authenticatedUserName);
+
+                // Non-persisted properties
+                viewModel2.IsNew = viewModel.IsNew;
+                viewModel2.CanDelete = viewModel.CanDelete;
+                viewModel2.Title = viewModel.Title;
+
+                viewModel2.ValidationMessages = validator.Messages;
+
+                return viewModel2;
+            }
+            else
+            {
+                // Side-effects
+                ISideEffect sideEffect1 = new Question_SideEffect_SetIsManual(question, _repositories.EntityStatusManager);
+                sideEffect1.Execute();
+
+                ISideEffect sideEffect2 = new Question_SideEffect_SetLastModifiedByUser(question, user, _repositories.EntityStatusManager);
+                sideEffect2.Execute();
+
+                foreach (QuestionFlag questionFlag in question.QuestionFlags)
+                {
+                    ISideEffect sideEffect3 = new QuestionFlag_SideEffect_SetLastModifiedByUser(
+                        questionFlag,
+                        user,
+                        _repositories.EntityStatusManager);
+
+                    sideEffect3.Execute();
+                }
+
+                // Commit
+                _repositories.QuestionRepository.Commit();
+
+                // On success: go to return action.
+                ActionInfo returnAction = viewModel.ReturnAction ?? _defaultReturnAction;
+                object viewModel2 = DispatchHelper.DispatchAction(returnAction, _repositories, _authenticatedUserName);
+                return viewModel2;
+            }
+        }
+
+        public object Cancel(QuestionEditViewModel viewModel)
+        {
+            ActionInfo returnAction = viewModel.ReturnAction ?? _defaultReturnAction;
+            object viewModel2 = DispatchHelper.DispatchAction(returnAction, _repositories, _authenticatedUserName);
+            return viewModel2;
+        }
+
+        private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
+            => ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
+    }
 }

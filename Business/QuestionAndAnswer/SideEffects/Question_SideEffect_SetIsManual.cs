@@ -24,20 +24,15 @@ namespace JJ.Business.QuestionAndAnswer.SideEffects
 			}
 		}
 
-		private bool MustSetIsManual(Question entity, EntityStatusManager statusManager)
-		{
-			// MustSetIsManual is almost determined by 'anything is dirty' except for question flag status changes.
-
-			return statusManager.IsDirty(entity) ||
-				   statusManager.IsNew(entity) ||
-				   statusManager.IsDirty(() => entity.QuestionType) ||
-				   statusManager.IsDirty(() => entity.Source) ||
-				   statusManager.IsDirty(() => entity.QuestionCategories) ||
-				   entity.QuestionCategories.Any(statusManager.IsDirty) ||
-				   entity.QuestionCategories.Any(statusManager.IsNew) ||
-				   statusManager.IsDirty(() => entity.QuestionLinks) ||
-				   entity.QuestionLinks.Any(statusManager.IsDirty) ||
-				   entity.QuestionLinks.Any(statusManager.IsNew);
-		}
+		private bool MustSetIsManual(Question entity, EntityStatusManager statusManager) => statusManager.IsDirty(entity) ||
+		                                                                                    statusManager.IsNew(entity) ||
+		                                                                                    statusManager.IsDirty(() => entity.QuestionType) ||
+		                                                                                    statusManager.IsDirty(() => entity.Source) ||
+		                                                                                    statusManager.IsDirty(() => entity.QuestionCategories) ||
+		                                                                                    entity.QuestionCategories.Any(statusManager.IsDirty) ||
+		                                                                                    entity.QuestionCategories.Any(statusManager.IsNew) ||
+		                                                                                    statusManager.IsDirty(() => entity.QuestionLinks) ||
+		                                                                                    entity.QuestionLinks.Any(statusManager.IsDirty) ||
+		                                                                                    entity.QuestionLinks.Any(statusManager.IsNew);
 	}
 }

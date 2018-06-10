@@ -56,9 +56,6 @@ namespace JJ.Business.QuestionAndAnswer
 			}
 		}
 
-		public QuestionFlag TryGetFlag(Question question)
-		{
-			return _questionFlagRepository.TryGetByCriteria(question.ID, _user.ID);
-		}
+		public QuestionFlag TryGetFlag(Question question) => _questionFlagRepository.TryGetByCriteria(question.ID, _user.ID);
 	}
 }

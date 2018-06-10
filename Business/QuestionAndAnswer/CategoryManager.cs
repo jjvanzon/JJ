@@ -13,12 +13,9 @@ namespace JJ.Business.QuestionAndAnswer
 	{
 		private readonly ICategoryRepository _categoryRepository;
 
-		public CategoryManager(ICategoryRepository categoryRepository)
-		{
-			_categoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
-		}
+		public CategoryManager(ICategoryRepository categoryRepository) => _categoryRepository = categoryRepository ?? throw new NullException(() => categoryRepository);
 
-		/// <summary>
+	    /// <summary>
 		/// Retrieves all categories from the data store and returns the root nodes.
 		/// </summary>
 		public Category[] GetCategoryTree()

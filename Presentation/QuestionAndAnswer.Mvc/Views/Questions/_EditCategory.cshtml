@@ -15,7 +15,7 @@
             allCategories.UnionRecursive(x => x.SubCategories).Select(x => new SelectListItem 
             {
                 Value = x.ID.ToString(), 
-                Text = String.Join(@" \ ", x.NameParts), 
+                Text = string.Join(@" \ ", x.NameParts), 
                 Selected = x.ID == Model.Category.ID
             }),
             "")

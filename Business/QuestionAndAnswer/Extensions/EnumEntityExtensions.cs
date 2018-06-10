@@ -8,12 +8,9 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 {
 	public static class EnumEntityExtensions
 	{
-		public static QuestionTypeEnum GetQuestionTypeEnum(this Question entity)
-		{
-			return (QuestionTypeEnum)entity.QuestionType.ID;
-		}
+		public static QuestionTypeEnum GetQuestionTypeEnum(this Question entity) => (QuestionTypeEnum)entity.QuestionType.ID;
 
-		public static void SetQuestionTypeEnum(this Question entity, QuestionTypeEnum value, IQuestionTypeRepository questionTypeRepository)
+	    public static void SetQuestionTypeEnum(this Question entity, QuestionTypeEnum value, IQuestionTypeRepository questionTypeRepository)
 		{
 			if (entity == null) throw new NullException(() => entity);
 			if (questionTypeRepository == null) throw new NullException(() => questionTypeRepository);
@@ -22,12 +19,9 @@ namespace JJ.Business.QuestionAndAnswer.Extensions
 			questionType.LinkTo(entity);
 		}
 
-		public static FlagStatusEnum GetFlagStatusEnum(this QuestionFlag entity)
-		{
-			return (FlagStatusEnum)entity.FlagStatus.ID;
-		}
+		public static FlagStatusEnum GetFlagStatusEnum(this QuestionFlag entity) => (FlagStatusEnum)entity.FlagStatus.ID;
 
-		public static void SetFlagStatusEnum(this QuestionFlag entity, FlagStatusEnum value, IFlagStatusRepository flagStatusRepository)
+	    public static void SetFlagStatusEnum(this QuestionFlag entity, FlagStatusEnum value, IFlagStatusRepository flagStatusRepository)
 		{
 			if (entity == null) throw new NullException(() => entity);
 			if (flagStatusRepository == null) throw new NullException(() => flagStatusRepository);

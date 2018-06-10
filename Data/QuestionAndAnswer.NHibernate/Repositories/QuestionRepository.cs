@@ -14,11 +14,8 @@ namespace JJ.Data.QuestionAndAnswer.NHibernate.Repositories
     {
         private new readonly NHibernateContext _context;
 
-        public QuestionRepository(IContext context)
-            : base(context)
-        {
-            _context = (NHibernateContext)context;
-        }
+        [UsedImplicitly]
+        public QuestionRepository(IContext context) : base(context) => _context = (NHibernateContext)context;
 
         public override IList<Question> GetAll() => _context.Session.QueryOver<Question>().List();
 
