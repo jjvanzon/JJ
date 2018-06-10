@@ -24,20 +24,11 @@ namespace NAudioDemo.NetworkChatDemo
             recordingFormat = new WaveFormat(16000, 1);
         }
 
-        public string Name
-        {
-            get { return "G.722 16kHz"; }
-        }
+        public string Name => "G.722 16kHz";
 
-        public int BitsPerSecond
-        {
-            get { return bitrate; }
-        }
+        public int BitsPerSecond => bitrate;
 
-        public WaveFormat RecordFormat
-        {
-            get { return recordingFormat; }
-        }
+        public WaveFormat RecordFormat => recordingFormat;
 
         public byte[] Encode(byte[] data, int offset, int length)
         {
@@ -72,6 +63,6 @@ namespace NAudioDemo.NetworkChatDemo
             // nothing to do
         }
 
-        public bool IsAvailable { get { return true; } }
+        public bool IsAvailable => true;
     }
 }

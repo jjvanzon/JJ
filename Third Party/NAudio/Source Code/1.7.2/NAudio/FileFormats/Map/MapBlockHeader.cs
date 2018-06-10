@@ -19,15 +19,9 @@ namespace NAudio.FileFormats.Map
             return header;
         }
 
-        public override string ToString()
-        {
-            return string.Format("{0} {1:X8} {2:X4} {3:X4}",
-                length, value2, value3, value4);
-        }
+        public override string ToString() => string.Format("{0} {1:X8} {2:X4} {3:X4}",
+                                                           length, value2, value3, value4);
 
-        public int Length
-        {
-            get { return length; }
-        }
+        public int Length => length;
     }
 }

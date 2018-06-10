@@ -18,20 +18,13 @@ namespace NAudio.Utils
         /// </summary>
         /// <param name="lin">linear value</param>
         /// <returns>decibel value</returns>
-        public static double LinearToDecibels(double lin)
-        {
-            return Math.Log(lin) * LOG_2_DB;
-        }
+        public static double LinearToDecibels(double lin) => Math.Log(lin) * LOG_2_DB;
 
         /// <summary>
         /// dB to linear conversion
         /// </summary>
         /// <param name="dB">decibel value</param>
         /// <returns>linear value</returns>
-        public static double DecibelsToLinear(double dB)
-        {
-            return Math.Exp(dB * DB_2_LOG);
-        }
-
+        public static double DecibelsToLinear(double dB) => Math.Exp(dB * DB_2_LOG);
     }
 }

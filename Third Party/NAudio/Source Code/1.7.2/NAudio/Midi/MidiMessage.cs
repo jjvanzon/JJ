@@ -13,19 +13,13 @@ namespace NAudio.Midi
         /// <param name="status">Status</param>
         /// <param name="data1">Data parameter 1</param>
         /// <param name="data2">Data parameter 2</param>
-        public MidiMessage(int status, int data1, int data2)
-        {
-            rawData = status + (data1 << 8) + (data2 << 16);
-        }
+        public MidiMessage(int status, int data1, int data2) => rawData = status + (data1 << 8) + (data2 << 16);
 
         /// <summary>
         /// Creates a new MIDI message from a raw message
         /// </summary>
         /// <param name="rawData">A packed MIDI message from an MMIO function</param>
-        public MidiMessage(int rawData)
-        {
-            this.rawData = rawData;
-        }
+        public MidiMessage(int rawData) => this.rawData = rawData;
 
         /// <summary>
         /// Creates a Note On message
@@ -34,10 +28,7 @@ namespace NAudio.Midi
         /// <param name="volume">Volume</param>
         /// <param name="channel">MIDI channel</param>
         /// <returns>A new MidiMessage object</returns>
-        public static MidiMessage StartNote(int note, int volume, int channel)
-        {
-            return new MidiMessage((int)MidiCommandCode.NoteOn + channel - 1, note, volume);
-        }
+        public static MidiMessage StartNote(int note, int volume, int channel) => new MidiMessage((int)MidiCommandCode.NoteOn + channel - 1, note, volume);
 
         /// <summary>
         /// Creates a Note Off message
@@ -46,10 +37,7 @@ namespace NAudio.Midi
         /// <param name="volume">Volume</param>
         /// <param name="channel">MIDI channel (1-16)</param>
         /// <returns>A new MidiMessage object</returns>
-        public static MidiMessage StopNote(int note, int volume, int channel)
-        {
-            return new MidiMessage((int)MidiCommandCode.NoteOff + channel - 1, note, volume);
-        }
+        public static MidiMessage StopNote(int note, int volume, int channel) => new MidiMessage((int)MidiCommandCode.NoteOff + channel - 1, note, volume);
 
         /// <summary>
         /// Creates a patch change message
@@ -57,10 +45,7 @@ namespace NAudio.Midi
         /// <param name="patch">The patch number</param>
         /// <param name="channel">The MIDI channel number (1-16)</param>
         /// <returns>A new MidiMessageObject</returns>
-        public static MidiMessage ChangePatch(int patch, int channel)
-        {
-            return new MidiMessage((int)MidiCommandCode.PatchChange + channel - 1, patch, 0);
-        }
+        public static MidiMessage ChangePatch(int patch, int channel) => new MidiMessage((int)MidiCommandCode.PatchChange + channel - 1, patch, 0);
 
         /// <summary>
         /// Creates a Control Change message
@@ -69,20 +54,11 @@ namespace NAudio.Midi
         /// <param name="value">The value to set the controller to</param>
         /// <param name="channel">The MIDI channel number (1-16)</param>
         /// <returns>A new MidiMessageObject</returns>
-        public static MidiMessage ChangeControl(int controller, int value, int channel)
-        {
-            return new MidiMessage((int)MidiCommandCode.ControlChange + channel - 1, controller, value);
-        }
+        public static MidiMessage ChangeControl(int controller, int value, int channel) => new MidiMessage((int)MidiCommandCode.ControlChange + channel - 1, controller, value);
 
         /// <summary>
         /// Returns the raw MIDI message data
         /// </summary>
-        public int RawData
-        {
-            get
-            {
-                return rawData;
-            }
-        }
+        public int RawData => rawData;
     }
 }

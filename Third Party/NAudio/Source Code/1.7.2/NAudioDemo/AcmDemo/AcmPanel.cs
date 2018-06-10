@@ -9,15 +9,9 @@ namespace NAudioDemo
 {
     public partial class AcmPanel : UserControl
     {
-        public AcmPanel()
-        {
-            InitializeComponent();
-        }
+        public AcmPanel() => InitializeComponent();
 
-        private void AcmForm_Load(object sender, EventArgs e)
-        {
-            RefreshDriversList();
-        }
+        private void AcmForm_Load(object sender, EventArgs e) => RefreshDriversList();
 
         private void RefreshDriversList()
         {
@@ -140,10 +134,7 @@ namespace NAudioDemo
             return null;
         }
 
-        private string GetInputFileName(string title)
-        {
-            return SelectFileToOpen(title, "WAV File (*.wav)|*.wav");
-        }
+        private string GetInputFileName(string title) => SelectFileToOpen(title, "WAV File (*.wav)|*.wav");
 
         private string GetOutputFileName(string title)
         {
@@ -266,14 +257,8 @@ namespace NAudioDemo
     [Export(typeof(INAudioDemoPlugin))]
     public class AcmPanelPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "ACM Format Conversion"; }
-        }
+        public string Name => "ACM Format Conversion";
 
-        public Control CreatePanel()
-        {
-            return new AcmPanel();
-        }
+        public Control CreatePanel() => new AcmPanel();
     }
 }

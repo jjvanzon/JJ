@@ -19,9 +19,6 @@ namespace NAudioDemo.AudioPlaybackDemo
             comboBoxDirectSound.DataSource = DirectSoundOut.Devices;
         }
 
-        public Guid SelectedDevice 
-        {
-            get { return (Guid)comboBoxDirectSound.SelectedValue; }
-        }
+        public Guid SelectedDevice => (Guid)comboBoxDirectSound.SelectedValue;
     }
 }

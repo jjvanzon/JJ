@@ -11,6 +11,6 @@ namespace NAudioDemo.NetworkChatDemo
         {
         }
 
-        public override string Name { get { return "Microsoft ADPCM"; } }
+        public override string Name => "Microsoft ADPCM";
     }
 }

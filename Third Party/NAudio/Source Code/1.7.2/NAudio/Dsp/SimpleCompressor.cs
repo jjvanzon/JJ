@@ -36,11 +36,8 @@ namespace NAudio.Dsp
         public double Ratio { get; set; }
 
         // call before runtime (in resume())
-        public void InitRuntime()
-        {
-            this.envdB = DC_OFFSET;
-        }
-    
+        public void InitRuntime() => this.envdB = DC_OFFSET;
+
         // // compressor runtime process
         public void Process(ref double in1, ref double in2)
         {

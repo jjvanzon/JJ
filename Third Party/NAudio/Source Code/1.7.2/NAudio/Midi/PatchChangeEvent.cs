@@ -13,10 +13,7 @@ namespace NAudio.Midi
         /// <summary>
         /// Gets the default MIDI instrument names
         /// </summary>
-        public static string GetPatchName(int patchNumber)
-        {
-            return patchNames[patchNumber];
-        }
+        public static string GetPatchName(int patchNumber) => patchNames[patchNumber];
 
         // TODO: localize
         private static readonly string[] patchNames = new[] 
@@ -61,19 +58,14 @@ namespace NAudio.Midi
         /// <param name="patchNumber">Patch number</param>
         public PatchChangeEvent(long absoluteTime, int channel, int patchNumber)
             : base(absoluteTime, channel, MidiCommandCode.PatchChange)
-        {
-            this.Patch = patchNumber;
-        }
+            => this.Patch = patchNumber;
 
         /// <summary>
         /// The Patch Number
         /// </summary>
         public int Patch
         {
-            get
-            {
-                return patch;
-            }
+            get => patch;
             set
             {
                 if (value < 0 || value > 127)
@@ -88,21 +80,15 @@ namespace NAudio.Midi
         /// Describes this patch change event
         /// </summary>
         /// <returns>String describing the patch change event</returns>
-        public override string ToString()
-        {
-            return string.Format("{0} {1}",
-                base.ToString(),
-                GetPatchName(this.patch));
-        }
+        public override string ToString() => string.Format("{0} {1}",
+                                                           base.ToString(),
+                                                           GetPatchName(this.patch));
 
         /// <summary>
         /// Gets as a short message for sending with the midiOutShortMsg API
         /// </summary>
         /// <returns>short message</returns>
-        public override int GetAsShortMessage()
-        {
-            return base.GetAsShortMessage() + (this.patch << 8);
-        }
+        public override int GetAsShortMessage() => base.GetAsShortMessage() + (this.patch << 8);
 
         /// <summary>
         /// Calls base class export first, then exports the data 

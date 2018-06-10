@@ -27,12 +27,9 @@ namespace NAudio.Mixer
 		/// Gets the details for this control
 		/// </summary>
 		/// <param name="pDetails">memory pointer</param>
-		protected override void GetDetails(IntPtr pDetails) 
-		{
-			boolDetails = (MixerInterop.MIXERCONTROLDETAILS_BOOLEAN) Marshal.PtrToStructure(pDetails,typeof(MixerInterop.MIXERCONTROLDETAILS_BOOLEAN));
-		}
-		
-		/// <summary>
+		protected override void GetDetails(IntPtr pDetails) => boolDetails = (MixerInterop.MIXERCONTROLDETAILS_BOOLEAN) Marshal.PtrToStructure(pDetails,typeof(MixerInterop.MIXERCONTROLDETAILS_BOOLEAN));
+
+	    /// <summary>
 		/// The current value of the control
 		/// </summary>
 		public bool Value 

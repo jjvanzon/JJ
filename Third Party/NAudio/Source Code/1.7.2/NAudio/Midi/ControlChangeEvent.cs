@@ -49,13 +49,10 @@ namespace NAudio.Midi
         /// Describes this control change event
         /// </summary>
         /// <returns>A string describing this event</returns>
-        public override string ToString() 
-        {
-            return string.Format("{0} Controller {1} Value {2}",
-                base.ToString(),
-                this.controller,
-                this.controllerValue);
-        }
+        public override string ToString() => string.Format("{0} Controller {1} Value {2}",
+                                                           base.ToString(),
+                                                           this.controller,
+                                                           this.controllerValue);
 
         /// <summary>
         /// <see cref="MidiEvent.GetAsShortMessage" />
@@ -83,10 +80,7 @@ namespace NAudio.Midi
         /// </summary>
         public MidiController Controller
         {
-            get
-            {
-                return controller;
-            }
+            get => controller;
             set
             {
                 if ((int) value < 0 || (int) value > 127)
@@ -102,10 +96,7 @@ namespace NAudio.Midi
         /// </summary>
         public int ControllerValue
         {
-            get
-            {
-                return controllerValue;
-            }
+            get => controllerValue;
             set
             {
                 if (value < 0 || value > 127)

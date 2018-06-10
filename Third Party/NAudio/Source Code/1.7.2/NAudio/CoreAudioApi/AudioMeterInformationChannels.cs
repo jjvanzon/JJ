@@ -62,9 +62,6 @@ namespace NAudio.CoreAudioApi
             }
         }
 
-        internal AudioMeterInformationChannels(IAudioMeterInformation parent)
-        {
-            audioMeterInformation = parent;
-        }
+        internal AudioMeterInformationChannels(IAudioMeterInformation parent) => audioMeterInformation = parent;
     }
 }

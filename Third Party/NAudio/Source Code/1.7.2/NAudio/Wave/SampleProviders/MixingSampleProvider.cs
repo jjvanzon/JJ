@@ -60,10 +60,7 @@ namespace NAudio.Wave.SampleProviders
         /// Must be PCM or IEEE float already
         /// </summary>
         /// <param name="mixerInput">IWaveProvider mixer input</param>
-        public void AddMixerInput(IWaveProvider mixerInput)
-        {
-            AddMixerInput(SampleProviderConverters.ConvertWaveProviderIntoSampleProvider(mixerInput));
-        }
+        public void AddMixerInput(IWaveProvider mixerInput) => AddMixerInput(SampleProviderConverters.ConvertWaveProviderIntoSampleProvider(mixerInput));
 
         /// <summary>
         /// Adds a new mixer input
@@ -121,10 +118,7 @@ namespace NAudio.Wave.SampleProviders
         /// <summary>
         /// The output WaveFormat of this sample provider
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return this.waveFormat; }
-        }
+        public WaveFormat WaveFormat => this.waveFormat;
 
         /// <summary>
         /// Reads samples from this sample provider

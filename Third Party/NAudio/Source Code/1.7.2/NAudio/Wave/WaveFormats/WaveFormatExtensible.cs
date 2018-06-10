@@ -65,7 +65,7 @@ namespace NAudio.Wave
         /// <summary>
         /// SubFormat (may be one of AudioMediaSubtypes)
         /// </summary>
-        public Guid SubFormat { get { return subFormat; } }
+        public Guid SubFormat => subFormat;
 
         /// <summary>
         /// Serialize
@@ -83,14 +83,11 @@ namespace NAudio.Wave
         /// <summary>
         /// String representation
         /// </summary>
-        public override string ToString()
-        {
-            return string.Format("{0} wBitsPerSample:{1} dwChannelMask:{2} subFormat:{3} extraSize:{4}",
-                base.ToString(),
-                wValidBitsPerSample,
-                dwChannelMask,
-                subFormat,
-                extraSize);
-        }
+        public override string ToString() => string.Format("{0} wBitsPerSample:{1} dwChannelMask:{2} subFormat:{3} extraSize:{4}",
+                                                           base.ToString(),
+                                                           wValidBitsPerSample,
+                                                           dwChannelMask,
+                                                           subFormat,
+                                                           extraSize);
     }
 }

@@ -25,13 +25,7 @@ namespace NAudio.Gui
         /// <summary>
         /// Creates a new VolumeSlider control
         /// </summary>
-        public VolumeSlider()
-        {
-            // This call is required by the Windows.Forms Form Designer.
-            InitializeComponent();
-
-            // TODO: Add any initialization after the InitComponent call
-        }
+        public VolumeSlider() => InitializeComponent();
 
         /// <summary>
         /// Clean up any resources being used.
@@ -126,10 +120,7 @@ namespace NAudio.Gui
         [DefaultValue(1.0f)]
         public float Volume
         {
-            get
-            {
-                return volume;
-            }
+            get => volume;
             set
             {
                 if (value < 0.0f)

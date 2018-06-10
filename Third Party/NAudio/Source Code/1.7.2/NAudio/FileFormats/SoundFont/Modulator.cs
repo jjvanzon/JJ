@@ -29,14 +29,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public ModulatorType SourceModulationData 
 		{
-			get 
-			{
-				return sourceModulationData;
-			}
-			set 
-			{
-				sourceModulationData = value;
-			}
+			get => sourceModulationData;
+		    set => sourceModulationData = value;
 		}
 		
 		/// <summary>
@@ -44,14 +38,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public GeneratorEnum DestinationGenerator 
 		{
-			get 
-			{
-				return destinationGenerator;
-			}
-			set 
-			{
-				destinationGenerator = value;
-			}
+			get => destinationGenerator;
+		    set => destinationGenerator = value;
 		}
 		
 		/// <summary>
@@ -59,14 +47,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public short Amount 
 		{
-			get 
-			{
-				return amount;
-			}
-			set 
-			{
-				amount = value;
-			}
+			get => amount;
+		    set => amount = value;
 		}
 		
 		/// <summary>
@@ -74,14 +56,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public ModulatorType SourceModulationAmount 
 		{
-			get 
-			{
-				return sourceModulationAmount;
-			}
-			set 
-			{
-				sourceModulationAmount = value;
-			}
+			get => sourceModulationAmount;
+		    set => sourceModulationAmount = value;
 		}
 		
 		/// <summary>
@@ -89,26 +65,15 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public TransformEnum SourceTransform 
 		{
-			get 
-			{
-				return sourceTransform;
-			}
-			set 
-			{
-				sourceTransform = value;
-			}
+			get => sourceTransform;
+		    set => sourceTransform = value;
 		}
 		
 		/// <summary>
 		/// <see cref="Object.ToString"/>
 		/// </summary>
-		public override string ToString()
-		{
-			return string.Format("Modulator {0} {1} {2} {3} {4}",
-				sourceModulationData,destinationGenerator,
-				amount,sourceModulationAmount,sourceTransform);
-
-		}
-
+		public override string ToString() => string.Format("Modulator {0} {1} {2} {3} {4}",
+		                                                   sourceModulationData,destinationGenerator,
+		                                                   amount,sourceModulationAmount,sourceTransform);
 	}
 }

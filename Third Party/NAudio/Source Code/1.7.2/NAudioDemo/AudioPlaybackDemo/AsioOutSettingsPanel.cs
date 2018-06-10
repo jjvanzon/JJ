@@ -23,7 +23,7 @@ namespace NAudioDemo.AudioPlaybackDemo
             comboBoxAsioDriver.SelectedIndex = 0;
         }
 
-        public string SelectedDeviceName { get { return (string)comboBoxAsioDriver.SelectedItem; } }
+        public string SelectedDeviceName => (string)comboBoxAsioDriver.SelectedItem;
 
         private void buttonControlPanel_Click(object sender, EventArgs args)
         {

@@ -43,18 +43,12 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// Property Key
         /// </summary>
-        public PropertyKey Key
-        {
-            get { return propertyKey; }
-        }
+        public PropertyKey Key => propertyKey;
 
         /// <summary>
         /// Property Value
         /// </summary>
-        public object Value
-        {
-            get { return propertyValue.Value; }
-        }
+        public object Value => propertyValue.Value;
     }
 }
 

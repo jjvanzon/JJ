@@ -39,31 +39,23 @@ namespace NAudio.Midi
         /// <param name="pitchWheel">Pitch wheel value</param>
         public PitchWheelChangeEvent(long absoluteTime, int channel, int pitchWheel)
             : base(absoluteTime, channel, MidiCommandCode.PitchWheelChange)
-        {
-            Pitch = pitchWheel;
-        }
-        
+            => Pitch = pitchWheel;
+
         /// <summary>
         /// Describes this pitch wheel change event
         /// </summary>
         /// <returns>String describing this pitch wheel change event</returns>
-        public override string ToString() 
-        {
-            return string.Format("{0} Pitch {1} ({2})",
-                base.ToString(),
-                this.pitch,
-                this.pitch - 0x2000);
-        }
+        public override string ToString() => string.Format("{0} Pitch {1} ({2})",
+                                                           base.ToString(),
+                                                           this.pitch,
+                                                           this.pitch - 0x2000);
 
         /// <summary>
         /// Pitch Wheel Value 0 is minimum, 0x2000 (8192) is default, 0x4000 (16384) is maximum
         /// </summary>
         public int Pitch
         {
-            get
-            {
-                return pitch;
-            }
+            get => pitch;
             set
             {
                 if (value < 0 || value > 0x4000)
@@ -78,10 +70,7 @@ namespace NAudio.Midi
         /// Gets a short message
         /// </summary>
         /// <returns>Integer to sent as short message</returns>
-        public override int GetAsShortMessage()
-        {
-            return base.GetAsShortMessage() + ((pitch & 0x7f) << 8) + (((pitch >> 7) & 0x7f) << 16);
-        }
+        public override int GetAsShortMessage() => base.GetAsShortMessage() + ((pitch & 0x7f) << 8) + (((pitch >> 7) & 0x7f) << 16);
 
         /// <summary>
         /// Calls base class export first, then exports the data 

@@ -27,10 +27,7 @@ namespace NAudioDemo
             }
         }
 
-        void AsioDirectPanel_Disposed(object sender, EventArgs e)
-        {
-            Cleanup();
-        }
+        void AsioDirectPanel_Disposed(object sender, EventArgs e) => Cleanup();
 
         private void Cleanup()
         {
@@ -114,10 +111,7 @@ namespace NAudioDemo
             buttonStop.Enabled = asioOut != null && asioOut.PlaybackState == PlaybackState.Playing;
         }
 
-        private void buttonStop_Click(object sender, EventArgs e)
-        {
-            Stop();
-        }
+        private void buttonStop_Click(object sender, EventArgs e) => Stop();
 
         private void Stop()
         {
@@ -158,7 +152,7 @@ namespace NAudioDemo
             }
         }
 
-        public string SelectedDeviceName { get { return (string)comboBoxAsioDevice.SelectedItem; } }
+        public string SelectedDeviceName => (string)comboBoxAsioDevice.SelectedItem;
 
         private void buttonControlPanel_Click(object sender, EventArgs args)
         {
@@ -179,14 +173,8 @@ namespace NAudioDemo
     [Export(typeof(INAudioDemoPlugin))]
     public class AsioRecordingPanelPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "ASIO Recording"; }
-        }
+        public string Name => "ASIO Recording";
 
-        public Control CreatePanel()
-        {
-            return new AsioRecordingPanel();
-        }
+        public Control CreatePanel() => new AsioRecordingPanel();
     }
 }

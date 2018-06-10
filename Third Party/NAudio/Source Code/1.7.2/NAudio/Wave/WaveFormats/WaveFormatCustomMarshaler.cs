@@ -36,33 +36,21 @@ namespace NAudio.Wave
         /// Clean up native data
         /// </summary>
         /// <param name="pNativeData"></param>
-        public void CleanUpNativeData(IntPtr pNativeData)
-        {
-            Marshal.FreeHGlobal(pNativeData);
-        }
+        public void CleanUpNativeData(IntPtr pNativeData) => Marshal.FreeHGlobal(pNativeData);
 
         /// <summary>
         /// Get native data size
         /// </summary>        
-        public int GetNativeDataSize()
-        {
-            throw new NotImplementedException();
-        }
+        public int GetNativeDataSize() => throw new NotImplementedException();
 
         /// <summary>
         /// Marshal managed to native
         /// </summary>
-        public IntPtr MarshalManagedToNative(object ManagedObj)
-        {
-            return WaveFormat.MarshalToPtr((WaveFormat)ManagedObj);            
-        }
+        public IntPtr MarshalManagedToNative(object ManagedObj) => WaveFormat.MarshalToPtr((WaveFormat)ManagedObj);
 
         /// <summary>
         /// Marshal Native to Managed
         /// </summary>
-        public object MarshalNativeToManaged(IntPtr pNativeData)
-        {
-            return WaveFormat.MarshalFromPtr(pNativeData);
-        }
+        public object MarshalNativeToManaged(IntPtr pNativeData) => WaveFormat.MarshalFromPtr(pNativeData);
     }
 }

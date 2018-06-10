@@ -30,10 +30,7 @@ namespace NAudio.Midi
         /// Describes this event
         /// </summary>
         /// <returns>String describing the event</returns>
-        public override string ToString()
-        {
-            return string.Format("{0} {1}", base.ToString(), sequenceNumber);
-        }
+        public override string ToString() => string.Format("{0} {1}", base.ToString(), sequenceNumber);
 
         /// <summary>
         /// Calls base class export first, then exports the data 

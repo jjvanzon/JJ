@@ -65,18 +65,15 @@ namespace NAudio.Wave
         /// <summary>
         /// <see cref="IWaveProvider.WaveFormat"/>
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return waveFormat; }
-        }
+        public WaveFormat WaveFormat => waveFormat;
 
         /// <summary>
         /// Volume of this channel. 1.0 = full scale
         /// </summary>
         public float Volume
         {
-            get { return volume; }
-            set { volume = value; }
+            get => volume;
+            set => volume = value;
         }
     }
 }

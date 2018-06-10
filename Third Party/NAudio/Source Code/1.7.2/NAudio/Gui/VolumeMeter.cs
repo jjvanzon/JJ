@@ -44,7 +44,7 @@ namespace NAudio.Gui
         [DefaultValue(-3.0)]
         public float Amplitude 
         {
-            get { return amplitude; }
+            get => amplitude;
             set
             {
                 amplitude = value;

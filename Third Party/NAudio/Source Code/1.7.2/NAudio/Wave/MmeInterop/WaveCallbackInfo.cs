@@ -22,19 +22,13 @@ namespace NAudio.Wave
         /// <summary>
         /// Sets up a new WaveCallbackInfo for function callbacks
         /// </summary>
-        public static WaveCallbackInfo FunctionCallback()
-        {
-            return new WaveCallbackInfo(WaveCallbackStrategy.FunctionCallback, IntPtr.Zero);
-        }
+        public static WaveCallbackInfo FunctionCallback() => new WaveCallbackInfo(WaveCallbackStrategy.FunctionCallback, IntPtr.Zero);
 
         /// <summary>
         /// Sets up a new WaveCallbackInfo to use a New Window
         /// IMPORTANT: only use this on the GUI thread
         /// </summary>
-        public static WaveCallbackInfo NewWindow()
-        {
-            return new WaveCallbackInfo(WaveCallbackStrategy.NewWindow, IntPtr.Zero);
-        }
+        public static WaveCallbackInfo NewWindow() => new WaveCallbackInfo(WaveCallbackStrategy.NewWindow, IntPtr.Zero);
 
         /// <summary>
         /// Sets up a new WaveCallbackInfo to use an existing window

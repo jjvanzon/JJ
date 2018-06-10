@@ -12,15 +12,9 @@ namespace NAudio.Mixer
         private readonly MixerFlags mixerHandleType;
 		
 		/// <summary>The number of mixer devices available</summary>	
-		public static int NumberOfDevices 
-		{
-			get 
-			{
-				return MixerInterop.mixerGetNumDevs();
-			}
-		}
-		
-		/// <summary>Connects to the specified mixer</summary>
+		public static int NumberOfDevices => MixerInterop.mixerGetNumDevs();
+
+	    /// <summary>Connects to the specified mixer</summary>
         /// <param name="mixerIndex">The index of the mixer to use. 
 		/// This should be between zero and NumberOfDevices - 1</param>
 		public Mixer(int mixerIndex) 
@@ -39,42 +33,18 @@ namespace NAudio.Mixer
 		}
 
 		/// <summary>The number of destinations this mixer supports</summary>
-		public int DestinationCount 
-		{
-			get 
-			{
-				return (int) caps.cDestinations;
-			}
-		}
-		
-		/// <summary>The name of this mixer device</summary>
-		public string Name 
-		{
-			get 
-			{
-				return caps.szPname;
-			}
-		}
-		
-		/// <summary>The manufacturer code for this mixer device</summary>
-		public Manufacturers Manufacturer 
-		{
-			get 
-			{
-				return (Manufacturers) caps.wMid;
-			}
-		}
+		public int DestinationCount => (int) caps.cDestinations;
 
-		/// <summary>The product identifier code for this mixer device</summary>
-		public int ProductID 
-		{
-			get 
-			{
-				return caps.wPid;
-			}
-		}
-		
-		/// <summary>Retrieve the specified MixerDestination object</summary>
+	    /// <summary>The name of this mixer device</summary>
+		public string Name => caps.szPname;
+
+	    /// <summary>The manufacturer code for this mixer device</summary>
+		public Manufacturers Manufacturer => (Manufacturers) caps.wMid;
+
+	    /// <summary>The product identifier code for this mixer device</summary>
+		public int ProductID => caps.wPid;
+
+	    /// <summary>Retrieve the specified MixerDestination object</summary>
         /// <param name="destinationIndex">The ID of the destination to use.
 		/// Should be between 0 and DestinationCount - 1</param>
 		public MixerLine GetDestination(int destinationIndex) 

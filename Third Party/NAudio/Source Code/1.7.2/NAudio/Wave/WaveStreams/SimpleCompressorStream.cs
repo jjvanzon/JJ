@@ -37,10 +37,7 @@ namespace NAudio.Wave
         /// </summary>
         public double MakeUpGain
         {
-            get 
-            { 
-                return simpleCompressor.MakeUpGain; 
-            }
+            get => simpleCompressor.MakeUpGain;
             set 
             {
                 lock (lockObject)
@@ -55,10 +52,7 @@ namespace NAudio.Wave
         /// </summary>
         public double Threshold
         {
-            get 
-            { 
-                return simpleCompressor.Threshold; 
-            }
+            get => simpleCompressor.Threshold;
             set 
             {
                 lock (lockObject)
@@ -73,10 +67,7 @@ namespace NAudio.Wave
         /// </summary>
         public double Ratio
         {
-            get 
-            { 
-                return simpleCompressor.Ratio; 
-            }
+            get => simpleCompressor.Ratio;
             set 
             {
                 lock (lockObject)
@@ -91,10 +82,7 @@ namespace NAudio.Wave
         /// </summary>
         public double Attack
         {
-            get
-            {
-                return simpleCompressor.Attack;
-            }
+            get => simpleCompressor.Attack;
             set
             {
                 lock (lockObject)
@@ -109,10 +97,7 @@ namespace NAudio.Wave
         /// </summary>
         public double Release
         {
-            get
-            {
-                return simpleCompressor.Release;
-            }
+            get => simpleCompressor.Release;
             set
             {
                 lock (lockObject)
@@ -128,48 +113,29 @@ namespace NAudio.Wave
         /// </summary>
         /// <param name="count">Number of bytes of data required from the stream.</param>
         /// <returns>Flag indicating whether the required amount of data is avialable.</returns>
-        public override bool HasData(int count)
-        {
-            return sourceStream.HasData(count);
-        }
-
+        public override bool HasData(int count) => sourceStream.HasData(count);
 
         /// <summary>
         /// Turns gain on or off
         /// </summary>
         public bool Enabled
         {
-            get
-            {
-                return enabled;
-            }
-            set
-            {
-                enabled = value;
-            }
+            get => enabled;
+            set => enabled = value;
         }
 
 
         /// <summary>
         /// Returns the stream length
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return sourceStream.Length;
-            }
-        }
+        public override long Length => sourceStream.Length;
 
         /// <summary>
         /// Gets or sets the current position in the stream
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return sourceStream.Position;
-            }
+            get => sourceStream.Position;
             set
             {
                 lock (lockObject)
@@ -182,13 +148,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets the WaveFormat of this stream
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get
-            {
-                return sourceStream.WaveFormat;
-            }
-        }
+        public override WaveFormat WaveFormat => sourceStream.WaveFormat;
 
         private void ReadSamples(byte[] buffer, int start, out double left, out double right)
         {
@@ -302,14 +262,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets the block alignment for this stream
         /// </summary>
-        public override int BlockAlign
-        {
-            get
-            {
-                // TODO: investigate forcing 20ms
-                return sourceStream.BlockAlign;
-            }
-        }
+        public override int BlockAlign => sourceStream.BlockAlign;
     }
 }
 

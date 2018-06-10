@@ -84,10 +84,7 @@ namespace NAudio.Wave
         /// <summary>
         /// The number of inputs to this mixer
         /// </summary>
-        public int InputCount
-        {
-            get { return this.inputs.Count; }
-        }
+        public int InputCount => this.inputs.Count;
 
         /// <summary>
         /// Reads bytes from this wave stream
@@ -145,9 +142,6 @@ namespace NAudio.Wave
         /// <summary>
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return this.waveFormat; }
-        }
+        public WaveFormat WaveFormat => this.waveFormat;
     }
 }

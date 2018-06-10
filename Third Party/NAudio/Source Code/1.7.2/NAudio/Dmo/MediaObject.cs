@@ -34,18 +34,13 @@ namespace NAudio.Dmo
         /// <summary>
         /// Number of input streams
         /// </summary>
-        public int InputStreamCount
-        {
-            get { return inputStreams; }
-        }
+        public int InputStreamCount => inputStreams;
 
         /// <summary>
         /// Number of output streams
         /// </summary>
-        public int OutputStreamCount
-        {
-            get { return outputStreams; }
-        }
+        public int OutputStreamCount => outputStreams;
+
         #endregion
 
         #region Get Input and Output Types
@@ -184,10 +179,7 @@ namespace NAudio.Dmo
         /// <param name="inputStreamIndex">Input stream index</param>
         /// <param name="mediaType">Media type to check</param>
         /// <returns>true if supports</returns>
-        public bool SupportsInputType(int inputStreamIndex, DmoMediaType mediaType)
-        {
-            return SetInputType(inputStreamIndex, mediaType, DmoSetTypeFlags.DMO_SET_TYPEF_TEST_ONLY);
-        }
+        public bool SupportsInputType(int inputStreamIndex, DmoMediaType mediaType) => SetInputType(inputStreamIndex, mediaType, DmoSetTypeFlags.DMO_SET_TYPEF_TEST_ONLY);
 
         /// <summary>
         /// Sets the input type helper method
@@ -280,10 +272,7 @@ namespace NAudio.Dmo
         /// <param name="outputStreamIndex">Output stream index</param>
         /// <param name="mediaType">Media type</param>
         /// <returns>True if supported</returns>
-        public bool SupportsOutputType(int outputStreamIndex, DmoMediaType mediaType)
-        {
-            return SetOutputType(outputStreamIndex, mediaType, DmoSetTypeFlags.DMO_SET_TYPEF_TEST_ONLY);
-        }
+        public bool SupportsOutputType(int outputStreamIndex, DmoMediaType mediaType) => SetOutputType(outputStreamIndex, mediaType, DmoSetTypeFlags.DMO_SET_TYPEF_TEST_ONLY);
 
         /// <summary>
         /// Tests if the specified Wave Format is supported for output
@@ -394,9 +383,7 @@ namespace NAudio.Dmo
         /// <param name="duration">Duration</param>
         public void ProcessInput(int inputStreamIndex, IMediaBuffer mediaBuffer, DmoInputDataBufferFlags flags,
             long timestamp, long duration)
-        {
-            Marshal.ThrowExceptionForHR(mediaObject.ProcessInput(inputStreamIndex, mediaBuffer, flags, timestamp, duration));
-        }
+            => Marshal.ThrowExceptionForHR(mediaObject.ProcessInput(inputStreamIndex, mediaBuffer, flags, timestamp, duration));
 
         /// <summary>
         /// Process Output
@@ -414,18 +401,12 @@ namespace NAudio.Dmo
         /// <summary>
         /// Gives the DMO a chance to allocate any resources needed for streaming
         /// </summary>
-        public void AllocateStreamingResources()
-        {
-            Marshal.ThrowExceptionForHR(mediaObject.AllocateStreamingResources());
-        }
+        public void AllocateStreamingResources() => Marshal.ThrowExceptionForHR(mediaObject.AllocateStreamingResources());
 
         /// <summary>
         /// Tells the DMO to free any resources needed for streaming
         /// </summary>
-        public void FreeStreamingResources()
-        {
-            Marshal.ThrowExceptionForHR(mediaObject.FreeStreamingResources());
-        }
+        public void FreeStreamingResources() => Marshal.ThrowExceptionForHR(mediaObject.FreeStreamingResources());
 
         /// <summary>
         /// Gets maximum input latency
@@ -442,19 +423,13 @@ namespace NAudio.Dmo
         /// <summary>
         /// Flushes all buffered data
         /// </summary>
-        public void Flush()
-        {
-            Marshal.ThrowExceptionForHR(mediaObject.Flush());
-        }
+        public void Flush() => Marshal.ThrowExceptionForHR(mediaObject.Flush());
 
         /// <summary>
         /// Report a discontinuity on the specified input stream
         /// </summary>
         /// <param name="inputStreamIndex">Input Stream index</param>
-        public void Discontinuity(int inputStreamIndex)
-        {
-            Marshal.ThrowExceptionForHR(mediaObject.Discontinuity(inputStreamIndex));
-        }
+        public void Discontinuity(int inputStreamIndex) => Marshal.ThrowExceptionForHR(mediaObject.Discontinuity(inputStreamIndex));
 
         /// <summary>
         /// Is this input stream accepting data?

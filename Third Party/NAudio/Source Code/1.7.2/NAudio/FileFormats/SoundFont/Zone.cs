@@ -17,40 +17,25 @@ namespace NAudio.SoundFont
 		/// <summary>
 		/// <see cref="Object.ToString"/>
 		/// </summary>
-		public override string ToString()
-		{
-			return string.Format("Zone {0} Gens:{1} {2} Mods:{3}",generatorCount,generatorIndex,
-				modulatorCount,modulatorIndex);
-		}
+		public override string ToString() => string.Format("Zone {0} Gens:{1} {2} Mods:{3}",generatorCount,generatorIndex,
+		                                                   modulatorCount,modulatorIndex);
 
-		/// <summary>
+	    /// <summary>
 		/// Modulators for this Zone
 		/// </summary>
 		public Modulator[] Modulators
 		{
-			get
-			{
-				return modulators;
-			}
-			set
-			{
-				modulators = value;
-			}
-		}
+			get => modulators;
+	        set => modulators = value;
+	    }
 
 		/// <summary>
 		/// Generators for this Zone
 		/// </summary>
 		public Generator[] Generators
 		{
-			get
-			{
-				return generators;
-			}
-			set
-			{
-				generators = value;
-			}
+			get => generators;
+		    set => generators = value;
 		}
 
 	}

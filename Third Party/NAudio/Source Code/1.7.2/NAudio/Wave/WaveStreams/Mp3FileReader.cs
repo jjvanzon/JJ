@@ -51,18 +51,14 @@ namespace NAudio.Wave
         /// <summary>Supports opening a MP3 file</summary>
         public Mp3FileReader(string mp3FileName) 
             : this(File.OpenRead(mp3FileName))
-        {
-            ownInputStream = true;
-        }
+            => ownInputStream = true;
 
         /// <summary>Supports opening a MP3 file</summary>
         /// <param name="mp3FileName">MP3 File name</param>
         /// <param name="frameDecompressorBuilder">Factory method to build a frame decompressor</param>
         public Mp3FileReader(string mp3FileName, FrameDecompressorBuilder frameDecompressorBuilder)
             : this(File.OpenRead(mp3FileName), frameDecompressorBuilder)
-        {
-            ownInputStream = true;
-        }
+            => ownInputStream = true;
 
         /// <summary>
         /// Opens MP3 from a stream rather than a file
@@ -158,11 +154,7 @@ namespace NAudio.Wave
         /// </summary>
         /// <param name="mp3Format">A WaveFormat object based </param>
         /// <returns></returns>
-        public static IMp3FrameDecompressor CreateAcmFrameDecompressor(WaveFormat mp3Format)
-        {
-            // new DmoMp3FrameDecompressor(this.Mp3WaveFormat); 
-            return new AcmMp3FrameDecompressor(mp3Format);
-        }
+        public static IMp3FrameDecompressor CreateAcmFrameDecompressor(WaveFormat mp3Format) => new AcmMp3FrameDecompressor(mp3Format);
 
         private void CreateTableOfContents()
         {
@@ -219,35 +211,23 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets the total length of this file in milliseconds.
         /// </summary>
-        private double TotalSeconds()
-        {
-            return (double)this.totalSamples / Mp3WaveFormat.SampleRate;
-        }
+        private double TotalSeconds() => (double)this.totalSamples / Mp3WaveFormat.SampleRate;
 
         /// <summary>
         /// ID3v2 tag if present
         /// </summary>
-        public Id3v2Tag Id3v2Tag
-        {
-            get { return id3v2Tag; }
-        }
+        public Id3v2Tag Id3v2Tag => id3v2Tag;
 
         /// <summary>
         /// ID3v1 tag if present
         /// </summary>
-        public byte[] Id3v1Tag
-        {
-            get { return id3v1Tag; }
-        }
+        public byte[] Id3v1Tag => id3v1Tag;
 
         /// <summary>
         /// Reads the next mp3 frame
         /// </summary>
         /// <returns>Next mp3 frame, or null if EOF</returns>
-        public Mp3Frame ReadNextFrame()
-        {
-            return ReadNextFrame(true);
-        }
+        public Mp3Frame ReadNextFrame() => ReadNextFrame(true);
 
         /// <summary>
         /// Reads the next mp3 frame
@@ -277,21 +257,12 @@ namespace NAudio.Wave
         /// (i.e. the decompressed MP3 length)
         /// n.b. this may return 0 for files whose length is unknown
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return this.totalSamples * this.bytesPerSample; // assume converting to 16 bit (n.b. may have to check if this includes) //length;
-            }
-        }
+        public override long Length => this.totalSamples * this.bytesPerSample;
 
         /// <summary>
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get { return waveFormat; }
-        }
+        public override WaveFormat WaveFormat => waveFormat;
 
         /// <summary>
         /// <see cref="Stream.Position"/>
@@ -408,10 +379,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Xing header if present
         /// </summary>
-        public XingHeader XingHeader
-        {
-            get { return xingHeader; }
-        }
+        public XingHeader XingHeader => xingHeader;
 
         /// <summary>
         /// Disposes this WaveStream

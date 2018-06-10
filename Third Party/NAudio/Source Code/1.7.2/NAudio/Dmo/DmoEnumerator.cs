@@ -13,29 +13,20 @@ namespace NAudio.Dmo
         /// Get audio effect names
         /// </summary>
         /// <returns>Audio effect names</returns>
-        public static IEnumerable<DmoDescriptor> GetAudioEffectNames()
-        {
-            return GetDmos(DmoGuids.DMOCATEGORY_AUDIO_EFFECT);
-        }
+        public static IEnumerable<DmoDescriptor> GetAudioEffectNames() => GetDmos(DmoGuids.DMOCATEGORY_AUDIO_EFFECT);
 
         /// <summary>
         /// Get audio encoder names
         /// </summary>
         /// <returns>Audio encoder names</returns>
-        public static IEnumerable<DmoDescriptor> GetAudioEncoderNames()
-        {
-            return GetDmos(DmoGuids.DMOCATEGORY_AUDIO_ENCODER);
-        }
+        public static IEnumerable<DmoDescriptor> GetAudioEncoderNames() => GetDmos(DmoGuids.DMOCATEGORY_AUDIO_ENCODER);
 
         /// <summary>
         /// Get audio decoder names
         /// </summary>
         /// <returns>Audio decoder names</returns>
-        public static IEnumerable<DmoDescriptor> GetAudioDecoderNames()
-        {
-            return GetDmos(DmoGuids.DMOCATEGORY_AUDIO_DECODER);
-        }
-        
+        public static IEnumerable<DmoDescriptor> GetAudioDecoderNames() => GetDmos(DmoGuids.DMOCATEGORY_AUDIO_DECODER);
+
         private static IEnumerable<DmoDescriptor> GetDmos(Guid category)
         {
             IEnumDmo enumDmo;

@@ -23,10 +23,7 @@ namespace NAudio.Wave
         /// </summary>
         /// <param name="filename">The filename to write to</param>
         /// <param name="sourceProvider">The source sample provider</param>
-        public static void CreateWaveFile16(string filename, ISampleProvider sourceProvider)
-        {
-            CreateWaveFile(filename, new SampleToWaveProvider16(sourceProvider));
-        }
+        public static void CreateWaveFile16(string filename, ISampleProvider sourceProvider) => CreateWaveFile(filename, new SampleToWaveProvider16(sourceProvider));
 
         /// <summary>
         /// Creates a Wave file by reading all the data from a WaveProvider
@@ -84,9 +81,7 @@ namespace NAudio.Wave
         /// <param name="format">The Wave Format of the output data</param>
         public WaveFileWriter(string filename, WaveFormat format)
             : this(new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.Read), format)
-        {
-            this.filename = filename;
-        }
+            => this.filename = filename;
 
         private void WriteDataChunkHeader()
         {
@@ -106,92 +101,62 @@ namespace NAudio.Wave
             }
         }
 
-        private bool HasFactChunk()
-        {
-            return format.Encoding != WaveFormatEncoding.Pcm && 
-                format.BitsPerSample != 0;
-        }
+        private bool HasFactChunk() => format.Encoding != WaveFormatEncoding.Pcm && 
+                                       format.BitsPerSample != 0;
 
         /// <summary>
         /// The wave file name or null if not applicable
         /// </summary>
-        public string Filename
-        {
-            get { return filename; }
-        }
+        public string Filename => filename;
 
         /// <summary>
         /// Number of bytes of audio in the data chunk
         /// </summary>
-        public override long Length
-        {
-            get { return dataChunkSize; }
-        }
+        public override long Length => dataChunkSize;
 
         /// <summary>
         /// WaveFormat of this wave file
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return format; }
-        }
+        public WaveFormat WaveFormat => format;
 
         /// <summary>
         /// Returns false: Cannot read from a WaveFileWriter
         /// </summary>
-        public override bool CanRead
-        {
-            get { return false; }
-        }
+        public override bool CanRead => false;
 
         /// <summary>
         /// Returns true: Can write to a WaveFileWriter
         /// </summary>
-        public override bool CanWrite
-        {
-            get { return true; }
-        }
+        public override bool CanWrite => true;
 
         /// <summary>
         /// Returns false: Cannot seek within a WaveFileWriter
         /// </summary>
-        public override bool CanSeek
-        {
-            get { return false; }
-        }
+        public override bool CanSeek => false;
 
         /// <summary>
         /// Read is not supported for a WaveFileWriter
         /// </summary>
-        public override int Read(byte[] buffer, int offset, int count)
-        {
-            throw new InvalidOperationException("Cannot read from a WaveFileWriter");
-        }
+        public override int Read(byte[] buffer, int offset, int count) => throw new InvalidOperationException("Cannot read from a WaveFileWriter");
 
         /// <summary>
         /// Seek is not supported for a WaveFileWriter
         /// </summary>
-        public override long Seek(long offset, SeekOrigin origin)
-        {
-            throw new InvalidOperationException("Cannot seek within a WaveFileWriter");
-        }
+        public override long Seek(long offset, SeekOrigin origin) => throw new InvalidOperationException("Cannot seek within a WaveFileWriter");
 
         /// <summary>
         /// SetLength is not supported for WaveFileWriter
         /// </summary>
         /// <param name="value"></param>
-        public override void SetLength(long value)
-        {
-            throw new InvalidOperationException("Cannot set length of a WaveFileWriter");
-        }
+        public override void SetLength(long value) => throw new InvalidOperationException("Cannot set length of a WaveFileWriter");
 
         /// <summary>
         /// Gets the Position in the WaveFile (i.e. number of bytes written so far)
         /// </summary>
         public override long Position
         {
-            get { return dataChunkSize; }
-            set { throw new InvalidOperationException("Repositioning a WaveFileWriter is not supported"); }
+            get => dataChunkSize;
+            set => throw new InvalidOperationException("Repositioning a WaveFileWriter is not supported");
         }
 
         /// <summary>
@@ -201,10 +166,7 @@ namespace NAudio.Wave
         /// <param name="offset">the offset from which to start writing</param>
         /// <param name="count">the number of bytes to write</param>
         [Obsolete("Use Write instead")]
-        public void WriteData(byte[] data, int offset, int count)
-        {
-            Write(data, offset, count);
-        }
+        public void WriteData(byte[] data, int offset, int count) => Write(data, offset, count);
 
         /// <summary>
         /// Appends bytes to the WaveFile (assumes they are already in the correct format)
@@ -280,11 +242,7 @@ namespace NAudio.Wave
         /// <param name="offset">The offset from which to start writing</param>
         /// <param name="count">The number of 16 bit samples to write</param>
         [Obsolete("Use WriteSamples instead")]
-        public void WriteData(short[] samples, int offset, int count)
-        {
-            WriteSamples(samples, offset, count);
-        }
-
+        public void WriteData(short[] samples, int offset, int count) => WriteSamples(samples, offset, count);
 
         /// <summary>
         /// Writes 16 bit samples to the Wave file
@@ -344,10 +302,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Ensures data is written to disk
         /// </summary>
-        public override void Flush()
-        {
-            writer.Flush();
-        }
+        public override void Flush() => writer.Flush();
 
         #region IDisposable Members
 

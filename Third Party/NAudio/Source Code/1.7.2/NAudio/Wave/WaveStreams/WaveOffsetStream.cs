@@ -59,10 +59,7 @@ namespace NAudio.Wave
         /// </summary>
         public TimeSpan StartTime
         {
-            get 
-            { 
-                return startTime; 
-            }
+            get => startTime;
             set 
             {
                 lock (lockObject)
@@ -81,10 +78,7 @@ namespace NAudio.Wave
         /// </summary>
         public TimeSpan SourceOffset
         {
-            get
-            {
-                return sourceOffset;
-            }
+            get => sourceOffset;
             set
             {
                 lock (lockObject)
@@ -102,10 +96,7 @@ namespace NAudio.Wave
         /// </summary>
         public TimeSpan SourceLength
         {
-            get
-            {
-                return sourceLength;
-            }
+            get => sourceLength;
             set
             {
                 lock (lockObject)
@@ -123,34 +114,19 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets the block alignment for this WaveStream
         /// </summary>
-        public override int BlockAlign
-        {
-            get
-            {
-                return sourceStream.BlockAlign;
-            }
-        }
+        public override int BlockAlign => sourceStream.BlockAlign;
 
         /// <summary>
         /// Returns the stream length
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return length;
-            }
-        }
+        public override long Length => length;
 
         /// <summary>
         /// Gets or sets the current position in the stream
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return position;
-            }
+            get => position;
             set
             {
                 lock (lockObject)
@@ -205,13 +181,7 @@ namespace NAudio.Wave
         /// <summary>
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get
-            {
-                return sourceStream.WaveFormat;
-            }
-        }
+        public override WaveFormat WaveFormat => sourceStream.WaveFormat;
 
         /// <summary>
         /// Determines whether this channel has any data to play

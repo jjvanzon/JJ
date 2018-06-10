@@ -11,10 +11,7 @@ namespace NAudio.CoreAudioApi
     {
         IAudioRenderClient audioRenderClientInterface;
 
-        internal AudioRenderClient(IAudioRenderClient audioRenderClientInterface)
-        {
-            this.audioRenderClientInterface = audioRenderClientInterface;
-        }
+        internal AudioRenderClient(IAudioRenderClient audioRenderClientInterface) => this.audioRenderClientInterface = audioRenderClientInterface;
 
         /// <summary>
         /// Gets a pointer to the buffer
@@ -33,10 +30,7 @@ namespace NAudio.CoreAudioApi
         /// </summary>
         /// <param name="numFramesWritten">Number of frames written</param>
         /// <param name="bufferFlags">Buffer flags</param>
-        public void ReleaseBuffer(int numFramesWritten,AudioClientBufferFlags bufferFlags)
-        {
-            Marshal.ThrowExceptionForHR(audioRenderClientInterface.ReleaseBuffer(numFramesWritten, bufferFlags));
-        }
+        public void ReleaseBuffer(int numFramesWritten,AudioClientBufferFlags bufferFlags) => Marshal.ThrowExceptionForHR(audioRenderClientInterface.ReleaseBuffer(numFramesWritten, bufferFlags));
 
         /// <summary>
         /// Release the COM object

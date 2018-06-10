@@ -129,7 +129,7 @@ namespace NAudio.Wave
         /// </summary>
         public int ResamplerQuality
         {
-            get { return resamplerQuality; }
+            get => resamplerQuality;
             set 
             { 
                 if (value < 1 || value > 60)

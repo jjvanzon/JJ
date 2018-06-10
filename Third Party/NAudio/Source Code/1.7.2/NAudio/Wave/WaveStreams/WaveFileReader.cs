@@ -29,9 +29,7 @@ namespace NAudio.Wave
         /// </remarks>
         public WaveFileReader(string waveFile) :
             this(File.OpenRead(waveFile))
-        {
-            ownInput = true;
-        }
+            => ownInput = true;
 
         /// <summary>
         /// Creates a Wave File Reader based on an input stream
@@ -52,13 +50,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets a list of the additional chunks found in this file
         /// </summary>
-        public List<RiffChunk> ExtraChunks
-        {
-            get
-            {
-                return chunks;
-            }
-        }
+        public List<RiffChunk> ExtraChunks => chunks;
 
         /// <summary>
         /// Gets the data for the specified chunk
@@ -104,26 +96,14 @@ namespace NAudio.Wave
         /// <summary>
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get
-            {
-                return waveFormat;
-            }
-        }
+        public override WaveFormat WaveFormat => waveFormat;
 
         /// <summary>
         /// This is the length of audio data contained in this WAV file, in bytes
         /// (i.e. the byte length of the data chunk, not the length of the WAV file itself)
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return dataChunkLength;
-            }
-        }
+        public override long Length => dataChunkLength;
 
         /// <summary>
         /// Number of Samples (if possible to calculate)
@@ -152,10 +132,7 @@ namespace NAudio.Wave
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return waveStream.Position - dataPosition;
-            }
+            get => waveStream.Position - dataPosition;
             set
             {
                 lock (lockObject)

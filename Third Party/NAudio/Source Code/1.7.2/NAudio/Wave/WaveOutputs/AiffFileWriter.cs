@@ -71,9 +71,7 @@ namespace NAudio.Wave
         /// <param name="format">The Wave Format of the output data</param>
         public AiffFileWriter(string filename, WaveFormat format)
             : this(new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.Read), format)
-        {
-            this.filename = filename;
-        }
+            => this.filename = filename;
 
         private void WriteSsndChunkHeader()
         {
@@ -84,15 +82,9 @@ namespace NAudio.Wave
             this.writer.Write(SwapEndian((int)format.BlockAlign));
         }
 
-        private byte[] SwapEndian(short n)
-        {
-            return new[] { (byte)(n >> 8), (byte)(n & 0xff) };
-        }
+        private byte[] SwapEndian(short n) => new[] { (byte)(n >> 8), (byte)(n & 0xff) };
 
-        private byte[] SwapEndian(int n)
-        {
-            return new[] { (byte)((n >> 24) & 0xff), (byte)((n >> 16) & 0xff), (byte)((n >> 8) & 0xff), (byte)(n & 0xff), };
-        }
+        private byte[] SwapEndian(int n) => new[] { (byte)((n >> 24) & 0xff), (byte)((n >> 16) & 0xff), (byte)((n >> 8) & 0xff), (byte)(n & 0xff), };
 
         private void CreateCommChunk()
         {
@@ -108,83 +100,56 @@ namespace NAudio.Wave
         /// <summary>
         /// The aiff file name or null if not applicable
         /// </summary>
-        public string Filename
-        {
-            get { return filename; }
-        }
+        public string Filename => filename;
 
         /// <summary>
         /// Number of bytes of audio in the data chunk
         /// </summary>
-        public override long Length
-        {
-            get { return dataChunkSize; }
-        }
+        public override long Length => dataChunkSize;
 
         /// <summary>
         /// WaveFormat of this aiff file
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return format; }
-        }
+        public WaveFormat WaveFormat => format;
 
         /// <summary>
         /// Returns false: Cannot read from a AiffFileWriter
         /// </summary>
-        public override bool CanRead
-        {
-            get { return false; }
-        }
+        public override bool CanRead => false;
 
         /// <summary>
         /// Returns true: Can write to a AiffFileWriter
         /// </summary>
-        public override bool CanWrite
-        {
-            get { return true; }
-        }
+        public override bool CanWrite => true;
 
         /// <summary>
         /// Returns false: Cannot seek within a AiffFileWriter
         /// </summary>
-        public override bool CanSeek
-        {
-            get { return false; }
-        }
+        public override bool CanSeek => false;
 
         /// <summary>
         /// Read is not supported for a AiffFileWriter
         /// </summary>
-        public override int Read(byte[] buffer, int offset, int count)
-        {
-            throw new InvalidOperationException("Cannot read from an AiffFileWriter");
-        }
+        public override int Read(byte[] buffer, int offset, int count) => throw new InvalidOperationException("Cannot read from an AiffFileWriter");
 
         /// <summary>
         /// Seek is not supported for a AiffFileWriter
         /// </summary>
-        public override long Seek(long offset, SeekOrigin origin)
-        {
-            throw new InvalidOperationException("Cannot seek within an AiffFileWriter");
-        }
+        public override long Seek(long offset, SeekOrigin origin) => throw new InvalidOperationException("Cannot seek within an AiffFileWriter");
 
         /// <summary>
         /// SetLength is not supported for AiffFileWriter
         /// </summary>
         /// <param name="value"></param>
-        public override void SetLength(long value)
-        {
-            throw new InvalidOperationException("Cannot set length of an AiffFileWriter");
-        }
+        public override void SetLength(long value) => throw new InvalidOperationException("Cannot set length of an AiffFileWriter");
 
         /// <summary>
         /// Gets the Position in the AiffFile (i.e. number of bytes written so far)
         /// </summary>
         public override long Position
         {
-            get { return dataChunkSize; }
-            set { throw new InvalidOperationException("Repositioning an AiffFileWriter is not supported"); }
+            get => dataChunkSize;
+            set => throw new InvalidOperationException("Repositioning an AiffFileWriter is not supported");
         }
 
         /// <summary>
@@ -306,10 +271,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Ensures data is written to disk
         /// </summary>
-        public override void Flush()
-        {
-            writer.Flush();
-        }
+        public override void Flush() => writer.Flush();
 
         #region IDisposable Members
 

@@ -26,20 +26,10 @@ namespace NAudioDemo.AudioPlaybackDemo
             return settingsPanel;
         }
 
-        public string Name
-        {
-            get { return "WasapiOut"; }
-        }
+        public string Name => "WasapiOut";
 
-        public bool IsAvailable
-        {
-            // supported on Vista and above
-            get { return Environment.OSVersion.Version.Major >= 6; }
-        }
+        public bool IsAvailable => Environment.OSVersion.Version.Major >= 6;
 
-        public int Priority
-        {
-            get { return 3; }
-        }
+        public int Priority => 3;
     }
 }

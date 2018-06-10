@@ -12,10 +12,7 @@ namespace NAudio.Wave
         /// </summary>
         /// <param name="waveProvider">WaveProvider to convert</param>
         /// <returns></returns>
-        public static ISampleProvider ToSampleProvider(this IWaveProvider waveProvider)
-        {
-            return SampleProviderConverters.ConvertWaveProviderIntoSampleProvider(waveProvider);
-        }
+        public static ISampleProvider ToSampleProvider(this IWaveProvider waveProvider) => SampleProviderConverters.ConvertWaveProviderIntoSampleProvider(waveProvider);
 
         /// <summary>
         /// Allows sending a SampleProvider directly to an IWavePlayer without needing to convert

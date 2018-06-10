@@ -149,14 +149,8 @@ namespace NAudio.Gui
         /// </summary>
         public int Minimum
         {
-            get
-            {
-                return minimum;
-            }
-            set
-            {
-                minimum = value;
-            }
+            get => minimum;
+            set => minimum = value;
         }
 
         /// <summary>
@@ -164,14 +158,8 @@ namespace NAudio.Gui
         /// </summary>
         public int Maximum
         {
-            get
-            {
-                return maximum;
-            }
-            set
-            {
-                maximum = value;
-            }
+            get => maximum;
+            set => maximum = value;
         }
 
         /// <summary>
@@ -179,14 +167,8 @@ namespace NAudio.Gui
         /// </summary>
         public int Value
         {
-            get
-            {
-                return (int) (percent * (maximum-minimum)) + minimum;
-            }
-            set
-            {
-                percent = (float) (value-minimum) / (maximum-minimum);
-            }
+            get => (int) (percent * (maximum-minimum)) + minimum;
+            set => percent = (float) (value-minimum) / (maximum-minimum);
         }
 
         /// <summary>
@@ -194,14 +176,8 @@ namespace NAudio.Gui
         /// </summary>
         public Orientation Orientation
         {
-            get
-            {
-                return orientation;
-            }
-            set
-            {
-                orientation = value;
-            }
+            get => orientation;
+            set => orientation = value;
         }
 
         #region Component Designer generated code

@@ -47,20 +47,14 @@ namespace NAudio.Midi
         /// <summary>
         /// <see cref="MidiEvent.GetAsShortMessage" />
         /// </summary>
-        public override int GetAsShortMessage()
-        {
-            return base.GetAsShortMessage() + (noteNumber << 8) + (velocity << 16);
-        }
+        public override int GetAsShortMessage() => base.GetAsShortMessage() + (noteNumber << 8) + (velocity << 16);
 
         /// <summary>
         /// The MIDI note number
         /// </summary>
         public virtual int NoteNumber
         {
-            get
-            {
-                return noteNumber;
-            }
+            get => noteNumber;
             set
             {
                 if (value < 0 || value > 127)
@@ -76,10 +70,7 @@ namespace NAudio.Midi
         /// </summary>
         public int Velocity
         {
-            get
-            {
-                return velocity;
-            }
+            get => velocity;
             set
             {
                 if (value < 0 || value > 127)
@@ -163,13 +154,10 @@ namespace NAudio.Midi
         /// Describes the Note Event
         /// </summary>
         /// <returns>Note event as a string</returns>
-        public override string ToString()
-        {
-            return string.Format("{0} {1} Vel:{2}",
-                base.ToString(),
-                this.NoteName,
-                this.Velocity);
-        }
+        public override string ToString() => string.Format("{0} {1} Vel:{2}",
+                                                           base.ToString(),
+                                                           this.NoteName,
+                                                           this.Velocity);
 
         /// <summary>
         /// <see cref="MidiEvent.Export"/>

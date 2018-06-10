@@ -75,12 +75,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
 			}
 		}
 
-		public static void NullCoalesce(this LanguageSelectorPartialViewModel viewModel)
-		{
-			viewModel.Languages = viewModel.Languages ?? new List<LanguageViewModel>();
-		}
+		public static void NullCoalesce(this LanguageSelectorPartialViewModel viewModel) => viewModel.Languages = viewModel.Languages ?? new List<LanguageViewModel>();
 
-		public static void NullCoalesce(this CategoryViewModel viewModel)
+	    public static void NullCoalesce(this CategoryViewModel viewModel)
 		{
 			viewModel.NameParts = viewModel.NameParts ?? new List<string>();
 			viewModel.SubCategories = viewModel.SubCategories ?? new List<CategoryViewModel>();
@@ -91,17 +88,11 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
 			}
 		}
 
-		public static void NullCoalesce(this QuestionConfirmDeleteViewModel viewModel)
-		{
-			viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
-		}
+		public static void NullCoalesce(this QuestionConfirmDeleteViewModel viewModel) => viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
 
-		public static void NullCoalesce(this QuestionDeleteConfirmedViewModel viewModel)
-		{
-			viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
-		}
+	    public static void NullCoalesce(this QuestionDeleteConfirmedViewModel viewModel) => viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
 
-		public static void NullCoalesce(this RandomQuestionViewModel viewModel)
+	    public static void NullCoalesce(this RandomQuestionViewModel viewModel)
 		{
 			viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
 			viewModel.LanguageSelector = viewModel.LanguageSelector ?? new LanguageSelectorPartialViewModel();

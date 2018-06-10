@@ -24,26 +24,17 @@ namespace NAudio.Wave
         /// <summary>
         /// Samples per block
         /// </summary>
-        public int SamplesPerBlock
-        {
-            get { return samplesPerBlock; }
-        }
+        public int SamplesPerBlock => samplesPerBlock;
 
         /// <summary>
         /// Number of coefficients
         /// </summary>
-        public int NumCoefficients
-        {
-            get { return numCoeff; }
-        }
+        public int NumCoefficients => numCoeff;
 
         /// <summary>
         /// Coefficients
         /// </summary>
-        public short[] Coefficients
-        {
-            get { return coefficients; }
-        }
+        public short[] Coefficients => coefficients;
 
         /// <summary>
         /// Microsoft ADPCM  
@@ -104,10 +95,7 @@ namespace NAudio.Wave
         /// <summary>
         /// String Description of this WaveFormat
         /// </summary>
-        public override string ToString()
-        {
-            return string.Format("Microsoft ADPCM {0} Hz {1} channels {2} bits per sample {3} samples per block",
-                this.SampleRate, this.channels, this.bitsPerSample, this.samplesPerBlock);
-        }
+        public override string ToString() => string.Format("Microsoft ADPCM {0} Hz {1} channels {2} bits per sample {3} samples per block",
+                                                           this.SampleRate, this.channels, this.bitsPerSample, this.samplesPerBlock);
     }
 }

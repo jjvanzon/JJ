@@ -29,10 +29,7 @@ namespace NAudio.Midi
         /// <summary>
         /// MIDI File format
         /// </summary>
-        public int FileFormat
-        {
-            get { return fileFormat; }
-        }
+        public int FileFormat => fileFormat;
 
         /// <summary>
         /// Opens a MIDI file for reading
@@ -146,26 +143,17 @@ namespace NAudio.Midi
         /// <summary>
         /// The collection of events in this MIDI file
         /// </summary>
-        public MidiEventCollection Events
-        {
-            get { return events; }
-        }
+        public MidiEventCollection Events => events;
 
         /// <summary>
         /// Number of tracks in this MIDI file
         /// </summary>
-        public int Tracks
-        {
-            get { return events.Tracks; }
-        }
+        public int Tracks => events.Tracks;
 
         /// <summary>
         /// Delta Ticks Per Quarter Note
         /// </summary>
-        public int DeltaTicksPerQuarterNote
-        {
-            get { return deltaTicksPerQuarterNote; }
-        }
+        public int DeltaTicksPerQuarterNote => deltaTicksPerQuarterNote;
 
         private void FindNoteOn(NoteEvent offEvent, List<NoteOnEvent> outstandingNoteOns)
         {
@@ -189,16 +177,10 @@ namespace NAudio.Midi
             }
         }
         
-        private static uint SwapUInt32(uint i) 
-        {
-            return ((i & 0xFF000000) >> 24) | ((i & 0x00FF0000) >> 8) | ((i & 0x0000FF00) << 8) | ((i & 0x000000FF) << 24);
-        }
+        private static uint SwapUInt32(uint i) => ((i & 0xFF000000) >> 24) | ((i & 0x00FF0000) >> 8) | ((i & 0x0000FF00) << 8) | ((i & 0x000000FF) << 24);
 
-        private static ushort SwapUInt16(ushort i) 
-        {
-            return (ushort) (((i & 0xFF00) >> 8) | ((i & 0x00FF) << 8));
-        }
-        
+        private static ushort SwapUInt16(ushort i) => (ushort) (((i & 0xFF00) >> 8) | ((i & 0x00FF) << 8));
+
         /// <summary>
         /// Describes the MIDI file
         /// </summary>

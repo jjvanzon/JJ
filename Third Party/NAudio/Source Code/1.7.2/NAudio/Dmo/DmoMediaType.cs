@@ -23,26 +23,17 @@ namespace NAudio.Dmo
         /// <summary>
         /// Major type
         /// </summary>
-        public Guid MajorType
-        {
-            get { return majortype; }
-        }
+        public Guid MajorType => majortype;
 
         /// <summary>
         /// Major type name
         /// </summary>
-        public string MajorTypeName
-        {
-            get { return MediaTypes.GetMediaTypeName(majortype); }
-        }
+        public string MajorTypeName => MediaTypes.GetMediaTypeName(majortype);
 
         /// <summary>
         /// Subtype
         /// </summary>
-        public Guid SubType
-        {
-            get { return subtype; }
-        }
+        public Guid SubType => subtype;
 
         /// <summary>
         /// Subtype name
@@ -62,26 +53,17 @@ namespace NAudio.Dmo
         /// <summary>
         /// Fixed size samples
         /// </summary>
-        public bool FixedSizeSamples
-        {
-            get { return bFixedSizeSamples; }
-        }
+        public bool FixedSizeSamples => bFixedSizeSamples;
 
         /// <summary>
         /// Sample size
         /// </summary>
-        public int SampleSize
-        {
-            get { return lSampleSize; }
-        }
+        public int SampleSize => lSampleSize;
 
         /// <summary>
         /// Format type
         /// </summary>
-        public Guid FormatType
-        {
-            get { return formattype; }
-        }
+        public Guid FormatType => formattype;
 
         /// <summary>
         /// Format type name

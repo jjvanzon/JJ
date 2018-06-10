@@ -16,7 +16,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Allows the extra data to be read
         /// </summary>
-        public byte[] ExtraData { get { return extraData; } }
+        public byte[] ExtraData => extraData;
 
         /// <summary>
         /// parameterless constructor for marshalling
@@ -30,9 +30,7 @@ namespace NAudio.Wave
         /// </summary>
         public WaveFormatExtraData(BinaryReader reader)
             : base(reader)
-        {
-            ReadExtraData(reader);
-        }
+            => ReadExtraData(reader);
 
         internal void ReadExtraData(BinaryReader reader)
         {

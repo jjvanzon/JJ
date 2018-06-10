@@ -70,10 +70,7 @@ namespace NAudio.Dsp
         /// </summary>
         public float AttackRate
         {
-            get
-            {
-                return attackRate;
-            }
+            get => attackRate;
             set
             {
                 attackRate = value;
@@ -87,10 +84,7 @@ namespace NAudio.Dsp
         /// </summary>
         public float DecayRate
         {
-            get
-            {
-                return decayRate;
-            }
+            get => decayRate;
             set
             {
                 decayRate = value;
@@ -104,10 +98,7 @@ namespace NAudio.Dsp
         /// </summary>
         public float ReleaseRate
         {
-            get
-            {
-                return releaseRate;
-            }
+            get => releaseRate;
             set
             {
                 releaseRate = value;
@@ -116,20 +107,14 @@ namespace NAudio.Dsp
             }
         }
 
-        private static float CalcCoef(float rate, float targetRatio)
-        {
-            return (float)Math.Exp(-Math.Log((1.0f + targetRatio) / targetRatio) / rate);
-        }
+        private static float CalcCoef(float rate, float targetRatio) => (float)Math.Exp(-Math.Log((1.0f + targetRatio) / targetRatio) / rate);
 
         /// <summary>
         /// Sustain Level (1 = 100%)
         /// </summary>
         public float SustainLevel
         {
-            get
-            {
-                return sustainLevel;
-            }
+            get => sustainLevel;
             set
             {
                 sustainLevel = value;
@@ -215,13 +200,7 @@ namespace NAudio.Dsp
         /// <summary>
         /// Current envelope state
         /// </summary>
-        public EnvelopeState State
-        {
-            get
-            {
-                return state;
-            }
-        }
+        public EnvelopeState State => state;
 
         /// <summary>
         /// Reset to idle state
@@ -235,9 +214,6 @@ namespace NAudio.Dsp
         /// <summary>
         /// Get the current output level
         /// </summary>
-        public float GetOutput()
-        {
-            return output;
-        }
+        public float GetOutput() => output;
     }
 }

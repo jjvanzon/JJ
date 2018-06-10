@@ -43,7 +43,7 @@ namespace NAudio.FileFormats.Mp3
         /// <summary>
         /// Converted PCM WaveFormat
         /// </summary>
-        public WaveFormat OutputFormat { get { return pcmFormat; } }
+        public WaveFormat OutputFormat => pcmFormat;
 
         /// <summary>
         /// Decompress a single frame of MP3
@@ -84,10 +84,7 @@ namespace NAudio.FileFormats.Mp3
         /// <summary>
         /// Alerts us that a reposition has occured so the MP3 decoder needs to reset its state
         /// </summary>
-        public void Reset()
-        {
-            reposition = true;
-        }
+        public void Reset() => reposition = true;
 
         /// <summary>
         /// Dispose of this obejct and clean up resources

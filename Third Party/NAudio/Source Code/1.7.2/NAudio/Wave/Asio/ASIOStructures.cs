@@ -46,7 +46,7 @@ namespace NAudio.Wave.Asio
 
         public ASIOError Error
         {
-            get { return error; }
+            get => error;
             set
             {
                 error = value;
@@ -59,10 +59,7 @@ namespace NAudio.Wave.Asio
         /// </summary>
         /// <param name="error">The error.</param>
         /// <returns>the name of the error</returns>
-        static public string getErrorName(ASIOError error)
-        {
-            return Enum.GetName(typeof(ASIOError), error);            
-        }
+        static public string getErrorName(ASIOError error) => Enum.GetName(typeof(ASIOError), error);
     }
 
     // -------------------------------------------------------------------------------
@@ -92,11 +89,7 @@ namespace NAudio.Wave.Asio
         public IntPtr pBuffer0;    // on output: double buffer addresses
         public IntPtr pBuffer1;    // on output: double buffer addresses
 
-        public IntPtr Buffer(int bufferIndex)
-        {
-            return (bufferIndex == 0) ? pBuffer0 : pBuffer1;
-        }
-
+        public IntPtr Buffer(int bufferIndex) => (bufferIndex == 0) ? pBuffer0 : pBuffer1;
     }
 
     internal enum ASIOMessageSelector

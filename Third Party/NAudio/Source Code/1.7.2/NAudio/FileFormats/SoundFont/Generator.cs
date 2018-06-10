@@ -15,14 +15,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public GeneratorEnum GeneratorType 
 		{
-			get 
-			{
-				return generatorType;
-			}
-			set 
-			{
-				generatorType = value;
-			}
+			get => generatorType;
+		    set => generatorType = value;
 		}
 		
 		/// <summary>
@@ -30,14 +24,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public ushort UInt16Amount 
 		{
-			get 
-			{
-				return rawAmount;
-			}
-			set 
-			{
-				rawAmount = value;
-			}
+			get => rawAmount;
+		    set => rawAmount = value;
 		}
 		
 		/// <summary>
@@ -45,14 +33,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public short Int16Amount 
 		{
-			get 
-			{
-				return (short) rawAmount;
-			}
-			set 
-			{
-				rawAmount = (ushort) value;
-			}
+			get => (short) rawAmount;
+		    set => rawAmount = (ushort) value;
 		}
 		
 		/// <summary>
@@ -60,11 +42,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public byte LowByteAmount 
 		{
-			get 
-			{
-				return (byte) (rawAmount & 0x00FF);
-			}
-			set 
+			get => (byte) (rawAmount & 0x00FF);
+		    set 
 			{
 				rawAmount &= 0xFF00;
 				rawAmount += value;
@@ -76,11 +55,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public byte HighByteAmount 
 		{
-			get 
-			{
-				return (byte) ((rawAmount & 0xFF00) >> 8);
-			}
-			set 
+			get => (byte) ((rawAmount & 0xFF00) >> 8);
+		    set 
 			{
 				rawAmount &= 0x00FF;
 				rawAmount += (ushort) (value << 8);
@@ -92,14 +68,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public Instrument Instrument
 		{
-			get
-			{
-				return instrument;
-			}
-			set
-			{
-				instrument = value;
-			}
+			get => instrument;
+		    set => instrument = value;
 		}
 
 		/// <summary>
@@ -107,14 +77,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public SampleHeader SampleHeader
 		{
-			get
-			{
-				return sampleHeader;
-			}
-			set
-			{
-				sampleHeader = value;
-			}
+			get => sampleHeader;
+		    set => sampleHeader = value;
 		}
 
 		/// <summary>

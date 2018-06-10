@@ -144,15 +144,9 @@ namespace NAudioDemo
             return new AcmMp3FrameDecompressor(waveFormat);
         }
 
-        private bool IsBufferNearlyFull
-        {
-            get
-            {
-                return bufferedWaveProvider != null && 
-                       bufferedWaveProvider.BufferLength - bufferedWaveProvider.BufferedBytes 
-                       < bufferedWaveProvider.WaveFormat.AverageBytesPerSecond / 4;
-            }
-        }
+        private bool IsBufferNearlyFull => bufferedWaveProvider != null && 
+                                           bufferedWaveProvider.BufferLength - bufferedWaveProvider.BufferedBytes 
+                                           < bufferedWaveProvider.WaveFormat.AverageBytesPerSecond / 4;
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
@@ -249,15 +243,9 @@ namespace NAudioDemo
             Debug.WriteLine(string.Format("Paused to buffer, waveOut.PlaybackState={0}", waveOut.PlaybackState));
         }
 
-        private IWavePlayer CreateWaveOut()
-        {
-            return new WaveOut();
-        }
+        private IWavePlayer CreateWaveOut() => new WaveOut();
 
-        private void MP3StreamingPanel_Disposing(object sender, EventArgs e)
-        {
-            StopPlayback();
-        }
+        private void MP3StreamingPanel_Disposing(object sender, EventArgs e) => StopPlayback();
 
         private void buttonPause_Click(object sender, EventArgs e)
         {
@@ -269,10 +257,7 @@ namespace NAudioDemo
             }
         }
 
-        private void buttonStop_Click(object sender, EventArgs e)
-        {
-            StopPlayback();
-        }
+        private void buttonStop_Click(object sender, EventArgs e) => StopPlayback();
 
         private void OnPlaybackStopped(object sender, StoppedEventArgs e)
         {
@@ -287,14 +272,8 @@ namespace NAudioDemo
     [Export(typeof(INAudioDemoPlugin))]
     public class Mp3StreamingPanelPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "MP3 Streaming"; }
-        }
+        public string Name => "MP3 Streaming";
 
-        public Control CreatePanel()
-        {
-            return new Mp3StreamingPanel();
-        }
+        public Control CreatePanel() => new Mp3StreamingPanel();
     }
 }

@@ -39,33 +39,18 @@ namespace NAudio.Midi
         /// <summary>
         /// Number of sharps or flats
         /// </summary>
-        public int SharpsFlats
-        {
-            get
-            {
-                return sharpsFlats;
-            }
-        }
+        public int SharpsFlats => sharpsFlats;
 
         /// <summary>
         /// Major or Minor key
         /// </summary>
-        public int MajorMinor
-        {
-            get
-            {
-                return majorMinor;
-            }
-        }
+        public int MajorMinor => majorMinor;
 
         /// <summary>
         /// Describes this event
         /// </summary>
         /// <returns>String describing the event</returns>
-        public override string ToString()
-        {
-            return string.Format("{0} {1} {2}", base.ToString(), sharpsFlats, majorMinor);
-        }
+        public override string ToString() => string.Format("{0} {1} {2}", base.ToString(), sharpsFlats, majorMinor);
 
         /// <summary>
         /// Calls base class export first, then exports the data 

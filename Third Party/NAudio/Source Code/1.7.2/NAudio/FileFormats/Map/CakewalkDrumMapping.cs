@@ -43,10 +43,7 @@ namespace NAudio.FileFormats.Map
         /// <summary>
         /// Describes this drum map entry
         /// </summary>
-        public override string ToString()
-        {
-            return string.Format("{0} In:{1} Out:{2} Ch:{3} Port:{4} Vel+:{5} Vel:{6}%",
-                NoteName, InNote, OutNote, Channel, OutPort, VelocityAdjust, VelocityScale*100);
-        }
+        public override string ToString() => string.Format("{0} In:{1} Out:{2} Ch:{3} Port:{4} Vel+:{5} Vel:{6}%",
+                                                           NoteName, InNote, OutNote, Channel, OutPort, VelocityAdjust, VelocityScale*100);
     }
 }

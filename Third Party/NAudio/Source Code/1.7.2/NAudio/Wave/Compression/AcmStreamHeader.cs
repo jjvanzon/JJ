@@ -52,10 +52,7 @@ namespace NAudio.Wave.Compression
             }
         }
 
-        public void Reposition()
-        {
-            firstTime = true;
-        }
+        public void Reposition() => firstTime = true;
 
         public int Convert(int bytesToConvert, out int sourceBytesConverted)
         {
@@ -78,21 +75,9 @@ namespace NAudio.Wave.Compression
             return streamHeader.destBufferLengthUsed;
         }
 
-        public byte[] SourceBuffer
-        {
-            get
-            {
-                return sourceBuffer;
-            }
-        }
+        public byte[] SourceBuffer => sourceBuffer;
 
-        public byte[] DestBuffer
-        {
-            get
-            {
-                return destBuffer;
-            }
-        }
+        public byte[] DestBuffer => destBuffer;
 
         #region IDisposable Members
 

@@ -5,9 +5,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc
 {
 	internal class DispatcherConfig
 	{
-		public static void AddMappings()
-		{
-			ActionDispatcher.RegisterAssembly(Assembly.GetExecutingAssembly());
-		}
+		public static void AddMappings() => ActionDispatcher.RegisterAssembly(Assembly.GetExecutingAssembly());
 	}
 }

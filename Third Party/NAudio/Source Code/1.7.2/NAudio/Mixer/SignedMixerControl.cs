@@ -24,12 +24,9 @@ namespace NAudio.Mixer
 		/// <summary>
 		/// Gets details for this contrl
 		/// </summary>
-		protected override void GetDetails(IntPtr pDetails) 
-		{
-			signedDetails = (MixerInterop.MIXERCONTROLDETAILS_SIGNED) Marshal.PtrToStructure(mixerControlDetails.paDetails,typeof(MixerInterop.MIXERCONTROLDETAILS_SIGNED));
-		}
-		
-		/// <summary>
+		protected override void GetDetails(IntPtr pDetails) => signedDetails = (MixerInterop.MIXERCONTROLDETAILS_SIGNED) Marshal.PtrToStructure(mixerControlDetails.paDetails,typeof(MixerInterop.MIXERCONTROLDETAILS_SIGNED));
+
+	    /// <summary>
 		/// The value of the control
 		/// </summary>
 		public int Value 
@@ -52,47 +49,26 @@ namespace NAudio.Mixer
 		/// <summary>
 		/// Minimum value for this control
 		/// </summary>
-		public int MinValue 
-		{
-			get 
-			{
-				return mixerControl.Bounds.minimum;
-			}
-		}
+		public int MinValue => mixerControl.Bounds.minimum;
 
-		/// <summary>
+	    /// <summary>
 		/// Maximum value for this control
 		/// </summary>
-		public int MaxValue 
-		{
-			get 
-			{
-				return mixerControl.Bounds.maximum;
-			}
-		}
+		public int MaxValue => mixerControl.Bounds.maximum;
 
-        /// <summary>
+	    /// <summary>
         /// Value of the control represented as a percentage
         /// </summary>
         public double Percent
         {
-            get
-            {
-                return 100.0 * (Value - MinValue) / (double)(MaxValue - MinValue);
-            }
-            set
-            {
-                Value = (int)(MinValue + (value / 100.0) * (MaxValue - MinValue));
-            }
-        }
+            get => 100.0 * (Value - MinValue) / (double)(MaxValue - MinValue);
+	        set => Value = (int)(MinValue + (value / 100.0) * (MaxValue - MinValue));
+	    }
 
         /// <summary>
         /// String Representation for debugging purposes
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("{0} {1}%", base.ToString(), Percent);
-        }
+        public override string ToString() => string.Format("{0} {1}%", base.ToString(), Percent);
 	}
 }

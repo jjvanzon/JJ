@@ -6,14 +6,8 @@ namespace NAudioDemo.Generator
     [Export(typeof (INAudioDemoPlugin))]
     internal class GeneratorPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "Signal Generator"; }
-        }
+        public string Name => "Signal Generator";
 
-        public Control CreatePanel()
-        {
-            return new GeneratorPanel();
-        }
+        public Control CreatePanel() => new GeneratorPanel();
     }
 }

@@ -85,34 +85,22 @@ namespace NAudio.Wave.Asio
         /// Gets the driver used.
         /// </summary>
         /// <value>The ASIOdriver.</value>
-        public ASIODriver Driver
-        {
-            get { return driver; }
-        }
+        public ASIODriver Driver => driver;
 
         /// <summary>
         /// Starts playing the buffers.
         /// </summary>
-        public void Start()
-        {
-            driver.start();
-        }
+        public void Start() => driver.start();
 
         /// <summary>
         /// Stops playing the buffers.
         /// </summary>
-        public void Stop()
-        {
-            driver.stop();
-        }
+        public void Stop() => driver.stop();
 
         /// <summary>
         /// Shows the control panel.
         /// </summary>
-        public void ShowControlPanel()
-        {
-            driver.controlPanel();
-        }
+        public void ShowControlPanel() => driver.controlPanel();
 
         /// <summary>
         /// Releases this instance.
@@ -136,10 +124,7 @@ namespace NAudio.Wave.Asio
         /// <returns>
         /// 	<c>true</c> if [is sample rate supported]; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsSampleRateSupported(double sampleRate)
-        {
-            return driver.canSampleRate(sampleRate);
-        }
+        public bool IsSampleRateSupported(double sampleRate) => driver.canSampleRate(sampleRate);
 
         /// <summary>
         /// Sets the sample rate.
@@ -158,18 +143,15 @@ namespace NAudio.Wave.Asio
         /// <value>The fill buffer callback.</value>
         public ASIOFillBufferCallback FillBufferCallback
         {
-            get { return fillBufferCallback; }
-            set { fillBufferCallback = value; }
+            get => fillBufferCallback;
+            set => fillBufferCallback = value;
         }
 
         /// <summary>
         /// Gets the capabilities of the ASIODriver.
         /// </summary>
         /// <value>The capabilities.</value>
-        public AsioDriverCapability Capabilities
-        {
-            get { return capability; }
-        }
+        public AsioDriverCapability Capabilities => capability;
 
         /// <summary>
         /// Creates the buffers for playing.
@@ -323,11 +305,7 @@ namespace NAudio.Wave.Asio
         /// Callback called by the ASIODriver on event "Samples rate changed".
         /// </summary>
         /// <param name="sRate">The sample rate.</param>
-        private void SampleRateDidChangeCallBack(double sRate)
-        {
-            // Check when this is called?
-            capability.SampleRate = sRate;
-        }
+        private void SampleRateDidChangeCallBack(double sRate) => capability.SampleRate = sRate;
 
         /// <summary>
         /// Asio message call back.
@@ -389,10 +367,6 @@ namespace NAudio.Wave.Asio
         /// <param name="doubleBufferIndex">Index of the double buffer.</param>
         /// <param name="directProcess">if set to <c>true</c> [direct process].</param>
         /// <returns></returns>
-        private IntPtr BufferSwitchTimeInfoCallBack(IntPtr asioTimeParam, int doubleBufferIndex, bool directProcess)
-        {
-            // Check when this is called?
-            return IntPtr.Zero;
-        }
+        private IntPtr BufferSwitchTimeInfoCallBack(IntPtr asioTimeParam, int doubleBufferIndex, bool directProcess) => IntPtr.Zero;
     }
 }

@@ -21,10 +21,7 @@
         /// <summary>
         /// WaveFormat
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return source.WaveFormat; }
-        }
+        public WaveFormat WaveFormat => source.WaveFormat;
 
         /// <summary>
         /// Reads samples from this sample provider
@@ -51,8 +48,8 @@
         /// </summary>
         public float Volume
         {
-            get { return volume; }
-            set { volume = value; }
+            get => volume;
+            set => volume = value;
         }
     }
 }

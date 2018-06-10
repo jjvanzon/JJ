@@ -32,53 +32,34 @@ namespace NAudio.Midi
         /// <summary>
         /// Hours
         /// </summary>
-        public int Hours
-        {
-            get { return hours; }
-        }
+        public int Hours => hours;
 
         /// <summary>
         /// Minutes
         /// </summary>
-        public int Minutes
-        {
-            get { return minutes; }
-        }
+        public int Minutes => minutes;
 
         /// <summary>
         /// Seconds
         /// </summary>
-        public int Seconds
-        {
-            get { return seconds; }
-        }
+        public int Seconds => seconds;
 
         /// <summary>
         /// Frames
         /// </summary>
-        public int Frames
-        {
-            get { return frames; }
-        }
+        public int Frames => frames;
 
         /// <summary>
         /// SubFrames
         /// </summary>
-        public int SubFrames
-        {
-            get { return subFrames; }
-        }
+        public int SubFrames => subFrames;
 
-        
         /// <summary>
         /// Describes this time signature event
         /// </summary>
         /// <returns>A string describing this event</returns>
-        public override string ToString() 
-        {
-            return string.Format("{0} {1}:{2}:{3}:{4}:{5}",
-                base.ToString(),hours,minutes,seconds,frames,subFrames);
-        }
+        public override string ToString() => string.Format("{0} {1}:{2}:{3}:{4}:{5}",
+                                                           base.ToString(),hours,minutes,seconds,frames,subFrames);
 
         /// <summary>
         /// Calls base class export first, then exports the data 

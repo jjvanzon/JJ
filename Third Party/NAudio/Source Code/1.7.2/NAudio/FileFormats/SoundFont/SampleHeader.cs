@@ -51,11 +51,7 @@ namespace NAudio.SoundFont
 		/// <summary>
 		/// <see cref="Object.ToString"/>
 		/// </summary>
-		public override string ToString()
-		{
-			return SampleName;
-		}
-		
+		public override string ToString() => SampleName;
 	}
 }
 

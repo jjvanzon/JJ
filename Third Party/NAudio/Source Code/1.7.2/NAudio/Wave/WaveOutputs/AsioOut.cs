@@ -81,10 +81,7 @@ namespace NAudio.Wave
         /// Releases unmanaged resources and performs other cleanup operations before the
         /// <see cref="AsioOut"/> is reclaimed by garbage collection.
         /// </summary>
-        ~AsioOut()
-        {
-            Dispose();
-        }
+        ~AsioOut() => Dispose();
 
         /// <summary>
         /// Dispose
@@ -106,10 +103,7 @@ namespace NAudio.Wave
         /// Gets the names of the installed ASIO Driver.
         /// </summary>
         /// <returns>an array of driver names</returns>
-        public static string[] GetDriverNames()
-        {
-            return ASIODriver.GetASIODriverNames();
-        }
+        public static string[] GetDriverNames() => ASIODriver.GetASIODriverNames();
 
         /// <summary>
         /// Determines whether ASIO is supported.
@@ -117,10 +111,7 @@ namespace NAudio.Wave
         /// <returns>
         ///     <c>true</c> if ASIO is supported; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isSupported()
-        {
-            return GetDriverNames().Length > 0;
-        }
+        public static bool isSupported() => GetDriverNames().Length > 0;
 
         /// <summary>
         /// Inits the driver from the asio driver name.
@@ -139,10 +130,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Shows the control panel
         /// </summary>
-        public void ShowControlPanel()
-        {
-            driver.ShowControlPanel();
-        }
+        public void ShowControlPanel() => driver.ShowControlPanel();
 
         /// <summary>
         /// Starts playback
@@ -179,10 +167,7 @@ namespace NAudio.Wave
         /// Initialises to play
         /// </summary>
         /// <param name="waveProvider">Source wave provider</param>
-        public void Init(IWaveProvider waveProvider)
-        {
-            this.InitRecordAndPlayback(waveProvider, 0, -1);
-        }
+        public void Init(IWaveProvider waveProvider) => this.InitRecordAndPlayback(waveProvider, 0, -1);
 
         /// <summary>
         /// Initialises to play, with optional recording
@@ -298,18 +283,12 @@ namespace NAudio.Wave
         /// <summary>
         /// Playback State
         /// </summary>
-        public PlaybackState PlaybackState
-        {
-            get { return playbackState; }
-        }
+        public PlaybackState PlaybackState => playbackState;
 
         /// <summary>
         /// Driver Name
         /// </summary>
-        public string DriverName
-        {
-            get { return this.driverName; }
-        }
+        public string DriverName => this.driverName;
 
         /// <summary>
         /// The number of output channels we are currently using for playback
@@ -326,12 +305,12 @@ namespace NAudio.Wave
         /// <summary>
         /// The maximum number of input channels this ASIO driver supports
         /// </summary>
-        public int DriverInputChannelCount { get { return driver.Capabilities.NbInputChannels; } }
-        
+        public int DriverInputChannelCount => driver.Capabilities.NbInputChannels;
+
         /// <summary>
         /// The maximum number of output channels this ASIO driver supports
         /// </summary>
-        public int DriverOutputChannelCount { get { return driver.Capabilities.NbOutputChannels; } }
+        public int DriverOutputChannelCount => driver.Capabilities.NbOutputChannels;
 
         /// <summary>
         /// By default the first channel on the input WaveProvider is sent to the first ASIO output.
@@ -355,10 +334,7 @@ namespace NAudio.Wave
         [Obsolete("this function will be removed in a future NAudio as ASIO does not support setting the volume on the device")]
         public float Volume
         {
-            get
-            {
-                return 1.0f;
-            }
+            get => 1.0f;
             set
             {
                 if (value != 1.0f)
@@ -389,19 +365,13 @@ namespace NAudio.Wave
         /// </summary>
         /// <param name="channel">channel index (zero based)</param>
         /// <returns>channel name</returns>
-        public string AsioInputChannelName(int channel)
-        {
-            return channel > DriverInputChannelCount ? "" : driver.Capabilities.InputChannelInfos[channel].name;
-        }
+        public string AsioInputChannelName(int channel) => channel > DriverInputChannelCount ? "" : driver.Capabilities.InputChannelInfos[channel].name;
 
         /// <summary>
         /// Get the output channel name
         /// </summary>
         /// <param name="channel">channel index (zero based)</param>
         /// <returns>channel name</returns>
-        public string AsioOutputChannelName(int channel)
-        {
-            return channel > DriverOutputChannelCount ? "" : driver.Capabilities.OutputChannelInfos[channel].name;
-        }
+        public string AsioOutputChannelName(int channel) => channel > DriverOutputChannelCount ? "" : driver.Capabilities.OutputChannelInfos[channel].name;
     }
 }

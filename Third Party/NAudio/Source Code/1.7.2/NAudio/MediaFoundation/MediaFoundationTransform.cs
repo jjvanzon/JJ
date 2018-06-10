@@ -87,15 +87,12 @@ namespace NAudio.MediaFoundation
         /// <summary>
         /// Destructor
         /// </summary>
-        ~MediaFoundationTransform()
-        {
-            Dispose(false);
-        }
+        ~MediaFoundationTransform() => Dispose(false);
 
         /// <summary>
         /// The output WaveFormat of this Media Foundation Transform
         /// </summary>
-        public WaveFormat WaveFormat { get { return outputWaveFormat; } }
+        public WaveFormat WaveFormat => outputWaveFormat;
 
         /// <summary>
         /// Reads data out of the source, passing it through the transform

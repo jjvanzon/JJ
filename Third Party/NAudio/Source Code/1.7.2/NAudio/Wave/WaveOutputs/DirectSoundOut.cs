@@ -123,10 +123,7 @@ namespace NAudio.Wave
         /// Releases unmanaged resources and performs other cleanup operations before the
         /// <see cref="DirectSoundOut"/> is reclaimed by garbage collection.
         /// </summary>
-        ~DirectSoundOut()
-        {
-            Dispose();
-        }
+        ~DirectSoundOut() => Dispose();
 
         /// <summary>
         /// Begin playback
@@ -337,10 +334,7 @@ namespace NAudio.Wave
         /// Current playback state
         /// </summary>
         /// <value></value>
-        public PlaybackState PlaybackState
-        {
-            get { return playbackState; }
-        }
+        public PlaybackState PlaybackState => playbackState;
 
         /// <summary>
         /// The volume 1.0 is full scale
@@ -348,11 +342,7 @@ namespace NAudio.Wave
         /// <value></value>
         public float Volume
         {
-            get
-            {
-                return 1.0f;
-                //return 1 + (secondaryBuffer.GetVolume()) / 10000.0f;
-            }
+            get => 1.0f;
             set
             {
                 if (value != 1.0f)
@@ -379,10 +369,7 @@ namespace NAudio.Wave
         /// <returns>
         /// 	<c>true</c> if [is buffer lost]; otherwise, <c>false</c>.
         /// </returns>
-        private bool IsBufferLost()
-        {
-            return (secondaryBuffer.GetStatus() & DirectSoundBufferStatus.DSBSTATUS_BUFFERLOST) != 0 ? true : false;
-        }
+        private bool IsBufferLost() => (secondaryBuffer.GetStatus() & DirectSoundBufferStatus.DSBSTATUS_BUFFERLOST) != 0 ? true : false;
 
         /// <summary>
         /// Convert ms to bytes size according to WaveFormat

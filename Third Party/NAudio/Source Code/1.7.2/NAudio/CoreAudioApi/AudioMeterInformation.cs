@@ -48,24 +48,12 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// Peak Values
         /// </summary>
-        public AudioMeterInformationChannels PeakValues
-        {
-            get
-            {
-                return channels;
-            }
-        }
+        public AudioMeterInformationChannels PeakValues => channels;
 
         /// <summary>
         /// Hardware Support
         /// </summary>
-        public EEndpointHardwareSupport HardwareSupport
-        {
-            get
-            {
-                return hardwareSupport;
-            }
-        }
+        public EEndpointHardwareSupport HardwareSupport => hardwareSupport;
 
         /// <summary>
         /// Master Peak Value

@@ -22,10 +22,7 @@ namespace NAudioDemo.FadeInOutDemo
             this.timer1.Tick += new EventHandler(timer1_Tick);
         }
 
-        private static string FormatTimeSpan(TimeSpan ts)
-        {
-            return string.Format("{0:D2}:{1:D2}", (int)ts.TotalMinutes, ts.Seconds);
-        }
+        private static string FormatTimeSpan(TimeSpan ts) => string.Format("{0:D2}:{1:D2}", (int)ts.TotalMinutes, ts.Seconds);
 
         void timer1_Tick(object sender, EventArgs e)
         {
@@ -36,10 +33,7 @@ namespace NAudioDemo.FadeInOutDemo
             }
         }
 
-        void SimplePlaybackPanel_Disposed(object sender, EventArgs e)
-        {
-            CleanUp();
-        }
+        void SimplePlaybackPanel_Disposed(object sender, EventArgs e) => CleanUp();
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
@@ -113,11 +107,7 @@ namespace NAudioDemo.FadeInOutDemo
             this.fadeInOut = null;
         }
 
-        private void buttonStop_Click(object sender, EventArgs e)
-        {
-            this.wavePlayer.Stop();
-            // don't set button states now, we'll wait for our PlaybackStopped to come
-        }
+        private void buttonStop_Click(object sender, EventArgs e) => this.wavePlayer.Stop();
 
         private void volumeSlider1_VolumeChanged(object sender, EventArgs e)
         {
@@ -127,10 +117,7 @@ namespace NAudioDemo.FadeInOutDemo
             }
         }
 
-        private void buttonOpen_Click(object sender, EventArgs e)
-        {
-            SelectInputFile();
-        }
+        private void buttonOpen_Click(object sender, EventArgs e) => SelectInputFile();
 
         private int GetFadeDuration()
         {

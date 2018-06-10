@@ -59,17 +59,11 @@ namespace NAudio.Utils
         /// <summary>
         /// MergeSort a list of comparable items
         /// </summary>
-        public static void Sort<T>(IList<T> list) where T : IComparable<T>
-        {
-            Sort(list, 0, list.Count - 1, Comparer<T>.Default);
-        }
+        public static void Sort<T>(IList<T> list) where T : IComparable<T> => Sort(list, 0, list.Count - 1, Comparer<T>.Default);
 
         /// <summary>
         /// MergeSort a list 
         /// </summary>
-        public static void Sort<T>(IList<T> list, IComparer<T> comparer)
-        {
-            Sort(list, 0, list.Count - 1, comparer);
-        }
+        public static void Sort<T>(IList<T> list, IComparer<T> comparer) => Sort(list, 0, list.Count - 1, comparer);
     }
 }

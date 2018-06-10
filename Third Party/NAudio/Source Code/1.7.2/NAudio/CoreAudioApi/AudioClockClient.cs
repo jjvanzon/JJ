@@ -12,13 +12,7 @@ namespace NAudio.CoreAudioApi
     {
         IAudioClock audioClockClientInterface;
 
-        internal AudioClockClient(IAudioClock audioClockClientInterface)
-        {
-            this.audioClockClientInterface = audioClockClientInterface;
-
-            //Stopwatch.GetTimestamp();
-            //Stopwatch.Frequency
-        }
+        internal AudioClockClient(IAudioClock audioClockClientInterface) => this.audioClockClientInterface = audioClockClientInterface;
 
         /// <summary>
         /// Characteristics
@@ -101,10 +95,7 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// Can Adjust Position
         /// </summary>
-        public bool CanAdjustPosition
-        {
-            get { return Stopwatch.IsHighResolution; }
-        }
+        public bool CanAdjustPosition => Stopwatch.IsHighResolution;
 
         #region IDisposable Members
 

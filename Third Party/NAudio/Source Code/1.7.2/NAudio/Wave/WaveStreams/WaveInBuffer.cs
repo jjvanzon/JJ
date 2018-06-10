@@ -101,57 +101,26 @@ namespace NAudio.Wave
         /// <summary>
         /// Provides access to the actual record buffer (for reading only)
         /// </summary>
-        public byte[] Data
-        {
-            get
-            {
-                return buffer;
-            }
-        }
+        public byte[] Data => buffer;
 
         /// <summary>
         /// Indicates whether the Done flag is set on this buffer
         /// </summary>
-        public bool Done
-        {
-            get
-            {
-                return (header.flags & WaveHeaderFlags.Done) == WaveHeaderFlags.Done;
-            }
-        }
-
+        public bool Done => (header.flags & WaveHeaderFlags.Done) == WaveHeaderFlags.Done;
 
         /// <summary>
         /// Indicates whether the InQueue flag is set on this buffer
         /// </summary>
-        public bool InQueue
-        {
-            get
-            {
-                return (header.flags & WaveHeaderFlags.InQueue) == WaveHeaderFlags.InQueue;
-            }
-        }
+        public bool InQueue => (header.flags & WaveHeaderFlags.InQueue) == WaveHeaderFlags.InQueue;
 
         /// <summary>
         /// Number of bytes recorded
         /// </summary>
-        public int BytesRecorded
-        {
-            get
-            {
-                return header.bytesRecorded;
-            }
-        }
+        public int BytesRecorded => header.bytesRecorded;
 
         /// <summary>
         /// The buffer size in bytes
         /// </summary>
-        public int BufferSize
-        {
-            get
-            {
-                return bufferSize;
-            }
-        }
+        public int BufferSize => bufferSize;
     }
 }

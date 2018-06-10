@@ -132,10 +132,7 @@ namespace NAudio.CoreAudioApi
         /// Creates a new property store
         /// </summary>
         /// <param name="store">IPropertyStore COM interface</param>
-        internal PropertyStore(IPropertyStore store)
-        {
-            this.storeInterface = store;
-        }
+        internal PropertyStore(IPropertyStore store) => this.storeInterface = store;
     }
 }
 

@@ -25,14 +25,8 @@ namespace NAudio.Midi
         /// <summary>
         /// Gets the number of MIDI input devices available in the system
         /// </summary>
-        public static int NumberOfDevices 
-        {
-            get 
-            {
-                return MidiInterop.midiInGetNumDevs();
-            }
-        }
-        
+        public static int NumberOfDevices => MidiInterop.midiInGetNumDevs();
+
         /// <summary>
         /// Opens a specified MIDI in device
         /// </summary>
@@ -46,10 +40,7 @@ namespace NAudio.Midi
         /// <summary>
         /// Closes this MIDI in device
         /// </summary>
-        public void Close() 
-        {
-            Dispose();
-        }
+        public void Close() => Dispose();
 
         /// <summary>
         /// Closes this MIDI in device
@@ -64,27 +55,18 @@ namespace NAudio.Midi
         /// <summary>
         /// Start the MIDI in device
         /// </summary>
-        public void Start()
-        {
-            MmException.Try(MidiInterop.midiInStart(hMidiIn), "midiInStart");
-        }
+        public void Start() => MmException.Try(MidiInterop.midiInStart(hMidiIn), "midiInStart");
 
         /// <summary>
         /// Stop the MIDI in device
         /// </summary>
-        public void Stop()
-        {
-            MmException.Try(MidiInterop.midiInStop(hMidiIn), "midiInStop");
-        }
+        public void Stop() => MmException.Try(MidiInterop.midiInStop(hMidiIn), "midiInStop");
 
         /// <summary>
         /// Reset the MIDI in device
         /// </summary>
-        public void Reset()
-        {
-            MmException.Try(MidiInterop.midiInReset(hMidiIn), "midiInReset");
-        }
-        
+        public void Reset() => MmException.Try(MidiInterop.midiInReset(hMidiIn), "midiInReset");
+
         private void Callback(IntPtr midiInHandle, MidiInterop.MidiInMessage message, IntPtr userData, IntPtr messageParameter1, IntPtr messageParameter2)
         {
             switch(message)

@@ -40,10 +40,7 @@ namespace NAudio.Dmo
         /// <summary>
         /// Finalizer
         /// </summary>
-        ~MediaBuffer()
-        {
-            Dispose();
-        }
+        ~MediaBuffer() => Dispose();
 
         #region IMediaBuffer Members
 
@@ -107,7 +104,7 @@ namespace NAudio.Dmo
         /// </summary>
         public int Length
         {
-            get { return length; }
+            get => length;
             set 
             {
                 if (length > maxLength)
@@ -134,9 +131,6 @@ namespace NAudio.Dmo
         /// </summary>
         /// <param name="data">buffer to retrieve into</param>
         /// <param name="offset">offset within that buffer</param>
-        public void RetrieveData(byte[] data, int offset)
-        {
-            Marshal.Copy(buffer, data, offset, Length);
-        }
+        public void RetrieveData(byte[] data, int offset) => Marshal.Copy(buffer, data, offset, Length);
     }
 }

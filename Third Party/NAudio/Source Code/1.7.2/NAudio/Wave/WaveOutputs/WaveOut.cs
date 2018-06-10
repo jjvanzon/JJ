@@ -42,13 +42,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Returns the number of Wave Out devices available in the system
         /// </summary>
-        public static int DeviceCount
-        {
-            get
-            {
-                return WaveInterop.waveOutGetNumDevs();
-            }
-        }
+        public static int DeviceCount => WaveInterop.waveOutGetNumDevs();
 
         /// <summary>
         /// Gets or sets the desired latency in milliseconds
@@ -270,28 +264,19 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets a <see cref="Wave.WaveFormat"/> instance indicating the format the hardware is using.
         /// </summary>
-        public WaveFormat OutputWaveFormat
-        {
-            get { return this.waveStream.WaveFormat; }
-        }
+        public WaveFormat OutputWaveFormat => this.waveStream.WaveFormat;
 
         /// <summary>
         /// Playback State
         /// </summary>
-        public PlaybackState PlaybackState
-        {
-            get { return playbackState; }
-        }
+        public PlaybackState PlaybackState => playbackState;
 
         /// <summary>
         /// Volume for this device 1.0 is full scale
         /// </summary>
         public float Volume
         {
-            get
-            {
-                return volume;
-            }
+            get => volume;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value), "Volume must be between 0.0 and 1.0");

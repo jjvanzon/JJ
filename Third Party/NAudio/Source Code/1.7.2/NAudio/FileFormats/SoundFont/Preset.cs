@@ -22,15 +22,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public string Name 
 		{
-			get 
-			{
-				return name;
-			}
-			set 
-			{
-				// TODO: validate
-				name = value;
-			}			
+			get => name;
+		    set => name = value;
 		}
 		
 		/// <summary>
@@ -38,15 +31,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public ushort PatchNumber 
 		{
-			get 
-			{
-				return patchNumber;			
-			}
-			set 
-			{
-				// TODO: validate
-				patchNumber = value;
-			}
+			get => patchNumber;
+		    set => patchNumber = value;
 		}
 		
 		/// <summary>
@@ -54,16 +40,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public ushort Bank 
 		{
-			get 
-			{
-				return bank;
-			}
-			set 
-			{
-				// 0 - 127, GM percussion bank is 128
-				// TODO: validate
-				bank = value;
-			}
+			get => bank;
+		    set => bank = value;
 		}
 		
 		/// <summary>
@@ -71,22 +49,13 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public Zone[] Zones
 		{
-			get
-			{
-				return zones;
-			}
-			set
-			{
-				zones = value;
-			}
+			get => zones;
+		    set => zones = value;
 		}
 
 		/// <summary>
 		/// <see cref="Object.ToString"/>
 		/// </summary>
-		public override string ToString() 
-		{
-			return string.Format("{0}-{1} {2}",bank,patchNumber,name);
-		}
+		public override string ToString() => string.Format("{0}-{1} {2}",bank,patchNumber,name);
 	}
 }

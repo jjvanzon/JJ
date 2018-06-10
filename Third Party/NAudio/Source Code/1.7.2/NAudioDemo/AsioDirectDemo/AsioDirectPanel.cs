@@ -24,10 +24,7 @@ namespace NAudioDemo
             }
         }
 
-        void AsioDirectPanel_Disposed(object sender, EventArgs e)
-        {
-            Cleanup();
-        }
+        void AsioDirectPanel_Disposed(object sender, EventArgs e) => Cleanup();
 
         private void Cleanup()
         {
@@ -104,10 +101,7 @@ namespace NAudioDemo
             buttonStop.Enabled = asioOut != null && asioOut.PlaybackState == PlaybackState.Playing;            
         }
 
-        private void buttonStop_Click(object sender, EventArgs e)
-        {
-            Stop();
-        }
+        private void buttonStop_Click(object sender, EventArgs e) => Stop();
 
         private void Stop()
         {
@@ -128,14 +122,8 @@ namespace NAudioDemo
     [Export(typeof(INAudioDemoPlugin))]
     public class AsioDirectPanelPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "ASIO Direct Playback"; }
-        }
+        public string Name => "ASIO Direct Playback";
 
-        public Control CreatePanel()
-        {
-            return new AsioDirectPanel();
-        }
+        public Control CreatePanel() => new AsioDirectPanel();
     }
 }

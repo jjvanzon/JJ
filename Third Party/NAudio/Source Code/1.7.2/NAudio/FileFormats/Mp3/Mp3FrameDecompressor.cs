@@ -34,7 +34,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Output format (PCM)
         /// </summary>
-        public WaveFormat OutputFormat { get { return pcmFormat; } }
+        public WaveFormat OutputFormat => pcmFormat;
 
         /// <summary>
         /// Decompresses a frame
@@ -64,10 +64,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Resets the MP3 Frame Decompressor after a reposition operation
         /// </summary>
-        public void Reset()
-        {
-            conversionStream.Reposition();
-        }
+        public void Reset() => conversionStream.Reposition();
 
         /// <summary>
         /// Disposes of this MP3 frame decompressor

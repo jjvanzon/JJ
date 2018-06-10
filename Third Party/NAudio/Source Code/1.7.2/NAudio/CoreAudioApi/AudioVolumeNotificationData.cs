@@ -37,42 +37,27 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// Event Context
         /// </summary>
-        public Guid EventContext
-        {
-            get { return eventContext; }
-        }
+        public Guid EventContext => eventContext;
 
         /// <summary>
         /// Muted
         /// </summary>
-        public bool Muted
-        {
-            get { return muted; }
-        }
+        public bool Muted => muted;
 
         /// <summary>
         /// Master Volume
         /// </summary>
-        public float MasterVolume
-        {
-            get { return masterVolume; }
-        }
+        public float MasterVolume => masterVolume;
 
         /// <summary>
         /// Channels
         /// </summary>
-        public int Channels
-        {
-            get { return channels; }
-        }
+        public int Channels => channels;
 
         /// <summary>
         /// Channel Volume
         /// </summary>
-        public float[] ChannelVolume
-        {
-            get { return channelVolume; }
-        }
+        public float[] ChannelVolume => channelVolume;
 
         /// <summary>
         /// Audio Volume Notification Data

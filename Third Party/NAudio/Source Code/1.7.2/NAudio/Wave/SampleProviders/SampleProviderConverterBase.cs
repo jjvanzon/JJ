@@ -31,10 +31,7 @@ namespace NAudio.Wave.SampleProviders
         /// <summary>
         /// Wave format of this wave provider
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return this.waveFormat; }
-        }
+        public WaveFormat WaveFormat => this.waveFormat;
 
         /// <summary>
         /// Reads samples from the source wave provider
@@ -49,9 +46,6 @@ namespace NAudio.Wave.SampleProviders
         /// Ensure the source buffer exists and is big enough
         /// </summary>
         /// <param name="sourceBytesRequired">Bytes required</param>
-        protected void EnsureSourceBuffer(int sourceBytesRequired)
-        {
-            this.sourceBuffer = BufferHelpers.Ensure(this.sourceBuffer, sourceBytesRequired);
-        }
+        protected void EnsureSourceBuffer(int sourceBytesRequired) => this.sourceBuffer = BufferHelpers.Ensure(this.sourceBuffer, sourceBytesRequired);
     }
 }

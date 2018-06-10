@@ -115,10 +115,7 @@ namespace NAudio.CoreAudioApi.Interfaces
         /// <summary>
         /// Creates a new PropVariant containing a long value
         /// </summary>
-        public static PropVariant FromLong(long value)
-        {
-            return new PropVariant() {vt = (short) VarEnum.VT_I8, hVal = value};
-        }
+        public static PropVariant FromLong(long value) => new PropVariant() {vt = (short) VarEnum.VT_I8, hVal = value};
 
         /// <summary>
         /// Helper method to gets blob data
@@ -155,12 +152,9 @@ namespace NAudio.CoreAudioApi.Interfaces
         /// <summary>
         /// Gets the type of data in this PropVariant
         /// </summary>
-        public VarEnum DataType
-        {
-            get { return (VarEnum) vt; }
-        }
+        public VarEnum DataType => (VarEnum) vt;
 
-    /// <summary>
+        /// <summary>
         /// Property value
         /// </summary>
         public object Value
@@ -199,10 +193,7 @@ namespace NAudio.CoreAudioApi.Interfaces
         /// <summary>
         /// allows freeing up memory, might turn this into a Dispose method?
         /// </summary>
-        public void Clear()
-        {
-            PropVariantClear(ref this);
-        }
+        public void Clear() => PropVariantClear(ref this);
 
         [DllImport("ole32.dll")]
         private static extern int PropVariantClear(ref PropVariant pvar);

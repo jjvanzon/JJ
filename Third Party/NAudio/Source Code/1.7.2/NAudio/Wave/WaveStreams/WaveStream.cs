@@ -22,17 +22,17 @@ namespace NAudio.Wave
         /// <summary>
         /// We can read from this stream
         /// </summary>
-        public override bool CanRead { get { return true; } }
+        public override bool CanRead => true;
 
         /// <summary>
         /// We can seek within this stream
         /// </summary>
-        public override bool CanSeek { get { return true; } }
+        public override bool CanSeek => true;
 
         /// <summary>
         /// We can't write to this stream
         /// </summary>
-        public override bool CanWrite { get { return false; } }
+        public override bool CanWrite => false;
 
         /// <summary>
         /// Flush does not need to do anything
@@ -59,30 +59,18 @@ namespace NAudio.Wave
         /// Sets the length of the WaveStream. Not Supported.
         /// </summary>
         /// <param name="length"></param>
-        public override void SetLength(long length)
-        {
-            throw new NotSupportedException("Can't set length of a WaveFormatString");
-        }
+        public override void SetLength(long length) => throw new NotSupportedException("Can't set length of a WaveFormatString");
 
         /// <summary>
         /// Writes to the WaveStream. Not Supported.
         /// </summary>
-        public override void Write(byte[] buffer, int offset, int count)
-        {
-            throw new NotSupportedException("Can't write to a WaveFormatString");
-        }
+        public override void Write(byte[] buffer, int offset, int count) => throw new NotSupportedException("Can't write to a WaveFormatString");
 
         /// <summary>
         /// The block alignment for this wavestream. Do not modify the Position
         /// to anything that is not a whole multiple of this value
         /// </summary>
-        public virtual int BlockAlign
-        {
-            get
-            {
-                return WaveFormat.BlockAlign;
-            }
-        }
+        public virtual int BlockAlign => WaveFormat.BlockAlign;
 
         /// <summary>
         /// Moves forward or backwards the specified number of seconds in the stream
@@ -104,36 +92,20 @@ namespace NAudio.Wave
         /// </summary>
         public virtual TimeSpan CurrentTime
         {
-            get
-            {
-                return TimeSpan.FromSeconds((double)Position / WaveFormat.AverageBytesPerSecond);                
-            }
-            set
-            {
-                Position = (long) (value.TotalSeconds * WaveFormat.AverageBytesPerSecond);
-            }
+            get => TimeSpan.FromSeconds((double)Position / WaveFormat.AverageBytesPerSecond);
+            set => Position = (long) (value.TotalSeconds * WaveFormat.AverageBytesPerSecond);
         }
 
         /// <summary>
         /// Total length in real-time of the stream (may be an estimate for compressed files)
         /// </summary>
-        public virtual TimeSpan TotalTime
-        {
-            get
-            {
-                
-                return TimeSpan.FromSeconds((double) Length / WaveFormat.AverageBytesPerSecond);
-            }
-        }
+        public virtual TimeSpan TotalTime => TimeSpan.FromSeconds((double) Length / WaveFormat.AverageBytesPerSecond);
 
         /// <summary>
         /// Whether the WaveStream has non-zero sample data at the current position for the 
         /// specified count
         /// </summary>
         /// <param name="count">Number of bytes to read</param>
-        public virtual bool HasData(int count)
-        {
-            return Position < Length;
-        }
+        public virtual bool HasData(int count) => Position < Length;
     }
 }

@@ -68,10 +68,7 @@ namespace NAudioDemo.Generator
 
         }
 
-        private void GeneratorPanel_Disposed(object sender, EventArgs e)
-        {
-            Cleanup();
-        }
+        private void GeneratorPanel_Disposed(object sender, EventArgs e) => Cleanup();
 
         // --------------
         // Start, Stop
@@ -156,10 +153,7 @@ namespace NAudioDemo.Generator
         }
 
         // trackbar Frq
-        private void tbFrq_Scroll(object sender, EventArgs e)
-        {
-            tbToFrq();
-        }
+        private void tbFrq_Scroll(object sender, EventArgs e) => tbToFrq();
 
         // comboBox Precision Frq
         private void cmbPrecisionFrq_SelectedIndexChanged(object sender, EventArgs e)
@@ -217,10 +211,7 @@ namespace NAudioDemo.Generator
         }
 
         // trackbar FrqEnd
-        private void tbFrqEnd_Scroll(object sender, EventArgs e)
-        {
-            tbToFrqEnd();
-        }
+        private void tbFrqEnd_Scroll(object sender, EventArgs e) => tbToFrqEnd();
 
         // combobox FrqEnd Precision
         private void cmbPrecisionFrqEnd_SelectedIndexChanged(object sender, EventArgs e)
@@ -270,10 +261,7 @@ namespace NAudioDemo.Generator
         // --------------
 
         // trackbar Gain
-        private void tbGain_Scroll(object sender, EventArgs e)
-        {
-            tbToGain();
-        }
+        private void tbGain_Scroll(object sender, EventArgs e) => tbToGain();
 
         // Calcul TaskBar to Gain
         private void tbToGain()
@@ -287,10 +275,7 @@ namespace NAudioDemo.Generator
         // --------------
 
         // trackbar Sweep Length
-        private void tbSweepLength_Scroll(object sender, EventArgs e)
-        {
-            tbToSweepLength();
-        }
+        private void tbSweepLength_Scroll(object sender, EventArgs e) => tbToSweepLength();
 
         // Calcul TaskBar to Length
         private void tbToSweepLength()
@@ -301,26 +286,17 @@ namespace NAudioDemo.Generator
         }
 
         // Sweep Length Enabled
-        private void SweepLengthEnabled(bool state)
-        {
-            grpSweepLength.Enabled = state;
-        }
+        private void SweepLengthEnabled(bool state) => grpSweepLength.Enabled = state;
 
         // --------------
         // Phase Reverse
         // --------------
 
         // Reverse Left
-        private void chkReverseLeft_CheckedChanged(object sender, EventArgs e)
-        {
-            PhaseReverse();
-        }
+        private void chkReverseLeft_CheckedChanged(object sender, EventArgs e) => PhaseReverse();
 
         // Reverse Right
-        private void chkReverseRight_CheckedChanged(object sender, EventArgs e)
-        {
-            PhaseReverse();
-        }
+        private void chkReverseRight_CheckedChanged(object sender, EventArgs e) => PhaseReverse();
 
         // Apply PhaseReverse
         private void PhaseReverse()
@@ -334,10 +310,7 @@ namespace NAudioDemo.Generator
         // --------------
 
         // Nb of Frequency
-        private int cmbPrecisionToOctave(int idx)
-        {
-            return (int) (10.35f*idx);
-        }
+        private int cmbPrecisionToOctave(int idx) => (int) (10.35f*idx);
 
         // Clean DriverOut
         private void Cleanup()

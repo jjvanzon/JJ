@@ -74,11 +74,7 @@ namespace NAudio.Wave
         /// Converts source bytes to destination bytes
         /// </summary>
         [Obsolete("can be unreliable, use of this method not encouraged")]
-        public int SourceToDest(int source)
-        {
-            return (int) EstimateSourceToDest(source);
-            //return conversionStream.SourceToDest(source);
-        }
+        public int SourceToDest(int source) => (int) EstimateSourceToDest(source);
 
         private long EstimateSourceToDest(long source)
         {
@@ -97,32 +93,19 @@ namespace NAudio.Wave
         /// Converts destination bytes to source bytes
         /// </summary>
         [Obsolete("can be unreliable, use of this method not encouraged")]
-        public int DestToSource(int dest)
-        {
-            return (int)EstimateDestToSource(dest);
-            //return conversionStream.DestToSource(dest);
-        }
+        public int DestToSource(int dest) => (int)EstimateDestToSource(dest);
 
         /// <summary>
         /// Returns the stream length
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return length;
-            }
-        }
+        public override long Length => length;
 
         /// <summary>
         /// Gets or sets the current position in the stream
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return position;
-            }
+            get => position;
             set
             {
                 // make sure we don't get out of sync
@@ -141,13 +124,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets the WaveFormat of this stream
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get
-            {
-                return targetFormat;
-            }
-        }
+        public override WaveFormat WaveFormat => targetFormat;
 
         private int leftoverDestBytes = 0;
         private int leftoverDestOffset = 0;

@@ -139,10 +139,7 @@ namespace NAudio.Wave
         /// <summary>
         /// The WaveFormat of this WaveProvider
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return waveFormat; }
-        }
+        public WaveFormat WaveFormat => waveFormat;
 
         /// <summary>
         /// Connects a specified input channel to an output channel
@@ -166,17 +163,11 @@ namespace NAudio.Wave
         /// The number of input channels. Note that this is not the same as the number of input wave providers. If you pass in
         /// one stereo and one mono input provider, the number of input channels is three.
         /// </summary>
-        public int InputChannelCount
-        {
-            get { return inputChannelCount; }
-        }
+        public int InputChannelCount => inputChannelCount;
 
         /// <summary>
         /// The number of output channels, as specified in the constructor.
         /// </summary>
-        public int OutputChannelCount
-        {
-            get { return outputChannelCount; }
-        }
+        public int OutputChannelCount => outputChannelCount;
     }
 }

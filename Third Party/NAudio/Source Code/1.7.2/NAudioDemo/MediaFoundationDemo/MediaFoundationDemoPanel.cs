@@ -128,14 +128,8 @@ namespace NAudioDemo.MediaFoundationDemo
     [Export(typeof(INAudioDemoPlugin))]
     class MediaFoundationDemoPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "Media Foundation Demo"; }
-        }
+        public string Name => "Media Foundation Demo";
 
-        public Control CreatePanel()
-        {
-            return new MediaFoundationDemoPanel();
-        }
+        public Control CreatePanel() => new MediaFoundationDemoPanel();
     }
 }

@@ -19,10 +19,7 @@ namespace NAudio.Utils
         /// <summary>
         /// <see cref="Encoding.GetByteCount(char[],int,int)"/>
         /// </summary>
-        public override int GetByteCount(char[] chars, int index, int count)
-        {
-            return count;
-        }
+        public override int GetByteCount(char[] chars, int index, int count) => count;
 
         /// <summary>
         /// <see cref="Encoding.GetBytes(char[],int,int,byte[],int)"/>
@@ -69,17 +66,11 @@ namespace NAudio.Utils
         /// <summary>
         /// <see cref="Encoding.GetMaxCharCount"/>
         /// </summary>
-        public override int GetMaxCharCount(int byteCount)
-        {
-            return byteCount;
-        }
+        public override int GetMaxCharCount(int byteCount) => byteCount;
 
         /// <summary>
         /// <see cref="Encoding.GetMaxByteCount"/>
         /// </summary>
-        public override int GetMaxByteCount(int charCount)
-        {
-            return charCount;
-        }
+        public override int GetMaxByteCount(int charCount) => charCount;
     }
 }

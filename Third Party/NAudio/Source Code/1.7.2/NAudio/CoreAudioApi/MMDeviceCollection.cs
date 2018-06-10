@@ -62,10 +62,7 @@ namespace NAudio.CoreAudioApi
             }
         }
 
-        internal MMDeviceCollection(IMMDeviceCollection parent)
-        {
-            _MMDeviceCollection = parent;
-        }
+        internal MMDeviceCollection(IMMDeviceCollection parent) => _MMDeviceCollection = parent;
 
         #region IEnumerable<MMDevice> Members
 
@@ -85,10 +82,7 @@ namespace NAudio.CoreAudioApi
 
         #region IEnumerable Members
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion
     }

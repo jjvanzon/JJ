@@ -52,11 +52,7 @@ namespace NAudio.FileFormats.Map
         /// <summary>
         /// The drum mappings in this drum map
         /// </summary>
-        public List<CakewalkDrumMapping> DrumMappings
-        {
-            get { return drumMappings; }
-        }
-
+        public List<CakewalkDrumMapping> DrumMappings => drumMappings;
 
         private void ReadMapHeader(BinaryReader reader)
         {

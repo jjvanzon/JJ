@@ -17,10 +17,6 @@ namespace NAudioDemo.NetworkChatDemo
         }
     
 
-        public override string Name
-        {
-            get { return "DSP Group TrueSpeech"; }
-        }
-
+        public override string Name => "DSP Group TrueSpeech";
     }
 }

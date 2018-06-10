@@ -38,48 +38,26 @@ namespace NAudio.Wave
         /// </summary>
         public float Volume
         {
-            get
-            {
-                return volume;
-            }
-            set
-            {
-                volume = value;
-            }
+            get => volume;
+            set => volume = value;
         }
 
         /// <summary>
         /// <see cref="WaveStream.BlockAlign"/>
         /// </summary>
-        public override int BlockAlign
-        {
-            get
-            {
-                return sourceStream.BlockAlign / 2;
-            }
-        }
-
+        public override int BlockAlign => sourceStream.BlockAlign / 2;
 
         /// <summary>
         /// Returns the stream length
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return length;
-            }
-        }
+        public override long Length => length;
 
         /// <summary>
         /// Gets or sets the current position in the stream
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return position;
-            }
+            get => position;
             set
             {
                 lock (lockObject)
@@ -147,27 +125,15 @@ namespace NAudio.Wave
         /// <summary>
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get
-            {
-                return waveFormat;
-            }
-        }
+        public override WaveFormat WaveFormat => waveFormat;
 
         /// <summary>
         /// Clip indicator. Can be reset.
         /// </summary>
         public bool Clip
         {
-            get
-            {
-                return clip;
-            }
-            set
-            {
-                clip = value;
-            }
+            get => clip;
+            set => clip = value;
         }
 
         /// <summary>

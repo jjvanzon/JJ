@@ -19,21 +19,11 @@ namespace NAudio.SoundFont
 			//bw.Write(p.---);
 		}
 
-		public override int Length {
-			get {
-				return 4;
-			}
-		}
+		public override int Length => 4;
 
-		public Generator[] Generators
-		{
-			get
-			{
-				return data.ToArray();
-			}
-		}
+	    public Generator[] Generators => data.ToArray();
 
-		public void Load(Instrument[] instruments)
+	    public void Load(Instrument[] instruments)
 		{
 			foreach(Generator g in Generators)
 			{

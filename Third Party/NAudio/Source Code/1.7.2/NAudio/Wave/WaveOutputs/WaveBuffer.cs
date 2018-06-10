@@ -47,10 +47,7 @@ namespace NAudio.Wave
         /// Initializes a new instance of the <see cref="WaveBuffer"/> class binded to a specific byte buffer.
         /// </summary>
         /// <param name="bufferToBoundTo">A byte buffer to bound the WaveBuffer to.</param>
-        public WaveBuffer(byte[] bufferToBoundTo)
-        {
-            BindTo(bufferToBoundTo);
-        }
+        public WaveBuffer(byte[] bufferToBoundTo) => BindTo(bufferToBoundTo);
 
         /// <summary>
         /// Binds this WaveBuffer instance to a specific byte buffer.
@@ -72,86 +69,58 @@ namespace NAudio.Wave
         /// </summary>
         /// <param name="waveBuffer">The wave buffer.</param>
         /// <returns>The result of the conversion.</returns>
-        public static implicit operator byte[](WaveBuffer waveBuffer)
-        {
-            return waveBuffer.byteBuffer;
-        }
+        public static implicit operator byte[](WaveBuffer waveBuffer) => waveBuffer.byteBuffer;
 
         /// <summary>
         /// Performs an implicit conversion from <see cref="NAudio.Wave.WaveBuffer"/> to <see cref="System.Single"/>.
         /// </summary>
         /// <param name="waveBuffer">The wave buffer.</param>
         /// <returns>The result of the conversion.</returns>
-        public static implicit operator float[](WaveBuffer waveBuffer)
-        {
-            return waveBuffer.floatBuffer;
-        }
+        public static implicit operator float[](WaveBuffer waveBuffer) => waveBuffer.floatBuffer;
 
         /// <summary>
         /// Performs an implicit conversion from <see cref="NAudio.Wave.WaveBuffer"/> to <see cref="System.Int32"/>.
         /// </summary>
         /// <param name="waveBuffer">The wave buffer.</param>
         /// <returns>The result of the conversion.</returns>
-        public static implicit operator int[](WaveBuffer waveBuffer)
-        {
-            return waveBuffer.intBuffer;
-        }
+        public static implicit operator int[](WaveBuffer waveBuffer) => waveBuffer.intBuffer;
 
         /// <summary>
         /// Performs an implicit conversion from <see cref="NAudio.Wave.WaveBuffer"/> to <see cref="System.Int16"/>.
         /// </summary>
         /// <param name="waveBuffer">The wave buffer.</param>
         /// <returns>The result of the conversion.</returns>
-        public static implicit operator short[](WaveBuffer waveBuffer)
-        {
-            return waveBuffer.shortBuffer;
-        }
+        public static implicit operator short[](WaveBuffer waveBuffer) => waveBuffer.shortBuffer;
 
         /// <summary>
         /// Gets the byte buffer.
         /// </summary>
         /// <value>The byte buffer.</value>
-        public byte[] ByteBuffer
-        {
-            get { return byteBuffer; }
-        }
+        public byte[] ByteBuffer => byteBuffer;
 
         /// <summary>
         /// Gets the float buffer.
         /// </summary>
         /// <value>The float buffer.</value>
-        public float[] FloatBuffer
-        {
-            get { return floatBuffer; }
-        }
+        public float[] FloatBuffer => floatBuffer;
 
         /// <summary>
         /// Gets the short buffer.
         /// </summary>
         /// <value>The short buffer.</value>
-        public short[] ShortBuffer
-        {
-            get { return shortBuffer; }
-        }
+        public short[] ShortBuffer => shortBuffer;
 
         /// <summary>
         /// Gets the int buffer.
         /// </summary>
         /// <value>The int buffer.</value>
-        public int[] IntBuffer
-        {
-            get { return intBuffer; }
-        }
-
+        public int[] IntBuffer => intBuffer;
 
         /// <summary>
         /// Gets the max size in bytes of the byte buffer..
         /// </summary>
         /// <value>Maximum number of bytes in the buffer.</value>
-        public int MaxSize
-        {
-            get { return byteBuffer.Length; }
-        }
+        public int MaxSize => byteBuffer.Length;
 
         /// <summary>
         /// Gets or sets the byte buffer count.
@@ -159,11 +128,8 @@ namespace NAudio.Wave
         /// <value>The byte buffer count.</value>
         public int ByteBufferCount
         {
-            get { return numberOfBytes; }
-            set
-            {
-                numberOfBytes = CheckValidityCount("ByteBufferCount", value, 1);
-            }
+            get => numberOfBytes;
+            set => numberOfBytes = CheckValidityCount("ByteBufferCount", value, 1);
         }
         /// <summary>
         /// Gets or sets the float buffer count.
@@ -171,11 +137,8 @@ namespace NAudio.Wave
         /// <value>The float buffer count.</value>
         public int FloatBufferCount
         {
-            get { return numberOfBytes / 4; }
-            set
-            {
-                numberOfBytes = CheckValidityCount("FloatBufferCount", value, 4);
-            }
+            get => numberOfBytes / 4;
+            set => numberOfBytes = CheckValidityCount("FloatBufferCount", value, 4);
         }
         /// <summary>
         /// Gets or sets the short buffer count.
@@ -183,11 +146,8 @@ namespace NAudio.Wave
         /// <value>The short buffer count.</value>
         public int ShortBufferCount
         {
-            get { return numberOfBytes / 2; }
-            set
-            {
-                numberOfBytes = CheckValidityCount("ShortBufferCount", value, 2);
-            }
+            get => numberOfBytes / 2;
+            set => numberOfBytes = CheckValidityCount("ShortBufferCount", value, 2);
         }
         /// <summary>
         /// Gets or sets the int buffer count.
@@ -195,28 +155,19 @@ namespace NAudio.Wave
         /// <value>The int buffer count.</value>
         public int IntBufferCount
         {
-            get { return numberOfBytes / 4; }
-            set
-            {
-                numberOfBytes = CheckValidityCount("IntBufferCount", value, 4);
-            }
+            get => numberOfBytes / 4;
+            set => numberOfBytes = CheckValidityCount("IntBufferCount", value, 4);
         }
 
         /// <summary>
         /// Clears the associated buffer.
         /// </summary>
-        public void Clear()
-        {
-            Array.Clear(byteBuffer, 0, byteBuffer.Length);
-        }
+        public void Clear() => Array.Clear(byteBuffer, 0, byteBuffer.Length);
 
         /// <summary>
         /// Copy this WaveBuffer to a destination buffer up to ByteBufferCount bytes.
         /// </summary>
-        public void Copy(Array destinationArray)
-        {
-            Array.Copy(byteBuffer, destinationArray, numberOfBytes);
-        }
+        public void Copy(Array destinationArray) => Array.Copy(byteBuffer, destinationArray, numberOfBytes);
 
         /// <summary>
         /// Checks the validity of the count parameters.

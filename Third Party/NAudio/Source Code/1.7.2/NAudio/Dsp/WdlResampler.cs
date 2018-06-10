@@ -105,10 +105,7 @@ namespace NAudio.Dsp
         /// Set feed mode
         /// </summary>
         /// <param name="wantInputDriven">if true, that means the first parameter to ResamplePrepare will specify however much input you have, not how much you want</param>
-        public void SetFeedMode(bool wantInputDriven)
-        {
-            m_feedmode = wantInputDriven;
-        }
+        public void SetFeedMode(bool wantInputDriven) => m_feedmode = wantInputDriven;
 
         /// <summary>
         /// Reset
@@ -642,10 +639,7 @@ namespace NAudio.Dsp
                 Reset();
             }
 
-            public void Reset()
-            {
-                m_hist = new double[WDL_RESAMPLE_MAX_FILTERS * WDL_RESAMPLE_MAX_NCH, 4];
-            }
+            public void Reset() => m_hist = new double[WDL_RESAMPLE_MAX_FILTERS * WDL_RESAMPLE_MAX_NCH, 4];
 
             public void setParms(double fpos, double Q)
             {
@@ -685,16 +679,9 @@ namespace NAudio.Dsp
                 }
             }
 
-            double denormal_filter(float x)
-            {
-                // TODO: implement denormalisation
-                return x;
-            }
-            double denormal_filter(double x)
-            {
-                // TODO: implement denormalisation
-                return x;
-            }
+            double denormal_filter(float x) => x;
+
+            double denormal_filter(double x) => x;
 
             private double m_fpos;
             private double m_a1, m_a2;

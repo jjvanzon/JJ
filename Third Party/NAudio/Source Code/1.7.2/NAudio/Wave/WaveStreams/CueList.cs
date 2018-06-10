@@ -103,10 +103,7 @@ namespace NAudio.Wave
         /// Adds an item to the list
         /// </summary>
         /// <param name="cue">Cue</param>
-        public void Add(Cue cue)
-        {
-            cues.Add(cue);
-        }
+        public void Add(Cue cue) => cues.Add(cue);
 
         /// <summary>
         /// Gets sample positions for the embedded cues
@@ -254,20 +251,14 @@ namespace NAudio.Wave
         /// <summary>
         /// Number of cues
         /// </summary>
-        public int Count
-        {
-            get { return cues.Count; }
-        }
+        public int Count => cues.Count;
 
         /// <summary>
         /// Accesses the cue at the specified index
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public Cue this[int index]
-	    {
-            get { return cues[index]; }
-	    }
+        public Cue this[int index] => cues[index];
 
         /// <summary>
         /// Checks if the cue and list chunks exist and if so, creates a cue list

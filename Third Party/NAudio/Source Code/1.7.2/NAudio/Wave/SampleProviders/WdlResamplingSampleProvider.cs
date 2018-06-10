@@ -47,9 +47,6 @@ namespace NAudio.Wave.SampleProviders
         /// <summary>
         /// Output WaveFormat
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return outFormat; }
-        }
+        public WaveFormat WaveFormat => outFormat;
     }
 }

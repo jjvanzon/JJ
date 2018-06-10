@@ -9,10 +9,7 @@ namespace NAudioDemo.AudioPlaybackDemo
     {
         AsioOutSettingsPanel settingsPanel;
 
-        public IWavePlayer CreateDevice(int latency)
-        {
-            return new AsioOut(settingsPanel.SelectedDeviceName);
-        }
+        public IWavePlayer CreateDevice(int latency) => new AsioOut(settingsPanel.SelectedDeviceName);
 
         public UserControl CreateSettingsPanel()
         {
@@ -20,19 +17,10 @@ namespace NAudioDemo.AudioPlaybackDemo
             return settingsPanel;
         }
 
-        public string Name
-        {
-            get { return "AsioOut"; }
-        }
+        public string Name => "AsioOut";
 
-        public bool IsAvailable
-        {
-            get { return AsioOut.isSupported(); }
-        }
+        public bool IsAvailable => AsioOut.isSupported();
 
-        public int Priority
-        {
-            get { return 4; }
-        }
+        public int Priority => 4;
     }
 }

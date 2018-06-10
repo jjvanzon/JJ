@@ -38,9 +38,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			return listPresenter.Show();
 		}
 
-		private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
-		{
-			return ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
-		}
+		private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression) => ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
 	}
 }

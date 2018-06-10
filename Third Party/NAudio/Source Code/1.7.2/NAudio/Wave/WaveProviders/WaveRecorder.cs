@@ -35,10 +35,7 @@ namespace NAudio.Wave
         /// <summary>
         /// The WaveFormat
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return source.WaveFormat; }
-        }
+        public WaveFormat WaveFormat => source.WaveFormat;
 
         /// <summary>
         /// Closes the WAV file

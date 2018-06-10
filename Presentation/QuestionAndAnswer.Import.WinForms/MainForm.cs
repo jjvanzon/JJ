@@ -5,16 +5,10 @@ namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 {
     internal partial class MainForm : SimpleFileProcessForm
     {
-        public MainForm()
-        {
-            InitializeComponent();
-        }
+        public MainForm() => InitializeComponent();
 
-        private void MainForm_OnRunProcess(object sender, EventArgs e)
-        {
-            ImportExecutor.RunAllImportsFromConfiguration(
-                progressCallback: ShowProgress,
-                isCancelledCallback: () => !IsRunning);
-        }
+        private void MainForm_OnRunProcess(object sender, EventArgs e) => ImportExecutor.RunAllImportsFromConfiguration(
+            progressCallback: ShowProgress,
+            isCancelledCallback: () => !IsRunning);
     }
 }

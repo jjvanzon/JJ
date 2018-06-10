@@ -37,10 +37,7 @@ namespace NAudio.Wave
         /// </summary>
         /// <param name="tags">A collection of key-value pairs containing the tags to include in the ID3v2 tag.</param>
         /// <returns>A new ID3v2 tag</returns>
-        public static Id3v2Tag Create(IEnumerable<KeyValuePair<string, string>> tags)
-        {
-            return Id3v2Tag.ReadTag(CreateId3v2TagStream(tags));
-        }
+        public static Id3v2Tag Create(IEnumerable<KeyValuePair<string, string>> tags) => Id3v2Tag.ReadTag(CreateId3v2TagStream(tags));
 
         /// <summary>
         /// Convert the frame size to a byte array.
@@ -226,12 +223,6 @@ namespace NAudio.Wave
         /// <summary>
         /// Raw data from this tag
         /// </summary>
-        public byte[] RawData
-        {
-            get
-            {
-                return rawData;
-            }
-        }
+        public byte[] RawData => rawData;
     }
 }

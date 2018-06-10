@@ -11,15 +11,9 @@ namespace NAudioDemo.AudioPlaybackDemo
         private DirectSoundOutSettingsPanel settingsPanel;
         private readonly bool isAvailable;
 
-        public DirectSoundOutPlugin()
-        {
-            this.isAvailable = DirectSoundOut.Devices.Count() > 0;
-        }
+        public DirectSoundOutPlugin() => this.isAvailable = DirectSoundOut.Devices.Count() > 0;
 
-        public IWavePlayer CreateDevice(int latency)
-        {
-            return new DirectSoundOut(settingsPanel.SelectedDevice, latency);
-        }
+        public IWavePlayer CreateDevice(int latency) => new DirectSoundOut(settingsPanel.SelectedDevice, latency);
 
         public UserControl CreateSettingsPanel()
         {
@@ -27,19 +21,10 @@ namespace NAudioDemo.AudioPlaybackDemo
             return this.settingsPanel;
         }
 
-        public string Name
-        {
-            get { return "DirectSound"; }
-        }
+        public string Name => "DirectSound";
 
-        public bool IsAvailable
-        {
-            get { return isAvailable; }
-        }
+        public bool IsAvailable => isAvailable;
 
-        public int Priority
-        {
-            get { return 2; } 
-        }
+        public int Priority => 2;
     }
 }

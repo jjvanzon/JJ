@@ -259,18 +259,12 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets a <see cref="Wave.WaveFormat"/> instance indicating the format the hardware is using.
         /// </summary>
-        public WaveFormat OutputWaveFormat
-        {
-            get { return this.waveStream.WaveFormat; }
-        }
+        public WaveFormat OutputWaveFormat => this.waveStream.WaveFormat;
 
         /// <summary>
         /// Playback State
         /// </summary>
-        public PlaybackState PlaybackState
-        {
-            get { return playbackState; }
-        }
+        public PlaybackState PlaybackState => playbackState;
 
         /// <summary>
         /// Obsolete property
@@ -278,7 +272,7 @@ namespace NAudio.Wave
         [Obsolete]
         public float Volume
         {
-            get { return 1.0f; }
+            get => 1.0f;
             set { if (value != 1.0f) throw new NotImplementedException(); }
         }
 

@@ -46,46 +46,22 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// Volume Range
         /// </summary>
-        public AudioEndpointVolumeVolumeRange VolumeRange
-        {
-            get
-            {
-                return volumeRange;
-            }
-        }
+        public AudioEndpointVolumeVolumeRange VolumeRange => volumeRange;
 
         /// <summary>
         /// Hardware Support
         /// </summary>
-        public EEndpointHardwareSupport HardwareSupport
-        {
-            get
-            {
-                return hardwareSupport;
-            }
-        }
+        public EEndpointHardwareSupport HardwareSupport => hardwareSupport;
 
         /// <summary>
         /// Step Information
         /// </summary>
-        public AudioEndpointVolumeStepInformation StepInformation
-        {
-            get
-            {
-                return stepInformation;
-            }
-        }
+        public AudioEndpointVolumeStepInformation StepInformation => stepInformation;
 
         /// <summary>
         /// Channels
         /// </summary>
-        public AudioEndpointVolumeChannels Channels
-        {
-            get
-            {
-                return channels;
-            }
-        }
+        public AudioEndpointVolumeChannels Channels => channels;
 
         /// <summary>
         /// Master Volume Level
@@ -98,10 +74,7 @@ namespace NAudio.CoreAudioApi
                 Marshal.ThrowExceptionForHR(audioEndPointVolume.GetMasterVolumeLevel(out result));
                 return result;
             }
-            set
-            {
-                Marshal.ThrowExceptionForHR(audioEndPointVolume.SetMasterVolumeLevel(value, Guid.Empty));
-            }
+            set => Marshal.ThrowExceptionForHR(audioEndPointVolume.SetMasterVolumeLevel(value, Guid.Empty));
         }
 
         /// <summary>
@@ -115,10 +88,7 @@ namespace NAudio.CoreAudioApi
                 Marshal.ThrowExceptionForHR(audioEndPointVolume.GetMasterVolumeLevelScalar(out result));
                 return result;
             }
-            set
-            {
-                Marshal.ThrowExceptionForHR(audioEndPointVolume.SetMasterVolumeLevelScalar(value, Guid.Empty));
-            }
+            set => Marshal.ThrowExceptionForHR(audioEndPointVolume.SetMasterVolumeLevelScalar(value, Guid.Empty));
         }
 
         /// <summary>
@@ -132,27 +102,18 @@ namespace NAudio.CoreAudioApi
                 Marshal.ThrowExceptionForHR(audioEndPointVolume.GetMute(out result));
                 return result;
             }
-            set
-            {
-                Marshal.ThrowExceptionForHR(audioEndPointVolume.SetMute(value, Guid.Empty));
-            }
+            set => Marshal.ThrowExceptionForHR(audioEndPointVolume.SetMute(value, Guid.Empty));
         }
 
         /// <summary>
         /// Volume Step Up
         /// </summary>
-        public void VolumeStepUp()
-        {
-            Marshal.ThrowExceptionForHR(audioEndPointVolume.VolumeStepUp(Guid.Empty));
-        }
+        public void VolumeStepUp() => Marshal.ThrowExceptionForHR(audioEndPointVolume.VolumeStepUp(Guid.Empty));
 
         /// <summary>
         /// Volume Step Down
         /// </summary>
-        public void VolumeStepDown()
-        {
-            Marshal.ThrowExceptionForHR(audioEndPointVolume.VolumeStepDown(Guid.Empty));
-        }
+        public void VolumeStepDown() => Marshal.ThrowExceptionForHR(audioEndPointVolume.VolumeStepDown(Guid.Empty));
 
         /// <summary>
         /// Creates a new Audio endpoint volume
@@ -199,10 +160,7 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// Finalizer
         /// </summary>
-        ~AudioEndpointVolume()
-        {
-            Dispose();
-        }
+        ~AudioEndpointVolume() => Dispose();
 
         #endregion
 

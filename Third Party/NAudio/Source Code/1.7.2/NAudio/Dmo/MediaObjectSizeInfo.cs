@@ -33,11 +33,7 @@
         /// <summary>
         /// ToString
         /// </summary>        
-        public override string ToString()
-        {
-            return string.Format("Size: {0}, Alignment {1}, MaxLookahead {2}",
-                Size, Alignment, MaxLookahead);
-        }
-
+        public override string ToString() => string.Format("Size: {0}, Alignment {1}, MaxLookahead {2}",
+                                                           Size, Alignment, MaxLookahead);
     }
 }

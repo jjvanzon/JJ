@@ -51,9 +51,6 @@
         /// </summary>
         /// <param name="aLaw">a-law encoded byte</param>
         /// <returns>Linear sample</returns>
-        public static short ALawToLinearSample(byte aLaw)
-        {
-            return ALawDecompressTable[aLaw];
-        }
+        public static short ALawToLinearSample(byte aLaw) => ALawDecompressTable[aLaw];
     }
 }

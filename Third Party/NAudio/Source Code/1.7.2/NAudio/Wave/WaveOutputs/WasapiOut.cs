@@ -213,10 +213,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets a <see cref="Wave.WaveFormat"/> instance indicating the format the hardware is using.
         /// </summary>
-        public WaveFormat OutputWaveFormat
-        {
-            get { return outputFormat; }
-        }
+        public WaveFormat OutputWaveFormat => outputFormat;
 
         #region IWavePlayer Members
 
@@ -384,20 +381,14 @@ namespace NAudio.Wave
         /// <summary>
         /// Playback State
         /// </summary>
-        public PlaybackState PlaybackState
-        {
-            get { return playbackState; }
-        }
+        public PlaybackState PlaybackState => playbackState;
 
         /// <summary>
         /// Volume
         /// </summary>
         public float Volume
         {
-            get
-            {
-                return mmDevice.AudioEndpointVolume.MasterVolumeLevelScalar;                                
-            }
+            get => mmDevice.AudioEndpointVolume.MasterVolumeLevelScalar;
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(value), "Volume must be between 0.0 and 1.0");

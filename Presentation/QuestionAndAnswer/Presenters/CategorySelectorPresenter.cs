@@ -43,12 +43,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			_categoryManager = new CategoryManager(_categoryRepository);
 		}
 
-		public CategorySelectorViewModel Show()
-		{
-			return CreateViewModel();
-		}
+		public CategorySelectorViewModel Show() => CreateViewModel();
 
-		/// <summary>
+	    /// <summary>
 		/// Required to pass along with the view model:
 		/// the ID's of the already selected categories and the categoryID of the category to add.
 		/// </summary>

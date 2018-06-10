@@ -25,17 +25,14 @@ namespace NAudio.Wave.SampleProviders
             return samples;
         }
 
-        private TimeSpan SamplesToTimeSpan(int samples)
-        {
-            return TimeSpan.FromSeconds((samples / WaveFormat.Channels) / (double)WaveFormat.SampleRate);
-        }
+        private TimeSpan SamplesToTimeSpan(int samples) => TimeSpan.FromSeconds((samples / WaveFormat.Channels) / (double)WaveFormat.SampleRate);
 
         /// <summary>
         /// Number of samples of silence to insert before playing source
         /// </summary>
         public int DelayBySamples
         {
-            get { return delayBySamples; }
+            get => delayBySamples;
             set
             {
                 if (phase != 0)
@@ -55,8 +52,8 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public TimeSpan DelayBy
         {
-            get { return SamplesToTimeSpan(delayBySamples); }
-            set { delayBySamples = TimeSpanToSamples(value); }
+            get => SamplesToTimeSpan(delayBySamples);
+            set => delayBySamples = TimeSpanToSamples(value);
         }        
 
         /// <summary>
@@ -64,7 +61,7 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public int SkipOverSamples
         {
-            get { return skipOverSamples; }
+            get => skipOverSamples;
             set
             {
                 if (phase != 0)
@@ -84,8 +81,8 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public TimeSpan SkipOver
         {
-            get { return SamplesToTimeSpan(skipOverSamples); }
-            set { skipOverSamples = TimeSpanToSamples(value); }
+            get => SamplesToTimeSpan(skipOverSamples);
+            set => skipOverSamples = TimeSpanToSamples(value);
         }        
 
 
@@ -94,7 +91,7 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public int TakeSamples
         {
-            get { return takeSamples; }
+            get => takeSamples;
             set
             {
                 if (phase != 0)
@@ -114,8 +111,8 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public TimeSpan Take
         {
-            get { return SamplesToTimeSpan(takeSamples); }
-            set { takeSamples = TimeSpanToSamples(value); }
+            get => SamplesToTimeSpan(takeSamples);
+            set => takeSamples = TimeSpanToSamples(value);
         }  
 
         /// <summary>
@@ -123,7 +120,7 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public int LeadOutSamples
         {
-            get { return leadOutSamples; }
+            get => leadOutSamples;
             set
             {
                 if (phase != 0)
@@ -143,26 +140,20 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public TimeSpan LeadOut
         {
-            get { return SamplesToTimeSpan(leadOutSamples); }
-            set { leadOutSamples = TimeSpanToSamples(value); }
+            get => SamplesToTimeSpan(leadOutSamples);
+            set => leadOutSamples = TimeSpanToSamples(value);
         }   
 
         /// <summary>
         /// Creates a new instance of offsetSampleProvider
         /// </summary>
         /// <param name="sourceProvider">The Source Sample Provider to read from</param>
-        public OffsetSampleProvider(ISampleProvider sourceProvider)
-        {
-            this.sourceProvider = sourceProvider;
-        }
+        public OffsetSampleProvider(ISampleProvider sourceProvider) => this.sourceProvider = sourceProvider;
 
         /// <summary>
         /// The WaveFormat of this SampleProvider
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return sourceProvider.WaveFormat; }
-        }
+        public WaveFormat WaveFormat => sourceProvider.WaveFormat;
 
         /// <summary>
         /// Reads from this sample provider

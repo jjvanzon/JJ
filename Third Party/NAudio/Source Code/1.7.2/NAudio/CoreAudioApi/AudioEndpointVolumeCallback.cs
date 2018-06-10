@@ -37,11 +37,8 @@ namespace NAudio.CoreAudioApi
     {
         private readonly AudioEndpointVolume parent;
         
-        internal AudioEndpointVolumeCallback(AudioEndpointVolume parent)
-        {
-            this.parent = parent;
-        }
-        
+        internal AudioEndpointVolumeCallback(AudioEndpointVolume parent) => this.parent = parent;
+
         public void OnNotify(IntPtr notifyData)
         {
             //Since AUDIO_VOLUME_NOTIFICATION_DATA is dynamic in length based on the

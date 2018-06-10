@@ -31,29 +31,24 @@ namespace NAudio.Midi
         /// <param name="absoluteTime">Absolute time</param>
         public TempoEvent(int microsecondsPerQuarterNote, long absoluteTime)
             : base(MetaEventType.SetTempo,3,absoluteTime)
-        {
-            this.microsecondsPerQuarterNote = microsecondsPerQuarterNote;
-        }
-        
+            => this.microsecondsPerQuarterNote = microsecondsPerQuarterNote;
+
         /// <summary>
         /// Describes this tempo event
         /// </summary>
         /// <returns>String describing the tempo event</returns>
-        public override string ToString() 
-        {
-            return string.Format("{0} {2}bpm ({1})",
-                base.ToString(),
-                microsecondsPerQuarterNote,
-                (60000000 / microsecondsPerQuarterNote));
-        }
+        public override string ToString() => string.Format("{0} {2}bpm ({1})",
+                                                           base.ToString(),
+                                                           microsecondsPerQuarterNote,
+                                                           (60000000 / microsecondsPerQuarterNote));
 
         /// <summary>
         /// Microseconds per quarter note
         /// </summary>
         public int MicrosecondsPerQuarterNote
         {
-            get { return microsecondsPerQuarterNote; }
-            set { microsecondsPerQuarterNote = value; }
+            get => microsecondsPerQuarterNote;
+            set => microsecondsPerQuarterNote = value;
         }
 
         /// <summary>
@@ -61,8 +56,8 @@ namespace NAudio.Midi
         /// </summary>
         public double Tempo
         {
-            get { return (60000000.0/microsecondsPerQuarterNote); }
-            set { microsecondsPerQuarterNote = (int) (60000000.0/value); }
+            get => (60000000.0/microsecondsPerQuarterNote);
+            set => microsecondsPerQuarterNote = (int) (60000000.0/value);
         }
 
         /// <summary>

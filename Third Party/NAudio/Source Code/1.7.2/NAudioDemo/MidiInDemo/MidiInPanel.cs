@@ -15,10 +15,7 @@ namespace NAudioDemo
         List<MidiEvent> events;
         int midiOutIndex;
 
-        public MidiInPanel()
-        {
-            InitializeComponent();
-        }
+        public MidiInPanel() => InitializeComponent();
 
         private void MidiInForm_Load(object sender, EventArgs e)
         {
@@ -91,11 +88,8 @@ namespace NAudioDemo
             comboBoxMidiInDevices.Enabled = false;
         }
 
-        void midiIn_ErrorReceived(object sender, MidiInMessageEventArgs e)
-        {
-            progressLog1.LogMessage(Color.Red, string.Format("Time {0} Message 0x{1:X8} Event {2}",
-                e.Timestamp, e.RawMessage, e.MidiEvent));
-        }
+        void midiIn_ErrorReceived(object sender, MidiInMessageEventArgs e) => progressLog1.LogMessage(Color.Red, string.Format("Time {0} Message 0x{1:X8} Event {2}",
+                                                                                                                               e.Timestamp, e.RawMessage, e.MidiEvent));
 
         private void StopMonitoring()
         {
@@ -134,10 +128,7 @@ namespace NAudioDemo
             }
         }
 
-        private void buttonClearLog_Click(object sender, EventArgs e)
-        {
-            progressLog1.ClearLog();
-        }
+        private void buttonClearLog_Click(object sender, EventArgs e) => progressLog1.ClearLog();
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -166,14 +157,8 @@ namespace NAudioDemo
     [Export(typeof(INAudioDemoPlugin))]
     public class MidiInPanelPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "MIDI In"; }
-        }
+        public string Name => "MIDI In";
 
-        public Control CreatePanel()
-        {
-            return new MidiInPanel();
-        }
+        public Control CreatePanel() => new MidiInPanel();
     }
 }

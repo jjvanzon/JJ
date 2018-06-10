@@ -62,46 +62,25 @@ namespace NAudio.Mixer
 		/// <summary>
 		/// The control's minimum value
 		/// </summary>
-		public uint MinValue 
-		{
-			get 
-			{
-				return (uint) mixerControl.Bounds.minimum;
-			}
-		}
+		public uint MinValue => (uint) mixerControl.Bounds.minimum;
 
-		/// <summary>
+	    /// <summary>
 		/// The control's maximum value
 		/// </summary>
-		public uint MaxValue 
-		{
-			get 
-			{
-				return (uint) mixerControl.Bounds.maximum;
-			}
-		}
+		public uint MaxValue => (uint) mixerControl.Bounds.maximum;
 
-        /// <summary>
+	    /// <summary>
         /// Value of the control represented as a percentage
         /// </summary>
         public double Percent
         {
-            get
-            {
-                return 100.0 * (Value - MinValue) / (double)(MaxValue - MinValue);
-            }
-            set
-            {
-                Value = (uint)(MinValue + (value / 100.0) * (MaxValue - MinValue));
-            }
-        }
+            get => 100.0 * (Value - MinValue) / (double)(MaxValue - MinValue);
+	        set => Value = (uint)(MinValue + (value / 100.0) * (MaxValue - MinValue));
+	    }
 
         /// <summary>
         /// String Representation for debugging purposes
         /// </summary>
-        public override string ToString()
-        {
-            return string.Format("{0} {1}%", base.ToString(), Percent);
-        }
+        public override string ToString() => string.Format("{0} {1}%", base.ToString(), Percent);
 	}
 }

@@ -11,10 +11,7 @@ namespace NAudio.CoreAudioApi
     {
         IAudioCaptureClient audioCaptureClientInterface;
 
-        internal AudioCaptureClient(IAudioCaptureClient audioCaptureClientInterface)
-        {
-            this.audioCaptureClientInterface = audioCaptureClientInterface;
-        }
+        internal AudioCaptureClient(IAudioCaptureClient audioCaptureClientInterface) => this.audioCaptureClientInterface = audioCaptureClientInterface;
 
         /// <summary>
         /// Gets a pointer to the buffer
@@ -62,10 +59,7 @@ namespace NAudio.CoreAudioApi
         /// Release buffer
         /// </summary>
         /// <param name="numFramesWritten">Number of frames written</param>
-        public void ReleaseBuffer(int numFramesWritten)
-        {
-            Marshal.ThrowExceptionForHR(audioCaptureClientInterface.ReleaseBuffer(numFramesWritten));
-        }
+        public void ReleaseBuffer(int numFramesWritten) => Marshal.ThrowExceptionForHR(audioCaptureClientInterface.ReleaseBuffer(numFramesWritten));
 
         /// <summary>
         /// Release the COM object

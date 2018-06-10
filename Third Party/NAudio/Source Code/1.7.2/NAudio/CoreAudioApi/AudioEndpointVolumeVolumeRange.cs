@@ -35,33 +35,21 @@ namespace NAudio.CoreAudioApi
         readonly float volumeMaxDecibels;
         readonly float volumeIncrementDecibels;
 
-        internal AudioEndpointVolumeVolumeRange(IAudioEndpointVolume parent)
-        {
-            Marshal.ThrowExceptionForHR(parent.GetVolumeRange(out volumeMinDecibels,out volumeMaxDecibels,out volumeIncrementDecibels));
-        }
+        internal AudioEndpointVolumeVolumeRange(IAudioEndpointVolume parent) => Marshal.ThrowExceptionForHR(parent.GetVolumeRange(out volumeMinDecibels,out volumeMaxDecibels,out volumeIncrementDecibels));
 
         /// <summary>
         /// Minimum Decibels
         /// </summary>
-        public float MinDecibels
-        {
-            get { return volumeMinDecibels; }
-        }
+        public float MinDecibels => volumeMinDecibels;
 
         /// <summary>
         /// Maximum Decibels
         /// </summary>
-        public float MaxDecibels
-        {
-            get { return volumeMaxDecibels; }
-        }
+        public float MaxDecibels => volumeMaxDecibels;
 
         /// <summary>
         /// Increment Decibels
         /// </summary>
-        public float IncrementDecibels
-        {
-            get { return volumeIncrementDecibels; }
-        }
+        public float IncrementDecibels => volumeIncrementDecibels;
     }
 }

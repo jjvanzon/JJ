@@ -30,19 +30,14 @@ namespace NAudio.Midi
         /// <param name="absoluteTime">Absolute time of this event</param>
         public TextEvent(string text, MetaEventType metaEventType, long absoluteTime)
             : base(metaEventType, text.Length, absoluteTime)
-        {
-            this.text = text;
-        }
+            => this.text = text;
 
         /// <summary>
         /// The contents of this text event
         /// </summary>
         public string Text
         {
-            get 
-            { 
-                return text; 
-            }
+            get => text;
             set
             {
                 text = value;
@@ -54,10 +49,7 @@ namespace NAudio.Midi
         /// Describes this MIDI text event
         /// </summary>
         /// <returns>A string describing this event</returns>
-        public override string ToString() 
-        {
-            return string.Format("{0} {1}",base.ToString(),text);
-        }
+        public override string ToString() => string.Format("{0} {1}",base.ToString(),text);
 
         /// <summary>
         /// Calls base class export first, then exports the data 

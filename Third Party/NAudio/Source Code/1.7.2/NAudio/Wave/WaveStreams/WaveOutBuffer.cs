@@ -121,24 +121,12 @@ namespace NAudio.Wave
         /// <summary>
         /// Whether the header's in queue flag is set
         /// </summary>
-        public bool InQueue
-        {
-            get
-            {
-                return (header.flags & WaveHeaderFlags.InQueue) == WaveHeaderFlags.InQueue;
-            }
-        }
+        public bool InQueue => (header.flags & WaveHeaderFlags.InQueue) == WaveHeaderFlags.InQueue;
 
         /// <summary>
         /// The buffer size in bytes
         /// </summary>
-        public int BufferSize
-        {
-            get
-            {
-                return bufferSize;
-            }
-        }
+        public int BufferSize => bufferSize;
 
         private void WriteToWaveOut()
         {

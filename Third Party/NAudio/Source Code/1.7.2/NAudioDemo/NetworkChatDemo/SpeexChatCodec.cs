@@ -53,20 +53,11 @@ namespace NAudioDemo.NetworkChatDemo
             encoderInputBuffer = new WaveBuffer(recordingFormat.AverageBytesPerSecond); // more than enough
         }
 
-        public string Name
-        {
-            get { return description; }
-        }
+        public string Name => description;
 
-        public int BitsPerSecond
-        {
-            get { return -1; }
-        }
+        public int BitsPerSecond => -1;
 
-        public WaveFormat RecordFormat
-        {
-            get { return recordingFormat; }
-        }
+        public WaveFormat RecordFormat => recordingFormat;
 
         public byte[] Encode(byte[] data, int offset, int length)
         {
@@ -115,6 +106,6 @@ namespace NAudioDemo.NetworkChatDemo
             // nothing to do
         }
 
-        public bool IsAvailable { get { return true; } }
+        public bool IsAvailable => true;
     }
 }

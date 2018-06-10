@@ -14,12 +14,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
 		private readonly Repositories _repositories;
 
-		static LoginPresenter()
-		{
-			_defaultReturnAction = ActionDispatcher.CreateActionInfo<RandomQuestionPresenter>(x => x.Show(null));
-		}
+		static LoginPresenter() => _defaultReturnAction = ActionDispatcher.CreateActionInfo<RandomQuestionPresenter>(x => x.Show(null));
 
-		public LoginPresenter(Repositories repositories) => _repositories = repositories ?? throw new NullException(() => repositories);
+	    public LoginPresenter(Repositories repositories) => _repositories = repositories ?? throw new NullException(() => repositories);
 
 		public LoginViewModel Show(ActionInfo returnAction = null)
 		{

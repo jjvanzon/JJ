@@ -66,67 +66,34 @@ namespace NAudio.SoundFont
 		/// <summary>
 		/// The File Info Chunk
 		/// </summary>
-		public InfoChunk FileInfo 
-		{
-			get 
-			{
-				return info;
-			}
-		}
+		public InfoChunk FileInfo => info;
 
-		/// <summary>
+	    /// <summary>
 		/// The Presets
 		/// </summary>
-		public Preset[] Presets 
-		{
-			get 
-			{
-				return presetsChunk.Presets;
-			}
-		}
+		public Preset[] Presets => presetsChunk.Presets;
 
-		/// <summary>
+	    /// <summary>
 		/// The Instruments
 		/// </summary>
-		public Instrument[] Instruments
-		{
-			get 
-			{
-				return presetsChunk.Instruments;
-			}
-		}
+		public Instrument[] Instruments => presetsChunk.Instruments;
 
-		/// <summary>
+	    /// <summary>
 		/// The Sample Headers
 		/// </summary>
-		public SampleHeader[] SampleHeaders
-		{
-			get
-			{
-				return presetsChunk.SampleHeaders;
-			}
-		}
+		public SampleHeader[] SampleHeaders => presetsChunk.SampleHeaders;
 
-		/// <summary>
+	    /// <summary>
 		/// The Sample Data
 		/// </summary>
-		public byte[] SampleData
-		{
-			get
-			{
-				return sampleData.SampleData;
-			}
-		}
+		public byte[] SampleData => sampleData.SampleData;
 
-		/// <summary>
+	    /// <summary>
 		/// <see cref="Object.ToString"/>
 		/// </summary>
-		public override string ToString() 
-		{
-			return string.Format("Info Chunk:\r\n{0}\r\nPresets Chunk:\r\n{1}",
-									info,presetsChunk);
-		}
+		public override string ToString() => string.Format("Info Chunk:\r\n{0}\r\nPresets Chunk:\r\n{1}",
+		                                                   info,presetsChunk);
 
-		// TODO: save / save as function
+	    // TODO: save / save as function
 	}
 }

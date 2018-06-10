@@ -52,48 +52,32 @@ namespace NAudio.Wave
         /// <summary>
         /// Number of channels supported
         /// </summary>
-        public int Channels
-        {
-            get
-            {
-                return channels;
-            }
-        }
+        public int Channels => channels;
 
         /// <summary>
         /// The product name
         /// </summary>
-        public string ProductName
-        {
-            get
-            {
-                return productName;
-            }
-        }
+        public string ProductName => productName;
 
         /// <summary>
         /// The device name Guid (if provided)
         /// </summary>
-        public Guid NameGuid { get { return nameGuid; } }
+        public Guid NameGuid => nameGuid;
         /// <summary>
         /// The product name Guid (if provided)
         /// </summary>
-        public Guid ProductGuid { get { return productGuid; } }
+        public Guid ProductGuid => productGuid;
         /// <summary>
         /// The manufacturer guid (if provided)
         /// </summary>
-        public Guid ManufacturerGuid { get { return manufacturerGuid; } }
+        public Guid ManufacturerGuid => manufacturerGuid;
 
         /// <summary>
         /// Checks to see if a given SupportedWaveFormat is supported
         /// </summary>
         /// <param name="waveFormat">The SupportedWaveFormat</param>
         /// <returns>true if supported</returns>
-        public bool SupportsWaveFormat(SupportedWaveFormat waveFormat)
-        {
-            return (supportedFormats & waveFormat) == waveFormat;
-        }
-
+        public bool SupportsWaveFormat(SupportedWaveFormat waveFormat) => (supportedFormats & waveFormat) == waveFormat;
     }
 
     internal static class WaveCapabilitiesHelpers

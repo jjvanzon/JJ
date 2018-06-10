@@ -39,19 +39,10 @@ namespace NAudioDemo.AudioPlaybackDemo
             return waveOutSettingsPanel;
         }
 
-        public string Name
-        {
-            get { return "WaveOut"; }
-        }
+        public string Name => "WaveOut";
 
-        public bool IsAvailable
-        {
-            get { return WaveOut.DeviceCount > 0; }
-        }
+        public bool IsAvailable => WaveOut.DeviceCount > 0;
 
-        public int Priority
-        {
-            get { return 1; } 
-        }
+        public int Priority => 1;
     }
 }

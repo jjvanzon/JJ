@@ -51,10 +51,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Stream Wave Format
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get { return outputFormat; }
-        }
+        public override WaveFormat WaveFormat => outputFormat;
 
         private long InputToOutputPosition(long inputPosition)
         {
@@ -100,10 +97,7 @@ namespace NAudio.Wave
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return position;
-            }
+            get => position;
             set
             {
                 if (this.inputStream == null)

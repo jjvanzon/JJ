@@ -22,10 +22,7 @@ namespace NAudio.Utils
         /// <summary>
         /// MAKE_HRESULT macro
         /// </summary>
-        public static int MAKE_HRESULT(int sev, int fac, int code)
-        {
-            return (int) (((uint)sev) << 31 | ((uint)fac) << 16 | ((uint)code));
-        }
+        public static int MAKE_HRESULT(int sev, int fac, int code) => (int) (((uint)sev) << 31 | ((uint)fac) << 16 | ((uint)code));
 
         const int FACILITY_AAF = 18;
         const int FACILITY_ACS = 20;

@@ -15,13 +15,7 @@ namespace NAudio.SoundFont
 			sampleData = chunk.GetData();
 		}
 
-		public byte[] SampleData
-		{
-			get
-			{
-				return sampleData;
-			}
-		}
+		public byte[] SampleData => sampleData;
 	}
 
 } // end of namespace

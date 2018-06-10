@@ -28,18 +28,15 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 			}
 		}
 
-		private PropertyAspectsImportModel CreateImportModel(CsvReader reader)
+		private PropertyAspectsImportModel CreateImportModel(CsvReader reader) => new PropertyAspectsImportModel
 		{
-			return new PropertyAspectsImportModel
-			{
-				PropertyName = reader[0],
-				PossibleValues = reader[1],
-				InitialValue = reader[2],
-				AppliesTo = reader[3],
-				IsInherited = reader[4],
-				Percentages = reader[5],
-				Media = reader[6],
-			};
-		}
+		    PropertyName = reader[0],
+		    PossibleValues = reader[1],
+		    InitialValue = reader[2],
+		    AppliesTo = reader[3],
+		    IsInherited = reader[4],
+		    Percentages = reader[5],
+		    Media = reader[6],
+		};
 	}
 }

@@ -30,10 +30,7 @@ namespace NAudio.Wave
             /// <summary>
             /// Sets up the default settings for MediaFoundationReader
             /// </summary>
-            public MediaFoundationReaderSettings()
-            {
-                RepositionInRead = true;
-            }
+            public MediaFoundationReaderSettings() => RepositionInRead = true;
 
             /// <summary>
             /// Allows us to request IEEE float output (n.b. no guarantee this will be accepted)
@@ -245,28 +242,19 @@ namespace NAudio.Wave
         /// <summary>
         /// WaveFormat of this stream (n.b. this is after converting to PCM)
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get { return waveFormat; }
-        }
+        public override WaveFormat WaveFormat => waveFormat;
 
         /// <summary>
         /// The bytesRequired of this stream in bytes (n.b may not be accurate)
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return length;
-            }
-        }
+        public override long Length => length;
 
         /// <summary>
         /// Current position within this stream
         /// </summary>
         public override long Position
         {
-            get { return position; }
+            get => position;
             set
             {
                 if (value < 0)

@@ -49,13 +49,7 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// Indexer - get a specific channel
         /// </summary>
-        public AudioEndpointVolumeChannel this[int index]
-        {
-            get
-            {
-                return channels[index];
-            }
-        }
+        public AudioEndpointVolumeChannel this[int index] => channels[index];
 
         internal AudioEndpointVolumeChannels(IAudioEndpointVolume parent)
         {

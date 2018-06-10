@@ -22,19 +22,13 @@
         /// Initializes a new instance of the WaveProvider32 class with the specified
         /// sample rate and number of channels
         /// </summary>
-        public WaveProvider32(int sampleRate, int channels)
-        {
-            SetWaveFormat(sampleRate, channels);
-        }
+        public WaveProvider32(int sampleRate, int channels) => SetWaveFormat(sampleRate, channels);
 
         /// <summary>
         /// Allows you to specify the sample rate and channels for this WaveProvider
         /// (should be initialised before you pass it to a wave player)
         /// </summary>
-        public void SetWaveFormat(int sampleRate, int channels)
-        {
-            this.waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channels);
-        }
+        public void SetWaveFormat(int sampleRate, int channels) => this.waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channels);
 
         /// <summary>
         /// Implements the Read method of IWaveProvider by delegating to the abstract
@@ -57,9 +51,6 @@
         /// <summary>
         /// The Wave Format
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return waveFormat; }
-        }
+        public WaveFormat WaveFormat => waveFormat;
     }
 }

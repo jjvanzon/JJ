@@ -68,14 +68,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			return presenter3.Show(id);
 		}
 
-		public PreviousViewModel Cancel()
-		{
-			return new PreviousViewModel();
-		}
+		public PreviousViewModel Cancel() => new PreviousViewModel();
 
-		private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
-		{
-			return ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
-		}
+	    private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression) => ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
 	}
 }

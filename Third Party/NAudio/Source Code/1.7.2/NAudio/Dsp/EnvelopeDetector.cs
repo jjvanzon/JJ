@@ -24,10 +24,7 @@ namespace NAudio.Dsp
 
         public double TimeConstant
         {
-            get 
-            { 
-                return ms; 
-            }
+            get => ms;
             set 
             {
                 System.Diagnostics.Debug.Assert( value > 0.0 );
@@ -38,10 +35,7 @@ namespace NAudio.Dsp
 
         public double SampleRate
         {
-            get 
-            {
-                return sampleRate; 
-            }
+            get => sampleRate;
             set
             {
                 System.Diagnostics.Debug.Assert( value > 0.0 );
@@ -50,15 +44,9 @@ namespace NAudio.Dsp
             }
         }
 
-        public void Run( double inValue, ref double state )
-        {
-            state = inValue + coeff * (state - inValue);
-        }
+        public void Run( double inValue, ref double state ) => state = inValue + coeff * (state - inValue);
 
-        private void SetCoef()
-        {
-            coeff = Math.Exp(-1.0 / (0.001 * ms * sampleRate));
-        }
+        private void SetCoef() => coeff = Math.Exp(-1.0 / (0.001 * ms * sampleRate));
     }
 
     class AttRelEnvelope
@@ -77,20 +65,20 @@ namespace NAudio.Dsp
 
         public double Attack 
         {
-            get { return attack.TimeConstant; }
-            set { attack.TimeConstant = value; }
+            get => attack.TimeConstant;
+            set => attack.TimeConstant = value;
         }
 
         public double Release
         {
-            get { return release.TimeConstant; }
-            set { release.TimeConstant = value; }
+            get => release.TimeConstant;
+            set => release.TimeConstant = value;
         }
 
         public double SampleRate
         {
-            get { return attack.SampleRate; }
-            set { attack.SampleRate = release.SampleRate = value; }
+            get => attack.SampleRate;
+            set => attack.SampleRate = release.SampleRate = value;
         }
 
         public void Run(double inValue, ref double state)

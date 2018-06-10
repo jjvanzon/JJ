@@ -48,10 +48,7 @@ namespace NAudio.Wave
         /// </summary>
         /// <param name="input">input stream</param>
         /// <returns>A valid MP3 frame, or null if none found</returns>
-        public static Mp3Frame LoadFromStream(Stream input)
-        {
-            return LoadFromStream(input, true);
-        }
+        public static Mp3Frame LoadFromStream(Stream input) => LoadFromStream(input, true);
 
         /// <summary>Reads an MP3Frame from a stream</summary>
         /// <remarks>http://mpgedit.org/mpgedit/mpeg_format/mpeghdr.htm has some good info

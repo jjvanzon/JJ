@@ -9,15 +9,9 @@ namespace NAudio.Utils
     public static class IEEE
     {
         #region Helper Methods
-        private static double UnsignedToFloat(ulong u)
-        {
-            return (((double)((long)(u - 2147483647L - 1))) + 2147483648.0);
-        }
+        private static double UnsignedToFloat(ulong u) => (((double)((long)(u - 2147483647L - 1))) + 2147483648.0);
 
-        private static double ldexp(double x, int exp)
-        {
-            return x * Math.Pow(2, exp);
-        }
+        private static double ldexp(double x, int exp) => x * Math.Pow(2, exp);
 
         private static double frexp(double x, out int exp)
         {
@@ -25,10 +19,8 @@ namespace NAudio.Utils
             return 1 - (Math.Pow(2, exp) - x) / Math.Pow(2, exp);
         }
 
-        private static ulong FloatToUnsigned(double f)
-        {
-            return ((ulong)(((long)(f - 2147483648.0)) + 2147483647L) + 1);
-        }
+        private static ulong FloatToUnsigned(double f) => ((ulong)(((long)(f - 2147483648.0)) + 2147483647L) + 1);
+
         #endregion
 
         #region ConvertToIeeeExtended

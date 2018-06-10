@@ -151,10 +151,7 @@ namespace NAudioDemo.MediaFoundationDemo
         /// <summary>
         /// Stop playback and flush buffers
         /// </summary>
-        public void Stop()
-        {
-            playbackState = PlaybackState.Stopped;
-        }
+        public void Stop() => playbackState = PlaybackState.Stopped;
 
         /// <summary>
         /// Stop playback without flushing buffers
@@ -257,20 +254,14 @@ namespace NAudioDemo.MediaFoundationDemo
         /// <summary>
         /// Playback State
         /// </summary>
-        public PlaybackState PlaybackState
-        {
-            get { return playbackState; }
-        }
+        public PlaybackState PlaybackState => playbackState;
 
         /// <summary>
         /// Volume
         /// </summary>
         public float Volume
         {
-            get
-            {
-                return 1.0f;
-            }
+            get => 1.0f;
             set
             {
                 if (value != 1.0f)

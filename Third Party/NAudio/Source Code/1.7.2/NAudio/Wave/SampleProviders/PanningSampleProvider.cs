@@ -36,10 +36,7 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public float Pan
         {
-            get
-            {
-                return this.pan;
-            }
+            get => this.pan;
             set
             {
                 if (value < -1.0f || value > 1.0f)
@@ -56,10 +53,7 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public IPanStrategy PanStrategy
         {
-            get
-            {
-                return this.panStrategy;
-            }
+            get => this.panStrategy;
             set
             {
                 this.panStrategy = value;
@@ -77,10 +71,7 @@ namespace NAudio.Wave.SampleProviders
         /// <summary>
         /// The WaveFormat of this sample provider
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return this.waveFormat; }
-        }
+        public WaveFormat WaveFormat => this.waveFormat;
 
         /// <summary>
         /// Reads samples from this sample provider

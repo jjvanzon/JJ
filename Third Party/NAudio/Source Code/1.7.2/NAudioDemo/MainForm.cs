@@ -46,14 +46,8 @@ namespace NAudioDemo
             }
         }
 
-        private void listBoxDemos_DoubleClick(object sender, EventArgs e)
-        {
-            buttonLoadDemo_Click(sender, e);
-        }
+        private void listBoxDemos_DoubleClick(object sender, EventArgs e) => buttonLoadDemo_Click(sender, e);
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DisposeCurrentDemo();
-        }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e) => DisposeCurrentDemo();
     }
 }

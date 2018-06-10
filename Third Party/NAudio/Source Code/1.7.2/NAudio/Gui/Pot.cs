@@ -46,10 +46,7 @@ namespace NAudio.Gui
         /// </summary>
         public double Minimum
         {
-            get
-            {
-                return minimum;
-            }
+            get => minimum;
             set
             {
                 if (value >= maximum)
@@ -65,10 +62,7 @@ namespace NAudio.Gui
         /// </summary>
         public double Maximum
         {
-            get
-            {
-                return maximum;
-            }
+            get => maximum;
             set
             {
                 if (value <= minimum)
@@ -84,14 +78,8 @@ namespace NAudio.Gui
         /// </summary>
         public double Value
         {
-            get
-            {
-                return value;
-            }
-            set
-            {
-                SetValue(value, false);
-            }
+            get => value;
+            set => SetValue(value, false);
         }
 
         private void SetValue(double newValue, bool raiseEvents)

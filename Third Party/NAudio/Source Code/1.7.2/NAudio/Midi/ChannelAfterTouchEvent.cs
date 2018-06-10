@@ -32,9 +32,7 @@ namespace NAudio.Midi
         /// <param name="afterTouchPressure">After-touch pressure</param>
         public ChannelAfterTouchEvent(long absoluteTime, int channel, int afterTouchPressure)
             : base(absoluteTime, channel, MidiCommandCode.ChannelAfterTouch)
-        {
-            AfterTouchPressure = afterTouchPressure;
-        }
+            => AfterTouchPressure = afterTouchPressure;
 
         /// <summary>
         /// Calls base class export first, then exports the data 
@@ -52,7 +50,7 @@ namespace NAudio.Midi
         /// </summary>
         public int AfterTouchPressure
         {
-            get { return afterTouchPressure; }
+            get => afterTouchPressure;
             set
             {
                 if (value < 0 || value > 127)

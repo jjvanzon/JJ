@@ -15,13 +15,7 @@ namespace NAudio.Midi
         /// <summary>
         /// Gets the number of MIDI devices available in the system
         /// </summary>
-        public static int NumberOfDevices 
-        {
-            get 
-            {
-                return MidiInterop.midiOutGetNumDevs();
-            }
-        }
+        public static int NumberOfDevices => MidiInterop.midiOutGetNumDevs();
 
         /// <summary>
         /// Gets the MIDI Out device info
@@ -48,10 +42,7 @@ namespace NAudio.Midi
         /// <summary>
         /// Closes this MIDI out device
         /// </summary>
-        public void Close() 
-        {
-            Dispose();
-        }
+        public void Close() => Dispose();
 
         /// <summary>
         /// Closes this MIDI out device
@@ -75,19 +66,13 @@ namespace NAudio.Midi
                 MmException.Try(MidiInterop.midiOutGetVolume(hMidiOut,ref volume),"midiOutGetVolume");
                 return volume;
             }
-            set 
-            {
-                MmException.Try(MidiInterop.midiOutSetVolume(hMidiOut,value),"midiOutSetVolume");
-            }
+            set => MmException.Try(MidiInterop.midiOutSetVolume(hMidiOut,value),"midiOutSetVolume");
         }
 
         /// <summary>
         /// Resets the MIDI out device
         /// </summary>
-        public void Reset() 
-        {
-            MmException.Try(MidiInterop.midiOutReset(hMidiOut),"midiOutReset");
-        }
+        public void Reset() => MmException.Try(MidiInterop.midiOutReset(hMidiOut),"midiOutReset");
 
         /// <summary>
         /// Sends a MIDI out message
@@ -95,20 +80,14 @@ namespace NAudio.Midi
         /// <param name="message">Message</param>
         /// <param name="param1">Parameter 1</param>
         /// <param name="param2">Parameter 2</param>
-        public void SendDriverMessage(int message, int param1, int param2) 
-        {
-            MmException.Try(MidiInterop.midiOutMessage(hMidiOut,message,(IntPtr)param1,(IntPtr)param2),"midiOutMessage");
-        }
+        public void SendDriverMessage(int message, int param1, int param2) => MmException.Try(MidiInterop.midiOutMessage(hMidiOut,message,(IntPtr)param1,(IntPtr)param2),"midiOutMessage");
 
         /// <summary>
         /// Sends a MIDI message to the MIDI out device
         /// </summary>
         /// <param name="message">The message to send</param>
-        public void Send(int message) 
-        {
-            MmException.Try(MidiInterop.midiOutShortMsg(hMidiOut,message),"midiOutShortMsg");
-        }
-        
+        public void Send(int message) => MmException.Try(MidiInterop.midiOutShortMsg(hMidiOut,message),"midiOutShortMsg");
+
         /// <summary>
         /// Closes the MIDI out device
         /// </summary>

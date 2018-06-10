@@ -11,25 +11,12 @@ namespace NAudio.Utils
         /// <summary>
         /// Creates a new progress log control
         /// </summary>
-        public ProgressLog()
-        {
-            InitializeComponent();
-        }
-
-
+        public ProgressLog() => InitializeComponent();
 
         /// <summary>
         /// The contents of the log as text
         /// </summary>
-        public new string Text
-        {
-            get
-            {
-                return richTextBoxLog.Text;
-            }
-        }
-
-
+        public new string Text => richTextBoxLog.Text;
 
         delegate void LogMessageDelegate(Color color, string message);
 

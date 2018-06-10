@@ -28,10 +28,7 @@ namespace NAudioDemo.NetworkChatDemo
             Disposed += OnPanelDisposed;
         }
 
-        void OnPanelDisposed(object sender, EventArgs e)
-        {
-            Disconnect();
-        }
+        void OnPanelDisposed(object sender, EventArgs e) => Disconnect();
 
         private void PopulateCodecsCombo(IEnumerable<INetworkChatCodec> codecs)
         {
@@ -53,10 +50,7 @@ namespace NAudioDemo.NetworkChatDemo
         {
             public string Text { get; set; }
             public INetworkChatCodec Codec { get; set; }
-            public override string ToString()
-            {
-                return Text;
-            }
+            public override string ToString() => Text;
         }
 
         private void PopulateInputDevicesCombo()
@@ -173,17 +167,11 @@ namespace NAudioDemo.NetworkChatDemo
     [Export(typeof(INAudioDemoPlugin))]
     public class NetworkChatPanelPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "Network Chat"; }
-        }
+        public string Name => "Network Chat";
 
         [ImportMany(typeof(INetworkChatCodec))]
         public IEnumerable<INetworkChatCodec> Codecs { get; set; }
 
-        public Control CreatePanel()
-        {
-            return new NetworkChatPanel(Codecs);
-        }
+        public Control CreatePanel() => new NetworkChatPanel(Codecs);
     }
 }

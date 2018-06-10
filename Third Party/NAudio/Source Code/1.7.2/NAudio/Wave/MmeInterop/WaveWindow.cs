@@ -8,10 +8,7 @@ namespace NAudio.Wave
     {
         private readonly WaveInterop.WaveCallback waveCallback;
 
-        public WaveWindowNative(WaveInterop.WaveCallback waveCallback)
-        {
-            this.waveCallback = waveCallback;
-        }
+        public WaveWindowNative(WaveInterop.WaveCallback waveCallback) => this.waveCallback = waveCallback;
 
         protected override void WndProc(ref System.Windows.Forms.Message m)
         {
@@ -43,10 +40,7 @@ namespace NAudio.Wave
     {
         private readonly WaveInterop.WaveCallback waveCallback;
 
-        public WaveWindow(WaveInterop.WaveCallback waveCallback)
-        {
-            this.waveCallback = waveCallback;
-        }
+        public WaveWindow(WaveInterop.WaveCallback waveCallback) => this.waveCallback = waveCallback;
 
         protected override void WndProc(ref System.Windows.Forms.Message m)
         {

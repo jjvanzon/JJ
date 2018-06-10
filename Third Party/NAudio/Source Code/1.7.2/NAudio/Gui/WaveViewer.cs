@@ -34,10 +34,7 @@ namespace NAudio.Gui
         /// </summary>
         public WaveStream WaveStream
         {
-            get
-            {
-                return waveStream;
-            }
+            get => waveStream;
             set
             {
                 waveStream = value;
@@ -54,10 +51,7 @@ namespace NAudio.Gui
         /// </summary>
         public int SamplesPerPixel
         {
-            get
-            {
-                return samplesPerPixel;
-            }
+            get => samplesPerPixel;
             set
             {
                 samplesPerPixel = value;
@@ -70,14 +64,8 @@ namespace NAudio.Gui
         /// </summary>
         public long StartPosition
         {
-            get
-            {
-                return startPosition;
-            }
-            set
-            {
-                startPosition = value;
-            }
+            get => startPosition;
+            set => startPosition = value;
         }
 
         /// <summary> 

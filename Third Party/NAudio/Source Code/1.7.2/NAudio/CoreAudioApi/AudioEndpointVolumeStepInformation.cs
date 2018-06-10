@@ -33,25 +33,16 @@ namespace NAudio.CoreAudioApi
         private readonly uint step;
         private readonly uint stepCount;
 
-        internal AudioEndpointVolumeStepInformation(IAudioEndpointVolume parent)
-        {
-            Marshal.ThrowExceptionForHR(parent.GetVolumeStepInfo(out step, out stepCount));
-        }
+        internal AudioEndpointVolumeStepInformation(IAudioEndpointVolume parent) => Marshal.ThrowExceptionForHR(parent.GetVolumeStepInfo(out step, out stepCount));
 
         /// <summary>
         /// Step
         /// </summary>
-        public uint Step
-        {
-            get { return step; }
-        }
+        public uint Step => step;
 
         /// <summary>
         /// StepCount
         /// </summary>
-        public uint StepCount
-        {
-            get { return stepCount; }
-        }
+        public uint StepCount => stepCount;
     }
 }

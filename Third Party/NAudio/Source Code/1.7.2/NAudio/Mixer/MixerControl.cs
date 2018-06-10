@@ -227,18 +227,12 @@ namespace NAudio.Mixer
         /// <summary>
         /// Mixer control name
         /// </summary>
-        public string Name
-        {
-            get { return mixerControl.szName; }
-        }
+        public string Name => mixerControl.szName;
 
         /// <summary>
         /// Mixer control type
         /// </summary>
-        public MixerControlType ControlType
-        {
-            get { return mixerControl.dwControlType; }
-        }
+        public MixerControlType ControlType => mixerControl.dwControlType;
 
         /// <summary>
         /// Returns true if this is a boolean control
@@ -269,10 +263,7 @@ namespace NAudio.Mixer
         /// <summary>
         /// Is this a boolean control
         /// </summary>
-        public bool IsBoolean
-        {
-            get { return MixerControl.IsControlBoolean(mixerControl.dwControlType); }
-        }
+        public bool IsBoolean => MixerControl.IsControlBoolean(mixerControl.dwControlType);
 
         /// <summary>
         /// Determines whether a specified mixer control type is a list text control
@@ -295,10 +286,7 @@ namespace NAudio.Mixer
         /// <summary>
         /// True if this is a list text control
         /// </summary>
-        public bool IsListText
-        {
-            get { return MixerControl.IsControlListText(mixerControl.dwControlType); }
-        }
+        public bool IsListText => MixerControl.IsControlListText(mixerControl.dwControlType);
 
         private static bool IsControlSigned(MixerControlType controlType)
         {
@@ -320,10 +308,7 @@ namespace NAudio.Mixer
         /// <summary>
         /// True if this is a signed control
         /// </summary>
-        public bool IsSigned
-        {
-            get { return MixerControl.IsControlSigned(mixerControl.dwControlType); }
-        }
+        public bool IsSigned => MixerControl.IsControlSigned(mixerControl.dwControlType);
 
         private static bool IsControlUnsigned(MixerControlType controlType)
         {
@@ -348,30 +333,18 @@ namespace NAudio.Mixer
         /// <summary>
         /// True if this is an unsigned control
         /// </summary>
-        public bool IsUnsigned
-        {
-            get { return MixerControl.IsControlUnsigned(mixerControl.dwControlType); }
-        }
+        public bool IsUnsigned => MixerControl.IsControlUnsigned(mixerControl.dwControlType);
 
-        private static bool IsControlCustom(MixerControlType controlType)
-        {
-            return (controlType == MixerControlType.Custom);
-        }
+        private static bool IsControlCustom(MixerControlType controlType) => (controlType == MixerControlType.Custom);
 
         /// <summary>
         /// True if this is a custom control
         /// </summary>
-        public bool IsCustom
-        {
-            get { return MixerControl.IsControlCustom(mixerControl.dwControlType); }
-        }
+        public bool IsCustom => MixerControl.IsControlCustom(mixerControl.dwControlType);
 
         /// <summary>
         /// String representation for debug purposes
         /// </summary>
-        public override string ToString()
-        {
-            return string.Format("{0} {1}", Name, ControlType);
-        }
+        public override string ToString() => string.Format("{0} {1}", Name, ControlType);
     }
 }

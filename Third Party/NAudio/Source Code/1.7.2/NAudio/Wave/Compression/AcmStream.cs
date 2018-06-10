@@ -117,33 +117,18 @@ namespace NAudio.Wave.Compression
         /// <summary>
         /// Returns the Source Buffer. Fill this with data prior to calling convert
         /// </summary>
-        public byte[] SourceBuffer
-        {
-            get
-            {
-                return streamHeader.SourceBuffer;
-            }
-        }
+        public byte[] SourceBuffer => streamHeader.SourceBuffer;
 
         /// <summary>
         /// Returns the Destination buffer. This will contain the converted data
         /// after a successful call to Convert
         /// </summary>
-        public byte[] DestBuffer
-        {
-            get
-            {
-                return streamHeader.DestBuffer;
-            }
-        }
+        public byte[] DestBuffer => streamHeader.DestBuffer;
 
         /// <summary>
         /// Report that we have repositioned in the source stream
         /// </summary>
-        public void Reposition()
-        {
-            streamHeader.Reposition();
-        }
+        public void Reposition() => streamHeader.Reposition();
 
         /// <summary>
         /// Converts the contents of the SourceBuffer into the DestinationBuffer

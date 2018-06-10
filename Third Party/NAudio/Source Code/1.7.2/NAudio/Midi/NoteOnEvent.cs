@@ -41,10 +41,7 @@ namespace NAudio.Midi
         /// </summary>
         public NoteEvent OffEvent
         {
-            get
-            {
-                return offEvent;
-            }
+            get => offEvent;
             set
             {
                 if (!MidiEvent.IsNoteOff(value))
@@ -69,10 +66,7 @@ namespace NAudio.Midi
         /// </summary>
         public override int NoteNumber
         {
-            get
-            {
-                return base.NoteNumber;
-            }
+            get => base.NoteNumber;
             set
             {
                 base.NoteNumber = value;
@@ -88,10 +82,7 @@ namespace NAudio.Midi
         /// </summary>
         public override int Channel
         {
-            get
-            {
-                return base.Channel;
-            }
+            get => base.Channel;
             set
             {
                 base.Channel = value;
@@ -110,10 +101,7 @@ namespace NAudio.Midi
         /// </remarks>
         public int NoteLength
         {
-            get
-            {
-                return (int)(offEvent.AbsoluteTime - this.AbsoluteTime);
-            }
+            get => (int)(offEvent.AbsoluteTime - this.AbsoluteTime);
             set
             {
                 if (value < 0)

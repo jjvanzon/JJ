@@ -20,19 +20,13 @@
         /// Initializes a new instance of the WaveProvider16 class with the specified
         /// sample rate and number of channels
         /// </summary>
-        public WaveProvider16(int sampleRate, int channels)
-        {
-            SetWaveFormat(sampleRate, channels);
-        }
+        public WaveProvider16(int sampleRate, int channels) => SetWaveFormat(sampleRate, channels);
 
         /// <summary>
         /// Allows you to specify the sample rate and channels for this WaveProvider
         /// (should be initialised before you pass it to a wave player)
         /// </summary>
-        public void SetWaveFormat(int sampleRate, int channels)
-        {
-            this.waveFormat = new WaveFormat(sampleRate, 16, channels);
-        }
+        public void SetWaveFormat(int sampleRate, int channels) => this.waveFormat = new WaveFormat(sampleRate, 16, channels);
 
         /// <summary>
         /// Implements the Read method of IWaveProvider by delegating to the abstract
@@ -55,9 +49,6 @@
         /// <summary>
         /// The Wave Format
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return waveFormat; }
-        }
+        public WaveFormat WaveFormat => waveFormat;
     }
 }

@@ -138,12 +138,9 @@ namespace JJ.Business.QuestionAndAnswer.Import
 
 		private IList<Question> GetExistingQuestionsOfSource() => _questionRepository.GetBySourceID(_source.ID);
 
-		private void DoProgressCallback(string message)
-		{
-			_progressCallback?.Invoke(message);
-		}
+		private void DoProgressCallback(string message) => _progressCallback?.Invoke(message);
 
-		private bool DoIsCancelledCallback()
+	    private bool DoIsCancelledCallback()
 		{
 			if (_isCancelledCallback != null)
 			{

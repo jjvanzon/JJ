@@ -9,12 +9,9 @@ namespace NAudio.Wave.SampleProviders
         private WaveBuffer sourceWaveBuffer;
         private int sourceSamples;
 
-        public bool Supports(WaveFormat waveFormat)
-        {
-            return waveFormat.Encoding == WaveFormatEncoding.Pcm &&
-                waveFormat.BitsPerSample == 16 &&
-                waveFormat.Channels == 2;
-        }
+        public bool Supports(WaveFormat waveFormat) => waveFormat.Encoding == WaveFormatEncoding.Pcm &&
+                                                       waveFormat.BitsPerSample == 16 &&
+                                                       waveFormat.Channels == 2;
 
         public void LoadNextChunk(IWaveProvider source, int samplePairsRequired)
         {

@@ -105,10 +105,7 @@ namespace NAudio.Wave
         /// <summary>
         /// The number of inputs to this mixer
         /// </summary>
-        public int InputCount
-        {
-            get { return inputStreams.Count; }
-        }
+        public int InputCount => inputStreams.Count;
 
         /// <summary>
         /// Automatically stop when all inputs have been read
@@ -188,25 +185,13 @@ namespace NAudio.Wave
         /// <summary>
         /// <see cref="WaveStream.BlockAlign"/>
         /// </summary>
-        public override int BlockAlign
-        {
-            get
-            {
-                return waveFormat.BlockAlign; // inputStreams[0].BlockAlign;
-            }
-        }
+        public override int BlockAlign => waveFormat.BlockAlign;
 
         /// <summary>
         /// Length of this Wave Stream (in bytes)
         /// <see cref="System.IO.Stream.Length"/>
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return length;
-            }
-        }
+        public override long Length => length;
 
         /// <summary>
         /// Position within this Wave Stream (in bytes)
@@ -214,11 +199,7 @@ namespace NAudio.Wave
         /// </summary>
         public override long Position
         {
-            get
-            {
-                // all streams are at the same position
-                return position;
-            }
+            get => position;
             set
             {
                 lock (inputsLock)
@@ -236,13 +217,7 @@ namespace NAudio.Wave
         /// <summary>
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get
-            {
-                return waveFormat;
-            }
-        }
+        public override WaveFormat WaveFormat => waveFormat;
 
         /// <summary>
         /// Disposes this WaveStream

@@ -16,18 +16,12 @@ namespace NAudio.Utils
         /// <summary>
         /// Field description
         /// </summary>
-        public FieldDescriptionAttribute(string description)
-        {
-            Description = description;
-        }
+        public FieldDescriptionAttribute(string description) => Description = description;
 
         /// <summary>
         /// String representation
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return Description;
-        }
+        public override string ToString() => Description;
     }
 }

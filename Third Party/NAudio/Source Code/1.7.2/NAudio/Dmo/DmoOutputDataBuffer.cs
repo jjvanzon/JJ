@@ -45,25 +45,22 @@ namespace NAudio.Dmo
         /// </summary>
         public IMediaBuffer MediaBuffer
         {
-            get { return pBuffer; }
-            internal set { pBuffer = value; }
+            get => pBuffer;
+            internal set => pBuffer = value;
         }
 
         /// <summary>
         /// Length of data in buffer
         /// </summary>
-        public int Length
-        {
-            get { return ((MediaBuffer)pBuffer).Length; }
-        }
+        public int Length => ((MediaBuffer)pBuffer).Length;
 
         /// <summary>
         /// Status Flags
         /// </summary>
         public DmoOutputDataBufferFlags StatusFlags
         {
-            get { return dwStatus; }
-            internal set { dwStatus = value; }
+            get => dwStatus;
+            internal set => dwStatus = value;
         }
 
         /// <summary>
@@ -71,8 +68,8 @@ namespace NAudio.Dmo
         /// </summary>
         public long Timestamp
         {
-            get { return rtTimestamp; }
-            internal set { rtTimestamp = value; }
+            get => rtTimestamp;
+            internal set => rtTimestamp = value;
         }
 
         /// <summary>
@@ -80,8 +77,8 @@ namespace NAudio.Dmo
         /// </summary>
         public long Duration
         {
-            get { return referenceTimeDuration; }
-            internal set { referenceTimeDuration = value; }
+            get => referenceTimeDuration;
+            internal set => referenceTimeDuration = value;
         }
 
         /// <summary>
@@ -89,21 +86,12 @@ namespace NAudio.Dmo
         /// </summary>
         /// <param name="data">Buffer to receive data</param>
         /// <param name="offset">Offset into buffer</param>
-        public void RetrieveData(byte[] data, int offset)
-        {
-            ((MediaBuffer)pBuffer).RetrieveData(data, offset);
-        }
+        public void RetrieveData(byte[] data, int offset) => ((MediaBuffer)pBuffer).RetrieveData(data, offset);
 
         /// <summary>
         /// Is more data available
         /// If true, ProcessOuput should be called again
         /// </summary>
-        public bool MoreDataAvailable
-        {
-            get
-            {
-                return (StatusFlags & DmoOutputDataBufferFlags.Incomplete) == DmoOutputDataBufferFlags.Incomplete;
-            }
-        }
+        public bool MoreDataAvailable => (StatusFlags & DmoOutputDataBufferFlags.Incomplete) == DmoOutputDataBufferFlags.Incomplete;
     }
 }

@@ -28,25 +28,10 @@ namespace NAudio.SoundFont
 		{			
 		}
 
-		public override int Length 
-		{
-			get 
-			{
-				return 46;
-			}
-		}
+		public override int Length => 46;
 
-		internal void RemoveEOS()
-		{
-			data.RemoveAt(data.Count-1);
-		}
+	    internal void RemoveEOS() => data.RemoveAt(data.Count-1);
 
-		public SampleHeader[] SampleHeaders
-		{
-			get
-			{
-				return data.ToArray();
-			}
-		}
+	    public SampleHeader[] SampleHeaders => data.ToArray();
 	}
 }

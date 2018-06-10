@@ -15,13 +15,7 @@ namespace NAudio.Midi
         /// <summary>
         /// Gets the type of this meta event
         /// </summary>
-        public MetaEventType MetaEventType
-        {
-            get
-            {
-                return metaEvent;
-            }
-        }
+        public MetaEventType MetaEventType => metaEvent;
 
         /// <summary>
         /// Empty constructor

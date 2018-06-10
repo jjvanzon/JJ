@@ -15,10 +15,7 @@ namespace NAudio.Midi
         /// </summary>
         /// <param name="br">The MIDI stream</param>
         /// <param name="length">The data length</param>
-        public SequencerSpecificEvent(BinaryReader br, int length)
-        {
-            this.data = br.ReadBytes(length);
-        }
+        public SequencerSpecificEvent(BinaryReader br, int length) => this.data = br.ReadBytes(length);
 
         /// <summary>
         /// Creates a new Sequencer Specific event
@@ -27,19 +24,14 @@ namespace NAudio.Midi
         /// <param name="absoluteTime">Absolute time of this event</param>
         public SequencerSpecificEvent(byte[] data, long absoluteTime)
             : base(MetaEventType.SequencerSpecific, data.Length, absoluteTime)
-        {
-            this.data = data;
-        }
+            => this.data = data;
 
         /// <summary>
         /// The contents of this sequencer specific
         /// </summary>
         public byte[] Data
         {
-            get
-            {
-                return this.data;
-            }
+            get => this.data;
             set
             {
                 this.data = value;

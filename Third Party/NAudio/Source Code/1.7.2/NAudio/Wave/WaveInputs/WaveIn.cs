@@ -70,13 +70,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Returns the number of Wave In devices available in the system
         /// </summary>
-        public static int DeviceCount
-        {
-            get
-            {
-                return WaveInterop.waveInGetNumDevs();
-            }
-        }
+        public static int DeviceCount => WaveInterop.waveInGetNumDevs();
 
         /// <summary>
         /// Retrieves the capabilities of a waveIn device

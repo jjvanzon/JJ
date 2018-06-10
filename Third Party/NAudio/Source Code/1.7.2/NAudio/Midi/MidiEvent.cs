@@ -165,10 +165,7 @@ namespace NAudio.Midi
         /// Cannot be implemented for all MIDI messages
         /// </summary>
         /// <returns>A short message</returns>
-        public virtual int GetAsShortMessage()
-        {
-            return (channel - 1) + (int)commandCode;
-        }
+        public virtual int GetAsShortMessage() => (channel - 1) + (int)commandCode;
 
         /// <summary>
         /// Default constructor
@@ -195,10 +192,7 @@ namespace NAudio.Midi
         /// </summary>
         public virtual int Channel 
         {
-            get 
-            {
-                return channel;
-            }
+            get => channel;
             set
             {
                 if ((value < 1) || (value > 16))
@@ -213,39 +207,21 @@ namespace NAudio.Midi
         /// <summary>
         /// The Delta time for this event
         /// </summary>
-        public int DeltaTime 
-        {
-            get 
-            {
-                return deltaTime;
-            }
-        }
-        
+        public int DeltaTime => deltaTime;
+
         /// <summary>
         /// The absolute time for this event
         /// </summary>
         public long AbsoluteTime 
         {
-            get 
-            {
-                return absoluteTime;
-            }
-            set 
-            {
-                absoluteTime = value;
-            }
+            get => absoluteTime;
+            set => absoluteTime = value;
         }
         
         /// <summary>
         /// The command code for this event
         /// </summary>
-        public MidiCommandCode CommandCode 
-        {
-            get 
-            {
-                return commandCode;
-            }
-        }
+        public MidiCommandCode CommandCode => commandCode;
 
         /// <summary>
         /// Whether this is a note off event

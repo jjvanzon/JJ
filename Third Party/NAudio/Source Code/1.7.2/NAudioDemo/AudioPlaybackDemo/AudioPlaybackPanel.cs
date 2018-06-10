@@ -49,10 +49,7 @@ namespace NAudioDemo.AudioPlaybackDemo
             panelOutputDeviceSettings.Controls.Add(settingsPanel);
         }
 
-        private IOutputDevicePlugin SelectedOutputDevicePlugin
-        {
-            get { return (IOutputDevicePlugin)comboBoxOutputDevice.SelectedItem; }
-        }
+        private IOutputDevicePlugin SelectedOutputDevicePlugin => (IOutputDevicePlugin)comboBoxOutputDevice.SelectedItem;
 
         private void OnButtonPlayClick(object sender, EventArgs e)
         {

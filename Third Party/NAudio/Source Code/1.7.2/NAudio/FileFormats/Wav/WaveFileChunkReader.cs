@@ -123,10 +123,7 @@ namespace NAudio.FileFormats.Wav
             reader.ReadBytes(chunkSize - 24); // get to the end of this chunk (should parse extra stuff later)
         }
 
-        private static RiffChunk GetRiffChunk(Stream stream, int chunkIdentifier, int chunkLength)
-        {
-            return new RiffChunk(chunkIdentifier, chunkLength, stream.Position);
-        }
+        private static RiffChunk GetRiffChunk(Stream stream, int chunkIdentifier, int chunkLength) => new RiffChunk(chunkIdentifier, chunkLength, stream.Position);
 
         private void ReadRiffHeader(BinaryReader br)
         {
@@ -144,21 +141,21 @@ namespace NAudio.FileFormats.Wav
         /// <summary>
         /// WaveFormat
         /// </summary>
-        public WaveFormat WaveFormat { get { return this.waveFormat; } }
+        public WaveFormat WaveFormat => this.waveFormat;
 
         /// <summary>
         /// Data Chunk Position
         /// </summary>
-        public long DataChunkPosition { get { return this.dataChunkPosition; } }
+        public long DataChunkPosition => this.dataChunkPosition;
 
         /// <summary>
         /// Data Chunk Length
         /// </summary>
-        public long DataChunkLength { get { return this.dataChunkLength; } }
+        public long DataChunkLength => this.dataChunkLength;
 
         /// <summary>
         /// Riff Chunks
         /// </summary>
-        public List<RiffChunk> RiffChunks { get { return this.riffChunks; } }
+        public List<RiffChunk> RiffChunks => this.riffChunks;
     }
 }

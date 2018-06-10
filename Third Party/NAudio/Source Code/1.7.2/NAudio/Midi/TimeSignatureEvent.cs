@@ -64,35 +64,23 @@ namespace NAudio.Midi
         /// <summary>
         /// Numerator (number of beats in a bar)
         /// </summary>
-        public int Numerator
-        {
-            get { return numerator; }
-        }
+        public int Numerator => numerator;
 
         /// <summary>
         /// Denominator (Beat unit),
         /// 1 means 2, 2 means 4 (crochet), 3 means 8 (quaver), 4 means 16 and 5 means 32
         /// </summary>
-        public int Denominator
-        {
-            get { return denominator; }
-        }
+        public int Denominator => denominator;
 
         /// <summary>
         /// Ticks in a metronome click
         /// </summary>
-        public int TicksInMetronomeClick
-        {
-            get { return ticksInMetronomeClick; }
-        }
+        public int TicksInMetronomeClick => ticksInMetronomeClick;
 
         /// <summary>
         /// Number of 32nd notes in a quarter note
         /// </summary>
-        public int No32ndNotesInQuarterNote
-        {
-            get { return no32ndNotesInQuarterNote; }
-        }
+        public int No32ndNotesInQuarterNote => no32ndNotesInQuarterNote;
 
         /// <summary>
         /// The time signature
@@ -128,11 +116,8 @@ namespace NAudio.Midi
         /// Describes this time signature event
         /// </summary>
         /// <returns>A string describing this event</returns>
-        public override string ToString() 
-        {
-            return string.Format("{0} {1} TicksInClick:{2} 32ndsInQuarterNote:{3}",
-                base.ToString(),TimeSignature,ticksInMetronomeClick,no32ndNotesInQuarterNote);
-        }
+        public override string ToString() => string.Format("{0} {1} TicksInClick:{2} 32ndsInQuarterNote:{3}",
+                                                           base.ToString(),TimeSignature,ticksInMetronomeClick,no32ndNotesInQuarterNote);
 
         /// <summary>
         /// Calls base class export first, then exports the data 

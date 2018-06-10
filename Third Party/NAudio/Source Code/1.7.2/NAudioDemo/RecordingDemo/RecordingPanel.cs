@@ -40,10 +40,7 @@ namespace NAudioDemo
             radioButtonWasapiLoopback.CheckedChanged += (s, a) => Cleanup();
         }
 
-        void OnRecordingPanelDisposed(object sender, EventArgs e)
-        {
-            Cleanup();
-        }
+        void OnRecordingPanelDisposed(object sender, EventArgs e) => Cleanup();
 
         private void LoadWasapiDevicesCombo()
         {
@@ -166,10 +163,7 @@ namespace NAudioDemo
             if (waveIn != null) waveIn.StopRecording();
         }
 
-        private void OnButtonStopRecordingClick(object sender, EventArgs e)
-        {
-            StopRecording();
-        }
+        private void OnButtonStopRecordingClick(object sender, EventArgs e) => StopRecording();
 
         private void OnButtonPlayClick(object sender, EventArgs e)
         {
@@ -206,23 +200,14 @@ namespace NAudioDemo
             }
         }
 
-        private void OnOpenFolderClick(object sender, EventArgs e)
-        {
-            Process.Start(outputFolder);
-        }
+        private void OnOpenFolderClick(object sender, EventArgs e) => Process.Start(outputFolder);
     }
 
     [Export(typeof(INAudioDemoPlugin))]
     public class RecordingPanelPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "WAV Recording"; }
-        }
+        public string Name => "WAV Recording";
 
-        public Control CreatePanel()
-        {
-            return new RecordingPanel();
-        }
+        public Control CreatePanel() => new RecordingPanel();
     }
 }

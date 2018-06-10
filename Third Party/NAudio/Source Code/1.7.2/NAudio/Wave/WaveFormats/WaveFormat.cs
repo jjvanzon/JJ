@@ -90,10 +90,7 @@ namespace NAudio.Wave
         /// <param name="sampleRate">Sample Rate</param>
         /// <param name="channels">Number of Channels</param>
         /// <returns>Wave Format</returns>
-        public static WaveFormat CreateALawFormat(int sampleRate, int channels)
-        {
-            return CreateCustomFormat(WaveFormatEncoding.ALaw, sampleRate, channels, sampleRate * channels, channels, 8);
-        }
+        public static WaveFormat CreateALawFormat(int sampleRate, int channels) => CreateCustomFormat(WaveFormatEncoding.ALaw, sampleRate, channels, sampleRate * channels, channels, 8);
 
         /// <summary>
         /// Creates a Mu-law wave format
@@ -101,10 +98,7 @@ namespace NAudio.Wave
         /// <param name="sampleRate">Sample Rate</param>
         /// <param name="channels">Number of Channels</param>
         /// <returns>Wave Format</returns>
-        public static WaveFormat CreateMuLawFormat(int sampleRate, int channels)
-        {
-            return CreateCustomFormat(WaveFormatEncoding.MuLaw, sampleRate, channels, sampleRate * channels, channels, 8);
-        }
+        public static WaveFormat CreateMuLawFormat(int sampleRate, int channels) => CreateCustomFormat(WaveFormatEncoding.MuLaw, sampleRate, channels, sampleRate * channels, channels, 8);
 
         /// <summary>
         /// Creates a new PCM format with the specified sample rate, bit depth and channels
@@ -279,26 +273,17 @@ namespace NAudio.Wave
         /// Provides a Hashcode for this WaveFormat
         /// </summary>
         /// <returns>A hashcode</returns>
-        public override int GetHashCode()
-        {
-            return (int) waveFormatTag ^ 
-                (int) channels ^ 
-                sampleRate ^ 
-                averageBytesPerSecond ^ 
-                (int) blockAlign ^ 
-                (int) bitsPerSample;
-        }
+        public override int GetHashCode() => (int) waveFormatTag ^ 
+                                             (int) channels ^ 
+                                             sampleRate ^ 
+                                             averageBytesPerSecond ^ 
+                                             (int) blockAlign ^ 
+                                             (int) bitsPerSample;
 
         /// <summary>
         /// Returns the encoding type used
         /// </summary>
-        public WaveFormatEncoding Encoding
-        {
-            get	
-            {
-                return waveFormatTag;
-            }
-        }
+        public WaveFormatEncoding Encoding => waveFormatTag;
 
         /// <summary>
         /// Writes this WaveFormat object to a stream
@@ -319,71 +304,33 @@ namespace NAudio.Wave
         /// <summary>
         /// Returns the number of channels (1=mono,2=stereo etc)
         /// </summary>
-        public int Channels
-        {
-            get
-            {
-                return channels;
-            }
-        }
+        public int Channels => channels;
 
         /// <summary>
         /// Returns the sample rate (samples per second)
         /// </summary>
-        public int SampleRate
-        {
-            get
-            {
-                return sampleRate;
-            }
-        }
+        public int SampleRate => sampleRate;
 
         /// <summary>
         /// Returns the average number of bytes used per second
         /// </summary>
-        public int AverageBytesPerSecond
-        {
-            get
-            {
-                return averageBytesPerSecond;
-            }
-        }
+        public int AverageBytesPerSecond => averageBytesPerSecond;
 
         /// <summary>
         /// Returns the block alignment
         /// </summary>
-        public virtual int BlockAlign
-        {
-            get
-            {
-                return blockAlign;
-            }
-        }
+        public virtual int BlockAlign => blockAlign;
 
         /// <summary>
         /// Returns the number of bits per sample (usually 16 or 32, sometimes 24 or 8)
         /// Can be 0 for some codecs
         /// </summary>
-        public int BitsPerSample
-        {
-            get
-            {
-                return bitsPerSample;
-            }
-        }
+        public int BitsPerSample => bitsPerSample;
 
         /// <summary>
         /// Returns the number of extra bytes used by this waveformat. Often 0,
         /// except for compressed formats which store extra data after the WAVEFORMATEX header
         /// </summary>
-        public int ExtraSize
-        {
-            get
-            {
-                return extraSize;
-            }
-        }
-
-        
+        public int ExtraSize => extraSize;
     }
 }

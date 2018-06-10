@@ -62,46 +62,22 @@ namespace NAudio.Mixer
         /// <summary>
         /// Mixer Line Name
         /// </summary>
-        public string Name 
-        {
-            get 
-            {
-                return mixerLine.szName;
-            }
-        }
-        
+        public string Name => mixerLine.szName;
+
         /// <summary>
         /// Mixer Line short name
         /// </summary>
-        public string ShortName 
-        {
-            get 
-            {
-                return mixerLine.szShortName;
-            }
-        }
+        public string ShortName => mixerLine.szShortName;
 
         /// <summary>
         /// The line ID
         /// </summary>
-        public int LineId
-        {
-            get
-            {
-                return mixerLine.dwLineID;
-            }
-        }
+        public int LineId => mixerLine.dwLineID;
 
         /// <summary>
         /// Component Type
         /// </summary>
-        public MixerLineComponentType ComponentType
-        {
-            get
-            {
-                return mixerLine.dwComponentType;
-            }
-        }
+        public MixerLineComponentType ComponentType => mixerLine.dwComponentType;
 
         /// <summary>
         /// Mixer destination type description
@@ -163,68 +139,32 @@ namespace NAudio.Mixer
         /// <summary>
         /// Number of channels
         /// </summary>
-        public int Channels 
-        {
-            get 
-            {
-                return mixerLine.cChannels;
-            }
-        }
-        
+        public int Channels => mixerLine.cChannels;
+
         /// <summary>
         /// Number of sources
         /// </summary>
-        public int SourceCount 
-        {
-            get 
-            {
-                return mixerLine.cConnections;
-            }
-        }
-        
+        public int SourceCount => mixerLine.cConnections;
+
         /// <summary>
         /// Number of controls
         /// </summary>
-        public int ControlsCount 
-        {
-            get 
-            {
-                return mixerLine.cControls;
-            }
-        }
+        public int ControlsCount => mixerLine.cControls;
 
         /// <summary>
         /// Is this destination active
         /// </summary>
-        public bool IsActive
-        {
-            get
-            {
-                return (mixerLine.fdwLine & MixerInterop.MIXERLINE_LINEF.MIXERLINE_LINEF_ACTIVE) != 0;
-            }
-        }
+        public bool IsActive => (mixerLine.fdwLine & MixerInterop.MIXERLINE_LINEF.MIXERLINE_LINEF_ACTIVE) != 0;
 
         /// <summary>
         /// Is this destination disconnected
         /// </summary>
-        public bool IsDisconnected
-        {
-            get
-            {
-                return (mixerLine.fdwLine & MixerInterop.MIXERLINE_LINEF.MIXERLINE_LINEF_DISCONNECTED) != 0;
-            }
-        }
+        public bool IsDisconnected => (mixerLine.fdwLine & MixerInterop.MIXERLINE_LINEF.MIXERLINE_LINEF_DISCONNECTED) != 0;
 
         /// <summary>
         /// Is this destination a source
         /// </summary>
-        public bool IsSource
-        {
-            get
-            {
-                return (mixerLine.fdwLine & MixerInterop.MIXERLINE_LINEF.MIXERLINE_LINEF_SOURCE) != 0;
-            }
-        }
+        public bool IsSource => (mixerLine.fdwLine & MixerInterop.MIXERLINE_LINEF.MIXERLINE_LINEF_SOURCE) != 0;
 
         /// <summary>
         /// Gets the specified source
@@ -241,13 +181,7 @@ namespace NAudio.Mixer
         /// <summary>
         /// Enumerator for the controls on this Mixer Limne
         /// </summary>
-        public IEnumerable<MixerControl> Controls
-        {
-            get
-            {
-                return MixerControl.GetMixerControls(this.mixerHandle, this, this.mixerHandleType);
-            }
-        }
+        public IEnumerable<MixerControl> Controls => MixerControl.GetMixerControls(this.mixerHandle, this, this.mixerHandleType);
 
         /// <summary>
         /// Enumerator for the sources on this Mixer Line
@@ -266,22 +200,13 @@ namespace NAudio.Mixer
         /// <summary>
         /// The name of the target output device
         /// </summary>
-        public string TargetName
-        {
-            get
-            {
-                return mixerLine.szPname;
-            }
-        }
+        public string TargetName => mixerLine.szPname;
 
         /// <summary>
         /// Describes this Mixer Line (for diagnostic purposes)
         /// </summary>
-        public override string ToString()
-        {
-            return string.Format("{0} {1} ({2} controls, ID={3})", 
-                Name, TypeDescription, ControlsCount, mixerLine.dwLineID);
-        }
+        public override string ToString() => string.Format("{0} {1} ({2} controls, ID={3})", 
+                                                           Name, TypeDescription, ControlsCount, mixerLine.dwLineID);
     }
 }
 

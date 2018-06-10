@@ -31,12 +31,6 @@ namespace NAudio.SoundFont
 		/// <summary>
 		/// Gets the length of this structure
 		/// </summary>
-		public override int Length 
-		{
-			get 
-			{
-				return 4;
-			}
-		}
+		public override int Length => 4;
 	}
 }

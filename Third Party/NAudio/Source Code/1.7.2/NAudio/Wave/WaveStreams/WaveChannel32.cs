@@ -70,15 +70,9 @@ namespace NAudio.Wave
             position = 0;
         }
 
-        private long SourceToDest(long sourceBytes)
-        {
-            return (sourceBytes / sourceBytesPerSample) * destBytesPerSample;
-        }
+        private long SourceToDest(long sourceBytes) => (sourceBytes / sourceBytesPerSample) * destBytesPerSample;
 
-        private long DestToSource(long destBytes)
-        {
-            return (destBytes / destBytesPerSample) * sourceBytesPerSample;
-        }
+        private long DestToSource(long destBytes) => (destBytes / destBytesPerSample) * sourceBytesPerSample;
 
         /// <summary>
         /// Creates a WaveChannel32 with default settings
@@ -93,34 +87,19 @@ namespace NAudio.Wave
         /// <summary>
         /// Gets the block alignment for this WaveStream
         /// </summary>
-        public override int BlockAlign
-        {
-            get
-            {
-                return (int)SourceToDest(sourceStream.BlockAlign);
-            }
-        }
+        public override int BlockAlign => (int)SourceToDest(sourceStream.BlockAlign);
 
         /// <summary>
         /// Returns the stream length
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return length;
-            }
-        }
+        public override long Length => length;
 
         /// <summary>
         /// Gets or sets the current position in the stream
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return position;
-            }
+            get => position;
             set
             {
                 lock (lockObject)
@@ -202,21 +181,15 @@ namespace NAudio.Wave
         /// <summary>
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get
-            {
-                return waveFormat;
-            }
-        }
+        public override WaveFormat WaveFormat => waveFormat;
 
         /// <summary>
         /// Volume of this channel. 1.0 = full scale
         /// </summary>
         public float Volume
         {
-            get { return volume; }
-            set { volume = value; }
+            get => volume;
+            set => volume = value;
         }
 
         /// <summary>
@@ -224,8 +197,8 @@ namespace NAudio.Wave
         /// </summary>
         public float Pan
         {
-            get { return pan; }
-            set { pan = value; }
+            get => pan;
+            set => pan = value;
         }
 
         /// <summary>

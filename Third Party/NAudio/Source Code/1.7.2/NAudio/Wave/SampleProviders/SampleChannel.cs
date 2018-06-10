@@ -51,26 +51,20 @@ namespace NAudio.Wave.SampleProviders
         /// <param name="offset">Offset into sample buffer</param>
         /// <param name="sampleCount">Number of samples desired</param>
         /// <returns>Number of samples read</returns>
-        public int Read(float[] buffer, int offset, int sampleCount)
-        {
-            return volumeProvider.Read(buffer, offset, sampleCount);
-        }
+        public int Read(float[] buffer, int offset, int sampleCount) => volumeProvider.Read(buffer, offset, sampleCount);
 
         /// <summary>
         /// The WaveFormat of this Sample Provider
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return this.waveFormat; }
-        }
+        public WaveFormat WaveFormat => this.waveFormat;
 
         /// <summary>
         /// Allows adjusting the volume, 1.0f = full volume
         /// </summary>
         public float Volume
         {
-            get { return volumeProvider.Volume; }
-            set { volumeProvider.Volume = value; }
+            get => volumeProvider.Volume;
+            set => volumeProvider.Volume = value;
         }
 
         /// <summary>
@@ -79,8 +73,8 @@ namespace NAudio.Wave.SampleProviders
         /// </summary>
         public event EventHandler<StreamVolumeEventArgs> PreVolumeMeter
         {
-            add { this.preVolumeMeter.StreamVolume += value; }
-            remove { this.preVolumeMeter.StreamVolume -= value; }
+            add => this.preVolumeMeter.StreamVolume += value;
+            remove => this.preVolumeMeter.StreamVolume -= value;
         }
     }
 }

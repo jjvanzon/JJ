@@ -6,39 +6,19 @@ namespace NAudioDemo
     {
         readonly WaveStream sourceStream;
 
-        public LoopStream(WaveStream source)
-        {
-            this.sourceStream = source;
-        }
+        public LoopStream(WaveStream source) => this.sourceStream = source;
 
+        public override WaveFormat WaveFormat => sourceStream.WaveFormat;
 
-        public override WaveFormat WaveFormat
-        {
-            get { return sourceStream.WaveFormat; }
-        }
-
-        public override long Length
-        {
-            get { return long.MaxValue / 32; }
-        }
+        public override long Length => long.MaxValue / 32;
 
         public override long Position
         {
-            get
-            {
-                return sourceStream.Position;
-            }
-            set
-            {
-                sourceStream.Position = value;
-            }
+            get => sourceStream.Position;
+            set => sourceStream.Position = value;
         }
 
-        public override bool HasData(int count)
-        {
-            // infinite loop
-            return true;
-        }
+        public override bool HasData(int count) => true;
 
         public override int Read(byte[] buffer, int offset, int count)
         {

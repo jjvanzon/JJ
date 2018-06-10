@@ -48,8 +48,8 @@ namespace NAudioDemo.AudioPlaybackDemo
             comboBoxCallback.SelectedIndex = 0;
         }
 
-        public int SelectedDeviceNumber { get { return comboBoxWaveOutDevice.SelectedIndex; } }
+        public int SelectedDeviceNumber => comboBoxWaveOutDevice.SelectedIndex;
 
-        public WaveCallbackStrategy CallbackStrategy { get { return ((CallbackComboItem)comboBoxCallback.SelectedItem).Strategy; } }
+        public WaveCallbackStrategy CallbackStrategy => ((CallbackComboItem)comboBoxCallback.SelectedItem).Strategy;
     }
 }

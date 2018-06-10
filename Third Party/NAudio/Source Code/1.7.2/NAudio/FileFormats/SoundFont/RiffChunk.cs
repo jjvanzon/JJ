@@ -118,11 +118,8 @@ namespace NAudio.SoundFont
 		
 		public string ChunkID 
 		{
-			get 
-			{
-				return chunkID;
-			}
-			set 
+			get => chunkID;
+		    set 
 			{
 				if(value == null) 
 				{
@@ -136,27 +133,11 @@ namespace NAudio.SoundFont
 			}
 		}
 		
-		public uint ChunkSize 
-		{
-			get 
-			{
-				return chunkSize;
-			}
-		}
-		
-		public long DataOffset 
-		{
-			get 
-			{
-				return dataOffset;
-			}
-		}
-		
-		public override string ToString() 
-		{
-			return string.Format("RiffChunk ID: {0} Size: {1} Data Offset: {2}",ChunkID,ChunkSize,DataOffset);
-		}
-			
+		public uint ChunkSize => chunkSize;
+
+	    public long DataOffset => dataOffset;
+
+	    public override string ToString() => string.Format("RiffChunk ID: {0} Size: {1} Data Offset: {2}",ChunkID,ChunkSize,DataOffset);
 	}
 
 }

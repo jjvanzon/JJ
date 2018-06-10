@@ -51,10 +51,6 @@
         /// </summary>
         /// <param name="muLaw">mu-law encoded byte</param>
         /// <returns>Linear sample</returns>
-        public static short MuLawToLinearSample(byte muLaw)
-        {
-            return MuLawDecompressTable[muLaw];
-        }
-
+        public static short MuLawToLinearSample(byte muLaw) => MuLawDecompressTable[muLaw];
     }
 }

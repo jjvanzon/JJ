@@ -6,10 +6,7 @@ namespace NAudioDemo.AudioPlaybackDemo
     [Export(typeof(INAudioDemoPlugin))]
     public class AudioPlaybackPanelPlugin : INAudioDemoPlugin
     {
-        public string Name
-        {
-            get { return "Audio File Playback"; }
-        }
+        public string Name => "Audio File Playback";
 
         // using ExportFactory<T> rather than Lazy<T> allowing us to create 
         // a new one each time
@@ -17,9 +14,6 @@ namespace NAudioDemo.AudioPlaybackDemo
         [Import]
         public ExportFactory<AudioPlaybackPanel> PanelFactory { get; set; }
 
-        public Control CreatePanel()
-        {
-            return PanelFactory.CreateExport().Value; //new AudioPlaybackPanel();
-        }
+        public Control CreatePanel() => PanelFactory.CreateExport().Value;
     }
 }

@@ -33,13 +33,9 @@ namespace NAudio.SoundFont
         {			
 		}
 
-		public override int Length {
-			get {
-				return 38;
-			}
-		}
+		public override int Length => 38;
 
-		public void LoadZones(Zone[] presetZones)
+	    public void LoadZones(Zone[] presetZones)
 		{
 			// don't do the last preset, which is simply EOP
 			for(int preset = 0; preset < data.Count - 1; preset++)
@@ -52,12 +48,6 @@ namespace NAudio.SoundFont
 			data.RemoveAt(data.Count - 1);
 		}
 
-		public Preset[] Presets
-		{
-			get
-			{
-				return data.ToArray();
-			}
-		}
+		public Preset[] Presets => data.ToArray();
 	}
 }

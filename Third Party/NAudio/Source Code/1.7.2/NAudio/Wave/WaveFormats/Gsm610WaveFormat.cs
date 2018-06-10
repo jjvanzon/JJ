@@ -31,7 +31,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Samples per block
         /// </summary>
-        public short SamplesPerBlock { get { return this.samplesPerBlock; } }
+        public short SamplesPerBlock => this.samplesPerBlock;
 
         /// <summary>
         /// Writes this structure to a BinaryWriter

@@ -17,15 +17,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public string Name 
 		{
-			get 
-			{
-				return name;
-			}
-			set 
-			{
-				// TODO: validate
-				name = value;
-			}
+			get => name;
+		    set => name = value;
 		}
 
 		/// <summary>
@@ -33,22 +26,13 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public Zone[] Zones
 		{
-			get
-			{
-				return zones;
-			}
-			set
-			{
-				zones = value;
-			}
+			get => zones;
+		    set => zones = value;
 		}
 
 		/// <summary>
 		/// <see cref="Object.ToString"/>
 		/// </summary>
-		public override string ToString() 
-		{
-			return this.name;
-		}
+		public override string ToString() => this.name;
 	}
 }

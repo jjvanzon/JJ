@@ -26,9 +26,7 @@ namespace NAudio.Wave
         /// </remarks>
         public AiffFileReader(string aiffFile) :
             this(File.OpenRead(aiffFile))
-        {
-            ownInput = true;
-        }
+            => ownInput = true;
 
         /// <summary>
         /// Creates an Aiff File Reader based on an input stream
@@ -151,24 +149,12 @@ namespace NAudio.Wave
         /// <summary>
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public override NAudio.Wave.WaveFormat WaveFormat
-        {
-            get
-            {
-                return waveFormat;
-            }
-        }
+        public override NAudio.Wave.WaveFormat WaveFormat => waveFormat;
 
         /// <summary>
         /// <see cref="WaveStream.WaveFormat"/>
         /// </summary>
-        public override long Length
-        {
-            get
-            {
-                return dataChunkLength;
-            }
-        }
+        public override long Length => dataChunkLength;
 
         /// <summary>
         /// Number of Samples (if possible to calculate)
@@ -196,10 +182,7 @@ namespace NAudio.Wave
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return waveStream.Position - dataPosition;
-            }
+            get => waveStream.Position - dataPosition;
             set
             {
                 lock (lockObject)
@@ -320,10 +303,8 @@ namespace NAudio.Wave
             return chunk;
         }
 
-        private static string ReadChunkName(BinaryReader br)
-        {
-            return new string(br.ReadChars(4));
-        }
+        private static string ReadChunkName(BinaryReader br) => new string(br.ReadChars(4));
+
         #endregion
     }
 }

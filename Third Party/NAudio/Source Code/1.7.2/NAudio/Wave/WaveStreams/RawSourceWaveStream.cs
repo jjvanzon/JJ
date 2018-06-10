@@ -25,41 +25,26 @@ namespace NAudio.Wave
         /// <summary>
         /// The WaveFormat of this stream
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get { return this.waveFormat; }
-        }
+        public override WaveFormat WaveFormat => this.waveFormat;
 
         /// <summary>
         /// The length in bytes of this stream (if supported)
         /// </summary>
-        public override long Length
-        {
-            get { return this.sourceStream.Length; }
-        }
+        public override long Length => this.sourceStream.Length;
 
         /// <summary>
         /// The current position in this stream
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return this.sourceStream.Position;
-            }
-            set
-            {
-                this.sourceStream.Position = value;
-            }
+            get => this.sourceStream.Position;
+            set => this.sourceStream.Position = value;
         }
 
         /// <summary>
         /// Reads data from the stream
         /// </summary>
-        public override int Read(byte[] buffer, int offset, int count)
-        {
-            return sourceStream.Read(buffer, offset, count);
-        }
+        public override int Read(byte[] buffer, int offset, int count) => sourceStream.Read(buffer, offset, count);
     }
 }
 

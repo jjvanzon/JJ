@@ -59,10 +59,7 @@ namespace NAudio.Dsp
 
         public double Threshold 
         {
-            get 
-            { 
-                return threshdB; 
-            }
+            get => threshdB;
             set 
             { 
                 threshdB = value;

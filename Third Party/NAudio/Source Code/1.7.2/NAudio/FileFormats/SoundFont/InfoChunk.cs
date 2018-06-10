@@ -93,44 +93,24 @@ namespace NAudio.SoundFont
 		/// <summary>
 		/// SoundFont Version
 		/// </summary>
-		public SFVersion SoundFontVersion 
-		{
-			get 
-			{
-				return verSoundFont;
-			}
-		}
+		public SFVersion SoundFontVersion => verSoundFont;
 
-		/// <summary>
+	    /// <summary>
 		/// WaveTable sound engine
 		/// </summary>
 		public string WaveTableSoundEngine 
 		{
-			get 
-			{
-				return waveTableSoundEngine;
-			}
-			set 
-			{
-				// TODO: check format
-				waveTableSoundEngine = value;
-			}
-		}
+			get => waveTableSoundEngine;
+	        set => waveTableSoundEngine = value;
+	    }
 
 		/// <summary>
 		/// Bank name
 		/// </summary>
 		public string BankName 
 		{
-			get 
-			{
-				return bankName;
-			}
-			set 
-			{
-				// TODO: check format
-				bankName = value;
-			}
+			get => bankName;
+		    set => bankName = value;
 		}
 
 		/// <summary>
@@ -138,14 +118,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public string DataROM 
 		{
-			get 
-			{
-				return dataROM;
-			}
-			set {
-				// TODO: check format
-				dataROM = value;
-			}
+			get => dataROM;
+		    set => dataROM = value;
 		}
 
 		/// <summary>
@@ -153,15 +127,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public string CreationDate 
 		{
-			get 
-			{
-				return creationDate;
-			}
-			set 
-			{
-				// TODO: check format
-				creationDate = value;
-			}
+			get => creationDate;
+		    set => creationDate = value;
 		}
 
 		/// <summary>
@@ -169,15 +136,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public string Author 
 		{
-			get 
-			{
-				return author;
-			}
-			set 
-			{
-				// TODO: check format
-				author = value;
-			}
+			get => author;
+		    set => author = value;
 		}
 
 		/// <summary>
@@ -185,15 +145,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public string TargetProduct 
 		{
-			get 
-			{
-				return targetProduct;
-			}
-			set 
-			{
-				// TODO: check format
-				targetProduct = value;
-			}
+			get => targetProduct;
+		    set => targetProduct = value;
 		}
 
 		/// <summary>
@@ -201,15 +154,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public string Copyright 
 		{
-			get 
-			{
-				return copyright;
-			}
-			set 
-			{
-				// TODO: check format
-				copyright = value;
-			}
+			get => copyright;
+		    set => copyright = value;
 		}
 
 		/// <summary>
@@ -217,15 +163,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public string Comments 
 		{
-			get 
-			{
-				return comments;
-			}
-			set 
-			{
-				// TODO: check format
-				comments = value;
-			}
+			get => comments;
+		    set => comments = value;
 		}
 
 		/// <summary>
@@ -233,15 +172,8 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public string Tools 
 		{
-			get 
-			{
-				return tools;
-			}
-			set 
-			{
-				// TODO: check format
-				tools = value;
-			}
+			get => tools;
+		    set => tools = value;
 		}
 
 		/// <summary>
@@ -249,34 +181,25 @@ namespace NAudio.SoundFont
 		/// </summary>
 		public SFVersion ROMVersion 
 		{
-			get 
-			{
-				return verROM;
-			}
-			set 
-			{
-				verROM = value;
-			}
+			get => verROM;
+		    set => verROM = value;
 		}
 
 		/// <summary>
 		/// <see cref="Object.ToString"/>
 		/// </summary>
-		public override string ToString() 
-		{
-			return string.Format("Bank Name: {0}\r\nAuthor: {1}\r\nCopyright: {2}\r\nCreation Date: {3}\r\nTools: {4}\r\nComments: {5}\r\nSound Engine: {6}\r\nSoundFont Version: {7}\r\nTarget Product: {8}\r\nData ROM: {9}\r\nROM Version: {10}",
-				BankName,
-				Author,
-				Copyright,
-				CreationDate,
-				Tools,
-				"TODO-fix comments",//Comments,
-				WaveTableSoundEngine,
-				SoundFontVersion,
-				TargetProduct,
-				DataROM,
-				ROMVersion);
-		}
+		public override string ToString() => string.Format("Bank Name: {0}\r\nAuthor: {1}\r\nCopyright: {2}\r\nCreation Date: {3}\r\nTools: {4}\r\nComments: {5}\r\nSound Engine: {6}\r\nSoundFont Version: {7}\r\nTarget Product: {8}\r\nData ROM: {9}\r\nROM Version: {10}",
+		                                                   BankName,
+		                                                   Author,
+		                                                   Copyright,
+		                                                   CreationDate,
+		                                                   Tools,
+		                                                   "TODO-fix comments",//Comments,
+		                                                   WaveTableSoundEngine,
+		                                                   SoundFontVersion,
+		                                                   TargetProduct,
+		                                                   DataROM,
+		                                                   ROMVersion);
 	}
 
 } // end of namespace

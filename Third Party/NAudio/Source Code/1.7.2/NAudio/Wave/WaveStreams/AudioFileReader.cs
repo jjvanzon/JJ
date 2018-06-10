@@ -71,25 +71,19 @@ namespace NAudio.Wave
         /// <summary>
         /// WaveFormat of this stream
         /// </summary>
-        public override WaveFormat WaveFormat
-        {
-            get { return sampleChannel.WaveFormat; }
-        }
+        public override WaveFormat WaveFormat => sampleChannel.WaveFormat;
 
         /// <summary>
         /// Length of this stream (in bytes)
         /// </summary>
-        public override long Length
-        {
-            get { return length; }
-        }
+        public override long Length => length;
 
         /// <summary>
         /// Position of this stream (in bytes)
         /// </summary>
         public override long Position
         {
-            get { return SourceToDest(readerStream.Position); }
+            get => SourceToDest(readerStream.Position);
             set { lock (lockObject) { readerStream.Position = DestToSource(value); }  }
         }
 
@@ -128,25 +122,19 @@ namespace NAudio.Wave
         /// </summary>
         public float Volume
         {
-            get { return sampleChannel.Volume; }
-            set { sampleChannel.Volume = value; } 
+            get => sampleChannel.Volume;
+            set => sampleChannel.Volume = value;
         }
 
         /// <summary>
         /// Helper to convert source to dest bytes
         /// </summary>
-        private long SourceToDest(long sourceBytes)
-        {
-            return destBytesPerSample * (sourceBytes / sourceBytesPerSample);
-        }
+        private long SourceToDest(long sourceBytes) => destBytesPerSample * (sourceBytes / sourceBytesPerSample);
 
         /// <summary>
         /// Helper to convert dest to source bytes
         /// </summary>
-        private long DestToSource(long destBytes)
-        {
-            return sourceBytesPerSample * (destBytes / destBytesPerSample);
-        }
+        private long DestToSource(long destBytes) => sourceBytesPerSample * (destBytes / destBytesPerSample);
 
         /// <summary>
         /// Disposes this AudioFileReader

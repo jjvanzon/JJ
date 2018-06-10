@@ -20,15 +20,12 @@ namespace NAudio.Wave
         /// <param name="sampleRate">The sample rate of the PCM to encode</param>
         /// <param name="channels">The number of channels of the PCM to encode</param>
         /// <returns>An array of available bitrates in average bits per second</returns>
-        public static int[] GetEncodeBitrates(Guid audioSubtype, int sampleRate, int channels)
-        {
-            return GetOutputMediaTypes(audioSubtype)
-                .Where(mt => mt.SampleRate == sampleRate && mt.ChannelCount == channels)
-                .Select(mt => mt.AverageBytesPerSecond*8)
-                .Distinct()
-                .OrderBy(br => br)
-                .ToArray();
-        }
+        public static int[] GetEncodeBitrates(Guid audioSubtype, int sampleRate, int channels) => GetOutputMediaTypes(audioSubtype)
+                                                                                                  .Where(mt => mt.SampleRate == sampleRate && mt.ChannelCount == channels)
+                                                                                                  .Select(mt => mt.AverageBytesPerSecond*8)
+                                                                                                  .Distinct()
+                                                                                                  .OrderBy(br => br)
+                                                                                                  .ToArray();
 
         /// <summary>
         /// Gets all the available media types for a particular 
@@ -131,15 +128,12 @@ namespace NAudio.Wave
         /// <param name="inputFormat">Your encoder input format (used to check sample rate and channel count)</param>
         /// <param name="desiredBitRate">Your desired bitrate</param>
         /// <returns>The closest media type, or null if none available</returns>
-        public static MediaType SelectMediaType(Guid audioSubtype, WaveFormat inputFormat, int desiredBitRate)
-        {
-            return GetOutputMediaTypes(audioSubtype)
-                .Where(mt => mt.SampleRate == inputFormat.SampleRate && mt.ChannelCount == inputFormat.Channels)
-                .Select(mt => new { MediaType = mt, Delta = Math.Abs(desiredBitRate - mt.AverageBytesPerSecond * 8) } )
-                .OrderBy(mt => mt.Delta)
-                .Select(mt => mt.MediaType)
-                .FirstOrDefault();
-        }
+        public static MediaType SelectMediaType(Guid audioSubtype, WaveFormat inputFormat, int desiredBitRate) => GetOutputMediaTypes(audioSubtype)
+                                                                                                                  .Where(mt => mt.SampleRate == inputFormat.SampleRate && mt.ChannelCount == inputFormat.Channels)
+                                                                                                                  .Select(mt => new { MediaType = mt, Delta = Math.Abs(desiredBitRate - mt.AverageBytesPerSecond * 8) } )
+                                                                                                                  .OrderBy(mt => mt.Delta)
+                                                                                                                  .Select(mt => mt.MediaType)
+                                                                                                                  .FirstOrDefault();
 
         private readonly MediaType outputMediaType;
         private bool disposed;
@@ -277,10 +271,7 @@ namespace NAudio.Wave
         /// Disposes this instance
         /// </summary>
         /// <param name="disposing"></param>
-        protected void Dispose(bool disposing)
-        {
-            Marshal.ReleaseComObject(outputMediaType.MediaFoundationObject);
-        }
+        protected void Dispose(bool disposing) => Marshal.ReleaseComObject(outputMediaType.MediaFoundationObject);
 
         /// <summary>
         /// Disposes this instance
@@ -298,9 +289,6 @@ namespace NAudio.Wave
         /// <summary>
         /// Finalizer
         /// </summary>
-        ~MediaFoundationEncoder()
-        {
-            Dispose(false);
-        }
+        ~MediaFoundationEncoder() => Dispose(false);
     }
 }

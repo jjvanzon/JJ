@@ -23,15 +23,9 @@ namespace NAudio.Gui
         /// <summary>
         /// Creates a new PanSlider control
         /// </summary>
-		public PanSlider()
-		{
-			// This call is required by the Windows.Forms Form Designer.
-			InitializeComponent();
+		public PanSlider() => InitializeComponent();
 
-			// TODO: Add any initialization after the InitComponent call
-		}
-
-		/// <summary>
+	    /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -114,21 +108,15 @@ namespace NAudio.Gui
 			base.OnMouseDown (e);			
 		}
 
-		private void SetPanFromMouse(int x)
-		{
-			Pan = (((float) x / this.Width) * 2.0f) - 1.0f;
-		}
+		private void SetPanFromMouse(int x) => Pan = (((float) x / this.Width) * 2.0f) - 1.0f;
 
-        /// <summary>
+	    /// <summary>
         /// The current Pan setting
         /// </summary>
 		public float Pan
 		{
-			get
-			{
-				return pan;
-			}
-			set
+			get => pan;
+	        set
 			{
 				if(value < -1.0f)
 					value = -1.0f;

@@ -47,10 +47,7 @@ namespace NAudio.Wave
         /// <summary>
         /// Output Wave Format
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return this.outputFormat; }
-        }
+        public WaveFormat WaveFormat => this.outputFormat;
 
         /// <summary>
         /// Reads bytes from this WaveProvider

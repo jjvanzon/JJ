@@ -32,89 +32,56 @@ namespace NAudio.Utils
         /// <summary>
         /// Can Read
         /// </summary>
-        public override bool CanRead
-        {
-            get { return SourceStream.CanRead; }
-        }
+        public override bool CanRead => SourceStream.CanRead;
 
         /// <summary>
         /// Can Seek
         /// </summary>
-        public override bool CanSeek
-        {
-            get { return SourceStream.CanSeek; }
-        }
+        public override bool CanSeek => SourceStream.CanSeek;
 
         /// <summary>
         /// Can write to the underlying stream
         /// </summary>
-        public override bool CanWrite
-        {
-            get { return SourceStream.CanWrite; }
-        }
+        public override bool CanWrite => SourceStream.CanWrite;
 
         /// <summary>
         /// Flushes the underlying stream
         /// </summary>
-        public override void Flush()
-        {
-            SourceStream.Flush();
-        }
+        public override void Flush() => SourceStream.Flush();
 
         /// <summary>
         /// Gets the length of the underlying stream
         /// </summary>
-        public override long Length
-        {
-            get { return SourceStream.Length; }
-        }
+        public override long Length => SourceStream.Length;
 
         /// <summary>
         /// Gets or sets the position of the underlying stream
         /// </summary>
         public override long Position
         {
-            get
-            {
-                return SourceStream.Position;
-            }
-            set
-            {
-                SourceStream.Position = value;
-            }
+            get => SourceStream.Position;
+            set => SourceStream.Position = value;
         }
 
         /// <summary>
         /// Reads from the underlying stream
         /// </summary>
-        public override int Read(byte[] buffer, int offset, int count)
-        {
-            return SourceStream.Read(buffer, offset, count);
-        }
+        public override int Read(byte[] buffer, int offset, int count) => SourceStream.Read(buffer, offset, count);
 
         /// <summary>
         /// Seeks on the underlying stream
         /// </summary>
-        public override long Seek(long offset, SeekOrigin origin)
-        {
-            return SourceStream.Seek(offset, origin);
-        }
+        public override long Seek(long offset, SeekOrigin origin) => SourceStream.Seek(offset, origin);
 
         /// <summary>
         /// Sets the length of the underlying stream
         /// </summary>
-        public override void SetLength(long value)
-        {
-            SourceStream.SetLength(value);
-        }
+        public override void SetLength(long value) => SourceStream.SetLength(value);
 
         /// <summary>
         /// Writes to the underlying stream
         /// </summary>
-        public override void Write(byte[] buffer, int offset, int count)
-        {
-            SourceStream.Write(buffer, offset, count);
-        }
+        public override void Write(byte[] buffer, int offset, int count) => SourceStream.Write(buffer, offset, count);
 
         /// <summary>
         /// Dispose - by default (IgnoreDispose = true) will do nothing,

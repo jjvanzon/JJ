@@ -81,15 +81,7 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// Audio Client
         /// </summary>
-        public AudioClient AudioClient
-        {
-            get
-            {
-                // now makes a new one each call to allow caller to manage when to dispose
-                // n.b. should probably not be a property anymore
-                return GetAudioClient();
-            }
-        }
+        public AudioClient AudioClient => GetAudioClient();
 
         /// <summary>
         /// Audio Meter Information
@@ -216,19 +208,13 @@ namespace NAudio.CoreAudioApi
         #endregion
 
         #region Constructor
-        internal MMDevice(IMMDevice realDevice)
-        {
-            deviceInterface = realDevice;
-        }
+        internal MMDevice(IMMDevice realDevice) => deviceInterface = realDevice;
+
         #endregion
 
         /// <summary>
         /// To string
         /// </summary>
-        public override string ToString()
-        {
-            return FriendlyName;
-        }
-
+        public override string ToString() => FriendlyName;
     }
 }

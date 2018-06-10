@@ -77,8 +77,8 @@ namespace NAudio.CoreAudioApi
         /// </summary>
         public virtual WaveFormat WaveFormat 
         {
-            get { return waveFormat; }
-            set { waveFormat = value; }
+            get => waveFormat;
+            set => waveFormat = value;
         }
 
         /// <summary>
@@ -123,10 +123,7 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// To allow overrides to specify different flags (e.g. loopback)
         /// </summary>
-        protected virtual AudioClientStreamFlags GetAudioClientStreamFlags()
-        {
-            return AudioClientStreamFlags.None;
-        }
+        protected virtual AudioClientStreamFlags GetAudioClientStreamFlags() => AudioClientStreamFlags.None;
 
         /// <summary>
         /// Start Recording
@@ -149,10 +146,7 @@ namespace NAudio.CoreAudioApi
         /// <summary>
         /// Stop Recording (requests a stop, wait for RecordingStopped event to know it has finished)
         /// </summary>
-        public void StopRecording()
-        {
-            this.requestStop = true;
-        }
+        public void StopRecording() => this.requestStop = true;
 
         private void CaptureThread(AudioClient client)
         {

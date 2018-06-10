@@ -20,25 +20,16 @@
             bufferedWaveProvider = new BufferedWaveProvider(this.WaveFormat);
         }
 
-        void waveIn_DataAvailable(object sender, WaveInEventArgs e)
-        {
-            bufferedWaveProvider.AddSamples(e.Buffer, 0, e.BytesRecorded);
-        }
+        void waveIn_DataAvailable(object sender, WaveInEventArgs e) => bufferedWaveProvider.AddSamples(e.Buffer, 0, e.BytesRecorded);
 
         /// <summary>
         /// Reads data from the WaveInProvider
         /// </summary>
-        public int Read(byte[] buffer, int offset, int count)
-        {
-            return bufferedWaveProvider.Read(buffer, 0, count);
-        }
+        public int Read(byte[] buffer, int offset, int count) => bufferedWaveProvider.Read(buffer, 0, count);
 
         /// <summary>
         /// The WaveFormat
         /// </summary>
-        public WaveFormat WaveFormat
-        {
-            get { return waveIn.WaveFormat; }
-        }
+        public WaveFormat WaveFormat => waveIn.WaveFormat;
     }
 }
