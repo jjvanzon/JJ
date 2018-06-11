@@ -1,8 +1,8 @@
 ﻿using JJ.Framework.Data;
 using JJ.Data.QuestionAndAnswer.Sql;
-using JJ.Data.QuestionAndAnswer.EntityFramework5.Helpers;
+using JJ.Data.QuestionAndAnswer.EntityFramework.Helpers;
 
-namespace JJ.Data.QuestionAndAnswer.EntityFramework5.Repositories
+namespace JJ.Data.QuestionAndAnswer.EntityFramework.Repositories
 {
 	public class QuestionRepository : DefaultRepositories.QuestionRepository
 	{

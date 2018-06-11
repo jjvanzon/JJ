@@ -131,9 +131,9 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Data.EntityFramework5\JJ.Framework.Data.EntityFramework5.csproj">
+    <ProjectReference Include="..\..\Framework\Data.EntityFramework\JJ.Framework.Data.EntityFramework.csproj">
       <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
-      <Name>JJ.Framework.Data.EntityFramework5</Name>
+      <Name>JJ.Framework.Data.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Data.NHibernate\JJ.Framework.Data.NHibernate.csproj">
       <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
@@ -155,9 +155,9 @@
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
       <Name>JJ.Framework.WinForms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\QuestionAndAnswer.EntityFramework5\JJ.Data.QuestionAndAnswer.EntityFramework5.csproj">
+    <ProjectReference Include="..\..\Data\QuestionAndAnswer.EntityFramework\JJ.Data.QuestionAndAnswer.EntityFramework.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>
-      <Name>JJ.Data.QuestionAndAnswer.EntityFramework5</Name>
+      <Name>JJ.Data.QuestionAndAnswer.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\QuestionAndAnswer.NHibernate\JJ.Data.QuestionAndAnswer.NHibernate.csproj">
       <Project>{4507bfdd-1c21-4ba8-9486-4819d3b6afca}</Project>

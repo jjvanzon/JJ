@@ -27,9 +27,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.QuestionAndAnswer.N
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.EntityFramework5", "Framework\Data.EntityFramework5\JJ.Framework.Data.EntityFramework5.csproj", "{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.EntityFramework", "Framework\Data.EntityFramework\JJ.Framework.Data.EntityFramework.csproj", "{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.QuestionAndAnswer.EntityFramework5", "Data\QuestionAndAnswer.EntityFramework5\JJ.Data.QuestionAndAnswer.EntityFramework5.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.QuestionAndAnswer.EntityFramework", "Data\QuestionAndAnswer.EntityFramework\JJ.Data.QuestionAndAnswer.EntityFramework.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mvc", "Framework\Mvc\JJ.Framework.Mvc.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
 EndProject
@@ -566,16 +566,16 @@ Global
 		SccAuxPath10 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath10 = Data\\QuestionAndAnswer.NHibernate
 		SccProvider10 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName11 = Framework\\Data.EntityFramework5\\JJ.Framework.Data.EntityFramework5.csproj
+		SccProjectUniqueName11 = Framework\\Data.EntityFramework\\JJ.Framework.Data.EntityFramework.csproj
 		SccProjectTopLevelParentUniqueName11 = QuestionAndAnswer.sln
-		SccProjectName11 = Framework/Data.EntityFramework5
+		SccProjectName11 = Framework/Data.EntityFramework
 		SccAuxPath11 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath11 = Framework\\Data.EntityFramework5
+		SccLocalPath11 = Framework\\Data.EntityFramework
 		SccProvider11 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName12 = Data\\QuestionAndAnswer.EntityFramework5\\JJ.Data.QuestionAndAnswer.EntityFramework5.csproj
-		SccProjectName12 = Data/QuestionAndAnswer.EntityFramework5
+		SccProjectUniqueName12 = Data\\QuestionAndAnswer.EntityFramework\\JJ.Data.QuestionAndAnswer.EntityFramework.csproj
+		SccProjectName12 = Data/QuestionAndAnswer.EntityFramework
 		SccAuxPath12 = http://jjs-server:8080/tfs/defaultcollection
-		SccLocalPath12 = Data\\QuestionAndAnswer.EntityFramework5
+		SccLocalPath12 = Data\\QuestionAndAnswer.EntityFramework
 		SccProvider12 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccProjectUniqueName13 = Framework\\Mvc\\JJ.Framework.Mvc.csproj
 		SccProjectTopLevelParentUniqueName13 = QuestionAndAnswer.sln

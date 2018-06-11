@@ -7,8 +7,8 @@
     <ProjectGuid>{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Data.QuestionAndAnswer.EntityFramework5</RootNamespace>
-    <AssemblyName>JJ.Data.QuestionAndAnswer.EntityFramework5</AssemblyName>
+    <RootNamespace>JJ.Data.QuestionAndAnswer.EntityFramework</RootNamespace>
+    <AssemblyName>JJ.Data.QuestionAndAnswer.EntityFramework</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -68,9 +68,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Data.EntityFramework5\JJ.Framework.Data.EntityFramework5.csproj">
+    <ProjectReference Include="..\..\Framework\Data.EntityFramework\JJ.Framework.Data.EntityFramework.csproj">
       <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
-      <Name>JJ.Framework.Data.EntityFramework5</Name>
+      <Name>JJ.Framework.Data.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Data.SqlClient\JJ.Framework.Data.SqlClient.csproj">
       <Project>{ceb85f8e-d429-4510-95a5-47cc3069d412}</Project>
