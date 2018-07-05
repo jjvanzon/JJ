@@ -11,17 +11,9 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
 		public static void NullCoalesce(this QuestionEditViewModel viewModel)
 		{
 			viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
-
 			viewModel.ValidationMessages = viewModel.ValidationMessages ?? new List<string>();
 			viewModel.Question = viewModel.Question ?? new QuestionViewModel();
-			viewModel.AllCategories = viewModel.AllCategories ?? new List<CategoryViewModel>();
-
 			viewModel.Question.NullCoalesce();
-
-			foreach (CategoryViewModel viewModel2 in viewModel.AllCategories)
-			{
-				viewModel2.NullCoalesce();
-			}
 		}
 
 		public static void NullCoalesce(this QuestionViewModel viewModel)
@@ -54,7 +46,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
 		{
 			viewModel.Status = viewModel.Status ?? new IDAndName();
 
-			viewModel.AllFlagStatuses = viewModel.AllFlagStatuses ?? new List<IDAndName>();
+			viewModel.FlagStatusLookup = viewModel.FlagStatusLookup ?? new List<IDAndName>();
 		}
 
 		public static void NullCoalesce(this CategorySelectorViewModel viewModel)
@@ -87,10 +79,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Extensions
 				viewModel2.NullCoalesce();
 			}
 		}
-
-		public static void NullCoalesce(this QuestionConfirmDeleteViewModel viewModel) => viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
-
-	    public static void NullCoalesce(this QuestionDeleteConfirmedViewModel viewModel) => viewModel.Login = viewModel.Login ?? new LoginPartialViewModel();
 
 	    public static void NullCoalesce(this RandomQuestionViewModel viewModel)
 		{

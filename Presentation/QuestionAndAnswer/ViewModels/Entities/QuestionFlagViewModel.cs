@@ -12,7 +12,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Entities
 		public string FlaggedBy { get; set; }
 		public string LastModifiedBy { get; set; }
 		public IDAndName Status { get; set; }
-		public IList<IDAndName> AllFlagStatuses { get; set; }
+		public IList<IDAndName> FlagStatusLookup { get; set; }
 	}
 }
 

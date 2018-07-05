@@ -10,7 +10,7 @@
             <td>
                 @Html.DropDownListFor(
                         x => x.Status.ID,
-                        Model.AllFlagStatuses.Select(x => new SelectListItem 
+                        Model.FlagStatusLookup.Select(x => new SelectListItem 
                         {
                             Value = x.ID.ToString(), 
                             Text = x.Name, 

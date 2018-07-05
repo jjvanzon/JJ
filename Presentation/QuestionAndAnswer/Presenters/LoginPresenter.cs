@@ -1,69 +1,60 @@
-﻿using JJ.Data.QuestionAndAnswer;
+﻿using System.Security.Authentication;
+using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Presentation;
 using JJ.Framework.Security;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
+// ReSharper disable MemberCanBeMadeStatic.Global
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
 	public class LoginPresenter
 	{
-		private static readonly ActionInfo _defaultReturnAction;
-
 		private readonly Repositories _repositories;
-
-		static LoginPresenter() => _defaultReturnAction = ActionDispatcher.CreateActionInfo<RandomQuestionPresenter>(x => x.Show(null));
 
 	    public LoginPresenter(Repositories repositories) => _repositories = repositories ?? throw new NullException(() => repositories);
 
-		public LoginViewModel Show(ActionInfo returnAction = null)
+		public LoginViewModel Show()
 		{
 			LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
-			viewModel.ReturnAction = returnAction ?? _defaultReturnAction;
 			return viewModel;
 		}
 		
-		public object Login(LoginViewModel viewModel)
+		public LoginViewModel Login(LoginViewModel userInput)
 		{
-			if (viewModel == null) throw new NullException(() => viewModel);
+			if (userInput == null) throw new NullException(() => userInput);
 
-			viewModel.ReturnAction = viewModel.ReturnAction ?? _defaultReturnAction;
-
-			User user = _repositories.UserRepository.TryGetByUserName(viewModel.UserName);
+			User user = _repositories.UserRepository.TryGetByUserName(userInput.UserName);
 			if (user != null)
 			{
-				string passwordFromClient = viewModel.Password;
-				string tokenFromClient = viewModel.SecurityToken;
+				string passwordFromClient = userInput.Password;
+				string tokenFromClient = userInput.SecurityToken;
 				string passwordFromServer = user.Password;
 				string saltFromServer = user.SecuritySalt;
 				IAuthenticator authenticator = AuthenticationHelper.CreateAuthenticatorFromConfiguration();
-				bool isAuthentic = authenticator.IsAuthentic(passwordFromClient, tokenFromClient, passwordFromServer, saltFromServer);
+				bool isAuthenticated = authenticator.IsAuthentic(passwordFromClient, tokenFromClient, passwordFromServer, saltFromServer);
 
-				if (isAuthentic)
+				if (isAuthenticated)
 				{
-					object viewModel2 = DispatchHelper.DispatchAction(viewModel.ReturnAction, _repositories, viewModel.UserName);
-					return viewModel2;
+			        LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
+				    viewModel.IsAuthenticated = true;
+                    return viewModel;
 				}
 			}
 
-			LoginViewModel loginViewModel = ViewModelHelper.CreateLoginViewModel();
-			loginViewModel.ReturnAction = viewModel.ReturnAction;
-			loginViewModel.UserName = viewModel.UserName;
-			return loginViewModel;
+            throw new AuthenticationException();
 		}
 
-		public LoginViewModel SetLanguage(LoginViewModel viewModel, string cultureName)
+		public LoginViewModel SetLanguage(LoginViewModel userInput, string cultureName)
 		{
-			if (viewModel == null) throw new NullException(() => viewModel);
+			if (userInput == null) throw new NullException(() => userInput);
 
 			CultureHelper.SetCulture(cultureName);
 
-			LoginViewModel viewModel2 = ViewModelHelper.CreateLoginViewModel();
-			viewModel2.UserName = viewModel.UserName;
-			viewModel2.ReturnAction = viewModel.ReturnAction;
-			return viewModel2;
+			LoginViewModel viewModel = ViewModelHelper.CreateLoginViewModel();
+			viewModel.UserName = userInput.UserName;
+			return viewModel;
 		}
 	}
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Data.QuestionAndAnswer;
@@ -30,27 +28,24 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             _authenticatedUserName = authenticatedUserName;
         }
 
-        public QuestionListViewModel Show(int pageNumber = 1)
+        public QuestionListViewModel Show(int pageNumber)
         {
-            var viewModel = new QuestionListViewModel
-            {
-                List = new List<QuestionViewModel>()
-            };
-
             int pageIndex = pageNumber - 1;
 
+            // GetEntities
             IList<Question> questions = _repositories.QuestionRepository.GetPage(pageIndex * _pageSize, _pageSize);
+            int count = _repositories.QuestionRepository.Count();
 
+            // ToViewModel
+            var viewModel = new QuestionListViewModel { List = new List<QuestionViewModel>() };
             foreach (Question question in questions)
             {
                 QuestionViewModel itemViewModel = question.ToViewModel();
-                itemViewModel.IsFlagged = question.QuestionFlags.Where(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged).Any();
+                itemViewModel.IsFlagged = question.QuestionFlags.Any(x => x.GetFlagStatusEnum() == FlagStatusEnum.Flagged);
                 viewModel.List.Add(itemViewModel);
             }
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
-
-            int count = _repositories.QuestionRepository.Count();
             viewModel.Pager = PagerViewModelFactory.Create(pageIndex, _pageSize, count, _maxVisiblePageNumbers);
 
             return viewModel;
@@ -61,6 +56,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             // TODO: We probably need more criteria.
             bool mustFilterByFlagStatusID = isFlagged.HasValue;
             int? flagStatusID = null;
+
             if (isFlagged.HasValue)
             {
                 if (isFlagged.Value)
@@ -74,32 +70,5 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             viewModel.List = questions.Select(x => x.ToViewModel()).ToArray();
             return viewModel;
         }
-
-        public object Details(int questionID)
-        {
-            var detailPresenter = new QuestionDetailsPresenter(_repositories, _authenticatedUserName);
-            return detailPresenter.Show(questionID);
-        }
-
-        public object Create()
-        {
-            var presenter2 = new QuestionEditPresenter(_repositories, _authenticatedUserName);
-            return presenter2.Create();
-        }
-
-        public object Edit(int questionID, int pageNumber)
-        {
-            var editPresenter = new QuestionEditPresenter(_repositories, _authenticatedUserName);
-            return editPresenter.Edit(questionID, CreateReturnAction(() => Show(pageNumber)));
-        }
-
-        public object Delete(int questionID)
-        {
-            var deletePresenter = new QuestionConfirmDeletePresenter(_repositories, _authenticatedUserName);
-            return deletePresenter.Show(questionID);
-        }
-
-        private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
-            => ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
     }
 }

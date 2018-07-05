@@ -27,15 +27,17 @@
 		</span>
 	</td>
 
-	<td style="text-align: center; vertical-align: bottom;">
-		<input type="submit"
-		       value="@CommonResourceFormatter.Remove"
-		       formaction="@Url.ActionWithParams(
-			                   nameof(ActionNames.RemoveLink),
-			                   nameof(ControllerNames.Questions),
-			                   nameof(ActionParameterNames.temporaryID),
-			                   Model.TemporaryID)"/>
-		@Html.HiddenFor(x => x.ID)
-		@Html.HiddenFor(x => x.TemporaryID)
-	</td>
+    <td style="text-align: center; vertical-align: bottom;">
+
+        @{
+            string url = Url.Action(nameof(ActionNames.RemoveLink),
+                                    nameof(ControllerNames.Questions),
+                                    new { tempID = Model.TemporaryID, ret = Model.ReturnUrl });
+
+            <input type="submit" value="@CommonResourceFormatter.Remove" formaction="@url" />
+        }
+
+        @Html.HiddenFor(x => x.ID)
+        @Html.HiddenFor(x => x.TemporaryID)
+    </td>
 </tr>

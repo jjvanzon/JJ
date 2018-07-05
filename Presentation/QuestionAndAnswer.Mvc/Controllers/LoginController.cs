@@ -1,19 +1,21 @@
 ﻿using System.Web.Mvc;
 using JJ.Framework.Data;
-using JJ.Framework.Presentation;
 using JJ.Framework.Web;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Names;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
+using ActionDispatcher = JJ.Presentation.QuestionAndAnswer.Mvc.Helpers.ActionDispatcher;
+// ReSharper disable UnusedParameter.Global
+// ReSharper disable ConvertIfStatementToReturnStatement
+// ReSharper disable RedundantIfElseBlock
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {
     public class LoginController : MasterController
     {
-        public ActionResult Index(string ret = null)
+        public ActionResult Index(string ret)
         {
             if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
             {
@@ -21,8 +23,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
                 {
                     Repositories repositories = PersistenceHelper.CreateRepositories(context);
                     var presenter = new LoginPresenter(repositories);
-                    ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
-                    viewModel = presenter.Show(returnAction);
+                    viewModel = presenter.Show();
                 }
             }
 
@@ -30,31 +31,37 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(LoginViewModel viewModel, string lang = null, string ret = null)
+        public ActionResult Index(LoginViewModel userInput, string lang = null, string ret = null)
         {
             using (IContext context = PersistenceHelper.CreateContext())
             {
                 Repositories repositories = PersistenceHelper.CreateRepositories(context);
                 var presenter = new LoginPresenter(repositories);
-                object viewModel2;
+                LoginViewModel viewModel;
+
                 if (!string.IsNullOrEmpty(lang))
                 {
-                    viewModel2 = presenter.SetLanguage(viewModel, lang);
+                    viewModel = presenter.SetLanguage(userInput, lang);
                     CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
                 }
                 else
                 {
-                    viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
-                    viewModel2 = presenter.Login(viewModel);
+                    viewModel = presenter.Login(userInput);
                 }
 
-                // TODO: This is dirty.
-                if (!(viewModel2 is LoginViewModel))
+                if (viewModel.IsAuthenticated)
                 {
-                    SetAuthenticatedUserName(viewModel.UserName);
+                    SetAuthenticatedUserName(userInput.UserName);
                 }
 
-                return ActionDispatcher.Dispatch(this, viewModel2);
+                if (!string.IsNullOrEmpty(ret))
+                {
+                    return Redirect(ret);
+                }
+                else
+                {
+                    return Redirect("~/");
+                }
             }
         }
 

@@ -1,27 +1,29 @@
 ﻿@* ReSharper disable SuggestVarOrType_SimpleTypes*@
 
-@model IList<QuestionLinkViewModel>
+@model QuestionViewModel
+
+@{ var addUrl = Url.Action(nameof(ActionNames.AddLink), new { ret = Model.ReturnAction }); }
 
 <fieldset>
     <legend>@ResourceFormatter.Links</legend>
-
-    @if (Model.Count != 0)
+    
+    @if (Model.Links.Count != 0)
     {
         <table style="width:500px">
 
-            @foreach (var questionLink in Model)
+            @foreach (var item in Model.Links)
             {
                 using (Html.BeginCollectionItem())
                 {
-                    @Html.Partial(nameof(ViewNames._EditLink), questionLink)
+                    @Html.Partial(nameof(ViewNames._EditLink), item)
                 }
             }
 
             <tr style="height:47px">
                 <td />
                 <td />
-                <td style="vertical-align:bottom;text-align:center;">
-                    <input type="submit" value="@CommonResourceFormatter.Add" formaction="@Url.Action(nameof(ActionNames.AddLink))" />
+                <td style="vertical-align: bottom; text-align: center;">
+                    <input type="submit" value="@CommonResourceFormatter.Add" formaction="@addUrl" />
                 </td>
             </tr>
         </table>
@@ -29,6 +31,6 @@
     else
     {
         <br />
-        <input type="submit" value="@CommonResourceFormatter.Add" formaction="@Url.Action(nameof(ActionNames.AddLink))" />
+        <input type="submit" value="@CommonResourceFormatter.Add" formaction="@addUrl" />
     }
 </fieldset>

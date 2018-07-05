@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Entities
 {
@@ -11,5 +12,9 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Entities
 		public int QuestionCategoryID { get; set; }
 
 		public CategoryViewModel Category { get; set; }
+
+	    public string ReturnAction { get; set; }
+
+	    public IList<CategoryViewModel> CategoryLookup { get; set; }
 	}
 }

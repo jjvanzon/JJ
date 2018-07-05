@@ -18,8 +18,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
 {
     internal static class ViewModelHelper
     {
-        public static IList<IDAndName> CreateFlagStatusListViewModel()
-            => EnumToIDAndNameConverter.Convert<FlagStatusEnum>(ResourceFormatter.ResourceManager, false);
+        public static IList<IDAndName> FlagStatusLookup { get; } = EnumToIDAndNameConverter.Convert<FlagStatusEnum>(ResourceFormatter.ResourceManager, false);
 
         /// <summary> Gets a tree of category view models. </summary>
         public static IList<CategoryViewModel> CreateCategoryListViewModelRecursive(

@@ -2,7 +2,6 @@
 using System.Linq;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
-using JJ.Data.Canonical;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
@@ -65,8 +64,7 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             {
                 Question = question.ToViewModel(),
                 ValidationMessages = new List<string>(),
-                CanDelete = true,
-                AllCategories = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository)
+                CanDelete = true
             };
 
             viewModel.Question.Source = question.Source.ToViewModel();
@@ -83,19 +81,20 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
             }
 
             // Question categories
+            IList<CategoryViewModel> categoryLookup = ViewModelHelper.CreateCategoryListViewModelRecursive(categoryRepository);
+
             foreach (QuestionCategory questionCategory in question.QuestionCategories)
             {
                 QuestionCategoryViewModel questionCategoryViewModel = questionCategory.ToViewModel();
+                questionCategoryViewModel.CategoryLookup = categoryLookup;
                 viewModel.Question.Categories.Add(questionCategoryViewModel);
             }
 
             // Flags
-            IList<IDAndName> allFlagStatuses = ViewModelHelper.CreateFlagStatusListViewModel();
-
             foreach (QuestionFlag flag in question.QuestionFlags)
             {
                 QuestionFlagViewModel flagViewModel = flag.ToViewModel();
-                flagViewModel.AllFlagStatuses = allFlagStatuses;
+                flagViewModel.FlagStatusLookup = ViewModelHelper.FlagStatusLookup;
                 viewModel.Question.Flags.Add(flagViewModel);
             }
 

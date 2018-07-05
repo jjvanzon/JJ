@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Data;
-using JJ.Framework.Mvc;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
+using ActionDispatcher = JJ.Presentation.QuestionAndAnswer.Mvc.Helpers.ActionDispatcher;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {
@@ -26,26 +26,26 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Add(CategorySelectorViewModel viewModel, int categoryID)
+		public ActionResult Add(CategorySelectorViewModel userInput, int categoryID)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				CategorySelectorRepositories repositories = CreateRepositories(context);
 				CategorySelectorPresenter presenter = CreatePresenter(repositories);
-				object viewModel2 = presenter.Add(viewModel, categoryID);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				CategorySelectorViewModel viewModel = presenter.Add(userInput, categoryID);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
 		[HttpPost]
-		public ActionResult Remove(int categoryID, CategorySelectorViewModel viewModel)
+		public ActionResult Remove(CategorySelectorViewModel userInput, int categoryID)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				CategorySelectorRepositories repositories = CreateRepositories(context);
 				CategorySelectorPresenter presenter = CreatePresenter(repositories);
-				object viewModel2 = presenter.Remove(viewModel, categoryID);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				CategorySelectorViewModel viewModel = presenter.Remove(userInput, categoryID);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
@@ -54,18 +54,12 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 		private CategorySelectorPresenter CreatePresenter(CategorySelectorRepositories repositories)
 			=> new CategorySelectorPresenter(
 				repositories.CategoryRepository,
-				repositories.QuestionRepository,
-				repositories.QuestionFlagRepository,
-				repositories.FlagStatusRepository,
 				repositories.UserRepository,
 				TryGetAuthenticatedUserName());
 
 		private CategorySelectorRepositories CreateRepositories(IContext context)
 			=> new CategorySelectorRepositories(
 				PersistenceHelper.CreateRepository<ICategoryRepository>(context),
-				PersistenceHelper.CreateRepository<IQuestionRepository>(context),
-				PersistenceHelper.CreateRepository<IQuestionFlagRepository>(context),
-				PersistenceHelper.CreateRepository<IFlagStatusRepository>(context),
 				PersistenceHelper.CreateRepository<IUserRepository>(context));
 	}
 }

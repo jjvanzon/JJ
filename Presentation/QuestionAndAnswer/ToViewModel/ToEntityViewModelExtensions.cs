@@ -12,24 +12,24 @@ namespace JJ.Presentation.QuestionAndAnswer.ToViewModel
     {
         public static QuestionCategoryViewModel ToViewModel(this QuestionCategory questionCategory)
         {
-            if (questionCategory == null) throw new NullException(() => questionCategory);
-
-            var questionCategoryViewModel = new QuestionCategoryViewModel
+            var viewModel = new QuestionCategoryViewModel
             {
                 QuestionCategoryID = questionCategory.ID,
-                TemporaryID = Guid.NewGuid()
+                TemporaryID = Guid.NewGuid(),
+                CategoryLookup = new List<CategoryViewModel>()
             };
 
             if (questionCategory.Category != null)
             {
-                questionCategoryViewModel.Category = questionCategory.Category.ToViewModel();
+                viewModel.Category = questionCategory.Category.ToViewModel();
             }
             else
             {
-                questionCategoryViewModel.Category = ViewModelHelper.CreateEmptyCategoryViewModel();
+                viewModel.Category = ViewModelHelper.CreateEmptyCategoryViewModel();
             }
 
-            return questionCategoryViewModel;
+
+            return viewModel;
         }
 
         /// <summary>

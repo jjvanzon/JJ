@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Web.Mvc;
 using JJ.Framework.Data;
-using JJ.Framework.Presentation;
 using JJ.Framework.Web;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.Mvc.Helpers;
 using JJ.Presentation.QuestionAndAnswer.Presenters;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
-using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
+using ActionDispatcher = JJ.Presentation.QuestionAndAnswer.Mvc.Helpers.ActionDispatcher;
+// ReSharper disable UnusedParameter.Global
+// ReSharper disable InvertIf
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {
 	public class QuestionsController : MasterController
 	{
 		public QuestionsController() => ValidateRequest = false;
+ 
+        // CRUD
 
 		public ActionResult Index(int page = 1)
 		{
@@ -45,79 +48,83 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 			return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
-		public ActionResult Create(string ret = null)
+		public ActionResult Create(string ret)
 		{
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
-			{
-				using (IContext context = PersistenceHelper.CreateContext())
-				{
-					Repositories repositories = PersistenceHelper.CreateRepositories(context);
-					var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-					ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
-					viewModel = presenter.Create(returnAction);
-				}
-			}
+		    if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+		    {
+		        using (IContext context = PersistenceHelper.CreateContext())
+		        {
+		            Repositories repositories = PersistenceHelper.CreateRepositories(context);
+		            var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+		            viewModel = presenter.Create(ret);
+		        }
+		    }
 
-			return ActionDispatcher.Dispatch(this, viewModel);
+		    return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		[HttpPost]
-		public ActionResult Create(QuestionEditViewModel viewModel, string ret = null)
+		public ActionResult Create(QuestionEditViewModel userInput, string ret)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-				viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
-				object viewModel2 = presenter.Save(viewModel);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				QuestionEditViewModel viewModel = presenter.Save(userInput, ret);
+
+                if (viewModel.Successful)
+			    {
+			        return Redirect(ret);
+			    }
+
+			    return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
-		public ActionResult Edit(int id, string ret = null)
+		public ActionResult Edit(int id, string ret)
 		{
-            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
-            {
-                using (IContext context = PersistenceHelper.CreateContext())
-                {
-                    Repositories repositories = PersistenceHelper.CreateRepositories(context);
-                    var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
+		    if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+		    {
+		        using (IContext context = PersistenceHelper.CreateContext())
+		        {
+		            Repositories repositories = PersistenceHelper.CreateRepositories(context);
+		            var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
 
-                    ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
-                    viewModel = presenter.Edit(id, returnAction);
-                }
-            }
+		            bool isNew = id == default;
 
-            return ActionDispatcher.Dispatch(this, viewModel);
+		            if (isNew)
+                    {
+		                viewModel = presenter.Create(ret);
+                    }
+                    else
+		            {
+		                viewModel = presenter.Edit(id, ret);
+		            }
+		        }
+		    }
+
+		    return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		[HttpPost]
-		public ActionResult Edit(QuestionEditViewModel viewModel, string ret = null)
+		public ActionResult Edit(QuestionEditViewModel userInput, string ret)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-				viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
-				object viewModel2 = presenter.Save(viewModel);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				QuestionEditViewModel viewModel = presenter.Save(userInput, ret);
+
+			    if (viewModel.Successful)
+			    {
+			        return Redirect(ret);
+			    }
+
+                return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
-		[HttpPost]
-		public ActionResult CancelEdit(QuestionEditViewModel viewModel, string ret = null)
-		{
-			using (IContext context = PersistenceHelper.CreateContext())
-			{
-				Repositories repositories = PersistenceHelper.CreateRepositories(context);
-				var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-				viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
-				object viewModel2 = presenter.Cancel(viewModel);
-				return ActionDispatcher.Dispatch(this, viewModel2);
-			}
-		}
-
-		public ActionResult Delete(int id)
+	    public ActionResult Delete(int id)
 		{
             if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
             {
@@ -133,64 +140,68 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Delete(QuestionConfirmDeleteViewModel viewModel, int id)
+		public ActionResult Delete(QuestionConfirmDeleteViewModel userInput, int id)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				var presenter = new QuestionConfirmDeletePresenter(repositories, TryGetAuthenticatedUserName());
-				object viewModel2 = presenter.Confirm(id);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				QuestionDeleteConfirmedViewModel viewModel = presenter.Confirm(id);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
+        // Sub-Actions
+
 		[HttpPost]
-		public ActionResult AddLink(QuestionEditViewModel viewModel)
+		public ActionResult AddLink(QuestionEditViewModel userInput, string ret)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-				object viewModel2 = presenter.AddLink(viewModel);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				QuestionEditViewModel viewModel = presenter.AddLink(userInput, ret);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
 		[HttpPost]
-		public ActionResult RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
+		public ActionResult RemoveLink(QuestionEditViewModel userInput, Guid tempID, string ret)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-				object viewModel2 = presenter.RemoveLink(viewModel, temporaryID);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				QuestionEditViewModel viewModel = presenter.RemoveLink(userInput, tempID, ret);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
 		[HttpPost]
-		public ActionResult AddCategory(QuestionEditViewModel viewModel)
+		public ActionResult AddCategory(QuestionEditViewModel userInput, string ret)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-				object viewModel2 = presenter.AddCategory(viewModel);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				QuestionEditViewModel viewModel = presenter.AddCategory(userInput, ret);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
 		[HttpPost]
-		public ActionResult RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
+		public ActionResult RemoveCategory(QuestionEditViewModel userInput, Guid tempID, string ret)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				var presenter = new QuestionEditPresenter(repositories, TryGetAuthenticatedUserName());
-				object viewModel2 = presenter.RemoveCategory(viewModel, temporaryID);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				QuestionEditViewModel viewModel = presenter.RemoveCategory(userInput, tempID, ret);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
+
+        // RandomQuestion
 
 		public ActionResult Random(int[] c)
 		{
@@ -208,67 +219,65 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Random(RandomQuestionViewModel viewModel, string lang)
+		public ActionResult Random(RandomQuestionViewModel userInput, string lang)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
-				object viewModel2 = presenter.SetLanguage(viewModel, lang);
+				RandomQuestionViewModel viewModel = presenter.SetLanguage(userInput, lang);
 				CultureWebHelper.SetCultureCookie(ControllerContext.HttpContext, lang);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
 		[HttpPost]
-		public ActionResult ShowAnswer(RandomQuestionViewModel viewModel)
+		public ActionResult ShowAnswer(RandomQuestionViewModel userInput)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
-				object viewModel2 = presenter.ShowAnswer(viewModel);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				RandomQuestionViewModel viewModel = presenter.ShowAnswer(userInput);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
 		[HttpPost]
-		public ActionResult HideAnswer(RandomQuestionViewModel viewModel)
+		public ActionResult HideAnswer(RandomQuestionViewModel userInput)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
-				object viewModel2 = presenter.HideAnswer(viewModel);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				RandomQuestionViewModel viewModel = presenter.HideAnswer(userInput);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
 		[HttpPost]
-		public ActionResult Flag(RandomQuestionViewModel viewModel)
+		public ActionResult Flag(RandomQuestionViewModel userInput)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
-				object viewModel2 = presenter.Flag(viewModel);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				RandomQuestionViewModel viewModel = presenter.Flag(userInput);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
 
 		[HttpPost]
-		public ActionResult Unflag(RandomQuestionViewModel viewModel)
+		public ActionResult Unflag(RandomQuestionViewModel userInput)
 		{
 			using (IContext context = PersistenceHelper.CreateContext())
 			{
 				Repositories repositories = PersistenceHelper.CreateRepositories(context);
 				RandomQuestionPresenter presenter = CreateRandomQuestionPresenter(repositories);
-				object viewModel2 = presenter.Unflag(viewModel);
-				return ActionDispatcher.Dispatch(this, viewModel2);
+				RandomQuestionViewModel viewModel = presenter.Unflag(userInput);
+				return ActionDispatcher.Dispatch(this, viewModel);
 			}
 		}
-
-		// Helpers
 
 		private RandomQuestionPresenter CreateRandomQuestionPresenter(Repositories repositories)
 			=> new RandomQuestionPresenter(

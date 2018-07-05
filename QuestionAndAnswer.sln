@@ -455,7 +455,6 @@ Global
 		{1A8E047C-7893-4918-B415-CE3928E815D8} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{44FD9133-5FE7-4824-BD35-27273706D127} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{9676E4C3-1A1F-45B8-8FFD-C398F14002E7} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
-		{FED3C829-D92A-4800-9462-A175CCAC4C70} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{C600657B-7E29-44B5-83A1-747FAB30D5D0} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{84A66716-C686-4B8E-A092-CFE38CA7DDE0} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
@@ -464,7 +463,6 @@ Global
 		{F6EA0941-40FF-4679-A1A6-EACD5C9BA42B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{4007568E-B2B4-4FC5-AA38-34EDC272F010} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{08EA4A4E-D815-47AE-9277-DA6672D36214} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
-		{79B0EAC3-5159-4FC8-B3D8-53315B205444} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{BD4CF454-BE0B-490F-997D-665DA7EBEC96} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{CEEB755D-DE12-4E70-816E-546C429B44B7} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{499527FF-AE52-450F-B3E3-4AD53E1712AD} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
@@ -473,6 +471,8 @@ Global
 		{F44D03E8-FEEC-40D4-B866-A87799185B4C} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{164520AA-2DB7-4405-9AE5-EB515527A33B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{CEB85F8E-D429-4510-95A5-47CC3069D412} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{757F8B06-8527-4DAA-A206-E26EB167CA13} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{FA44ABA2-8E13-402C-A5A0-8D73C74B5181} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{21802A52-F4F7-4366-B61D-06E1FB337B86} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{52E03E08-331A-4CA7-8D8F-6F598C94EED4} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
@@ -480,6 +480,8 @@ Global
 		{964DE0B4-27F8-40F8-8D50-C97388BF8CE2} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{5D06A212-5459-47F3-8109-E012C5FC9E3A} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{44A76522-BD9E-47D9-B424-57B9B0C1C9B8} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{B13C36FF-FC92-45BA-B65A-02F9700F32C6} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3FB5B08-F995-446F-9222-97AF1E185F77}
@@ -560,7 +562,6 @@ Global
 		SccLocalPath12 = Data\\QuestionAndAnswer.EntityFramework
 		SccProvider12 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccProjectUniqueName13 = Framework\\Mvc\\JJ.Framework.Mvc.csproj
-		SccProjectTopLevelParentUniqueName13 = QuestionAndAnswer.sln
 		SccProjectName13 = Framework/Mvc
 		SccAuxPath13 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath13 = Framework\\Mvc
@@ -634,7 +635,6 @@ Global
 		SccLocalPath25 = Data\\Canonical
 		SccProvider25 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccProjectUniqueName26 = Framework\\Presentation\\JJ.Framework.Presentation.csproj
-		SccProjectTopLevelParentUniqueName26 = QuestionAndAnswer.sln
 		SccProjectName26 = Framework/Presentation
 		SccAuxPath26 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath26 = Framework\\Presentation
@@ -698,11 +698,13 @@ Global
 		SccLocalPath36 = Presentation\\QuestionAndAnswer.Mvc
 		SccProvider36 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccProjectUniqueName37 = Demos\\ReturnActions.WithViewMapping\\JJ.Demos.ReturnActions.WithViewMapping.csproj
+		SccProjectTopLevelParentUniqueName37 = QuestionAndAnswer.sln
 		SccProjectName37 = Demos/ReturnActions.WithViewMapping
 		SccAuxPath37 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath37 = Demos\\ReturnActions.WithViewMapping
 		SccProvider37 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccProjectUniqueName38 = Demos\\ReturnActions.WithViewMapping.Mvc.UrlParameter\\JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.csproj
+		SccProjectTopLevelParentUniqueName38 = QuestionAndAnswer.sln
 		SccProjectName38 = Demos/ReturnActions.WithViewMapping.Mvc.UrlParameter
 		SccAuxPath38 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath38 = Demos\\ReturnActions.WithViewMapping.Mvc.UrlParameter
@@ -755,6 +757,7 @@ Global
 		SccLocalPath46 = Business\\QuestionAndAnswer.Import.Language
 		SccProvider46 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccProjectUniqueName47 = Demos\\ReturnActions.WithViewMapping.Mvc.PostData\\JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.csproj
+		SccProjectTopLevelParentUniqueName47 = QuestionAndAnswer.sln
 		SccProjectName47 = Demos/ReturnActions.WithViewMapping.Mvc.PostData
 		SccAuxPath47 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath47 = Demos\\ReturnActions.WithViewMapping.Mvc.PostData
@@ -765,6 +768,7 @@ Global
 		SccLocalPath48 = Demos\\ReturnActions.NoViewMapping.Mvc.UrlParameter
 		SccProvider48 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccProjectUniqueName49 = Demos\\ReturnActions.WithViewMapping.Mvc\\JJ.Demos.ReturnActions.WithViewMapping.Mvc.csproj
+		SccProjectTopLevelParentUniqueName49 = QuestionAndAnswer.sln
 		SccProjectName49 = Demos/ReturnActions.WithViewMapping.Mvc
 		SccAuxPath49 = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath49 = Demos\\ReturnActions.WithViewMapping.Mvc

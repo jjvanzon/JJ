@@ -1,75 +1,65 @@
-﻿using System;
-using System.Linq.Expressions;
-using JJ.Business.QuestionAndAnswer.Extensions;
+﻿using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Presentation;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
 using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
-	public class QuestionConfirmDeletePresenter
-	{
-		private readonly Repositories _repositories;
-		private readonly string _authenticatedUserName;
+    public class QuestionConfirmDeletePresenter
+    {
+        private readonly Repositories _repositories;
+        private readonly SecurityAsserter _securityAsserter;
+        private readonly string _authenticatedUserName;
 
-		/// <param name="authenticatedUserName">nullable</param>
-		public QuestionConfirmDeletePresenter(
-			Repositories repositories,
-			string authenticatedUserName)
-		{
-			_repositories = repositories ?? throw new NullException(() => repositories);
-			_authenticatedUserName = authenticatedUserName;
-		}
+        /// <param name="authenticatedUserName">nullable</param>
+        public QuestionConfirmDeletePresenter(Repositories repositories, string authenticatedUserName)
+        {
+            _repositories = repositories ?? throw new NullException(() => repositories);
+            _securityAsserter = new SecurityAsserter(repositories.UserRepository);
+            _authenticatedUserName = authenticatedUserName;
+        }
 
-		public object Show(int id)
-		{
-			if (string.IsNullOrEmpty(_authenticatedUserName))
-			{
-				var presenter2 = new LoginPresenter(_repositories);
-				return presenter2.Show(CreateReturnAction(() => Show(id)));
-			}
+        public QuestionConfirmDeleteViewModel Show(int id)
+        {
+            // Security
+            _securityAsserter.Assert(_authenticatedUserName);
 
-			Question question = _repositories.QuestionRepository.TryGet(id);
-			if (question == null)
-			{
-				var presenter2 = new QuestionNotFoundPresenter(_repositories.UserRepository, _authenticatedUserName);
-				return presenter2.Show();
-			}
+            // GetEntity
+            Question question = _repositories.QuestionRepository.Get(id);
 
-			QuestionConfirmDeleteViewModel viewModel = question.ToConfirmDeleteViewModel(_repositories.UserRepository, _authenticatedUserName);
-			return viewModel;
-		}
+            // ToViewModel
+            QuestionConfirmDeleteViewModel viewModel = question.ToConfirmDeleteViewModel(_repositories.UserRepository, _authenticatedUserName);
 
-		public object Confirm(int id)
-		{
-			if (string.IsNullOrEmpty(_authenticatedUserName))
-			{
-				var presenter2 = new LoginPresenter(_repositories);
-				return presenter2.Show(CreateReturnAction(() => Show(id)));
-			}
+            return viewModel;
+        }
 
-			Question question = _repositories.QuestionRepository.TryGet(id);
-			if (question == null)
-			{
-				var presenter2 = new QuestionNotFoundPresenter(_repositories.UserRepository, _authenticatedUserName);
-				return presenter2.Show();
-			}
+        public QuestionDeleteConfirmedViewModel Confirm(int id)
+        {
+            // Security
+            _securityAsserter.Assert(_authenticatedUserName);
 
-			question.DeleteRelatedEntities(_repositories.AnswerRepository, _repositories.QuestionCategoryRepository, _repositories.QuestionLinkRepository, _repositories.QuestionFlagRepository);
-			question.UnlinkRelatedEntities();
+            // GetEntity
+            Question question = _repositories.QuestionRepository.Get(id);
 
-			_repositories.QuestionRepository.Delete(question);
-			_repositories.QuestionRepository.Commit();
+            // Business
+            question.DeleteRelatedEntities(
+                _repositories.AnswerRepository,
+                _repositories.QuestionCategoryRepository,
+                _repositories.QuestionLinkRepository,
+                _repositories.QuestionFlagRepository);
 
-			var presenter3 = new QuestionDeleteConfirmedPresenter(_repositories, _authenticatedUserName);
-			return presenter3.Show(id);
-		}
+            question.UnlinkRelatedEntities();
 
-		public PreviousViewModel Cancel() => new PreviousViewModel();
+            _repositories.QuestionRepository.Delete(question);
 
-	    private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression) => ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
-	}
+            // Commit
+            _repositories.QuestionRepository.Commit();
+
+            // Redirect
+            var presenter2 = new QuestionDeleteConfirmedPresenter(_repositories, _authenticatedUserName);
+            return presenter2.Show(id);
+        }
+    }
 }

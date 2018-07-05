@@ -21,5 +21,6 @@ namespace JJ.Presentation.QuestionAndAnswer.ViewModels.Entities
 
 		/// <summary> Not available in RandomQuestionViewModel. </summary>
 		public IList<QuestionFlagViewModel> Flags { get; set; }
+	    public string ReturnAction { get; set; }
 	}
 }

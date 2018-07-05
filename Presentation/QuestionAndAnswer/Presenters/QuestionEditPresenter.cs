@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Business.QuestionAndAnswer.Resources;
 using JJ.Business.QuestionAndAnswer.SideEffects;
 using JJ.Business.QuestionAndAnswer.Validation;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Business;
+using JJ.Framework.Collections;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Presentation;
 using JJ.Framework.Resources;
 using JJ.Framework.Validation;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
@@ -19,73 +18,59 @@ using JJ.Presentation.QuestionAndAnswer.ToViewModel;
 using JJ.Presentation.QuestionAndAnswer.ViewModels;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 
+// ReSharper disable RedundantIfElseBlock
+
 namespace JJ.Presentation.QuestionAndAnswer.Presenters
 {
     public class QuestionEditPresenter
     {
-        private static readonly ActionInfo _defaultReturnAction;
-
         private readonly Repositories _repositories;
+        private readonly SecurityAsserter _securityAsserter;
         private readonly string _authenticatedUserName;
 
-        static QuestionEditPresenter() => _defaultReturnAction = ActionDispatcher.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
-
         /// <param name="authenticatedUserName">nullable</param>
-        public QuestionEditPresenter(
-            Repositories repositories,
-            string authenticatedUserName)
+        public QuestionEditPresenter(Repositories repositories, string authenticatedUserName)
         {
             _repositories = repositories ?? throw new NullException(() => repositories);
+            _securityAsserter = new SecurityAsserter(repositories.UserRepository);
             _authenticatedUserName = authenticatedUserName;
         }
 
-        public object Edit(int id, ActionInfo returnAction = null)
+        public QuestionEditViewModel Edit(int id, string returnAction)
         {
-            returnAction = returnAction ?? _defaultReturnAction;
+            if (string.IsNullOrEmpty(returnAction)) throw new NullOrEmptyException(nameof(returnAction));
 
-            if (string.IsNullOrEmpty(_authenticatedUserName))
-            {
-                var presenter2 = new LoginPresenter(_repositories);
-                ActionInfo returnAction2 = CreateReturnAction(() => Edit(id, returnAction));
-                return presenter2.Show(returnAction2);
-            }
+            // Security
+            _securityAsserter.Assert(_authenticatedUserName);
 
-            Question question = _repositories.QuestionRepository.TryGet(id);
+            // GetEntity
+            Question question = _repositories.QuestionRepository.Get(id);
 
-            if (question == null)
-            {
-                var presenter2 = new QuestionNotFoundPresenter(_repositories.UserRepository, _authenticatedUserName);
-                return presenter2.Show();
-            }
-
-            if (returnAction == null)
-            {
-                returnAction = ActionDispatcher.CreateActionInfo<QuestionDetailsPresenter>(x => x.Show(id));
-            }
-
+            // ToViewModel
             QuestionEditViewModel viewModel = question.ToEditViewModel(
                 _repositories.CategoryRepository,
                 _repositories.UserRepository,
                 _authenticatedUserName);
 
+            // NonPersisted
             viewModel.CanDelete = true;
             viewModel.Title = CommonResourceFormatter.Edit_WithName(ResourceFormatter.Question_Accusative);
-            viewModel.ReturnAction = returnAction;
+            SetReturnAction(viewModel, returnAction);
 
             return viewModel;
         }
 
-        public object Create(ActionInfo returnAction = null)
+        public QuestionEditViewModel Create(string returnAction)
         {
-            returnAction = returnAction ?? _defaultReturnAction;
+            if (string.IsNullOrEmpty(returnAction)) throw new NullOrEmptyException(nameof(returnAction));
+        
+            // Security
+            _securityAsserter.Assert(_authenticatedUserName);
 
-            if (string.IsNullOrEmpty(_authenticatedUserName))
-            {
-                var presenter2 = new LoginPresenter(_repositories);
-                return presenter2.Show(CreateReturnAction(() => Create(null)));
-            }
-
+            // GetEntity
             Question entity = _repositories.QuestionRepository.Create();
+
+            // Business
             _repositories.EntityStatusManager.SetIsNew(entity);
 
             ISideEffect sideEffect1 = new Question_SideEffect_AutoCreateRelatedEntities(
@@ -109,181 +94,181 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
             sideEffect3.Execute();
 
+            // ToViewModel
             QuestionEditViewModel viewModel = entity.ToEditViewModel(
                 _repositories.CategoryRepository,
                 _repositories.UserRepository,
                 _authenticatedUserName);
 
+            // NonPersisted
             viewModel.IsNew = true;
             viewModel.Title = ResourceFormatter.CreateQuestion;
-
-            if (returnAction == null)
-            {
-                returnAction = ActionDispatcher.CreateActionInfo<QuestionListPresenter>(x => x.Show(1));
-            }
-
-            viewModel.ReturnAction = returnAction;
+            SetReturnAction(viewModel, returnAction);
 
             return viewModel;
         }
 
-        public object AddLink(QuestionEditViewModel viewModel)
+        public QuestionEditViewModel AddLink(QuestionEditViewModel userInput, string returnAction)
         {
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
+            if (userInput == null) throw new NullException(() => userInput);
+            userInput.NullCoalesce();
+
+            // Security
+            _securityAsserter.Assert(_authenticatedUserName);
 
             // ToEntity
-            Question question = viewModel.ToEntity(_repositories);
+            Question question = userInput.ToEntity(_repositories);
 
             // Business
             QuestionLink questionLink = _repositories.QuestionLinkRepository.Create();
             questionLink.LinkTo(question);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+            QuestionEditViewModel viewModel = question.ToEditViewModel(
                 _repositories.CategoryRepository,
                 _repositories.UserRepository,
                 _authenticatedUserName);
 
-            // Non-persisted properties
-            viewModel2.IsNew = viewModel.IsNew;
-            viewModel2.CanDelete = viewModel.CanDelete;
-            viewModel2.Title = viewModel.Title;
+            // NonPersisted
+            CopyNonPersistedProperties(userInput, viewModel);
+            SetReturnAction(viewModel, returnAction);
 
-            return viewModel2;
+            return viewModel;
         }
 
-        public QuestionEditViewModel RemoveLink(QuestionEditViewModel viewModel, Guid temporaryID)
+        public QuestionEditViewModel RemoveLink(QuestionEditViewModel userInput, Guid temporaryID, string returnAction)
         {
             // The problem here is that you may want to remove one out of many uncommitted entities do not exist in the database yet,
             // and you cannot identify them uniquely with the ID (which is 0),
             // which makes it impossible to perform the delete operation on the entity model when given an ID.
             // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
+            if (userInput == null) throw new NullException(() => userInput);
+            if (string.IsNullOrEmpty(returnAction)) throw new NullOrEmptyException(nameof(returnAction));
+            userInput.NullCoalesce();
+
+            // Security
+            _securityAsserter.Assert(_authenticatedUserName);
 
             // 'Business'
-            QuestionLinkViewModel questionLinkViewModel = viewModel.Question.Links.Where(x => x.TemporaryID == temporaryID).SingleOrDefault();
+            QuestionLinkViewModel questionLinkViewModel = userInput.Question.Links.Where(x => x.TemporaryID == temporaryID).SingleOrDefault();
 
             if (questionLinkViewModel == null)
             {
                 throw new Exception($"QuestionLinkViewModel with TemporaryID '{temporaryID}' not found.");
             }
 
-            viewModel.Question.Links.Remove(questionLinkViewModel);
+            userInput.Question.Links.Remove(questionLinkViewModel);
 
             // ToEntity
-            Question question = viewModel.ToEntity(_repositories);
+            Question question = userInput.ToEntity(_repositories);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+            QuestionEditViewModel viewModel = question.ToEditViewModel(
                 _repositories.CategoryRepository,
                 _repositories.UserRepository,
                 _authenticatedUserName);
 
-            // Non-persisted properties
-            viewModel2.IsNew = viewModel.IsNew;
-            viewModel2.CanDelete = viewModel.CanDelete;
-            viewModel2.Title = viewModel.Title;
+            // NonPersisted
+            CopyNonPersistedProperties(userInput, viewModel);
+            SetReturnAction(viewModel, returnAction);
 
-            return viewModel2;
+            return viewModel;
         }
 
-        public QuestionEditViewModel AddCategory(QuestionEditViewModel viewModel)
+        public QuestionEditViewModel AddCategory(QuestionEditViewModel userInput, string returnAction)
         {
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
+            if (userInput == null) throw new NullException(() => userInput);
+            if (string.IsNullOrEmpty(returnAction)) throw new NullOrEmptyException(nameof(returnAction));
+            userInput.NullCoalesce();
+
+            // Security
+            _securityAsserter.Assert(_authenticatedUserName);
 
             // ToEntity
-            Question question = viewModel.ToEntity(_repositories);
+            Question question = userInput.ToEntity(_repositories);
 
             // Businesss
             QuestionCategory questionCategory = _repositories.QuestionCategoryRepository.Create();
             questionCategory.LinkTo(question);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+            QuestionEditViewModel viewModel = question.ToEditViewModel(
                 _repositories.CategoryRepository,
                 _repositories.UserRepository,
                 _authenticatedUserName);
 
-            // Non-persisted properties
-            viewModel2.IsNew = viewModel.IsNew;
-            viewModel2.CanDelete = viewModel.CanDelete;
-            viewModel2.Title = viewModel.Title;
+            // NonPersisted
+            CopyNonPersistedProperties(userInput, viewModel);
+            SetReturnAction(viewModel, returnAction);
 
-            return viewModel2;
+            return viewModel;
         }
 
-        public QuestionEditViewModel RemoveCategory(QuestionEditViewModel viewModel, Guid temporaryID)
+        public QuestionEditViewModel RemoveCategory(QuestionEditViewModel userInput, Guid temporaryID, string returnAction)
         {
             // The problem here is that you may want to remove one out of many uncommitted entities that do not exist in the database yet,
             // and you cannot identify them uniquely with the ID (which is 0),
             // which makes it impossible to perform the delete operation on the entity model when given an ID.
             // So instead you have to perform the operation on the viewmodel which has temporary ID's.
 
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
+            if (userInput == null) throw new NullException(() => userInput);
+            if (string.IsNullOrEmpty(returnAction)) throw new NullOrEmptyException(nameof(returnAction));
+            userInput.NullCoalesce();
+
+            // Security
+            _securityAsserter.Assert(_authenticatedUserName);
 
             // 'Business'
             QuestionCategoryViewModel questionCategoryViewModel =
-                viewModel.Question.Categories.Where(x => x.TemporaryID == temporaryID).FirstOrDefault();
+                userInput.Question.Categories.Where(x => x.TemporaryID == temporaryID).FirstOrDefault();
 
             if (questionCategoryViewModel == null)
             {
                 throw new Exception($"questionCategoryViewModel with TemporaryID '{temporaryID}' not found.");
             }
 
-            viewModel.Question.Categories.Remove(questionCategoryViewModel);
+            userInput.Question.Categories.Remove(questionCategoryViewModel);
 
             // ToEntity
-            Question question = viewModel.ToEntity(_repositories);
+            Question question = userInput.ToEntity(_repositories);
 
             // ToViewModel
-            QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+            QuestionEditViewModel viewModel = question.ToEditViewModel(
                 _repositories.CategoryRepository,
                 _repositories.UserRepository,
                 _authenticatedUserName);
 
-            // Non-persisted properties
-            viewModel2.IsNew = viewModel.IsNew;
-            viewModel2.CanDelete = viewModel.CanDelete;
-            viewModel2.Title = viewModel.Title;
+            // NonPersisted
+            CopyNonPersistedProperties(userInput, viewModel);
+            SetReturnAction(viewModel, returnAction);
 
-            return viewModel2;
+            return viewModel;
         }
 
-        public object Save(QuestionEditViewModel viewModel)
+        public QuestionEditViewModel Save(QuestionEditViewModel userInput, string returnAction)
         {
-            if (viewModel == null) throw new NullException(() => viewModel);
-            viewModel.NullCoalesce();
+            if (userInput == null) throw new NullException(() => userInput);
+            if (string.IsNullOrEmpty(returnAction)) throw new NullOrEmptyException(nameof(returnAction));
+            userInput.NullCoalesce();
 
-            if (string.IsNullOrEmpty(_authenticatedUserName))
-            {
-                return new NotAuthorizedViewModel();
-            }
-
-            User user = _repositories.UserRepository.TryGetByUserName(_authenticatedUserName);
-
-            if (user == null)
-            {
-                return new NotAuthorizedViewModel();
-            }
+            // Security
+            _securityAsserter.Assert(_authenticatedUserName);
 
             // Set Entity Status (do this before ToEntity)
-            Question question = _repositories.QuestionRepository.TryGet(viewModel.Question.ID);
+            Question question = _repositories.QuestionRepository.TryGet(userInput.Question.ID);
 
             if (question != null)
             {
                 ViewModelEntityStatusHelper.SetPropertiesAreDirtyWithRelatedEntities(
                     _repositories.EntityStatusManager,
                     question,
-                    viewModel.Question);
+                    userInput.Question);
             }
 
-            // ToEntity
-            question = viewModel.ToEntity(_repositories);
+            // GetEntity / ToEntity
+            User user = _repositories.UserRepository.GetByUserName(_authenticatedUserName);
+            question = userInput.ToEntity(_repositories);
 
             // Validate
             IValidator validator = new VersatileQuestionValidator(question);
@@ -291,23 +276,21 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             if (!validator.IsValid)
             {
                 // ToViewModel
-                QuestionEditViewModel viewModel2 = question.ToEditViewModel(
+                QuestionEditViewModel viewModel = question.ToEditViewModel(
                     _repositories.CategoryRepository,
                     _repositories.UserRepository,
                     _authenticatedUserName);
 
-                // Non-persisted properties
-                viewModel2.IsNew = viewModel.IsNew;
-                viewModel2.CanDelete = viewModel.CanDelete;
-                viewModel2.Title = viewModel.Title;
+                // NonPersisted
+                CopyNonPersistedProperties(userInput, viewModel);
+                SetReturnAction(viewModel, returnAction);
+                viewModel.ValidationMessages = validator.Messages;
 
-                viewModel2.ValidationMessages = validator.Messages;
-
-                return viewModel2;
+                return viewModel;
             }
             else
             {
-                // Side-effects
+                // SideEffects
                 ISideEffect sideEffect1 = new Question_SideEffect_SetIsManual(question, _repositories.EntityStatusManager);
                 sideEffect1.Execute();
 
@@ -327,21 +310,28 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
                 // Commit
                 _repositories.QuestionRepository.Commit();
 
-                // On success: go to return action.
-                ActionInfo returnAction = viewModel.ReturnAction ?? _defaultReturnAction;
-                object viewModel2 = DispatchHelper.DispatchAction(returnAction, _repositories, _authenticatedUserName);
-                return viewModel2;
+                // NonPersisted
+                userInput.Successful = true;
+
+                return userInput;
             }
         }
 
-        public object Cancel(QuestionEditViewModel viewModel)
+        private static void CopyNonPersistedProperties(QuestionEditViewModel source, QuestionEditViewModel dest)
         {
-            ActionInfo returnAction = viewModel.ReturnAction ?? _defaultReturnAction;
-            object viewModel2 = DispatchHelper.DispatchAction(returnAction, _repositories, _authenticatedUserName);
-            return viewModel2;
+            dest.IsNew = source.IsNew;
+            dest.CanDelete = source.CanDelete;
+            dest.Title = source.Title;
         }
 
-        private ActionInfo CreateReturnAction(Expression<Func<object>> methodCallExpression)
-            => ActionDispatcher.CreateActionInfo(GetType(), methodCallExpression);
+        private static void SetReturnAction(QuestionEditViewModel viewModel, string returnAction)
+        {
+            if (string.IsNullOrEmpty(returnAction)) throw new NullOrEmptyException(nameof(returnAction));
+
+            viewModel.ReturnAction = returnAction;
+            viewModel.Question.ReturnAction = returnAction;
+            viewModel.Question.Categories.ForEach(x => x.ReturnAction = returnAction);
+            viewModel.Question.Links.ForEach(x => x.ReturnUrl = returnAction);
+        }
     }
 }

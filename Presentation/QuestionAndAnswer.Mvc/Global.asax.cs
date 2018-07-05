@@ -5,9 +5,6 @@ using System.Web.Routing;
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
@@ -17,8 +14,6 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            DispatcherConfig.AddMappings();
         }
     }
 }

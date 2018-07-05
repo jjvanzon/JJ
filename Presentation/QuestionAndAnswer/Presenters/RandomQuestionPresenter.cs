@@ -3,6 +3,7 @@ using System.Linq;
 using JJ.Business.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
+using JJ.Framework.Exceptions.Aggregates;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
@@ -41,7 +42,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 		}
 
 		/// <param name="categoryIDs">nullable</param>
-		public object Show(params int[] categoryIDs)
+		public RandomQuestionViewModel Show(params int[] categoryIDs)
 		{
 			categoryIDs = categoryIDs ?? new int[0];
 
@@ -64,9 +65,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			// Not Found
 			if (question == null)
 			{
-				var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
-				QuestionNotFoundViewModel viewModel2 = presenter2.Show();
-				return viewModel2;
+			    throw new NotFoundException<Question>();
 			}
 
 			// Create ViewModel
@@ -77,130 +76,110 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			return viewModel;
 		}
 
-		public object ShowAnswer(RandomQuestionViewModel viewModel)
+		public RandomQuestionViewModel ShowAnswer(RandomQuestionViewModel userInput)
 		{
 			// Check conditions
-			if (viewModel == null) throw new NullException(() => viewModel);
-			if (viewModel.Question == null) throw new NullException(() => viewModel.Question);
-			viewModel.NullCoalesce();
+			if (userInput == null) throw new NullException(() => userInput);
+			if (userInput.Question == null) throw new NullException(() => userInput.Question);
+			userInput.NullCoalesce();
 
-			// Get entities
-			Question question = _questionRepository.TryGet(viewModel.Question.ID);
-			if (question == null)
-			{
-				var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
-				return presenter2.Show();
-			}
+			// GetEntities
+			Question question = _questionRepository.Get(userInput.Question.ID);
 			User user = _userRepository.TryGetByUserName(_authenticatedUserName);
 			QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
 
-			// Create new view model
-			RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
+			// ToViewModel
+			RandomQuestionViewModel viewModel = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
 
-			// Set non-persisted properties
-			viewModel2.UserAnswer = viewModel.UserAnswer;
-			viewModel2.AnswerIsVisible = true;
+			// NonPersisted
+			viewModel.UserAnswer = userInput.UserAnswer;
+			viewModel.AnswerIsVisible = true;
 			if (user != null)
 			{
-				viewModel2.CurrentUserQuestionFlag.CanFlag = true;
+				viewModel.CurrentUserQuestionFlag.CanFlag = true;
 			}
-			if (viewModel.SelectedCategories != null)
+			if (userInput.SelectedCategories != null)
 			{
-				viewModel2.SelectedCategories = viewModel.SelectedCategories;
+				viewModel.SelectedCategories = userInput.SelectedCategories;
 			}
 
-			return viewModel2;
+			return viewModel;
 		}
 
-		public object HideAnswer(RandomQuestionViewModel viewModel)
+		public RandomQuestionViewModel HideAnswer(RandomQuestionViewModel userInput)
 		{
 			// Check conditions
-			if (viewModel == null) throw new NullException(() => viewModel);
-			if (viewModel.Question == null) throw new NullException(() => viewModel.Question);
-			viewModel.NullCoalesce();
+			if (userInput == null) throw new NullException(() => userInput);
+			if (userInput.Question == null) throw new NullException(() => userInput.Question);
+			userInput.NullCoalesce();
 
-			// Get entities
-			Question question = _questionRepository.TryGet(viewModel.Question.ID);
-			if (question == null)
-			{
-				var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
-				return presenter2.Show();
-			}
+			// GetEntities
+			Question question = _questionRepository.Get(userInput.Question.ID);
 			User user = _userRepository.TryGetByUserName(_authenticatedUserName);
 			QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
 
-			// Create new view model
-			RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
+			// ToViewModel
+			RandomQuestionViewModel viewModel = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
 
-			// Set non-persisted properties
-			viewModel2.UserAnswer = viewModel.UserAnswer;
-			if (viewModel.SelectedCategories != null)
+			// NonPersisted
+			viewModel.UserAnswer = userInput.UserAnswer;
+			if (userInput.SelectedCategories != null)
 			{
-				viewModel2.SelectedCategories = viewModel.SelectedCategories;
+				viewModel.SelectedCategories = userInput.SelectedCategories;
 			}
 
-			// Links reveal answer.
-			viewModel2.Question.Links.Clear(); 
+			// Links reveal answer
+			viewModel.Question.Links.Clear(); 
 
-			return viewModel2;
+			return viewModel;
 		}
 
-		public object Flag(RandomQuestionViewModel viewModel)
+		public RandomQuestionViewModel Flag(RandomQuestionViewModel userInput)
 		{
 			// Check conditions
-			if (viewModel == null) throw new NullException(() => viewModel);
-			if (viewModel.Question == null) throw new NullException(() => viewModel.Question);
-			if (viewModel.CurrentUserQuestionFlag == null) throw new NullException(() => viewModel.CurrentUserQuestionFlag);
-			viewModel.NullCoalesce();
+			if (userInput == null) throw new NullException(() => userInput);
+			if (userInput.Question == null) throw new NullException(() => userInput.Question);
+			if (userInput.CurrentUserQuestionFlag == null) throw new NullException(() => userInput.CurrentUserQuestionFlag);
+			userInput.NullCoalesce();
 
-			// Get entities
+			// GetEntities
 			User user = _userRepository.GetByUserName(_authenticatedUserName);
-			Question question = _questionRepository.TryGet(viewModel.Question.ID);
-			if (question == null)
-			{
-				var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
-				return presenter2.Show();
-			}
+			Question question = _questionRepository.Get(userInput.Question.ID);
 
 			// Business
 			var questionFlagger = new QuestionFlagger(user, _questionFlagRepository, _flagStatusRepository);
-			QuestionFlag questionFlag = questionFlagger.FlagQuestion(question, viewModel.CurrentUserQuestionFlag.Comment);
+			QuestionFlag questionFlag = questionFlagger.FlagQuestion(question, userInput.CurrentUserQuestionFlag.Comment);
 			_questionFlagRepository.Commit();
 
 			// New Transaction: Get Entity
-			question = _questionRepository.Get(viewModel.Question.ID);
+			question = _questionRepository.Get(userInput.Question.ID);
 
 			// ToViewModel
-			RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
+			RandomQuestionViewModel viewModel = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
 			
 			// NonPersisted
-			viewModel2.UserAnswer = viewModel.UserAnswer;
-			viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
-			viewModel2.CurrentUserQuestionFlag.CanFlag = viewModel.AnswerIsVisible;
-			viewModel2.SelectedCategories = viewModel.SelectedCategories;
+			viewModel.UserAnswer = userInput.UserAnswer;
+			viewModel.AnswerIsVisible = userInput.AnswerIsVisible;
+			viewModel.CurrentUserQuestionFlag.CanFlag = userInput.AnswerIsVisible;
+			viewModel.SelectedCategories = userInput.SelectedCategories;
 
-			return viewModel2;
+			return viewModel;
 		}
 
 		// TODO: Program this and delegate to it everywhere.
 		//private void CopyNonPersistedProperties(RandomQuestionViewModel source, RandomQuestionViewModel dest)
 
-		public object Unflag(RandomQuestionViewModel viewModel)
+		public RandomQuestionViewModel Unflag(RandomQuestionViewModel userInput)
 		{
 			// Check conditions
-			if (viewModel == null) throw new NullException(() => viewModel);
-			if (viewModel.Question == null) throw new NullException(() => viewModel.Question);
-			if (viewModel.CurrentUserQuestionFlag == null) throw new NullException(() => viewModel.CurrentUserQuestionFlag);
-			viewModel.NullCoalesce();
+			if (userInput == null) throw new NullException(() => userInput);
+			if (userInput.Question == null) throw new NullException(() => userInput.Question);
+			if (userInput.CurrentUserQuestionFlag == null) throw new NullException(() => userInput.CurrentUserQuestionFlag);
+			userInput.NullCoalesce();
 
 			// Get entities
 			User user = _userRepository.GetByUserName(_authenticatedUserName);
-			Question question = _questionRepository.TryGet(viewModel.Question.ID);
-			if (question == null)
-			{
-				var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
-				return presenter2.Show();
-			}
+			Question question = _questionRepository.Get(userInput.Question.ID);
 
 			// Call business logic
 			var questionFlagger = new QuestionFlagger(user, _questionFlagRepository, _flagStatusRepository);
@@ -208,61 +187,56 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 			_questionFlagRepository.Commit();
 
 			// New Transaction: Get Entity
-			question = _questionRepository.Get(viewModel.Question.ID);
+			question = _questionRepository.Get(userInput.Question.ID);
 
 			// Create new view model
-			RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName);
+			RandomQuestionViewModel viewModel = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName);
 
 			// Set non-persisted properties
-			viewModel2.UserAnswer = viewModel.UserAnswer;
-			viewModel2.AnswerIsVisible = viewModel.AnswerIsVisible;
-			viewModel2.CurrentUserQuestionFlag.CanFlag = viewModel.AnswerIsVisible;
+			viewModel.UserAnswer = userInput.UserAnswer;
+			viewModel.AnswerIsVisible = userInput.AnswerIsVisible;
+			viewModel.CurrentUserQuestionFlag.CanFlag = userInput.AnswerIsVisible;
 
-			return viewModel2;
+			return viewModel;
 		}
 
-		public object SetLanguage(RandomQuestionViewModel viewModel, string cultureName)
+		public RandomQuestionViewModel SetLanguage(RandomQuestionViewModel userInput, string cultureName)
 		{
 			// Check conditions
-			if (viewModel == null) throw new NullException(() => viewModel);
-			viewModel.NullCoalesce();
+			if (userInput == null) throw new NullException(() => userInput);
+			userInput.NullCoalesce();
 
 			// Business logic
 			CultureHelper.SetCulture(cultureName);
 
 			// Get entities
-			Question question = _questionRepository.TryGet(viewModel.Question.ID);
-			if (question == null)
-			{
-				var presenter2 = new QuestionNotFoundPresenter(_userRepository, _authenticatedUserName);
-				return presenter2.Show();
-			}
+			Question question = _questionRepository.Get(userInput.Question.ID);
 			User user = _userRepository.TryGetByUserName(_authenticatedUserName);
 			QuestionFlag questionFlag = TryGetQuestionFlag(question, user);
 
 			// Create new view model
-			RandomQuestionViewModel viewModel2 = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
+			RandomQuestionViewModel viewModel = question.ToRandomQuestionViewModel(_userRepository, _authenticatedUserName, questionFlag);
 
 			// Set non-persisted properties
-			viewModel2.UserAnswer = viewModel.UserAnswer;
-			if (viewModel.SelectedCategories != null)
+			viewModel.UserAnswer = userInput.UserAnswer;
+			if (userInput.SelectedCategories != null)
 			{
-				viewModel2.SelectedCategories = viewModel.SelectedCategories;
+				viewModel.SelectedCategories = userInput.SelectedCategories;
 			}
 
 			// Links reveal answer.
-			viewModel2.Question.Links.Clear();
+			viewModel.Question.Links.Clear();
 
-			return viewModel2;
+			return viewModel;
 		}
 
-		public object NextQuestion(RandomQuestionViewModel viewModel)
+		public RandomQuestionViewModel NextQuestion(RandomQuestionViewModel userInput)
 		{
-			if (viewModel == null) throw new NullException(() => viewModel);
+			if (userInput == null) throw new NullException(() => userInput);
 
-			int[] categoryIDs = viewModel.SelectedCategories.Select(x => x.ID).ToArray();
-			object viewModel2 = Show(categoryIDs);
-			return viewModel2;
+			int[] categoryIDs = userInput.SelectedCategories.Select(x => x.ID).ToArray();
+			RandomQuestionViewModel viewModel = Show(categoryIDs);
+			return viewModel;
 		}
 
 		private QuestionFlag TryGetQuestionFlag(Question question, User user)
