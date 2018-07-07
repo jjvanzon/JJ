@@ -1,116 +1,135 @@
-﻿using JJ.Framework.Business;
-using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
+﻿using System.Linq;
+using JJ.Business.QuestionAndAnswer.Helpers;
 using JJ.Data.QuestionAndAnswer;
+using JJ.Framework.Business;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
+// ReSharper disable SuggestVarOrType_SimpleTypes
+// ReSharper disable SuggestVarOrType_DeconstructionDeclarations
 
 namespace JJ.Presentation.QuestionAndAnswer.Helpers
 {
-	/// <summary>
-	/// Sets entity statuses that cannot always be set by the context or repository.
-	/// This encompasses status dirty on individual properties and lists.
-	/// </summary>
-	internal static class ViewModelEntityStatusHelper
-	{
-		/// <param name="entity"> nullable </param>
-		public static void SetPropertiesAreDirtyWithRelatedEntities(EntityStatusManager statusManager, Question entity, QuestionViewModel viewModel)
-		{
-			if (statusManager == null) throw new NullException(() => statusManager);
-			if (viewModel == null) throw new NullException(() => viewModel);
+    /// <summary>
+    /// Sets entity statuses that cannot always be set by the context or repository.
+    /// This encompasses status dirty on individual properties and lists.
+    /// </summary>
+    internal static class ViewModelEntityStatusHelper
+    {
+        /// <param name="entity">nullable</param>
+        public static void SetPropertiesAreDirtyWithRelatedEntities(EntityStatusManager statusManager, Question entity, QuestionViewModel viewModel)
+        {
+            if (statusManager == null) throw new NullException(() => statusManager);
+            if (viewModel == null) throw new NullException(() => viewModel);
 
-			SetPropertiesAreDirty(statusManager, entity, viewModel);
+            SetPropertiesAreDirty(statusManager, entity, viewModel);
 
-			if (entity != null)
-			{
-				if (entity.Answers.Count > 0)
-				{
-					SetPropertiesAreDirty(statusManager, entity.Answers[0], viewModel);
-				}
+            if (entity != null)
+            {
+                if (entity.Answers.Count > 0)
+                {
+                    SetPropertiesAreDirty(statusManager, entity.Answers[0], viewModel);
+                }
 
-				if (EntityStatusHelper.GetListIsDirty(viewModel.Categories, x => x.QuestionCategoryID, entity.QuestionCategories, x => x.ID))
-				{
-					statusManager.SetIsDirty(() => entity.QuestionCategories);
-				}
+                if (EntityStatusHelper.GetListIsDirty(entity.QuestionCategories, x => x.ID, viewModel.Categories, x => x.QuestionCategoryID))
+                {
+                    statusManager.SetQuestionCategoriesListIsDirty(entity);
 
-				if (EntityStatusHelper.GetListIsDirty(viewModel.Links, x => x.ID, entity.QuestionLinks, x => x.ID))
-				{
-					statusManager.SetIsDirty(() => entity.QuestionLinks);
-				}
+                    foreach (var (entity2, viewModel2) in entity.QuestionCategories.Zip(viewModel.Categories, (x, y) => (x, y)))
+                    {
+                        SetPropertiesAreDirty(statusManager, entity2, viewModel2);
+                    }
+                }
 
-				if (EntityStatusHelper.GetListIsDirty(viewModel.Flags, x => x.ID, entity.QuestionFlags, x => x.ID))
-				{
-					statusManager.SetIsDirty(() => entity.QuestionFlags);
-				}
-			}
-		}
+                if (EntityStatusHelper.GetListIsDirty(entity.QuestionLinks, x => x.ID, viewModel.Links, x => x.ID))
+                {
+                    statusManager.SetQuestionLinksListIsDirty(entity);
 
-		private static void SetPropertiesAreDirty(EntityStatusManager statusManager, Question entity, QuestionViewModel viewModel)
-		{
-			if (entity == null) return;
+                    foreach (var (entity2, viewModel2) in entity.QuestionLinks.Zip(viewModel.Links, (x, y) => (x, y)))
+                    {
+                        SetPropertiesAreDirty(statusManager, entity2, viewModel2);
+                    }
+                }
 
-			if (viewModel.IsActive != entity.IsActive)
-			{
-				statusManager.SetIsDirty(() => entity.IsActive);
-			}
+                if (EntityStatusHelper.GetListIsDirty(entity.QuestionFlags, x => x.ID, viewModel.Flags, x => x.ID))
+                {
+                    statusManager.SetQuestionFlagsListIsDirty(entity);
 
-			if (!string.Equals(viewModel.Text, entity.Text))
-			{
-				statusManager.SetIsDirty(() => entity.Text);
-			}
+                    foreach (var (entity2, viewModel2) in entity.QuestionFlags.Zip(viewModel.Flags, (x, y) => (x, y)))
+                    {
+                        SetPropertiesAreDirty(statusManager, entity2, viewModel2);
+                    }
+                }
+            }
+        }
 
-			if (viewModel.Type.ID != entity.QuestionType.ID)
-			{
-				statusManager.SetIsDirty(() => entity.QuestionType);
-			}
+        private static void SetPropertiesAreDirty(EntityStatusManager statusManager, Question entity, QuestionViewModel viewModel)
+        {
+            if (entity == null) return;
 
-			if (viewModel.Source.ID != entity.Source.ID)
-			{
-				statusManager.SetIsDirty(() => entity.Source);
-			}
-		}
+            if (viewModel.IsActive != entity.IsActive)
+            {
+                statusManager.SetIsActiveIsDirty(entity);
+            }
 
-		private static void SetPropertiesAreDirty(EntityStatusManager statusManager, Answer entity, QuestionViewModel viewModel)
-		{
-			if (entity == null) return;
+            if (!string.Equals(viewModel.Text, entity.Text))
+            {
+                statusManager.SetTextIsDirty(entity);
+            }
 
-			if (!string.Equals(viewModel.Answer, entity.Text))
-			{
-				statusManager.SetIsDirty(() => entity.Text);
-			}
-		}
+            if (viewModel.Type.ID != entity.QuestionType.ID)
+            {
+                statusManager.SetQuestionTypeIsDirty(entity);
+            }
 
-		private static void SetPropertiesAreDirty(EntityStatusManager statusManager, QuestionCategory entity, QuestionCategoryViewModel viewModel)
-		{
-			if (entity == null) return;
+            if (viewModel.Source.ID != entity.Source.ID)
+            {
+                statusManager.SetSourceIsDirty(entity);
+            }
+        }
 
-			if (viewModel.Category.ID != entity.Category.ID)
-			{
-				statusManager.SetIsDirty(() => entity.Category);
-			}
-		}
+        private static void SetPropertiesAreDirty(EntityStatusManager statusManager, Answer entity, QuestionViewModel viewModel)
+        {
+            if (entity == null) return;
 
-		private static void SetPropertiesAreDirty(EntityStatusManager statusManager, QuestionLink entity, QuestionLinkViewModel viewModel)
-		{
-			if (entity == null) return;
+            if (!string.Equals(viewModel.Answer, entity.Text))
+            {
+                statusManager.SetTextIsDirty(entity);
+            }
+        }
 
-			if (!string.Equals(viewModel.Url, entity.Url))
-			{
-				statusManager.SetIsDirty(() => entity.Url);
-			}
+        private static void SetPropertiesAreDirty(EntityStatusManager statusManager, QuestionCategory entity, QuestionCategoryViewModel viewModel)
+        {
+            if (entity == null) return;
 
-			if (!string.Equals(viewModel.Description, entity.Description))
-			{
-				statusManager.SetIsDirty(() => entity.Description);
-			}
-		}
+            if (viewModel.Category.ID != entity.Category.ID)
+            {
+                statusManager.SetCategoryIsDirty(entity);
+            }
+        }
 
-		private static void SetPropertiesAreDirty(EntityStatusManager statusManager, QuestionFlag entity, QuestionFlagViewModel viewModel)
-		{
-			if (entity == null) return;
+        private static void SetPropertiesAreDirty(EntityStatusManager statusManager, QuestionLink entity, QuestionLinkViewModel viewModel)
+        {
+            if (entity == null) return;
 
-			if (viewModel.Status.ID != entity.FlagStatus.ID)
-			{
-				statusManager.SetIsDirty(() => entity.FlagStatus);
-			}
-		}
-	}
+            if (!string.Equals(viewModel.Url, entity.Url))
+            {
+                statusManager.SetUrlIsDirty(entity);
+            }
+
+            if (!string.Equals(viewModel.Description, entity.Description))
+            {
+                statusManager.SetDescriptionIsDirty(entity);
+            }
+        }
+
+        private static void SetPropertiesAreDirty(EntityStatusManager statusManager, QuestionFlag entity, QuestionFlagViewModel viewModel)
+        {
+            if (entity == null) return;
+
+            if (viewModel.Status.ID != entity.FlagStatus.ID)
+            {
+                statusManager.SetFlagStatusIsDirty(entity);
+            }
+        }
+    }
 }

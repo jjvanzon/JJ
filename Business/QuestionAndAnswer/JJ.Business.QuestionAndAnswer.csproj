@@ -42,9 +42,10 @@
     <Compile Include="Enums\FlagStatusEnum.cs" />
     <Compile Include="Enums\QuestionTypeEnum.cs" />
     <Compile Include="Extensions\CategoryExtensions.cs" />
-    <Compile Include="Extensions\DeleteRelatedEntitiesExtensions.cs" />
+    <Compile Include="Cascading\DeleteRelatedEntitiesExtensions.cs" />
     <Compile Include="Extensions\EnumEntityExtensions.cs" />
-    <Compile Include="Extensions\UnlinkRelatedEntitiesExtensions.cs" />
+    <Compile Include="Cascading\UnlinkRelatedEntitiesExtensions.cs" />
+    <Compile Include="Helpers\EntityStatusManager.cs" />
     <Compile Include="LinkTo\LinkToExtensions.cs" />
     <Compile Include="LinkTo\UnlinkExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,6 +126,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -4,7 +4,7 @@ using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Framework.Exceptions.Basic;
 
-namespace JJ.Business.QuestionAndAnswer.Extensions
+namespace JJ.Business.QuestionAndAnswer.Cascading
 {
 	public static class DeleteRelatedEntitiesExtensions
 	{

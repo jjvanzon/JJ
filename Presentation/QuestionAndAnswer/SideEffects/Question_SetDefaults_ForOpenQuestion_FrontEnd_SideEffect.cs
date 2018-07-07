@@ -1,4 +1,5 @@
-﻿using JJ.Data.QuestionAndAnswer;
+﻿using JJ.Business.QuestionAndAnswer.Helpers;
+using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Business;
 using JJ.Framework.Exceptions.Basic;

@@ -2,7 +2,7 @@
 using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
 
-namespace JJ.Business.QuestionAndAnswer.Extensions
+namespace JJ.Business.QuestionAndAnswer.Cascading
 {
 	/// <summary>
 	/// Unlinks related entities that are not intrinsically part of the entity.

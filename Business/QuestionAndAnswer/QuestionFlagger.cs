@@ -1,4 +1,5 @@
 ﻿using System;
+using JJ.Business.QuestionAndAnswer.Cascading;
 using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
 using JJ.Business.QuestionAndAnswer.LinkTo;

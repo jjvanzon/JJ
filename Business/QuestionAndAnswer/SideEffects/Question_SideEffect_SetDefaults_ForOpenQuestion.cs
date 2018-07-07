@@ -1,5 +1,6 @@
 ﻿using JJ.Business.QuestionAndAnswer.Enums;
 using JJ.Business.QuestionAndAnswer.Extensions;
+using JJ.Business.QuestionAndAnswer.Helpers;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Business;

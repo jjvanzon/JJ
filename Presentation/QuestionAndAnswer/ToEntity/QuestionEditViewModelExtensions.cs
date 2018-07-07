@@ -29,8 +29,8 @@ namespace JJ.Presentation.QuestionAndAnswer.ToEntity
 			// Flags
 			foreach (QuestionFlagViewModel questionFlagViewModel in viewModel.Question.Flags)
 			{
-				QuestionFlag questionFlag2 = questionFlagViewModel.ToEntity(repositories.QuestionFlagRepository, repositories.FlagStatusRepository);
-				questionFlag2.LinkTo(question);
+				QuestionFlag questionFlag = questionFlagViewModel.ToEntity(repositories.QuestionFlagRepository, repositories.FlagStatusRepository, repositories.EntityStatusManager);
+				questionFlag.LinkTo(question);
 			}
 
 			// Categories

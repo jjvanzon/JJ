@@ -1,7 +1,8 @@
-﻿using JJ.Business.QuestionAndAnswer.LinkTo;
+﻿using System;
+using JJ.Business.QuestionAndAnswer.Helpers;
+using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Framework.Business;
 using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToEntity
@@ -14,6 +15,11 @@ namespace JJ.Presentation.QuestionAndAnswer.ToEntity
             ICategoryRepository categoryRepository,
             EntityStatusManager entityStatusManager)
         {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+            if (questionCategoryRepository == null) throw new ArgumentNullException(nameof(questionCategoryRepository));
+            if (categoryRepository == null) throw new ArgumentNullException(nameof(categoryRepository));
+            if (entityStatusManager == null) throw new ArgumentNullException(nameof(entityStatusManager));
+
             QuestionCategory entity = questionCategoryRepository.TryGet(viewModel.QuestionCategoryID);
 
             if (entity == null)
@@ -31,18 +37,26 @@ namespace JJ.Presentation.QuestionAndAnswer.ToEntity
         public static QuestionFlag ToEntity(
             this QuestionFlagViewModel viewModel,
             IQuestionFlagRepository questionFlagRepository,
-            IFlagStatusRepository flagStatusRepository)
+            IFlagStatusRepository flagStatusRepository,
+            EntityStatusManager entityStatusManager)
         {
-            QuestionFlag questionFlag = questionFlagRepository.TryGet(viewModel.ID);
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+            if (questionFlagRepository == null) throw new ArgumentNullException(nameof(questionFlagRepository));
+            if (flagStatusRepository == null) throw new ArgumentNullException(nameof(flagStatusRepository));
+            if (entityStatusManager == null) throw new ArgumentNullException(nameof(entityStatusManager));
 
-            // TODO: Low prio: This is not the TryGet-Insert-Update pattern. It just happens to work for the QuestionEditViewModel.
-            if (questionFlag != null)
+            QuestionFlag entity = questionFlagRepository.TryGet(viewModel.ID);
+
+            if (entity == null)
             {
-                questionFlag.FlagStatus = flagStatusRepository.Get(viewModel.Status.ID);
-                questionFlag.Comment = viewModel.Comment;
+                entity = questionFlagRepository.Create();
+                entityStatusManager.SetIsNew(entity);
             }
 
-            return questionFlag;
+            entity.FlagStatus = flagStatusRepository.Get(viewModel.Status.ID);
+            entity.Comment = viewModel.Comment;
+
+            return entity;
         }
 
         public static QuestionLink ToEntity(
@@ -50,6 +64,10 @@ namespace JJ.Presentation.QuestionAndAnswer.ToEntity
             IQuestionLinkRepository repository,
             EntityStatusManager entityStatusManager)
         {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+            if (repository == null) throw new ArgumentNullException(nameof(repository));
+            if (entityStatusManager == null) throw new ArgumentNullException(nameof(entityStatusManager));
+
             QuestionLink entity = repository.TryGet(viewModel.ID);
 
             if (entity == null)

@@ -1,4 +1,5 @@
-﻿using JJ.Data.QuestionAndAnswer;
+﻿using JJ.Business.QuestionAndAnswer.Helpers;
+using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Business;
 using JJ.Framework.Exceptions.Basic;
 
@@ -26,7 +27,7 @@ namespace JJ.Business.QuestionAndAnswer.SideEffects
         }
 
         private bool MustSetLastModifiedByUser(QuestionFlag questionFlag, EntityStatusManager statusManager)
-            => statusManager.IsDirty(questionFlag) ||
+            => statusManager.FlagStatusIsDirty(questionFlag) ||
                statusManager.IsNew(questionFlag);
     }
 }

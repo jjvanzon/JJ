@@ -1,10 +1,10 @@
 ﻿using JJ.Presentation.QuestionAndAnswer.ViewModels.Entities;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
-using JJ.Business.QuestionAndAnswer.Extensions;
 using System.Collections.Generic;
 using System.Linq;
-using JJ.Framework.Business;
+using JJ.Business.QuestionAndAnswer.Cascading;
+using JJ.Business.QuestionAndAnswer.Helpers;
 
 namespace JJ.Presentation.QuestionAndAnswer.ToEntity
 {

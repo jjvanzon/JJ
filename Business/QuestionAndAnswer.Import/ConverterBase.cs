@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JJ.Business.QuestionAndAnswer.Helpers;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Business.QuestionAndAnswer.SideEffects;
 using JJ.Business.QuestionAndAnswer.Validation;

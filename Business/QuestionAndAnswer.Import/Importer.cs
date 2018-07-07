@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using JJ.Business.QuestionAndAnswer.Extensions;
+using JJ.Business.QuestionAndAnswer.Cascading;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;
 using JJ.Framework.Exceptions.Basic;

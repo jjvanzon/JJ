@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using JJ.Business.QuestionAndAnswer.Helpers;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Business;
 using JJ.Framework.Exceptions.Basic;
@@ -25,15 +26,12 @@ namespace JJ.Business.QuestionAndAnswer.SideEffects
         }
 
         private bool MustSetIsManual(Question entity, EntityStatusManager statusManager)
-            => statusManager.IsDirty(entity) ||
-               statusManager.IsNew(entity) ||
-               statusManager.IsDirty(() => entity.QuestionType) ||
-               statusManager.IsDirty(() => entity.Source) ||
-               statusManager.IsDirty(() => entity.QuestionCategories) ||
-               entity.QuestionCategories.Any(statusManager.IsDirty) ||
+            => statusManager.IsNew(entity) ||
+               statusManager.QuestionTypeIsDirty(entity) ||
+               statusManager.SourceIsDirty(entity) ||
+               statusManager.QuestionCategoriesListIsDirty(entity) ||
                entity.QuestionCategories.Any(statusManager.IsNew) ||
-               statusManager.IsDirty(() => entity.QuestionLinks) ||
-               entity.QuestionLinks.Any(statusManager.IsDirty) ||
+               statusManager.QuestionLinksListIsDirty(entity) ||
                entity.QuestionLinks.Any(statusManager.IsNew);
     }
 }

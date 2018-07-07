@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using JJ.Business.QuestionAndAnswer.Helpers;
 using JJ.Business.QuestionAndAnswer.LinkTo;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces;

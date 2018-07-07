@@ -1,4 +1,4 @@
-﻿using JJ.Business.QuestionAndAnswer.Extensions;
+﻿using JJ.Business.QuestionAndAnswer.Cascading;
 using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
