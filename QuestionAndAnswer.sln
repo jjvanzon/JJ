@@ -113,9 +113,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Mvc"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.Misc", "Demos\Misc\JJ.Demos.Misc.csproj", "{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Framework.Presentation", "Demos\ReturnActions.WithViewMapping.Framework.Presentation\JJ.Demos.ReturnActions.Framework.Presentation.csproj", "{E36E358C-435E-4038-B49C-EE80BE57C72E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Framework.Presentation", "Demos\ReturnActions.Framework.Presentation\JJ.Demos.ReturnActions.Framework.Presentation.csproj", "{E36E358C-435E-4038-B49C-EE80BE57C72E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Framework.Mvc", "Demos\ReturnActions.WithViewMapping.Framework.Mvc\JJ.Demos.ReturnActions.Framework.Mvc.csproj", "{F8953473-D5F5-404E-89B0-70BA384B61FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Framework.Mvc", "Demos\ReturnActions.Framework.Mvc\JJ.Demos.ReturnActions.Framework.Mvc.csproj", "{F8953473-D5F5-404E-89B0-70BA384B61FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
