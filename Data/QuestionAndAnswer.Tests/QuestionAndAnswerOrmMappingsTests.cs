@@ -4,6 +4,7 @@ using JJ.Data.QuestionAndAnswer.EntityFramework.Mapping;
 using JJ.Data.QuestionAndAnswer.Tests.Helpers;
 using JJ.Framework.Configuration;
 using JJ.Framework.Data;
+using JJ.Framework.Testing.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable UnusedVariable
@@ -15,38 +16,44 @@ namespace JJ.Data.QuestionAndAnswer.Tests
     {
         [TestMethod]
         public void Test_QuestionAndAnswerOrmMappings_EntityFramework_Directly()
-        {
-            var specialConnectionString =
-                @"metadata=res://*/Mapping.QuestionAndAnswer.csdl|res://*/Mapping.QuestionAndAnswer.ssdl|res://*/Mapping.QuestionAndAnswer.msl;provider=System.Data.SqlClient;provider connection string=""data source=.\SQLEXPRESS;initial catalog=DEV_QuestionAndAnswerDB_UnitTests;persist security info=True;user id=dev;password=dev;MultipleActiveResultSets=True;App=EntityFramework"";";
-
-            using (DbContext context = new QuestionAndAnswerContext(specialConnectionString))
-            {
-                foreach (Question entity in context.Set<Question>())
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
+                () =>
                 {
-                    string value = entity.Text;
-                }
-            }
-        }
+                    var specialConnectionString =
+                        @"metadata=res://*/Mapping.QuestionAndAnswer.csdl|res://*/Mapping.QuestionAndAnswer.ssdl|res://*/Mapping.QuestionAndAnswer.msl;provider=System.Data.SqlClient;provider connection string=""data source=.\SQLEXPRESS;initial catalog=DEV_QuestionAndAnswerDB_UnitTests;persist security info=True;user id=dev;password=dev;MultipleActiveResultSets=True;App=EntityFramework"";";
+
+                    using (DbContext context = new QuestionAndAnswerContext(specialConnectionString))
+                    {
+                        foreach (Question entity in context.Set<Question>())
+                        {
+                            string value = entity.Text;
+                        }
+                    }
+                });
 
         [TestMethod]
         public void Test_QuestionAndAnswerOrmMappings_EntityFramework_UsingIContext()
-        {
-            using (IContext context = CreateEntityFrameworkContext())
-            {
-                int existingQuestionID = GetExistingQuestionID();
-                var question = context.Get<Question>(existingQuestionID);
-            }
-        }
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
+                () =>
+                {
+                    using (IContext context = CreateEntityFrameworkContext())
+                    {
+                        int existingQuestionID = GetExistingQuestionID();
+                        var question = context.Get<Question>(existingQuestionID);
+                    }
+                });
 
         [TestMethod]
         public void Test_QuestionAndAnswerOrmMappings_NHibernate_UsingIContext()
-        {
-            using (IContext context = CreateNHibernateContext())
-            {
-                int existingQuestionID = GetExistingQuestionID();
-                var question = context.Get<Question>(existingQuestionID);
-            }
-        }
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
+                () =>
+                {
+                    using (IContext context = CreateNHibernateContext())
+                    {
+                        int existingQuestionID = GetExistingQuestionID();
+                        var question = context.Get<Question>(existingQuestionID);
+                    }
+                });
 
         private IContext CreateNHibernateContext()
         {
