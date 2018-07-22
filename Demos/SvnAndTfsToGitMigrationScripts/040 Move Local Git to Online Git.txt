@@ -1,13 +1,6 @@
 rem MOVE LOCAL GIT TO ONLINE GIT
 rem ============================
 
-PS D:\Source\JJs Software\JJ git-svn git-tf 2> git remove remote jj-git-tf
-git: 'remove' is not a git command. See 'git --help'.
-
-The most similar command is
-        remote
-PS D:\Source\JJs Software\JJ git-svn git-tf 2> git remote remove jj-git-tf
-PS D:\Source\JJs Software\JJ git-svn git-tf 2> git remote remove jj-git-svn
 PS D:\Source\JJs Software\JJ git-svn git-tf 2> cd..
 PS D:\Source\JJs Software> cd JJ\
 PS D:\Source\JJs Software\JJ> git remote add git-svn-tf "D:\Source\JJs Software\JJ git-svn-tf"

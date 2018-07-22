@@ -3103,3 +3103,6 @@ Writing objects: 100% (10400/10400), done.
 Total 10400 (delta 7848), reused 0 (delta 0)
 Removing duplicate objects: 100% (256/256), done.
 PS D:\Source\JJs Software\JJ git-svn-tf>
+
+PS D:\Source\JJs Software\JJ git-svn git-tf 2> git remote remove jj-git-tf
+PS D:\Source\JJs Software\JJ git-svn git-tf 2> git remote remove jj-git-svn
