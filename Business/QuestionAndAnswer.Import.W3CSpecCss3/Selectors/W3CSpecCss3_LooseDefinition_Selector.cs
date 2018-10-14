@@ -105,7 +105,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Selectors
 
         private XmlNode GetDdTag(XmlNode dtTag)
         {
-            var xpath = "following-sibling::dd[1]"; // [1] is required, because all dt's and dd's in a dl are sibblings.
+            var xpath = "following-sibling::dd[1]"; // [1] is required, because all dt's and dd's in a dl are siblings.
             XmlNode ddTag = XmlHelper.SelectNode(dtTag, xpath);
             return ddTag;
         }

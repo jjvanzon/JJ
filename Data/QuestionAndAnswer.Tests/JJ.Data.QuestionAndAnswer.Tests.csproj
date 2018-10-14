@@ -66,7 +66,7 @@
   <ItemGroup>
     <Compile Include="Helpers\ConfigurationSection.cs" />
     <Compile Include="QuestionAndAnswerOrmMappingsTests.cs" />
-    <Compile Include="QuestionRespositoryTests.cs" />
+    <Compile Include="QuestionRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -188,7 +188,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             // ToEntity
             Question question = userInput.ToEntity(_repositories);
 
-            // Businesss
+            // Business
             QuestionCategory questionCategory = _repositories.QuestionCategoryRepository.Create();
             questionCategory.LinkTo(question);
 

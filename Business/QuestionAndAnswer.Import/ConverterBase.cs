@@ -120,7 +120,7 @@ namespace JJ.Business.QuestionAndAnswer.Import
 			return value;
 		}
 
-		/// <summary> Turns relative url's to absolute urls. </summary>
+		/// <summary> Turns relative URL's to absolute URL's. </summary>
 		private string ResolveLinkUrl(string url)
 		{
 			if (string.IsNullOrEmpty(url))

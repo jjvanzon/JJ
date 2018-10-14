@@ -44,7 +44,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Mvc.Helpers
             return null;
         }
 
-        protected override IList<string> GetValidationMesssages(object viewModel)
+        protected override IList<string> GetValidationMessages(object viewModel)
         {
             if (viewModel is QuestionEditViewModel castedViewModel && castedViewModel.ValidationMessages.Any())
             {
