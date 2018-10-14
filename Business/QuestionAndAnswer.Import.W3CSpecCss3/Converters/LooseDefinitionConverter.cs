@@ -123,7 +123,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 		}
 
 		/// <summary>
-		/// The meaning containst too many sentences. Take the first sentence,
+		/// The meaning contains too many sentences. Take the first sentence,
 		/// replace the term itself by a placeholder '...' so it does not give away the answer.
 		/// Takes into consideration the fact that terms can be stacked up with the words 'and' and 'or'.
 		/// Cut away the period at the end, so the meaning can be followed by a question mark (?).
@@ -231,7 +231,7 @@ namespace JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.Converters
 			// E.g. "Margin properties: 'margin-top', 'margin-right', 'margin-bottom', 'margin-left', and 'margin'"
 
 			// Split words
-			// Go by words, and n numer of next words.
+			// Go by words, and n number of next words.
 			// Find category "Css3" "Properties" "<words>"
 			// If it exist, link question to category.
 			// Possible create some extra categories before processing the file.

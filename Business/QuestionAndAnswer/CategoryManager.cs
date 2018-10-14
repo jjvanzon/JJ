@@ -106,7 +106,7 @@ namespace JJ.Business.QuestionAndAnswer
 
 		/// <summary>
 		/// Builds up a flat list of category nodes, based on the selected categories.
-		/// This is not as straightforeward as just taking the selected categories with their descendants.
+		/// This is not as straightforward as just taking the selected categories with their descendants.
 		/// When a parent category is selected, but no child categories, you have to take all the nodes in the parent category.
 		/// When a parent and some child categories are selected, you have to take those child categories.
 		/// Effectively this means first excluding the parent nodes from the selected branches and then flattening the hierarchy of the nodes that remain.
