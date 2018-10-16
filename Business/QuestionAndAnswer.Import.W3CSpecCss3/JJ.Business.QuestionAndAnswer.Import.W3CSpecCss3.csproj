@@ -70,6 +70,10 @@
       <Project>{fa44aba2-8e13-402c-a5a0-8d73c74b5181}</Project>
       <Name>JJ.Framework.Exceptions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\HtmlToXml\JJ.Framework.HtmlToXml.csproj">
+      <Project>{8b3013dc-1f0e-4bbc-bb58-ee28cfdd1e77}</Project>
+      <Name>JJ.Framework.HtmlToXml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\IO\JJ.Framework.IO.csproj">
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>
