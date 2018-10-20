@@ -90,7 +90,7 @@
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Testing.Data\JJ.Framework.Testing.Data.csproj">
+    <ProjectReference Include="..\..\Framework\Testing.Data\JJ.Framework.Testing.Data.csproj">
       <Project>{F6E87698-B73B-43F5-AFF2-54C2F219334E}</Project>
       <Name>JJ.Framework.Testing.Data</Name>
     </ProjectReference>
