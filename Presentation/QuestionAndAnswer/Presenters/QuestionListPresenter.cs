@@ -30,10 +30,8 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
 
         public QuestionListViewModel Show(int pageNumber)
         {
-            int pageIndex = pageNumber - 1;
-
             // GetEntities
-            IList<Question> questions = _repositories.QuestionRepository.GetPage(pageIndex * _pageSize, _pageSize);
+            IList<Question> questions = _repositories.QuestionRepository.GetPage((pageNumber - 1) * _pageSize, _pageSize);
             int count = _repositories.QuestionRepository.Count();
 
             // ToViewModel
@@ -46,7 +44,7 @@ namespace JJ.Presentation.QuestionAndAnswer.Presenters
             }
 
             viewModel.Login = ViewModelHelper.CreateLoginPartialViewModel(_authenticatedUserName, _repositories.UserRepository);
-            viewModel.Pager = PagerViewModelFactory.Create(pageIndex, _pageSize, count, _maxVisiblePageNumbers);
+            viewModel.Pager = PagerViewModelFactory.Create(pageNumber, _pageSize, count, _maxVisiblePageNumbers);
 
             return viewModel;
         }
