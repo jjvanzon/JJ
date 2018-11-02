@@ -1,5 +1,4 @@
-﻿-- TODO: Order by RowNumber.
-select top (@count) x.ID
+﻿select top (@count) x.ID
 from 
 (
 	select 
@@ -7,4 +6,6 @@ from
 		ROW_NUMBER() over (order by q.ID) as RowNumber 
 	from Question q
 ) as x
-where x.RowNumber > @firstIndex;
+-- RowNumber is 1-based.
+where x.RowNumber > @firstIndex
+order by x.RowNumber;
