@@ -55,7 +55,8 @@ The `ChildToParentRelationship` wraps the parent, which can be accessed as follo
 
 Your `Relationship` classes need some more work. You have to implement some methods. Their implementation is trivial:
 
-    class ParentToChildrenRelationship : OneToManyRelationship<Element, Element>
+    class ParentToChildrenRelationship
+        : OneToManyRelationship<Element, Element>
     {
         public ParentToChildrenRelationship(Element parent) 
             : base(parent) { }
@@ -66,7 +67,8 @@ Your `Relationship` classes need some more work. You have to implement some meth
             => child.Parent = null;
     }
 
-    class ChildToParentRelationship : ManyToOneRelationship<Element, Element>
+    class ChildToParentRelationship
+        : ManyToOneRelationship<Element, Element>
     {
         public ChildToParentRelationship(Element child) 
             : base(child) { }
@@ -79,9 +81,9 @@ Your `Relationship` classes need some more work. You have to implement some meth
             => parent.Children.Remove(_child);
     }
 
-So perhaps a little boilerplating to get it done. But the code is trivial. Internally the `OneToManyRelationship` and `ManyToOneRelationship` are simple. To keep your inverse properties in sync, it gives you exactly what you need, without being too obscure about what is going on.
+So perhaps a little boilerplating to get it done. But the code is trivial. Internally the `OneToManyRelationship` and `ManyToOneRelationship` classes are simple. To keep your inverse properties in sync, it gives you exactly what you need, without being too obscure about what is going on.
 
-There are edge cases under which the `OneToManyRelationship` and `ManyToOneRelationship` still work:
+There are edge cases under which the `OneToManyRelationship` and `ManyToOneRelationship` classes still work:
 
 * Non-nullable parents.
 * Parent and child not the same class.
@@ -90,4 +92,4 @@ There are edge cases under which the `OneToManyRelationship` and `ManyToOneRelat
 * You can control the underlying collection type of the children, if you want.
 * Using different property names than Parent and Children in your model.
 
-They all require a slightly different code. The example above is just the simplest example.
+They all require a slightly different code. The above is just the simplest example.
