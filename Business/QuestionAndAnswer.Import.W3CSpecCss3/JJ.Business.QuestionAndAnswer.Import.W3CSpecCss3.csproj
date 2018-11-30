@@ -62,32 +62,32 @@
     <Compile Include="Selectors\W3CSpecCss3_SelectorIndex_HtmlSelector.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Collections\JJ.Framework.Collections.csproj">
-      <Project>{5d06a212-5459-47f3-8109-e012c5fc9e3a}</Project>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Collections\JJ.Framework.Collections.csproj">
+      <Project>{5D06A212-5459-47F3-8109-E012C5FC9E3A}</Project>
       <Name>JJ.Framework.Collections</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
-      <Project>{fa44aba2-8e13-402c-a5a0-8d73c74b5181}</Project>
-      <Name>JJ.Framework.Exceptions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\HtmlToXml\JJ.Framework.HtmlToXml.csproj">
-      <Project>{8b3013dc-1f0e-4bbc-bb58-ee28cfdd1e77}</Project>
-      <Name>JJ.Framework.HtmlToXml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\IO\JJ.Framework.IO.csproj">
-      <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
-      <Name>JJ.Framework.IO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Data\JJ.Framework.Data.csproj">
-      <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data\JJ.Framework.Data.csproj">
+      <Project>{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}</Project>
       <Name>JJ.Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
+      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
+      <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\HtmlToXml\JJ.Framework.HtmlToXml.csproj">
+      <Project>{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77}</Project>
+      <Name>JJ.Framework.HtmlToXml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\IO\JJ.Framework.IO.csproj">
+      <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
+      <Name>JJ.Framework.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Text\JJ.Framework.Text.csproj">
       <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
       <Name>JJ.Framework.Text</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Xml\JJ.Framework.Xml.csproj">
-      <Project>{f6ea0941-40ff-4679-a1a6-eacd5c9ba42b}</Project>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Xml\JJ.Framework.Xml.csproj">
+      <Project>{F6EA0941-40FF-4679-A1A6-EACD5C9BA42B}</Project>
       <Name>JJ.Framework.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\QuestionAndAnswer.DefaultRepositories\JJ.Data.QuestionAndAnswer.DefaultRepositories.csproj">

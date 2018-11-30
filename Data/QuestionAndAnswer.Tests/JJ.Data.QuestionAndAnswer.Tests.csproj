@@ -70,29 +70,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Business\QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
-      <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
-      <Name>JJ.Business.QuestionAndAnswer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Configuration\JJ.Framework.Configuration.csproj">
-      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805A8237-05ED-40AE-8D1A-9288373EA5E0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Data.EntityFramework\JJ.Framework.Data.EntityFramework.csproj">
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data.EntityFramework\JJ.Framework.Data.EntityFramework.csproj">
       <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
       <Name>JJ.Framework.Data.EntityFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Data.NHibernate\JJ.Framework.Data.NHibernate.csproj">
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data.NHibernate\JJ.Framework.Data.NHibernate.csproj">
       <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
       <Name>JJ.Framework.Data.NHibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Data\JJ.Framework.Data.csproj">
-      <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data\JJ.Framework.Data.csproj">
+      <Project>{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}</Project>
       <Name>JJ.Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Testing.Data\JJ.Framework.Testing.Data.csproj">
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Testing.Data\JJ.Framework.Testing.Data.csproj">
       <Project>{F6E87698-B73B-43F5-AFF2-54C2F219334E}</Project>
       <Name>JJ.Framework.Testing.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
+      <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
+      <Name>JJ.Business.QuestionAndAnswer</Name>
     </ProjectReference>
     <ProjectReference Include="..\QuestionAndAnswer.EntityFramework\JJ.Data.QuestionAndAnswer.EntityFramework.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>

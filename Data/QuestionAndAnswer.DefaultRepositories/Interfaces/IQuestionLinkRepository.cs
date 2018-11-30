@@ -2,6 +2,8 @@
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces
 {
-	public interface IQuestionLinkRepository : IRepository<QuestionLink, int>
-	{ }
+    public interface IQuestionLinkRepository : IRepository<QuestionLink, int>
+    {
+        QuestionLink Create();
+    }
 }

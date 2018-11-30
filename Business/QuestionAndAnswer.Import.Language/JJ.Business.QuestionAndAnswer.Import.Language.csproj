@@ -49,6 +49,22 @@
     <Compile Include="LanguageCategoryDescriptionCorrector.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data\JJ.Framework.Data.csproj">
+      <Project>{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}</Project>
+      <Name>JJ.Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
+      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
+      <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\IO\JJ.Framework.IO.csproj">
+      <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
+      <Name>JJ.Framework.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Text\JJ.Framework.Text.csproj">
+      <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
+      <Name>JJ.Framework.Text</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\QuestionAndAnswer.DefaultRepositories\JJ.Data.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{B1408E4F-4A1C-4CD6-B818-0FF37A40E2FF}</Project>
       <Name>JJ.Data.QuestionAndAnswer.DefaultRepositories</Name>
@@ -57,23 +73,7 @@
       <Project>{64E812DC-4B3E-4A20-A6CA-7EA319383C49}</Project>
       <Name>JJ.Data.QuestionAndAnswer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Data\JJ.Framework.Data.csproj">
-      <Project>{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}</Project>
-      <Name>JJ.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
-      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
-      <Name>JJ.Framework.Exceptions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\IO\JJ.Framework.IO.csproj">
-      <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
-      <Name>JJ.Framework.IO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
-      <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
-      <Name>JJ.Framework.Text</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Web\JJ.Framework.Web.csproj">
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Web\JJ.Framework.Web.csproj">
       <Project>{164520AA-2DB7-4405-9AE5-EB515527A33B}</Project>
       <Name>JJ.Framework.Web</Name>
     </ProjectReference>
