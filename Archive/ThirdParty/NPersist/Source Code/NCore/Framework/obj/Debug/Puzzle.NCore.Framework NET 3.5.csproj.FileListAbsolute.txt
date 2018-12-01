@@ -1,6 +1,0 @@
-D:\Source\JJs Software\JJ\Third Party\NPersist\Source Code\NCore\Framework\bin\Debug\Puzzle.NCore.Framework.NET3.5.dll
-D:\Source\JJs Software\JJ\Third Party\NPersist\Source Code\NCore\Framework\bin\Debug\Puzzle.NCore.Framework.NET3.5.pdb
-D:\Source\JJs Software\JJ\Third Party\NPersist\Source Code\NCore\Framework\obj\Debug\Puzzle.NCore.Framework NET 3.5.csprojAssemblyReference.cache
-D:\Source\JJs Software\JJ\Third Party\NPersist\Source Code\NCore\Framework\obj\Debug\Puzzle.NCore.Framework NET 3.5.csproj.CoreCompileInputs.cache
-D:\Source\JJs Software\JJ\Third Party\NPersist\Source Code\NCore\Framework\obj\Debug\Puzzle.NCore.Framework.NET3.5.dll
-D:\Source\JJs Software\JJ\Third Party\NPersist\Source Code\NCore\Framework\obj\Debug\Puzzle.NCore.Framework.NET3.5.pdb

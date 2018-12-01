@@ -107,6 +107,22 @@
     <Content Include="IO Files\W3CSpecCss21_VisualFormattingModelDetails.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805A8237-05ED-40AE-8D1A-9288373EA5E0}</Project>
+      <Name>JJ.Framework.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data\JJ.Framework.Data.csproj">
+      <Project>{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}</Project>
+      <Name>JJ.Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
+      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
+      <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\WinForms\JJ.Framework.WinForms.csproj">
+      <Project>{84A66716-C686-4B8E-A092-CFE38CA7DDE0}</Project>
+      <Name>JJ.Framework.WinForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Business\QuestionAndAnswer.Import.W3CSpecCss3\JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.csproj">
       <Project>{d2ebc8ce-4fc5-43c0-9cef-f060c2e4b439}</Project>
       <Name>JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3</Name>
@@ -123,37 +139,21 @@
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
       <Name>JJ.Business.QuestionAndAnswer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Common\JJ.Framework.Common.csproj">
+    <ProjectReference Include="..\..\Data\SaveText.EntityFramework\JJ.Data.SaveText.EntityFramework.csproj">
+      <Project>{77ab85ce-6402-4aa3-a9a9-83121d5d9c6d}</Project>
+      <Name>JJ.Data.SaveText.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\SaveText.NHibernate\JJ.Data.SaveText.NHibernate.csproj">
+      <Project>{48145ed7-5bb1-4ecb-9fb0-0dbd35b80ea9}</Project>
+      <Name>JJ.Data.SaveText.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Common\JJ.Framework.Common.csproj">
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Configuration\JJ.Framework.Configuration.csproj">
-      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
-      <Name>JJ.Framework.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Data.EntityFramework\JJ.Framework.Data.EntityFramework.csproj">
-      <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
-      <Name>JJ.Framework.Data.EntityFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Data.NHibernate\JJ.Framework.Data.NHibernate.csproj">
-      <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
-      <Name>JJ.Framework.Data.NHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Data\JJ.Framework.Data.csproj">
-      <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
-      <Name>JJ.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
-      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
-      <Name>JJ.Framework.Exceptions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
+    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Text\JJ.Framework.Text.csproj">
       <Project>{964de0b4-27f8-40f8-8d50-c97388bf8ce2}</Project>
       <Name>JJ.Framework.Text</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\WinForms\JJ.Framework.WinForms.csproj">
-      <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
-      <Name>JJ.Framework.WinForms</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\QuestionAndAnswer.EntityFramework\JJ.Data.QuestionAndAnswer.EntityFramework.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>
