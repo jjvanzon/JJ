@@ -12,9 +12,7 @@ rd /s /q "JJ.SaveText on GitHub\Business"
 rd /s /q "JJ.SaveText on GitHub\Data"
 rd /s /q "JJ.SaveText on GitHub\Database"
 rd /s /q "JJ.SaveText on GitHub\Demos"
-rem rd /s /q "JJ.SaveText on GitHub\Framework"
 rd /s /q "JJ.SaveText on GitHub\Presentation"
-rem rd /s /q "JJ.SaveText on GitHub\Third Party"
 
 rem /q: Quiet mode, do not ask if ok to delete on global wildcard
 rem /f: Force deleting of read-only files.
@@ -23,9 +21,6 @@ echo DELETE CODE FILES IN ROOT
 del /q /f "JJ.SaveText on GitHub\*.sln"
 del /q /f "JJ.SaveText on GitHub\*.txt"
 del /q /f "JJ.SaveText on GitHub\*.md"
-rem del /q /f "JJ.SaveText on GitHub\*.png"
-
-pause
 
 rem /s: Copies directories and subdirectories except empty ones.
 rem /v: Verifies the size of each new file.
@@ -42,7 +37,6 @@ xcopy /s /v /r /q "JJ\Demos\Misc" "JJ.SaveText on GitHub\Demos\Misc\"
 xcopy /s /v /r /q "JJ\Demos\SvnAndTfsToGitMigrationScripts" "JJ.SaveText on GitHub\Demos\SvnAndTfsToGitMigrationScripts\"
 xcopy /s /v /r /q "JJ\Demos\TryUnityWww" "JJ.SaveText on GitHub\Demos\TryUnityWww\"
 xcopy /v /r /q "JJ\Demos\2013-01-11 Recursion.cs" "JJ.SaveText on GitHub\Demos"
-rem xcopy /s /v /r /q "JJ\Framework" "JJ.SaveText on GitHub\Framework\"
 mkdir "JJ.SaveText on GitHub\Business\"
 xcopy /s /v /r /q "JJ\Business\Canonical" "JJ.SaveText on GitHub\Business\Canonical\"
 xcopy /s /v /r /q "JJ\Business\SaveText" "JJ.SaveText on GitHub\Business\SaveText\"
@@ -84,12 +78,9 @@ xcopy /s /v /r /q "JJ\Presentation\SaveText.WinForms.OnlineOfflineSwitched" "JJ.
 
 echo COPY CODE FILES IN ROOT
 xcopy /v /r /q "JJ\JJ.Demos.sln" "JJ.SaveText on GitHub"
-rem xcopy /v /r /q "JJ\JJ.Framework.sln" "JJ.SaveText on GitHub"
 xcopy /v /r /q "JJ\JJ.SaveText.sln" "JJ.SaveText on GitHub"
 xcopy /v /r /q "JJ\LICENSE.TXT" "JJ.SaveText on GitHub"
-xcopy /v /r /q "JJ\README.MD" "JJ.SaveText on GitHub"
-xcopy /v /r /q "JJ\THIRD PARTY LICENSE.TXT" "JJ.SaveText on GitHub"
-rem xcopy /v /r /q "JJ\*.png" "JJ.SaveText on GitHub"
+copy "JJ\README for JJ.SaveText.MD" "JJ.SaveText on GitHub\README.MD"
 
 echo WARNING: CANONICAL DATA / BUSINESS IS PUBLISHED.
 echo CONSIDER IF IT CONTAINS DATA MODELING YOU DO NOT WANT TO OPEN SOURCE.
