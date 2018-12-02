@@ -80,7 +80,7 @@ echo COPY CODE FILES IN ROOT
 xcopy /v /r /q "JJ\JJ.Demos.sln" "JJ.SaveText on GitHub"
 xcopy /v /r /q "JJ\JJ.SaveText.sln" "JJ.SaveText on GitHub"
 xcopy /v /r /q "JJ\LICENSE.TXT" "JJ.SaveText on GitHub"
-copy "JJ\README for SaveText.MD" "JJ.SaveText on GitHub\README.MD"
+copy "JJ\README for JJ.SaveText.MD" "JJ.SaveText on GitHub\README.MD"
 
 echo WARNING: CANONICAL DATA / BUSINESS IS PUBLISHED.
 echo CONSIDER IF IT CONTAINS DATA MODELING YOU DO NOT WANT TO OPEN SOURCE.
