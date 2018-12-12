@@ -25,7 +25,7 @@ namespace JJ.Business.Canonical
 
 			foreach (TEnum enumValue in enumValues)
 			{
-				int enumValueInt = (int)(object)enumValue;
+				var enumValueInt = (int)(object)enumValue;
 				bool isUndefined = enumValueInt == 0;
 				if (isUndefined)
 				{
