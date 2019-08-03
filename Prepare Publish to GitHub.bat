@@ -35,6 +35,7 @@ xcopy /s /v /r /q "JJ\Demos\IndexersProposal" "JJ.SaveText on GitHub\Demos\Index
 xcopy /s /v /r /q "JJ\Demos\JavaScript" "JJ.SaveText on GitHub\Demos\JavaScript\"
 xcopy /s /v /r /q "JJ\Demos\Misc" "JJ.SaveText on GitHub\Demos\Misc\"
 xcopy /s /v /r /q "JJ\Demos\SvnAndTfsToGitMigrationScripts" "JJ.SaveText on GitHub\Demos\SvnAndTfsToGitMigrationScripts\"
+xcopy /s /v /r /q "JJ\Demos\Git Scripts to Isolate Project from Larger Repository" "JJ.SaveText on GitHub\Demos\Git Scripts to Isolate Project from Larger Repository\"
 xcopy /s /v /r /q "JJ\Demos\TryUnityWww" "JJ.SaveText on GitHub\Demos\TryUnityWww\"
 xcopy /v /r /q "JJ\Demos\2013-01-11 Recursion.cs" "JJ.SaveText on GitHub\Demos"
 mkdir "JJ.SaveText on GitHub\Business\"
