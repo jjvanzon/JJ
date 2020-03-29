@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DD6A844F-F11D-472A-875B-6C30B4534EDD}"
 EndProject
@@ -14,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third Party", "Third Party", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{8811F001-E852-4533-A212-1050A0153972}"
+	ProjectSection(SolutionItems) = preProject
+		..\JJ.Framework\Utilities\Sleep.bat = ..\JJ.Framework\Utilities\Sleep.bat
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{5CD0B8A9-AA4E-4967-BB77-08580CF54F58}"
 EndProject
