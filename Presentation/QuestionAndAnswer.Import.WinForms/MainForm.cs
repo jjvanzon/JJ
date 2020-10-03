@@ -3,7 +3,7 @@ using JJ.Framework.WinForms.Forms;
 
 namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 {
-    internal partial class MainForm : SimpleFileProcessForm
+    internal partial class MainForm : SimpleProcessForm
     {
         public MainForm() => InitializeComponent();
 
