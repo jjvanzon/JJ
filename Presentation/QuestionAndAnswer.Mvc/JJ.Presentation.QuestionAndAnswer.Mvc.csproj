@@ -170,6 +170,15 @@
     <Content Include="Scripts\JJ.Framework.Cookie.js" />
     <Content Include="Scripts\JJ.Framework.RememberScrollPosition.js" />
     <Content Include="Scripts\JJ.Framework.Url.js" />
+    <Content Include="Config\Dev\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Config\Dev\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Config\Dev\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -347,7 +356,7 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>49363</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://questionandanswer.jjvanzon.io/</IISUrl>
+          <IISUrl>http://dev.questionandanswer.jjvanzon.io/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
