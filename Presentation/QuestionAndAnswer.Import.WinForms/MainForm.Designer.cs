@@ -33,12 +33,16 @@
 			// 
 			// MainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(24F, 46F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(935, 371);
+			this.ClientSize = new System.Drawing.Size(711, 256);
 			this.Description = resources.GetString("$this.Description");
-			this.Margin = new System.Windows.Forms.Padding(5);
+			this.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.None;
+			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
 			this.Name = "MainForm";
+			this.TextBoxLabelText = "";
+			this.TextBoxVisible = false;
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.ResumeLayout(false);
 
