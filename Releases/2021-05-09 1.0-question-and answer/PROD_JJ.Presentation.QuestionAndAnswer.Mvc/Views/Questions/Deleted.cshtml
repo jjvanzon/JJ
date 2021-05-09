@@ -1,0 +1,17 @@
+﻿@model QuestionDeleteConfirmedViewModel
+
+@section Title
+{
+    @CommonResourceFormatter.Delete_WithName(ResourceFormatter.Question_Accusative)
+}
+
+@section Header
+{
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
+}
+
+<h2>@CommonResourceFormatter.Delete_WithName(ResourceFormatter.Question_Accusative)</h2>
+    
+<p>@CommonResourceFormatter.IsDeleted_WithName(ResourceFormatter.Question)</p>
+
+<p>@Html.ActionLink(CommonResourceFormatter.BackToList, nameof(ActionNames.Index))</p>

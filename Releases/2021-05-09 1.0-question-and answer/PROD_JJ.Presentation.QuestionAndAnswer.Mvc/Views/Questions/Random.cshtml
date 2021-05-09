@@ -1,0 +1,102 @@
+﻿@* ReSharper disable SuggestVarOrType_SimpleTypes*@
+
+@model RandomQuestionViewModel
+
+@section Title
+{
+    @ResourceFormatter.Question
+}
+
+@section Header
+{
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
+    @Html.Partial(nameof(ViewNames._LanguageSelector), Model.LanguageSelector)
+}
+
+@using (Html.BeginForm())
+{
+    <h2>@ResourceFormatter.Question</h2>
+
+    <div class="display-field">@Model.Question.Text</div>
+
+    <br />
+
+    <div class="display-label">@ResourceFormatter.Answer:</div>
+    <div class="text-field">@Html.TextBoxFor(x => x.UserAnswer, new { autocomplete = "off", style = "width:80%;" })</div>
+
+    <br />
+
+    <div id="buttons">
+        @if (!Model.AnswerIsVisible)
+        {
+            <input type="submit" value="@ResourceFormatter.ShowAnswer" formaction="@Url.Action(nameof(ActionNames.ShowAnswer))" />
+        }
+        else
+        {
+            <input type="submit" value="@ResourceFormatter.HideAnswer" formaction="@Url.Action(nameof(ActionNames.HideAnswer))" />
+        }
+    </div>
+
+    <br />
+
+    <div id="nextQuestion">
+        @Html.ActionLinkWithCollection(
+            CommonResourceFormatter.Next_WithName(ResourceFormatter.Question),
+            nameof(ActionNames.Random),
+            nameof(ControllerNames.Questions),
+            nameof(ActionParameterNames.c),
+            Model.SelectedCategories.Select(x => x.ID))
+    </div>
+
+    if (Model.AnswerIsVisible)
+    {
+        <div id="answer">
+            <br />
+            <div class="display-label">@ResourceFormatter.TheCorrectAnswer:</div>
+            <br />
+            <div class="display-field">@Html.DisplayFor(x => x.Question.Answer)</div>
+        </div>
+    }
+
+    <div id="links">
+        @if (Model.Question.Links.Count > 0)
+        {
+            <br />
+            <br />
+
+            @ResourceFormatter.AdditionalInformation<text>:</text>
+
+            <ul>
+                @foreach (var link in Model.Question.Links)
+                {
+                    <li>
+                        <a href="@link.Url" target="_blank">@link.Description</a>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+
+    if (Model.AnswerIsVisible)
+    {
+        <div id="categories">
+            @if (Model.Question.Categories.Count > 0)
+            {
+                <br />
+                @ResourceFormatter.Categories<text>:</text>
+
+                @(string.Join(" | ", Model.Question.Categories.SelectMany(x => x.Category.NameParts).Distinct()))
+            }
+        </div>
+    }
+
+    @Html.Partial(nameof(ViewNames._SmallQuestionFlag), Model)
+
+    for (int i = 0; i < Model.SelectedCategories.Count; i++)
+    {
+        @Html.HiddenFor(x => x.SelectedCategories[i].ID)
+    }
+
+    @Html.HiddenFor(x => x.Question.ID)
+    @Html.HiddenFor(x => x.AnswerIsVisible)
+}

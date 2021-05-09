@@ -1,0 +1,34 @@
+﻿@model QuestionConfirmDeleteViewModel
+
+@section Title
+{
+    @CommonResourceFormatter.Delete_WithName(ResourceFormatter.Question_Accusative)
+}
+
+@section Header
+{
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
+}
+
+@using (Html.BeginForm())
+{
+    <h2>@CommonResourceFormatter.Delete_WithName(ResourceFormatter.Question_Accusative)</h2>
+    
+    <p>@ResourceFormatter.AreYouSureYouWishToDeleteTheFollowingQuestion</p>
+
+    <table>
+        <tr>
+            <th> @CommonResourceFormatter.ID </th>
+            <td> @Model.ID </td>
+        </tr>
+        <tr>
+            <th> @ResourceFormatter.Question </th>
+            <td> @Model.Question </td>
+        </tr>
+    </table>
+
+    <p>
+        <input type="submit" value="@CommonResourceFormatter.Confirm" /> |
+        <a href="javascript:history.back()"> @CommonResourceFormatter.Cancel </a>
+    </p>
+}

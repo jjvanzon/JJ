@@ -1,0 +1,44 @@
+﻿@model QuestionEditViewModel
+
+@section Title
+{
+    @Model.Title
+}
+
+@section Header
+{
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.IsNew)
+
+    <h2>@Model.Title</h2>
+
+    @Html.Partial(nameof(ViewNames._EditButtons), Model)
+
+    using (Html.BeginItem(() => Model.Question))
+    {
+        @Html.Partial(nameof(ViewNames._EditProperties), Model.Question)
+        @Html.Partial(nameof(ViewNames._EditTexts), Model.Question)
+ 
+        <br />
+            
+        using (Html.BeginCollection(() => Model.Question.Categories))
+        {
+            @Html.Partial(nameof(ViewNames._EditCategories), Model.Question)
+        }
+
+        using (Html.BeginCollection(() => Model.Question.Links))
+        {
+            @Html.Partial(nameof(ViewNames._EditLinks), Model.Question)
+        }
+
+        @Html.Partial(nameof(ViewNames._EditFlags), Model.Question)
+    }
+    
+    @Html.ValidationSummary()
+
+    @Html.Partial(nameof(ViewNames._EditButtons), Model)
+}

@@ -1,0 +1,29 @@
+﻿@* ReSharper disable SuggestVarOrType_SimpleTypes*@
+
+@model QuestionViewModel
+
+<fieldset>
+    <legend>@ResourceFormatter.ContentFlags</legend>
+
+    @ResourceFormatter.HasActiveFlags:
+    @(Model.IsFlagged ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)
+
+    <br />
+    <br />
+
+    @using (Html.BeginCollection(() => Model.Flags))
+    {
+        foreach (var questionFlag in Model.Flags)
+        {
+            using (Html.BeginCollectionItem())
+            {
+                @Html.Partial(nameof(ViewNames._EditFlag), questionFlag)
+
+                if (questionFlag != Model.Flags.Last())
+                {
+                    <br />
+                }
+            }
+        }
+    }
+</fieldset>
