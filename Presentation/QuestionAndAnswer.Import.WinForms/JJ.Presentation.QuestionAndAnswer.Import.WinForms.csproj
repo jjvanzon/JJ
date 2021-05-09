@@ -72,6 +72,12 @@
     <Content Include="IO Files\W3CSpecCss3_PropertyIndex.csv" />
     <Content Include="IO Files\W3CSpecCss3_SelectorIndex.csv" />
     <Content Include="IO Files\DutchToPolish.csv" />
+    <None Include="Config\Dev\App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Test\App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="IO Files\DutchToPolish.xlsx" />
     <None Include="IO Files\DutchToPolishFriendly.csv" />
     <None Include="IO Files\DutchToPolishFriendly.xlsx" />
@@ -172,6 +178,7 @@
       <Name>JJ.Presentation.QuestionAndAnswer.Import</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
