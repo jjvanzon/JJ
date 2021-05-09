@@ -153,6 +153,7 @@
     </Compile>
     <Compile Include="Helpers\ActionDispatcher.cs" />
     <Compile Include="Helpers\CategorySelectorRepositories.cs" />
+    <Compile Include="Helpers\IAppSettings.cs" />
     <Compile Include="Helpers\PersistenceHelper.cs" />
     <Compile Include="Helpers\SessionWrapper.cs" />
     <Compile Include="Names\ActionNames.cs" />
@@ -179,6 +180,15 @@
     <None Include="Config\Dev\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Config\Prod\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Config\Prod\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Config\Prod\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

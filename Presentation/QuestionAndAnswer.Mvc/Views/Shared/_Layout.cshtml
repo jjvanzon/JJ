@@ -19,6 +19,10 @@
     <script src="/Scripts/JJ.Framework.Url.js"></script>
 
     @RenderSection("Scripts", required: false)
+    
+    @{
+        bool showUnfinishedFeatures = AppSettingsReader<IAppSettings>.Get(x => x.QuestionAndAnswer_ShowUnfinishedFeatures);
+    }
 </head>
 <body>
     <header>
@@ -33,16 +37,25 @@
         <ul>
             <li><a href="@Url.Action(nameof(ActionNames.Random), nameof(ControllerNames.Questions))">@ResourceFormatter.Question</a></li>
             <li><a href="@Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.CategorySelector))">@ResourceFormatter.Categories</a></li>
-            <li><a>@CommonResourceFormatter.Search</a></li>
-            <li><a>@ResourceFormatter.Statistics</a></li>
-            <li><a>@ResourceFormatter.Runs</a></li>
+            @if (showUnfinishedFeatures)
+            {
+                <li><a>@CommonResourceFormatter.Search</a></li>
+                <li><a>@ResourceFormatter.Statistics</a></li>
+                <li><a>@ResourceFormatter.Runs</a></li>
+            }
             <li>
                 <span id="contentManagementMenuItemSpan">@ResourceFormatter.ContentManagement</span>
                 <ul>
-                    <li><a>@ResourceFormatter.ContentSourcesAndImports</a></li>
-                    <li><a>@ResourceFormatter.Categories</a></li>
+                    @if (showUnfinishedFeatures)
+                    {
+                        <li><a>@ResourceFormatter.ContentSourcesAndImports</a></li>
+                        <li><a>@ResourceFormatter.Categories</a></li>
+                    }
                     <li><a href="@Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.Questions))">@ResourceFormatter.Questions</a></li>
-                    <li><a>@ResourceFormatter.FlaggedContent</a></li>
+                    @if (showUnfinishedFeatures)
+                    {
+                        <li><a>@ResourceFormatter.FlaggedContent</a></li>
+                    }
                 </ul>
             </li>
         </ul>
