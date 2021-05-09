@@ -260,13 +260,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.IndexersProposal",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65FB0FF9-90BB-4A75-8A90-ADE03931C8EE}"
 	ProjectSection(SolutionItems) = preProject
-		Introduction.txt = Introduction.txt
 		JJ.testsettings = JJ.testsettings
 		LICENSE.TXT = LICENSE.TXT
-		Framework\nugetpack.ps1 = Framework\nugetpack.ps1
 		Prepare Publish to GitHub.bat = Prepare Publish to GitHub.bat
 		README.MD = README.MD
-		THIRD PARTY LICENSE.TXT = THIRD PARTY LICENSE.TXT
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveTextDB", "Database\SaveTextDB\SaveTextDB.csproj", "{213C0BF6-5E2E-41D3-B531-4250307C5ADC}"
