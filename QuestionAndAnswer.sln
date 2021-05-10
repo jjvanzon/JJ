@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer", "Presentation\QuestionAndAnswer\JJ.Presentation.QuestionAndAnswer.csproj", "{680C0600-E384-4F3D-9C2A-38ECC1FDB1CB}"
 EndProject
@@ -94,6 +94,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections", "..\JJ.Framework\Framework\Collections\JJ.Framework.Collections.csproj", "{5D06A212-5459-47F3-8109-E012C5FC9E3A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.QuestionAndAnswer.Import.Language", "Business\QuestionAndAnswer.Import.Language\JJ.Business.QuestionAndAnswer.Import.Language.csproj", "{E850BB7E-ECE9-454B-B1F5-92E7E555E67B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.HtmlToXml", "..\JJ.Framework\Framework\HtmlToXml\JJ.Framework.HtmlToXml.csproj", "{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.HtmlToXml.Tests", "..\JJ.Framework\Framework\HtmlToXml.Tests\JJ.Framework.HtmlToXml.Tests.csproj", "{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -372,6 +376,18 @@ Global
 		{E850BB7E-ECE9-454B-B1F5-92E7E555E67B}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{E850BB7E-ECE9-454B-B1F5-92E7E555E67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E850BB7E-ECE9-454B-B1F5-92E7E555E67B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -408,6 +424,8 @@ Global
 		{964DE0B4-27F8-40F8-8D50-C97388BF8CE2} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{5D06A212-5459-47F3-8109-E012C5FC9E3A} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3FB5B08-F995-446F-9222-97AF1E185F77}
