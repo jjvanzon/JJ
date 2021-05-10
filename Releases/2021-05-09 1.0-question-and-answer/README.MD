@@ -1,4 +1,4 @@
-QuestionAndAnswer 1.0 Release
+QuestionAndAnswer Release 1.0
 =============================
 
 *2021-05-09 JJ van Zon*
@@ -21,6 +21,9 @@ Web Site Files
 Import Tool
 -----------
 
-- This import tool might not need to run.
-- It may have filled the database with relatively static content once.
-- It is not entirely sure, whether it is safe to run it again, just like that.
+- This import tool might not need to run again.
+- It may once have filled the database with relatively static content.
+- Running it again, may not be entirely without consequence.
+- The impact of rerunning it, might not be that high though.
+- *Manual edits* to questions might be overwritten by an import.
+- *Content flaggings* might be removed for questions, that might be reimported.
