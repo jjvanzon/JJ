@@ -1,7 +1,9 @@
-QuestionAndAnswer Release 1.0
+QuestionAndAnswer Release 1.1
 =============================
 
-*2021-05-09 JJ van Zon*
+*2021-05-10 JJ van Zon*
+
+`[Preliminary documentation]`
 
 Database
 --------
