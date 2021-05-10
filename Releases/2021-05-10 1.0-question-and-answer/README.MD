@@ -27,3 +27,5 @@ Import Tool
 - The impact of rerunning it, might not be that high though.
 - *Manual edits* to questions might be overwritten by an import.
 - *Content flaggings* might be removed for questions, that might be reimported.
+- Using its config, imports may be selected to run or not by commenting ones out.
+- It may also allow you to select the file path of a possible file to import.
