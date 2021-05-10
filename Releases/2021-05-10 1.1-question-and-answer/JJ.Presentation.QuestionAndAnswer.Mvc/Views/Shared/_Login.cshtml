@@ -1,0 +1,20 @@
+﻿@model LoginPartialViewModel
+
+<div id="loginDiv">
+    @if (Model.CanLogIn)
+    {
+        @Html.ActionLink(
+            CommonResourceFormatter.LogIn, 
+            nameof(ActionNames.Index),
+            new { controller = nameof(ControllerNames.Login), ret = Request.RawUrl })
+    }
+
+    @Model.UserDisplayName 
+
+    @if (Model.CanLogOut)
+    { 
+        <div id="logindropdown">
+            @Html.ActionLink(CommonResourceFormatter.LogOut, nameof(ActionNames.LogOut), nameof(ControllerNames.Login))
+        </div>
+    } 
+</div>

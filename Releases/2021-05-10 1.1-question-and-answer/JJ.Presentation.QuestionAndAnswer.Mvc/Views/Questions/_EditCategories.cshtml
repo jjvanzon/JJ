@@ -1,0 +1,42 @@
+﻿@* ReSharper disable SuggestVarOrType_SimpleTypes*@
+@* ReSharper disable SuggestVarOrType_BuiltInTypes*@
+
+@model QuestionViewModel
+
+<fieldset>
+    <legend>@ResourceFormatter.Categories</legend>
+
+    @if (!Model.Categories.Any())
+    {
+        <br />
+
+        {
+            var url = Url.Action(nameof(ActionNames.AddCategory), new { ret = Model.ReturnAction });
+            <input type="submit" value="@CommonResourceFormatter.Add" formaction="@url" />
+        }
+    }
+    else
+    {
+        <table>
+            @foreach (var category in Model.Categories)
+            {
+                using (Html.BeginCollectionItem())
+                {
+                    @Html.Partial(nameof(ViewNames._EditCategory), category)
+                }
+            }
+
+            <tr style="height:27px">
+                <td />
+                <td style="vertical-align: bottom; text-align: center;">
+
+                    @{
+                        var url = Url.Action(nameof(ActionNames.AddCategory), new { ret = Model.ReturnAction });
+                        <input type="submit" value="@CommonResourceFormatter.Add" formaction="@url" />
+                    }
+                </td>
+                <td />
+            </tr>
+        </table>
+    }
+</fieldset>

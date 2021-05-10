@@ -1,0 +1,25 @@
+﻿@model RandomQuestionViewModel
+
+@if (Model.CurrentUserQuestionFlag.CanFlag)
+{
+    <br />
+
+    <div>
+        @Html.TextAreaFor(x => x.CurrentUserQuestionFlag.Comment)            
+    </div>
+
+    <div>
+        @if (!Model.CurrentUserQuestionFlag.IsFlagged)
+        {
+            <input type="submit" 
+                   value="@ResourceFormatter.FlagContent" 
+                   formaction="@Url.Action(nameof(ActionNames.Flag), nameof(ControllerNames.Questions))" />
+        }
+        else 
+        {
+            <input type="submit"
+                   value="@ResourceFormatter.UnflagContent"
+                   formaction="@Url.Action(nameof(ActionNames.Unflag), nameof(ControllerNames.Questions))" />
+        }
+    </div>
+}

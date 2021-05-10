@@ -1,0 +1,1561 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JJ.Framework.VectorGraphics</name>
+    </assembly>
+    <members>
+        <member name="T:JJ.Framework.VectorGraphics.Drawing.BoundsHelper">
+            <summary>
+            Helper for correcting coordinate values to 'reasonable' bounds for pixel coordinates.
+            Coordinates minimally -100,000 and maximally 100,000. Sizes at least 0.0001.
+            Admittedly these 'reasonable' bounds might be related to what System.Drawing and System.Windows.Forms 'want'.
+            Coordinate values outside those ranges may have resulted in functional error in the past.
+            Other presentation technology might not be need such corrections.
+            But apparently it was thought it might not hurt to apply these corrections in the deeper layers,
+            so higher framework layer might have to 'think' about it as much.
+            In some cases JJ.Framework.VectorGraphics may correct the coordinate values
+            put in the CalculatedValues of a vector graphics Element.
+            But for line style widths a higher (framework) layer may have more opportunity to use an erroneous value.
+            Therefor this class has some public parts for use there.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.BoundsHelper.CorrectCoordinate(System.Single)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Drawing.BoundsHelper" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.BoundsHelper.CorrectLength(System.Single)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Drawing.BoundsHelper" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.BoundsHelper.CorrectToInt32(System.Single)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Drawing.BoundsHelper" />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Drawing.DrawerBase">
+            <summary>
+            This class can be derived from to make JJ.Framework.VectorGraphics work for specific presentation technology.
+            JJ.Framework implements such derived class inside JJ.Framework.Drawing
+            to support System.Drawing and System.Windows.Forms.
+            This base aims to help with some hassle that then might not have to be thought about when implementing a derived class.
+            The base will correct coordinates and sizes to be within
+            certain pixel bounds and sizes to be a minimum positive value.
+            Coordinates minimally -100,000 and maximally 100,000. Sizes at least 0.0001.
+            Also, the base hides details to do with (more complex) vector graphics element drawing
+            and translates those details to drawing primitives: methods that are closer to what you might do with a drawing API.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawLine(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.LineStyle)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)">
+            <summary>
+            Overrides might draw with specific presentation technology such as System.Drawing.
+            Overrides might have a little more work converting styles to something usable for that presentation technology.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.LineStyle)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawLabel(System.String,System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.TextStyle)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawEllipse(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.LineStyle)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillEllipse(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawPictureUnscaledUnclipped(System.Object,System.Int32,System.Int32)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawPictureClipped(System.Object,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawPictureScaled(System.Object,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawPictureScaledWithColorMatrix(System.Object,System.Int32,System.Int32,System.Int32,System.Int32,System.Single[][])">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawPictureClippedWithColorMatrix(System.Object,System.Int32,System.Int32,System.Int32,System.Int32,System.Single[][])">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.DrawPictureUnscaledUnclippedWithColorMatrix(System.Object,System.Int32,System.Int32,System.Single[][])">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.FillRectangle(System.Single,System.Single,System.Single,System.Single,JJ.Framework.VectorGraphics.Models.Styling.BackStyle)"/>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Drawing.DrawerBase.MustDrawCoordinateIndicatorsForPrimitives">
+            <summary>
+            Static method for turning coordinate indicators on and off:
+            shaded overlays indicating elements' positions.
+            That turned out to be practical for debugging positioning efforts.
+            The coordinates of elements may not always be obvious from just the drawn elements themselves.
+            There may be two properties as such: one for 'primitives', like lines and ellipses,
+            and another property for 'composites': elements that would be made up of just other elements.
+            It may have been a design choice to try and not make JJ.Framework.VectorGraphics too dependent on config files.
+            So an option might be to assign a value yourself from settings somewhere centrally.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Drawing.DrawerBase.MustDrawCoordinateIndicatorsForComposites">
+            <inheritdoc cref="P:JJ.Framework.VectorGraphics.Drawing.DrawerBase.MustDrawCoordinateIndicatorsForPrimitives"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Drawing.DrawerBase.Draw(JJ.Framework.VectorGraphics.Models.Elements.Diagram)">
+            <summary>
+            Can be called to draw the vector graphics.
+            The choice when to draw out the vector graphics might be made
+            when implementing JJ.Framework.VectorGraphics for specific presentation technology.
+            For instance the DiagramControl class in JJ.Framework.WinForms may call it at specific times.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Enums.GridSnapModeEnum">
+            <summary>
+            Used for the GridSnapGesture, which makes moving an element over the screen
+            result in a position on an invisible raster point, instead of an arbitrary position.
+            See the members for more details.
+            </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.GridSnapModeEnum.Undefined">
+            <inheritdoc cref="F:JJ.Framework.VectorGraphics.Enums.DashStyleEnum.Undefined" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.GridSnapModeEnum.WhileMoving">
+            <summary>
+            Would indicate that an element's position might snap to a grid position
+            while dragging, not only after the lifting a finger.
+            </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.GridSnapModeEnum.AfterMoved">
+            <summary>
+            Would Indicate that an element's position might snap to a grid position
+            not while moving, but after lifting a finger.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum">
+            <summary> An enumeration of different keys on a computer keyboard that a user might strike. </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Undefined">
+            <inheritdoc cref="F:JJ.Framework.VectorGraphics.Enums.DashStyleEnum.Undefined" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Back">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Tab">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Enter">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Shift">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Control">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Alt">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Pause">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.CapsLock">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Escape">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Space">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.PageUp">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.PageDown">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.End">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Home">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Left">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Up">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Right">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Down">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Print">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.PrintScreen">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Insert">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Delete">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit0">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit1">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit2">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit3">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit4">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit5">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit6">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit7">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit8">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Digit9">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.A">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.B">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.C">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.D">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.E">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.G">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.H">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.I">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.J">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.K">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.L">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.M">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.N">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.O">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.P">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Q">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.R">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.S">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.T">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.U">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.V">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.W">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.X">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Y">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Z">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.LogoLeft">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.LogoRight">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Sleep">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad0">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad1">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad2">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad3">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad4">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad5">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad6">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad7">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad8">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumericPad9">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Multiply">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Add">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.DigitGroupingSymbol">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Subtract">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.DecimalSymbol">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Divide">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F1">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F2">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F3">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F4">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F5">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F6">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F7">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F8">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F9">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F10">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F11">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.F12">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NumLock">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Scroll">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.LeftShift">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.RightShift">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.LeftControl">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.RightControl">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.LeftAlt">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.RightAlt">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Mute">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.VolumeDown">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.VolumeUp">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.NextTrack">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.PreviousTrack">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Stop">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.PlayPause">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Email">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum.Play">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Enums.ScaleModeEnum">
+            <summary>
+            Might indicates whether coordinates are all in pixels or scaled to certain values.
+            </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.ScaleModeEnum.Pixels">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.ScaleModeEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.ScaleModeEnum.ViewPort">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.ScaleModeEnum" />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Enums.DashStyleEnum">
+            <summary> Aims to describe the type of dash style to draw lines with for instance. </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.DashStyleEnum.Undefined">
+            <summary>
+            Exists to try and uphold a pattern, where not assigning a value, there may be a chance
+            that you might get a descriptive exception message instead of an unexpected default.
+            </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.DashStyleEnum.Solid">
+            <summary> Indicates a line might be drawn as a solid line, so no dashes or dots. </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.DashStyleEnum.Dashed">
+            <summary> Indicates a line might be drawn with dashed style. </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.DashStyleEnum.Dotted">
+            <summary> Indicates a line might be drawn with a dotted style. </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Enums.MouseButtonEnum">
+            <summary> An indication of which mouse button was pressed during a mouse gesture: left, right or none. </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.MouseButtonEnum.Undefined">
+            <inheritdoc cref="F:JJ.Framework.VectorGraphics.Enums.DashStyleEnum.Undefined" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.MouseButtonEnum.Left">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.MouseButtonEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.MouseButtonEnum.Right">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.MouseButtonEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.MouseButtonEnum.None">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.MouseButtonEnum" />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Enums.HorizontalAlignmentEnum">
+            <summary>
+            Might be used to control the right / left / center placement
+            of for instance text being drawn on screen.
+            </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.HorizontalAlignmentEnum.Undefined">
+            <inheritdoc cref="F:JJ.Framework.VectorGraphics.Enums.DashStyleEnum.Undefined" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.HorizontalAlignmentEnum.Left">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.HorizontalAlignmentEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.HorizontalAlignmentEnum.Center">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.HorizontalAlignmentEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.HorizontalAlignmentEnum.Right">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.HorizontalAlignmentEnum" />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Enums.VerticalAlignmentEnum">
+            <summary> Might be used to control the top / left / bottom placement of for instance text being drawn on screen. </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.VerticalAlignmentEnum.Undefined">
+            <inheritdoc cref="F:JJ.Framework.VectorGraphics.Enums.DashStyleEnum.Undefined" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.VerticalAlignmentEnum.Top">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.VerticalAlignmentEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.VerticalAlignmentEnum.Center">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.VerticalAlignmentEnum" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Enums.VerticalAlignmentEnum.Bottom">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.VerticalAlignmentEnum" />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.EventArg.ElementEventArgs">
+            <summary>
+            This EventArgs class might be fit for events
+            that can make due with just passing an Element along as the EventArgs.
+            The Element here would not be nullable.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.ElementEventArgs.Element">
+            <summary>
+            The element that might be relevant to the event. Not nullable.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.EventArg.ElementEventArgs.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.EventArg.ElementEventArgs"/>>
+            <param name="element"> See Element property. </param>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.EventArg.DroppedEventArgs">
+            <summary>
+            Contains the properties passed along with the DropGesture's Dropped event.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.DroppedEventArgs.DraggedElement">
+            <summary>
+            An element might be picked up by a drag-drop action.
+            This would be the element that was picked up.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.DroppedEventArgs.DroppedOnElement">
+            <summary>
+            Indicates the element over which the (mouse) cursor was positioned
+            at the end of a drag-drop action.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.EventArg.DroppedEventArgs.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element,JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.EventArg.DroppedEventArgs"/>
+            <param name="draggedElement"> See DraggedElement property.</param>
+            <param name="droppedOnElement"> See DroppedOnElement property.</param>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.EventArg.DraggingEventArgs">
+            <summary>
+            Contains the properties passed along with DragGesture's Dragging event.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.DraggingEventArgs.ElementBeingDragged">
+            <summary>
+            An element might be picked up by a drag-drop action.
+            This would be the element that was picked up.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.DraggingEventArgs.XInPixels">
+            <inheritdoc cref="P:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs.XInPixels" />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.DraggingEventArgs.YInPixels">
+            <inheritdoc cref="P:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs.YInPixels" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.EventArg.DraggingEventArgs.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element,System.Single,System.Single)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.EventArg.DraggingEventArgs"/>
+            <param name="elementBeingDragged"> See ElementBeingDragged property. </param>
+            <param name="xInPixels"> See XInPixels property. </param>
+            <param name="yInPixels"> See YInPixels property. </param>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.EventArg.KeyEventArgs">
+            <summary> Would contain properties that might be passed along with keyboard events. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.KeyEventArgs.KeyCode">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.KeyCodeEnum" />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.KeyEventArgs.Shift">
+            <summary>
+            Would indicate that the Shift key may be held down, possibly along with another key.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.KeyEventArgs.Ctrl">
+            <summary>
+            Would indicate that the Ctrl key may be held down, possibly along with another key.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.KeyEventArgs.Alt">
+            <summary>
+            Would indicate that the Alt key may be held down, possibly along with another key.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.EventArg.KeyEventArgs.#ctor(JJ.Framework.VectorGraphics.Enums.KeyCodeEnum,System.Boolean,System.Boolean,System.Boolean)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.EventArg.KeyEventArgs" />
+            <param name="keyCode"> See KeyCode property. </param>
+            <param name="shift"> See Shift property. </param>
+            <param name="ctrl"> See Ctrl property. </param>
+            <param name="alt"> See Alt property. </param>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs">
+            <summary> Would contain properties that might be passed along with mouse events. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs.Element">
+            <summary>
+            Nullable.
+            Indicates the Element that might be involved with a mouse gesture,
+            for example the Element that would have been clicked on.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs.XInPixels">
+            <summary>
+            Indicates the current position of the (mouse) cursor in pixels.
+            Those would be the amount of pixels from to the top left corner from the Diagram.
+            When you might need scaled coordinates for instance,
+            you might use Diagram.Position members which may allow you to convert.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs.YInPixels">
+            <inheritdoc cref="P:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs.XInPixels" />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs.MouseButtonEnum">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Enums.MouseButtonEnum" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element,System.Single,System.Single,JJ.Framework.VectorGraphics.Enums.MouseButtonEnum)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.EventArg.MouseEventArgs" />
+            <param name="element"> nullable </param>
+            <param name="xInPixels"> See XInPixels property. </param>
+            <param name="yInPixels"> See YinPixels property. </param>
+            <param name="mouseButtonEnum"> See MouseButtonEnum. </param>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.DragGesture">
+            <inheritdoc />
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.DragGesture.Dragging">
+            <summary>
+            Would go off while a user would be dragging an item
+            so while user is moving his or her pointer.
+            </summary>
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.DragGesture.DragCanceled">
+            <summary>
+            Would go off if the drag action is cancelled,
+            in cases like when dragging ends on the Diagram Background
+            or perhaps when dragging ends over the dragged element itself.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.DragGesture.DraggedElement">
+            <summary> Also accessed by the DropGesture. </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Gestures.DragGesture._diagram">
+            <summary>
+            The _diagram field may be determined in a deferred way.
+            Upon the first mouse down the Diagram of the Element would be used.
+            Then some sub-Gestures would be hacked into the Diagram and its Background
+            to make this DragGesture work.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.#ctor">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Gestures.DragGesture" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.Finalize">
+            <summary>
+            Would clean up the gestures created privately,
+            and were tied to the Diagram and the Background.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Would do initializations on the Diagram and start the drag gesture. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.HandleMouseUp(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            Would cancel the drag action if DraggedElement is not null.
+            That would the only condition, which might work just because the DropGesture
+            sets the DraggedElement to null on time.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.Background_MouseUp(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.HandleMouseUp(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)"/>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.DoInitializeDiagram(JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <inheritdoc cref="F:JJ.Framework.VectorGraphics.Gestures.DragGesture._diagram" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.StartDragIfNeeded(JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Sets the DraggedElement if e.Element is not null. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.DoDraggingIfNeeded(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Calls the Dragging event if DraggedElement is not null. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DragGesture.CancelDragIfNeeded(System.Object)">
+            <summary> Cancels the drag if DraggedElement is not null. </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.DropGesture">
+            <inheritdoc />
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.DropGesture.Dropped">
+            <summary> May go off when a user might drop one element onto another in a drag-drop action. </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Gestures.DropGesture._dragGestures">
+            <summary>
+            A drop gesture would be associated with specific drag gestures for them to work together.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DropGesture.#ctor(JJ.Framework.VectorGraphics.Gestures.DragGesture[])">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Gestures.DropGesture" />
+            <param name="dragGestures">
+            A drop gesture could be associated with specific drag gestures for them to work together.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DropGesture.#ctor(System.Collections.Generic.IList{JJ.Framework.VectorGraphics.Gestures.DragGesture})">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Gestures.DropGesture.#ctor(JJ.Framework.VectorGraphics.Gestures.DragGesture[])" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DropGesture.HandleMouseUp(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            Would go by DragGestures that would currently have a DraggedElement.
+            If the mouse up on the DropGesture also has an Element, this would become the DroppedOnElement.
+            A DraggedElement and a DroppedOnElement might then be passed along to a Dropped event.
+            Some of the DragGestures would then be finished.
+            The DraggedElements of those DragGestures may be set to null then.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.GestureBase">
+            <summary>
+            <para>
+            A gesture might be something a user could perform,
+            for instance with mouse or keyboard or tapping perhaps.
+            </para>
+            
+            <para>
+            A derived gesture might have a single event like Click for instance for simplicity.
+            Sometimes a derived gesture might have properties to control some things
+            or constructors to initialize some things.
+            </para>
+            
+            <para>
+            Using a gesture for the vector graphics would happen like this:
+            1) Instantiating a Gesture object.
+            2) Using its event.
+            3) Add it to the Element.Gestures.
+            4) Or add it to the Diagram.Gestures.
+            That way gestures might be assigned specifically to (multiple) Elements
+            or 'global' gestures might be assigned to the Diagram too.
+            </para>
+            
+            <para>
+            The Internals member would make it possible to not only respond to users,
+            but trigger events programmatically, mimicking a user.
+            Similarly, Diagram.GestureHandling might allow mimicking the user events as well,
+            but now sending primitive gestures to the Diagram, not specifying a specific Element.
+            </para>
+            
+            <para>
+            GestureBase would be the common base type for the Gestures.
+            One of its aims might be making custom Gesture implementation a slight bit easier,
+            offering a set of overrides like HandleMouseDown or HandleKeyUp.
+            The overrides might have the relevant Element passed along,
+            picked out by internal gesture management.
+            </para>
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureBase.#ctor">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Gestures.GestureBase" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureBase.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Base member does nothing. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureBase.HandleMouseMove(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Base member does nothing. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureBase.HandleMouseUp(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Base member does nothing. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureBase.HandleKeyDown(System.Object,JJ.Framework.VectorGraphics.EventArg.KeyEventArgs)">
+            <summary> Base member does nothing. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureBase.HandleKeyUp(System.Object,JJ.Framework.VectorGraphics.EventArg.KeyEventArgs)">
+            <summary> Base member does nothing. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GestureBase.MouseCaptureRequired">
+             <summary>
+             <para>
+             Mouse capturing might be for instance when a MouseDown event
+             would create a certain fixation on the Element.
+             No matter where the mouse arrow goes,
+             no matter if it leaves the area of the captured Element,
+             the events that follow might apply until the mouse button is let go of.
+             </para>
+            
+             <para>
+             The MoveGesture might be an example where MouseCapture is true.
+             That gesture might allow a user to move an Element around on screen,
+             </para>
+             </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GestureBase.Internals">
+            <summary>
+            Would make it possible to not only respond to users,
+            but trigger events programmatically, mimicking a user.
+            Similarly, a Diagram.GestureHandling might allow mimicking the user events as well,
+            but now sending primitive gestures to the Diagram, not specifying a specific Element).
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.GestureInternals">
+            <summary>
+            <para>
+            This class is for GestureBase to try and hide these internal workings from the main interface,
+            in an attempt to keep the main interface clean. This may happen in a bit of an elaborated way.
+            </para>
+            <para> GestureHandler may call: </para>
+            <para> * GestureBase.GestureInternals, which are internal as a trick to try and isolate these members, </para>
+            <para> which delegates back to: </para>
+            <para> * GestureBase.InternalHandle... methods that are internal. </para>
+            <para> which delegate to: </para>
+            <para> * GestureBase.Handle... that are protected, which are implemented inside a derived Gesture class. </para>
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.#ctor(JJ.Framework.VectorGraphics.Gestures.GestureBase)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Gestures.GestureInternals" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Would emulate a user's using the mouse or keyboard. </summary>
+            <param name="sender"></param>
+            <param name="e">
+            May specify coordinates, buttons, keys and an involved element if applicable.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.HandleMouseMove(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.HandleMouseUp(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.HandleKeyDown(System.Object,JJ.Framework.VectorGraphics.EventArg.KeyEventArgs)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.HandleKeyUp(System.Object,JJ.Framework.VectorGraphics.EventArg.KeyEventArgs)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Gestures.GestureInternals.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)" />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GestureInternals.MouseCaptureRequired">
+            <summary>
+            Tells if mouse down makes the control receive all mouse events
+            until mouse up. This prevents mouse events from
+            reaching other elements, even when going outside the capturing element's rectangle.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture">
+            <summary>
+            A relatively simple grid snap implementation.
+            When a move gesture would be associated with a grid snap gesture,
+            the coordinates of an element may snap to grid.
+            It would not show a grid nor make it optional to snap with like a Ctrl key or something.
+            NOTE: This may not be a gesture that might be tied to an element.
+            A MoveGesture may be passed to the constructor instead.
+            It might not derive from GestureBase either.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.#ctor(JJ.Framework.VectorGraphics.Gestures.MoveGesture)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.Finalize">
+            <summary> Aims to clean up events that would be tied to the associated move gesture. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.SnapWidth">
+            <summary> Would be the width or height between grid points. Default = 8. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.SnapHeight">
+            <inheritdoc cref="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.SnapWidth" />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.OffsetX">
+            <summary>
+            In case the grid would not start at point (0, 0) you might shift it using these Offset properties.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.OffsetY">
+            <inheritdoc cref="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.OffsetX" />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.GridSnapModeEnum">
+            <summary>
+            Would indicate that an element's position might snap to a grid position
+            while dragging, or after the lifting a finger. Default = WhileMoving.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.Snap">
+            <inheritdoc cref="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.SnapWidth" />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.Offset">
+            <inheritdoc cref="P:JJ.Framework.VectorGraphics.Gestures.GridSnapGesture.OffsetX" />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.KeyDownGesture">
+            <inheritdoc />
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.KeyDownGesture.KeyDown">
+            <summary> Would go off when a user might press a keyboard key down. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.KeyDownGesture.HandleKeyDown(System.Object,JJ.Framework.VectorGraphics.EventArg.KeyEventArgs)">
+            <summary> Would raise the KeyDown event. </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.KeyUpGesture">
+            <inheritdoc />
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.KeyUpGesture.KeyUp">
+            <summary> Would go off when a user might let go of a keyboard key. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.KeyUpGesture.HandleKeyUp(System.Object,JJ.Framework.VectorGraphics.EventArg.KeyEventArgs)">
+            <summary> Would raise the KeyUp event. </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.MouseLeaveGesture">
+            <inheritdoc />
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.MouseLeaveGesture.MouseLeave">
+            <summary> Would go off when a mouse cursor would leave an element. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MouseLeaveGesture.#ctor">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Gestures.MouseLeaveGesture" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MouseLeaveGesture.Finalize">
+            <summary>
+            Attempts to clean up a diagram-bound mouse move gesture,
+            that would be created on-they-fly by this gesture.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MouseLeaveGesture.HandleMouseMove(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            Handling element-bound move move events, the element moved over might be tracked (the sender).
+            Also, the diagram field would be set (lazily upon first mouse move).
+            The diagram might then be extended with a mouse move gesture, created on-the-fly by this gesture.
+            </summary>
+            <param name="sender"> Might be the element moved over. </param>
+            <param name="e"></param>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MouseLeaveGesture.DiagramMouseMoveGesture_MouseMove(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            A diagram-bound mouse move event might be handled.
+            It would aim to track if the element currently moved over is still the same.
+            If a different element would be moved over, a MouseLeave event might be triggered
+            upon the original element.
+            </summary>
+            <param name="sender">Would be the element moved over.</param>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.GestureHandler">
+             <summary>
+             <para>
+             Called by Diagram.GestureHandling.
+             Would figure out which vector graphics Elements to involve in the user's gesture.
+             Aims to call the involved gesture objects for processing the details.
+             </para>
+            
+             <para>
+             GestureHandler would figure out things like:
+             </para>
+             
+             <para>
+             * Hit testing: Which element was hit. Based on coordinates and how elements overlap each other.
+             (Currently only checks hits within rectangles disregarding the shape of an ellipse for instance.).
+             </para>
+             
+             <para>
+             * Bubbling: When events might bubble upward to parents.
+             </para>
+             
+             <para>
+             * Mouse capturing: When a MouseDown might fix the involved element
+             no matter where the mouse arrow goes until you let go of the mouse button.
+             </para>
+             
+             <para>
+             Keyboard gestures are currently only usable on the Diagram level or Diagram.BackGround level,
+             so not related to an element. (That might require focus handling.
+             Focus is not a feature of this API (yet).)
+             </para>
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.GestureHandler.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Diagram)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Gestures.GestureHandler" />
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Gestures.GestureHandler._mouseMoveGesture">
+            <summary>
+            In WinForms a mouse move will go off upon mouse down, even though you did not even move the mouse at all
+            All gestures have trouble with this if you do not solve it at this level.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.ClickGesture">
+            <inheritdoc />
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.ClickGesture.Click">
+            <summary> Goes off when a user clicked an element, </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.ClickGesture.MouseCaptureRequired">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.ClickGesture.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            For the Clicked event to be triggered, the cursor should be over the same element
+            upon both mouse down as well as mouse up.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.ClickGesture.HandleMouseUp(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Gestures.ClickGesture.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)" />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.DoubleClickGesture">
+            <inheritdoc />
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.DoubleClickGesture.DoubleClick">
+            <summary> Goes off when a user has double clicked an element. </summary>
+        </member>
+        <member name="F:JJ.Framework.VectorGraphics.Gestures.DoubleClickGesture._doubleClickDeltaInPixels">
+            <summary>
+            When things start scaling, there might not be a 1-to-1 mapping between X and Y
+            coordinates and pixels anymore. Perhaps this class then might need changes
+            to keep it practically usable.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DoubleClickGesture.#ctor(System.Int32,System.Int32)">
+            <summary>
+            To create a DoubleClickGesture that automatically
+            takes on the Windows settings as double click speed and delta,
+            WinFormsVectorGraphicsHelper.CreateDoubleClickGesture or
+            DiagramControl.CreateDoubleClickGesture might be used.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.DoubleClickGesture.MouseCaptureRequired">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DoubleClickGesture.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            Would evaluate the first mouse down and the second mouse down.
+            Evaluating whether it is an actual double click might be tricky.
+            There would be a time-out value upon which a 'second' click might become
+            a 'first' click again, involving a stop watch,
+            it should be on the same element and
+            the coordinates of the two clicked would be within a certain distance range.
+            It might involve some fine-tuned flipping the Boolean _isFirstMouseDown
+            and starting, stopping and resetting the Stopwatch,
+            which might be trickiness and error prone.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DoubleClickGesture.HandleFirstMouseDown(JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            Would handle the first mouse down,
+            involving for instance starting a stop watch timer anew,
+            and remembering info about the first mouse down,
+            to be evaluated later (upon the second click).
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.DoubleClickGesture.HandleSecondMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            Would handle the second mouse down,
+            which may for instance involve stopping a stop watch, setting _isFirstMouseDown to false
+            and evaluating if the two clicks are 'compatible' enough to be considered a double click.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.MouseDownGesture">
+            <inheritdoc />
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.MouseDownGesture.MouseDown">
+            <summary> Would go off when a user might press a mouse button down. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MouseDownGesture.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Would raise the MouseDown event. </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.MouseMoveGesture">
+            <summary>
+            It was observed that WinForms may send a mouse move event,
+            even when the mouse was not moved, in case of a move up.
+            This gesture would aim to block that and only send
+            a mouse move event when a user actually moved the mouse.
+            See also: GestureBase for explanations for how gestures would work in this API in general.
+            </summary>
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.MouseMoveGesture.MouseMove">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Gestures.MouseMoveGesture" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MouseMoveGesture.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Would track the pointer's X and Y coordinates upon mouse down. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MouseMoveGesture.HandleMouseMove(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            Would track the pointer's X and Y coordinates upon mouse move.
+            Aims to only raise the mouse move event if coordinates ever changed.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.MouseUpGesture">
+            <inheritdoc />
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.MouseUpGesture.MouseUp">
+            <summary> Would go off when a user might let go of a mouse button. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MouseUpGesture.HandleMouseUp(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Would raise the MouseUp event. </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Gestures.MoveGesture">
+            <summary>
+            A gesture that might be used so that a user may drag elements around on screen.
+            See GestureBase for more information on using gestures within this vector graphics API.
+            </summary>
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.MoveGesture.Moving">
+            <summary> Might go off while a user would be moving an element around on screen. </summary>
+        </member>
+        <member name="E:JJ.Framework.VectorGraphics.Gestures.MoveGesture.Moved">
+            <summary> Might go off right after a user would have been moving an element around on screen. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.#ctor">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Gestures.MoveGesture" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.Finalize">
+            <summary> Aims to clean up an on-the-fly created diagram-bound mouse move gesture. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Gestures.MoveGesture.MouseCaptureRequired">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.HandleMouseDown(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            Might record the diagram of the associated element.
+            Might set some variables to track an element being moved.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.Diagram_MouseMove(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.DoMouseMove(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.HandleMouseUp(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <inheritdoc cref="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.DoMouseUp(System.Object)" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.DoInitializeDiagram(JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            In case of a mouse event, this method may record the diagram of the associated element.
+            This may unburden a programmer from passing it along as a parameter.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.DoMouseDown(JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary> Might track some coordinates related to the mouse down and set a Boolean 'was moved'. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.DoMouseMove(System.Object,JJ.Framework.VectorGraphics.EventArg.MouseEventArgs)">
+            <summary>
+            Would calculate changing (mouse) pointer coordinates and assign a changed position to an element.
+            This might invoke the Moving event. Also would set a 'was moved' Boolean.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Gestures.MoveGesture.DoMouseUp(System.Object)">
+            <summary>
+            A mouse up event could trigger a moved event. This depends if an element was currently being moved.
+            Also, some variables would be reset.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Helpers.CloneExtensions.Clone(JJ.Framework.VectorGraphics.Models.Styling.TextStyle)">
+            <summary> Will also clone TextStyle.Font. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Helpers.ITextMeasurer.GetTextSize(System.String,JJ.Framework.VectorGraphics.Models.Styling.Font)">
+            <summary> Returns the text width, without wrapping and the text height only depends on the font. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Helpers.ITextMeasurer.GetTextSize(System.String,JJ.Framework.VectorGraphics.Models.Styling.Font,System.Single)">
+            <summary>
+            The returned text width can actually differ from the width passed along,
+            since wrapping can actually make some of the right side space unused.
+            The returned text height can be more than one line height,
+            due to text wrapping.
+            </summary>
+            <param name="lineWidthInPixels">When wrapping text, the provided width influences the height of the measured text.</param>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Helpers.ApproximatingTextMeasurer">
+            <summary> This implementation only approximates the text width and height. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Helpers.ApproximatingTextMeasurer.GetTextSize(System.String,JJ.Framework.VectorGraphics.Models.Styling.Font)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Helpers.ApproximatingTextMeasurer.GetTextSize(System.String,JJ.Framework.VectorGraphics.Models.Styling.Font,System.Single)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Helpers.ApproximatingTextMeasurer.GetTextWidth(System.String,JJ.Framework.VectorGraphics.Models.Styling.Font,System.Single)">
+            <summary> Returns an approximate width of the string according to the specified font. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Helpers.ColorHelper.SetBrightness(System.Int32,System.Double)">
+            <summary>
+            Red, green and blue components will be bound to a max of 255.
+            Once one of the components maxes out brightness will not go any further up.
+            </summary>
+            <param name="grade">0 makes it black, 1 keeps it the same color.</param>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Ellipse.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <inheritdoc />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.EllipseStyle.LineStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.EllipseStyle.BackStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Models.Elements.Curve">
+            <summary>
+            Represents a curved line going from one point to the next,
+            going into the direction of two other control points.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Curve.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <inheritdoc />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Curve.SegmentCount">
+            <summary>
+            Default is 20. Cannot be less than 1.
+            The curve is drawn out as a sequence of straight lines.
+            The segment count controls the precision with which the curve is drawn.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Curve.PointA">
+            <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Curve.PointB">
+            <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Curve.ControlPointA">
+            <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Curve.ControlPointB">
+            <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Curve.LineStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Curve.CalculatedLines">
+            <summary> Not nullable. Auto-instantiated. </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Models.Elements.DiagramPosition">
+            <summary>
+            Could be used to set the diagram's size in pixels and its scaled coordinates.
+            When using a DiagramControl the size in pixels might be set automatically.
+            Scaled coordinates might be something that you could set.
+            There would be different scaling modes that can be used.
+            This object can also help convert between coordinate systems.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.DiagramPosition.WidthInPixels">
+            <summary> non-zero </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.DiagramPosition.HeightInPixels">
+            <summary> non-zero </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.DiagramPosition.ScaledX">
+            <summary> Note that it might not return what you assign, depending on the ScaleModeEnum. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.DiagramPosition.ScaledY">
+            <summary> Note that it might not return what you assign, depending on the ScaleModeEnum. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.DiagramPosition.ScaledWidth">
+            <summary> Non-zero. Note that it might not return what you assign, depending on the ScaleModeEnum. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.DiagramPosition.ScaledHeight">
+            <summary> Non-zero. Note that it might not return what you assign, depending on the ScaleModeEnum. </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition">
+            <summary>
+            Typically assign as follows in the constructor of a derived class:
+            Position = new RectanglePosition(this);
+            There are measurements in pixels. There are also scaled coordinates,
+            further categorized into coordinates relative to the parent element and
+            absolute coordinates related to the Diagram.
+            The main coordinates would be those relative coordinates.
+            X and Y would typically be the top-left corner.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.X">
+            <summary> Left X-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.Y">
+            <summary> Top Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.Width">
+            <summary> Scaled width </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.Height">
+            <summary> Scaled height </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.Right">
+            <summary> Right X-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.Bottom">
+            <summary> Bottom Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.CenterX">
+            <summary> Center X-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.CenterY">
+            <summary> Center Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.AbsoluteX">
+            <summary> Left X-coordinate in relation to the Diagram. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.AbsoluteY">
+            <summary> Top Y-coordinate in relation to the Diagram. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.AbsoluteRight">
+            <summary> Right X-coordinate in relation to the Diagram. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.AbsoluteBottom">
+            <summary> Bottom Y-coordinate in relation to the Diagram. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.AbsoluteCenterX">
+            <summary> Center X-coordinate in relation to the Diagram. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.AbsoluteCenterY">
+            <summary> Center Y-coordinate in relation to the Diagram. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.XInPixels">
+            <summary> Left X-coordinate in pixels from the edge of the diagram. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition.YInPixels">
+            <summary> Top Y-coordinate in pixels from the edge of the diagram. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.CalculatedValues.ZIndex">
+            <summary> The calculated ZIndex, which is derived from both the ZIndex and the containment structure. </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Models.Elements.DiagramGestureHandling">
+            <summary> For when you need to send primitive gestures to the diagram. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Picture.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <inheritdoc />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Picture.Style">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Models.Elements.RectanglePosition">
+            <summary>
+            Not only used for Rectangles, but also used for Labels and Ellipses.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.RectangleStyle.BackStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.RectangleStyle.TopLineStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.RectangleStyle.RightLineStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.RectangleStyle.BottomLineStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.RectangleStyle.LeftLineStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.RectangleStyle.LineStyle">
+            <summary>
+            Sets the style of all 4 lines at the same time.
+            Returns a single LineStyle in case all border lines have the same style.
+            Otherwise returns null.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Label.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <inheritdoc />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Label.TextStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Line.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <inheritdoc />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Line.PointA">
+            <summary>
+            Coordinates of the point are related to the Point's parent. 
+            Nullable while building up the model.
+            Not nullable once its being drawn.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Line.PointB">
+            <summary>
+            Coordinates of the point are related to the Point's parent. 
+            Nullable while building up the model.
+            Not nullable once its being drawn.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Line.LineStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Point.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <inheritdoc />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Point.PointStyle">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Rectangle.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Rectangle.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Diagram)">
+            <inheritdoc />
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Rectangle.Style">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Models.Elements.Element">
+            <summary> base class that can contain VectorGraphics child elements. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Element.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Diagram)">
+            <summary> The only element that needs no parent is the Diagram.Background element. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Models.Elements.Element.#ctor(JJ.Framework.VectorGraphics.Models.Elements.Element)">
+            <param name="parent">When in doubt, use Diagram.Background.</param>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Element.Visible">
+            <summary>
+            Visible = false effectively means Enabled = false.
+            (You will not see that in the Enabled property. You will see that in the CalculatedValues.Enabled property.)
+            If you want to receive events from an invisible element, use the Visible property of the style objects instead.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Element.Position">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Models.Elements.ElementPosition"/>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Element.Gestures">
+            <summary> not nullable </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Element.Enabled">
+            <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Element.Children">
+            <summary>
+            Note that there is no Remove method, because this would orphan the child.
+            To remove a child, try setting the parent to null or call dispose on the child,
+            so the element is cleaned up neatly.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Diagram.Background">
+            <summary>
+            Might be not much use setting coordinates of this element,
+            since the scaled coordinates are taken over from the Diagram
+            upon recalculation.
+            This property may be used to style the back ground.
+            It also could serve as the parent element for elements that might otherwise not have one.
+            Also, gestures might be set to operate on this background element.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Diagram.Position">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Models.Elements.DiagramPosition"/>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Diagram.Gestures">
+            <summary>
+            The gestures on the diagram always go off regardless of bubbling.
+            It gives us a means to tap in on events at a more basic level.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Elements.Diagram.GestureHandling">
+            <summary> For when you need to send primitive gestures to the diagram. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Styling.PictureStyle.Clip">
+            <summary>
+            If false, will draw remaining picture content outside if the rectangle, without cutting it off.
+            If true, will cut off pieces of the picture that do not fit inside the rectangle.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Styling.StyleWithVisibleBase.Visible">
+            <summary>
+            Visible = false effectively means Enabled = false.
+            (You will not see that in the Enabled property. You will see that in the CalculatedValues.Enabled property.)
+            If you want to receive events from an invisible element, use the Visible property of the style objects instead.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Styling.TextStyle.Clip">
+            <summary>
+            If false, will draw remaining text outside if the rectangle, without cutting it off.
+            If true, will cut off pieces of text that do not fit inside the rectangle.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Styling.TextStyle.Abbreviate">
+            <summary> If true, will show '...' at the end if the text does not fit. </summary>
+        </member>
+        <member name="P:JJ.Framework.VectorGraphics.Models.Styling.TextStyle.Font">
+            <summary> not nullable, auto-instantiated </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Positioners.VerticalPositioner">
+            <summary>
+            Lays out items vertically, spread equally over a specified space.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Positioners.VerticalPositioner.#ctor(System.Single,System.Single,System.Single,System.Single,System.Int32)">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Positioners.VerticalPositioner" />
+            <param name="leftX"> Left coordinate of the space to position items in. </param>
+            <param name="topY"> Top coordinate of the space to position items in. </param>
+            <param name="totalWidth"> Total width to position all the items in. </param>
+            <param name="totalHeight"> Total height to position all the items in. </param>
+            <param name="itemCount"> Amount of items. </param>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Positioners.VerticalPositioner.Calculate">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Positioners.IPositioner">
+            <summary>
+            <para>
+            Base type for positioners. A positioner might calculate rectangle positions.
+            Derived positioners might offer different types of positioning.
+            </para>
+            
+            <para>
+            For instance: * distributing rectangles over a raster * flow positioning:
+            where when no more items would fit on a row, the next item would continue on the next row.
+            </para>
+            
+            <para> If the calculation would need more input data,
+            this might be passed along as constructor arguments or as properties perhaps. </para>
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Positioners.IPositioner.Calculate">
+             <summary>
+             <para> Would return calculated rectangle positions as tuples. </para>
+            
+             <para> If the calculation would need more input data,
+             this might be passed along as constructor arguments or as properties perhaps. </para>
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Positioners.IPositioner.Calculate(System.Collections.Generic.IEnumerable{JJ.Framework.VectorGraphics.Models.Elements.Element})">
+             <summary>
+             <para> Would assign calculated rectangle positions
+             to the passed vector graphics elements. </para>
+            
+             <para> If the calculation would need more input data,
+             this might be passed along as constructor arguments or as properties perhaps. </para>
+             
+             <para> (Detail: The elements parameter would be enumerable for covariance, so a collection of e.g. Rectangles could also be passed to it.)</para>
+             </summary>
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Positioners.PositionerBase">
+            <inheritdoc cref="T:JJ.Framework.VectorGraphics.Positioners.IPositioner" />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Positioners.PositionerBase.Calculate">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Positioners.PositionerBase.Calculate(System.Collections.Generic.IEnumerable{JJ.Framework.VectorGraphics.Models.Elements.Element})">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.VectorGraphics.Visitors.CalculationVisitor">
+            <summary>
+            Takes a set of VectorGraphics elements that can have a hierarchy of child elements
+            with relative positions and converts it to a flat list of objects
+            with absolute positions and Z-index applied.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Visitors.CalculationVisitor.Execute(JJ.Framework.VectorGraphics.Models.Elements.Diagram)">
+            <summary> Returns elements ordered by calculated Z-Index. </summary>
+        </member>
+        <member name="M:JJ.Framework.VectorGraphics.Visitors.CalculationVisitor.ApplyExplicitZIndex(JJ.Framework.VectorGraphics.Models.Elements.Diagram)">
+            <summary>
+            In the recursion the CalculatedZIndex is simply incremented as the parent-child structure is traversed.
+            This method corrects this CalculatedZIndex making the explicit ZIndex more significant than the parent-child relationships.
+            </summary>
+        </member>
+    </members>
+</doc>

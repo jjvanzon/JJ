@@ -1,0 +1,11 @@
+﻿@model QuestionViewModel
+    
+<div class="editor-label">@ResourceFormatter.Question: @Html.ValidationMessageFor(x => x.Text)</div>
+<div>
+    @Html.TextAreaFor(x => x.Text)
+</div>
+        
+<div class="editor-label">@ResourceFormatter.Answer: @Html.ValidationMessageFor(x => x.Answer)</div>
+<div>
+    @Html.TextAreaFor(x => x.Answer)
+</div>

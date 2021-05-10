@@ -1,0 +1,159 @@
+﻿@* ReSharper disable SuggestVarOrType_SimpleTypes*@
+
+@model QuestionDetailsViewModel
+
+@section Title
+{
+    @CommonResourceFormatter.Details_WithName(ResourceFormatter.Question)
+}
+
+@section Header
+{
+    @Html.Partial(nameof(ViewNames._Login), Model.Login)
+}
+
+<h2>@CommonResourceFormatter.Details_WithName(ResourceFormatter.Question)</h2>
+
+<p>
+    @Html.ActionLink(CommonResourceFormatter.Edit, nameof(ActionNames.Edit), new
+    {
+        id = Model.Question.ID,
+        ret = Url.Action(nameof(ActionNames.Details), nameof(ControllerNames.Questions), new  { id = Model.Question.ID })
+    }) |
+    @Html.ActionLink(CommonResourceFormatter.New, nameof(ActionNames.Create), new
+    {
+        ret = Url.Action(nameof(ActionNames.Details), nameof(ControllerNames.Questions), new  { id = Model.Question.ID })
+    }) |
+    @Html.ActionLink(CommonResourceFormatter.Delete, nameof(ActionNames.Delete), new { id = Model.Question.ID }) |
+    @Html.ActionLink(CommonResourceFormatter.BackToList, nameof(ActionNames.Index))
+</p>
+
+<table class="properties">
+    <tr>
+        <th>@CommonResourceFormatter.ID:</th>
+        <td>@Model.Question.ID</td>
+    </tr>
+
+    <tr>
+        <th>@ResourceFormatter.Question:</th>
+        <td>@Model.Question.Text</td>
+    </tr>
+    <tr>
+        <th>@ResourceFormatter.Answer:</th>
+        <td>@Model.Question.Answer</td>
+    </tr>
+
+    <tr>
+        <th>@CommonResourceFormatter.IsActive:</th>
+        <td>@(Model.Question.IsActive ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)</td>
+    </tr>
+    <tr>
+        <th>@ResourceFormatter.Source:</th>
+        <td>
+            @if (!string.IsNullOrEmpty(Model.Question.Source.Url))
+            {
+                <a href="@Model.Question.Source.Url" target="_blank">
+                    @Model.Question.Source.Description
+                </a>
+            }
+            else
+            {
+                @Model.Question.Source.Description
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>@CommonResourceFormatter.Type:</th>
+        <td>@Model.Question.Type.Name</td>
+    </tr>
+
+    <tr>
+        <th>@ResourceFormatter.Categories:</th>
+        <td>
+
+            @foreach (var category in Model.Question.Categories.Select(x => x.Category))
+            {
+                <div>
+                    @category.ID-
+                    @string.Join(@" \ ", category.NameParts)
+                </div>
+            }
+
+            @if (Model.Question.Categories.Count == 0)
+            {
+                @CommonResourceFormatter.None
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>@ResourceFormatter.Links:</th>
+        <td>
+
+            @foreach (var link in Model.Question.Links)
+            {
+                @link.Description<text>:</text> <a href="@link.Url" target="_blank"> @link.Url</a>
+                <br />
+            }
+
+            @if (Model.Question.Links.Count == 0)
+            {
+                @CommonResourceFormatter.None
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>@ResourceFormatter.LastModifiedByUser:</th>
+        <td>@Model.Question.LastModifiedBy</td>
+    </tr>
+    <tr>
+        <th>@ResourceFormatter.IsManual:</th>
+        <td>
+            @(Model.Question.IsManual ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)
+
+            @if (Model.Question.IsManual)
+            {
+                <br />
+                @ResourceFormatter.ExplanationOfIsManualWithParenthesis
+            }
+        </td>
+    </tr>
+</table>
+
+<fieldset>
+    <legend>@ResourceFormatter.ContentFlags</legend>
+
+    <table class="properties">
+        <tr>
+            <th>@ResourceFormatter.HasActiveFlags</th>
+            <td>@(Model.Question.IsFlagged ? CommonResourceFormatter.Yes : CommonResourceFormatter.No)</td>
+        </tr>
+
+        @foreach (var flag in Model.Question.Flags)
+        {
+            <tr>
+                <th>@flag.FlaggedBy</th>
+                <td>
+                    <table class="properties">
+                        <tr>
+                            <th>@CommonResourceFormatter.DateTime:</th>
+                            <td>@flag.DateAndTime.ToString()</td>
+                        </tr>
+                        <tr>
+                            <th>@ResourceFormatter.FlagStatus:</th>
+                            <td>@flag.Status.Name</td>
+                        </tr>
+                        <tr>
+                            <th>@ResourceFormatter.Comment:</th>
+                            <td>@flag.Comment</td>
+                        </tr>
+                        <tr>
+                            <th>@ResourceFormatter.LastModifiedByUser:</th>
+                            <td>@flag.LastModifiedBy</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        }
+    </table>
+
+</fieldset>
