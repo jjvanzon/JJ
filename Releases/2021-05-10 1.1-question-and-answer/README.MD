@@ -1,7 +1,7 @@
 QuestionAndAnswer Release 1.1
 =============================
 
-*2021-05-10 JJ van Zon*
+*2021-05-10*
 
 Changes
 -------
@@ -20,13 +20,13 @@ Database
 Web Site Files
 --------------
 
-- The folder "JJ.Presentation.QuestionAndAnswer.Mvc" may contain the web site files.
+- "JJ.Presentation.QuestionAndAnswer.Mvc" may contain the web site files.
 - It is suggested to create an IIS web site that connects to (a copy of) that folder.
 
 Import Tool
 -----------
 
-- The folder "JJ.Presentation.QuestionAndAnswer.Import.WinForms" might contain an import tool.
+- "JJ.Presentation.QuestionAndAnswer.Import.WinForms" might contain an import tool.
 - It may once have filled the database with relatively static content.
 - Questions with answers and other content.
 - This import tool might not need to run again.

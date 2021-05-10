@@ -1,7 +1,7 @@
 QuestionAndAnswer Release 1.0
 =============================
 
-*2021-05-09 JJ van Zon*
+*2021-05-09*
 
 Database
 --------
@@ -15,5 +15,5 @@ Database
 Web Site Files
 --------------
 
-- The folder "JJ.Presentation.QuestionAndAnswer.Mvc" may contain the web site files.
+- "JJ.Presentation.QuestionAndAnswer.Mvc" may contain the web site files.
 - It is suggested to create an IIS web site that connects to (a copy of) that folder.
