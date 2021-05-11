@@ -224,20 +224,20 @@
     <Content Include="Views\Questions\_EditFlag.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <None Include="Views\Shared\_Login.cshtml" />
-    <None Include="Views\Login\Index.cshtml" />
-    <None Include="Views\Shared\NotAuthorized.cshtml" />
-    <None Include="Views\Shared\NotFound.cshtml" />
-    <None Include="Views\Questions\Index.cshtml" />
-    <None Include="Views\Shared\_Pager.cshtml" />
-    <None Include="Views\Questions\Details.cshtml" />
-    <None Include="Views\Questions\Edit.cshtml" />
-    <None Include="Views\Questions\Delete.cshtml" />
-    <None Include="Views\Questions\Deleted.cshtml" />
-    <None Include="Views\CategorySelector\Index.cshtml" />
-    <None Include="Views\CategorySelector\_AvailableCategory.cshtml" />
-    <None Include="Views\CategorySelector\_SelectedCategory.cshtml" />
-    <None Include="Views\Questions\_SmallQuestionFlag.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Shared\NotAuthorized.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Shared\_Pager.cshtml" />
+    <Content Include="Views\Questions\Details.cshtml" />
+    <Content Include="Views\Questions\Edit.cshtml" />
+    <Content Include="Views\Questions\Delete.cshtml" />
+    <Content Include="Views\Questions\Deleted.cshtml" />
+    <Content Include="Views\CategorySelector\Index.cshtml" />
+    <Content Include="Views\CategorySelector\_AvailableCategory.cshtml" />
+    <Content Include="Views\CategorySelector\_SelectedCategory.cshtml" />
+    <Content Include="Views\Questions\_SmallQuestionFlag.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
