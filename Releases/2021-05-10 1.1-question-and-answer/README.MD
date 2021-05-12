@@ -11,7 +11,7 @@ The Import Tool was added, which may now be fixed not to crash for import source
 Database
 --------
 
-- The database backup may be in the file "QuestionAndAnswerDB.zip" 
+- The database backup may be in the file "QuestionAndAnswerDB.1.1.zip"
 - The file might be unzipped and restored in SQL Server with name PROD_QuestionAndAnswerDB.
 - The database user name "prod" may be expected with password "prod".
 - If needed, different database name / user name / password might be configured.
@@ -20,13 +20,13 @@ Database
 Web Site Files
 --------------
 
-- "JJ.Presentation.QuestionAndAnswer.Mvc" may contain the web site files.
-- It is suggested to create an IIS web site that connects to (a copy of) that folder.
+- "JJ.Presentation.QuestionAndAnswer.Mvc.1.1.zip" may contain the web site files.
+- It is suggested to create an IIS web site whose that connects to (a copy of) that folder (using the 'Physical path' setting).
 
 Import Tool
 -----------
 
-- "JJ.Presentation.QuestionAndAnswer.Import.WinForms" might contain an import tool.
+- "JJ.Presentation.QuestionAndAnswer.Import.WinForms.1.1.zip" might contain an import tool.
 - It may once have filled the database with relatively static content.
 - Questions with answers and other content.
 - This import tool might not need to run again.
@@ -35,7 +35,7 @@ Import Tool
 - *Manual edits* to questions might be overwritten by an import.
 - *Content flaggings* might be removed for re-imported questions.
 - Using its config, imports may be selected to run or not.
-- It may also allow you to select the file path of a possible file to import.
+- The config may also allow you to select the file path of a possible file to import.
 
 IO Files
 --------
