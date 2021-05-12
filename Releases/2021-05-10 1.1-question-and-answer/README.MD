@@ -29,9 +29,6 @@ Import Tool
 - "JJ.Presentation.QuestionAndAnswer.Import.WinForms.1.1.zip" might contain an import tool.
 - It has no installer.
 - It might be unzipped and put somewhere on a computer and then perhaps a shortcut made to it.
-
------
-
 - It may once have filled the database with relatively static content.
 - Questions with answers and other content.
 - This import tool might not need to run again.
