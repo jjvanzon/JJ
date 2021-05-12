@@ -27,11 +27,16 @@ Import Tool
 -----------
 
 - "JJ.Presentation.QuestionAndAnswer.Import.WinForms.1.1.zip" might contain an import tool.
+- It has no installer.
+- It might be unzipped and put somewhere on a computer and then perhaps a shortcut made to it.
+
+-----
+
 - It may once have filled the database with relatively static content.
 - Questions with answers and other content.
 - This import tool might not need to run again.
 - Running it again, may not be entirely without consequence.
-- The impact of rerunning it, might be limited.
+- Unintended impact of rerunning it, might be subtle.
 - *Manual edits* to questions might be overwritten by an import.
 - *Content flaggings* might be removed for re-imported questions.
 - Using its config, imports may be selected to run or not.
@@ -40,4 +45,5 @@ Import Tool
 IO Files
 --------
 
-These were the files that may originally have been imported into the database using the Import Tool.
+- These were the files that may originally have been imported into the database using the Import Tool.
+- If reimporting is desired, configuration of the import tool may be used to select which imports might run and let them point to the desired file location of an IO file.
