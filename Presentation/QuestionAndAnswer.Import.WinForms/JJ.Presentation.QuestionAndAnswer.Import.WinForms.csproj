@@ -53,6 +53,11 @@
     <Compile Include="PersistenceHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Content Include="IO Files\CSS Backgrounds and Borders Module Level 3.htm" />
     <Content Include="IO Files\CSS Marquee Module Level 3.htm" />
     <Content Include="IO Files\W3CSpecCss3_PropertyIndex.html" />
@@ -84,6 +89,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="IO Files\DutchToPolish.xlsx" />
     <None Include="IO Files\DutchToPolishFriendly.csv" />
     <None Include="IO Files\DutchToPolishFriendly.xlsx" />
@@ -100,9 +109,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
+    <Content Include="App.config">
       <SubType>Designer</SubType>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="IO Files\W3CSpecCss21_Aural.html" />
