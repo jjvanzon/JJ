@@ -26,21 +26,40 @@ Web Site Files
 Import Tool
 -----------
 
+### General Installation Steps
+
 - "JJ.Presentation.QuestionAndAnswer.Import.WinForms.1.1.zip" might contain an import tool.
 - It has no installer.
 - It might be unzipped and put somewhere on a computer and then perhaps a shortcut made to it.
-- It may once have filled the database with relatively static content.
+
+### Description of Import Tool
+
+- The import tool may once have filled the database with relatively static content.
 - Questions with answers and other content.
 - This import tool might not need to run again.
-- Running it again, may not be entirely without consequence.
-- Unintended impact of rerunning it, might be subtle.
-- *Manual edits* to questions might be overwritten by an import.
-- *Content flaggings* might be removed for re-imported questions.
 - Using its config, imports may be selected to run or not.
 - The config may also allow you to select the file path of a possible file to import.
+
+### Instabilities
+
+- There may be instabilities in the Import tool.
+- When something might be wrong with its config file, the program may disappear from screen but a process might be still hanging in the backgrond which might then be killed.
+- The following error may have slipped into the config file of the import tool.
+    - An excessive "-->" may be present in the config file.
+    - This may be resolved as follows:
+    - Opening "JJ.Presentation.QuestionAndAnswer.Import.WinForms.exe.config".
+    - Finding "categoryPath="Css3\Properties\UserInterface" />-->"
+    - Replacing it with: "categoryPath="Css3\Properties\UserInterface" />"
+- The program may crash if the import file paths would be incorrectly entered in the config file.
+- Running it again, may not be entirely without consequence.
+    - Unintended impact of rerunning it, might be subtle.
+    - *Manual edits* to questions might be overwritten by an import.
+    - *Content flaggings* might be removed for re-imported questions.
 
 IO Files
 --------
 
 - These were the files that may originally have been imported into the database using the Import Tool.
-- If reimporting is desired, configuration of the import tool may be used to select which imports might run and let them point to the desired file location of an IO file.
+- These files might be copied somewhere for reference.
+- If reimporting is desired, configuration of the import tool may be used to select which imports might run.
+- And let the config entries point to the desired file location of an IO file.
