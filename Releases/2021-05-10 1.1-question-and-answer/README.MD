@@ -61,5 +61,6 @@ IO Files
 
 - These were the files that may originally have been imported into the database using the Import Tool.
 - These files might be copied somewhere for reference.
+- Perhaps in a sub-folder "IO Files" in the installation folder of the Import Tool.
 - If reimporting is desired, configuration of the import tool may be used to select which imports might run.
 - And let the config entries point to the desired file location of an IO file.
