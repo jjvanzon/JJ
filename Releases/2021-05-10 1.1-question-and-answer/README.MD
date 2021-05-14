@@ -6,7 +6,7 @@ QuestionAndAnswer Release 1.1
 Changes
 -------
 
-The Import Tool was added, which may now be fixed not to crash for import source W3CSpecCss21_UserInterface_LooseDefinitions. Then an attempt was made to add that import to the accompanying database. Some imperfections in the import tool might be commented on in this document.
+The Import Tool was added, which may now be fixed not to crash for import source W3CSpecCss21_UserInterface_LooseDefinitions. Then an attempt was made to add that import to the accompanying database. Installation instructions might be found in the README as wel a description of some imperfections of the import tool.
 
 Database
 --------
