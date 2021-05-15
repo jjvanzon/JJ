@@ -11,7 +11,7 @@ Installation instructions might be found in the README as wel a description of s
 Changes
 -------
 
-- Changes to Question & Answer Import :
+- Changes to Question & Answer Import:
 - Tried to removed excessive "-->" from (Prod) config.
 - Tried to show message box upon exception.
 - Tried giving it a more esthetic window title.
