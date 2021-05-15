@@ -1,10 +1,12 @@
-QuestionAndAnswer Release 1.2
+Question & Answer Release 1.2
 =============================
 
 *2021-05-15*
 
 Introduction
 ------------
+
+Question & Answer is an app that might train knowledge about certain topics, by randomly asking questions about raw facts about the topic.
 
 Installation instructions might be found in the README as wel a description of some imperfections.
 
@@ -23,7 +25,7 @@ Database
 - The file might be unzipped and restored in SQL Server with name PROD_QuestionAndAnswerDB.
 - The database user name "prod" may be expected with password "prod".
 - If needed, different database name / user name / password might be configured.
-- The web.config and app.config in the web site files and/or import tool might need to be changed for that.
+- The configs in the web site files and/or import tool might need to be changed for that.
 
 Web Site Files
 --------------
@@ -46,7 +48,7 @@ Import Tool
 - Questions with answers and other content.
 - This import tool might not need to run again.
 - Using its config, imports may be selected to run or not.
-- The config may also allow you to select the file path of a possible file to import.
+- The config may also allow you to select the file path of a possible file to import. ("JJ.Presentation.QuestionAndAnswer.Import.WinForms.exe.config")
 
 ### Imperfections
 
@@ -61,5 +63,5 @@ IO Files
 - Might be found in "QuestionAndAnswer.IO.Files.1.2.zip".
 - These files that may originally have been imported into the database using the Import Tool.
 - It is suggested to copy them to a sub-folder "IO Files" in the installation folder of the Import Tool.
-- If reimporting is desired, configuration of the import tool may be used to select which imports might run.
+- If reimporting is desired, configuration of the import tool may be used to select which imports might run. ("JJ.Presentation.QuestionAndAnswer.Import.WinForms.exe.config")
 - And let the config entries point to the desired file location of an IO file.
