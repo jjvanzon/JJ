@@ -22,7 +22,7 @@ Database
 - The database backup may be in the file "QuestionAndAnswerDB.1.2.zip"
 - The file might be unzipped and restored in SQL Server with name PROD_QuestionAndAnswerDB.
 - The database user name "prod" may be expected with password "prod".
-- If needed, different database name / user name / password might be configured differently.
+- If needed, different database name / user name / password might be configured.
 - The web.config and app.config in the web site files and/or import tool might need to be changed for that.
 
 Web Site Files
