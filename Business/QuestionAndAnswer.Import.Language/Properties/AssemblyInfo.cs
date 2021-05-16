@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("JJ.Business.QuestionAndAnswer.Import.Language")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan-Joost van Zon")]
-[assembly: AssemblyProduct("JJ.Business.QuestionAndAnswer.Import.Language")]
-[assembly: AssemblyCopyright("Copyright © 2018 Jan-Joost van Zon")]
+[assembly: AssemblyCompany("Jan Joost van Zon")]
+[assembly: AssemblyProduct("JJ.QuestionAndAnswer")]
+[assembly: AssemblyCopyright("Copyright © 2018 - 2021 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

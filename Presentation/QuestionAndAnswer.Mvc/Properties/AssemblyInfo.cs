@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("JJ.Presentation.QuestionAndAnswer.Mvc")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JJ.Presentation.QuestionAndAnswer.Mvc")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("Jan Joost van Zon")]
+[assembly: AssemblyProduct("JJ.QuestionAndAnswer")]
+[assembly: AssemblyCopyright("Copyright © 2015 - 2021 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
