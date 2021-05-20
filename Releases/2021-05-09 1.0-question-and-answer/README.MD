@@ -3,10 +3,16 @@ QuestionAndAnswer Release 1.0
 
 *2021-05-09*
 
+Prerequisites
+-------------
+
+- *Microsoft SQL Server* may be required which may be downloaded elsewhere.
+- IIS (Internet Information Services) might be needed, which may be installed by activating it as a *Windows component* on some operating systems.
+
 Database
 --------
 
-- The database backup may be in the file "QuestionAndAnswerDB.1.0.zip" 
+- A database backup may be in the file "QuestionAndAnswerDB.1.0.zip" 
 - The file might be unzipped and restored in SQL Server with name PROD_QuestionAndAnswerDB.
 - The database user name "prod" may be expected with password "prod".
 - If needed, different database name / user name / password might be configured.

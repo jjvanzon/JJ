@@ -3,12 +3,14 @@ Question & Answer Release 1.2
 
 *2021-05-15*
 
+
 Introduction
 ------------
 
 Question & Answer is an app that might train knowledge about certain topics, by randomly asking questions about raw facts about the topic.
 
 Installation instructions might be found in the README as wel a description of some imperfections.
+
 
 Changes
 -------
@@ -17,6 +19,14 @@ Changes
 - Tried to removed excessive "-->" from (Prod) config.
 - Tried to show message box upon exception.
 - Tried giving it a more esthetic window title.
+
+
+Prerequisites
+-------------
+
+- *Microsoft SQL Server* may be required, which may be downloaded elsewhere.
+- IIS (Internet Information Services) might be needed, which may be installed by activating it as a *Windows component* on some operating systems.
+
 
 Database
 --------

@@ -3,10 +3,19 @@ QuestionAndAnswer Release 1.1
 
 *2021-05-10*
 
+
 Changes
 -------
 
 The Import Tool was added, which may now be fixed not to crash for import source W3CSpecCss21_UserInterface_LooseDefinitions. Then an attempt was made to add that import to the accompanying database. Installation instructions might be found in the README as wel a description of some imperfections of the import tool.
+
+
+Prerequisites
+-------------
+
+- *Microsoft SQL Server* may be required, which may be downloaded elsewhere.
+- IIS (Internet Information Services) might be needed, which may be installed by activating it as a *Windows component* on some operating systems.
+
 
 Database
 --------
@@ -17,11 +26,13 @@ Database
 - If needed, different database name / user name / password might be configured.
 - The web.config and app.config in the web site files and/or import tool might be changed for that.
 
+
 Web Site Files
 --------------
 
 - "JJ.Presentation.QuestionAndAnswer.Mvc.1.1.zip" may contain the web site files.
 - It is suggested to create an IIS web site whose that connects to (a copy of) that folder (using the 'Physical path' setting).
+
 
 Import Tool
 -----------
@@ -55,6 +66,7 @@ Import Tool
     - Unintended impact of rerunning it, might be subtle.
     - *Manual edits* to questions might be overwritten by an import.
     - *Content flaggings* might be removed for re-imported questions.
+
 
 IO Files
 --------
