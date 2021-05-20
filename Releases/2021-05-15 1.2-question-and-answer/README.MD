@@ -37,11 +37,13 @@ Database
 - If needed, different database name / user name / password might be configured.
 - The configs in the web site files and/or import tool might need to be changed for that.
 
+
 Web Site Files
 --------------
 
 - "JJ.Presentation.QuestionAndAnswer.Mvc.1.2.zip" may contain the web site files.
 - It is suggested to create an IIS web site that uses (a copy of) that folder.
+
 
 Import Tool
 -----------
@@ -66,6 +68,7 @@ Import Tool
 - Unintended impact of rerunning it, might be subtle.
 - *Manual edits* to questions might be overwritten by an import.
 - *Content flaggings* might be removed for re-imported questions.
+
 
 IO Files
 --------
