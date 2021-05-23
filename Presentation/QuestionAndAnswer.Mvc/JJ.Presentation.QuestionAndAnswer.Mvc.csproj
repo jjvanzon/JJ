@@ -103,8 +103,8 @@
     <Reference Include="JJ.Framework.IO, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.IO.1.7.7810.38986\lib\net461\JJ.Framework.IO.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.JavaScript, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.JavaScript.1.7.7810.38981\lib\net461\JJ.Framework.JavaScript.dll</HintPath>
+    <Reference Include="JJ.Framework.JavaScript, Version=1.7.7813.33639, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.JavaScript.1.7.7813.33639\lib\net461\JJ.Framework.JavaScript.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.Mvc, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Mvc.1.7.7810.38986\lib\net461\JJ.Framework.Mvc.dll</HintPath>
@@ -285,13 +285,13 @@
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="JJ.Framework.Assert.js" />
-    <Content Include="JJ.Framework.Check.js" />
-    <Content Include="JJ.Framework.Cookie.js" />
-    <Content Include="JJ.Framework.RememberScrollPosition.js" />
     <Content Include="jj.framework.security example.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="JJ.Framework.Url.js" />
+    <Content Include="Scripts\JJ.Framework.Assert.js" />
+    <Content Include="Scripts\JJ.Framework.Check.js" />
+    <Content Include="Scripts\JJ.Framework.Cookie.js" />
+    <Content Include="Scripts\JJ.Framework.RememberScrollPosition.js" />
+    <Content Include="Scripts\JJ.Framework.Url.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -306,8 +306,6 @@
     <Content Include="Views\Questions\_EditCategory.cshtml" />
     <Content Include="Views\Questions\_EditLink.cshtml" />
     <Content Include="Views\Questions\_EditFlag.cshtml" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\NotAuthorized.cshtml" />
@@ -339,6 +337,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Questions\Random.cshtml" />
     <Content Include="Views\Shared\_LanguageSelector.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\themes\base\images\" />
