@@ -67,6 +67,9 @@
     <Reference Include="JJ.Framework.Reflection, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Reflection.1.7.7810.38981\lib\net461\JJ.Framework.Reflection.dll</HintPath>
     </Reference>
+    <Reference Include="JJ.Framework.Resources">
+      <HintPath>..\..\packages\JJ.Framework.Resources.1.7.7812.21917\lib\net461\JJ.Framework.Resources.dll</HintPath>
+    </Reference>
     <Reference Include="JJ.Framework.Security, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Security.1.7.7810.38986\lib\net461\JJ.Framework.Security.dll</HintPath>
     </Reference>
@@ -137,10 +140,6 @@
     <Compile Include="ViewModels\Entities\SourceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Resources\JJ.Framework.Resources.csproj">
-      <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
-      <Name>JJ.Framework.Resources</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Business\Canonical\JJ.Business.Canonical.csproj">
       <Project>{4dbe5e36-4b54-4e5f-9b4f-5bbf33a3cef1}</Project>
       <Name>JJ.Business.Canonical</Name>

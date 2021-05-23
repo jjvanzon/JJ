@@ -118,6 +118,9 @@
     <Reference Include="JJ.Framework.Reflection, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Reflection.1.7.7810.38981\lib\net461\JJ.Framework.Reflection.dll</HintPath>
     </Reference>
+    <Reference Include="JJ.Framework.Resources">
+      <HintPath>..\..\packages\JJ.Framework.Resources.1.7.7812.21917\lib\net461\JJ.Framework.Resources.dll</HintPath>
+    </Reference>
     <Reference Include="JJ.Framework.Security, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Security.1.7.7810.38986\lib\net461\JJ.Framework.Security.dll</HintPath>
     </Reference>
@@ -246,16 +249,6 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="JJ.Framework.Assert.js" />
-    <Content Include="JJ.Framework.Check.js" />
-    <Content Include="JJ.Framework.Cookie.js" />
-    <Content Include="JJ.Framework.RememberScrollPosition.js" />
-    <Content Include="JJ.Framework.Url.js" />
-    <Content Include="Scripts\JJ.Framework.Assert.js" />
-    <Content Include="Scripts\JJ.Framework.Check.js" />
-    <Content Include="Scripts\JJ.Framework.Cookie.js" />
-    <Content Include="Scripts\JJ.Framework.RememberScrollPosition.js" />
-    <Content Include="Scripts\JJ.Framework.Url.js" />
     <Content Include="Config\Dev\Web.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -292,8 +285,13 @@
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="JJ.Framework.Assert.js" />
+    <Content Include="JJ.Framework.Check.js" />
+    <Content Include="JJ.Framework.Cookie.js" />
+    <Content Include="JJ.Framework.RememberScrollPosition.js" />
     <Content Include="jj.framework.security example.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="JJ.Framework.Url.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -362,10 +360,6 @@
     <ProjectReference Include="..\..\Business\QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
       <Name>JJ.Business.QuestionAndAnswer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Resources\JJ.Framework.Resources.csproj">
-      <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
-      <Name>JJ.Framework.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\QuestionAndAnswer.DefaultRepositories\JJ.Data.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
