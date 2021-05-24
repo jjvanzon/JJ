@@ -40,6 +40,36 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Common, Version=1.7.7810.38980, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.1.7.7810.38980\lib\net461\JJ.Framework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Data, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Data.1.7.7810.38982\lib\net461\JJ.Framework.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Data.EntityFramework, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Data.EntityFramework.1.7.7810.38986\lib\net461\JJ.Framework.Data.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Data.SqlClient, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Data.SqlClient.1.7.7810.38986\lib\net461\JJ.Framework.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Exceptions, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.7.7810.38982\lib\net461\JJ.Framework.Exceptions.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.IO, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.IO.1.7.7810.38986\lib\net461\JJ.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.7.7810.38981\lib\net461\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Reflection, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.1.7.7810.38981\lib\net461\JJ.Framework.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Text, Version=1.7.7810.38980, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Text.1.7.7810.38980\lib\net461\JJ.Framework.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -47,6 +77,9 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\SqlExecutorHelper.cs" />
@@ -68,26 +101,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data.EntityFramework\JJ.Framework.Data.EntityFramework.csproj">
-      <Project>{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}</Project>
-      <Name>JJ.Framework.Data.EntityFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data.SqlClient\JJ.Framework.Data.SqlClient.csproj">
-      <Project>{CEB85F8E-D429-4510-95A5-47CC3069D412}</Project>
-      <Name>JJ.Framework.Data.SqlClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data\JJ.Framework.Data.csproj">
-      <Project>{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}</Project>
-      <Name>JJ.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
-      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
-      <Name>JJ.Framework.Exceptions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Reflection\JJ.Framework.Reflection.csproj">
-      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
-      <Name>JJ.Framework.Reflection</Name>
-    </ProjectReference>
     <ProjectReference Include="..\QuestionAndAnswer.DefaultRepositories\JJ.Data.QuestionAndAnswer.DefaultRepositories.csproj">
       <Project>{b1408e4f-4a1c-4cd6-b818-0ff37a40e2ff}</Project>
       <Name>JJ.Data.QuestionAndAnswer.DefaultRepositories</Name>

@@ -34,8 +34,53 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Business, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Business.1.7.7810.38981\lib\net461\JJ.Framework.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Collections, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Collections.1.7.7810.38982\lib\net461\JJ.Framework.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Common, Version=1.7.7810.38980, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.1.7.7810.38980\lib\net461\JJ.Framework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Configuration, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Configuration.1.7.7810.38986\lib\net461\JJ.Framework.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Conversion, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Conversion.1.7.7810.38981\lib\net461\JJ.Framework.Conversion.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Data, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Data.1.7.7810.38982\lib\net461\JJ.Framework.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Exceptions, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.7.7810.38982\lib\net461\JJ.Framework.Exceptions.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.7.7810.38981\lib\net461\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Presentation, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Presentation.1.7.7810.38982\lib\net461\JJ.Framework.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Reflection, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.1.7.7810.38981\lib\net461\JJ.Framework.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Resources">
+      <HintPath>..\..\packages\JJ.Framework.Resources.1.7.7812.21917\lib\net461\JJ.Framework.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Security, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Security.1.7.7810.38986\lib\net461\JJ.Framework.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Text, Version=1.7.7810.38980, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Text.1.7.7810.38980\lib\net461\JJ.Framework.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Validation, Version=1.7.7810.38985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Validation.1.7.7810.38985\lib\net461\JJ.Framework.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Xml, Version=1.7.7810.38985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Xml.1.7.7810.38985\lib\net461\JJ.Framework.Xml.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -95,46 +140,6 @@
     <Compile Include="ViewModels\Entities\SourceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Business\JJ.Framework.Business.csproj">
-      <Project>{F44D03E8-FEEC-40D4-B866-A87799185B4C}</Project>
-      <Name>JJ.Framework.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Collections\JJ.Framework.Collections.csproj">
-      <Project>{5D06A212-5459-47F3-8109-E012C5FC9E3A}</Project>
-      <Name>JJ.Framework.Collections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Configuration\JJ.Framework.Configuration.csproj">
-      <Project>{805A8237-05ED-40AE-8D1A-9288373EA5E0}</Project>
-      <Name>JJ.Framework.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data\JJ.Framework.Data.csproj">
-      <Project>{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}</Project>
-      <Name>JJ.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
-      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
-      <Name>JJ.Framework.Exceptions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
-      <Project>{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}</Project>
-      <Name>JJ.Framework.PlatformCompatibility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Presentation\JJ.Framework.Presentation.csproj">
-      <Project>{79B0EAC3-5159-4FC8-B3D8-53315B205444}</Project>
-      <Name>JJ.Framework.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Resources\JJ.Framework.Resources.csproj">
-      <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
-      <Name>JJ.Framework.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Security\JJ.Framework.Security.csproj">
-      <Project>{4007568E-B2B4-4FC5-AA38-34EDC272F010}</Project>
-      <Name>JJ.Framework.Security</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Validation\JJ.Framework.Validation.csproj">
-      <Project>{59DDC853-62AF-4F86-A803-3D4DD491E978}</Project>
-      <Name>JJ.Framework.Validation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Business\Canonical\JJ.Business.Canonical.csproj">
       <Project>{4dbe5e36-4b54-4e5f-9b4f-5bbf33a3cef1}</Project>
       <Name>JJ.Business.Canonical</Name>
@@ -142,14 +147,6 @@
     <ProjectReference Include="..\..\Business\QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
       <Name>JJ.Business.QuestionAndAnswer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Common\JJ.Framework.Common.csproj">
-      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
-      <Name>JJ.Framework.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Reflection\JJ.Framework.Reflection.csproj">
-      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
-      <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Canonical\JJ.Data.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
@@ -165,6 +162,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="jj.framework.security example.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

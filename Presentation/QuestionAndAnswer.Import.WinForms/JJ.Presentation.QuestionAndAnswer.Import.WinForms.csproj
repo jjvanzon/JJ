@@ -37,9 +37,96 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentNHibernate.2.1.2\lib\net461\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Iesi.Collections.4.0.4\lib\net461\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Business, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Business.1.7.7810.38981\lib\net461\JJ.Framework.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Collections, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Collections.1.7.7810.38982\lib\net461\JJ.Framework.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Common, Version=1.7.7810.38980, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.1.7.7810.38980\lib\net461\JJ.Framework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Configuration, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Configuration.1.7.7810.38986\lib\net461\JJ.Framework.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Conversion, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Conversion.1.7.7810.38981\lib\net461\JJ.Framework.Conversion.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Data, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Data.1.7.7810.38982\lib\net461\JJ.Framework.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Data.NHibernate, Version=1.7.7810.38987, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Data.NHibernate.1.7.7810.38987\lib\net461\JJ.Framework.Data.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Data.SqlClient, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Data.SqlClient.1.7.7810.38986\lib\net461\JJ.Framework.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Drawing, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Drawing.1.7.7810.38986\lib\net461\JJ.Framework.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Exceptions, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.7.7810.38982\lib\net461\JJ.Framework.Exceptions.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.IO, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.IO.1.7.7810.38986\lib\net461\JJ.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Logging, Version=1.7.7810.38985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Logging.1.7.7810.38985\lib\net461\JJ.Framework.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Mathematics, Version=1.7.7810.38985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Mathematics.1.7.7810.38985\lib\net461\JJ.Framework.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.7.7810.38981\lib\net461\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Presentation, Version=1.7.7810.38982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Presentation.1.7.7810.38982\lib\net461\JJ.Framework.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Reflection, Version=1.7.7810.38981, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.1.7.7810.38981\lib\net461\JJ.Framework.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Text, Version=1.7.7810.38980, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Text.1.7.7810.38980\lib\net461\JJ.Framework.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.VectorGraphics, Version=1.7.7810.38985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.VectorGraphics.1.7.7810.38985\lib\net461\JJ.Framework.VectorGraphics.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.WinForms, Version=1.7.7810.38986, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.WinForms.1.7.7810.38986\lib\net461\JJ.Framework.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Xml, Version=1.7.7810.38985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Xml.1.7.7810.38985\lib\net461\JJ.Framework.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=5.1.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NHibernate.5.1.3\lib\net461\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq.EagerFetching, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Remotion.Linq.EagerFetching.2.2.0\lib\net45\Remotion.Linq.EagerFetching.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +185,7 @@
     <None Include="IO Files\DutchToPolishFriendly.xlsx" />
     <None Include="IO Files\DutchToPolishHomeImprovement.csv" />
     <None Include="IO Files\DutchToPolishHomeImprovement.xlsx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -128,26 +216,6 @@
     <Content Include="IO Files\W3CSpecCss21_VisualFormattingModelDetails.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Configuration\JJ.Framework.Configuration.csproj">
-      <Project>{805A8237-05ED-40AE-8D1A-9288373EA5E0}</Project>
-      <Name>JJ.Framework.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data.NHibernate\JJ.Framework.Data.NHibernate.csproj">
-      <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
-      <Name>JJ.Framework.Data.NHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Data\JJ.Framework.Data.csproj">
-      <Project>{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}</Project>
-      <Name>JJ.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
-      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
-      <Name>JJ.Framework.Exceptions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\WinForms\JJ.Framework.WinForms.csproj">
-      <Project>{84A66716-C686-4B8E-A092-CFE38CA7DDE0}</Project>
-      <Name>JJ.Framework.WinForms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Business\QuestionAndAnswer.Import.W3CSpecCss3\JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3.csproj">
       <Project>{d2ebc8ce-4fc5-43c0-9cef-f060c2e4b439}</Project>
       <Name>JJ.Business.QuestionAndAnswer.Import.W3CSpecCss3</Name>
@@ -163,14 +231,6 @@
     <ProjectReference Include="..\..\Business\QuestionAndAnswer\JJ.Business.QuestionAndAnswer.csproj">
       <Project>{b473be3e-3dca-4418-bfa0-9ebf0e024350}</Project>
       <Name>JJ.Business.QuestionAndAnswer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Common\JJ.Framework.Common.csproj">
-      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
-      <Name>JJ.Framework.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\JJ.Framework\Framework\Text\JJ.Framework.Text.csproj">
-      <Project>{964de0b4-27f8-40f8-8d50-c97388bf8ce2}</Project>
-      <Name>JJ.Framework.Text</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\QuestionAndAnswer.EntityFramework\JJ.Data.QuestionAndAnswer.EntityFramework.csproj">
       <Project>{ffe345e3-1f70-40e8-bb12-9cb377ef7eb5}</Project>
