@@ -122,6 +122,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\JJ.Framework.Resources.1.7.7817.43034\lib\net461\JJ.Framework.Resources.dll</HintPath>
     </Reference>
+    <Reference Include="JJ.Framework.ResourceStrings, Version=1.7.7818.38307, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.ResourceStrings.1.7.7818.38307\lib\net461\JJ.Framework.ResourceStrings.dll</HintPath>
+    </Reference>
     <Reference Include="JJ.Framework.Security, Version=1.7.7817.43035, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Security.1.7.7817.43035\lib\net461\JJ.Framework.Security.dll</HintPath>
     </Reference>

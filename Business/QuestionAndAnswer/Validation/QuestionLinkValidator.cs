@@ -1,6 +1,6 @@
 ﻿using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Resources;
+using JJ.Framework.ResourceStrings;
 using JJ.Framework.Validation;
 
 namespace JJ.Business.QuestionAndAnswer.Validation

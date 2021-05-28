@@ -8,7 +8,7 @@ using JJ.Data.QuestionAndAnswer;
 using JJ.Framework.Business;
 using JJ.Framework.Collections;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Resources;
+using JJ.Framework.ResourceStrings;
 using JJ.Framework.Validation;
 using JJ.Presentation.QuestionAndAnswer.Extensions;
 using JJ.Presentation.QuestionAndAnswer.Helpers;
