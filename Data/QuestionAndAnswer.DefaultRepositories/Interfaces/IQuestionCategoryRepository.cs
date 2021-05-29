@@ -2,6 +2,6 @@
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces
 {
-	public interface IQuestionCategoryRepository : IRepository<QuestionCategory, int>
-	{ }
+    public interface IQuestionCategoryRepository : IRepository<QuestionCategory, int>
+    { }
 }

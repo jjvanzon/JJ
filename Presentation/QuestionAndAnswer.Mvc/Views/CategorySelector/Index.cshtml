@@ -77,73 +77,73 @@
 {
     <script>
 
-		function liAvailableCategory_onDragStart(ev) {
-			ev.dataTransfer.setData("liAvailableCategoryId", ev.target.id);
-		}
+        function liAvailableCategory_onDragStart(ev) {
+            ev.dataTransfer.setData("liAvailableCategoryId", ev.target.id);
+        }
 
-		function divSelectedCategories_onDragOver(ev) {
-			ev.preventDefault();
-		}
+        function divSelectedCategories_onDragOver(ev) {
+            ev.preventDefault();
+        }
 
-		function divSelectedCategories_onDrop(ev) {
-			ev.preventDefault();
+        function divSelectedCategories_onDrop(ev) {
+            ev.preventDefault();
 
-			var elementId = ev.dataTransfer.getData("liAvailableCategoryId");
+            var elementId = ev.dataTransfer.getData("liAvailableCategoryId");
 
-			addCategory(elementId);
-		}
+            addCategory(elementId);
+        }
 
-		function liSelectedCategory_onDragStart(ev) {
-			ev.dataTransfer.setData("liSelectedCategoryId", ev.target.id);
-		}
+        function liSelectedCategory_onDragStart(ev) {
+            ev.dataTransfer.setData("liSelectedCategoryId", ev.target.id);
+        }
 
-		function divAvailableCategories_onDragOver(ev) {
-			ev.preventDefault();
-		}
+        function divAvailableCategories_onDragOver(ev) {
+            ev.preventDefault();
+        }
 
-		function divAvailableCategories_onDrop(ev) {
-			ev.preventDefault();
+        function divAvailableCategories_onDrop(ev) {
+            ev.preventDefault();
 
-			var elementId = ev.dataTransfer.getData("liSelectedCategoryId");
+            var elementId = ev.dataTransfer.getData("liSelectedCategoryId");
 
-			removeCategory(elementId);
-		}
+            removeCategory(elementId);
+        }
 
-		$(document).ready(function() {
-			$("li.category.available").dblclick(function(ev) {
-				var elementId = ev.target.id;
-				addCategory(elementId);
-			});
+        $(document).ready(function() {
+            $("li.category.available").dblclick(function(ev) {
+                var elementId = ev.target.id;
+                addCategory(elementId);
+            });
 
-			$("li.category.selected").dblclick(function(ev) {
-				var elementId = ev.target.id;
-				removeCategory(elementId);
-			});
-		});
+            $("li.category.selected").dblclick(function(ev) {
+                var elementId = ev.target.id;
+                removeCategory(elementId);
+            });
+        });
 
-		function removeCategory(elementId) {
-			var element = document.getElementById(elementId);
-			var categoryID = element.getAttribute("data-category-id");
+        function removeCategory(elementId) {
+            var element = document.getElementById(elementId);
+            var categoryID = element.getAttribute("data-category-id");
 
-			var url =
-				'@Html.Raw(Url.ActionWithParams(nameof(ActionNames.Remove), nameof(ControllerNames.CategorySelector), nameof(ActionParameterNames.categoryID), ""))'; // Parameter value is added later.
-			url = url + encodeURI(categoryID);
+            var url =
+                '@Html.Raw(Url.ActionWithParams(nameof(ActionNames.Remove), nameof(ControllerNames.CategorySelector), nameof(ActionParameterNames.categoryID), ""))'; // Parameter value is added later.
+            url = url + encodeURI(categoryID);
 
-			window.document.forms[0].action = url;
-			window.document.forms[0].submit();
-		}
+            window.document.forms[0].action = url;
+            window.document.forms[0].submit();
+        }
 
-		function addCategory(elementId) {
-			var element = document.getElementById(elementId);
-			var categoryID = element.getAttribute("data-category-id");
+        function addCategory(elementId) {
+            var element = document.getElementById(elementId);
+            var categoryID = element.getAttribute("data-category-id");
 
-			var url =
-				'@Html.Raw(Url.ActionWithParams(nameof(ActionNames.Add), nameof(ControllerNames.CategorySelector), nameof(ActionParameterNames.categoryID), ""))'; // Parameter value is added later.
-			url = url + encodeURI(categoryID);
+            var url =
+                '@Html.Raw(Url.ActionWithParams(nameof(ActionNames.Add), nameof(ControllerNames.CategorySelector), nameof(ActionParameterNames.categoryID), ""))'; // Parameter value is added later.
+            url = url + encodeURI(categoryID);
 
-			window.document.forms[0].action = url;
-			window.document.forms[0].submit();
-		};
+            window.document.forms[0].action = url;
+            window.document.forms[0].submit();
+        };
 
     </script>
 }

@@ -2,8 +2,8 @@
 
 namespace JJ.Presentation.QuestionAndAnswer.ViewModels
 {
-	public sealed class QuestionNotFoundViewModel
-	{
-		public LoginPartialViewModel Login { get; set; }
-	}
+    public sealed class QuestionNotFoundViewModel
+    {
+        public LoginPartialViewModel Login { get; set; }
+    }
 }

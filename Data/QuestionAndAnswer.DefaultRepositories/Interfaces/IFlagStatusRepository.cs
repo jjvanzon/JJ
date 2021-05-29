@@ -2,6 +2,6 @@
 
 namespace JJ.Data.QuestionAndAnswer.DefaultRepositories.Interfaces
 {
-	public interface IFlagStatusRepository : IRepository<FlagStatus, int>
-	{ }
+    public interface IFlagStatusRepository : IRepository<FlagStatus, int>
+    { }
 }

@@ -2,11 +2,11 @@
 
 namespace JJ.Presentation.QuestionAndAnswer.Import.WinForms
 {
-	internal static class PersistenceHelper
-	{
-		public static IContext CreateContext() => ContextFactory.CreateContextFromConfiguration();
+    internal static class PersistenceHelper
+    {
+        public static IContext CreateContext() => ContextFactory.CreateContextFromConfiguration();
 
-		public static TRepositoryInterface CreateRepository<TRepositoryInterface>(IContext context)
-			=> RepositoryFactory.CreateRepositoryFromConfiguration<TRepositoryInterface>(context);
-	}
+        public static TRepositoryInterface CreateRepository<TRepositoryInterface>(IContext context)
+            => RepositoryFactory.CreateRepositoryFromConfiguration<TRepositoryInterface>(context);
+    }
 }

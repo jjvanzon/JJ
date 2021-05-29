@@ -5,21 +5,21 @@ using JJ.Data.QuestionAndAnswer.NHibernate.Names;
 namespace JJ.Data.QuestionAndAnswer.NHibernate.Mapping
 {
     [UsedImplicitly]
-	public class CategoryMapping : ClassMap<Category>
-	{
-		public CategoryMapping()
-		{
-			Id(x => x.ID);
+    public class CategoryMapping : ClassMap<Category>
+    {
+        public CategoryMapping()
+        {
+            Id(x => x.ID);
 
-			Map(x => x.Identifier);
-			Map(x => x.Description);
-			Map(x => x.IsActive);
+            Map(x => x.Identifier);
+            Map(x => x.Description);
+            Map(x => x.IsActive);
 
-			References(x => x.ParentCategory, ColumnNames.ParentCategoryID);
+            References(x => x.ParentCategory, ColumnNames.ParentCategoryID);
 
-			HasMany(x => x.SubCategories).KeyColumn(ColumnNames.ParentCategoryID).Inverse();
-			HasMany(x => x.CategoryQuestions).KeyColumn(ColumnNames.CategoryID).Inverse();
-			HasMany(x => x.CategoryRuns).KeyColumn(ColumnNames.CategoryID).Inverse();
-		}
-	}
+            HasMany(x => x.SubCategories).KeyColumn(ColumnNames.ParentCategoryID).Inverse();
+            HasMany(x => x.CategoryQuestions).KeyColumn(ColumnNames.CategoryID).Inverse();
+            HasMany(x => x.CategoryRuns).KeyColumn(ColumnNames.CategoryID).Inverse();
+        }
+    }
 }

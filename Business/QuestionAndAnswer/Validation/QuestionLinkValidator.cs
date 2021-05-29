@@ -5,14 +5,14 @@ using JJ.Framework.Validation;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
-	public class QuestionLinkValidator : VersatileValidator
-	{
-		public QuestionLinkValidator(QuestionLink entity)
-		{
-			if (entity == null) throw new NullException(() => entity);
+    public class QuestionLinkValidator : VersatileValidator
+    {
+        public QuestionLinkValidator(QuestionLink entity)
+        {
+            if (entity == null) throw new NullException(() => entity);
 
-			For(entity.Description, CommonResourceFormatter.Description).NotNullOrWhiteSpace();
-			For(entity.Url, CommonResourceFormatter.Url).NotNullOrWhiteSpace();
-		}
-	}
+            For(entity.Description, CommonResourceFormatter.Description).NotNullOrWhiteSpace();
+            For(entity.Url, CommonResourceFormatter.Url).NotNullOrWhiteSpace();
+        }
+    }
 }

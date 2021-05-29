@@ -5,14 +5,14 @@ using JJ.Framework.Validation;
 
 namespace JJ.Business.QuestionAndAnswer.Validation
 {
-	public class QuestionCategoryValidator : VersatileValidator
-	{
-		public QuestionCategoryValidator(QuestionCategory entity)
-		{
-			if (entity == null) throw new NullException(() => entity);
+    public class QuestionCategoryValidator : VersatileValidator
+    {
+        public QuestionCategoryValidator(QuestionCategory entity)
+        {
+            if (entity == null) throw new NullException(() => entity);
 
-			For(entity.Question, ResourceFormatter.Question).NotNull();
-			For(entity.Category, ResourceFormatter.Category).NotNull();
-		}
-	}
+            For(entity.Question, ResourceFormatter.Question).NotNull();
+            For(entity.Category, ResourceFormatter.Category).NotNull();
+        }
+    }
 }

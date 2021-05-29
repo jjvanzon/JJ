@@ -8,58 +8,58 @@ using ActionDispatcher = JJ.Presentation.QuestionAndAnswer.Mvc.Helpers.ActionDis
 
 namespace JJ.Presentation.QuestionAndAnswer.Mvc.Controllers
 {
-	public class CategorySelectorController : MasterController
-	{
-		public ActionResult Index()
-		{
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
-			{
-				using (IContext context = PersistenceHelper.CreateContext())
-				{
-					CategorySelectorRepositories repositories = CreateRepositories(context);
-					CategorySelectorPresenter presenter = CreatePresenter(repositories);
-					viewModel = presenter.Show();
-				}
-			}
+    public class CategorySelectorController : MasterController
+    {
+        public ActionResult Index()
+        {
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+            {
+                using (IContext context = PersistenceHelper.CreateContext())
+                {
+                    CategorySelectorRepositories repositories = CreateRepositories(context);
+                    CategorySelectorPresenter presenter = CreatePresenter(repositories);
+                    viewModel = presenter.Show();
+                }
+            }
 
-			return ActionDispatcher.Dispatch(this, viewModel);
-		}
+            return ActionDispatcher.Dispatch(this, viewModel);
+        }
 
-		[HttpPost]
-		public ActionResult Add(CategorySelectorViewModel userInput, int categoryID)
-		{
-			using (IContext context = PersistenceHelper.CreateContext())
-			{
-				CategorySelectorRepositories repositories = CreateRepositories(context);
-				CategorySelectorPresenter presenter = CreatePresenter(repositories);
-				CategorySelectorViewModel viewModel = presenter.Add(userInput, categoryID);
-				return ActionDispatcher.Dispatch(this, viewModel);
-			}
-		}
+        [HttpPost]
+        public ActionResult Add(CategorySelectorViewModel userInput, int categoryID)
+        {
+            using (IContext context = PersistenceHelper.CreateContext())
+            {
+                CategorySelectorRepositories repositories = CreateRepositories(context);
+                CategorySelectorPresenter presenter = CreatePresenter(repositories);
+                CategorySelectorViewModel viewModel = presenter.Add(userInput, categoryID);
+                return ActionDispatcher.Dispatch(this, viewModel);
+            }
+        }
 
-		[HttpPost]
-		public ActionResult Remove(CategorySelectorViewModel userInput, int categoryID)
-		{
-			using (IContext context = PersistenceHelper.CreateContext())
-			{
-				CategorySelectorRepositories repositories = CreateRepositories(context);
-				CategorySelectorPresenter presenter = CreatePresenter(repositories);
-				CategorySelectorViewModel viewModel = presenter.Remove(userInput, categoryID);
-				return ActionDispatcher.Dispatch(this, viewModel);
-			}
-		}
+        [HttpPost]
+        public ActionResult Remove(CategorySelectorViewModel userInput, int categoryID)
+        {
+            using (IContext context = PersistenceHelper.CreateContext())
+            {
+                CategorySelectorRepositories repositories = CreateRepositories(context);
+                CategorySelectorPresenter presenter = CreatePresenter(repositories);
+                CategorySelectorViewModel viewModel = presenter.Remove(userInput, categoryID);
+                return ActionDispatcher.Dispatch(this, viewModel);
+            }
+        }
 
-		// Helpers
+        // Helpers
 
-		private CategorySelectorPresenter CreatePresenter(CategorySelectorRepositories repositories)
-			=> new CategorySelectorPresenter(
-				repositories.CategoryRepository,
-				repositories.UserRepository,
-				TryGetAuthenticatedUserName());
+        private CategorySelectorPresenter CreatePresenter(CategorySelectorRepositories repositories)
+            => new CategorySelectorPresenter(
+                repositories.CategoryRepository,
+                repositories.UserRepository,
+                TryGetAuthenticatedUserName());
 
-		private CategorySelectorRepositories CreateRepositories(IContext context)
-			=> new CategorySelectorRepositories(
-				PersistenceHelper.CreateRepository<ICategoryRepository>(context),
-				PersistenceHelper.CreateRepository<IUserRepository>(context));
-	}
+        private CategorySelectorRepositories CreateRepositories(IContext context)
+            => new CategorySelectorRepositories(
+                PersistenceHelper.CreateRepository<ICategoryRepository>(context),
+                PersistenceHelper.CreateRepository<IUserRepository>(context));
+    }
 }
