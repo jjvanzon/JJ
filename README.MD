@@ -6,7 +6,7 @@ Larger code base with multiple applications:
 - Question & Answer
 - Some misc demos
 
-These projects used to be in there, but were moved to the Archive folder, because they have their own separate repositories now:
+The following projects used to be in there, but were moved to the Archive folder, because they have their own separate repositories now:
 
 - [JJ.Framework](https://github.com/jjvanzon/JJ.Framework)
 - [JJ.Synthesizer](https://github.com/jjvanzon/JJ.Synthesizer)
@@ -17,7 +17,7 @@ Modularization
 
 Circle3 was the previous code base, that started being developed around 2010. It was about a quite specific way of programming, not like mainstream .NET development. It had a first-order grouping by functionality.
 
-The way of working was not portable between what I do at home and what I do at the office. My ideas about software architecture have changed.
+The way of working was not portable between what I did at home and what I did at the office. My ideas about software architecture have changed.
 
 JJ code base is newer. It started being developed around 2013. Its architecture is more agnostic about specific data models, specific programming models, specific API's and specific functionality. The first order grouping is now by technical aspects such as apps, services, framework, validation, security, etcetera. The idea is that that software architecture might accommodate different types of programming and different types of functionality in an orderly fashion.
 
@@ -39,13 +39,13 @@ Setting Up Dev Environment
 
 - Some web projects might like to run on IIS (Internet Information Services).
 - Otherwise they may not load.
-- Trying to *reload* a web project:
-- The Output window in Visual Studio could show an expected web address.
+- Try to *reload* a web project:
+- The Output window in Visual Studio might show an expected web address.
 - It is suggested to install IIS.
-- Creating a web site.
+- Create a web site.
 - Point its *physical path* to the folder of the csproj that might not load.
 - Having a *binding* that uses the web address previously found in the Visual Studio output as a *host name*.
-- The file C:\Windows\System32\drivers\etc\hosts may need editing.
+- The file `C:\Windows\System32\drivers\etc\hosts` may need editing.
 - Entries like the following might be added:
 
 ```
