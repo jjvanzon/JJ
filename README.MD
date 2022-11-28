@@ -4,14 +4,13 @@ JJ Code Base
 Larger code base with multiple applications:
 
 - Question & Answer
-- SaveText prototype app
 - Some misc demos
 
 These projects used to be in there, but were moved to the Archive folder, because they have their own separate repositories now:
 
 - [JJ.Framework](https://github.com/jjvanzon/JJ.Framework)
 - [JJ.Synthesizer](https://github.com/jjvanzon/JJ.Synthesizer)
-
+- [JJ.SaveText](https://github.com/jjvanzon/JJ.SaveText)
 
 Modularization
 --------------
@@ -52,10 +51,6 @@ Setting Up Dev Environment
 ```
 127.0.0.1  dev.questionandanswer.jjvanzon.io
 ::1        dev.questionandanswer.jjvanzon.io
-127.0.0.1  dev.savetextappservice.jjvanzon.io
-::1        dev.savetextappservice.jjvanzon.io
-127.0.0.1  dev.savetext.jjvanzon.io
-::1        dev.savetext.jjvanzon.io
 ```
 
 ### Databases
@@ -65,10 +60,4 @@ Setting Up Dev Environment
 - The database backup can be found under "Database\QuestionAndAnswer"
 - The file can be unzipped and restored in SQL Server with name DEV_QuestionAndAnswerDB
 - And again with name DEV_QuestionAndAnswerDB_UnitTests
-- The database user name "dev" could be expected with password "dev".
-
-#### SaveTextDB
-
-- The folder Database\SaveTextDB should contain a database backup.
-- The file can be restored in SQL Server with name "DEV_SaveTextDB".
 - The database user name "dev" could be expected with password "dev".
