@@ -1,0 +1,1031 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JJ.Framework.Exceptions</name>
+    </assembly>
+    <members>
+        <member name="M:JJ.Framework.Exceptions.Comparative.ComparativeExceptionBase.#ctor(System.Object,System.Object)">
+            <summary>
+            throw new LessThanException(() => item.Height, 10);
+            will have message: "item.Height of 2 is less than 10."
+            throw new NotContainsException(() => TheList, new { customerNumber, customerType });
+            will have message: "TheList does not contain { customerNumber = 1234, customerType = Subscriber }."
+            throw new NotEqualException(() => item1.Height, () => item2.Height);
+            will have message: "item1.Height of 2 does not equal item2.Height of 10."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.ComparativeExceptionBase.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <summary>
+            throw new LessThanException(() => item.Height, 10);
+            will have message: "item.Height of 2 is less than 10."
+            throw new NotContainsException(() => TheList, new { customerNumber, customerType });
+            will have message: "TheList does not contain { customerNumber = 1234, customerType = Subscriber }."
+            throw new NotEqualException(() => item1.Height, () => item2.Height);
+            will have message: "item1.Height of 2 does not equal item2.Height of 10."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.ComparativeExceptionBase.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <summary>
+            throw new LessThanException(() => item.Height, 10);
+            will have message: "item.Height of 2 is less than 10."
+            throw new NotContainsException(() => TheList, new { customerNumber, customerType });
+            will have message: "TheList does not contain { customerNumber = 1234, customerType = Subscriber }."
+            throw new NotEqualException(() => item1.Height, () => item2.Height);
+            will have message: "item1.Height of 2 does not equal item2.Height of 10."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.ComparativeExceptionBase.#ctor(System.Object,System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <summary>
+            throw new LessThanException(() => item.Height, 10);
+            will have message: "item.Height of 2 is less than 10."
+            throw new NotContainsException(() => TheList, new { customerNumber, customerType });
+            will have message: "TheList does not contain { customerNumber = 1234, customerType = Subscriber }."
+            throw new NotEqualException(() => item1.Height, () => item2.Height);
+            will have message: "item1.Height of 2 does not equal item2.Height of 10."
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Comparative.ContainsException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.ContainsException.#ctor(System.Object,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.ContainsException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.ContainsException.#ctor(System.Object,System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.ContainsException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Comparative.EqualException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.EqualException.#ctor(System.Object,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.EqualException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.EqualException.#ctor(System.Object,System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.EqualException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Comparative.GreaterThanException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.GreaterThanException.#ctor(System.Object,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.GreaterThanException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.GreaterThanException.#ctor(System.Object,System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.GreaterThanException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Comparative.GreaterThanOrEqualException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.GreaterThanOrEqualException.#ctor(System.Object,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.GreaterThanOrEqualException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.GreaterThanOrEqualException.#ctor(System.Object,System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.GreaterThanOrEqualException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Comparative.LessThanException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.LessThanException.#ctor(System.Object,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.LessThanException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.LessThanException.#ctor(System.Object,System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.LessThanException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Comparative.LessThanOrEqualException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.LessThanOrEqualException.#ctor(System.Object,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.LessThanOrEqualException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.LessThanOrEqualException.#ctor(System.Object,System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.LessThanOrEqualException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Comparative.NotContainsException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.NotContainsException.#ctor(System.Object,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.NotContainsException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.NotContainsException.#ctor(System.Object,System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.NotContainsException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Comparative.NotEqualException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.NotEqualException.#ctor(System.Object,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.NotEqualException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.NotEqualException.#ctor(System.Object,System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Comparative.NotEqualException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />	
+        </member>
+        <member name="M:JJ.Framework.Exceptions.ExceptionHelper.TryFormatFullTypeName(System.Type)">
+            <param name="type">nullable</param>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.ExceptionHelper.TryFormatShortTypeName(System.Type)">
+            <param name="type">nullable</param>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.ExceptionHelper.GetTextWithValue(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <summary>
+            Will return a string in the format "{something} of {value}", e.g. "height of 0".
+            Will extract the text and the value from the expression.
+            If the value is a simple type and not empty, it will be put in the returned text.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Aggregates.ExceptionWithNameTypeAndKeyBase">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.ExceptionWithNameTypeAndKeyBase.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.ExceptionWithNameTypeAndKeyBase.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.ExceptionWithNameTypeAndKeyBase.#ctor(System.Type)">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.ExceptionWithNameTypeAndKeyBase.#ctor(System.Type,System.Object)">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.ExceptionWithNameTypeAndKeyBase.#ctor(System.Object)">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.ExceptionWithNameTypeAndKeyBase.#ctor(System.String,System.Object)">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Aggregates.InvalidIndexException">
+            <summary>An exception with a message like "index of 1 is an invalid index for list with count 0."</summary>
+        </member>
+        <member name="F:JJ.Framework.Exceptions.Aggregates.InvalidIndexException.MESSAGE_TEMPLATE">
+            <summary> Example: "outletViewModel.Keys.OutletListIndex of 1 is an invalid index for op.Outlets with count 0." </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.InvalidIndexException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <summary>Produces an exception with a message like "index of 1 is an invalid index for list with count 0."</summary>
+            <param name="listIndexExpression">For instance: () =&gt; index</param>
+            <param name="countExpression">For instance: () =&gt; list.Count</param>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Aggregates.NotFoundException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotFoundException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotFoundException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotFoundException.#ctor(System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotFoundException.#ctor(System.Type,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotFoundException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotFoundException.#ctor(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Aggregates.NotFoundException`1">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotFoundException`1.#ctor">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotFoundException`1.#ctor(System.Object)">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Aggregates.NotUniqueException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotUniqueException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotUniqueException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotUniqueException.#ctor(System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotUniqueException.#ctor(System.Type,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotUniqueException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotUniqueException.#ctor(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Aggregates.NotUniqueException`1">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotUniqueException`1.#ctor">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Aggregates.NotUniqueException`1.#ctor(System.Object)">
+             <summary>
+             throw new NotFoundException&lt;Customer&gt;(10);
+             will have message: "Customer with key 10 not found."
+             throw new NotFoundException&lt;User&gt;();
+             will have message: "User not found."
+             throw new NotUniqueException(typeof(Product), () => productNumber);
+             will have message: "Product with productNumber 123 not unique."
+            
+             throw new NotFoundException(() => item.Parent);
+             will have message: "item.Parent not found."
+             throw new NotUniqueException(new { customerNumber, customerType });
+             will have message: "{ customerNumber = 1234, customerType = Subscriber } not unique."
+             throw new NotFoundException(10);
+             will have message: "10 not found."
+             throw new NotUniqueException(nameof(value));
+             will have message: "value not unique."
+             
+             throw new NotUniqueException(() => item.MyProperty, 10);
+             will have message: "item.MyProperty with key 10 not unique."
+             throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
+             will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
+             </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NullException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NullException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NullException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.CollectionEmptyException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.CollectionEmptyException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.CollectionEmptyException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.CollectionNotEmptyException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.CollectionNotEmptyException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.CollectionNotEmptyException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.HasNullsException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.HasNullsException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.HasNullsException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.HasValueException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.HasValueException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.HasValueException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.InfinityException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.InfinityException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.InfinityException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.InvalidReferenceException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.InvalidReferenceException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.InvalidReferenceException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.IsDateTimeException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.IsDateTimeException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.IsDateTimeException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.IsDecimalException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.IsDecimalException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.IsDecimalException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.IsDoubleException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.IsDoubleException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.IsDoubleException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.IsIntegerException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.IsIntegerException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.IsIntegerException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NaNException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NaNException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NaNException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotDateTimeException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotDateTimeException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotDateTimeException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotDecimalException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotDecimalException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotDecimalException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotDoubleException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotDoubleException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotDoubleException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotHasValueException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotHasValueException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotHasValueException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotInfinityException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotInfinityException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotInfinityException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotIntegerException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotIntegerException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotIntegerException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotNaNException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotNaNException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotNaNException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotNullException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotNullException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotNullException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotNullOrEmptyException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotNullOrEmptyException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotNullOrEmptyException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NotNullOrWhiteSpaceException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotNullOrWhiteSpaceException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NotNullOrWhiteSpaceException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NullOrEmptyException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NullOrEmptyException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NullOrEmptyException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.NullOrWhiteSpaceException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NullOrWhiteSpaceException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.NullOrWhiteSpaceException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.ZeroException">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.ZeroException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.ZeroException.#ctor(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.Exceptions.Basic.BasicExceptionBase">
+            <summary>
+            throw new NullException(() => item.Parent);
+            will have message: "item.Parent is null."
+            throw new NotIntegerException(() => height);
+            will have message: "height of q12 is not an integer number."
+            throw new NullException(nameof(myParam));
+            will have message: "myParam is null."
+            throw new InvalidReferenceException(new { customerNumber, customerType });
+            will have message: "{ customerNumber = 1234, customerType = Subscriber } not found in list."
+            throw new NotIntegerException(height);
+            will have message: "10q is not an integer number".
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.BasicExceptionBase.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <summary>
+            throw new NullException(() => item.Parent);
+            will have message: "item.Parent is null."
+            throw new NotIntegerException(() => height);
+            will have message: "height of q12 is not an integer number."
+            throw new NullException(nameof(myParam));
+            will have message: "myParam is null."
+            throw new InvalidReferenceException(new { customerNumber, customerType });
+            will have message: "{ customerNumber = 1234, customerType = Subscriber } not found in list."
+            throw new NotIntegerException(height);
+            will have message: "10q is not an integer number".
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Basic.BasicExceptionBase.#ctor(System.Object)">
+            <summary>
+            throw new NullException(() => item.Parent);
+            will have message: "item.Parent is null."
+            throw new NotIntegerException(() => height);
+            will produce an exception like: "height of q12 is not an integer number."
+            throw new NullException(nameof(myParam));
+            will produce the exception message: "myParam is null."
+            throw new InvalidReferenceException(new { customerNumber, customerType });
+            will produce an exception like: "{ customerNumber = 1234, customerType = Subscriber } not found in list."
+            throw new NotIntegerException(height);
+            will produce an exception like: "10q is not an integer number".
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Files.FileAlreadyExistsException.#ctor(System.String)">
+            <summary>
+            throw new FileAlreadyExistsException("test.txt")
+            will have message: "File 'test.txt' already exists."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Files.FileDoesNotExistException.#ctor(System.String)">
+            <summary>
+            throw new FileDoesNotExistException("test.txt")
+            will have message: "File 'test.txt' does not exist."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Files.FolderAlreadyExistsException.#ctor(System.String)">
+            <summary>
+            throw new FolderAlreadyExistsException("C:\MyFolder")
+            will have message: "Folder 'C:\MyFolder' already exists."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.Files.FolderDoesNotExistException.#ctor(System.String)">
+            <summary>
+            throw new FolderDoesNotExistException("C:\MyFolder")
+            will have message: "Folder 'C:\MyFolder' does not exist."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.InvalidValues.InvalidValueException.#ctor(System.Object)">
+            <summary>
+            throw new InvalidValueException(customerType);
+            will have message: "Invalid CustomerType value: 'Undefined'."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.InvalidValues.ValueNotSupportedException.#ctor(System.Object)">
+            <summary>
+            throw new ValueNotSupportedException(customerType);
+            will have message: "CustomerType value 'Subscriber' is not supported."
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.NameOfOnlyException">
+            <summary>
+            For when you want a member only to be used with the nameof operator,
+            you can throw this exception in its implementation.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsEnumTypeException.#ctor(System.Type)">
+            <summary>
+            throw new IsEnumTypeException(myType)
+            will have message: "Type Customer cannot be an enum."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsEnumTypeException`1.#ctor">
+            <summary>
+            throw new IsEnumTypeException&lt;Customer&gt;();
+            will have message: "Type Customer cannot be an enum."
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.TypeChecking.IsNotTypeException">
+            <summary>
+            The difference between IsNotTypeException and UnexpectedTypeException
+            is that UnexpectedTypeException only mentions what type it is not,
+            not what type is expected.
+            Example of produced error messages: "Nala is not of type Dog.", 
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsNotTypeException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Type)">
+            <summary>
+            These will all have message: "Dog room.MyPet is not of type Cat.":
+            throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsNotTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = A } is not of type Int32.":
+            throw new IsNotTypeException&lt;int&gt;(new { number });
+            throw new IsNotTypeException(new { number }, typeof(int));
+            throw new IsNotTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsNotTypeException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.String)">
+            <summary>
+            These will all have message: "Dog room.MyPet is not of type Cat.":
+            throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsNotTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = A } is not of type Int32.":
+            throw new IsNotTypeException&lt;int&gt;(new { number });
+            throw new IsNotTypeException(new { number }, typeof(int));
+            throw new IsNotTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsNotTypeException.#ctor(System.Object,System.Type)">
+            <summary>
+            These will all have message: "Dog room.MyPet is not of type Cat.":
+            throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsNotTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = A } is not of type Int32.":
+            throw new IsNotTypeException&lt;int&gt;(new { number });
+            throw new IsNotTypeException(new { number }, typeof(int));
+            throw new IsNotTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsNotTypeException.#ctor(System.Object,System.String)">
+            <summary>
+            These will all have message: "Dog room.MyPet is not of type Cat.":
+            throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsNotTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = A } is not of type Int32.":
+            throw new IsNotTypeException&lt;int&gt;(new { number });
+            throw new IsNotTypeException(new { number }, typeof(int));
+            throw new IsNotTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsTypeException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.Type)">
+            <summary>
+            These will all have message: "room.MyPet cannot be of type Cat.""
+            throw new IsTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = 10 } cannot be of type Int32.":
+            throw new IsTypeException&lt;int&gt;(new { number });
+            throw new IsTypeException(new { number }, typeof(int));
+            throw new IsTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsTypeException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}},System.String)">
+            <summary>
+            These will all have message: "room.MyPet cannot be of type Cat.""
+            throw new IsTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = 10 } cannot be of type Int32.":
+            throw new IsTypeException&lt;int&gt;(new { number });
+            throw new IsTypeException(new { number }, typeof(int));
+            throw new IsTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsTypeException.#ctor(System.Object,System.Type)">
+            <summary>
+            throw new IsTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsTypeException(() => room.MyPet, "Cat");
+            will all have message: "room.MyPet cannot be of type Cat."
+            throw new IsTypeException&lt;int&gt;(new { number });
+            throw new IsTypeException(new { number }, typeof(int));
+            throw new IsTypeException(new { number }, "Int32"));
+            will all have message: "{ number = 10 } cannot be of type Int32."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsTypeException.#ctor(System.Object,System.String)">
+            <summary>
+            throw new IsTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsTypeException(() => room.MyPet, "Cat");
+            will all have message: "room.MyPet cannot be of type Cat."
+            throw new IsTypeException&lt;int&gt;(new { number });
+            throw new IsTypeException(new { number }, typeof(int));
+            throw new IsTypeException(new { number }, "Int32"));
+            will all have message: "{ number = 10 } cannot be of type Int32."
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.TypeChecking.IsNotTypeException`1">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsNotTypeException`1.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <summary>
+            These will all have message: "Dog room.MyPet is not of type Cat.":
+            throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsNotTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = A } is not of type Int32.":
+            throw new IsNotTypeException&lt;int&gt;(new { number });
+            throw new IsNotTypeException(new { number }, typeof(int));
+            throw new IsNotTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsNotTypeException`1.#ctor(System.Object)">
+            <summary>
+            These will all have message: "Dog room.MyPet is not of type Cat.":
+            throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsNotTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = A } is not of type Int32.":
+            throw new IsNotTypeException&lt;int&gt;(new { number });
+            throw new IsNotTypeException(new { number }, typeof(int));
+            throw new IsNotTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.TypeChecking.IsTypeException`1">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsTypeException`1.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <summary>
+            These will all have message: "room.MyPet cannot be of type Cat.""
+            throw new IsTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = 10 } cannot be of type Int32.":
+            throw new IsTypeException&lt;int&gt;(new { number });
+            throw new IsTypeException(new { number }, typeof(int));
+            throw new IsTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.IsTypeException`1.#ctor(System.Object)">
+            <summary>
+            These will all have message: "room.MyPet cannot be of type Cat.""
+            throw new IsTypeException&lt;Cat&gt;(() => room.MyPet);
+            throw new IsTypeException(() => room.MyPet, typeof(Cat));
+            throw new IsTypeException(() => room.MyPet, "Cat");
+            These will all have message: "{ number = 10 } cannot be of type Int32.":
+            throw new IsTypeException&lt;int&gt;(new { number });
+            throw new IsTypeException(new { number }, typeof(int));
+            throw new IsTypeException(new { number }, "Int32"));
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.NotEnumTypeException.#ctor(System.Type)">
+            <summary>
+            throw new NotEnumTypeException(typeof(Customer));
+            will have message: "Type Customer is not an enum."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.NotEnumTypeException`1.#ctor">
+            <summary>
+            throw new NotEnumTypeException&lt;Customer&gt;();
+            will have message: "Type Customer is not an enum."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.PropertyNotFoundException.#ctor(System.Type,System.String)">
+            <summary>
+            These will both have message: "Property 'ProductNumber' not found on type 'MyNameSpace.Customer'."
+            throw new PropertyNotFoundException&lt;Customer&gt;("ProductNumber");
+            throw new PropertyNotFoundException(typeof(Customer), "ProductNumber");
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.PropertyNotFoundException`1.#ctor(System.String)">
+            <summary>
+            These will both have message: "Property 'ProductNumber' not found on type 'MyNameSpace.Customer'."
+            throw new PropertyNotFoundException&lt;Customer&gt;("ProductNumber");
+            throw new PropertyNotFoundException(typeof(Customer), "ProductNumber");
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.TypeNotFoundException.#ctor(System.String)">
+            <summary>
+            throw new TypeNotFoundException("MyNamespace.Customer")
+            will have message: "Type 'MyNamespace.Customer' not found."
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.Exceptions.TypeChecking.UnexpectedTypeException">
+            <summary>
+            The difference between IsNotTypeException and UnexpectedTypeException
+            is that UnexpectedTypeException only mentions what type it is not,
+            not what type is expected.
+            Example of produced error message: "Animal has an unexpected type: Cat."
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Exceptions.TypeChecking.UnexpectedTypeException.#ctor(System.Linq.Expressions.Expression{System.Func{System.Object}})">
+            <inheritdoc cref="T:JJ.Framework.Exceptions.TypeChecking.UnexpectedTypeException"/>
+            <param name="expression">
+            Pass e.g. () => myParam.MyProperty.
+            (A lambda is preferred and passing just the value was not, because the lambda allows
+            the literal expression text / the variable name to be included in the error message.)
+            </param>
+        </member>
+    </members>
+</doc>

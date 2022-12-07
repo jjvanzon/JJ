@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JJ.Framework.IO</name>
+    </assembly>
+    <members>
+        <member name="T:JJ.Framework.IO.BinaryWriterExtensions">
+            <summary> Contains some methods for reading and writing structs to a stream. </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.BinaryWriterExtensions.ReadStruct``1(System.IO.BinaryReader)">
+            <summary>
+            Beware that the performance might not be better than reading the values one by one.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.IO.CsvReader">
+            <summary> A class for reading out CSV files. </summary>
+        </member>
+        <member name="T:JJ.Framework.IO.FileDeduplicator">
+            <summary>
+            Aims to look up duplicate files (recursively) in a folder.
+            It might analyze which duplicates there and report them.
+            It wouldn't actually delete the files yet.
+            PermanentFileDeleter or FileDeleterWithRecycleBin might be used for that.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.FileDeduplicator.#ctor">
+            <inheritdoc cref="T:JJ.Framework.IO.FileDeduplicator" />
+        </member>
+        <member name="M:JJ.Framework.IO.FileDeduplicator.Scan(System.String,System.Boolean,System.String,System.Action{System.String},System.Func{System.Boolean},JJ.Framework.IO.FileDeduplicatorCallbackCountEnum)">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.IO.FileDeduplicator.GetBasicFileTuple(System.String)">
+            <summary> Gets basic info with file path and file length, not yet the bytes nor whether it is a duplicate. </summary>
+        </member>
+        <member name="T:JJ.Framework.IO.BulkFileDeleterBase">
+            <summary> Might deleting multiple files, while progress would be reported. </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.BulkFileDeleterBase.DeleteFile(System.String)">
+            <summary>
+            Might be overridden to call File.Delete, or call a method that may move the file to the Recycle Bin.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.BulkFileDeleterBase.DeleteFiles(System.Collections.Generic.IList{System.String},System.Action{System.String},System.Func{System.Boolean})">
+            <inheritdoc cref="T:JJ.Framework.IO.BulkFileDeleterBase" />
+        </member>
+        <member name="M:JJ.Framework.IO.FileHelper.GetNumberedFilePath(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            If the originalFilePath already exists,
+            a higher and higher number is inserted into the file name 
+            until a file name is encountered that does not exists.
+            Than that file path file path is returned.
+            </summary>
+            <param name="originalFilePath">
+            The absolute path to a file name, that does not yet have a number in it.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.IO.FileHelper.ClearFolder(System.String)">
+            <summary> In contrast to Directory.Delete(), it only deletes the content in it, not the directory itself. </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.FileHelper.ClearFolder(System.IO.DirectoryInfo)">
+            <summary> In contrast to Directory.Delete(), it only deletes the content in it, not the directory itself. </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.FileHelper.ClearFolderRecursive(System.String)">
+            <summary> In contrast to Directory.Delete(), it only deletes the content in it, not the directory itself. </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.FileHelper.ClearFolderRecursive(System.IO.DirectoryInfo)">
+            <summary> In contrast to Directory.Delete(), it only deletes the content in it, not the directory itself. </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.FileHelper.ApplicationFolderPath">
+            <summary>Gets that path without command line parameters, or executable file name, etc.</summary>
+        </member>
+        <member name="M:JJ.Framework.IO.FileHelper.IsFolder(System.String)">
+            <summary>
+            If the folder actually exists, true is returned.
+            Otherwise, it returns true if the path does not have an extension.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.FileHelper.IsFile(System.String)">
+            <summary>
+            If the file actually exists, true is returned.
+            Otherwise, it returns true if the path has an extension.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.IO.FileLock">
+            <summary>
+            Allows you to lock a file.
+            A write lock is the most common, allowing other processes to still read the file, but not write it.
+            A read lock is used for transactional integrity:
+            another process can only read a file, after you are done writing all files.
+            However, do mind that the FileLock class cannot prevent a file getting locked by another process
+            when switching between read and write locks.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.IO.FileNameExcluder">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.IO.FileNameExcluder.Execute(System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="T:JJ.Framework.IO.FileNameFilterer">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.IO.FileNameFilterer.Execute(System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:JJ.Framework.IO.IFileDeduplicator.Scan(System.String,System.Boolean,System.String,System.Action{System.String},System.Func{System.Boolean},JJ.Framework.IO.FileDeduplicatorCallbackCountEnum)">
+            <param name="callbackCountEnum">
+            The amount of times cancelCallback and progressCallback might be called,
+            for instance to report progress percentage.
+            Default may be 1000, so with each percent processed, progress would be reported.
+            </param>
+        </member>
+        <member name="T:JJ.Framework.IO.IFileNameFilterer">
+            <summary>
+            This utility class aims to take a list of file paths,
+            then filter out only certain file names, generating a new list.
+            
+            <para> There is some lenience towards formatting. The paths can be surrounded by double quotes (") and white space.
+            The list of file names to keep can be both full paths or just the file names. </para>
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.IFileNameFilterer.Execute(System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
+            <inheritdoc cref="T:JJ.Framework.IO.IFileNameFilterer" />
+        </member>
+        <member name="T:JJ.Framework.IO.IFileNameExcluder">
+            <summary>
+            <para> This utility class aims to take a list of file paths,
+            then exclude certain file names, generating a new list. </para>
+            
+            <para> There is some lenience towards formatting. The paths can be surrounded by double quotes (") and white space.
+            The list of file names to exclude can be both full paths or just the file names. </para>
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.IFileNameExcluder.Execute(System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
+            <inheritdoc cref="T:JJ.Framework.IO.IFileNameExcluder" />
+        </member>
+        <member name="T:JJ.Framework.IO.PathParser">
+            <summary> Neatly splits up a file path into its smaller parts. </summary>
+        </member>
+        <member name="T:JJ.Framework.IO.PermanentBulkFileDeleter">
+            <summary>
+            Would delete the files, while progress might be reported.
+            Surpasses the Windows recycle bin.
+            To use the recycle bin, the following class might be available: BulkFileDeleterWithRecycleBin
+            in JJ.Framework.Microsoft.VisualBasic.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.IO.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.Resources.DeletingFiles_WithPercentage_AndFileName">
+            <summary>
+              Looks up a localized string similar to Deleting files {0:0.0}% - {1}.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.Resources.DoneDeletingFiles_WithCount">
+            <summary>
+              Looks up a localized string similar to Done deleting {0} files..
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.Resources.DoneScanning_WithDuplicatesCount">
+            <summary>
+              Looks up a localized string similar to Done scanning. {0} duplicates found..
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.Resources.ListingFiles">
+            <summary>
+              Looks up a localized string similar to Listing files....
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.Resources.ProcessingResult">
+            <summary>
+              Looks up a localized string similar to Processing result....
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.Resources.ScanningForDuplicates">
+            <summary>
+              Looks up a localized string similar to Scanning for duplicates....
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.IO.Resources.ScanningForDuplicates_WithFormattedPercentage">
+            <summary>
+              Looks up a localized string similar to Scanning for duplicates {0}....
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.IO.SafeFileOverwriter">
+            <summary>
+            This class enables a safe file overwrite,
+            by first writing to a temporary file and only when all
+            went well, the original file is overwritten.
+            The security settings and file attributes and file properties are retained
+            as the temp file replaces the original.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.SafeFileOverwriter.#ctor(System.String)">
+            <summary>
+            This class enables a safe file overwrite,
+            by first writing to a temporary file and only when all
+            went well, the original file is overwritten.
+            The security settings and file attributes and file properties are retained
+            as the temp file replaces the original.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.IO.SafeFileOverwriter.Save">
+            <summary> Overwrites one file with the contents of another file. Retains security settings and custom properties. </summary>
+        </member>
+        <member name="T:JJ.Framework.IO.StreamHelper">
+            <summary>
+            Converts between string, Stream and byte[]. 
+            Surprisingly different code is required for converting between those three,
+            and this helper class makes it a bit more consistent.
+            </summary>
+        </member>
+    </members>
+</doc>

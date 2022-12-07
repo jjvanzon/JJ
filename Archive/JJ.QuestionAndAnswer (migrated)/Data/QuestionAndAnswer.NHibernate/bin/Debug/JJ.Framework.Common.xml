@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JJ.Framework.Common</name>
+    </assembly>
+    <members>
+        <member name="T:JJ.Framework.Common.ConfigurationHelper">
+            <summary>
+            For using configuration settings when you cannot be dependent on System.Configuration.
+            </summary>
+        </member>
+        <member name="T:JJ.Framework.Common.DoubleHelper">
+            <summary>
+            Static classes cannot get extension members.
+            Instead we have the DoubleHelper class for extra static members.
+            </summary>
+            <summary>
+            Static classes cannot get extension members.
+            Instead we have the DoubleHelper class for extra static members.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Common.DoubleHelper.IsSpecialValue(System.Double)">
+            <summary> Returns true if the value is NaN, PositiveInfinity or NegativeInfinity. </summary>
+        </member>
+        <member name="M:JJ.Framework.Common.EmbeddedResourceHelper.GetEmbeddedResourceText(System.Reflection.Assembly,System.String,System.String)">
+            <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
+        </member>
+        <member name="M:JJ.Framework.Common.EmbeddedResourceHelper.GetEmbeddedResourceBytes(System.Reflection.Assembly,System.String,System.String)">
+            <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
+        </member>
+        <member name="M:JJ.Framework.Common.EmbeddedResourceHelper.GetEmbeddedResourceStream(System.Reflection.Assembly,System.String,System.String)">
+            <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
+        </member>
+        <member name="M:JJ.Framework.Common.EmbeddedResourceHelper.GetEmbeddedResourceName(System.Reflection.Assembly,System.String,System.String)">
+            <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
+        </member>
+        <member name="M:JJ.Framework.Common.KeyHelper.CreateKey``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Turns several objects into a single string key.
+            Only works if the objects' ToString() methods return something unique.
+            </summary>
+        </member>
+    </members>
+</doc>

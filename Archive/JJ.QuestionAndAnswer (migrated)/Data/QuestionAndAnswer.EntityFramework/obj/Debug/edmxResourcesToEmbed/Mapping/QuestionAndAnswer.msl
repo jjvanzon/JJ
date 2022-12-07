@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuestionAndAnswerDB_DEVModelStoreContainer" CdmEntityContainer="DEV_QuestionAndAnswerDBEntities">
+    <EntitySetMapping Name="Answers">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.Answer">
+        <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="IsCorrectAnswer" ColumnName="IsCorrectAnswer" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsManual" ColumnName="IsManual" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionCategories">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.QuestionCategory">
+        <MappingFragment StoreEntitySet="QuestionCategory">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionLinks">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.QuestionLink">
+        <MappingFragment StoreEntitySet="QuestionLink">
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionTypes">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.QuestionType">
+        <MappingFragment StoreEntitySet="QuestionType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_Answer_Question" TypeName="DEV_QuestionAndAnswerDBModel.FK_Answer_Question" StoreEntitySet="Answer">
+      <EndProperty Name="Answer">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Question">
+        <ScalarProperty Name="ID" ColumnName="QuestionID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Question_QuestionType" TypeName="DEV_QuestionAndAnswerDBModel.FK_Question_QuestionType" StoreEntitySet="Question">
+      <EndProperty Name="Question">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="QuestionType">
+        <ScalarProperty Name="ID" ColumnName="QuestionTypeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_QuestionCategory_Question" TypeName="DEV_QuestionAndAnswerDBModel.FK_QuestionCategory_Question" StoreEntitySet="QuestionCategory">
+      <EndProperty Name="QuestionCategory">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Question">
+        <ScalarProperty Name="ID" ColumnName="QuestionID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_QuestionLink_Question" TypeName="DEV_QuestionAndAnswerDBModel.FK_QuestionLink_Question" StoreEntitySet="QuestionLink">
+      <EndProperty Name="QuestionLink">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Question">
+        <ScalarProperty Name="ID" ColumnName="QuestionID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_Category_ParentCategory" TypeName="DEV_QuestionAndAnswerDBModel.FK_Category_ParentCategory" StoreEntitySet="Category">
+      <EndProperty Name="Category1">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Category">
+        <ScalarProperty Name="ID" ColumnName="ParentCategoryID" />
+      </EndProperty>
+      <Condition ColumnName="ParentCategoryID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_QuestionCategory_Category" TypeName="DEV_QuestionAndAnswerDBModel.FK_QuestionCategory_Category" StoreEntitySet="QuestionCategory">
+      <EndProperty Name="QuestionCategory">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Category">
+        <ScalarProperty Name="ID" ColumnName="CategoryID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Sources">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.Source">
+        <MappingFragment StoreEntitySet="Source">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_Question_Source" TypeName="DEV_QuestionAndAnswerDBModel.FK_Question_Source" StoreEntitySet="Question">
+      <EndProperty Name="Question">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Source">
+        <ScalarProperty Name="ID" ColumnName="SourceID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="AnswerStatus1">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.AnswerStatus">
+        <MappingFragment StoreEntitySet="AnswerStatus">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlagStatus1">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.FlagStatus">
+        <MappingFragment StoreEntitySet="FlagStatus">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionFlags">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.QuestionFlag">
+        <MappingFragment StoreEntitySet="QuestionFlag">
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Runs">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.Run">
+        <MappingFragment StoreEntitySet="Run">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RunCategories">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.RunCategory">
+        <MappingFragment StoreEntitySet="RunCategory">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAnswers">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.UserAnswer">
+        <MappingFragment StoreEntitySet="UserAnswer">
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DEV_QuestionAndAnswerDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="SecuritySalt" ColumnName="SecuritySalt" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_UserAnswer_AnswerStatus" TypeName="DEV_QuestionAndAnswerDBModel.FK_UserAnswer_AnswerStatus" StoreEntitySet="UserAnswer">
+      <EndProperty Name="UserAnswer">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="AnswerStatu">
+        <ScalarProperty Name="ID" ColumnName="AnswerStatusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_RunCategory_Category" TypeName="DEV_QuestionAndAnswerDBModel.FK_RunCategory_Category" StoreEntitySet="RunCategory">
+      <EndProperty Name="RunCategory">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Category">
+        <ScalarProperty Name="ID" ColumnName="CategoryID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_QuestionFlag_FlagStatus" TypeName="DEV_QuestionAndAnswerDBModel.FK_QuestionFlag_FlagStatus" StoreEntitySet="QuestionFlag">
+      <EndProperty Name="QuestionFlag">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="FlagStatu">
+        <ScalarProperty Name="ID" ColumnName="FlagStatusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Question_LastModifiedByUser" TypeName="DEV_QuestionAndAnswerDBModel.FK_Question_LastModifiedByUser" StoreEntitySet="Question">
+      <EndProperty Name="Question">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="LastModifiedByUserID" />
+      </EndProperty>
+      <Condition ColumnName="LastModifiedByUserID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_QuestionFlag_Question" TypeName="DEV_QuestionAndAnswerDBModel.FK_QuestionFlag_Question" StoreEntitySet="QuestionFlag">
+      <EndProperty Name="QuestionFlag">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Question">
+        <ScalarProperty Name="ID" ColumnName="QuestionID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_UserAnswer_Question" TypeName="DEV_QuestionAndAnswerDBModel.FK_UserAnswer_Question" StoreEntitySet="UserAnswer">
+      <EndProperty Name="UserAnswer">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Question">
+        <ScalarProperty Name="ID" ColumnName="QuestionID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_QuestionFlag_FlaggedByUser" TypeName="DEV_QuestionAndAnswerDBModel.FK_QuestionFlag_FlaggedByUser" StoreEntitySet="QuestionFlag">
+      <EndProperty Name="QuestionFlag">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="FlaggedByUserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_QuestionFlag_Users" TypeName="DEV_QuestionAndAnswerDBModel.FK_QuestionFlag_Users" StoreEntitySet="QuestionFlag">
+      <EndProperty Name="QuestionFlag">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="LastModifiedByUserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Run_Users" TypeName="DEV_QuestionAndAnswerDBModel.FK_Run_Users" StoreEntitySet="Run">
+      <EndProperty Name="Run">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="UserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_RunCategory_Run" TypeName="DEV_QuestionAndAnswerDBModel.FK_RunCategory_Run" StoreEntitySet="RunCategory">
+      <EndProperty Name="RunCategory">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Run">
+        <ScalarProperty Name="ID" ColumnName="RunID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_UserAnswer_Run" TypeName="DEV_QuestionAndAnswerDBModel.FK_UserAnswer_Run" StoreEntitySet="UserAnswer">
+      <EndProperty Name="UserAnswer">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="Run">
+        <ScalarProperty Name="ID" ColumnName="RunID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_UserAnswer_Users" TypeName="DEV_QuestionAndAnswerDBModel.FK_UserAnswer_Users" StoreEntitySet="UserAnswer">
+      <EndProperty Name="UserAnswer">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="UserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

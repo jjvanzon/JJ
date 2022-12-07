@@ -1,0 +1,375 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JJ.Framework.Mathematics</name>
+    </assembly>
+    <members>
+        <member name="T:JJ.Framework.Mathematics.Interpolator">
+            <summary>
+            NOTE: There are also separate methods for
+            precalculating values once when you start interpolating between two numbers
+            and then doing a faster calculation to derived the points in between.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Interpolator.Hermite4pt3oX(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Pretty good sound interpolation.
+            Derived from:
+            http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
+            </summary>
+            <param name="t">The point between 0 and 1 between x0 and x1.</param>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Interpolator.Hermite4pt3oX_PrecalculateVariables(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Pretty good sound interpolation.
+            Derived from:
+            http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Interpolator.Hermite4pt3oX_FromPrecalculatedVariables(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Pretty good sound interpolation.
+            Derived from:
+            http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
+            </summary>
+            <param name="t">The point between 0 and 1 between x0 and x1.</param>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Interpolator.Hermite4pt3oX(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Pretty good sound interpolation.
+            Derived from:
+            http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
+            </summary>
+            <param name="t">The point between 0 and 1 between x0 and x1.</param>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Interpolator.Hermite4pt3oX_PrecalculateVariables(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Pretty good sound interpolation.
+            Derived from:
+            http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Interpolator.Hermite4pt3oX_FromPrecalculatedVariables(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Pretty good sound interpolation.
+            Derived from:
+            http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
+            </summary>
+            <param name="t">The point between 0 and 1 between x0 and x1.</param>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Interpolator.CubicFromT(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double@,System.Double@)">
+            <summary>
+            t values between 0 and 1 trace a curve
+            going from (x0, y0) to (x3, y3).
+            It does not go through (x1, y1) and (x2, y2).
+            Those are merely control points that indicate the direction in which the curve goes.
+            This is called a Bezier curve.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Interpolator.CubicFromT(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single@,System.Single@)">
+            <summary>
+            t values between 0 and 1 trace a curve
+            going from (x0, y0) to (x3, y3).
+            It does not go through (x1, y1) and (x2, y2).
+            Those are merely control points that indicate the direction in which the curve goes.
+            This is called a Bezier curve.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.Pow(System.Int32,System.Int32)">
+            <summary>
+            Integer variation of the Math.Pow function,
+            that only works for non-negative exponents.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.Log(System.Int32,System.Int32)">
+            <summary>
+            Integer variation of the Math.Log function.
+            It will only return integers,
+            but will prevent rounding errors such as
+            1000 log 10 = 2.99999999996.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.IsPowerOf2(System.Int32)">
+            <summary>
+            With help of:
+            http://www.lomont.org/Software/Misc/FFT/LomontFFT.html
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.LogRatio(System.Double,System.Double,System.Double)">
+            <summary>
+            Calculates where x is in between x0 and x1 on a logarithmic scale.
+            0 means it is on point x0. 1 means it is on point x1.
+            between 0 and 1 means it is somewhere in between.
+            0.5 means it is precisely half-way x0 and x1 logarithmically.
+            Note that it can also be outside the bounds 0 and 1 if it is not in between those numbers.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.RoundToSignificantDigits(System.Double,System.Int32)">
+            <summary> source: https://stackoverflow.com/questions/374316/round-a-double-to-x-significant-figures </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.RoundWithStep(System.Double,System.Double,System.Double)">
+            <summary>
+            Rounds to multiples of step, with an offset.
+            It uses Math.Round as a helper, which supports a wide range of values.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.RoundWithStep(System.Double,System.Double)">
+            <summary>
+            Rounds to multiples of step, with an offset.
+            It uses Math.Round as a helper, which supports a wide range of values.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.RoundWithStepWithInt64Bounds(System.Double,System.Double,System.Double)">
+            <summary>
+            Rounds to multiples of step, with an offset.
+            It uses a cast to Int64 as a helper,
+            which might be faster than Math.Round,
+            but means you are stuck within the value bounds of long.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.RoundWithStepWithInt64Bounds(System.Double,System.Double)">
+            <summary>
+            Rounds to multiples of step, with an offset.
+            It uses a cast to Int64 as a helper,
+            which might be faster than Math.Round,
+            but means you are stuck within the value bounds of long.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.RoundWithStep(System.Single,System.Single,System.Single)">
+            <summary>
+            Rounds to multiples of step, with an offset.
+            It uses Math.Round as a helper, which supports a wide range of values.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.RoundWithStep(System.Single,System.Single)">
+            <summary>
+            Rounds to multiples of step, with an offset.
+            It uses Math.Round as a helper, which supports a wide range of values.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.RoundWithStepWithInt64Bounds(System.Single,System.Single,System.Single)">
+            <summary>
+            Rounds to multiples of step, with an offset.
+            It uses a cast to Int64 as a helper,
+            which might be faster than Math.Round,
+            but means you are stuck within the value bounds of long.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.RoundWithStepWithInt64Bounds(System.Single,System.Single)">
+            <summary>
+            Rounds to multiples of step, with an offset.
+            It uses a cast to Int64 as a helper,
+            which might be faster than Math.Round,
+            but means you are stuck within the value bounds of long.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.ScaleLinearly(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Converts one range of numbers to another,
+            by both making a number bigger or smaller and shifting it over.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.ScaleLinearly(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Converts one range of numbers to another,
+            by both making a number bigger or smaller and shifting it over.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.SpreadIntegers(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Equally spreads out a number indices over a different number of indices.
+            For instance the numbers {1,2,3} could be spread over 10 items,
+            the first ones getting 1, the middle ones getting 2 and the last ones being assigned 3.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.SpreadIntegers(System.Int32,System.Int32)">
+            <summary>
+            Equally spreads out a number indices over a different number of indices.
+            For instance the numbers {1,2,3} could be spread over 10 items,
+            the first ones getting 1, the middle ones getting 2 and the last ones being assigned 3.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.SpreadItems``2(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``1})">
+            <summary>
+            Equally spreads out items over another set of items.
+            For instance the numbers {1,2,3} could be spread over 10 items,
+            the first ones getting 1, the middle ones getting 2 and the last ones being assigned 3.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.SpreadDoubles(System.Double,System.Int32)">
+            <summary> Equally spreads out a number of points over a span. </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.SpreadDoubles(System.Double,System.Double,System.Int32)">
+            <summary> Equally spreads out a number of points over a span. </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.FormatWithDecimalCount(System.Object,System.Int32)">
+            <inheritdoc cref="M:JJ.Framework.Mathematics.MathHelper.FormatWithDecimalCount(System.Object,System.String,System.Int32)" />
+        </member>
+        <member name="M:JJ.Framework.Mathematics.MathHelper.FormatWithDecimalCount(System.Object,System.String,System.Int32)">
+            <summary>
+            There may be cases where it is desired that 1 is displayed as "1.0",
+            while in another case 1 might be displayed as "1".
+            .NET's custom numeric format strings (like "0.0" or "0.#") seem to solve the problem.
+            But maybe not in all cases. They may make you choose the amount of trailing zeroes by hard-coding it.
+            If you want to fix the amount of trailing digits depending on a variable,
+            custom numeric format strings might force you to make a hard-coded choice.
+            This method tries to solve that.
+            </summary>
+            <param name="baseFormatString">
+            Default may be "0".
+            NOTE: This method may try to construct a derived formatString,
+            for instance by addition zeroes (0) or a period (.)
+            It might be wise to be aware about cases where that would result in an invalid format string.
+            </param>
+            <additionalDecimalCount>Between 0 and basically any number.</additionalDecimalCount>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.ToBaseDigitValues(System.Int32,System.Int32)">
+            <summary>
+            Calculates an array of digit values that represent a number in a base-b numbering system.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.ToBase(System.Int32,System.Char[])">
+            <summary>
+            Produces a string that represents the number in a base-b numbering system.
+            The digit characters are specified explicitly in an array.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.ToBase(System.Int32,System.Int32,System.Char[])">
+            <summary>
+            Produces a string that represents the number in a base-b numbering system.
+            The digit characters are specified explicitly in an array.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.ToBase(System.Int32,System.Int32,System.Char)">
+            <summary>
+            Produces a string that represents the number in a base-b numbering system.
+            The first digit is a specific character value.
+            That way the digits can only be a consecutive character range.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.ToHex(System.Int32)">
+            <summary>
+            Converts a number to its hexadecimal representation.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.ToBase(System.Int32,System.Int32)">
+            <summary>
+            Produces a string that represents the number in a base-b numbering system.
+            The digits are 0-9 and then A-Z. Higher digits are not allowed.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.FromBase(System.String,System.Int32,System.Func{System.Char,System.Int32})">
+            <summary>
+            Converts a base-b number to an integer.
+            A delegate is passed to this method that derives the digit value from the character value.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.FromHex(System.String)">
+            <summary>
+            Coverts a string with a hexadecimal number in it to an integer.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.FromBase(System.String,System.Int32)">
+            <summary>
+            Converts a base-b number to an int.
+            The digits are 0-9 and then A-Z. Higher digits are not allowed.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.FromBase(System.String,System.Int32,System.Char[])">
+            <summary>
+            Converts a base-b number to an integer.
+            The digits are specified explicitly in an array of characters.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.FromBase(System.String,System.Int32,System.Char)">
+            <summary>
+            Converts a base-b number to an integer.
+            The first digit is a specific character value.
+            The digits can only be a consecutive character range.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.FromBase(System.String,System.Char,System.Char)">
+            <summary>
+            Converts a base-b number to an integer.
+            The first and last digit characters are specified.
+            The digits can only be a consecutive character range.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.ToLetterSequence(System.Int32,System.Char,System.Char)">
+            <summary>
+            Returns spread-sheet-style letter sequences.
+            This is not the same as a base-26 numbering system.
+            After the range A-Z is depleted, the next value is 'AA',
+            which is equivalent to 00, 
+            so you basically start counting at 0 again,
+            but you get 26 for free.
+            </summary>
+            <param name="value">0 is the first letter</param>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.ToLetterSequence(System.Int32,System.Int32,System.Char)">
+            <summary>
+            Returns spread-sheet-style letter sequences.
+            This is not the same as a base-26 numbering system.
+            After the range A-Z is depleted, the next value is 'AA',
+            which is equivalent to 00, 
+            so you basically start counting at 0 again,
+            but you get 26 for free.
+            </summary>
+            <param name="firstChar">0 is the first letter</param>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.FromLetterSequence(System.String,System.Char,System.Char)">
+            <summary>
+            Converts a spread-sheet-style letter sequence to a number.
+            This is not the same as a base-26 numbering system.
+            After the range A-Z is depleted, the next value is 'AA',
+            which is equivalent to 00, 
+            so you basically start counting at 0 again,
+            but you get 26 for free.
+            0 is the first letter.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.NumberBases.FromLetterSequence(System.String,System.Int32,System.Char)">
+            <summary>
+            Converts a spread-sheet-style letter sequence to a number.
+            0 is the first letter.
+            This is not the same as a base-26 numbering system.
+            After the range A-Z is depleted, the next value is 'AA',
+            which is equivalent to 00, 
+            so you basically start counting at 0 again,
+            but you get 26 for free.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Randomizer.GetInt32">
+            <summary>
+            Gets a random Int32 between Int32.MinValue and Int32.MaxValue - 1.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Randomizer.GetInt32(System.Int32)">
+            <summary>
+            Gets a random Int32 between 0 and the specified value.
+            max must at most be Int32.MaxValue - 1 or an overflow exception could occur.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Randomizer.GetInt32(System.Int32,System.Int32)">
+            <summary>
+            Gets a random Int32 between between a minimum and a maximum.
+            Both the minimum and the maximum are included.
+            max must at most be Int32.MaxValue - 1 or an overflow exception could occur.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Randomizer.GetDouble">
+            <summary> Returns a random number between 0.0 and 1.0. </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Randomizer.GetSingle">
+            <summary> Returns a random number between 0.0 and 1.0. </summary>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Randomizer.GetDouble(System.Double,System.Double)">
+            <param name="min">inclusive</param>
+            <param name="max">exclusive</param>
+        </member>
+        <member name="M:JJ.Framework.Mathematics.Randomizer.GetSingle(System.Single,System.Single)">
+            <param name="min">inclusive</param>
+            <param name="max">exclusive</param>
+        </member>
+    </members>
+</doc>

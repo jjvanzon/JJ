@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JJ.Framework.Reflection</name>
+    </assembly>
+    <members>
+        <member name="T:JJ.Framework.Reflection.Accessor">
+            <summary>
+            Allows easy access to members by name, public, private or protected.
+            Limitation: private base members cannot be accessed.
+            Use a separate Accessor object to access the private members of the base class.
+            To access internal classes, use the GetType / or CreateInstance static methods.
+            Another limitation is that it cannot invoke private or internal constructors for you (yet).
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.#ctor(System.String,System.Object[])">
+            <summary> Use this constructor to access instance members of internal classes. </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.#ctor(System.Object)">
+            <summary> Use this constructor to access instance members. </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.#ctor(System.Type)">
+            <summary> Use this constructor to access static members. </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.#ctor(System.Object,System.Type)">
+            <summary> Use this constructor to access members of the base class. </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.GetFieldValue``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <param name="nameExpression">
+            An expression from which the member name will be extracted. 
+            Only the last name in the expression will be used, nothing else.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.SetFieldValue``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Object)">
+            <param name="nameExpression">
+            An expression from which the member name will be extracted. 
+            Only the last name in the expression will be used, nothing else.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.GetPropertyValue``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <param name="nameExpression">
+            An expression from which the member name will be extracted. 
+            Only the last name in the expression will be used, nothing else.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.SetPropertyValue``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Object)">
+            <param name="nameExpression">
+            An expression from which the member name will be extracted. 
+            Only the last name in the expression will be used, nothing else.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.InvokeMethod(System.Linq.Expressions.Expression{System.Action},System.Object[])">
+            <param name="nameExpression">
+            An expression from which the member name will be extracted. 
+            Only the last name in the expression will be used, nothing else.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.InvokeMethod``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Object[])">
+            <param name="nameExpression">
+            An expression from which the member name will be extracted. 
+            Only the last name in the expression will be used, nothing else.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.Accessor.InvokeMethod(System.Linq.Expressions.LambdaExpression,System.Object[])">
+            <param name="nameExpression">
+            An expression from which the member name will be extracted. 
+            Only the last name in the expression will be used, nothing else.
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetName``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Gets the member name from the expression.
+            If the expression contains more than one member,
+            the last member name is returned.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetName(System.Linq.Expressions.Expression{System.Action})">
+            <summary>
+            Gets the member name from the expression.
+            If the expression contains more than one member,
+            the last member name is returned.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetName(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Gets the member name from the expression.
+            If the expression contains more than one member,
+            the last member is returned.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetMember``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Gets the MemberInfo from the expression.
+            If the expression contains more than one member access,
+            the last member is returned.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetMember(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Gets the MemberInfo from the expression.
+            If the expression contains more than one member access,
+            the last member is returned.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetValue``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Gets a value from an expression.
+            Supports field access, property access, method calls with parameters,
+            indexers, array lengths, conversion expressions, params (variable amount of arguments),
+            and both static and instance member access.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetValue(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Gets a value from an expression.
+            Supports field access, property access, method calls with parameters,
+            indexers, array lengths, conversion expressions, params (variable amount of arguments),
+            and both static and instance member access.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetValue(System.Linq.Expressions.Expression)">
+            <summary>
+            Gets a value from an expression.
+            Supports field access, property access, method calls with parameters,
+            indexers, array lengths, conversion expressions, params (variable amount of arguments),
+            and both static and instance member access.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetText``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Boolean)">
+            <param name="showIndexerValues">
+            If you set this to true, an expression like MyArray[i] will translate to e.g.
+            "MyArray[2]" instead of "MyArray[i]".
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetText(System.Linq.Expressions.LambdaExpression,System.Boolean)">
+            <param name="showIndexerValues">
+            If you set this to true, an expression like MyArray[i] will translate to e.g.
+            "MyArray[2]" instead of "MyArray[i]".
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetText(System.Linq.Expressions.Expression,System.Boolean)">
+            <param name="showIndexerValues">
+            If you set this to true, an expression like MyArray[i] will translate to e.g.
+            "MyArray[2]" instead of "MyArray[i]".
+            </param>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionHelper.GetMethodCallInfo(System.Linq.Expressions.LambdaExpression)">
+             <summary>
+             For instance:
+            
+             	ExpressionHelper.GetMethodCallInfo(() => MyMethod(3));
+            
+             Will return:
+            
+             	MethodCallInfo
+             	{
+             		Name = "MyMethod",
+             		Parameters = 
+             		{
+             			ParameterType = typeof(int),
+             			Name = "myParameter",
+             			Value = 3
+             		}
+             	};
+             </summary>
+        </member>
+        <member name="P:JJ.Framework.Reflection.ExpressionToTextTranslator.ShowIndexerValues">
+            <summary> 
+            If you set this to true, an expression like MyArray[i] will translate to e.g. 
+            "MyArray[2]" instead of "MyArray[i]". </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ExpressionToTextTranslator.VisitIndexerValue(System.Linq.Expressions.Expression)">
+            <summary>
+            Normally indexers are shown as the expression that they are, e.g. [i].
+            If ShowIndexerValues is set to true, indexers are translated to their value, e.g. [2].
+            To translate to their value, the work is delegated to ExpressionToValueTranslator.
+            </summary>
+        </member>
+        <member name="P:JJ.Framework.Reflection.MethodCallInfo.Parameters">
+            <summary> auto-instantiated </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionHelper.IsSimpleType(System.Object)">
+            <summary>
+            A simple type can be a .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
+            the numeric types, their signed and unsigned variations, but also
+            String, Guid, DateTime, TimeSpan and Enum types.
+            If value is null, it is also considered a simple type.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionHelper.CreateInstance(System.String,System.Object[])">
+            <summary> A variation on the existing Type.CreateInstance, that takes a type name as a string, instead of a Type. </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.GetImplementation(System.Reflection.Assembly,System.Type)">
+            <summary>
+            Allows you to retrieve implementations of a specified base class or interface from an assembly,
+            which is useful for plug-in development.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.TryGetImplementation(System.Reflection.Assembly,System.Type)">
+            <summary>
+            Allows you to retrieve implementations of a specified base class or interface from an assembly,
+            which is useful for plug-in development.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.GetImplementations(System.Collections.Generic.IEnumerable{System.Reflection.Assembly},System.Type)">
+            <summary>
+            Allows you to retrieve implementations of a specified base class or interface from an assembly,
+            which is useful for plug-in development.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.GetImplementations(System.Reflection.Assembly,System.Type)">
+            <summary>
+            Allows you to retrieve implementations of a specified base class or interface from an assembly,
+            which is useful for plug-in development.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.GetBaseClasses(System.Type)">
+            <summary> Returns a type's base type and its base type etc. </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.GetPropertyOrException(System.Type,System.String)">
+            <summary>
+            Type.GetProperty returns null if the property does not exist.
+            This method is a little safer than that and throws a clear exception if the property does not exist.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.GetUnderlyingNullableTypeFast(System.Type)">
+            <summary>
+            Slightly faster than Nullable.GetUnderlyingType, but gives false positives if the type is not nullable to begin with.
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.GetValue(System.Reflection.PropertyInfo)">
+            <summary> Returns the property value. For static properties this will work without an object parameter. </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.Invoke(System.Reflection.MethodBase,System.Object[])">
+            <inheritdoc cref="M:JJ.Framework.Reflection.ReflectionExtensions.Invoke(System.Reflection.MethodBase,System.Object,System.Object[])" />
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.Invoke(System.Reflection.MethodBase,System.Object,System.Object[])">
+            <summary>
+            Invokes a method or constructor. For static methods this will work without an object parameter.
+            This overload may allow parameters to be specified with params / variable amount of arguments
+            </summary>
+        </member>
+        <member name="M:JJ.Framework.Reflection.ReflectionExtensions.IsSimpleType(System.Type)">
+            <summary>
+            Tells you if a Type is a 'simple type'.
+            A simple type can be a .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr,
+            the numeric types, their signed and unsigned variations, but also
+            String, Guid, DateTime, TimeSpan and Enum types.
+            </summary>
+        </member>
+    </members>
+</doc>
