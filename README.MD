@@ -1,16 +1,18 @@
 JJ Code Base
 ============
 
-Larger code base with multiple applications:
-
-- Question & Answer
-- Some misc demos
-
-The following projects used to be in there, but were moved to the Archive folder, because they have their own separate repositories now:
+Larger code base that used to be for multiple applications. But most of these were moved to the Archive folder, because they were migrated to their own separate repositories now:
 
 - [JJ.Framework](https://github.com/jjvanzon/JJ.Framework)
 - [JJ.Synthesizer](https://github.com/jjvanzon/JJ.Synthesizer)
 - [JJ.SaveText](https://github.com/jjvanzon/JJ.SaveText)
+- [Question & Answer](https://github.com/jjvanzon/JJ.QuestionAndAnswer)
+
+What's still left in here unmigrated:
+
+- JJ.Data.Canonical
+- JJ.Business.Canonical
+- Misc demos
 
 Modularization
 --------------
@@ -23,9 +25,8 @@ JJ code base is newer. It started being developed around 2013. Its architecture 
 
 I think a first-order grouping by technical aspects instead of by functional aspects may be of help, because technology can change fast, but functionality may change even faster, so for a main outline of things, technical aspects might be more stable as a subdivision, than functional aspects, which may change more frequently, in my opinion.
 
-
 Setting Up Dev Environment
-----------------------
+--------------------------
 
 ### JJ.Framework
 
@@ -34,30 +35,3 @@ Setting Up Dev Environment
 - The following info might be useful for that:
 - Name: JJs-Pre-Release-Package-Feed
 - Source: https://pkgs.dev.azure.com/jjvanzon/1de16010-421a-41a5-90f1-86e9513f2c5b/_packaging/JJs-Pre-Release-Package-Feed/nuget/v3/index.json
-
-### Internet Information Services (IIS)
-
-- Some web projects might like to run on IIS (Internet Information Services).
-- Otherwise they may not load.
-- Try to *reload* a web project:
-- The Output window in Visual Studio might show an expected web address.
-- It is suggested to install IIS.
-- Create a web site.
-- Point its *physical path* to the folder of the csproj that might not load.
-- Having a *binding* that uses the web address previously found in the Visual Studio output as a *host name*.
-- The file `C:\Windows\System32\drivers\etc\hosts` may need editing.
-- Entries like the following might be added:
-
-```
-127.0.0.1  dev.questionandanswer.jjvanzon.io
-::1        dev.questionandanswer.jjvanzon.io
-```
-
-### Databases
-
-#### QuestionAndAnswerDB
-
-- The database backup can be found under "Database\QuestionAndAnswer"
-- The file can be unzipped and restored in SQL Server with name DEV_QuestionAndAnswerDB
-- And again with name DEV_QuestionAndAnswerDB_UnitTests
-- The database user name "dev" could be expected with password "dev".
