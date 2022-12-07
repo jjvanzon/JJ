@@ -1,6 +1,0 @@
-C:\Repositories\JJ\Data\QuestionAndAnswer\bin\Debug\JJ.Data.QuestionAndAnswer.dll
-C:\Repositories\JJ\Data\QuestionAndAnswer\bin\Debug\JJ.Data.QuestionAndAnswer.pdb
-C:\Repositories\JJ\Data\QuestionAndAnswer\obj\Debug\JJ.Data.QuestionAndAnswer.csproj.AssemblyReference.cache
-C:\Repositories\JJ\Data\QuestionAndAnswer\obj\Debug\JJ.Data.QuestionAndAnswer.csproj.CoreCompileInputs.cache
-C:\Repositories\JJ\Data\QuestionAndAnswer\obj\Debug\JJ.Data.QuestionAndAnswer.dll
-C:\Repositories\JJ\Data\QuestionAndAnswer\obj\Debug\JJ.Data.QuestionAndAnswer.pdb

@@ -1,6 +1,0 @@
-C:\Repositories\JJ\Presentation\QuestionAndAnswer.Import\bin\Debug\JJ.Presentation.QuestionAndAnswer.Import.dll
-C:\Repositories\JJ\Presentation\QuestionAndAnswer.Import\bin\Debug\JJ.Presentation.QuestionAndAnswer.Import.pdb
-C:\Repositories\JJ\Presentation\QuestionAndAnswer.Import\obj\Debug\JJ.Presentation.QuestionAndAnswer.Import.csproj.AssemblyReference.cache
-C:\Repositories\JJ\Presentation\QuestionAndAnswer.Import\obj\Debug\JJ.Presentation.QuestionAndAnswer.Import.csproj.CoreCompileInputs.cache
-C:\Repositories\JJ\Presentation\QuestionAndAnswer.Import\obj\Debug\JJ.Presentation.QuestionAndAnswer.Import.dll
-C:\Repositories\JJ\Presentation\QuestionAndAnswer.Import\obj\Debug\JJ.Presentation.QuestionAndAnswer.Import.pdb
