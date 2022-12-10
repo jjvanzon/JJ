@@ -1,18 +1,19 @@
 JJ Code Base
 ============
 
-Larger code base that used to be for multiple applications. But most of these were moved to the Archive folder, because they were migrated to their own separate repositories now:
+Larger code base that used to be for multiple applications. But most of these were moved to the Archive folder, because now they were migrated to their own separate repositories:
 
 - [JJ.Framework](https://github.com/jjvanzon/JJ.Framework)
 - [JJ.Synthesizer](https://github.com/jjvanzon/JJ.Synthesizer)
 - [JJ.SaveText](https://github.com/jjvanzon/JJ.SaveText)
-- [Question & Answer](https://github.com/jjvanzon/JJ.QuestionAndAnswer)
+- [JJ.QuestionAndAnswer](https://github.com/jjvanzon/JJ.QuestionAndAnswer)
+- [JJ.Canonical](https://github.com/jjvanzon/JJ.Canonical)
 
 What's still left in here unmigrated:
 
-- JJ.Data.Canonical
-- JJ.Business.Canonical
 - Misc demos
+
+Here follows the idea with which this code base was once set up.
 
 Modularization
 --------------
