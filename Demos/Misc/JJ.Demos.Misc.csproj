@@ -88,6 +88,8 @@
     <Compile Include="ActionHandler.cs" />
     <Compile Include="ConfigurationTests.cs" />
     <Compile Include="CSharp7Tests.cs" />
+    <Compile Include="IndentationDemoNotPreferred.cs" />
+    <Compile Include="IndentationDemoRecommended.cs" />
     <Compile Include="PrimaryConstructors.cs" />
     <Compile Include="CovarianceAndContravarianceTests.cs" />
     <Compile Include="MiscTests.cs" />
