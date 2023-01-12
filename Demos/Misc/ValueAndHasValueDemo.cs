@@ -22,7 +22,7 @@ namespace JJ.Demos.Misc
         {
             if (number != null)
             {
-                string message = $"Number = {number}");
+                string message = $"Number = {number}";
             }
         }
 
